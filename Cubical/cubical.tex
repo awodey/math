@@ -19,6 +19,7 @@
 % categories
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
 \newcommand{\B}{\ensuremath{\mathbb{B}}}
+\newcommand{\T}{\ensuremath{\mathbb{T}}}
 \newcommand{\CC}{\ensuremath{\mathcal{C}}}
 \newcommand{\BB}{\ensuremath{\mathcal{B}}}
 %\newcommand{\EE}{\ensuremath{\mathcal{E}}}
@@ -29,6 +30,7 @@
 %\renewcommand{\to}{\ensuremath{\rightarrow}}
 \newcommand{\pocorner}[1][dr]{\save*!/#1+1.2pc/#1:(1,-1)@^{|-}\restore}
 \newcommand{\pbcorner}[1][dr]{\save*!/#1-1.2pc/#1:(-1,1)@^{|-}\restore}
+\newcommand{\y}{\ensuremath{\mathsf{y}}} % Yoneda embedding
 
 % arrows
 \newcommand{\hook}{\ensuremath{\hookrightarrow}}
@@ -348,6 +350,41 @@ X^\I(n) \cong \hom(y[n], X^\I) \cong \hom(\I^n, X^\I)\ \cong\ \hom(\I^n\times \I
 The functor $X \mapsto X^\I$ has a \emph{right} adjoint.
 \end{proposition}
 
+\paragraph{Example.}
+The cubical set $P$ of polynomials (over the integers, say), is defined by:
+\[
+P_n = \{ p(x_1,..., x_n)\ |\  \text{polynomials in at most}\  x_1, É, x_n \}
+\]
+with the evident maps $P_m \to P_n$ for each function $[m] \to [n]$.
+
+This is a ring object in the category of cubical sets, and the interval $\I\ = y[1]$ embeds into $P$.
+The same is true for any algebraic theory $\T$ with two constants, such as boolean algebras: there is a cubical $\T$-algebra $A$ and a monic $\I \mono A$.
+
+Let $\C[\I] = \H$ be the cube category, classifying intervals, and $\C[\T]$ the classifying category for $\T$-algebras.  There is an interval $J$ in $\C_\T$  consisting of the generic $\T$-algebra and its two constants.  This $J$ has a classifying functor $J : \C_\I \to \C_\T$, inducing functors on presheaves
+\[
+J_! \dashv J^* \dashv J_* : \psh{\C_\I} \to \psh{\C_\T}
+\]
+as usual, where $J_! \circ \y_{\C_\I} =\ \y_{\C_\T} \circ J$,  with $\y$ the respective Yoneda embeddings.
+
+We can calculate:
+\begin{equation}
+\begin{split}
+J^* J_! ( \I )( [n] ) &= J^* J_! ( Y[1] )( [n] )\\
+ &= J^* Y( J[1] )( [n] ) = Y( J[1] )( J[n] ) \\
+ &= \C_\T( J[n] , J[1] ) = \T\mathrm{-Alg}( J[1] , J[n] ) \\
+ &= \T\mathrm{-Alg}( F(1) , F(n) ) = | F(n) |,
+\end{split}
+\end{equation}
+where $F(n)$ is the free $\T$-algebra on $n$ generators.  So in the case of polynomials we indeed have 
+$$P = J^* J_! ( \I ).$$
+The unit of the adjunction $\I \to J^* J_! ( \I )$ is faithful, since $J$ itself is faithful and therefore the left adjoint $J_!$ is faithful.
+$P$ is a ring in $\psh{\C_\I}$ since $J_!(\I)$ is a ring in $\psh{\C_\T}$ and $J^*$ is left exact.
+
+A closely related example is the cubical set of ``boolean polynomials",
+\[
+B_n = \{ \varphi(p_1, ..., p_n)\ |\ \text{propositional formulas in at most $p_1, ..., p_n$} \}
+\]
+which is the free boolean algeba $2^n$.  
 
 \subsubsection*{Questions}
 \begin{enumerate}
