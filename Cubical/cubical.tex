@@ -97,7 +97,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \noindent
-Roughly following the paper of Bezem, Coquand, and Huber \cite{BCH} ,and reformulating things in functorial style.
+These notes analyze the cubical model of Bezem, Coquand, and Huber \cite{BCH}.
 
 \section{Some cube categories}
 
@@ -186,7 +186,7 @@ where $\alpha : I^k \rightarrowtail I^m$ is a (composite) face, $\sigma : I^k \t
 \item The objects $I^n$ are again  $n$-fold \emph{tensor} products of the interval $I$, but not  \emph{cartesian} products, either in the site $\C_s$ or in  $\mathsf{csSet}$.   And again, the geometric realization functor from $\mathsf{csSet}$ to topological spaces does not preserve cartesian products, but instead takes tensor products to cartesian ones. Relatedly, there is a functor $\mathsf{Hom}(X, - )$, right adjoint to the tensor $X\otimes (-)$, which is not an exponential.
 \end{enumerate}
 
-\subsubsection*{Covariant presentation}
+\subsubsection{Covariant presentation}
 
 (Cf.\ Bezem, Coquand, and Huber \cite{BCH}, Pitts \cite{Pitts}.) There is a dual presentation of the symmetric site $\C_s$.  Let the category $\mathcal{C}$ have as \emph{objects} the finite sets $$[n]= \{1, ..., n\}$$ and write 
 \[
@@ -270,7 +270,7 @@ To see that this is not full, observe that every monotone $f : I^n \to I^m$ is a
 Note that the non-monotone ``negation" map $n : I \to I$, with $n(0) = 1$ and $n(1) = 0$, is also not in $\C_c$.
 
 
-\subsubsection*{Covariant presentation}
+\subsubsection{Covariant presentation}\label{subsubsec:covariant}
 
 As a classifying category for an algebraic theory, the category $\C_c$ of cartesian cubes also has a covariant presentation by Lawvere duality, namely as the opposite of the full subcategory of finitely-generated, free algebras $\mathsf{Alg}_{\mathrm{fg}}$.  In this case, the algebras are simply \emph{bipointed sets} $(A, a_0, a_1)$, and the free ones are the \emph{strictly} bipointed sets $a_0\neq a_1$.  Thus $\mathsf{Alg}_{\mathrm{fg}}$ consists of the finite, strictly bipointed sets and all bipointed maps between them.  Specifically, let the objects of $\mathbb{B}$ be the sets $[n] = \{1, ..., n\}$, and the arrows,
 \[
@@ -280,6 +280,7 @@ be arbitrary, $\{\top, \bot\}$-preserving maps $[m]^+ \to [n]^+$, where as befor
 
 As a full subcategory of free algebras, the category $\B$ can also be described as the Kleisli category of the monad $[n] \mapsto [n]^+$.   Thus we arrive at the covariant description $\CC$ of the symmetric cubes, but without the partial injectivitity condition, which is violated by (the duals of) the diagonal maps.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hypercubical sets}
 
 \begin{definition}
@@ -302,27 +303,100 @@ and called the \emph{standard $n$-cubes}.  In particular, the standard $1$-cube 
 In particular $\I^n_m = \H([m],[n])$ is the set of $m$-cubes in the standard $n$-cube.
 \end{definition}
 
+%%
 \begin{proposition}
 We now have $\I^n \times \I^m \cong \I^{n+m}$, in virtue of the preservation of products by the Yoneda embedding.
 \end{proposition}
 
-
+%%
 \begin{proposition}
-The category $\HH$ of hypercubical sets is the classifying topos for bipointed objects.
+The category $\HH$ of hypercubical sets is the classifying topos for \emph{strictly} bipointed objects.  A strictly bipointed object in a topos $\mathcal{E}$ is an object $A$ together with points $a_0, a_1 : 1\to A$, with the property that the equalizer $[a_0 = a_1] \to 1$ is isomorphic to $0\to 1$.
 \end{proposition}
 
+\begin{proof}
+Consider the covariant presentation $\HH = \Set^\B$, where as in \ref{subsubsec:covariant}, $\B$ is the category of finite, strictly bipointed sets and bipointed maps, now written simply $f: [m]\to [n]$ (i.e.\ dropping the special covariant notation $[n]^+$).  We can extend $\B\to\B_=$ by freely adjoining coequalizers, making $\B_=$ the free finite \emph{colimit} category on a co-bipointed object. An explicit presentation of $\B_=$ is as the finite bipointed sets, including those with $0=1$.  Write $(n)$ for the bipointed set $\{x_1, ..., x_n, 0=1\}$, with $n$ (non-constant) elements and a further element $0=1$.  There is an evident coequalizer $[1]\rightrightarrows [n]\to(n)$, which just identifies the distinguished points $0$ and $1$, and every coqualizer has either the form $[m]\rightrightarrows [n]\to [k]$ or $[m]\rightrightarrows [n]\to(k)$, for a suitable choice of $k$.  Note that there are no maps of the form $(m)\to [n]$, and that every map $[m]\to (n)$ factors uniquely as $[m]\to (m)\to (n)$ with  $[m]\to(m)$ the coequalizer of $0$ and $1$.  Thus the category $\B_=$ can be decomposed into two ``levels'', the upper one of which is essentially $\B$, the lower one consisting of just the objects $(n)$ and thus essentially the finite \emph{pointed} sets, and for each $n$, there is the canonical map $[n]\to(n)$ going from top to bottom:
+\[
+\xymatrix{
+\dots \ar[r] & [m] \ar@{->>}[d] \ar[r] & [n] \ar@{->>}[d] \ar[r] & \dots \\
+\dots \ar[r] & (m) \ar[r] & (n) \ar[r] & \dots
+}
+\]
+Write $u : \B\to\B_=$ for the inclusion, which is the classifying functor of generic co-bipointed object in $\B_=$.  We are interested in the induced geometric morphism
+\[
+\xymatrix{
+\Set^\B \ar@<-2ex>[rr]_{u_!} \ar@<2ex>[rr]^{u_*} && \ar[ll]|-{\,u^*} \Set^{\B_=}  & u_! \dashv u^* \dashv u_*
+}
+\]
+Since $u^*$ is restriction along $u$, the right adjoint $u_*$ must be ``prolongation by $1$'',
+\begin{align*}
+u_*(P)[n] &= P[n],\\
+u_*(P)(n) &= \{*\},
+\end{align*}
+with the obvious maps,
+\[
+\xymatrix{
+\dots \ar[r] & P[m] \ar@{->>}[d] \ar[r] & P[n] \ar@{->>}[d] \ar[r] & \dots \\
+\dots \ar[r] & \{*\} \ar[r] & \{*\} \ar[r] & \dots
+}
+\]
+as is easily seen by considering maps in $\Set^{\B_=}$ of the form
+\[
+\xymatrix{
+ Q[n] \ar[d]_{\cdot} \ar[r] & P[n] \ar@{->>}[d]^{\cdot} \\
+ Q(n) \ar[r]^{} & \{*\} .
+}
+\]
+Since $u_* : \Set^{\B} \to \Set^{\B_=}$ is evidently full and faithful, it is the inclusion part of a sheaf subtopos $\mathsf{sh}(\B^\mathsf{op}_=, j) \hook \Set^{\B_=}$ for a suitable Grothendieck topology $j$ on $\B^\mathsf{op}_=$.  We claim that $j$ is the closed complement topology of the subobject $[0=1] \rightarrowtail 1$ represented by the coequalizer $[0]\to (0)$.  Indeed, in $\Set^{\B_=}$ we have the representable functors:
+\begin{align*}
+I &= y[1],\\
+1 &= y[0],\\
+[0=1] &= y(0)
+\end{align*}
+fitting into an equalizer $[0=1] \to 1 \rightrightarrows I$ which is the image under Yoneda of the canonical coequalizer $[1] \rightrightarrows [0]\to (0)$ in $\B_=$.  The closed complement topology for $[0=1] \mono 1$ is generated by the single cover $0\to [0=1]$, which can be described logically as 
+forcing the sequent $(0=1 \vdash \bot)$ to hold.  Recall from Proposition 3.53 of \cite{JohnstoneTT} the following simple characterization of the sheaves for a closed topology generated by an object $U\mono 1$: an object $X$ is a sheaf iff $X\times U \cong U$. In the present case, it therefore suffices to show that for any $P:\B_= \to \Set$ we have:
+\[
+P\times [0=1] \cong [0=1] \quad\text{iff}\quad P(n) = 1\ \text{for all $n$}.
+\]
+For any object $b\in \B_=$, consider the map
+\[
+\hom(yb, P\times [0=1] ) \cong \hom(yb, P) \times \hom(yb, [0=1]) \to \hom(yb, [0=1]) .
+\]
+If $b = [k]$, then $\hom(yb, [0=1]) \cong \hom_{\B_=}((0), [k]) \cong 0$, and so we always have an iso
+\[
+\begin{split}
+\hom(yb, P\times [0=1] ) \cong \hom(yb, P) \times \hom(yb, [0=1])\\
+ \cong \hom(yb, P) \times 0 \cong 0.
+ \end{split}
+\]
+If $b = (k)$, then $\hom(y(k), [0=1]) \cong \hom_{\B_=}((0), (k)) \cong 1$, and we have an iso
+\[
+\begin{split}
+\hom(y(k), P\times [0=1] ) \cong \hom(y(k), P) \times \hom(y(k), [0=1]) \\
+\cong \hom(y(k), P) \times 1 \cong \hom(y(k), P) \cong P(k).
+\end{split}
+\]
+Thus we will have an iso $P\times [0=1] \cong [0=1] $ iff $P(k) \cong 1$.
+
+We therefore have that the presheaf topos $\Set^\B$ is the closed complement sheaf subtopos of $\Set^{\B_=}$ given by forcing the sequent $0\neq 1$.  Since $\Set^{\B_=}$ is clearly the classifying topos for \emph{arbitrary} bipointed objects, $\HH = \Set^\B$ indeed classifies \emph{strictly} bipointed objects, as claimed.
+\end{proof}
+
+%%
 \begin{proposition}
 The geometric realization functor to topological spaces 
 $$R: \HH \to \mathsf{Top}$$
 preserves cartesian products, $R(X\times Y) \cong R(X)\times R(Y)$.
 \end{proposition}
 
+\begin{proof}
+
+\end{proof}
+
 \begin{proposition}
 Since $\H \hook  \Cat$ is a subcategory, the \emph{nerve} functor $$N : \Cat \to \HH$$ can be defined as usual by:
 \[
 N(\C)_n = \Cat(I^n, \C).
 \]
-However, we do not expect the nerve to be full and faithful.
+However, we do not expect $N$ to be full and faithful.
 \end{proposition}
 
 \begin{proposition}
