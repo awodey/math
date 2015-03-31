@@ -876,13 +876,13 @@ Transposing, we have the corresponding problem
 }
 \end{equation*}
 which is to be solved naturally in $\I^k$.  But this is equivalent to having a section of the canonical map $u = (f^{\I^n}, B^{i^n})$ from $B^{\I^n}$ into the pullback:
-\begin{equation*}%\label{diagram:pathliftpath}
+\begin{equation}\label{diagram:pullbackforukf}
 \xymatrix{
 B^{\I^n} \ar@/{}_{1pc}/[rdd]_{f^{\I^n}} \ar@/{}^{1pc}/[rrd]^{B^{i^n}} \ar@{.>}[rd]|{u} & & \\
 &  A^{\I^n} \times_{A^{\sqcup^n }} B^{\sqcup^n }  \ar[d] \ar[r] & B^{\sqcup^n } \ar[d] \\
 & A^{\I^n} \ar[r] & A^{\sqcup^n }.
 }
-\end{equation*}
+\end{equation}
 
 \begin{definition}\label{def:Kanfib} By a \emph{uniform Kan fibration} we mean a map of hypercubical sets $f: B\to A$ equipped with a family of (upper and lower) sections $(s_n)_{n\geq 1}$ of the following form:
 \[
@@ -909,6 +909,51 @@ there is given a diagonal filler $c = \overline{(a,b)}$, and these fillers are m
 \begin{proof}
 Done.
 \end{proof}
+
+\begin{proposition}
+Uniform Kan fibrations are closed under $\Pi$ types along arbitrary maps, in the following sense:
+If $B\to A$ is a uniform Kan fibration, and $\alpha: A\to A'$ is any map, then the relative product $\Pi_\alpha.B\to A'$ of $B$ along $\alpha$ (where $\Pi_\alpha$ is the right adjoint to pullback along $\alpha$) is again uniform Kan.
+\end{proposition}
+
+\begin{proof}
+The operation $\Pi_\alpha$ along a map $\alpha : A\to A'$ always exists in a presheaf topos, and can can be calculated as follows:  Let $f:B\to A$ and $\alpha: A\to A'$ be given.  Without loss of generality, we can assume that $A' =1$ and calculate $\Pi_A.B$, by working in the slice category over $A'$, which is also a presheaf topos.  We therefore need to show that there are sections of the form:
+\[
+\xymatrix{
+(\Pi_A.B)^{\I^n} \ar[rr]^{(\Pi_A.B)^{i^n}} & & \ar@{.>}@/{}^{2pc}/[ll]^{s_n} (\Pi_A.B)^{\sqcup^n}.
+}
+\]
+and similarly for $\sqcap^n$.
+
+The construction of $\Pi_A.B$ is depicted in the following pullback diagram.
+\begin{equation}%\label{diagram:boxfillfib}
+\xymatrix{
+\Pi_A.B \ar[d] \ar[r] \pbcorner & B^A \ar[d]^{f^A} \\
+1 \ar[r]_{^\prime1_A^\prime} & A^A
+}
+\end{equation}
+Applying $(-)^A$ to the diagram \eqref{diagram:pullbackforukf} and swapping exponents we obtain:
+\begin{equation}\label{diagram:pullbackforukf2}
+\xymatrix{
+(B^A)^{\I^n} \ar@/{}_{2pc}/[rdd]_{(f^A)^{\I^n}} \ar@/{}^{2pc}/[rrd]^{(B^A)^{i^n}} \ar@{.>}[rd]|{u'} & & \\
+&  (A^A)^{\I^n}\times_{(A^A)^{\sqcup^n}} (B^A)^{\sqcup^n} \ar[d] \ar[r] & (B^A)^{\sqcup^n} \ar[d] \\
+& (A^A)^{\I^n} \ar[r] & (A^A)^{\sqcup^n}.
+}
+\end{equation}
+now pull this entire diagram back along the point $('1_A')^{\sqcup^n}
+: 1^{\sqcup^n} \to (A^A)^{\sqcup^n}$ to obtain:
+\begin{equation}\label{diagram:pullbackforukf3}
+\xymatrix{
+(\Pi_A.B )^{\I^n} \ar@/{}_{2pc}/[rdd] \ar@/{}^{2pc}/[rrd]^{(\Pi_A.B )^{i^n}} \ar@{.>}[rd]|{u''} & & \\
+&  Q \times (\Pi_A.B )^{\sqcup^n} \ar[d]_{p_1} \ar[r]_{p_2} & (\Pi_A.B )^{\sqcup^n} \ar[d] \\
+& Q \ar[r] & 1.
+}
+\end{equation}
+where $Q$ is the fiber of the map $(A^A)^{i^n} : (A^A)^{\I^n}\to (A^A)^{\sqcup^n}$ over $('1_A')^{\sqcup^n}$.
+
+Now the arrow $u'$ in \eqref{diagram:pullbackforukf2} has a section, because $u$ in \eqref{diagram:pullbackforukf} does by the assumption that $B\to A$ is uniform Kan.  Therefore $u''$ in \eqref{diagram:pullbackforukf3} also has a section $s$.  And $Q\to 1$ clearly has a section, determined by the point  $('1_A')^{\I^n}
+: 1^{\I^n} \to (A^A)^{\I^n}$.  Thus $p_2$ in \eqref{diagram:pullbackforukf3} has a section $s'$.  Composing $s\circ s'$ gives the required section $s_n$ of $(\Pi_A.B )^{i^n}$.
+\end{proof}
+
 
 \section{The universe}
 
