@@ -514,7 +514,7 @@ which is the free boolean algeba $2^n$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Identity types and box-filling}
 
-Our next goal is to give an interpretation of the identity types in the category of hypercubical sets \HH\ that uses the path-object $A^\I$ as the identity type for $A$.  This will allow us to take advantage of the  combinatorial description of $A^\I$ given in Proposition \ref{prop:pathobject}.  We need to determine which objects $A$ of \HH\ can be used as types and which maps $B\to A$ can be used as dependent types.  We will show that the conditions expressed by the rules for identity types are related to the familiar ``box-filling'' or Kan-conditions.  The main result of this section is Proposition \eqref.
+Our next goal is to give an interpretation of the identity types in the category of hypercubical sets \HH\ that uses the path-object $A^\I$ as the identity type for $A$.  This will allow us to take advantage of the  combinatorial description of $A^\I$ given in Proposition \ref{prop:pathobject}.  We need to determine which objects $A$ of \HH\ can be used as types and which maps $B\to A$ can be used as dependent types.  We will show that the conditions expressed by the rules for identity types are related to the familiar ``box-filling'' or Kan-conditions.  The main result of this section is Proposition \ref{prop:main}.
 
 To begin, recall that the usual elimination and computation rules for identity types are equivalent to the combination of the following rules.
 
@@ -522,12 +522,12 @@ To begin, recall that the usual elimination and computation rules for identity t
 \begin{prooftree}
 x,y: A,\quad p:\id{A}(x,y), \quad {x:A}\vdash B(x)\ \type,  \qquad b:B(x)
 \justifies
-\mathsf{tran}(x,y,p,b) : B(y)
+\mathsf{trans}(x,y,p,b) : B(y)
  \end{prooftree}
 \end{equation}
 with computation rule
 \[
-\mathsf{tran}(x,x,\refl(x),b) = b : B(y),
+\mathsf{trans}(x,x,\refl(x),b) = b : B(y),
 \]
 %
 together with the following:
@@ -541,27 +541,48 @@ x,y: A,\quad p:\id{A}(x,y)
 \end{equation}
 with computation rule
 \[
-\mathsf{con}(x,x,\refl(x)) = \refl(\langle x,x,\refl(x)\rangle) : \sum_{x,y:A}\id{A}(x,y).
+\mathsf{con}(x,x,\refl(x)) = \refl(\langle x,x,\refl(x)\rangle) : \Id(\langle x,x,\refl(x)\rangle, \langle x,x,\refl(x)\rangle),
 \]
-We will often write the transport as $p_*b := \mathsf{tran}(x,y,p,b)$.
+The term $\mathsf{con}(x,y,p)$ is in the identity type of $\sum_{x,y:A}\id{A}(x,y)$.  We will often write the transport as $$p_*b := \mathsf{trans}(x,y,p,b).$$
 The transport rule is a condition on the dependent types; it says that they must respect the identity on the indexing type.  The contraction rule is a condition on the types; it says that the singletons $S(x) = \sum_{y:A}\Id(x,y)$ are all contractible.  
 
-A further condition that will have to hold in an interpretation of the rules for identity types is that the identity type $\id{A}(x,y)$ itself is a dependent type on $A\times A$.  It therefore must also satisfy transport.  From this assumption, one can prove the following strengthening of transport.
+\begin{proposition}
+If the type $A$ satisfies contraction, and the family $$x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type$$ has transport, then the usual $\Id$-elimination rule will be satisfied:
+\begin{equation}\label{rule:idelim}\tag{$\Id$-Elimination}
+\begin{prooftree}
+x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type, \quad
+x: A \vdash b(x) : B(x,x,\refl(x))
+\justifies
+\mathsf{J}(x,y,z,b) : B(x,y,z)
+\end{prooftree}
+\end{equation}
+with computation rule
+\[
+\mathsf{J}(x,x,\refl(x),b) = b(x) : B(x).
+\]
+\end{proposition}
+\begin{proof}
+Let $\mathsf{J}(x,y,z,b) := \mathsf{con}(x,y,z)_*(b(x))$.
+\end{proof}
+
+
+
+A further condition that will have to hold in an interpretation of the rules for identity types is that the identity type $\id{A}(x,y)$ itself is a dependent type on $A\times A$.  It therefore must also satisfy transport.  From this assumption, one can prove the following strengthening of transport:
 
 \begin{equation}\label{rule:plifting}\tag{Path Lifting}
 \begin{prooftree}
 x,y: A,\quad p:\id{A}(x,y), \quad {x:A}\vdash B(x)\ \type,  \qquad b:B(x)
 \justifies
-\mathsf{lift}(p,b): \Id(b,p_*b)
+\mathsf{lift}(x,y,p,b): \Id(\langle x,b \rangle, \langle y, p_*b\rangle )
  \end{prooftree}
 \end{equation}
 with computation rule
 \[
-\mathsf{lift}(\refl(x),b) = \refl(\langle x,b\rangle) : \sum_{x:A}B(x).
+\mathsf{lift}(x,x,\refl(x),b) = \refl(\langle x,b\rangle) : \Id(\langle x,b\rangle, \langle x,b\rangle).
 \]
-Here the term $\mathsf{lift}(p,b)$ is in the identity type of $\sum_{x:A}B(x)$.
+The term $\mathsf{lift}(x,y,p,b)$ is in the identity type of $\sum_{x:A}B(x)$.
 
-In hypercubical sets, path lifting already implies contraction for $A$.  Indeed, let $A\in\HH$ and interpret the dependent type $x,y:A\vdash \id{A}(x,y)$ as the path object $A^\I$ with its projection to the two endoints $A^\I \to A\times A$. 
+Under the intended interpretation in hypercubical sets, path lifting already implies contraction.  Indeed, let $A\in\HH$ and interpret the dependent type $x,y:A\vdash \id{A}(x,y)$ as the path object $A^\I$ with its projection to the two endoints $A^\I \to A\times A$. 
 
 \begin{lemma}
 If $A^\I \to A\times A$ satisfies path lifting, then $A$ satisfies contraction.
@@ -672,9 +693,9 @@ But this is just the exponential transpose of the diagram \eqref{diagram:boxfill
 We now generalize the foregoing proposition to higher dimensions, in order to ensure that all of the higher identity types $\id{\id{\id{\dots}}}$ are also interpreted as suitable maps with path lifting.  The higher identity types are determined inductively by:
 \begin{align*}
 \id{A} &= A^\I \\
-\Id^{n+1}_{A} &= \id{{\Id}^{n}_{A}} = (\Id^{n}_{A})^\I \cong A^{(\I^n)}.
+\Id^{n+1}_{A} &= \id{{\Id}^{n}_{A}} = (\Id^{n}_{A})^\I = (A^{\I^n})^\I \cong A^{(\I^{n+1})}.
 \end{align*}
-The indexing $A^\I \to A\times A = A^{\partial\I}$ is generalized to higher dimensions as follows: the type $\Id^{n}_{A} \cong A^{\I^n}$ is regarded as the \emph{type of $n$-cubes in $A$}, and it will be dependent on the \emph{type of boundaries} $A^{\partial\I^n}$ in $A$, via the ``restriction'' map $$A^i : A^{\I^n} \to A^{\partial\I^n},$$  where the boundary $i : \partial\I^n \mono \I^n$ is the union of all the face maps $$\partial\I^n = \bigcup_{i, d} \alpha_i^d.$$
+The indexing $A^\I \to A\times A = A^{\partial\I}$ is generalized to higher dimensions as follows: the type $\Id^{n}_{A} \cong A^{\I^n}$ is regarded as the \emph{type of $n$-cubes in $A$}, and it will be dependent on the \emph{type $A^{\partial\I^n}$ of boundaries in $A$}, via the ``restriction'' map $$A^i : A^{\I^n} \to A^{\partial\I^n},$$  where the boundary $i : \partial\I^n \mono \I^n$ is the union of all the face maps $$\partial\I^n = \bigcup_{i, d} \alpha_i^d.$$
 As an indexing type, it is convenient to specify $\partial\I^n$ inductively via the ``product rule'' $$\partial(A\times B) = (\partial A\times B) +_{(\partial A\times\partial B)} (A\times\partial B)$$
 as follows:
 \begin{definition}\label{def:boundary}
@@ -748,6 +769,26 @@ For any hypercubical set $A$, the following are equivalent:
 \item $A^{\I^n} \to A^{\partial\I^n}$ has path lifting for all $n\geq 1$.
 \end{enumerate}
 \end{corollary}
+
+%\begin{corollary}\label{cor:KanmodelsId}
+%Let  $A$ be a hypercubical set that has $n$-box filling for all $n\geq 1$. Then in particular, $A$ satisfies contraction.  If $B\to A^\I$ has $n$-box filling for all $n\geq 1$, then in particular, $B\to A^\I$ satisfies transport.  Thus the following standard $\Id$-elimination rule will be satisfied:
+%\begin{equation}\label{rule:idelim}\tag{$\Id$-Elimination}
+%\begin{prooftree}
+%x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type, \quad
+%x: A \vdash b(x) : B(x,x,\refl(x))
+%\justifies
+%\mathsf{J}(x,y,z,b) : B(x,y,z)
+%\end{prooftree}
+%\end{equation}
+%with computation rule
+%\[
+%\mathsf{J}(x,x,\refl(x),b) = b(x) : B(x).
+%\]
+%\end{corollary}
+%\begin{proof}
+%Let $\mathsf{J}(x,y,z,b) := \mathsf{con}(x,y,z)_*(b(x))$.
+%\end{proof}
+%
 
 %\begin{theorem}[conjectural!]
 %For any type $X$ in intensional type theory with function extensionality, the cubical type of ``identity contexts'' over $X$ is an internal weak $\infty$-groupoid in the cubical sense.
@@ -957,8 +998,8 @@ Now the arrow $u'$ in \eqref{diagram:pullbackforukf2} has a section, because $u$
 
 \section{The universe}
 
-One could now construct a  model in the form of an explicit category with families, but we prefer to take advantage of the recent coherence theorem of Lumsdaine and Warren \cite{L&M}.  This allows us to work in a more flexible, categorical setting that has been shown to be sufficient for the construction of a CwF model if desired.  One aspect of the formulation given in Awodey \cite{natural} is the use of a (Voevodsky-style) universe in order to construct a so-called ``natural model", which is essentially a convenient reformulation of the notion of a category with families.
-Here we will take a similar, if not identical approach, defining a universe $p : \UU \to \U$ from which one can determine a category with families in the same way as in  \cite{natural}.  We shall not go into the details of that construction here, but instead focus on the construction of the universe and the proof that it is (Kan and) univalent.
+One could now construct a  model in the form of an explicit category with families, but we prefer to take advantage of the recent coherence theorem of Lumsdaine and Warren \cite{L&M}.  This allows us to work in a more flexible, categorical setting that has been shown to be sufficient for the construction of a CwF model if desired.  One aspect of the formulation given in \cite{natural} is the use of a (Voevodsky-style) universe in order to construct a so-called ``natural model", which is essentially a convenient reformulation of the notion of a category with families.
+Here we will take a similar, if not identical approach, defining a natural transformation $p : \UU \to \U$ from which one can determine a category with families in the same way as in  \cite{natural}.  We first focus on the construction of $p : \UU \to \U$ and the proof that it is Kan.
 
 \begin{definition}
 Let $\kappa$ be an inaccessible cardinal number, and call the sets of size strictly less than $\kappa$ \emph{small}.  Write $\Set_\kappa$ for the small sets, and $\Set_\kappa^{\C^{\mathrm{op}}}$ for the category of small presheaves on a small index category $\C$.  By a \emph{small (uniform) Kan fibration} we mean a (uniform) Kan fibration, in the sense of Definition \ref{def:Kanfib}, in the category 
@@ -979,7 +1020,7 @@ The ($\kappa$-)\emph{universe} $p : \UU \to \U$ is defined:
 
 \subsubsection*{Questions}
 \begin{enumerate}
-\item According to Grothedieck \cite{PS}, the category $\H$ is a test category, and so the category $\HH = \psh{\H}$ has the same homotopy theory as simplicial sets.  Bas has pointed out a proof by Cisinski-Maltsiniotis based on decolage.  Dig this up.
+\item According to Grothedieck \cite{PS}, the category $\H$ is a test category, and so the category $\HH = \psh{\H}$ has the same homotopy theory as simplicial sets.  Bas has pointed out a proof by Cisinski-Maltsiniotis based on decalage.  Dig this up.
 
 \item A cubical $\infty$-groupoid should be a cubical set with box-filling operations.  Show that the contexts over a type form such a groupoid (``cubical Lumsdaine'').
 
@@ -1008,7 +1049,7 @@ The ($\kappa$-)\emph{universe} $p : \UU \to \U$ is defined:
 %
 
 \subsection*{Acknowldgements}
-I have benefitted from lectures by and conversations with Ulrik Buchhotz, Thierry Coquand, Bob Harper, Simon Huber, Andr\'e Joyal, Andy Pitts, and Bas Spitters.  I am grateful to the Institut Henri Poincar\'e, and the organizers of the thematic trimester held there on Certified Proofs and Computation, Pierre-Louis Curien, Hugo Herbelin, and Paul-Andr\'e Mellies, for providing the stimulating and congenial environment in which I began this research.  My student Jason Parker has developed some of the material in Section 1 further as an MS thesis.  This work was partially supported by the Air Force Office of Scientific Research through MURI grant FA9550-15-1-0053.  Any opinions, findings and conclusions, or recommendations expressed herein are those of the author and do not necessarily reflect the views of the AFOSR.  
+I have benefitted from lectures by and conversations with Ulrik Buchholtz, Thierry Coquand, Bob Harper, Simon Huber, Andr\'e Joyal, Andy Pitts, and Bas Spitters.  I am grateful to the Institut Henri Poincar\'e, and the organizers of the thematic trimester held there on Certified Proofs and Computation, Pierre-Louis Curien, Hugo Herbelin, and Paul-Andr\'e Mellies, for providing the stimulating and congenial environment in which I began this research.  My student Jason Parker has developed some of the material in Section 1 further as an MS thesis.  This work was partially supported by the Air Force Office of Scientific Research through MURI grant FA9550-15-1-0053.  Any opinions, findings and conclusions, or recommendations expressed herein are those of the author and do not necessarily reflect the views of the AFOSR.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{300}
