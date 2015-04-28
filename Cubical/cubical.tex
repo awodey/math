@@ -402,9 +402,9 @@ We do not expect $N$ to be full and faithful.
 \end{proposition}
 
 \begin{proposition}\label{prop:pathobject}
-For any hypercubical set $X$, the exponential $X^\I$ can be calculated as  ``shift'',
+For any hypercubical set $X$, the exponential $X^\I$ can be calculated as the ``shift by one dimension'', 
 \[
-X^\I(n) \cong X(n+1).
+X^\I(n) \cong X(n+1)\,.
 \]
 \end{proposition}
 
@@ -472,10 +472,9 @@ where $C^n_{k} = \binom{n}{k}$ is the usual binomial coefficient.
 There is a natural transformation $X_\I \to X$, given by the first projection from $X_\I(n)\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0)$.
 \end{corollary}
 
+Finally, we observe that that the path object functor $X^\I$ itself, as a left adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{ATOM} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
 
-Finally, we observe that that the path object functor $X^\I$ itself, as a left adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{ATOM} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)
-
-\paragraph{Example.}
+\paragraph{Example.} (P.~Aczel)
 The cubical set $P$ of polynomials (over the integers, say), is defined by:
 \[
 P_n = \{ p(x_1,..., x_n)\ |\  \text{polynomials in at most}\  x_1, É, x_n \}
@@ -799,9 +798,9 @@ For any hypercubical set $A$, the following are equivalent:
 %\end{proof}
 
 %%%%%%%%%%%%%%%%
-\subsection{The uniform Kan condition}
+\subsection{Uniformity}
 
-\begin{definition}[cf.~\cite{}]  A hypercubical set $A$ will be said to be \emph{uniformly Kan} if the following holds:
+\begin{definition}[cf.~\cite{BCH}]  A hypercubical set $A$ will be said to be \emph{uniformly Kan} if the following holds:
 \begin{enumerate}
 \item  For each open box $\sqcup^n \mono \I^n$, each $k\geq 1$, and each map $b: \I^k \times\sqcup^n\to A$, there is given an extension $\bar{b} : \I^k\times\I^n \to A$ along the product map $\I^k\times\sqcup^n \mono \I^k\times\I^n$.
 \begin{equation}\label{diagram:uniformsimple}
@@ -829,7 +828,7 @@ as indicated in the following commutative diagram:
 \end{enumerate}
 \end{definition}
 
-The uniform Kan condition turns the box filling \emph{property} of an object $A$ into an explicitly given \emph{structure} $(A, \overline{(-)})$ on the object, namely a natural choice of fillers $\bar{b}$ for all (generalized) open boxes $b : \I^k\times \sqcup^n \to A$.  This will be seen to simplify the proof that the exponential $A^X$ of a Kan object  $A$ by any object $X$ is again Kan. 
+The uniform Kan condition turns the box filling \emph{property} of an object $A$ into an explicitly given \emph{structure} $(A, \overline{(-)})$ on the object, namely a natural choice of fillers $\bar{b}$ for all (generalized) open boxes $b : \I^k\times \sqcup^n \to A$.  This will be seen to simplify the proof that the exponential $A^X$ of a Kan object  $A$ by any object $X$ is again Kan. The following reformulation was arrived at in conversation with P.~Lumsdaine.
 %
 \begin{proposition}
 A hypercubical set $A$ is uniformly Kan just in case, for each $n\geq 1$, there is given a section $s_n : A^{\sqcup^n} \to A^{\I^n}$ of the canonical map $A^{i^n} : A^{\I^n}\to A^{\sqcup^n}$, where $i^n : \sqcup^n \mono \I^n$ is the inclusion,
