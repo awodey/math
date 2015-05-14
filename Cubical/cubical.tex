@@ -8,6 +8,7 @@
 \usepackage{amssymb,latexsym}
 \usepackage{amsthm}
 \usepackage{bm}
+\usepackage{bbm}
 \input{prooftree}
 \usepackage[all,cmtip]{xy}
 \input{diagxy}
@@ -17,7 +18,9 @@
 
 
 % categories
+\newcommand{\bbtwo}{\ensuremath{\mathbbm{2}}}
 \newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\D}{\ensuremath{\mathbb{D}}}
 \newcommand{\B}{\ensuremath{\mathbb{B}}}
 \newcommand{\T}{\ensuremath{\mathbb{T}}}
 \newcommand{\CC}{\ensuremath{\mathcal{C}}}
@@ -390,16 +393,53 @@ preserves cartesian products, $R(X\times Y) \cong R(X)\times R(Y)$.
 \end{proposition}
 
 \begin{proof}
-Fill in -- standard.
+This can be shown directly by standard methods, but it also follows immediately by composing the inverse image of the geometric morphism $\mathsf{sSets} \to \HH$ classifying the $1$-simplex $\Delta(1)$ in simplicial sets, with the geometric realization $\mathsf{sSets} \to \mathsf{Top}$, each of which are known to preserve finite products.
 \end{proof}
 
-\begin{proposition}
-Since $\H \hook  \Cat$ is a subcategory, the \emph{nerve} functor $$N : \Cat \to \HH$$ can be defined as usual by:
+\begin{definition}
+Let $\H\ \to\  \Cat$ be the unique product-preserving functor taking $[1] \mapsto \bbtwo$, where $\bbtwo$ is the ``one arrow category'' $0\rightarrow 1$.  This functor takes $[n] \mapsto \bbtwo^n$ ($n$-fold product in $\Cat$), and maps $[m] \to [n]$  to the corresponding monotone maps of the posets $\bbtwo^n$.  The  \emph{(hypercubical) nerve} functor $$N : \Cat \to \HH$$ is then defined by:
 \[
-N(\C)_n = \Cat(\I^n, \C).
+N(\C)_n = \Cat(\bbtwo^n, \C).
 \]
-We do not expect $N$ to be full and faithful.
+Thus $N(\C)_0$ is the set $\C_0$  of objects of \C, and $N(\C)_1 = \C_1$ is the set of arrows, while $N(\C)_2$ consists of all commutative squares, $N(\C)_3$ of all commutative $3$-cubes, etc. 
+\end{definition}
+
+\begin{proposition}
+The nerve functor $N : \Cat \to \HH$ is full and faithful.
 \end{proposition}
+\begin{proof}
+Given categories $\C$ and $\D$ and functors $F, G : \C\to\D$, suppose $F(f) \neq G(f)$ for some $f : A\to B$ in $\C$.  Take $f^{\sharp} : \bbtwo \to \C$ with image~$f$.  Then $N(F)_1(f^\sharp) = F(f) \neq G(f) = N(G)_1(f^\sharp)$, and so $N(F) \neq N(G) : N(\C)\to N(\D)$.  So $N$ is faithful.
+
+For fullness, let $\varphi : N(\C) \to N(\D)$ be a natural transformation, and define a proposed functor $F : \C\to \D$ by  
+\begin{align*}
+F_0 = \varphi_0 &: \C_0 = N(\C)_0 \to N(\D)_0 = \D_0\\
+F_1 = \varphi_1 &: \C_1 = N(\C)_1 \to N(\D)_1 = \D_1.
+ \end{align*}
+We just need to show that $F$ preserves identity arrows and composition.
+Consider the following diagram.
+\[
+\xymatrix{
+\Cat(\bbtwo^1, \C) = N(\C)_1 \ar[r]^{F_1} & N(\D)_1 = \Cat(\bbtwo^1, \D) \\
+\Cat(\bbtwo^0, \C) = N(\C)_0 \ar[u]^{!^*} \ar[r]_{F_0} & N(\D)_0 = \Cat(\bbtwo^0, \D) \ar[u]_{!^*}.
+}
+\]
+Here $!^* : \Cat(\bbtwo^0, \C) \to \Cat(\bbtwo, \C) $ is precomposition with $! : \bbtwo = \bbtwo^1 \rightarrow \bbtwo^0 = \mathbbm{1}$, so the diagram commutes.  But since $! : \bbtwo \rightarrow \mathbbm{1}$ is a functor, $$\C_0 = \Cat(\mathbbm{1}, \C)  \stackrel{!^*}{\to}  \Cat(\bbtwo, \C) = \C_1$$ takes objects in $\C$ to their identity arrows.  Thus $F$ preserves identity arrows.  Similarly, for composition, consider 
+\[
+\xymatrix{
+\Cat(\bbtwo^2, \C) = N(\C)_2 \ar[d]_{d^*} \ar[r]^{\varphi_2} & N(\D)_2 = \Cat(\bbtwo^2, \D) \ar[d]^{d^*} \\
+\Cat(\bbtwo, \C) = N(\C)_1  \ar[r]_{F_1} & N(\D)_1 = \Cat(\bbtwo, \D).
+}
+\]
+where $\varphi_2 : N(\C)_2 \to N(\D)_2$ is the action of $\varphi$ on commutative squares of arrows, and $d^* : \Cat(\bbtwo^2, \C) \to \Cat(\bbtwo, \C)$ is precomposition with the diagonal map $d : \bbtwo \rightarrow \bbtwo^2 = \bbtwo\times\bbtwo$, so the diagram commutes.  For any composable pair of arrows $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ in $\C$ there is a commutative square 
+\[
+\xymatrix{
+A \ar[r]^{f} \ar[d]_{f} & B \ar[d]^{g} \\
+B  \ar[r]_{g} & C,
+}
+\]
+and the effect of $d^* : \Cat(\bbtwo^2, \C) \to \Cat(\bbtwo, \C)$ on this square is exactly $g\circ f: A\to C$, and similarly for $d^* : \Cat(\bbtwo^2, \D) \to \Cat(\bbtwo, \D)$.  Thus the commutativity of the above diagram implies that $F$ preserves composition.
+Since clearly $N(F) = \varphi$, we indeed have that $N$ is also full.
+\end{proof}
 
 \begin{proposition}\label{prop:pathobject}
 For any hypercubical set $X$, the exponential $X^\I$ can be calculated as the ``shift by one dimension'', 
@@ -956,7 +996,7 @@ If $B\to A$ is a uniform Kan fibration, and $\alpha: A\to A'$ is any map, then t
 \end{proposition}
 
 \begin{proof}
-The operation $\Pi_\alpha$ along a map $\alpha : A\to A'$ always exists in a presheaf topos, and can can be calculated as follows:  Let $f:B\to A$ and $\alpha: A\to A'$ be given.  Without loss of generality, we can assume that $A' =1$ and calculate $\Pi_A.B$, by working in the slice category over $A'$, which is also a presheaf topos.  We therefore need to show that there are sections of the form:
+The operation $\Pi_\alpha$ along a map $\alpha : A\to A'$ always exists in a presheaf topos, and can  be calculated as follows:  Let $f:B\to A$ and $\alpha: A\to A'$ be given.  Without loss of generality, we can assume that $A' =1$ and calculate $\Pi_A.B$, by working in the slice category over $A'$, which is also a presheaf topos.  We therefore need to show that there are sections of the form:
 \[
 \xymatrix{
 (\Pi_A.B)^{\I^n} \ar[rr]^{(\Pi_A.B)^{i^n}} & & \ar@{.>}@/{}^{2pc}/[ll]^{s_n} (\Pi_A.B)^{\sqcup^n}.
