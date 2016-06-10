@@ -27,7 +27,9 @@
 \newcommand{\BB}{\ensuremath{\mathcal{B}}}
 %\newcommand{\EE}{\ensuremath{\mathcal{E}}}
 \newcommand{\psh}[1]{\ensuremath{\mathsf{Set}^{#1^{\mathrm{op}}}}}
+\newcommand{\op}[1]{\ensuremath{#1^{\mathrm{op}}}}
 \newcommand{\Set}{\ensuremath{\mathsf{Set}}}
+\newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
 \newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
 \newcommand{\covpsh}[1]{\ensuremath{\mathsf{Set}^{#1}}}
 %\renewcommand{\to}{\ensuremath{\rightarrow}}
@@ -110,7 +112,7 @@ Notes from a series of lectures given in May-June, 2016, in the Stockholm Logic 
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \noindent
-The main goal of these notes is to establish the following:
+The main goal of these notes is to prove the following:
 
 \begin{theorem*}
 There is an algebraic weak factorization system $(\mathsf{L}, \mathsf{R})$ on the category of cartesian cubical sets such that for any $\mathsf{R}$-object $A$, the factorization of the diagonal map,
@@ -122,7 +124,7 @@ determined by the 1-cube $\I$, is an $(\mathsf{L}, \mathsf{R})$-factorization.
 
 \noindent It follows that there is a cubical model of homotopy type theory in which the identity type of a type $A$ is the path-object $A^\I$, a choice with some advantages.
 
-We begin by reviewing the basic idea of homotopical semantics of type theory in weak factorization systems, including the somewhat technical issue of coherence that motivates the use of algebraic weak factorization systems.
+We begin by reviewing the basic idea of homotopical semantics of type theory in weak factorization systems, including the somewhat technical issue of coherence that motivates the use of algebraic weak factorization systems. We then consider cubical sets and construct the desired algebraic weak factorization system.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The basic homotopical interpretation}
@@ -140,25 +142,25 @@ satisfying the following conditions:
 \item Every arrow $f : X\to Y$ in \C\ factors as a left map followed by a right map,
 \[
 \xymatrix{
- X \ar[rr]^{f} \ar[rd]_{\L\ni} && Y\\
-& \cdot \ar[ru]_{\in \R}  &
+ X \ar[rr]^{f} \ar[rd]_{\L} && Y\\
+& \cdot \ar[ru]_{\R}  &
 }
 \]
 \item Given any commutative square
 \[
 \xymatrix{
-A \ar[d] \ar[r] & B \ar[d] \\
+A \ar[d]_{\L} \ar[r] & B \ar[d]^{\R} \\
 C \ar[r] \ar@{..>}[ru] & D
 }
 \]
-with an $\L$-map on the left and an $\R$-map on the right, there is a ``diagonal filler'' making both triangles commute, as indicated.
+with an $\L$-map on the left and an $\R$-map on the right, there is a ``diagonal filler'' as indicated, making both triangles commute.
 
 \item Each of the classes $\L$ and $\R$ is closed under retracts in the arrow category $\C^{\rightarrow}$.
 \end{enumerate}
 \end{definition}
 
 
-Examples include (i) Groupoids (or categories), with $\R$ = isofibrations and $\L$ = injective equivalences; (ii) Simplicial sets, with $\R$ = Kan fibrations and $\L$ = acyclic cofibrations.  A Quillen model structure on a category involves two such interrelated weak factorization systems, so this provides the basic examples and the homotopical intuition. In a WFS, we think of the \R-maps as ``fibrations'' -- that is, good families of objects indexed by the codomain.  The basic idea of the homotopy interpretation is to use these as the dependent types.
+Examples include (i) Groupoids (or categories), with $\R$ = isofibrations and $\L$ = injective equivalences; (ii) Simplicial sets, with $\R$ = Kan fibrations and $\L$ = acyclic cofibrations.  A Quillen model structure on a category involves two such interrelated weak factorization systems, providing many examples and the basic homotopical intuition. In a WFS, we may think of the \R-maps as ``fibrations'', i.e.\ good families of objects indexed by the codomain.  The basic idea of the homotopy interpretation is to use these as the dependent types.
 
 \subsection{Interpreting $\Id$-types}
 
@@ -210,7 +212,7 @@ A \ar[d]_{\refl} \ar[r]^b & B \ar[d] \\
 \]
 Since $\refl$ is an \L-map, and $B\arr \id{A}$ is an \R-map (as the interpretation of a dependent type), there is a diagonal filler $\mathsf{J}$ as indicated.  Commuting of the lower triangle is just the conclusion of the \Id-elimination rule.  The commuting of the upper triangle is exactly the $\mathsf{J}$-computation rule.
 
-
+%%%%%%%%%%%%%%%%%
 \subsection{Coherence}
 
 The interpretation just sketched is required to respect the result of substituting a term into a context, since the rules have this property.  Substitution into dependent types is interpreted as pullback, and substitution into terms as (roughly) composition. There are then three separate issues involved in giving a strict interpretation of type theory with \Id-types, and all three are called ``coherence'':
@@ -332,16 +334,280 @@ Let \C\ be a category with finite limits, an algebraic weak factorization system
 \end{proposition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Cubical sets}
+\section{The cubical model}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Out goal is to make an algebraic weak factorization system on the cubical sets, but let us first recall \emph{why} the cubical sets is a good setting for a model of \Id-types.  
+Out goal is to make an algebraic weak factorization system on the cubical sets, but let us first recall \emph{why} the cubical sets is a good setting for a model of \Id-types.  The basic examples of WFSs and homotopy are topological spaces and simplicial sets, but these models are not entirely satisfactory, at least from a logical point of view.  In particular, they seem to lack the combinatorial character that would make them \emph{constructive}.  The cubical approach seems to be better suited to giving such a constructive treatment, as has recently been discovered by T.~Coquand and his coworkers.  It is worth noting in this connection that the goal here is \emph{not} to give a constructive interpretation of the univalence axiom, as Coquand et al.\ have done, but only to investigate the cubical model as arizing from an algebraic weak factorization system.
+
+By way of motivation for using cubical sets, consider the important factorization of the diagonal for an object $A$,
+\begin{equation}\label{diag:pathfact}
+\xymatrix{
+& PA \ar[rd] & \\
+A \ar[rr] \ar[ru] && A\times A\,.
+}
+\end{equation}
+We regard $PA$ as an abstract  ``pathspace'' $A^\I$.  If there is an ``interval object'' $\I$ with two points $1\to\I$, then exponentiating $A$ by the structure:
+\[
+\xymatrix{
+& \ar[ld] \I  & \\
+1 && \ar[ll] \ar[ul] 1+1\,
+}
+\]
+will result in such a factorization of the form \eqref{diag:pathfact} (although unrelated to any WFS).
+
+The idea that identity proofs are paths and that $\id{A} = A^\I$ is also supported by the fact that dependent types have the path-lifting property.  Given $a_0,a_1:A$  and $p:\id{A}(a_0,a_1)$ and $\types{x:A}{B(x)}$  and $b_0:B(a_0)$, there is a distinguished $b_1:B(a_1)$, called the \emph{transport} of $b_0$ along $p$ and denoted $p_*(b_0)$.  Indeed, there is even a path $\tilde{p} : \id{B}(b_0,b_1)$, where $B=\sum_{x:A}B(x)$, such that $\pi_1(\tilde{p})=p$.
+\[
+\xymatrix{
+B \ar[dd]_{\pi_1} & B(a_0) \ar[r]^{p_*} & B(a_1) \\
+   	& b_0 \ar@{..>}[r]^{\tilde{p} } & b_1  \\
+A  	&	a_0 \ar[r]_{p} &  a_1
+}
+\]
+%
+Note that this says exactly that the endpoint inclusion $0 : 1\to \I$ has the left-lifting property with respect to the dependent projection $\pi_1:B\to A$,
+\[
+\xymatrix{
+1 \ar[d]_{0} \ar[r]^{b_0} & B \ar[d]^{\pi_1} \\
+\I \ar[r]_{p} \ar@{..>}[ru]_{\tilde{p}} & A\,.
+}
+\]
+Thus the endpoint inclusion $0 : 1\to \I$ should be an $\L$-map, since the dependent types should be $\R$-maps.
+
+An important consequence of the proposed stipulation $\id{A} = A^\I$ is that the iterated or``higher'' \Id-types can be represented as ``cube types'',
+\begin{align*}
+\id{A}\ &=\ A^\I \\
+\id{\id{A}}\ &=\ (A^\I)^\I\ \cong\ A^{\I\times\I} \\
+\id{\dots\id{\id{A}}}\ &\cong\ A^{\I\times\dots\times\I}
+\end{align*}
+%
+In this way, at least some of the intricate combinatorics of the higher \Id-types (which reflects the higher algebra of $\infty$-groupoids) can be represented by algebraic operations on the cubes in the form $\I^n \to \I^m$.
+
+\subsection{Cubical sets}
+
+The objects $\I^n = \I\times \dots\times \I$ thus play a special role in the homotopical interpretation of \Id-types.  The category of cubical sets gives special prominence to these objects, and to the interval $\I$ in particular.  In a precise sense, it is the free cocomplete category generated by the finite cubes $1,\ \I,\ \I\times\I, \dots, \I^n, \dots$ (and the particular version that we shall use is the free \emph{topos} generated by an ``interval object'': $0,1 : 1\rightrightarrows \I,\ \cdot\vdash 0\neq 1$).
+
+\begin{definition}
+The category \cSet\ of \emph{(cartesian) cubical sets} is the presheaf category
+\[
+\cSet\ =\ \psh{\C_c}
+\]
+on the category $\C_c$ of \emph{(cartesian) cubes}, defined equivalently as:
+\begin{enumerate}
+\item the free category with finite products on an \emph{interval object} $0,1 : 1\rightrightarrows \I$,
+\item the opposite category
+\[
+\C_c = \op{\B}
+\]
+of the category $\B$ of finite strictly bipointed sets and bipointed functions.  The objects may be taken to be sets of the form $$[n] = \{\bot, x_1, \dots, x_n, \top\}$$ and maps $f : [m]\to [n]$ are functions that preserve the distinguished elements $\bot, \top$.
+
+\item  the syntactic category $\C(\T)$ of the algebraic theory $\T$ with just two constant symbols $\bot, \top$ (and no equations).
+\end{enumerate}
+The equivalence of these three specifications of $\C_c$ is an easy application of Lawvere duality.
+\end{definition}
+
+\begin{remark} There are many other notions of cube category and cubical sets in the literature. See \cite{} for  comparisons of some.
+\end{remark}
+
+Next, consider the representable objects,
+\[
+\y : \C_c \hook \cSet
+\]
+and let
+\[
+\I^n :=\  \y([n]) = \Hom_{\C_c}(\,-\,, [n]).
+\]
+We can regard the objects $\I^n$ as the ``geometric $n$-cubes''; indeed we have $\I^n \cong \I\times\dots\times\I$, because the Yoneda embedding preserves products.  Note that by the Yoneda lemma, for any cubical set $X$,  maps $\I^n \to X$ correspond uniquely to elements of the set $X_n = X([n])$, which are called the ``$n$-cubes of $X$''.
 
 
+\begin{proposition}\label{prop:pathobject}
+For any cubical set $X$, the pathobject $X^\I$ is the ``shift by one dimension'' of $X$, 
+\[
+(X^\I)_n \cong X_{(n+1)}\,.
+\]
+\end{proposition}
 
+\begin{proof}
+\[
+\begin{split}
+(X^\I)_n\ &\cong\ \hom(y[n], X^\I)\ \cong\ \hom(\I^n, X^\I)\ \cong\ \hom(\I^n\times \I, X)\\
+&\cong\ \hom(\I^{n+1}, X)\cong\ \hom(y[n+1], X)\ \cong\ X_{(n+1)}.
+\end{split}
+\]
+\end{proof}
 
+This combinatorial description of the pathobject $X^\I$ as a shift in dimension has consequences for the model of type theory, in particular it and leads certain equations holding strictly that are usually satisfied only weakly or ``up to homotopy''.
 
+%%%%%%%%%%%%%%%%%
+\subsection{Box filling}
+%%%%%%%%%%%%%%%%%
 
+We now turn to the determination of the right maps for our AWFS.    We know that they should at least have the path-lifting property, since that is forced by the rules of type theory.  We also know that for any type $A$, the interpretation of $\Id{A}$ should be a right map into $A\times A$, since it is a dependent type. Finally, we want to use the pathobject $A^\I$ as the interpretation of $\Id{A}$ in view of the foregoing considerations. These constraints lead us directly to the box-filling condition.
+
+\begin{proposition}\label{prop:pathliftboxfill}
+$A^\I \to A\times A$ has path lifting if and only if $A$ has (2-)box filling.
+\end{proposition}
+
+Before giving the proof, we require some conventions that will be useful later on.
+Diagramatically, path lifting for $A^\I \to A\times A$ means that for any (outer) square of the form
+\begin{equation}\label{diagram:pathliftpath}
+\xymatrix{
+1 \ar[d] \ar[r] & A^\I \ar[d] \\
+\I \ar[r] \ar@{..>}[ru] & A\times A
+}
+\end{equation}
+there is a diagonal filler as indicated.  There are two maps $0,1 : 1\rightrightarrows \I$, and the path lifting condition is required with each of these cases occurring on the left.
+
+An \emph{open 2-box} in the 2-cube $\I^2$ is by definition a subobject $$\sqcup^2_{j,e} \mono \I^2$$ obtained as the union, in the poset $\mathrm{Sub}(\I^2)$, of all the face maps $\alpha^d_i : \I \mono \I^2$ but one,
+\[
+\sqcup^2_{j,e}  = \bigcup_{(i,d)\neq (j,e)} \alpha_i^d.
+\]
+The index $j = 1, 2$ is the coordinate in which the box is open, while $e = 0,1$ indicates which face of the box is missing, bottom or top.   Because we are in the symmetric situation, where the product $\I\times \I$ can be twisted, it  will suffice to  consider only  boxes that are open in the first coordinate, since the others can be constructed from those.  Thus we may omit the index $j$, writing $\sqcup^2_e$ for $\sqcup^2_{1,e}$. Moreover, let us write $\sqcup^2 = {\sqcup}^2_1$ and $\sqcap^2 = {\sqcup}^2_0$.  The \emph{(upper and lower) open $n$-boxes} $\sqcup^n, \sqcap^n \mono \I^n$ are defined analogously.
+
+The open 2-box can be constructed as the dotted arrow in the following pushout diagram, in which we write $\partial\I = 1+1 \mono \I$ for the ``boundary'' of the 1-cube $\I$.
+%, in anticipation of Definition \ref{def:boundary} below.
+\[
+\xymatrix{
+1\times \partial\I \ar[d] \ar[r]  & 1\times \I \ar[d] \ar@/{}^{1pc}/[rdd] \\
+\I \times \partial\I \ar[r] \ar@/{}_{1pc}/[rrd] &  \sqcup^2 \pocorner \ar@{>.>}[rd] \\
+ &&  \I\times\I 
+}
+\]
+This is the upper open box determined by the case where $1 : 1\to\I$ is on the far left; the case of $0: 1\to\I$ determines the lower open box $\sqcap^2 \mono \I^2$, but we will not always mention this case separately.  
+
+\begin{definition}\label{def:boxfilling}
+A cubical set $A$  has \emph{$n$-box filling} if every map to it from an open upper $n$-box extends to the whole $n$-cube,
+\[
+\xymatrix{
+\sqcup^n \ar@{ >->}[d] \ar[r]  & A  \\
+\I^n \ar@{ ..>}[ur] 
+}
+\]
+and similarly for the lower box $\sqcap^n \mono \I^n$.  
+A map $B\to A$ has \emph{$n$-box filling} if every commutative square of the following form has a diagonal filler,
+\[
+\xymatrix{
+\sqcup^n \ar@{ >->}[d] \ar[r]  & B \ar[d]  \\
+\I^n \ar@{ ..>}[ur] \ar[r] & A
+}
+\]
+and similarly for the lower box $\sqcap^n \mono \I^n$.  
+\end{definition}
+
+\begin{proof}[Proof of the Proposition]
+The 2-box filling condition is clearly equivalent to saying that given any maps $a$ and $b$ commuting with the span in the upper-left corner of the following diagram, there exists a 2-cube $c :  \I\times\I \to A$  making the whole diagram commute.  
+\begin{equation}\label{diagram:boxfillingrev}
+\xymatrix{
+1\times \partial\I \ar[d] \ar[r]  & 1\times \I \ar[d] \ar@/{}^{1pc}/[rdd]^{a} \\
+\I \times \partial\I \ar[r] \ar@/{}_{1pc}/[rrd]_{b} & \I\times\I \ar@{.>}[rd]|{c} \\
+ &&  A
+}
+\end{equation}
+This formulation eliminates the pushout and replaces the open box by a decomposition.
+
+Now let us rewrite diagram \eqref{diagram:pathliftpath} with the projection from the path object $A^\I \to A\times A$  replaced by
+\[
+A^i : A^\I \to A\times A \cong A^{1+1} = A^{\partial\I} 
+\] 
+where $i := [0,1] : \partial \I = 1+1 \to \I$ is the copair, to give:
+\begin{equation*}\label{diagram:pathliftpathrev}
+\xymatrix{
+1 \ar[d] \ar[r] & A^\I \ar[d]^{A^i} \\
+\I \ar[r] \ar@{..>}[ru] & A^{\partial\I}
+}
+\end{equation*}
+But this is just the exponential transpose of the diagram \eqref{diagram:boxfillingrev}, where the corresponsing transposed maps are as indicated:
+\begin{equation}\label{diagram:pathliftpathrev}
+\xymatrix{
+1 \ar[d] \ar[r]^{a'} & A^\I \ar[d]^{A^i} \\
+\I \ar[r]_{b'} \ar@{..>}[ru]^{c'} & A^{\partial\I}
+}
+\end{equation}
+\end{proof}
+
+Indeed, the foregoing can be generalized as follows:
+
+\begin{proposition}\label{prop:main}
+For any cubical set $X$ and any $n\geq 1$,  the canonical map $X^\I \to X\times X$ has $n$-box filling iff $X$ has $(n+1)$-box filling.
+\end{proposition}
+
+Since $1$-box filling in any object $X$ is trivial, we conclude that a cubical set $X$ has $n$-box filling for all $n\geq 1$ just in case $X^\I \to X\times X$ does.  In this way, we are led to make the following definition.
+
+\begin{definition}
+A map of cubical sets $f : Y\to X$ is a \emph{Kan fibration} if it has $n$-box filling for all $n\geq 1$.  
+A cubical set $X$ is a \emph{Kan complex} if the map $X\to 1$ is a Kan fibration.  
+\end{definition}
+
+\begin{remark}
+Since the composition of two maps with $n$-box filling clearly also has $n$-box filling, if an object $A$ has $(n+1)$-box filling then its pathobject $A^\I$ has only $n$-box filling.  Thus if we want all types to have \Id-types, and if we have $\Sigma$-types so that we can form $\id{A} = \sum_{x,y:A}\id{A}(x,y)$,  then we are led to take as the types (at most) those cubical sets that are Kan complexes, and as the dependent types the Kan fibrations.  It seems remarkable that the constraints imposed by modelling \Id-types have led us directly to the definition of Kan fibration and Kan complex!
+\end{remark}
+
+\subsection{Uniformity}
+
+We could now use Quillen's small object argument to make a WFS in which the \R-maps are the Kan fibrations by taking as a generating set of left maps all the open box inclusions.  Since we want an \emph{algebraic} WFS, however, we shall instead use a refinement of the SOA due to R.~Garner, involving an algebraic notion of fibration.
+
+\begin{definition}[cf.~\cite{BCH}]  A cubical set $X$ is a \emph{uniform Kan complex} if it has the following structure:
+\begin{enumerate}
+\item  For each open box $\sqcup^n \mono \I^n$, each $k\geq 1$, and each map $b: \I^k \times\sqcup^n\to X$, there is given an extension $\bar{b} : \I^k\times\I^n \to X$ along the product map $\I^k\times\sqcup^n \mono \I^k\times\I^n$.
+\begin{equation}\label{diagram:uniformsimple}
+\xymatrix{
+\I^k\times \sqcup^n\ar@{>->}[dd] \ar[rd]^{b}  &\\
+	& X\\
+ \I^k \times \I^n \ar@{..>}[ru]_{\bar{b}} &
+}
+\end{equation}
+\item The chosen extensions $\bar{b}$ are natural in $\I^k$, in the sense that for each map of cubes $f : \I^j \to \I^k$, one has
+\[
+\overline{b\circ(f\times\sqcup^n)} = \bar{b}\circ (f\times\I^n),
+\]
+as indicated in the following commutative diagram:
+\begin{equation}\label{diagram:uniformnatural}
+\xymatrix{
+\I^j\times \sqcup^n\ar@{>->}[dddd] \ar@/{}^{3pc}/[rrrdd]^{b(f\times\sqcup^n)} \ar[rd]^{f\times\sqcup^n} &&& \\
+	& \I^k\times \sqcup^n\ar@{>->}[dd] \ar[rrd]^{b}  &&\\
+	&&& X\\
+	& \I^k \times \I^n \ar@{..>}[rru]_{\bar{b}} &&\\
+ \I^j \times \I^n \ar@{.>}@/{}_{3pc}/[rrruu]_{\overline{b(f\times\sqcup^n)}} \ar[ru]_{f\times\I^n} &&&
+}
+\end{equation}
+\item The foregoing also holds for all lower open boxes $\sqcap^n \mono \I^n$.
+\end{enumerate}
+\end{definition}
+
+The uniform Kan condition turns the box filling \emph{property} of an object $X$ into an explicitly given \emph{structure} $(X, \overline{(-)})$ on the object, namely a natural choice of fillers $\bar{b}$ for all (generalized) open boxes $b : \I^k\times \sqcup^n \to X$.  The generalization to maps is straightforward:
+
+%This will be seen to simplify the proof that the exponential $A^X$ of a Kan object  $A$ by any object $X$ is again Kan. 
+
+\begin{definition}
+A \emph{uniform Kan fibration} is a map $f : Y\to X$ equipped with the following structure: 
+\begin{enumerate}
+
+\item For every (outer) square of the form
+\begin{equation}%\label{diagram:boxfillfib}
+\xymatrix{
+\I^k \times \sqcup^n \ar[d]_{\I^k\times i^n} \ar[r]^-{b} & Y \ar[d]^{f} \\
+\I^k \times \I^n \ar[r]_-{a} \ar@{.>}[ru]|-{c} & X
+}
+\end{equation}
+there is given a diagonal filler $c = \overline{(a,b)}$.
+
+\item These chosen fillers are moreover natural in $\I^k$, in the sense that for any $f : \I^j \to \I^k$, one has
+\[
+\overline{(a,b)}\circ(f\times \I^n) = \overline{(a\circ (f\times \I^n), b\circ (f\times \sqcup^n))}.
+\]
+\item The foregoing also holds for all lower open boxes $\sqcap^n \mono \I^n$.
+
+\end{enumerate}
+\end{definition}
+
+Clearly, $X$ is a uniform Kan complex just in case $X\to 1$ is a uniform Kan fibration
+
+\begin{theorem}
+There is an algebraic weak factorization system on $\cSet$ for which the $\RR$-algebras are exactly the uniform Kan fibrations.
+\end{theorem}
+
+This is now a direct application of Garner's small object argument. We will nonetheless sketch the details of the argument in the next section, because some modifications of it will be required thereafter. 
+
+\section{Constructing the (first) algebraic weak factorization system}
 
 
 
