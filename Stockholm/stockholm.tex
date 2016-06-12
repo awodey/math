@@ -493,11 +493,6 @@ We have the following calculation for the right adjoint $X_\I$:
 where $C^n_{k} = \binom{n}{k}$ is the usual binomial coefficient.
 \end{corollary}
 
-%\begin{corollary}
-%There is a natural transformation $X_\I \to X$, given by the first projection from $X_\I(n)\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0)$.
-%\end{corollary}
-
-
 %%%%%%%%%%%%%%%%%
 \subsection{Box filling}
 %%%%%%%%%%%%%%%%%
@@ -525,7 +520,6 @@ An \emph{open 2-box} in the 2-cube $\I^2$ is by definition a subobject $$\sqcup^
 The index $j = 1, 2$ is the coordinate in which the box is open, while $e = 0,1$ indicates which face of the box is missing, bottom or top.   Because we are in the symmetric situation, where the product $\I\times \I$ can be twisted, it suffices to  consider only  boxes that are open in the first coordinate, since the others can be constructed from those.  Thus we may omit the index $j$, writing $\sqcup^2_e$ for $\sqcup^2_{1,e}$. Moreover, let us write $\sqcup^2 = {\sqcup}^2_1$ and $\sqcap^2 = {\sqcup}^2_0$.  The \emph{(upper and lower) open $n$-boxes} $\sqcup^n, \sqcap^n \mono \I^n$ are defined analogously.
 
 The open 2-box can be constructed as the dotted arrow in the following pushout diagram, in which we write $\partial\I = 1+1 \mono \I$ for the boundary of the 1-cube $\I$.
-%, in anticipation of Definition \ref{def:boundary} below.
 \[
 \xymatrix{
 1\times \partial\I \ar[d] \ar[r]  & 1\times \I \ar[d] \ar@/{}^{1pc}/[rdd] \\
@@ -636,8 +630,6 @@ as indicated in the following commutative diagram.
 \end{definition}
 
 The uniform Kan condition turns the box filling \emph{property} of an object $X$ into an explicitly given \emph{structure} $(X, \phi)$ on $X$, namely a natural choice of fillers $\phi(b)$ for all (generalized) open boxes $b : \I^k\times \sqcup^n \to X$.  The generalization to maps is straightforward:
-
-%This will be seen to simplify the proof that the exponential $A^X$ of a Kan object  $A$ by any object $X$ is again Kan. 
 
 \begin{definition}[cf.~\cite{BCH}]
 A \emph{uniform Kan fibration} is a map $f : Y\to X$ equipped with the following structure: 
@@ -899,7 +891,6 @@ where $\pi: \I^{n+1} \to \I^{n}$ is the projection in the direction in which $\s
 \]
 \end{definition}
 
-
 \begin{lemma}\label{lem:normalpath}
 If $A$ is a normal Kan complex, then $\pA \to A\times A$ is a normal Kan fibration.
 \end{lemma}
@@ -952,15 +943,6 @@ Of course, to model \Id-types in general we require not only the factorizations 
 
 
 Let $X$ be a Kan complex with uniform box-filling structure $\phi$, so that for any open box $b: \sqcup^n \to X$ there is an associated filler $\phi(b) : \I^n \to X$ extending $b$,
-
-%\[
-%\xymatrix{
-% X^{\sqcup^n}\times\sqcup^n \ar@{>->}[dd]_{1\times i^n} \ar[rr]^-{\eval^n} && X \ar[dd]^{t^n_X} \ar[r]^{=} & X\\
-%&&& \\
-% X^{\sqcup^n}\times\I^n \ar[rr] && {\pocorner} T^n(X) \ar@{..>}[uur]_{\phi} &
-%}
-%\]
-
 \[
 \xymatrix{
 \sqcup^n \ar[d]_{i^n} \ar[rr]^-{b} && X\\
