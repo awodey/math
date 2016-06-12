@@ -3,7 +3,7 @@
 % June 2016
 % Stockholm
 %%
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 \usepackage{amsmath}
 \usepackage{amssymb,latexsym}
 \usepackage{amsthm}
@@ -218,7 +218,7 @@ A \ar[d]_{\refl} \ar[r]^b & B \ar[d] \\
 \id{A} \ar[r]_{=} \ar@{..>}[ru]_{\mathsf{J}_b} & \id{A} 
 }
 \end{equation}
-Since $\refl$ is an \L-map, and $B\arr \id{A}$ is an \R-map (as the interpretation of a dependent type), there is a diagonal filler $\mathsf{J}_b$ as indicated.  The commuting of the lower triangle means that $\mathsf{J}_b$ is a section of $B\arr \id{A}$ and thus a term of the type required by the conclusion of the \Id-elimination rule.  The commuting of the upper triangle is exactly the $\mathsf{J}$-computation rule.
+Since $\refl$ is an \L-map, and $B\arr \id{A}$ is an \R-map (as the interpretation of a dependent type), there is a diagonal filler $\mathsf{J}_b$ as indicated.  The commuting of the lower triangle means that $\mathsf{J}_b$ is a section of $B\arr \id{A}$ and thus a term of the type required by the conclusion of the \Id-elimination rule.  The commuting of the upper triangle is exactly the $\mathsf{J}$-computation rule. (See \cite{AW}.)
 
 %%%%%%%%%%%%%%%%%
 \subsection{Coherence}
@@ -263,7 +263,7 @@ B' \ar[r]_{f} \ar@{..>}[rru]^{\psi\ \ } & B\ar@{..>}[ru]_{\phi} \ar[r] & D
 }
 \end{equation}
 we may have the two different diagonal fillers for the outer filling problem, namely $\psi$ and $\phi\circ f$.  Under certain conditions, we want to have these two solutions be equal.
-This leads to a strengthening of the notion of weak factorization system which implies the existence of natural choices of diagonal fillers.
+This leads to a strengthening of the notion of weak factorization system which implies the existence of natural choices of diagonal fillers. (The idea to use this solution is due to R.~Garner.)
 
 \end{enumerate}
 
@@ -335,7 +335,7 @@ It is easy to see that the naturality condition for diagonal fillers mentioned i
 \end{remark}
 
 
-We summarize the result of this section with the following.
+We summarize the result of this section with the following (cf.~\cite{GvdB}).
 
 \begin{proposition}
 Let \C\ be a category with finite limits, an algebraic weak factorization system, and a stable choice of factorizations for all diagonal maps.  Then \C\ admits a model of type theory with \Id-types.
@@ -345,7 +345,7 @@ Let \C\ be a category with finite limits, an algebraic weak factorization system
 \section{Cubical sets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Our goal is to make an algebraic weak factorization system on the cubical sets, but let us first recall \emph{why} the category of cubical sets is a good setting for a model of \Id-types.  The basic examples of WFSs and homotopy are topological spaces and simplicial sets, but these models are not entirely satisfactory, at least from a logical point of view.  In particular, they seem to lack the combinatorial character that would make them \emph{constructive}.  The cubical approach seems to be better suited to giving such a constructive treatment, as has recently been shown by T.~Coquand and his coworkers.  It is worth noting in this connection that the goal here is \emph{not} to give a constructive interpretation of the univalence axiom, as Coquand et al.\ have done, but only to investigate a (particular) cubical model as arising from an algebraic weak factorization system.
+Our goal is to make an algebraic weak factorization system on the cubical sets, but let us first recall \emph{why} the category of cubical sets is a good setting for a model of \Id-types.  The basic examples of WFSs and homotopy are topological spaces and simplicial sets, but these models are not entirely satisfactory, at least from a logical point of view.  In particular, they seem to lack the combinatorial character that would make them \emph{constructive}.  The cubical approach seems to be better suited to giving such a constructive treatment, as has recently been shown by T.~Coquand and his coworkers (see \cite{BCH}).  It is worth noting in this connection that the goal here is \emph{not} to give a constructive interpretation of the univalence axiom, as Coquand et al.\ have done, but only to investigate a (particular) cubical model as arising from an algebraic weak factorization system.
 
 By way of motivation for using cubical sets, recall that we will interpret the \Id-type of an object $A$ using a factorization of the diagonal map,
 \begin{equation}\label{diag:pathfact}
@@ -361,7 +361,7 @@ We regard $PA$ as an abstract  ``pathspace'' $A^\I$.  If there is an ``interval 
 1 && \ar[ll] \ar[ul] 1+1\,
 }
 \]
-will result in a factorization of the form \eqref{diag:pathfact} (without respect to any WFS).
+will result in a factorization of the form \eqref{diag:pathfact} (without respect to any WFS).  This factorization will automatically be stable under pullback.
 
 The idea that identity proofs are paths and that $\id{A} = A^\I$ is further supported by the fact that dependent types have the \emph{path-lifting property}: given $a_0,a_1:A$  and $p:\id{A}(a_0,a_1)$ and $\types{x:A}{B(x)}$  and $b_0:B(a_0)$, there is a distinguished $b_1:B(a_1)$, called the \emph{transport} of $b_0$ along $p$ and denoted $p_*(b_0)$.  Indeed, there is even a path $\tilde{p} : \id{B}(b_0,b_1)$, where $B=\sum_{x:A}B(x)$, such that $\pi_1(\tilde{p})=p$.
 \[
@@ -413,7 +413,7 @@ of the category $\B$ of finite strictly bipointed sets and bipointed functions. 
 The equivalence of these three specifications of $\C_\times$ is an easy application of Lawvere duality.
 \end{definition}
 
-\begin{remark} There are many other notions of cube category and cubical sets in the literature. See \cite{} for  comparisons of some.
+\begin{remark} There are many other notions of cube category and cubical sets in the literature. See \cite{awodey:cubes} for  comparisons of some.
 \end{remark}
 
 Next, consider the representable objects,
@@ -454,7 +454,7 @@ S_*(X)_n \cong \hom(y[n], S_*X) \cong \hom(S^*(y[n]), X)\ \cong \hom(\Cc(S(-), [
 \]
 \end{proof}
 
-We need the following fact in order to calculate the right adjoint further. We mention that a similar fact holds for the generic object in the object classifier topos $\Set^{\mathsf{Fin}}$, and in the Schanuel topos $\mathrm{Sh}(\mathrm{Aut}(\N))$, and is used to give an algebraic treatment of variable binding in the theory of ``abstract higher-order syntax'' \cite{Pitts,Fiore}.
+We need the following fact in order to calculate the right adjoint further. We mention that a similar fact holds for the generic object in the object classifier topos $\Set^{\mathsf{Fin}}$, and in the Schanuel topos $\mathrm{Sh}(\mathrm{Aut}(\N))$, and is used to give an algebraic treatment of variable binding in the theory of ``abstract higher-order syntax''.
 
 \begin{lemma}\label{lemma:binomial}
 For the 1-cube $\I$ in $\cSet$, we have $\I^\I\ \cong\ \I+1$.
@@ -585,7 +585,7 @@ But this is just the exponential transpose of the diagram \eqref{diagram:boxfill
 \end{equation}
 \end{proof}
 
-The foregoing can be generalized to higher dimensions as follows (see \cite{}):
+The foregoing can be generalized to higher dimensions as follows (see \cite{awodey:cubes}):
 
 \begin{proposition}\label{prop:main}
 For any cubical set $X$ and any $n\geq 1$,  the canonical map $X^\I \to X\times X$ has $n$-box filling iff $X$ has $(n+1)$-box filling.
@@ -604,9 +604,9 @@ Since the composition of two maps with $n$-box filling clearly also has $n$-box 
 
 \subsection{Uniformity}
 
-We could now use Quillen's small object argument to make a WFS in which the \R-maps are the Kan fibrations, by taking as a generating set of left maps all the open box inclusions.  Since we want an \emph{algebraic} WFS, however, we shall instead use a refinement of the small object argument due to R.~Garner, and appropriate to an algebraic notion of fibration.
+We could now use Quillen's small object argument to make a WFS in which the \R-maps are the Kan fibrations, by taking as a generating set of left maps all the open box inclusions.  Since we want an \emph{algebraic} WFS, however, we shall instead use a refinement of the small object argument due to R.~Garner, and appropriate to an algebraic notion of fibration (see \cite{Garner}).
 
-\begin{definition}[cf.~\cite{BCH}]  A \emph{uniform Kan complex} is a cubical set $X$ equipped with the following structure:
+\begin{definition}  A \emph{uniform Kan complex} is a cubical set $X$ equipped with the following structure:
 \begin{enumerate}
 \item  For each open box $\sqcup^n \mono \I^n$, each $k\geq 1$, and each map $b: \I^k \times\sqcup^n\to X$, there is given an extension $\phi(b) : \I^k\times\I^n \to X$ of $b$ along the product map $\I^k\times\sqcup^n \mono \I^k\times\I^n$.
 \begin{equation}\label{diagram:uniformsimple}
@@ -639,7 +639,7 @@ The uniform Kan condition turns the box filling \emph{property} of an object $X$
 
 %This will be seen to simplify the proof that the exponential $A^X$ of a Kan object  $A$ by any object $X$ is again Kan. 
 
-\begin{definition}
+\begin{definition}[cf.~\cite{BCH}]
 A \emph{uniform Kan fibration} is a map $f : Y\to X$ equipped with the following structure: 
 \begin{enumerate}
 
@@ -678,17 +678,16 @@ There is an algebraic weak factorization system $(\LL,\RR)$ on $\cSet$ for which
 This is a direct application of Garner's small object argument. We will nonetheless sketch the details of the argument in the next section, because some modifications of it will be required thereafter. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The first algebraic weak factorization system}
+\section{The AWFS of uniform box filling}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+In order to make an AWFS $(\LL,\RR)$ on $\cSet$ in which the $\RR$-algebras are the uniform Kan fibrations, we will first turn the description of uniform box filling structure on a map $f : X\to Y$ into that of an algebra structure for a suitable pointed endofunctor $T : \cSet/Y\to\cSet/Y$.  We then use a theorem of Kelly \cite{Kelly} to produce the algebraically free monad $T_\infty$ on $T$, which will be the $\RR$ part of the desired AWFS.  To simplify the exposition, we consider only the case where $Y=1$, i.e.\ Kan complexes rather than Kan fibrations, but the general case is entirely analogous.  Thus we are constructing the ``free uniform Kan complex'' on an arbitrary cubical set $X$, which may be regarded as a notion of $\infty$-groupoid.  The analogy to the construction of the free groupoid on a graph is a useful one to bear in mind.
 
-In order to make an AWFS $(\LL,\RR)$ on $\cSet$ in which the $\RR$-algebras are the uniform Kan fibrations, we will first turn the description of uniform box filling structure on a map $f : X\to Y$ into that of an algebra structure for a suitable pointed endofunctor $T : \cSet/Y\to\cSet/Y$.  We then use a theorem of Kelly \cite{} to produce the algebraically free monad $T_\infty$ on $T$, which will be the $\RR$ part of the desired AWFS.  To simplify the exposition, we consider only the case where $Y=1$, i.e.\ Kan complexes rather than Kan fibrations, but the general case is entirely analogous.  Thus we are constructing the ``free uniform Kan complex'' on an arbitrary cubical set $X$.  The analogy to the construction of the free groupoid on a graph is a useful one to bear in mind.
-
-Consider first a box filling structure $\phi$ on a cubical set $X$.  For each open $n$-box $i:\sqcup^n \mono \I^n$, each $k$, and for each (generalized) open box $b: \I^k \times\sqcup^n\to X$ in $X$, there is given an extension $\phi(b) : \I^k\times\I^n \to X$ to a $(k+n)$-cube in $X$, naturally in $\I^k$:
+Consider first a box filling structure $\phi$ on a cubical set $X$.  For each open $n$-box $i^n:\sqcup^n \mono \I^n$, each $k$, and for each (generalized) open box $b: \I^k \times\sqcup^n\to X$ in $X$, there is given an extension $\phi(b) : \I^k\times\I^n \to X$ to a $(k+n)$-cube in $X$, naturally in $\I^k$:
 \[
 \xymatrix{
-\I^k\times \sqcup^n\ar@{>->}[d] \ar[r]^-{b}  & X\\
+\I^k\times \sqcup^n\ar@{>->}[d]_{1\times i^n\ } \ar[r]^-{b}  & X\\
  \I^k \times \I^n \ar@{..>}[ru]_{\phi(b)} &
 }
 \]
@@ -696,39 +695,39 @@ Transposing, we obtain an assignement $b \mapsto \phi(b)$ of the form:
 \[
 \xymatrix{
 \I^k \ar[r]^{b}  \ar@{..>}[rd]_{\phi(b)}  & X^{ \sqcup^n}\\
- & \ar[u]_{X^{i}}  X^{ \I^n}\,,
+ & \ar[u]_{X^{i^n}}  X^{ \I^n}\,,
 }
 \]
-such that $X^{i}\circ\phi(b) = b$, again naturally in $\I^k$.
+such that $X^{i^n}\circ\phi(b) = b$, again naturally in $\I^k$.
 
-But since the cubes $\I^k$ are the representables, by Yoneda the assignement $\phi$ is given by a natural transformation $\phi : X^{\sqcup^n}\to X^{\I^n}$, which is a section of $X^i$,
+But since the cubes $\I^k$ are the representables, by Yoneda the assignment $\phi$ is given by composing with a unique natural transformation $\phi : X^{\sqcup^n}\to X^{\I^n}$, which is a section of $X^{i^n}$,
 \[
 \xymatrix{
   \ar@/{}_{1pc}/@{..>}[d]_{\phi} X^{ \sqcup^n}\\
-  \ar[u]_{X^{i}}  X^{ \I^n}\,,
+  \ar[u]_{X^{i^n}}  X^{ \I^n}\,,
 }
 \]
 
 Transposing by $\I^n$, we obtain the equivalent diagram:
 \[
 \xymatrix{
- X^{\sqcup^n}\times\sqcup^n \ar@{>->}[dd]_{1\times i} \ar[rr]^-{\eval} && X \\
+ X^{\sqcup^n}\times\sqcup^n \ar@{>->}[dd]_-{1\times i^n} \ar[rr]^-{\eval} && X \\
 && \\
  X^{\sqcup^n}\times\I^n \ar@{..>}[uurr]_{\phi} &&
 }
 \]
 
-Finally, forming the pushout of the span formed by $1\times i$ and the evaluation map $\eval^n$,
-\[
+Finally, forming the pushout of the span formed by $1\times i^n$ and the evaluation map $\eval^n$,
+\begin{equation}\label{diagram:defTn}
 \xymatrix{
- X^{\sqcup^n}\times\sqcup^n \ar@{>->}[dd]_{1\times i} \ar[rr]^-{\eval^n} && X \ar[dd]^{t^n_X} \ar[r]^{=} & X\\
+ X^{\sqcup^n}\times\sqcup^n \ar@{>->}[dd]_{1\times i^n} \ar[rr]^-{\eval^n} && X \ar[dd]^{t^n_X} \ar[r]^{=} & X\\
 &&& \\
  X^{\sqcup^n}\times\I^n \ar[rr] && {\pocorner} T^n(X) \ar@{..>}[uur]_{\phi} &
 }
-\]
+\end{equation}
 we obtain an object $T^n(X)$ with a map $t^n_X : X\to\ T^n(X)$ such that retractions $\phi$ of $t^n_X$ correspond bijectively to $n$-box filling structures on $X$.  
 
-Since $T^n$ is clearly functorial in $X$, we have an endofunctor $T^n : \cSet\to\cSet$ with an (evidently natural) point $t^n : 1 \to T^n$.  Summing over all dimensions $n$ and again forming the pushout, we again obtain an endofunctor $T : \cSet \to \cSet$ with a point $t : 1\to T$,
+Since $T^n$ is clearly functorial in $X$, we have an endofunctor $$T^n : \cSet\to\cSet$$ with an (evidently natural) point $t^n : 1 \to T^n$.  Summing over all dimensions $n$, and again forming the pushout, 
 \begin{equation}\label{diagram:defT}
 \xymatrix{
 {\coprod_{n}}X^{\sqcup^n}\times\sqcup^n \ar@{>->}[dd]_{{\coprod_{n}}1\times i^n\ } \ar[rr]^-{[\eval^n]} && X \ar[dd]^{t_X} \ar[r]^{=} & X\\
@@ -736,16 +735,17 @@ Since $T^n$ is clearly functorial in $X$, we have an endofunctor $T^n : \cSet\to
 {\coprod_{n}}X^{\sqcup^n}\times\I^n \ar[rr] && {\pocorner} T(X) \ar@{..>}[uur]_{\phi} &
 }
 \end{equation}
-the algebras for which are box filling structures on $X$, but now for all dimensions $n$.  It is easy to see that $(T,t)$-algebra homomorphisms  $h : (X,\phi) \to (Y, \psi)$ correspond exactly to maps $h : X\to Y$ that preserve the box filling structure, in the obvious sense.  Summarizing, we have shown:
+we obtain an endofunctor $T : \cSet \to \cSet$ with a point $t : 1\to T$, 
+the algebras for which are box filling structures on $X$, but now for all dimensions $n$.  It is easy to see that $(T,t)$-algebra homomorphisms  $h : (X,\phi) \to (Y, \psi)$ correspond exactly to maps $h : X\to Y$ that preserve the box filling structures, in the obvious sense.  Summarizing, we have shown:
 %
-\begin{lemma}
+\begin{proposition}
 The category of $(T,t)$-algebras for the pointed endofunctor $$T : \cSet \to \cSet$$ defined by \eqref{diagram:defT} is isomorphic to the category of uniform Kan complexes.
-\end{lemma}
+\end{proposition}
 %
 
-Next we use a method due to Kelly \cite{} to construct the \emph{algebraically free monad} $(T_\infty, t_\infty, \mu)$ from the pointed endofunctor $(T,t)$.  This monad comes with a natural map $\eta : T\to T_\infty$ such that $t_\infty = \eta\circ t$, inducing a comparison functor, $$\eta^* : (T_\infty, t_\infty, \mu)\mbox{-}\mathrm{Alg} \to (T,t)\mbox{-}\mathrm{Alg}\,,$$ which is an isomorphism of categories.  Here $(T_\infty, t_\infty, \mu)\mbox{-}\mathrm{Alg}$ is the category of algebras for the monad, while $(T,t)\mbox{-}\mathrm{Alg}$ is the category of algebras for the pointed endofunctor.  We henceforth refer to these more briefly as $T_\infty\mbox{-}\mathrm{Alg}$ and $T\mbox{-}\mathrm{Alg}$ respectively.
+Next we use a method due to Kelly (see \cite{Garner,Kelly}) to construct the \emph{algebraically free monad} $(T_\infty, t_\infty, \mu)$ from the pointed endofunctor $(T,t)$.  This monad comes with a natural map $\eta : T\to T_\infty$ such that $t_\infty = \eta\circ t$, inducing a comparison functor, $$\eta^* : (T_\infty, t_\infty, \mu)\mbox{-}\mathrm{Alg} \to (T,t)\mbox{-}\mathrm{Alg}\,,$$ which is an isomorphism of categories.  Here $(T_\infty, t_\infty, \mu)\mbox{-}\mathrm{Alg}$ is the category of algebras for the monad, while $(T,t)\mbox{-}\mathrm{Alg}$ is the category of algebras for the pointed endofunctor.  We henceforth refer to these more briefly as $T_\infty\mbox{-}\mathrm{Alg}$ and $T\mbox{-}\mathrm{Alg}$ respectively.
 
-\begin{lemma}
+\begin{lemma}\label{lem:compact}
 The endofunctor $T : \cSet \to \cSet$ preserves $\omega$-colimits.
 \end{lemma}
 \begin{proof}
@@ -759,7 +759,7 @@ T_\infty\mbox{-}\mathrm{Alg}\ \cong\ T\mbox{-}\mathrm{Alg}\,.
 \]  
 \end{proposition}
 
-\begin{proof}(sketch, cf.\ \cite{Kelly, Garner})
+\begin{proof}(sketch, cf.\ \cite{Garner})
 To construct $\Tinf(X)$ for any cubical set $X$,  begin with $t_X :X\to TX$ and  consider 
 \[
 \xymatrix{
@@ -774,7 +774,7 @@ TX  \ar@<.8ex>[r]^{Tt_X}  \ar@<-.8ex>[r]_{t_{TX}} & T^2X \ar[r]^c & T_2X\,.
 \]
 Now let $T_1X = TX$ and $t_1 = t : X\to T_1X$ and $c_1 = c : T^2X\to T_2X$, and continue as follows:
 \[
-\xymatrix{
+\xymatrix@=3em{
 TX  \ar@<.8ex>[r]^{Tt_X}  \ar@<-.8ex>[r]_{t_{TX}} & T^2X \ar[rd]^{c_1} \ar[r]^{Tt_1} & TT_2X \ar[rd]^{c_2} \ar[r]^{Tt_2} & TT_3X \ar[r] & \dots\\
 X \ar[u]^{t} \ar[r]_{t_1} & T_1X \ar[u]_{t_{T_1}} \ar[r]_{t_2} & T_2X \ar[u]_{t_{T_2}} \ar[r]_{t_3} & T_3X \ar[u]_{t_{T_3}} \ar[r]_{t_3} & \dots
 }
@@ -787,14 +787,14 @@ Finally, set $\Tinf(X) := \varinjlim_{n}T_n(X)$ and let $(t_\infty)_X: X\to \Tin
 \begin{remark}\label{rem:AWFS1}
 This essentially completes the proof of Theorem \ref{thm:AWFS1}: there is an AWFS $(\LL,\RR)$ on $\cSet$ in which the $\RR$-algebras are the uniform Kan fibrations.  For an object $X$, a uniform Kan structure $\phi$ on $X$ is the same thing as a $T$-algebra structure map $\phi : TX\to X$, and by the foregoing, these correspond precisely to $\Tinf$-algebra structures $\phi:\Tinf(X) \to X$.  Moreover, the free $T$-algebra on $X$ is simply $\Tinf(X)$, with the isomorphism $t^{-1} : T\Tinf(X) \cong \Tinf(X)$ as its $T$-structure map.
 
-More generaly, for any map $f:Y\to X$ of cubical sets, we have that  $\RR(f) = \Tinf(f) : \tilde{Y} \to X$ is the ``free Kan fibration'' on $f$, as indicated in
+More generaly, for any map $f:Y\to X$ of cubical sets, we have that  $\RR(f) = \Tinf(f) : \tilde{Y} \to X$ is the ``free uniform Kan fibration'' on $f$, as indicated in
 \begin{equation}%\label{diagram:freefibr}
 \xymatrix{
 Y \ar[rrd]_{f} \ar[rr]^{(t_\infty)_f} && \ar[d]^{\Tinf(f)} \tilde{Y} \\
 && X
 }
 \end{equation}
-while $\LL(f) = (t_\infty)_f : Y \to \tilde{Y}$ is the unit at $f$ of the $\Tinf$ monad.  The object $\tilde{Y} =: E(f)$ is simply the domain of $\RR(f)$, constructed as a colimit.
+while $\LL(f) = (t_\infty)_f : Y \to \tilde{Y}$ is the unit at $f$ of the $\Tinf$ monad.  The object $E(f) = \tilde{Y}$ is simply the domain of $\RR(f)$, constructed as a colimit.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -803,12 +803,12 @@ while $\LL(f) = (t_\infty)_f : Y \to \tilde{Y}$ is the unit at $f$ of the $\Tinf
 For the model of \Id-types, we need the following fact, which is easily checked along the lines of Proposition \ref{prop:pathliftboxfill}.
 
 \begin{lemma}
-If $A$ is a uniform Kan complex, then the canonical map $A^\I \to A\times A$ is a uniform Kan fibration.
+If $A$ is a uniform Kan complex, then the canonical map from the pathobject $A^\I \to A\times A$ is a uniform Kan fibration.
 \end{lemma}
 
-Now let $A$ be (uniform) Kan and consider the canonical pathobject factorization $A\stackrel{r}{\to} A^\I \stackrel{p}{\to} A\times A$ of the diagonal.  By the foregoing lemma, the second factor $p : A^\I \to A\times A$ is also Kan, and so we just need the ``constant path'' map $r : A \to A^\I$ to be an $\LL$-map, i.e.\ for it to have a coalgebra structure map for the copointed endofunctor
+Now let $A$ be (uniform) Kan and consider the canonical pathobject factorization $A\stackrel{r}{\to} A^\I \stackrel{p}{\to} A\times A$ of the diagonal.  By the foregoing lemma, the second factor $p : A^\I \to A\times A$ is also Kan, and so we just need the ``constant path'' map $r : A \to A^\I$ to be an $\LL$-map.  Specifically, it should have a coalgebra structure for the copointed endofunctor
 \[
-\LL : A/\cSet \longrightarrow A/\cSet
+\LL : A/\cSet \longrightarrow A/\cSet\,,
 \]
 which takes maps $f : A\to X$ to their first factors $\LL(f): A \to E(f)$.  According to the construction of the AWFS just given (see Remark \ref{rem:AWFS1}), an $\LL$-coalgebra structure map for $r:A\to A^\I$ is therefore a diagonal filler for the following square.
 \begin{equation}\label{diagram:reflL}
@@ -846,7 +846,7 @@ a_0 \ar@{}[ru]|{c(a)} \ar[r]_{a'} & a_1
 \end{equation}
 where $r : X\to X^\I$ is the degeneracy (i.e.\ the ``constant path'').
 
-The connection is called \emph{strict} if in the above we always have $a'=a$.  It is called \emph{normal} if $c(r(x)) = r(r(x))$ for all $n$-cubes in $X$.
+The connection is called \emph{strict} if in the above we always have $a'=a$.  It is called \emph{normal} if $c(r(x)) = r(r(x))$ for all $n$-cubes $x$ in $X$.
 \end{definition}
 
 \begin{lemma}
@@ -878,26 +878,34 @@ Both of these conditions will follow from the following strengthening of the not
 A uniform Kan fibration $f:B\to A$, with structure $\phi$, is \emph{normal} if the filler assigned by $\phi$ to a degenerate open box is always degenerate.  Thus e.g.\  in the following outer commutative square,
 \[
 \xymatrix{
-\sqcup^{n+1} \ar[dd]_i \ar[rr]^-{b} \ar[rd]^{\pi i} && B \ar[dd]^{f} \\
+\sqcup^{n+1} \ar[dd]_{i\ }\ar[rr]^-{b} \ar[rd]^{\pi i} && B \ar[dd]^{f} \\
 & \I^n \ar[ru]^{c} & \\
-\I^{n+1} \ar[ru]^\pi \ar[rr]_a \ar@/{}_{1pc}/@{..>}[rruu]_{\phi(b)} && A
+\I^{n+1} \ar[ru]^\pi \ar[rr]_a \ar@/{}_{1.5pc}/@{..>}[rruu]_{\phi(a,b)} && A
 }
 \]
-if the open $(n+1)$-box $b$ is degenerate, $b=c\pi i$ for some $n$-cube $c$ in $B$, then the filler $\phi(b)$ is also degenerate, and specifically $\phi(b) = c\pi$.  
-Generally, the assignment $\phi(a,b)$ must satisfy the following condition: for any $(k+n)$-cube $c : \I^k\times \I^n \to B$, we have:
+if the open $(n+1)$-box $b$ is degenerate, $b=c\pi i$ for some $n$-cube $c$ in $B$ and projection $\pi: \I^{n+1} \to \I^{n}$ \emph{in the direction in which $\sqcup^{n+1}$ is open},  then the filler $\phi(a,b)$ is also degenerate, and specifically $\phi(a,b) = c\pi$.  
+
+Generally, the assignment $\phi(a,b)$ must satisfy the following condition: for any generalized open box $i : \I^k\times\sqcup^{n+1}\to \I^k\times\I^{n+1}$ and any $(k+n)$-cube $c : \I^k\times \I^n \to B$ we have:
 \[
 \phi(fc\pi, c\pi i) = c\pi\,,
 \]
-as indicated in:
+where $\pi: \I^{n+1} \to \I^{n}$ is the projection in the direction in which $\sqcup^{n+1}$ is open, all as indicated below.
 \[
 \xymatrix{
-\I^k\times\sqcup^{n+1} \ar[dd]_i \ar[rr] && B \ar[dd]^{f} \\
+\I^k\times\sqcup^{n+1} \ar[dd]_{i\ } \ar[rr] && B \ar[dd]^{f} \\
 & \I^k\times\I^n \ar[ru]^{c} & \\
 \I^k\times\I^{n+1} \ar[ru]^\pi \ar[rr] \ar@/{}_{2pc}/@{..>}[rruu]_{\phi} && A\,.
 }
 \]
-
 \end{definition}
+
+
+\begin{lemma}\label{lem:normalpath}
+If $A$ is a normal Kan complex, then $\pA \to A\times A$ is a normal Kan fibration.
+\end{lemma}
+\begin{proof}
+Straightforward.
+\end{proof}
 
 \begin{lemma}
 Every normal Kan complex  $A$ has a normal connection $c : A^\I \to A^{\I\times\I}$.
@@ -907,20 +915,13 @@ Using normal box filling in $A$ to define the connection results in a normal con
 \end{proof}
 
 \begin{lemma}
-If $f: Y\to X$ is a normal Kan fibration, then the transport operation along any degenerate path $rx : x\to x$ in $X$ is trivial.
+If $f: Y\to X$ is a normal Kan fibration, then the transport operation along any degenerate path $r(x) : x\to x$ in $X$ is trivial.
 \end{lemma}
 \begin{proof}
 Transport is determined by $1$-box filling, and so it is trivial if $f$ is normal.
 \end{proof}
 
-\begin{lemma}
-If $A$ is a normal Kan complex, then $\pA \to A\times A$ is a normal Kan fibration.
-\end{lemma}
-\begin{proof}
-Straightforward.
-\end{proof}
-
-Using normal fibrations now allows a strengthening of Proposition \ref{prop:liftingnotnormal}:
+Using normal fibrations now allows a strengthening of Proposition \ref{prop:liftingnotnormal}.
 
 \begin{proposition}\label{prop:liftingnormal}
 Let $A$ be a normal Kan complex, $\pi : B \to A^\I$ a normal Kan fibration, and $b : A\to B$ a map making the following outer square commute.
@@ -930,1049 +931,148 @@ A \ar[d]_{r} \ar[r]^{b} & \ar[d]^{\pi} B \\
 A^\I \ar@{..>}[ru]_{j} \ar[r]_{=} & A^\I
 }
 \end{equation}
-Then there is a diagonal filler $j$ as indicated making both triangles commute, $\pi\circ j = 1$ and $jr=b$.
+Then there is a diagonal filler $j$ as indicated, making both triangles commute, $\pi\circ j = 1$ and $jr=b$.
 \end{proposition}
 \begin{proof}
 Again we set $j(a) := c(a)_*(b(a_0))$ and it just remains to check that $jr=b$.  But now we have:
 \[
-jr(x) = c(rx)_*(b(x)) = r(rx)_*(b(x)) = b(x)
+jr(x) = c(r(x))_*(b(x)) = r(r(x))_*(b(x)) = b(x)
 \]
-where the second equation is because the connection in $A$ is normal, and the third because the transport in $B\to\pA$ is normal.
+where the second equation is because the connection in $A$ is normal, and the third because the transport in $B\to\pA$ along $r(r(x))$ is trivial.
 \end{proof}
 
-
 \begin{remark}
-Of course, to model \Id-types in general we require not only the factorizations of the form $A \to A^\I \to A\times A$ for Kan complexes $A$, but also all those of the form $A \to A^\I \to A\times_X A$, for Kan fibrations $A\to X$, at least for $X$ Kan, and where the exponential $A^\I$ is made in the slice category $\cSet/X$.  As elsewhere, we consider only the case $X=1$ for ease of exposition.
+On reflection, it should come as no surprise that the fibrations in our model must be normal in this sense in order to also model the \Id-computation rule: the syntactic model has the closely related property that the transport operation along any reflexivity term is (definitionally) trivial, in virtue of the \Id-computation rule.
+
+Of course, to model \Id-types in general we require not only the factorizations of the form $A \to A^\I \to A\times A$ for Kan complexes $A$, but also all those of the form $A \to A^\I \to A\times_X A$, for Kan fibrations $A\to X$, at least for $X$ Kan, and where the exponential $A^\I$ is made in the slice category $\cSet/X$.  As elsewhere, we consider only the case $X=1$ for ease of exposition, but the general case holds as well.
 \end{remark}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Normalization}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\end{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Let $X$ be a Kan complex with uniform box-filling structure $\phi$, so that for any open box $b: \sqcup^n \to X$ there is an associated filler $\phi(b) : \I^n \to X$ extending $b$,
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Some cube categories}
-
-We consider three different cube categories, to be used as index categories for cubical sets:
-
-\begin{enumerate}
-\item $\mathbb{C}$ the (classical) cube category: the \emph{free monoidal category on an interval}.
-\item $\mathbb{C}_s$ the symmetric cube category: the \emph{free symmetric monoidal category on an interval}.
-\item $\mathbb{C}_c$ the cartesian cube category: the \emph{free finite product category on an interval}.
-\end{enumerate}
-
-\subsection{The classical cube category $\mathbb{C}$}
-
-(Cf.\ Jardine \cite{Jardine2001,Jardine2002}.)
-The \emph{objects} are the sets of binary $n$-tuples:
-\[
-I^n = \{ \langle d_1, ..., d_n\rangle\ \vert\ d_i = 0,1\}
-\]
-where 
-\[
-I = \{ 0, 1\}
-\]
-and we let $I^0 = \{*\}$.
-
-The \emph{arrows} $$f : I^n \to I^m$$ are those functions generated by compositions of the following primitive ones:
-\begin{itemize}
-\item \emph{face maps} $\alpha^{d}_{i} : I^n \to I^{n+1}$, taking $\langle d_1, ..., d_n\rangle$ to $\langle d_1, ..., d_{(i)}, ..., d_n\rangle$, with a new digit $d = 0,1$ inserted as the $i^{\mathrm{th}}$ coordinate. There are $2(n+1)$ such maps.
-
-\item \emph{degeneracies} $\beta_{i} : I^n \to I^{n-1}$, taking $\langle d_1, ..., d_n\rangle$ to $\langle d_1, ..., \hat{d_{i}}, ..., d_n\rangle$, omitting the $i^{\mathrm{th}}$ coordinate.  There are $n$ such maps.
-\end{itemize}
-
-Note that the order of the $d_i$'s does not change.  
-
-\subsubsection*{Remarks}
-\begin{enumerate}
-\item It can be shown that every map factors as:
-\[
-\xymatrix{
- I^n \ar[rr]^{f} \ar@{->>}[rd]_{\beta} && I^m\\
-& I^k \ar@{>->}[ru]_{\alpha}  &
-}
-\]
-where $\alpha : I^k \rightarrowtail I^m$ is a composite of faces, and $\beta : I^n \epi I^k$ is a composite of degeneracies.
-Using this, it can be shown that $\mathbb{C}$ is the free monoidal category on an \emph{interval}: an object $I$ equipped with maps:
-\[
-\xymatrix{
- 1 {\ar@<-.5ex>[r]_{\bot} \ar@<.5ex>[r]^{\top}} & I \ar[r]^{!} & 1
-}
-\]
-satisfying $!\circ\top = \mathrm{id_1} =\ !\circ\bot$, where $1$ is the monoidal unit.
-
-\item The presheaf category $\mathsf{cSet} = \psh{\C}$ of \emph{cubical sets} has the same homotopy theory as the classical simplicial sets $\mathsf{sSet} = \psh{\Delta}$, in the sense that the two are Quillen equivalent.
-
-\item The objects $I^n$ are \emph{not} the $n$-fold cartesian products of the interval $I$, either in the site $\C$ or as presheaves.  Rather, there is a monoidal product $\otimes$ on $\mathsf{cSet}$ extending that on $\C$, such that $I^m\otimes I^n \cong I^{m+n}$.  Similarly, the geometric realization functor to topological spaces 
-$$R: \mathsf{cSet} \to \mathsf{Top}$$
-does not in general preserve cartesian products, but instead takes tensor products in $\mathsf{cSet}$ to cartesian ones in $\mathsf{Top}$, $$R(X\otimes Y) \cong R(X)\times R(Y).$$  
-\end{enumerate}
-
-\subsection{The symmetric cube category $\mathbb{C}_s$}
-
-(Cf.\ Grandis \cite{Grandis??}.) As before, the \emph{objects} are the sets of binary $n$-tuples:
-\[
-1 = I^0,\ I,\ ..., I^n
-\]
-%
-The \emph{arrows} $$f : I^n \to I^m$$ are still functions generated by compositions of primitive ones, including the faces and degeneracies as before, but now also including the primitive:
-\begin{itemize}
-\item \emph{permutations} $\sigma_i : I^n \to I^{n}$, swapping $d_i$ and $d_{i+1}$.
-\end{itemize}
-%
-For each $I^n$ there are $n-1$ such maps. Of course, for any permutation $\sigma\in S_n$ one can define a corresponding $\sigma : I^n \to I^{n}$ taking $\langle d_1, ..., d_n\rangle$ to $\langle d_{\sigma{(1)}}, ..., d_{\sigma{(n)}}\rangle$ as a suitable composite of~$\sigma_i$'s.  
-
-\subsubsection*{Remarks}
-\begin{enumerate}
-\item It can be shown that now every map factors as:
-\[
-\xymatrix{
- I^n \ar[r]^{f} \ar@{->>}[d]_{\beta} & I^m\\
-I^k \ar[r]^{\sim}_{\sigma} & I^k \ar@{>->}[u]_{\alpha}
-}
-\]
-where $\alpha : I^k \rightarrowtail I^m$ is a (composite) face, $\sigma : I^k \tilde{\to} I^k$ is a (composite) permutation, and $\beta : I^n \epi I^k$ is a (composite) degeneracy.  Using this, it can be shown that $\mathbb{C}_s$ is the free \emph{symmetric} monoidal category on an interval.
-
-\item The presheaf category $\mathsf{csSet} = \psh{\C_s}$ of \emph{symmetric cubical sets} again has the same homotopy theory as simplicial sets.
-
-\item The objects $I^n$ are again  $n$-fold \emph{tensor} products of the interval $I$, but not  \emph{cartesian} products, either in the site $\C_s$ or in  $\mathsf{csSet}$.   And again, the geometric realization functor from $\mathsf{csSet}$ to topological spaces does not preserve cartesian products, but instead takes tensor products to cartesian ones. Relatedly, there is a functor $\mathsf{Hom}(X, - )$, right adjoint to the tensor $X\otimes (-)$, which is not an exponential.
-\end{enumerate}
-
-\subsubsection{Covariant presentation}
-
-(Cf.\ Bezem, Coquand, and Huber \cite{BCH}, Pitts \cite{Pitts}.) There is a dual presentation of the symmetric site $\C_s$.  Let the category $\mathcal{C}$ have as \emph{objects} the finite sets $$[n]= \{1, ..., n\}$$ and write 
-\[
-[n]^+\ =\  [n] \cup \{\top, \bot\}\ =\ \{\top, 1, ..., n, \bot\}.
-\]
-The \emph{arrows}
-\[
-f : [n] \to [m]
-\]
-in $\mathcal{C}$ are all functions  $f : [n] \to [m]^+$ satifying the following \emph{partial injectivity condition}:
-\[
-f(i)= f(j)\ \implies \big(i = j\ \text{\emph{or}}\ f(i) = \top = f(j)\ \text{\emph{or}}\  f(i) = \bot = f(j) \big)
-\]
-In other words, $f$ is injective on the preimage of  $[m] \subseteq [m]^+$,
-\[
-\xymatrix{
-\cdot \ar@{_{(}->}[d] \ar@{>->}[rr] \pbcorner && [m] \ar@{_{(}->}[d] \\
-[n] \ar[rr]_{f} && [m]^+
-}
-\]
-Identity and composition are just as in the Kleisli-category of the monad $X\mapsto X^+$.  Specifically, $\mathrm{id}: [n] \to [n]$ is the inclusion $[n] \hook [n]^+$, and $g\circ f : [n] \to [m] \to [k]$ is $\overline{g}\circ f$, where $$\overline{g}:[m]^+\to[k]^+$$ is the unique $(\top, \bot)$-preserving extension of $g$, as indicated in the following.
-\[
-\xymatrix{
-[n] \ar[rd]^{f} & [m] \ar@{_{(}->}[d] \ar[rd]^{g} & [k] \ar@{_{(}->}[d] \\
-		& [m]^+\ar[r]_{\overline{g}} & [k]^+
-}
-\]
-
-One can show easily that this category $\mathcal{C}$ (called the category of ``names and substitutions" in \cite{BCH}) is dual to the category of symmetric cubes, $$\mathcal{C} \cong \C^{\mathrm{op}}_s$$ and so 
-we have an alternate presentation of the symmetric cubical sets as \emph{covariant} functors,
-\[
-\mathsf{scSet} = \psh{\C_s} \cong \covpsh{\mathcal{C}}.
-\]
-
-
-\subsection{The cartesian cube category $\mathbb{C}_c$}
-
-As a modification of the foregoing, we consider a notion of \emph{cartesian cubical sets}.  
-The \emph{objects} of  $\C_c$ are again the sets of binary $n$-tuples:
-\[
-1 = I^0,\ I,\ ..., I^n
-\]
-%
-The \emph{arrows} of $\C_c$, $$f : I^n \to I^m$$ are still functions generated by compositions of primitive ones, including the faces,  degeneracies, and permutations, but now also including the primitive
-\begin{itemize}
-\item \emph{diagonal maps} $\delta_i : I^n \to I^{n+1}$, which double the $i^{th}$ coordinate: $$\langle d_1, ..., d_n\rangle\ \mapsto\ \langle d_1, ..., d_i, d_i,..., d_n\rangle.$$
-\end{itemize}
-%
-
-\begin{proposition}
-$\C_c$ is the free category with finite products and an interval,
-\[
-\xymatrix{
- 1 {\ar@<-.5ex>[r]_{\bot} \ar@<.5ex>[r]^{\top}} & I \ar[r]^{!} & 1.
-}
-\]
-\end{proposition}
-
-\begin{proof}
-The free category with finite products and an interval is the classifying category for the  algebraic theory consisting of the two constants $\{\top, \bot\}$, which can be described as follows (see \cite{AB}):
-\begin{description}
-\item objects: finite lists $[x_1, ..., x_n]$ of distinct variables,
-\item arrows: $f : [x_1, ..., x_n] \to [x_1, ..., x_m]$ are (equivalence classes of) $m$-tuples $$f = \langle f_1, ..., f_m\rangle$$ of terms in context,
-$$x_1, ..., x_n \vdash f_i\,.$$
-\end{description}
-But in this simple theory, the only such terms are the variables $x_1, ..., x_n$ themselves and the constants $\{\top, \bot\}$, and the equivalence relation is trivial, since there are no equations.  Thus an arrow is just an $m$-tuple of arbitrary elements taken from the set $\{x_1, ..., x_n, \top, \bot\}$.  The identity arrow is the list of variables 
-$\langle x_1, ..., x_n \rangle$, and composition is by the usual substitution of terms for variables.  But this is evidently just another description of the category $\C_c$.
-
-In more detail, each of the primitive kinds of maps $\alpha^d_i, \beta_i, \sigma_i, \delta_i$ can clearly be presented in this form, e.g.\ $\alpha^d_i = \langle x_1, ..., d'_{(i)}, ..., x_n\rangle$, where $d' = \top,\bot$, respectively, when $d = 1,0$.  Conversely, an $m$-tuple $(e_1,..., e_m)$ of elements from the set $\{x_1, ..., x_n, \top, \bot\}$ determines a map $\epsilon : I^n \to I^m$ in $\C_c$ as follows: beginning with a binary $n$-tuple $(d_1, ... d_n)$, first apply degeneracies $\beta_i$ corresponding to each $x_i$ not occurring in $(e_1,..., e_m)$; next apply a permutation $\sigma$ that reorders the  terms $d_j$ in accordance with the order of the non-constant terms $e_j$ appearing in $(e_1,..., e_m)$; apply suitable $\delta$'s to duplicate coordinates appearing more than once; and finally use $\alpha$'s to insert the required constants.
-\end{proof}
-
-\begin{corollary}
-The cartesian cube category $\C_c$ is equivalent to a \emph{non}-full subcategory of $\mathsf{Cat}$ (respectively $\mathsf{Pos}$) on the objects $I^n = I \times ...\times I$, where $I = (0\leq 1)$ is the 2-element poset.
-\end{corollary}
-
-\begin{proof}
-Each of the maps $\alpha^d_i, \beta_i, \sigma_i, \delta_i$ is monotone, and these are all distinct as monotone maps.
-To see that this is not full, observe that every monotone $f : I^n \to I^m$ is an $m$-tuple of monotone $f_i : I^n \to I$, each of which coming from $\C_c$ is either a projection or a constant.  But the map $f : I^2 \to I$ with $f(1,1) = 1$, and $f(d,d') = 0$ otherwise, is neither.
-\end{proof}
-%
-Note that the non-monotone ``negation" map $n : I \to I$, with $n(0) = 1$ and $n(1) = 0$, is also not in $\C_c$.
-
-
-\subsubsection{Covariant presentation}\label{subsubsec:covariant}
-
-As a classifying category for an algebraic theory, the category $\C_c$ of cartesian cubes also has a covariant presentation by Lawvere duality, namely as the opposite of the full subcategory of finitely-generated, free algebras $\mathsf{Alg}_{\mathrm{fg}}$.  In this case, the algebras are simply \emph{bipointed sets} $(A, a_0, a_1)$, and the free ones are the \emph{strictly} bipointed sets $a_0\neq a_1$.  Thus $\mathsf{Alg}_{\mathrm{fg}}$ consists of the finite, strictly bipointed sets and all bipointed maps between them.  Specifically, let the objects of $\mathbb{B}$ be the sets $[n] = \{1, ..., n\}$, and the arrows,
-\[
-f : [m] \to [n]\,,
-\]
-be arbitrary, $\{\top, \bot\}$-preserving maps $[m]^+ \to [n]^+$, where as before $[n]^+ = [n]\cup\{\top, \bot\}$.  Then clearly $\B = \mathsf{Alg}_{\mathrm{fg}}$, and we know by Lawvere duality that $$\C_c \cong \B^{\mathrm{op}},$$ as can be read off from the foregoing descrition of the arrows in $\C_c$ as ``$m$-tuples of arbitrary elements taken from the set $\{x_1, ..., x_n, \top, \bot\}$".
-
-As a full subcategory of free algebras, the category $\B$ can also be described as the Kleisli category of the monad $[n] \mapsto [n]^+$.   Thus we arrive at the covariant description $\CC$ of the symmetric cubes, but without the partial injectivitity condition, which is violated by (the duals of) the diagonal maps.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Hypercubical sets}
-
-\begin{definition}
-We may refer to the objects of the cartesian cube category $\C_c $ as \emph{hypercubes} and write $\H = \C_c$ for the \emph{category of hypercubes}.  The objects may be taken to be finite sets of the form $$[n] = \{x_1, ..., x_n\},$$ regarded as coordinate axes, and the arrows,
-\[
-f : [n] \to [m]\,,
-\]
-are then taken to be $m$-tuples of elements drawn from the set $$[n]^+ = \{0, x_1, ..., x_n, 1\},$$ regarded as formal terms representing composites of faces, degeneracies, permutations, and diagonals (alternately, the arrows are arbitrary bipointed maps $[m]^+\to [n]^+$).
-
-The category $\HH$ of \emph{hypercubical sets} is  the category of presheaves on $\H$,
-\[
-\HH\ =\ \psh{\H}.
-\]
-It is generated by the representable presheaves $y([n])$, which will be written
-$$\I^n\ =\ y([n])$$ 
-and called the \emph{standard $n$-cubes}.  In particular, the standard $1$-cube is $\I = y([1])$, and the standard $0$-cube is $\I^0 = y([0])=1$.  For any hypercubical set $X: \H^\mathrm{op} \to \Set$, we shall write $X_n = X([n])$ and call this the \emph{set of $n$-cubes in $X$}.  For these, we have the usual Yoneda correspondence:
-\[
-(c \in X_n ) \ \cong\ (c : \I^n \to X).
-\]
-In particular $\I^n_m = \H([m],[n])$ is the set of $m$-cubes in the standard $n$-cube.
-\end{definition}
-
-%%
-\begin{proposition}
-We now have $\I^n \times \I^m \cong \I^{n+m}$, in virtue of the preservation of products by the Yoneda embedding.
-\end{proposition}
-
-%%
-\begin{proposition}
-The category $\HH$ of hypercubical sets is the classifying topos for \emph{strictly} bipointed objects.  A strictly bipointed object in a topos $\mathcal{E}$ is an object $A$ together with points $a_0, a_1 : 1\to A$, with the property that the equalizer $[a_0 = a_1] \to 1$ is isomorphic to $0\to 1$.
-\end{proposition}
-
-\begin{proof}
-Consider the covariant presentation $\HH = \Set^\B$, where as in \ref{subsubsec:covariant}, $\B$ is the category of finite, strictly bipointed sets and bipointed maps, now written simply $f: [m]\to [n]$ (i.e.\ dropping the special covariant notation $[n]^+$).  We can extend $\B\to\B_=$ by freely adjoining coequalizers, making $\B_=$ the free finite \emph{colimit} category on a co-bipointed object. An explicit presentation of $\B_=$ is as the finite bipointed sets, including those with $0=1$.  Write $(n)$ for the bipointed set $\{x_1, ..., x_n, 0=1\}$, with $n$ (non-constant) elements and a further element $0=1$.  There is an evident coequalizer $[1]\rightrightarrows [n]\to(n)$, which just identifies the distinguished points $0$ and $1$, and every coqualizer has either the form $[m]\rightrightarrows [n]\to [k]$ or $[m]\rightrightarrows [n]\to(k)$, for a suitable choice of $k$.  Note that there are no maps of the form $(m)\to [n]$, and that every map $[m]\to (n)$ factors uniquely as $[m]\to (m)\to (n)$ with  $[m]\to(m)$ the coequalizer of $0$ and $1$.  Thus the category $\B_=$ can be decomposed into two ``levels'', the upper one of which is essentially $\B$, the lower one consisting of just the objects $(n)$ and thus essentially the finite \emph{pointed} sets, and for each $n$, there is the canonical map $[n]\to(n)$ going from top to bottom:
-\[
-\xymatrix{
-\dots \ar[r] & [m] \ar@{->>}[d] \ar[r] & [n] \ar@{->>}[d] \ar[r] & \dots \\
-\dots \ar[r] & (m) \ar[r] & (n) \ar[r] & \dots
-}
-\]
-Write $u : \B\to\B_=$ for the inclusion, which is the classifying functor of generic co-bipointed object in $\B_=$.  We are interested in the induced geometric morphism
-\[
-\xymatrix{
-\Set^\B \ar@<-2ex>[rr]_{u_!} \ar@<2ex>[rr]^{u_*} && \ar[ll]|-{\,u^*} \Set^{\B_=}  & u_! \dashv u^* \dashv u_*
-}
-\]
-Since $u^*$ is restriction along $u$, the right adjoint $u_*$ must be ``prolongation by $1$'',
-\begin{align*}
-u_*(P)[n] &= P[n],\\
-u_*(P)(n) &= \{*\},
-\end{align*}
-with the obvious maps,
-\[
-\xymatrix{
-\dots \ar[r] & P[m] \ar@{->>}[d] \ar[r] & P[n] \ar@{->>}[d] \ar[r] & \dots \\
-\dots \ar[r] & \{*\} \ar[r] & \{*\} \ar[r] & \dots
-}
-\]
-as is easily seen by considering maps in $\Set^{\B_=}$ of the form
-\[
-\xymatrix{
- Q[n] \ar[d]_{\cdot} \ar[r] & P[n] \ar@{->>}[d]^{\cdot} \\
- Q(n) \ar[r]^{} & \{*\} .
-}
-\]
-Since $u_* : \Set^{\B} \to \Set^{\B_=}$ is evidently full and faithful, it is the inclusion part of a sheaf subtopos $\mathsf{sh}(\B^\mathsf{op}_=, j) \hook \Set^{\B_=}$ for a suitable Grothendieck topology $j$ on $\B^\mathsf{op}_=$.  We claim that $j$ is the closed complement topology of the subobject $[0=1] \rightarrowtail 1$ represented by the coequalizer $[0]\to (0)$.  Indeed, in $\Set^{\B_=}$ we have the representable functors:
-\begin{align*}
-\I &= y[1],\\
-1 &= y[0],\\
-[0=1] &= y(0)
-\end{align*}
-fitting into an equalizer $[0=1] \to 1 \rightrightarrows \I$ which is the image under Yoneda of the canonical coequalizer $[1] \rightrightarrows [0]\to (0)$ in $\B_=$.  The closed complement topology for $[0=1] \mono 1$ is generated by the single cover $0\to [0=1]$, which can be described logically as 
-forcing the sequent $(0=1 \vdash \bot)$ to hold.  Recall from Proposition 3.53 of \cite{JohnstoneTT} the following simple characterization of the sheaves for a closed topology generated by an object $U\mono 1$: an object $X$ is a sheaf iff $X\times U \cong U$. In the present case, it therefore suffices to show that for any $P:\B_= \to \Set$ we have:
-\[
-P\times [0=1] \cong [0=1] \quad\text{iff}\quad P(n) = 1\ \text{for all $n$}.
-\]
-For any object $b\in \B_=$, consider the map
-\[
-\hom(yb, P\times [0=1] ) \cong \hom(yb, P) \times \hom(yb, [0=1]) \to \hom(yb, [0=1]) .
-\]
-If $b = [k]$, then $\hom(yb, [0=1]) \cong \hom_{\B_=}((0), [k]) \cong 0$, and so we always have an iso
-\[
-\begin{split}
-\hom(yb, P\times [0=1] ) \cong \hom(yb, P) \times \hom(yb, [0=1])\\
- \cong \hom(yb, P) \times 0 \cong 0.
- \end{split}
-\]
-If $b = (k)$, then $\hom(y(k), [0=1]) \cong \hom_{\B_=}((0), (k)) \cong 1$, and we have an iso
-\[
-\begin{split}
-\hom(y(k), P\times [0=1] ) \cong \hom(y(k), P) \times \hom(y(k), [0=1]) \\
-\cong \hom(y(k), P) \times 1 \cong \hom(y(k), P) \cong P(k).
-\end{split}
-\]
-Thus we will have an iso $P\times [0=1] \cong [0=1] $ iff $P(k) \cong 1$.
-
-We therefore have that the presheaf topos $\Set^\B$ is the closed complement sheaf subtopos of $\Set^{\B_=}$ given by forcing the sequent $0\neq 1$.  Since $\Set^{\B_=}$ is clearly the classifying topos for \emph{arbitrary} bipointed objects, $\HH = \Set^\B$ indeed classifies \emph{strictly} bipointed objects, as claimed.
-\end{proof}
-
-%%
-\begin{proposition}
-The geometric realization functor to topological spaces 
-$$R: \HH \to \mathsf{Top}$$
-preserves cartesian products, $R(X\times Y) \cong R(X)\times R(Y)$.
-\end{proposition}
-
-\begin{proof}
-This can be shown directly by standard methods, but it also follows immediately by composing the inverse image of the geometric morphism $\mathsf{sSets} \to \HH$ classifying the $1$-simplex $\Delta(1)$ in simplicial sets, with the geometric realization $\mathsf{sSets} \to \mathsf{Top}$, each of which are known to preserve finite products.
-\end{proof}
-
-\begin{definition}
-Let $\H\ \to\  \Cat$ be the unique product-preserving functor taking $[1] \mapsto \bbtwo$, where $\bbtwo$ is the ``one arrow category'' $0\rightarrow 1$.  This functor takes $[n] \mapsto \bbtwo^n$ ($n$-fold product in $\Cat$), and maps $[m] \to [n]$  to the corresponding monotone maps of the posets $\bbtwo^n$.  The  \emph{(hypercubical) nerve} functor $$N : \Cat \to \HH$$ is then defined by:
-\[
-N(\C)_n = \Cat(\bbtwo^n, \C).
-\]
-Thus $N(\C)_0$ is the set $\C_0$  of objects of \C, and $N(\C)_1 = \C_1$ is the set of arrows, while $N(\C)_2$ consists of all commutative squares, $N(\C)_3$ of all commutative $3$-cubes, etc. 
-\end{definition}
-
-\begin{proposition}
-The nerve functor $N : \Cat \to \HH$ is full and faithful.
-\end{proposition}
-\begin{proof}
-Given categories $\C$ and $\D$ and functors $F, G : \C\to\D$, suppose $F(f) \neq G(f)$ for some $f : A\to B$ in $\C$.  Take $f^{\sharp} : \bbtwo \to \C$ with image~$f$.  Then $N(F)_1(f^\sharp) = F(f) \neq G(f) = N(G)_1(f^\sharp)$, and so $N(F) \neq N(G) : N(\C)\to N(\D)$.  So $N$ is faithful.
-
-For fullness, let $\varphi : N(\C) \to N(\D)$ be a natural transformation, and define a proposed functor $F : \C\to \D$ by  
-\begin{align*}
-F_0 = \varphi_0 &: \C_0 = N(\C)_0 \to N(\D)_0 = \D_0\\
-F_1 = \varphi_1 &: \C_1 = N(\C)_1 \to N(\D)_1 = \D_1.
- \end{align*}
-We just need to show that $F$ preserves identity arrows and composition.
-Consider the following diagram.
-\[
-\xymatrix{
-\Cat(\bbtwo^1, \C) = N(\C)_1 \ar[r]^{F_1} & N(\D)_1 = \Cat(\bbtwo^1, \D) \\
-\Cat(\bbtwo^0, \C) = N(\C)_0 \ar[u]^{!^*} \ar[r]_{F_0} & N(\D)_0 = \Cat(\bbtwo^0, \D) \ar[u]_{!^*}.
-}
-\]
-Here $!^* : \Cat(\bbtwo^0, \C) \to \Cat(\bbtwo, \C) $ is precomposition with $! : \bbtwo = \bbtwo^1 \rightarrow \bbtwo^0 = \mathbbm{1}$, so the diagram commutes.  But since $! : \bbtwo \rightarrow \mathbbm{1}$ is a functor, $$\C_0 = \Cat(\mathbbm{1}, \C)  \stackrel{!^*}{\to}  \Cat(\bbtwo, \C) = \C_1$$ takes objects in $\C$ to their identity arrows.  Thus $F$ preserves identity arrows.  Similarly, for composition, consider 
-\[
-\xymatrix{
-\Cat(\bbtwo^2, \C) = N(\C)_2 \ar[d]_{d^*} \ar[r]^{\varphi_2} & N(\D)_2 = \Cat(\bbtwo^2, \D) \ar[d]^{d^*} \\
-\Cat(\bbtwo, \C) = N(\C)_1  \ar[r]_{F_1} & N(\D)_1 = \Cat(\bbtwo, \D).
-}
-\]
-where $\varphi_2 : N(\C)_2 \to N(\D)_2$ is the action of $\varphi$ on commutative squares of arrows, and $d^* : \Cat(\bbtwo^2, \C) \to \Cat(\bbtwo, \C)$ is precomposition with the diagonal map $d : \bbtwo \rightarrow \bbtwo^2 = \bbtwo\times\bbtwo$, so the diagram commutes.  For any composable pair of arrows $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ in $\C$ there is a commutative square 
-\[
-\xymatrix{
-A \ar[r]^{f} \ar[d]_{f} & B \ar[d]^{g} \\
-B  \ar[r]_{g} & C,
-}
-\]
-and the effect of $d^* : \Cat(\bbtwo^2, \C) \to \Cat(\bbtwo, \C)$ on this square is exactly $g\circ f: A\to C$, and similarly for $d^* : \Cat(\bbtwo^2, \D) \to \Cat(\bbtwo, \D)$.  Thus the commutativity of the above diagram implies that $F$ preserves composition.
-Since clearly $N(F) = \varphi$, we indeed have that $N$ is also full.
-\end{proof}
-
-\begin{proposition}\label{prop:pathobject}
-For any hypercubical set $X$, the exponential $X^\I$ can be calculated as the ``shift by one dimension'', 
-\[
-X^\I(n) \cong X(n+1)\,.
-\]
-\end{proposition}
-
-\begin{proof}
-\[
-\begin{split}
-X^\I(n) \cong \hom(y[n], X^\I) \cong \hom(\I^n, X^\I)\ \cong\ \hom(\I^n\times \I, X)\\
-\cong\ \hom(\I^{n+1}, X)\cong\ \hom(y[n+1], X)\ \cong\ X(n+1).
-\end{split}
-\]
-\end{proof}
-
-\begin{corollary}\label{cor:rightadjpath}
-The functor $X \mapsto X^\I$ has a \emph{right} adjoint.
-\end{corollary}
-\begin{proof}
-The functor $X \mapsto X^\I$ is given by precomposition with the ``successor'' functor $S : \H\to\H$ with $S[n] = [n+1]$.  Thus $X^\I([n]) = X(S[n]) = (S^*(X))([n])$.  Precomposition always has a right adjoint $S^* \dashv S_*$, which can be calculated as:
-\[
-S_*(X)(n) \cong \hom(y[n], S_*X) \cong \hom(S^*(y[n]), X)\ \cong \hom(\H(S(-), [n]), X).
-\]
-\end{proof}
-
-We need the following fact in order to calculate the right adjoint further.
-
-\begin{lemma}\label{lemma:binomial}
-In $\HH$, we have $\I^\I\ \cong\ \I+1$.
-\end{lemma}
-\begin{proof}
-For any $[n] \in \H$ we have:
-\[
-(\I^\I)(n) \cong \I(n+1) \cong \Hom(\I^{(n+1)},\I)\cong \H([n+1],[1])\cong \B([1], [n+1])\cong n+3.
-\]
-On the other hand,
-\[
-(\I+1)(n) \cong \I(n) + 1(n) \cong \Hom(\I^n, \I) + 1 \cong \B([1],[n]) +1 \cong (n+2) +1.
-\]
-The isomorphism is natural in $n$.
-\end{proof}
-%
-We mention that a similar fact holds for the generic object in the object classifier topos, and in the Schanuel topos, and is used in the theory of ``abstract higher-order syntax'' \cite{Pitts,Fiore}.
-
-
-\begin{definition}
-Let us write
-\[
-X_\I = S_*(X)
-\]
-for the right adjoint of the path object functor $X^\I = S^*X$.
-\end{definition}
-
-\begin{corollary}
-We have the following calculation for the right adjoint $X_\I$:
-\begin{align*}
-X_\I(n) &\cong \hom(\I^n, X_\I) \\
-&\cong \hom((\I^n)^\I, X) \\
-&\cong \hom((\I^\I)^n, X) \\
-&\cong \hom((\I+1)^n, X) \\
-&\cong \hom(\I^n + C^n_{n-1}\I^{n-1} + \dots + C^n_{1}\I+1, X) \\
-&\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0),
-\end{align*}
-where $C^n_{k} = \binom{n}{k}$ is the usual binomial coefficient.
-\end{corollary}
-
-\begin{corollary}
-There is a natural transformation $X_\I \to X$, given by the first projection from $X_\I(n)\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0)$.
-\end{corollary}
-
-Finally, we observe that that the path object functor $X^\I$ itself, as a left adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{ATOM} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
-
-\paragraph{Example.} (P.~Aczel)
-The cubical set $P$ of polynomials (over the integers, say), is defined by:
-\[
-P_n = \{ p(x_1,..., x_n)\ |\  \text{polynomials in at most}\  x_1, É, x_n \}
-\]
-with the evident maps $P_m \to P_n$ for each function $[m] \to [n]$.
-
-This is a ring object in the category of cubical sets, and the interval $\I\ = y[1]$ embeds into $P$.
-The same is true for any algebraic theory $\T$ with two constants, such as boolean algebras: there is a cubical $\T$-algebra $A$ and a monic $\I \mono A$.
-
-Let $\C[\I] = \H$ be the cube category, classifying intervals, and $\C[\T]$ the classifying category for $\T$-algebras.  There is an interval $J$ in $\C_\T$  consisting of the generic $\T$-algebra and its two constants.  This $J$ has a classifying functor $J : \C_\I \to \C_\T$, inducing functors on presheaves
-\[
-J_! \dashv J^* \dashv J_* : \psh{\C_\I} \to \psh{\C_\T}
-\]
-as usual, where $J_! \circ \y_{\C_\I} =\ \y_{\C_\T} \circ J$,  with $\y$ the respective Yoneda embeddings.
-
-We can calculate:
-\begin{equation}
-\begin{split}
-J^* J_! ( \I )( [n] ) &= J^* J_! ( Y[1] )( [n] )\\
- &= J^* Y( J[1] )( [n] ) = Y( J[1] )( J[n] ) \\
- &= \C_\T( J[n] , J[1] ) = \T\mathrm{-Alg}( J[1] , J[n] ) \\
- &= \T\mathrm{-Alg}( F(1) , F(n) ) = | F(n) |,
-\end{split}
-\end{equation}
-where $F(n)$ is the free $\T$-algebra on $n$ generators.  So in the case of polynomials we indeed have 
-$$P = J^* J_! ( \I ).$$
-The unit of the adjunction $\I \to J^* J_! ( \I )$ is faithful, since $J$ itself is faithful and therefore the left adjoint $J_!$ is faithful.
-$P$ is a ring in $\psh{\C_\I}$ since $J_!(\I)$ is a ring in $\psh{\C_\T}$ and $J^*$ is left exact.
-
-A closely related example is the cubical set of ``boolean polynomials",
-\[
-B_n = \{ \varphi(p_1, ..., p_n)\ |\ \text{propositional formulas in at most $p_1, ..., p_n$} \}
-\]
-which is the free boolean algeba $2^n$.  
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Identity types and box-filling}
-
-Our next goal is to give an interpretation of the identity types in the category of hypercubical sets \HH\ that uses the path-object $A^\I$ as the identity type for $A$.  This will allow us to take advantage of the  combinatorial description of $A^\I$ given in Proposition \ref{prop:pathobject}.  We need to determine which objects $A$ of \HH\ can be used as types and which maps $B\to A$ can be used as dependent types.  We will show that the conditions expressed by the rules for identity types are related to the familiar ``box-filling'' or Kan-conditions.  The main result of this section is Proposition \ref{prop:main}.
-
-To begin, recall that the usual elimination and computation rules for identity types are equivalent to the combination of the following rules.
-
-\begin{equation}\label{rule:transport}\tag{Transport}
-\begin{prooftree}
-a,b: A,\quad p:\id{A}(a,b), \quad {x:A}\vdash B(x)\ \type,  \qquad u:B(a)
-\justifies
-\mathsf{trans}(a,b,p,u) : B(b)
- \end{prooftree}
-\end{equation}
-with computation rule
-\[
-\mathsf{trans}(a,a,\refl(a),u) = u : B(a),
-\]
-%
-and
-%
-\begin{equation}\label{rule:contract}\tag{Contraction}
-\begin{prooftree}
-a,b: A,\quad p:\id{A}(a,b)
-\justifies
-\mathsf{con}(a,b,p) : \Id(\langle a,a,\refl(a)\rangle, \langle a,b,p\rangle)
-\end{prooftree}
-\end{equation}
-with computation rule
-\[
-\mathsf{con}(a,a,\refl(a)) = \refl(\langle a,a,\refl(a)\rangle) : \Id(\langle a,a,\refl(a)\rangle, \langle a,a,\refl(a)\rangle).
-\]
-The term $\mathsf{con}(a,b,p)$ is in the identity type of $\sum_{x,y:A}\id{A}(x,y)$.  We will often write the transport as $$p_*u := \mathsf{trans}(a,b,p,u).$$
-
-The contraction rule is a condition on the types; it says that the singletons $S(x) = \sum_{y:A}\Id(x,y)$ are all contractible.  The transport rule is a condition on the dependent types; it says that they must respect the identity on the indexing type. 
-
-\begin{proposition}
-If the type $A$ satisfies contraction, and the family $$x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type$$ has transport, then the usual $\Id$-elimination rule will also be satisfied:
-\begin{equation}\label{rule:idelim}\tag{$\Id$-Elimination}
-\begin{prooftree}
-x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type, \quad
-x: A \vdash b(x) : B(x,x,\refl(x))
-\justifies
-\mathsf{J}(x,y,z,b) : B(x,y,z)
-\end{prooftree}
-\end{equation}
-with computation rule
-\[
-\mathsf{J}(x,x,\refl(x),b) = b(x) : B(x).
-\]
-\end{proposition}
-\begin{proof}
-Let $\mathsf{J}(x,y,z,b) := \mathsf{con}(x,y,z)_*(b(x))$.
-\end{proof}
-
-A further condition that will need to hold in order to interpret the rules for identity types is that the type $\id{A}(x,y)$ itself is a dependent type on $A\times A$, and therefore satisfies transport.  From this assumption, one can prove the following strengthening of transport:
-
-\begin{equation}\label{rule:plifting}\tag{Path Lifting}
-\begin{prooftree}
-a,b: A,\quad p:\id{A}(a,b), \quad {x:A}\vdash B(x)\ \type,  \qquad u:B(a)
-\justifies
-\mathsf{lift}(a,b,p,u): \Id(\langle a,u \rangle, \langle b, p_*u\rangle )
- \end{prooftree}
-\end{equation}
-with computation rule
-\[
-\mathsf{lift}(a,a,\refl(a),u) = \refl(\langle a,u\rangle) : \Id(\langle a,u\rangle, \langle a,u\rangle).
-\]
-The term $\mathsf{lift}(a,b,p,u)$ is in the identity type of $\sum_{x:A}B(x)$.
-
-Under the intended interpretation in hypercubical sets, path lifting for $x,y:A\vdash\id{A}(x,y)$
-already implies contraction for $A$.  Indeed, let $A\in\HH$ and interpret the dependent type $x,y:A\vdash \id{A}(x,y)$ as the path object $A^\I$ with its projection to the two endoints $A^\I \to A\times A$. 
-
-\begin{lemma}
-If $A^\I \to A\times A$ satisfies path lifting, then $A$ satisfies contraction.
-\end{lemma}
-
-\begin{proof}
-Writing $=$ for $\Id$ and reasoning internally in \HH, take any identity $p: x = y$ in $A^\I$, and we need to find an identity $\mathsf{con} : \refl(x) = p$ in $(A^\I)^\I$.  Such an element $\mathsf{con}$ is a 2-cube in $A$ of the form 
-\begin{equation}\label{diagram:contfromtrans}
-\xymatrix{
-x  \ar@{-}[d]_{\refl(x)} \ar@{-}[r]  \ar@{}[rd]|{\mathsf{con}} & x \ar@{-}[d]^{p} \\
-x \ar@{-}[r] & y
-}
-\end{equation}
-Let us first transport $\refl(x) : \Id(x,x)$ along the identity term $\langle \refl(x),p\rangle$ in $A\times A$ to obtain $q := \langle \refl(x),p\rangle_*(\refl(x)): \Id(x,y)$, along with a higher cube
-\begin{equation}\label{diagram:contfromtransprime}
-\xymatrix{
-x  \ar@{-}[d]_{\refl(x)} \ar@{-}[r]^{\refl(x)}  \ar@{}[rd]|{\mathsf{con}'} & x \ar@{-}[d]^{q} \\
-x \ar@{-}[r]_{p} & y
-}
-\end{equation}
-where $\mathsf{con}'$ is given by $\mathsf{con}' := \mathsf{lift}(\langle \refl(x),p\rangle,\refl(x))$.
-
-Using the fact that $(A^\I)^\I \cong A^{(\I\times\I)}$, we can then apply the twist map $\I_1\times\I_2 \cong \I_2\times\I_1$ to transpose the cube \eqref{diagram:contfromtransprime} into the desired form \eqref{diagram:contfromtrans}.
-It remains to check the computation rule 
-\end{proof}
-
-In light of the foregoing, we need to interpret dependent types as maps $B\to A$ that have path lifting, and the types themselves as cubical sets $A$ with a path object projection $A^\I \to A\times A$ satisfying that condition.  Moreover, we also want the types to have iterated path objects $\id{\id{A}}$ etc.,  and as dependent types these too should be interpreted as maps with path lifting.  We begin to analyse that condition.
-
-\begin{proposition}\label{prop:pathliftboxfill}
-$A^\I \to A\times A$ has path lifting if and only if $A$ has (2-)box filling.
-\end{proposition}
-
-In preparation for the proof, we establish some conventions that will be useful in general.
-Diagramatically, path lifting means that for any (outer) square of the form
-\begin{equation}\label{diagram:pathliftpath}
-\xymatrix{
-1 \ar[d] \ar[r] & A^\I \ar[d] \\
-\I \ar[r] \ar@{..>}[ru] & A\times A
-}
-\end{equation}
-there is a diagonal filler as indicated.  There are two maps $\top, \bot : 1\to \I$, and the path lifting condition is required with each of these cases occurring on the left.
-
-An \emph{open 2-box} in the 2-cube $\I^2$ is by definition a subobject $$\sqcup^2_{j,e} \mono \I^2$$ obtained as the union, in the poset $\mathrm{Sub}(\I^2)$, of all the face maps $\alpha^d_i : \I \mono \I^2$ but one,
-\[
-\sqcup^2_{j,e}  = \bigcup_{(i,d)\neq (j,e)} \alpha_i^d.
-\]
-The index $j = 1, 2$ is the coordinate in which the box is open, while $e = \top, \bot$ indicates which face of the box is missing, top or bottom.   Because we are in the symmetric situation, where the product $\I\times \I$ can be twisted, it  will suffice to  consider only  boxes that are open in the first coordinate, since the others can be constructed from those.  Thus we may omit the index $j$, writing $\sqcup^2_e$ for $\sqcup^2_{1,e}$. Moreover, let us write $\sqcup^2 = {\sqcup}^2_\top$ and $\sqcap^2 = {\sqcup}^2_\bot$.  The \emph{(upper and lower) open $n$-boxes} $\sqcup^n, \sqcap^n \mono \I^n$ are defined analogously.
-
-The open 2-box can be constructed as the dotted arrow in the following pushout diagram, in which we write $\partial\I = 1+1 \mono \I$ for the ``boundary'' of the 1-cube $\I$, in anticipation of Definition \ref{def:boundary} below.
-\[
-\xymatrix{
-1\times \partial\I \ar[d] \ar[r]  & 1\times \I \ar[d] \ar@/{}^{1pc}/[rdd] \\
-\I \times \partial\I \ar[r] \ar@/{}_{1pc}/[rrd] &  \sqcup^2 \pocorner \ar@{>.>}[rd] \\
- &&  \I\times\I 
-}
-\]
-This is the upper open box determined by the case where $\top : 1\to\I$ is on the far left; the case of $\bot : 1\to\I$ determines the lower open box $\sqcap^2 \mono \I^2$, but we will not always mention this case separately.  
-
-\begin{definition}\label{def:boxfilling}
-A cubical set $A$  has \emph{$n$-box filling} if every map to it from an open upper $n$-box extends to the whole $n$-cube,
-\[
-\xymatrix{
-\sqcup^n \ar@{ >->}[d] \ar[r]  & A  \\
-\I^n \ar@{ ..>}[ur] 
-}
-\]
-and similarly for the lower box $\sqcap^n \mono \I^n$.  
-A map $B\to A$ satisfies \emph{$n$-box filling} if every commutative square of the following form has a diagonal filler,
-\[
-\xymatrix{
-\sqcup^n \ar@{ >->}[d] \ar[r]  & B \ar[d]  \\
-\I^n \ar@{ ..>}[ur] \ar[r] & A
-}
-\]
-and similarly for the lower box $\sqcap^n \mono \I^n$.  
-\end{definition}
-
-\begin{proof}[Proof of the Proposition]
-The 2-box filling condition is clearly equivalent to saying that given any maps $a$ and $b$ commuting with the span in the upper-left corner of the following diagram, there exists a 2-cube $c :  \I\times\I \to A$  making the whole diagram commute.  
-\begin{equation}\label{diagram:boxfillingrev}
-\xymatrix{
-1\times \partial\I \ar[d] \ar[r]  & 1\times \I \ar[d] \ar@/{}^{1pc}/[rdd]^{a} \\
-\I \times \partial\I \ar[r] \ar@/{}_{1pc}/[rrd]_{b} & \I\times\I \ar@{.>}[rd]|{c} \\
- &&  A
-}
-\end{equation}
-This formulation eliminates the pushout and replaces the open box by a decomposition.
-
-Now let us rewrite diagram \eqref{diagram:pathliftpath} with the projection from the path object $A^\I \to A\times A$  replaced by
-\[
-A^i : A^\I \to A\times A \cong A^{1+1} = A^{\partial\I} 
-\] 
-where $i := [\top, \bot] : \partial \I = 1+1 \to \I$ is the copair, to give:
-\begin{equation*}\label{diagram:pathliftpathrev}
-\xymatrix{
-1 \ar[d] \ar[r] & A^\I \ar[d]^{A^i} \\
-\I \ar[r] \ar@{..>}[ru] & A^{\partial\I}
-}
-\end{equation*}
-But this is just the exponential transpose of the diagram \eqref{diagram:boxfillingrev}, where the corresponsing transposed maps are as indicated:
-\begin{equation}\label{diagram:pathliftpathrev}
-\xymatrix{
-1 \ar[d] \ar[r]^{a'} & A^\I \ar[d]^{A^i} \\
-\I \ar[r]_{b'} \ar@{..>}[ru]^{c'} & A^{\partial\I}
-}
-\end{equation}
-\end{proof}
-
-We now generalize the foregoing proposition to higher dimensions, in order to ensure that all of the higher identity types $\id{\id{\id{\dots}}}$ are also interpreted as suitable maps with path lifting.  The higher identity types are determined inductively by:
-\begin{align*}
-\id{A} &= A^\I \\
-\Id^{n+1}_{A} &= \id{{\Id}^{n}_{A}} = (\Id^{n}_{A})^\I = (A^{\I^n})^\I \cong A^{(\I^{n+1})}.
-\end{align*}
-The indexing $A^\I \to A\times A = A^{\partial\I}$ is generalized to higher dimensions as follows: the type $\Id^{n}_{A} \cong A^{\I^n}$ is regarded as the \emph{type of $n$-cubes in $A$}, and it will be dependent on the \emph{type $A^{\partial\I^n}$ of boundaries in $A$}, via the ``restriction'' map $$A^i : A^{\I^n} \to A^{\partial\I^n},$$  where the boundary $i : \partial\I^n \mono \I^n$ is the union of all the face maps $$\partial\I^n = \bigcup_{i, d} \alpha_i^d.$$
-As an indexing type, it is convenient to specify $\partial\I^n$ inductively via the ``product rule'' $$\partial(A\times B) = (\partial A\times B) +_{(\partial A\times\partial B)} (A\times\partial B)$$
-as follows:
-\begin{definition}\label{def:boundary}
-The \emph{boundary of the $n$-cube}, $\partial\I^n \mono \I^n$, is determined by induction: 
-\begin{align*}
-\partial\I &\ =\  1+1,\\
-\partial\I^2 &\ =\ (\partial\I\times\I) +_{(\partial\I\times\partial\I)} (\I\times\partial\I),\\
-\partial\I^{n+1} &\ =\ (\partial\I\times\I^n) +_{(\partial\I\times\partial\I^n)} (\I\times\partial\I^n),
-\end{align*}
-with the obvious maps $\partial\I^n \mono \I^n$.
-\end{definition}
-
-\begin{proposition}\label{prop:main}
-For any hypercubical set $A$ and any $n\geq 1$, the following are equivalent:
-\begin{enumerate}
-\item $A$ has $(n+1)$-box filling.
-\item $A^\I \to A\times A$ has $n$-box filling.
-\item $A^{\I^n} \to A^{\partial\I^n}$ has $1$-box filling, i.e.\ path lifting.
-\end{enumerate}
-\end{proposition}
-
-\begin{proof}
-Consider $n$-box filling for $A^\I \to A\times A$, which is represented by the following diagonal filling problem:
-\begin{equation*}\label{diagram:pathliftpathrev}
-\xymatrix{
-\sqcup^n\ar[d] \ar[r]^{a} & A^\I \ar[d]^{A^i} \\
-\I^n \ar[r]_{b} \ar@{..>}[ru]|{c} & A^{\partial\I}
-}
-\end{equation*}
-Transposing this diagram as in the proof of Proposition \ref{prop:pathliftboxfill} results in the following diagram:
-\begin{equation}\label{diagram:bocfillpathobject}
-\xymatrix{
-\sqcup^n\times \partial\I \ar[d] \ar[r]  & \sqcup^n\times \I \ar[d] \ar@/{}^{1pc}/[rdd]^{\bar{a}} \\
-\I^n \times \partial\I \ar[r] \ar@/{}_{1pc}/[rrd]_{\bar{b}} & \I^n\times\I \ar@{>.>}[rd]|{\bar{c}} \\
- &&  A
-}
-\end{equation}
-Such a map $\bar{c} : \I^{n+1} \to A$ commuting with $\bar{a}$ and $\bar{b}$ is an extension to the $(n+1)$-cube of a map from an open $(n+1)$-box $\sqcup^{n+1}\mono \I^{n+1}$, which can clearly also be constructed as the following pushout:
-\begin{equation*}\label{diagram:bocfillpathobjectrev}
-\xymatrix{
-\sqcup^n\times \partial\I \ar[d] \ar[r]  & \sqcup^n\times \I \ar[d] \ar@/{}^{1pc}/[rdd] \\
-\I^n \times \partial\I \ar[r] \ar@/{}_{1pc}/[rrd] &\sqcup^{n+1}  \pocorner \ar@{>.>}[rd] \\
- &&  \I^{n+1}
-}
-\end{equation*}
-Thus $A^\I \to A\times A$ has $n$-box filling just in case $A$ has $(n+1)$-box filling.
-
-Now  $A^{\I^n} \to A^{\partial\I^n}$ has path lifting just if there is always a diagonal filler in diagrams of the form:
-\begin{equation*}\label{diagram:pathliftpathrev}
-\xymatrix{
-1 \ar[d] \ar[r]^{a} & A^{\I^n} \ar[d]^{A^i} \\
-\I \ar[r]_{b} \ar@{..>}[ur]|{c}& A^{\partial\I^n}
-}
-\end{equation*}
-Transposing once again yields the following situation, in which $\bar{c}$ is to be found, commuting with any given $\bar{a}$ and $\bar{b}$ that commute with the upper left span:
-\begin{equation*}\label{diagram:bocfillpathobjectagain}
-\xymatrix{
-1\times \partial\I^n \ar[d] \ar[r]  & 1\times \I^n \ar[d] \ar@/{}^{1pc}/[rdd]^{\bar{a}} \\
-\I \times \partial\I^n \ar[r] \ar@/{}_{1pc}/[rrd]_{\bar{b}} & \I \times \I^n \ar@{>.>}[rd]|{\bar{c}} \\
- &&  A
-}
-\end{equation*}
-This is easily seen to be yet another description of $(n+1)$-box filling for~$A$.
-\end{proof}
-
-\begin{corollary}\label{cor:alln}
-For any hypercubical set $A$, the following are equivalent:
-\begin{enumerate}
-\item $A$ has $n$-box filling for all $n\geq 1$.
-\item $A^\I \to A\times A$ has $n$-box filling for all $n\geq 1$.
-\item $A^{\I^n} \to A^{\partial\I^n}$ has path lifting for all $n\geq 1$.
-\end{enumerate}
-\end{corollary}
-
-%\begin{corollary}\label{cor:KanmodelsId}
-%Let  $A$ be a hypercubical set that has $n$-box filling for all $n\geq 1$. Then in particular, $A$ satisfies contraction.  If $B\to A^\I$ has $n$-box filling for all $n\geq 1$, then in particular, $B\to A^\I$ satisfies transport.  Thus the following standard $\Id$-elimination rule will be satisfied:
-%\begin{equation}\label{rule:idelim}\tag{$\Id$-Elimination}
-%\begin{prooftree}
-%x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type, \quad
-%x: A \vdash b(x) : B(x,x,\refl(x))
-%\justifies
-%\mathsf{J}(x,y,z,b) : B(x,y,z)
-%\end{prooftree}
-%\end{equation}
-%with computation rule
-%\[
-%\mathsf{J}(x,x,\refl(x),b) = b(x) : B(x).
-%\]
-%\end{corollary}
-%\begin{proof}
-%Let $\mathsf{J}(x,y,z,b) := \mathsf{con}(x,y,z)_*(b(x))$.
-%\end{proof}
-%
-
-%\begin{theorem}[conjectural!]
-%For any type $X$ in intensional type theory with function extensionality, the cubical type of ``identity contexts'' over $X$ is an internal weak $\infty$-groupoid in the cubical sense.
-%\end{theorem}
-%
-%\begin{proof}[Proof (sketch)]
-%The cubical contexts will satisfy the basic cubical laws (together with symmetry) in virtue of the definitional equalities holding for the indexing projections, just as in the globular case.  The diagonals, however, will not be definitional, but only propositional.  Since path lifting holds for all dependent types, if the type of $n$-boundaries can be constructed so that the types of $n$-cubes is indexed over it,  the corollary will then imply that one has the usual box filling conditions.  
-%\end{proof}
-
-%%%%%%%%%%%%%%%%
-\subsection{Uniformity}
-
-\begin{definition}[cf.~\cite{BCH}]  A hypercubical set $A$ will be said to be \emph{uniformly Kan} if the following holds:
-\begin{enumerate}
-\item  For each open box $\sqcup^n \mono \I^n$, each $k\geq 1$, and each map $b: \I^k \times\sqcup^n\to A$, there is given an extension $\bar{b} : \I^k\times\I^n \to A$ along the product map $\I^k\times\sqcup^n \mono \I^k\times\I^n$.
-\begin{equation}\label{diagram:uniformsimple}
-\xymatrix{
-\I^k\times \sqcup^n\ar@{>->}[dd] \ar[rd]^{b}  &\\
-	& A\\
- \I^k \times \I^n \ar@{..>}[ru]_{\bar{b}} &
-}
-\end{equation}
-\item The chosen extensions $\bar{b}$ are natural in $\I^k$, in the sense that for each map of hypercubes $f : \I^j \to \I^k$, one has
-\[
-\overline{b\circ(f\times\sqcup^n)} = \bar{b}\circ (f\times\I^n),
-\]
-as indicated in the following commutative diagram:
-\begin{equation}\label{diagram:uniformnatural}
-\xymatrix{
-\I^j\times \sqcup^n\ar@{>->}[dddd] \ar@/{}^{3pc}/[rrrdd]^{b(f\times\sqcup^n)} \ar[rd]^{f\times\sqcup^n} &&& \\
-	& \I^k\times \sqcup^n\ar@{>->}[dd] \ar[rrd]^{b}  &&\\
-	&&& A\\
-	& \I^k \times \I^n \ar@{..>}[rru]_{\bar{b}} &&\\
- \I^j \times \I^n \ar@{.>}@/{}_{3pc}/[rrruu]_{\overline{b(f\times\sqcup^n)}} \ar[ru]_{f\times\I^n} &&&
-}
-\end{equation}
-\item The foregoing also holds for all lower open boxes $\sqcap^n \mono \I^n$.
-\end{enumerate}
-\end{definition}
-
-The uniform Kan condition turns the box filling \emph{property} of an object $A$ into an explicitly given \emph{structure} $(A, \overline{(-)})$ on the object, namely a natural choice of fillers $\bar{b}$ for all (generalized) open boxes $b : \I^k\times \sqcup^n \to A$.  This will be seen to simplify the proof that the exponential $A^X$ of a Kan object  $A$ by any object $X$ is again Kan. The following reformulation was arrived at in conversation with P.~Lumsdaine.
-%
-\begin{proposition}
-A hypercubical set $A$ is uniformly Kan just in case, for each $n\geq 1$, there is given a section $s_n : A^{\sqcup^n} \to A^{\I^n}$ of the canonical map $A^{i^n} : A^{\I^n}\to A^{\sqcup^n}$, where $i^n : \sqcup^n \mono \I^n$ is the inclusion,
-\[
-\xymatrix{
-A^{\I^n} \ar[rr]^{A^{i^n}} & & \ar@{.>}@/{}^{2pc}/[ll]^{s_n} A^{\sqcup^n}
-}
-\]
-and analogously for all lower open boxes $\sqcap^n \mono \I^n$.
-\end{proposition}
-
-\begin{proof}
-Transpose the diagram \eqref{diagram:uniformsimple} to obtain the lifting problem:
-\begin{equation*}
-\xymatrix{
-	& A^{\I^n}  \ar[dd]^{A^{i^n}}\\
-\I^k \ar@{..>}[ru]^{\bar{b}}  \ar[rd]_{b} & \\
-	& A^{\sqcup^n} 
-}
-\end{equation*}
-The naturality of the family of maps $\bar{b}$ means that we always have $\overline{b\circ f} = \bar{b}\circ f$, as in:
-\begin{equation}
-\xymatrix{
-	&& A^{\I^n}  \ar[dd]^{A^{i^n}}\\
-\I^j \ar[r]^{f} \ar@{..>}@/{}^{1pc}/[rru]^{\overline{bf}} \ar@/{}_{1pc}/[rrd]_{bf} & \I^k \ar@{..>}[ru]^{\bar{b}}  \ar[rd]_{b} & \\
-	&& A^{\sqcup^n} 
-}
-\end{equation}
-By Yoneda, this is equivalent to having a section $s_n : A^{\sqcup^n}  \to A^{\I^n}$ of $A^{i^n}$, with $\bar{b} = s_n\circ b$,
-\begin{equation}
-\xymatrix{
-	& A^{\I^n}  \ar[dd]^{A^{i^n}}\\
-\I^k \ar@{..>}[ru]^{\bar{b}}  \ar[rd]_{b} & \\
-	& A^{\sqcup^n}  \ar@{..>}@/{}_{2pc}/[uu]_{s_n}
-}
-\end{equation}
-\end{proof}
-
-\begin{definition} By a \emph{(uniform) Kan object} we shall mean a hypercubical set $A$ equipped with a family of (upper and lower) sections $(s_n)_{n\geq 1}$, 
-\[
-\xymatrix{
-A^{\I^n} \ar[rr]^{A^{i^n}} & & \ar@{.>}@/{}^{2pc}/[ll]^{s_n} A^{\sqcup^n}.
-}
-\]
-\end{definition}
-
-\begin{proposition}\label{prop:coqexp}
-If $A$ is a uniform Kan object, then so is $A^X$ for any hypercubical set $X$.
-\end{proposition}
-\begin{proof}
-Let the sections $s_n$ be given,
-\[
-\xymatrix{
-A^{\I^n} \ar[rr]^{A^{i^n}} & & \ar@{.>}@/{}^{2pc}/[ll]^{s_n} A^{\sqcup^n}.
-}
-\]
-We require sections $t_n : (A^X)^{\sqcup^n} \to (A^X)^{\I^n}$ as in:
-\[
-\xymatrix{
-(A^X)^{\I^n} \ar[rr]^{(A^X)^{i^n}} & & \ar@{.>}@/{}^{2pc}/[ll]^{t_n} (A^X)^{\sqcup^n}.
-}
-\]
-We can take $t_n$ to be $(s_n)^X$ conjugated by the isomorphisms $(A^X)^{\I^n} \cong (A^{\I^n})^X$ and $(A^X)^{\sqcup^n} \cong (A^{\sqcup^n})^X$,
-\[
-\xymatrix{
-(A^X)^{\I^n} \ar[rr]^{(A^X)^{i^n}} & & \ar@{.>}@/{}_{2pc}/[ll]_{t_n} (A^X)^{\sqcup^n} \ar[d]^{\cong} \\
-(A^{\I^n})^X \ar[rr]^{(A^{i^n})^X}  \ar[u]^{\cong} & & \ar@/{}^{2pc}/[ll]^{(s_n)^X} (A^{\sqcup^n})^X.
-}
-\]
-\end{proof}
-
-Finally, the generalization from objects $A$ to maps $B\to A$ follows essentially the same pattern. Consider first a lifting problem of the form
-\begin{equation}\label{diagram:boxfillfib}
-\xymatrix{
-\I^k \times \sqcup^n \ar[d] \ar[r]^-{b} & B \ar[d]^{f} \\
-\I^k \times \I^n \ar[r]_-{a} \ar@{.>}[ru]|-{c} & A
-}
-\end{equation}
-Transposing, we have the corresponding problem
-\begin{equation*}%\label{diagram:pathliftpath}
-\xymatrix{
-\I^k \ar@/{}_{1pc}/[rdd]_{a} \ar@/{}^{1pc}/[rrd]^{b} \ar@{.>}[rd]|{c} & & \\
-& B^{\I^n} \ar[d] \ar[r] & B^{\sqcup^n } \ar[d] \\
-& A^{\I^n} \ar[r] & A^{\sqcup^n }
-}
-\end{equation*}
-which is to be solved naturally in $\I^k$.  But this is equivalent to having a section of the canonical map $u = (f^{\I^n}, B^{i^n})$ from $B^{\I^n}$ into the pullback:
-\begin{equation}\label{diagram:pullbackforukf}
-\xymatrix{
-B^{\I^n} \ar@/{}_{1pc}/[rdd]_{f^{\I^n}} \ar@/{}^{1pc}/[rrd]^{B^{i^n}} \ar@{.>}[rd]|{u} & & \\
-&  A^{\I^n} \times_{A^{\sqcup^n }} B^{\sqcup^n }  \ar[d] \ar[r] & B^{\sqcup^n } \ar[d] \\
-& A^{\I^n} \ar[r] & A^{\sqcup^n }.
-}
-\end{equation}
-
-\begin{definition}\label{def:Kanfib} By a \emph{uniform Kan fibration} we mean a map of hypercubical sets $f: B\to A$ equipped with a family of (upper and lower) sections $(s_n)_{n\geq 1}$ of the following form:
-\[
-\xymatrix{
-B^{\I^n} \ar[rr]^-{(f^{\I^n},\, B^{i^n})} & & \ar@{.>}@/{}^{2pc}/[ll]^{s_n} A^{\I^n} \times_{A^{\sqcup^n }} B^{\sqcup^n }
-}
-\]
-\end{definition}
-
-\begin{proposition}
-A map $f : B\to A$ is a uniform Kan fibration just if, to every square of the form
-\begin{equation}%\label{diagram:boxfillfib}
-\xymatrix{
-\I^k \times \sqcup^n \ar[d] \ar[r]^-{b} & B \ar[d]^{f} \\
-\I^k \times \I^n \ar[r]_-{a} \ar@{.>}[ru]|-{c} & A
-}
-\end{equation}
-there is given a diagonal filler $c = \overline{(a,b)}$, and these fillers are moreover natural in $\I^k$, in the sense that for any $f : \I^j \to \I^k$, one has
-\[
-\overline{(a,b)}\circ(f\times \I^n) = \overline{(a\circ (f\times \I^n), b\circ (f\times \sqcup^n))}.
-\]
-\end{proposition}
-
-\begin{proof}
-Done.
-\end{proof}
-
-\begin{proposition}
-Uniform Kan fibrations are closed under $\Pi$ types along arbitrary maps, in the following sense:
-If $B\to A$ is a uniform Kan fibration, and $\alpha: A\to A'$ is any map, then the relative product $\Pi_\alpha.B\to A'$ of $B$ along $\alpha$ (where $\Pi_\alpha$ is the right adjoint to pullback along $\alpha$) is again uniform Kan.
-\end{proposition}
-
-\begin{proof}
-The operation $\Pi_\alpha$ along a map $\alpha : A\to A'$ always exists in a presheaf topos, and can  be calculated as follows:  Let $f:B\to A$ and $\alpha: A\to A'$ be given.  Without loss of generality, we can assume that $A' =1$ and calculate $\Pi_A.B$, by working in the slice category over $A'$, which is also a presheaf topos.  We therefore need to show that there are sections of the form:
-\[
-\xymatrix{
-(\Pi_A.B)^{\I^n} \ar[rr]^{(\Pi_A.B)^{i^n}} & & \ar@{.>}@/{}^{2pc}/[ll]^{s_n} (\Pi_A.B)^{\sqcup^n}.
-}
-\]
-and similarly for $\sqcap^n$.
-
-The construction of $\Pi_A.B$ is depicted in the following pullback diagram.
-\begin{equation}%\label{diagram:boxfillfib}
-\xymatrix{
-\Pi_A.B \ar[d] \ar[r] \pbcorner & B^A \ar[d]^{f^A} \\
-1 \ar[r]_{^\prime1_A^\prime} & A^A
-}
-\end{equation}
-Applying $(-)^A$ to the diagram \eqref{diagram:pullbackforukf} and swapping exponents we obtain:
-\begin{equation}\label{diagram:pullbackforukf2}
-\xymatrix{
-(B^A)^{\I^n} \ar@/{}_{2pc}/[rdd]_{(f^A)^{\I^n}} \ar@/{}^{2pc}/[rrd]^{(B^A)^{i^n}} \ar@{.>}[rd]|{u'} & & \\
-&  (A^A)^{\I^n}\times_{(A^A)^{\sqcup^n}} (B^A)^{\sqcup^n} \ar[d] \ar[r] & (B^A)^{\sqcup^n} \ar[d] \\
-& (A^A)^{\I^n} \ar[r] & (A^A)^{\sqcup^n}.
-}
-\end{equation}
-now pull this entire diagram back along the point $('1_A')^{\sqcup^n}
-: 1^{\sqcup^n} \to (A^A)^{\sqcup^n}$ to obtain:
-\begin{equation}\label{diagram:pullbackforukf3}
-\xymatrix{
-(\Pi_A.B )^{\I^n} \ar@/{}_{2pc}/[rdd] \ar@/{}^{2pc}/[rrd]^{(\Pi_A.B )^{i^n}} \ar@{.>}[rd]|{u''} & & \\
-&  Q \times (\Pi_A.B )^{\sqcup^n} \ar[d]_{p_1} \ar[r]_{p_2} & (\Pi_A.B )^{\sqcup^n} \ar[d] \\
-& Q \ar[r] & 1.
-}
-\end{equation}
-where $Q$ is the fiber of the map $(A^A)^{i^n} : (A^A)^{\I^n}\to (A^A)^{\sqcup^n}$ over $('1_A')^{\sqcup^n}$.
-
-Now the arrow $u'$ in \eqref{diagram:pullbackforukf2} has a section, because $u$ in \eqref{diagram:pullbackforukf} does by the assumption that $B\to A$ is uniform Kan.  Therefore $u''$ in \eqref{diagram:pullbackforukf3} also has a section $s$.  And $Q\to 1$ clearly has a section, determined by the point  $('1_A')^{\I^n}
-: 1^{\I^n} \to (A^A)^{\I^n}$.  Thus $p_2$ in \eqref{diagram:pullbackforukf3} has a section $s'$.  Composing $s\circ s'$ gives the required section $s_n$ of $(\Pi_A.B )^{i^n}$.
-\end{proof}
-
-
-\section{The universe}
-
-One could now construct a  model in the form of an explicit category with families, but we prefer to take advantage of the recent coherence theorem of Lumsdaine and Warren \cite{L&M}.  This allows us to work in a more flexible, categorical setting that has been shown to be sufficient for the construction of a CwF model if desired.  One aspect of the formulation given in \cite{natural} is the use of a (Voevodsky-style) universe in order to construct a so-called ``natural model", which is essentially a convenient reformulation of the notion of a category with families.
-Here we will take a similar, if not identical approach, defining a natural transformation $p : \UU \to \U$ from which one can determine a category with families in the same way as in  \cite{natural}.  We first focus on the construction of $p : \UU \to \U$ and the proof that it is Kan.
-
-\begin{definition}
-Let $\kappa$ be an inaccessible cardinal number, and call the sets of size strictly less than $\kappa$ \emph{small}.  Write $\Set_\kappa$ for the small sets, and $\Set_\kappa^{\C^{\mathrm{op}}}$ for the category of small presheaves on a small index category $\C$.  By a \emph{small (uniform) Kan fibration} we mean a (uniform) Kan fibration, in the sense of Definition \ref{def:Kanfib}, in the category 
-\[
-\HH_\kappa = \Set_\kappa^{\H^{\mathrm{op}}}
-\]
- of small hypercubical sets.  We henceforth omit the qualifier ``uniform" and assume that all Kan objects and fibrations are uniform; we also omit mention of the selected uniform structure.
-
-The ($\kappa$-)\emph{universe} $p : \UU \to \U$ is defined:
-\begin{enumerate}
-\item $\UU_n = \{ (\alpha, c)\, |\, \alpha : \tilde{A}\to A\ \text{is a small Kan fibration}, A\ \text{is a Kan object, and}\ c\in \tilde{A}_n\ \}$
-
-\item $\U_n = \{ (\alpha, c)\, |\, \alpha : \tilde{A}\to A\ \text{is a small Kan fibration, $A$ is a Kan object, and}\ c\in A_n\ \}$
-
-\item For $(\alpha, c)\in \UU_n$, let $p_n (\alpha, c) = (\alpha, \alpha_n(c)) \in \U_n$.
-\end{enumerate}
-\end{definition}
-
-\subsubsection*{To Do}
-\begin{enumerate}
-
-\item Both $p : \UU \to \U$  and $\U$ are Kan -- add the proofs.
-\item A cubical $\infty$-groupoid is a cubical set with box-filling operations.  The contexts over a type do form such a groupoid (``cubical Lumsdaine''). Write it up.
-
-\end{enumerate}
-
-\subsubsection*{Questions}
-\begin{enumerate}
-
-\item According to Grothedieck \cite{PS}, the category $\H$ is a test category, and so the category $\HH = \psh{\H}$ has the same homotopy theory as simplicial sets.  Bas has pointed out a proof by Cisinski-Maltsiniotis based on decalage.  Dig this up.
-
-\item The hypercubical sets $\HH$ is perhaps a good setting in which to compare the globular, simplicial, and type-theoretic notions of $\omega$-groupoid.
-
-\item What is a hypercubical $(\infty, 1)$-category (in analogy to the simplicial notion of quasicategory)?  Does the type theory give rise to one?
-
-\end{enumerate}
-
-
-%\subsubsection*{Remarks}
-%\begin{enumerate}
-%\item It can be shown that now every map factors as:
 %\[
 %\xymatrix{
-% I^n \ar[r]^{f} \ar[d]_{\beta} & I^m\\
-%I^k \ar[r]_{\sigma} & I^k \ar[u]_{\alpha}
+% X^{\sqcup^n}\times\sqcup^n \ar@{>->}[dd]_{1\times i^n} \ar[rr]^-{\eval^n} && X \ar[dd]^{t^n_X} \ar[r]^{=} & X\\
+%&&& \\
+% X^{\sqcup^n}\times\I^n \ar[rr] && {\pocorner} T^n(X) \ar@{..>}[uur]_{\phi} &
 %}
 %\]
-%where $\alpha : I^k \to I^m$ is a (composite) face, $\sigma : I^k \to I^k$ is a (composite) permutation, and $\beta : I^n \to I^k$ is a (composite) degeneracy.  Using this, it can be shown that $\mathbb{C}_s$ is the free \emph{symmetric} monoidal category on an interval.
-%
-%\item The presheaf category $\mathsf{csSet} = \psh{\C_s}$ of \emph{symmetric cubical sets} again has the same homotopy theory as simplicial sets.
-%
-%\item The objects $I^n$ are again the $n$-fold \emph{tensor} products of the interval $I$, but not the \emph{cartesian} products, and again the geometric realization functor to topological spaces does not preserve cartesian products, but instead takes tensor products to cartesian ones. Relatedly, there is a functor $\mathsf{Hom}(X, - )$, right adjoint to the tensor $X\otimes (-)$, which is not an exponential.
-%\end{enumerate}
-%
 
-\subsection*{Acknowldgements}
-I have benefitted from lectures by and conversations with Peter Aczel, Ulrik Buchholtz, Thierry Coquand, Bob Harper, Simon Huber, Andr\'e Joyal, Andy Pitts, and Bas Spitters.  I am grateful to the Institut Henri Poincar\'e, and the organizers of the thematic trimester held there on Certified Proofs and Computation, Pierre-Louis Curien, Hugo Herbelin, and Paul-Andr\'e Mellies, for providing the stimulating and congenial environment in which I began this research.  My student Jason Parker has developed some of the material in Section 1 further as an MS thesis.  This work was partially supported by the Air Force Office of Scientific Research through MURI grant FA9550-15-1-0053.  Any opinions, findings and conclusions, or recommendations expressed herein are those of the author and do not necessarily reflect the views of the AFOSR.  
+\[
+\xymatrix{
+\sqcup^n \ar[d]_{i^n} \ar[rr]^-{b} && X\\
+\I^n \ar@{..>}[urr]_{\phi(b)} &&\,.
+}
+\]
+Since we have symmetries of cubes, we may restrict attention to boxes $i : \sqcup^n \to \I^n$ that are open in the first dimension (in either direction).  The filling structure is then normal if, for any $(n-1)$-cube $c : \I^{n-1}\to X$, we have
+\[
+\phi(c\pi i) = c\pi\,,
+\]
+as in
+\[
+\xymatrix{
+\sqcup^n \ar[dd]_{i^n} \ar[rr]^-{c\pi i} && X\\
+	& \I^{n-1} \ar[ur]^c & \\
+\I^n  \ar[ru]^{\pi} \ar@/{}_{2pc}/@{..>}[rruu]_{\phi(c\pi i)} &&\,,
+}
+\]
+where $\pi : \I^n \to \I^{n-1}$ is the first projection, so that   $\pi i : \sqcup^n \to \I^{n-1}$ projects the open box onto its ``bottom''.  
+Of course, the same condition applies also to generalized open boxes $b: \I^k\times\sqcup^n \to X$.
+
+This condition can be reformulated equivalently by saying that the section $\phi$ in the diagram
+\[
+\xymatrix{
+& X^{ \I^n } \ar[d]^{X^{i}}\\
+X^{\sqcup^n} \ar[ru]^{\phi} \ar[r]_= & X^{\sqcup^n} 
+}
+\]
+must also make the upper triangle in the following diagram commute:
+\[
+\xymatrix{
+X^{\I^{n-1}} \ar[d]_{X^{\pi i}} \ar[r]^{X^\pi} & X^{ \I^n } \ar[d]^{X^{i}}\\
+X^{\sqcup^n} \ar[ru]^{\phi} \ar[r]_= & X^{\sqcup^n} \,.
+}
+\]
+Transposing, we obtain the condition:
+\[
+\xymatrix{
+{X^{\I^{n-1}}\!\times\I^{n}\ } 	\ar[d]_-{X^{{\pi}i} \times 1\ } \ar[rr]^-{1\times\pi} && {X^{\I^{n-1}}\!\times\I^{n-1}\ } \ar[d]^{\eval} \\ 
+X^{\sqcup^n}\times\I^{n}		\ar[rr]^-{\phi} 	&& X \\
+X^{\sqcup^n}\times\sqcup^n 	\ar[u]^-{1\times i\ } 	\ar[rr]_-{\eval} && X \ar[u]_{=} \,.
+}
+\]
+Or, equivalently,
+\[
+\xymatrix{
+{X^{\I^{n-1}}\!\times\I^{n}\ } 	\ar[d]_-{X^{{\pi}i} \times 1\ } \ar[rr]^-{\eval(1\times\pi)} && X \ar[d]^{=} \\ 
+X^{\sqcup^n}\times\I^{n}		\ar[rr]^-{\phi} 	&& X \\
+X^{\sqcup^n}\times\sqcup^n  	\ar[u]^-{1\times i\ } \ar[rr]_-{\eval} && X \ar[u]_= \,.
+}
+\]
+Using a coproduct to ``fold'' along $\phi$, we obtain:
+\[
+\xymatrix{
+(X^{\sqcup^n}\times\sqcup^n) + (X^{\I^{n-1}}\!\times\I^{n}) \ar[dd]_-{[1\times i,\,X^{{\pi}i} \times 1]\ } \ar[rrr]^-{[\eval,\,\eval(1\times\pi)]} 
+									&&& X \\ 
+									&&&\\
+X^{\sqcup^n}\times\I^{n}		\ar[rrruu]_-{\phi} 	&&& 
+}
+\]
+Pushing out as in \eqref{diagram:defTn}, we have:
+\begin{equation}\label{diag:defTdotn}
+\xymatrix{
+(X^{\sqcup^n}\times\sqcup^n) + (X^{\I^{n-1}}\!\times\I^{n}) \ar[dd]_-{[1\times i,\,X^{{\pi}i} \times 1]\ } \ar[rr]^-{[\eval,\,\eval(1\times\pi)]} 
+									&& X \ar[dd]^{\dot{t}^n_X} \ar[r]^{=} & X\\
+									&&&\\
+X^{\sqcup^n}\times\I^{n}	\ar[rr] && {\pocorner} \dot{T}^n(X) \ar@{..>}[uur]_{\phi} & \,.
+}
+\end{equation}
+This last description provides an object $\dot{T}^n(X)$ with a map $\dot{t}^n_X : X\to\ \dot{T}^n(X)$ such that retractions $\phi$ of $\dot{t}^n_X$ correspond uniquely to \emph{normal} $n$-box filling structures on $X$.  
+
+Finally, as in \eqref{diagram:defT}, we can sum over all $n$ to obtain a pointed endofunctor $\dot{T} :\cSet\to\cSet$, the algebras for which correspond to \emph{normal} Kan complexes.
+
+
+\begin{theorem}\label{thm:AWFS2}
+There is an algebraic weak factorization system $(\LL,\RR)$ on $\cSet$ for which the $\RR$-algebras are exactly the normal Kan fibrations. \end{theorem}
+
+\begin{proof}(sketch)
+We have already constructed a pointed endofunctor $$\dot{T} :\cSet\to\cSet,$$ the algebras for which are the normal Kan complexes $X\to 1$.   The general construction for normal Kan fibrations $f:X\to Y$ is entirely analogous.  It just remains to show that $\dot{T}$ preserves $\omega$-colimits, so that Kelly's construction of the algebraically free monad $\dot{T}\to \dot{T}_\infty$ again applies. But this follows just as in Lemma \ref{lem:compact}, by inspecting the components in the defining diagram \eqref{diag:defTdotn}.
+\end{proof}
+
+\begin{proposition}
+For any normal Kan complex $A$, the canonical pathobject factorization $A\to A^\I\to A\times A$ is an $(\LL,\RR)$ factorization.
+\end{proposition}
+
+\begin{proof}
+The second factor $A^\I\to A\times A$ is normal by Lemma \ref{lem:normalpath}. The first factor $r:A\to A^\I$ is an $\LL$-map iff there is a diagonal filler for the square in \eqref{diagram:reflL}.  This is provided by Proposition \ref{diagram:IdElim}.
+\end{proof}
+
+With this, we have reached our goal: the category $\cSet$ of cartesian cubical sets admits an interpretation of type theory with \Id-types, using an algebraic weak factorization system, in which the \Id-types are interpreted as pathobjects $\id{A} = A^\I$ and satisfying in particular the \Id-elimination and computation rules.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{300}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\bibitem{AW}
-%S.~Awodey and M.A.~Warren. Homotopy theoretic models of identity types. \emph{Math. Proc. Camb. Phil. Soc.}, 146, 45--55, 2009.
+\bibitem{AW}
+S.~Awodey and M.A.~Warren. Homotopy theoretic models of identity types, \url{arXiv:0709.0248}.
 %
-%\bibitem{GvdB}
-%B.~van den Berg and R.~Garner. Topological and Simplicial Models of Identity Types. \emph{ACM Transactions on Computational Logic}, 13:1, 2012.
+\bibitem{awodey:cubes}
+S.~Awodey. Notes on cubical models of type theory (2015), \url{www.github.com/awodey/math/blob/master/Cubical/cubical.pdf}.
 %
-%\bibitem{CwF} 
-%P.~Dybjer. ``Internal Type Theory." \emph{LNCS} 1158, 120--134, 1996.
+\bibitem{GvdB}
+B.~van den Berg and R.~Garner. Topological and Simplicial Models of Identity Types. \emph{ACM Transactions on Computational Logic}, 13:1, 2012.
+
+\bibitem{BCH}
+M.~Bezem, T.~Coquand, S.~Huber. A model of type theory in cubical sets, \url{www.cse.chalmers.se/~coquand/mod1.pdf}.
 %
-%\bibitem{GK}  
-%N.~Gambino and J.~Kock, ``Polynomial functors and polynomial monads"
-%\emph{Math. Proc. Cambridge Phil. Soc.} 154, 153--192, 2013.
+\bibitem{Garner}
+R.~Garner. Understanding the small object argument, \url{arXiv:0712.0724}.
 %
-%\bibitem{Hofmann} 
-%
-%\bibitem{HoTTbook} 
-%\emph{Homotopy Type Theory: Univalent Foundations of Mathematics}, The Univalent Foundations Program, Institute for Advanced Study, 2013. {\tt http://homotopytypetheory.org/book}
-%
-%\bibitem{KLV}  
-%C.~Kapulkin, P.~LeFanu Lumsdaine and V.~Voevodsky, The Simplicial Model of Univalent Foundations. \emph{In preparation}, 2013.
-%
-%
+\bibitem{Kelly}
+G.M.~Kelly. A unified treatment of transfinite constructions for free algebras, free monoids, colimits, associated sheaves, and so on. Bull.\ Austrail.\ Math.\ Soc.\ 22 (1981), pp.~1--83.%
 \end{thebibliography}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
