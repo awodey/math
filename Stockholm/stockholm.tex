@@ -667,7 +667,7 @@ Clearly, $X$ is a uniform Kan complex just in case $X\to 1$ is a uniform Kan fib
 There is an algebraic weak factorization system $(\LL,\RR)$ on $\cSet$ for which the $\RR$-algebras are exactly the uniform Kan fibrations.
 \end{theorem}
 
-This is a direct application of Garner's small object argument. We will nonetheless sketch the details of the argument in the next section, because some modifications of it will be required thereafter. 
+This is a direct application of Garner's small object argument \cite{Garner} (see also \cite{GS} for a related development). We will nonetheless sketch the details of the argument in the next section, because some modifications of it will be required thereafter.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The AWFS of uniform box filling}
@@ -1032,26 +1032,32 @@ For any normal Kan complex $A$, the canonical pathobject factorization $A\to A^\
 The second factor $A^\I\to A\times A$ is normal by Lemma \ref{lem:normalpath}. The first factor $r:A\to A^\I$ is an $\LL$-map iff there is a diagonal filler for the square in \eqref{diagram:reflL}.  This is provided by Proposition \ref{diagram:IdElim}.
 \end{proof}
 
-With this, we have reached our goal: the category $\cSet$ of cartesian cubical sets admits an interpretation of type theory with \Id-types, using an algebraic weak factorization system, in which the \Id-types are interpreted as pathobjects $\id{A} = A^\I$ and satisfying in particular the \Id-elimination and computation rules.  
+With this, we have reached our goal: 
+\begin{corollary}
+The category $\cSet$ of cartesian cubical sets admits an interpretation of type theory with \Id-types based on an algebraic weak factorization system, in which the \Id-types are taken to be path-objects $\id{A} = A^\I$ satisfying the standard \Id-elimination and computation rules.  
+\end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{300}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibitem{AW}
-S.~Awodey and M.A.~Warren. Homotopy theoretic models of identity types, \url{arXiv:0709.0248}.
+S.~Awodey and M.A.~Warren. Homotopy theoretic models of identity types, arXiv:0709.0248.
 %
 \bibitem{awodey:cubes}
 S.~Awodey. Notes on cubical models of type theory (2015), \url{www.github.com/awodey/math/blob/master/Cubical/cubical.pdf}.
 %
 \bibitem{GvdB}
-B.~van den Berg and R.~Garner. Topological and Simplicial Models of Identity Types. \emph{ACM Transactions on Computational Logic}, 13:1, 2012.
-
+B.~van den Berg and R.~Garner. Topological and Simplicial Models of Identity Types.  arXiv:1007.4638v2.
+%
 \bibitem{BCH}
 M.~Bezem, T.~Coquand, S.~Huber. A model of type theory in cubical sets, \url{www.cse.chalmers.se/~coquand/mod1.pdf}.
 %
+\bibitem{GS}
+N.~Gambino and C.~Sattler. Uniform Fibrations and the Frobenius Condition, arXiv:1510.00669v3.
+%
 \bibitem{Garner}
-R.~Garner. Understanding the small object argument, \url{arXiv:0712.0724}.
+R.~Garner. Understanding the small object argument, arXiv:0712.0724.
 %
 \bibitem{Kelly}
 G.M.~Kelly. A unified treatment of transfinite constructions for free algebras, free monoids, colimits, associated sheaves, and so on. Bull.\ Austrail.\ Math.\ Soc.\ 22 (1981), pp.~1--83.%
