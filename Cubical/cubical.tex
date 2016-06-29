@@ -100,7 +100,6 @@
 
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \noindent
 These notes analyze the cubical model of type theory given by Bezem, Coquand, and Huber \cite{BCH}, making some adjustments along the way.
 
@@ -502,7 +501,7 @@ X_\I(n) &\cong \hom(\I^n, X_\I) \\
 &\cong \hom((\I^n)^\I, X) \\
 &\cong \hom((\I^\I)^n, X) \\
 &\cong \hom((\I+1)^n, X) \\
-&\cong \hom((\I^n + C^n_{n-1}\I^{n-1} + \dots + C^n_{1}\I+1, X) \\
+&\cong \hom(\I^n + C^n_{n-1}\I^{n-1} + \dots + C^n_{1}\I+1, X) \\
 &\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0),
 \end{align*}
 where $C^n_{k} = \binom{n}{k}$ is the usual binomial coefficient.
@@ -559,34 +558,35 @@ To begin, recall that the usual elimination and computation rules for identity t
 
 \begin{equation}\label{rule:transport}\tag{Transport}
 \begin{prooftree}
-x,y: A,\quad p:\id{A}(x,y), \quad {x:A}\vdash B(x)\ \type,  \qquad b:B(x)
+a,b: A,\quad p:\id{A}(a,b), \quad {x:A}\vdash B(x)\ \type,  \qquad u:B(a)
 \justifies
-\mathsf{trans}(x,y,p,b) : B(y)
+\mathsf{trans}(a,b,p,u) : B(b)
  \end{prooftree}
 \end{equation}
 with computation rule
 \[
-\mathsf{trans}(x,x,\refl(x),b) = b : B(y),
+\mathsf{trans}(a,a,\refl(a),u) = u : B(a),
 \]
 %
-together with the following:
+and
 %
 \begin{equation}\label{rule:contract}\tag{Contraction}
 \begin{prooftree}
-x,y: A,\quad p:\id{A}(x,y)
+a,b: A,\quad p:\id{A}(a,b)
 \justifies
-\mathsf{con}(x,y,p) : \Id(\langle x,x,\refl(x)\rangle, \langle x,y,p\rangle)
+\mathsf{con}(a,b,p) : \Id(\langle a,a,\refl(a)\rangle, \langle a,b,p\rangle)
 \end{prooftree}
 \end{equation}
 with computation rule
 \[
-\mathsf{con}(x,x,\refl(x)) = \refl(\langle x,x,\refl(x)\rangle) : \Id(\langle x,x,\refl(x)\rangle, \langle x,x,\refl(x)\rangle),
+\mathsf{con}(a,a,\refl(a)) = \refl(\langle a,a,\refl(a)\rangle) : \Id(\langle a,a,\refl(a)\rangle, \langle a,a,\refl(a)\rangle).
 \]
-The term $\mathsf{con}(x,y,p)$ is in the identity type of $\sum_{x,y:A}\id{A}(x,y)$.  We will often write the transport as $$p_*b := \mathsf{trans}(x,y,p,b).$$
-The transport rule is a condition on the dependent types; it says that they must respect the identity on the indexing type.  The contraction rule is a condition on the types; it says that the singletons $S(x) = \sum_{y:A}\Id(x,y)$ are all contractible.  
+The term $\mathsf{con}(a,b,p)$ is in the identity type of $\sum_{x,y:A}\id{A}(x,y)$.  We will often write the transport as $$p_*u := \mathsf{trans}(a,b,p,u).$$
+
+The contraction rule is a condition on the types; it says that the singletons $S(x) = \sum_{y:A}\Id(x,y)$ are all contractible.  The transport rule is a condition on the dependent types; it says that they must respect the identity on the indexing type. 
 
 \begin{proposition}
-If the type $A$ satisfies contraction, and the family $$x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type$$ has transport, then the usual $\Id$-elimination rule will be satisfied:
+If the type $A$ satisfies contraction, and the family $$x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type$$ has transport, then the usual $\Id$-elimination rule will also be satisfied:
 \begin{equation}\label{rule:idelim}\tag{$\Id$-Elimination}
 \begin{prooftree}
 x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type, \quad
@@ -604,38 +604,37 @@ with computation rule
 Let $\mathsf{J}(x,y,z,b) := \mathsf{con}(x,y,z)_*(b(x))$.
 \end{proof}
 
-
-
-A further condition that will have to hold in an interpretation of the rules for identity types is that the identity type $\id{A}(x,y)$ itself is a dependent type on $A\times A$.  It therefore must also satisfy transport.  From this assumption, one can prove the following strengthening of transport:
+A further condition that will need to hold in order to interpret the rules for identity types is that the type $\id{A}(x,y)$ itself is a dependent type on $A\times A$, and therefore satisfies transport.  From this assumption, one can prove the following strengthening of transport:
 
 \begin{equation}\label{rule:plifting}\tag{Path Lifting}
 \begin{prooftree}
-x,y: A,\quad p:\id{A}(x,y), \quad {x:A}\vdash B(x)\ \type,  \qquad b:B(x)
+a,b: A,\quad p:\id{A}(a,b), \quad {x:A}\vdash B(x)\ \type,  \qquad u:B(a)
 \justifies
-\mathsf{lift}(x,y,p,b): \Id(\langle x,b \rangle, \langle y, p_*b\rangle )
+\mathsf{lift}(a,b,p,u): \Id(\langle a,u \rangle, \langle b, p_*u\rangle )
  \end{prooftree}
 \end{equation}
 with computation rule
 \[
-\mathsf{lift}(x,x,\refl(x),b) = \refl(\langle x,b\rangle) : \Id(\langle x,b\rangle, \langle x,b\rangle).
+\mathsf{lift}(a,a,\refl(a),u) = \refl(\langle a,u\rangle) : \Id(\langle a,u\rangle, \langle a,u\rangle).
 \]
-The term $\mathsf{lift}(x,y,p,b)$ is in the identity type of $\sum_{x:A}B(x)$.
+The term $\mathsf{lift}(a,b,p,u)$ is in the identity type of $\sum_{x:A}B(x)$.
 
-Under the intended interpretation in hypercubical sets, path lifting already implies contraction.  Indeed, let $A\in\HH$ and interpret the dependent type $x,y:A\vdash \id{A}(x,y)$ as the path object $A^\I$ with its projection to the two endoints $A^\I \to A\times A$. 
+Under the intended interpretation in hypercubical sets, path lifting for $x,y:A\vdash\id{A}(x,y)$
+already implies contraction for $A$.  Indeed, let $A\in\HH$ and interpret the dependent type $x,y:A\vdash \id{A}(x,y)$ as the path object $A^\I$ with its projection to the two endoints $A^\I \to A\times A$. 
 
 \begin{lemma}
 If $A^\I \to A\times A$ satisfies path lifting, then $A$ satisfies contraction.
 \end{lemma}
 
 \begin{proof}
-Writing $=$ for $\Id$ and reasoning internally in \HH, take any identity $p: x = y$ in $A^\I$, and we need to find an identity $\mathsf{con} : \refl(x) = p$ in $(A^\I)^\I$.  Such an element $\mathsf{con}$ is a cube of the form 
+Writing $=$ for $\Id$ and reasoning internally in \HH, take any identity $p: x = y$ in $A^\I$, and we need to find an identity $\mathsf{con} : \refl(x) = p$ in $(A^\I)^\I$.  Such an element $\mathsf{con}$ is a 2-cube in $A$ of the form 
 \begin{equation}\label{diagram:contfromtrans}
 \xymatrix{
 x  \ar@{-}[d]_{\refl(x)} \ar@{-}[r]  \ar@{}[rd]|{\mathsf{con}} & x \ar@{-}[d]^{p} \\
 x \ar@{-}[r] & y
 }
 \end{equation}
-Let us first transport $\refl(x) : \Id(x,x)$ along the identity $\langle \refl(x),p\rangle$ in $A\times A$ to obtain $q := \langle \refl(x),p\rangle_*(\refl(x)): \Id(x,y)$, along with a higher cube
+Let us first transport $\refl(x) : \Id(x,x)$ along the identity term $\langle \refl(x),p\rangle$ in $A\times A$ to obtain $q := \langle \refl(x),p\rangle_*(\refl(x)): \Id(x,y)$, along with a higher cube
 \begin{equation}\label{diagram:contfromtransprime}
 \xymatrix{
 x  \ar@{-}[d]_{\refl(x)} \ar@{-}[r]^{\refl(x)}  \ar@{}[rd]|{\mathsf{con}'} & x \ar@{-}[d]^{q} \\
@@ -645,6 +644,7 @@ x \ar@{-}[r]_{p} & y
 where $\mathsf{con}'$ is given by $\mathsf{con}' := \mathsf{lift}(\langle \refl(x),p\rangle,\refl(x))$.
 
 Using the fact that $(A^\I)^\I \cong A^{(\I\times\I)}$, we can then apply the twist map $\I_1\times\I_2 \cong \I_2\times\I_1$ to transpose the cube \eqref{diagram:contfromtransprime} into the desired form \eqref{diagram:contfromtrans}.
+It remains to check the computation rule 
 \end{proof}
 
 In light of the foregoing, we need to interpret dependent types as maps $B\to A$ that have path lifting, and the types themselves as cubical sets $A$ with a path object projection $A^\I \to A\times A$ satisfying that condition.  Moreover, we also want the types to have iterated path objects $\id{\id{A}}$ etc.,  and as dependent types these too should be interpreted as maps with path lifting.  We begin to analyse that condition.

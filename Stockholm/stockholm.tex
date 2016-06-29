@@ -115,7 +115,7 @@ Notes from a series of lectures given in May-June, 2016, in the Stockholm Logic 
 }
 \author{Steve Awodey
 }
-\date{Stockholm, \today}
+\date{Stockholm, 21 June 2016}
 
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -186,7 +186,7 @@ x,y: A\ \vdash\ \id{A}(x,y)\ \type
 We  model this by factoring the diagonal map of (the object interpreting) $A$ as an \L-map followed by an \R-map, using axiom 1 for the WFS:
 \[
 \xymatrix{
-& \id{A} \ar[rd] &\\
+& \ \id{A} \ar[rd] &\\
 A \ar[rr] \ar[ru] && A\times A
 }
 \]
@@ -200,7 +200,7 @@ x:A\  \vdash\ \refl(x) : \id{A}(x,x)
 The  $\Id$-elimination rule has the form:
 \begin{equation}\label{rule:idelim}\tag{$\Id$-Elim}
 \begin{prooftree}
-x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type, \quad
+x,y: A, z:\id{A}(x,y)\vdash B(x,y,z)\ \type, \qquad
 x: A \vdash b(x) : B(x,x,\refl(x))
 \justifies
 x,y: A, z:\id{A}(x,y)\vdash \mathsf{J}_b(x,y,z) : B(x,y,z)
@@ -213,7 +213,7 @@ with associated computation rule:
 %
 The data above the line in $\Id$-elimination are interpreted as a commutative square as on the outside of the following diagram:
 \begin{equation}\label{diag:idelim}
-\xymatrix{
+\xymatrix@=3em{
 A \ar[d]_{\refl} \ar[r]^b & B \ar[d] \\
 \id{A} \ar[r]_{=} \ar@{..>}[ru]_{\mathsf{J}_b} & \id{A} 
 }
@@ -227,19 +227,19 @@ The interpretation just sketched is required to respect the result of substituti
 
 \begin{enumerate}
 
-\item Using the fact that \R-maps are closed under retracts, one can show that they are also stable under pullback along any map, so the interpretation of dependent types as \R-maps works right with the interpretation of substitution as pullback.  However, the fact that the pullback operation is only defined up to isomorphism means that the interpretation must be ``strictified'' in order to model substitution stritly.  This is a known iddue in the semantics of dependent type theory, with known solutions (including a recent one by Lumsdaine-Warren), and will not concern us further here.
+\item Using the fact that \R-maps are closed under retracts, one can show that they are also stable under pullback along any map, so the interpretation of dependent types as \R-maps is compatible with the interpretation of substitution as pullback.  However, the fact that the pullback operation is defined only up to isomorphism means that the interpretation must be ``strictified'' in order to model substitution strictly.  This is a known issue in the semantics of dependent type theory, with equally well-known solutions (including a recent one due to Lumsdaine and Warren \cite{LW}), and will not concern us further here.
 
 \item The choice of factorization of the diagonal,
 \[
 \xymatrix{
-& \id{A} \ar[rd] &\\
+& \ \id{A} \ar[rd] &\\
 A \ar[rr] \ar[ru] && A\times A\,,
 }
 \]
 must be stable under pulback.  Specifically, if $A$ is a type in context $\Gtypes{A}$ interpreted as an \R-map $A\arr\G$, then there is a factorization of the diagonal over $\G$ of the form
 \[
 \xymatrix{
-& \id{A} \ar[rd] &\\
+& \ \id{A} \ar[rd] &\\
 A \ar[rr] \ar[ru] \ar[rd] && \ar[ld] A\times_{\G} A\,,\\
 & \G &
 }
@@ -247,7 +247,7 @@ A \ar[rr] \ar[ru] \ar[rd] && \ar[ld] A\times_{\G} A\,,\\
 Pulling back along any $f : \Delta \to \G$ preserves the diagonal, but not necessarily the \L-\R\ factorization, 
 \[
 \xymatrix{
-& f^*\id{A} \ar[rd] &\\
+& \ f^*\id{A} \ar[rd] &\\
 f^*A \ar[rr] \ar[ru] \ar[rd] && \ar[ld] f^*A\times_{\Delta} f^*A\,.\\
 & \Delta &
 }
@@ -257,13 +257,13 @@ Choosing an \L-\R\ factorization of the pulled-back diagonal gives an interpreta
 \item Assuming a stable choice of factorizations of the diagonal, we have made a choice of diagonal fillers $\mathsf{J}$ in order to interpret the $\Id$-elimination rule.  Again, there is no reason why these choices of diagonal fillers should ``respect substitution'' in the way required for the interpretation of type theory. 
 More specifically, given a diagonal filling problem as on the right below, and a square on the left with $g\in\L$,
 \begin{equation}\label{diagram:coherencefillers}
-\xymatrix{
+\xymatrix@=3em{
 A' \ar[d]_g \ar[r] & A  \ar[d] \ar[r] & \ar[d] C \\
 B' \ar[r]_{f} \ar@{..>}[rru]^{\psi\ \ } & B\ar@{..>}[ru]_{\phi} \ar[r] & D
 }
 \end{equation}
-we may have the two different diagonal fillers for the outer filling problem, namely $\psi$ and $\phi\circ f$.  Under certain conditions, we want to have these two solutions be equal.
-This leads to a strengthening of the notion of weak factorization system which implies the existence of natural choices of diagonal fillers. (The idea to use this solution is due to R.~Garner.)
+we may have the two different diagonal fillers for the outer filling problem, namely $\psi$ and $\phi\circ f$.  Under certain conditions, we want  these two solutions to be equal.
+This leads to a strengthening of the notion of weak factorization system to what is now called an \emph{algebraic} weak factorization system, which implies the existence of such \emph{natural} choices of diagonal fillers. (The idea of using this to solve this particular coherence problem is due to R.~Garner.)
 
 \end{enumerate}
 
@@ -307,12 +307,12 @@ An \emph{algebraic weak factorization system} on \C\ consists of a functorial fa
 \item a  multiplication $\mu : R^2 \to R$ making $(R, \mu, L)$ a monad,
 \item a comultiplication $\nu : L \to L^2$ making $(L, \nu, R)$ a comonad.
 \end{enumerate}
-Some authors also a distributive law for the monad over the comonad, however we shall not need this.
+Some authors also a require distributive law for the monad over the comonad, however we shall not need this.
 \end{definition}
 
-\begin{remark}\label{AWFSisWFS} Let us show that an AWFS determines a WFS.  The factorization axiom is is satisfied by the functorial factorization $f = R(f)\circ L(f)$.  We then know that $R(f)$ is an $R$-algebra and $L(f)$ is an $L$-coalgebra by the laws of monads.  Suppose given a diagonal filling problem such as  the outer square below, in which $f$ is an $L$-coalgebra and $g$ is an $R$-algebra:
+\begin{remark}\label{AWFSisWFS} Let us show that an AWFS determines a WFS.  The factorization axiom is satisfied by the functorial factorization $f = R(f)\circ L(f)$.  We then know that $R(f)$ is an $R$-algebra and $L(f)$ is an $L$-coalgebra by the laws of monads.  Suppose given a diagonal filling problem such as  the outer square below, in which $f$ is an $L$-coalgebra and $g$ is an $R$-algebra:
 \[
-\xymatrix{
+\xymatrix@=3em{
 X \ar[dd]_{f} \ar[rd]^{L(f)} \ar[rrr]^{h_0} &&& \ar[dd]^{g} \ar[ld]_{L(g)} Z\\
    & E(f) \ar[r]^{E(h)} \ar[ld]^{R(f)} & E(g) \ar[rd]_{R(g)} & \\
 Y  \ar[rrr]_{h_1} &&&  W
@@ -324,7 +324,7 @@ Applying the factorizations of $f$ and $g$, we obtain an $L$-coalgebra structure
 
 \begin{remark} A morphism of $L$-coalgebras $h : (f',\phi')\to (f,\phi)$ is a commutative square $fh_0 = h_1f'$ such that $E(h)\circ\phi' = \phi\circ h_1$,
 \[
-\xymatrix{
+\xymatrix@=3em{
 X' \ar[dd]_{f'} \ar[rd]^{L(f')} \ar[rrr]^{h_0} &&& \ar[dd]^{f} \ar[ld]_{L(f)} X\\
    & E(f') \ar[r]^{E(h)} \ar[ld]^{R(f')} & E(f) \ar[rd]_{R(f)} & \\
 Y'  \ar[rrr]_{h_1} \ar@<1ex>[ur]^{\phi'} &&& \ar@<-1ex>[ul]_{\phi} Y\,.
@@ -350,7 +350,7 @@ Our goal is to make an algebraic weak factorization system on the cubical sets, 
 By way of motivation for using cubical sets, recall that we will interpret the \Id-type of an object $A$ using a factorization of the diagonal map,
 \begin{equation}\label{diag:pathfact}
 \xymatrix{
-& PA \ar[rd] & \\
+& \ PA \ar[rd] & \\
 A \ar[rr] \ar[ru] && A\times A\,.
 }
 \end{equation}
@@ -361,20 +361,21 @@ We regard $PA$ as an abstract  ``pathspace'' $A^\I$.  If there is an ``interval 
 1 && \ar[ll] \ar[ul] 1+1\,
 }
 \]
-will result in a factorization of the form \eqref{diag:pathfact} (without respect to any WFS).  This factorization will automatically be stable under pullback.
+will result in a factorization of the form \eqref{diag:pathfact} (without respect to any WFS).  Moreover, this factorization will automatically be stable under pullback.
 
-The idea that identity proofs are paths and that $\id{A} = A^\I$ is further supported by the fact that dependent types have the \emph{path-lifting property}: given $a_0,a_1:A$  and $p:\id{A}(a_0,a_1)$ and $\types{x:A}{B(x)}$  and $b_0:B(a_0)$, there is a distinguished $b_1:B(a_1)$, called the \emph{transport} of $b_0$ along $p$ and denoted $p_*(b_0)$.  Indeed, there is even a path $\tilde{p} : \id{B}(b_0,b_1)$, where $B=\sum_{x:A}B(x)$, such that $\pi_1(\tilde{p})=p$.
+The idea that identity proofs are paths and that $\id{A} = A^\I$ is supported by the fact that dependent types have the \emph{path-lifting property}: given $a_0,a_1:A$  and $p:\id{A}(a_0,a_1)$ and $\types{x:A}{B(x)}$  and $b_0:B(a_0)$, there is a distinguished $b_1:B(a_1)$, called the \emph{transport} of $b_0$ along $p$ and denoted $p_*(b_0)$.  This term $p_*(b_0)$ can easily be found by ``path induction'' (i.e.\ \Id-elimination) on $p:\id{A}(a_0,a_1)$.
+Indeed, there is even a path $\tilde{p} : \id{B}(b_0,b_1)$, where $B=\sum_{x:A}B(x)$, such that $\pi_1(\tilde{p})=p$.
 \[
 \xymatrix{
 B \ar[dd]_{\pi_1} & B(a_0) \ar[r]^{p_*} & B(a_1) \\
-   	& b_0 \ar@{..>}[r]^{\tilde{p} } & b_1  \\
+   	& b_0 \ar@{..>}[r]^{\tilde{p} } & p_*b_0  \\
 A  	&	a_0 \ar[r]_{p} &  a_1
 }
 \]
 %
 Note that this says exactly that the endpoint inclusion $0 : 1\to \I$ has the left-lifting property with respect to the dependent projection $\pi:B\to A$,
 \[
-\xymatrix{
+\xymatrix@=3em{
 1 \ar[d]_{0} \ar[r]^{b_0} & B \ar[d]^{\pi} \\
 \I \ar[r]_{p} \ar@{..>}[ru]_{\tilde{p}} & A\,.
 }
@@ -385,7 +386,7 @@ An important consequence of the proposed stipulation $\id{A} = A^\I$ is that the
 \begin{align*}
 \id{A}\ &=\ A^\I \\
 \id{\id{A}}\ &=\ (A^\I)^\I\ \cong\ A^{\I\times\I} \\
-\id{\dots\id{\id{A}}}\ &\cong\ A^{\I\times\dots\times\I}
+\id{\id{\dots\id{A}}}\ &\cong\ A^{\I\times\dots\times\I}
 \end{align*}
 %
 In this way, at least some of the operations on the higher \Id-types (reflecting the higher algebra of $\infty$-groupoids) can be represented by algebraic operations on the cubes, in the form $\I^n \to \I^m$.
@@ -1061,6 +1062,8 @@ R.~Garner. Understanding the small object argument, arXiv:0712.0724.
 %
 \bibitem{Kelly}
 G.M.~Kelly. A unified treatment of transfinite constructions for free algebras, free monoids, colimits, associated sheaves, and so on. Bull.\ Austrail.\ Math.\ Soc.\ 22 (1981), pp.~1--83.%
+
+\bibitem{LW}  P.~Lumsdaine and M.~Warren.  The local universes model: an overlooked coherence construction for dependent type theories, arXiv:1411.1736v2.
 \end{thebibliography}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
