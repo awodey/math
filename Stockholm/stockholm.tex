@@ -941,7 +941,7 @@ Of course, to model \Id-types in general we require not only the factorizations 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Normalization}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Let $X$ be a Kan complex with uniform box-filling structure $\phi$, so that for any open box $b: \sqcup^n \to X$ there is an associated filler $\phi(b) : \I^n \to X$ extending $b$,
 \[
@@ -1038,6 +1038,101 @@ With this, we have reached our goal:
 The category $\cSet$ of cartesian cubical sets admits an interpretation of type theory with \Id-types based on an algebraic weak factorization system, in which the \Id-types are taken to be path-objects $\id{A} = A^\I$ satisfying the standard \Id-elimination and computation rules.  
 \end{corollary}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{An application: Factorization}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The factorization of an arbitrary  map $f:X\to Y$ given by the $\dot{T}_\infty$ monad is not easy to describe directly.  But in case $X$ and $Y$ are Kan, there is another factorization that can be described explicitly: the ``graph'' or ``homotopy image'' factorization. This is a well-known construction from homotopy theory, but the proof that it works in this case is not trivial.  We can use  the interpretation of type theory to give an ``alternate'' proof (or at least a different perspective on the usual proof).
+
+Let $A$ and $B$ be (normal, uniform) Kan complexes, and take any map $f:A\to B$.  We will construct a factorization 
+\[
+\xymatrix@=3em{
+A \ar[r]^{i} \ar[rd]_{f}  & \ar[d]^{\widetilde{f}} \widetilde{A} \\
+& B
+}
+\]
+with $i\in\L$ and $\widetilde{f}\in\R$.
+
+Consider the following pullback diagram:
+\[
+\xymatrix@=3em{
+Pf \ar[r] \ar[d] \pbcorner  \ar@/{}_{2pc}/@{..>}[dd]_{\widetilde{f}} & B^\I \ar[d] \\
+A\times B \ar[r]_{f\times 1} \ar[d]^{\pi_2} & B\times B \\
+B 
+}
+\]
+Take $\widetilde{A} = Pf$ and $\widetilde{f}$ the indicated composite, which, note, is an $\R$-map, since each factor is, by the assumption that both $A$ and $B$ are Kan.
+
+For the factorization $i: A \to \widetilde{A}$, take the unique map determined as in:
+\[
+\xymatrix@=3em{
+A \ar@{..>}[rd]^{i} \ar[r]^{f} \ar@/{}_{2pc}/[rddd]_{f} \ar@/{}_{1pc}/[rdd]^{(1,f)}  & B \ar[rd]^{r_B} & \\
+		& {Pf} \ar[r] \ar[d] \pbcorner & B^\I \ar[d] \\
+		& A\times B \ar[r]_{f\times 1} \ar[d]^{\pi_2} & B\times B \\
+		& B 
+		}
+\]
+
+As a dependent type, $Pf \to B$ is constructed as follows:
+$$
+\begin{prooftree}
+\[ x: A \vdash f(x) : B, \qquad  y,y' : B \vdash \id{B}(y, y')
+\justifies
+x: A, y: B \vdash \id{B}(fx, y)
+\]
+\justifies
+y: B \vdash \sum_{x:A}\id{B}(fx, y)
+\end{prooftree}
+$$
+Under propositions-as-types, this is the ``image'' $$\{y:B\ |\ \exists x:A.\, f(x) = y\} \to B.$$
+In the factorization 
+\[
+\xymatrix@=3em{
+A \ar[r]^{i} \ar[rd]_{f}  & \ar[d]^{\widetilde{f}} Pf \\
+& B
+}
+\]
+the term $i$ has the form
+\begin{align*}
+x: A \vdash i(x) &: Pf(fx),\\
+			&= \sum_{x:A}\id{B}(fx, fx)\,.
+\end{align*}
+Indeed, it is given by setting
+\[
+i(x) := (x, \refl(fx))\,.
+\]
+
+We know that $\widetilde{f} : Pf \to B$ is a (normal, uniform) Kan fibration, because it is a composite of pullbacks of such, as already noted; but we need to see that $i : A\to Pf$ as just defined is an $\L$-map. Consider 
+\[
+Pf = \sum_{x:A}\sum_{y:B}\id{B}(fx, y)
+\] 
+and take any $C\to Pf$ in $\R$, i.e.:
+\[
+x: A, y:B, z:\id{B}(fx,y) \vdash C(x,y,z)\,.
+\]
+Consider the lifting problem
+\[
+\xymatrix@=3em{
+A \ar[r]^{d} \ar[d]_{i} & C \ar[d] \\
+Pf \ar[r]_{=} \ar@{..>}[ru]_{\phi} & Pf\,.
+}
+\]
+Thus we are given
+\[
+x: A \vdash d(x) : C\big(x,fx,\refl(fx)\big)\,,
+\]
+and we seek
+\[
+x: A, y:B, z:\id{B}(fx,y) \vdash \phi(x,y,z) : C(x,y,z)\,.
+\]
+such that:
+\[
+\phi(x,fx,\refl(fx)) = d(x)\,.
+\]
+But this is a known inference, for which see \cite{GG}, Lemma 11.
+
+There is, of course, also a purely algebraic proof of this factorization; cf.~\cite{GvdB}, Proposition 6.1.4.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{300}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1053,6 +1148,9 @@ B.~van den Berg and R.~Garner. Topological and Simplicial Models of Identity Typ
 %
 \bibitem{BCH}
 M.~Bezem, T.~Coquand, S.~Huber. A model of type theory in cubical sets, \url{www.cse.chalmers.se/~coquand/mod1.pdf}.
+%
+\bibitem{GG}
+N.~Gambino and R.~Garner. The Identity Type Weak Factorization System, arXiv: 0803.4349v2.
 %
 \bibitem{GS}
 N.~Gambino and C.~Sattler. Uniform Fibrations and the Frobenius Condition, arXiv:1510.00669v3.
