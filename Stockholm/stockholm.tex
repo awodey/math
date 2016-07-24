@@ -111,7 +111,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{A cubical model of homotopy type theory\thanks{
-Notes from a series of lectures given in May-June, 2016, in the Stockholm Logic Seminar and the Topological Actitivies Seminar.  Thanks to Erik Palmgren for providing the opportunity and  to the members of the Stockholm Logic Group for a very enjoyable stay.}
+Notes from a series of lectures given in May-June, 2016, in the Stockholm Logic Seminar and the Topological Actitivies Seminar.  Thanks to Erik Palmgren for providing the opportunity and to the members of the Stockholm Logic Group for a very enjoyable stay.}
 }
 \author{Steve Awodey
 }
@@ -799,7 +799,8 @@ For the model of \Id-types, we need the following fact, which is easily checked 
 If $A$ is a uniform Kan complex, then the canonical map from the pathobject $A^\I \to A\times A$ is a uniform Kan fibration.
 \end{lemma}
 
-Now let $A$ be (uniform) Kan and consider the canonical pathobject factorization $A\stackrel{r}{\to} A^\I \stackrel{p}{\to} A\times A$ of the diagonal.  By the foregoing lemma, the second factor $p : A^\I \to A\times A$ is also Kan, and so we just need the ``constant path'' map $r : A \to A^\I$ to be an $\LL$-map.  Specifically, it should have a coalgebra structure for the copointed endofunctor
+Henceforth, unles otherwise noted, ``Kan'' means ``uniform Kan''.
+Let $A$ be Kan and consider the canonical pathobject factorization $$A\stackrel{r}{\to} A^\I \stackrel{p}{\to} A\times A$$ of the diagonal.  By the foregoing lemma, the second factor $p : A^\I \to A\times A$ is also Kan, and so we just need the ``constant path'' map $r : A \to A^\I$ to be an $\LL$-map.  Specifically, it should have a coalgebra structure for the copointed endofunctor
 \[
 \LL : A/\cSet \longrightarrow A/\cSet\,,
 \]
@@ -850,7 +851,7 @@ Use the box filling in $A$.
 \end{proof}
 
 \begin{proof} (Proposition)
-We shall use the uniform Kan structure on $A$ and $\pi:B\to A^\I$ to construct a section $j:A^\I \to B$ of $\pi$.  Since we know that  $\pi$ has path-lifting, it will suffice to have, for every $n$-box $a : a_0 \to a_1$ in $\pA$, a path of the form $c(a) : r(a_0) \to a$ (naturally in $n$).  For then we can take $b(a_0)$ as a lift of $r(a_0)$ to get $j(a)$ as the transport
+We shall use the uniform Kan structure on $A$ and $\pi:B\to A^\I$ to construct a section $j:A^\I \to B$ of $\pi$.  Since we know that  $\pi$ has path-lifting, it will suffice to have, for every $n$-cube $a : a_0 \to a_1$ in $\pA$, a path of the form $c(a) : r(a_0) \to a$ (naturally in $n$).  For then we can take $b(a_0)$ as a lift of $r(a_0)$ to get $j(a)$ as the transport
 \[
 j(a) := c(a)_*(b(a_0))
 \]
@@ -917,7 +918,7 @@ Using normal fibrations now allows a strengthening of Proposition \ref{prop:lift
 
 \begin{proposition}\label{prop:liftingnormal}
 Let $A$ be a normal Kan complex, $\pi : B \to A^\I$ a normal Kan fibration, and $b : A\to B$ a map making the following outer square commute.
-\begin{equation}\label{diagram:IdElim}
+\begin{equation}\label{diagram:IdElim2}
 \xymatrix{
 A \ar[d]_{r} \ar[r]^{b} & \ar[d]^{\pi} B \\
 A^\I \ar@{..>}[ru]_{j} \ar[r]_{=} & A^\I
@@ -1030,7 +1031,7 @@ For any normal Kan complex $A$, the canonical pathobject factorization $A\to A^\
 \end{proposition}
 
 \begin{proof}
-The second factor $A^\I\to A\times A$ is normal by Lemma \ref{lem:normalpath}. The first factor $r:A\to A^\I$ is an $\LL$-map iff there is a diagonal filler for the square in \eqref{diagram:reflL}.  This is provided by Proposition \ref{diagram:IdElim}.
+The second factor $A^\I\to A\times A$ is normal by Lemma \ref{lem:normalpath}. The first factor $r:A\to A^\I$ is an $\LL$-map iff there is a diagonal filler for the square in \eqref{diagram:reflL}.  This is provided by Proposition \ref{prop:liftingnormal}.
 \end{proof}
 
 With this, we have reached our goal: 
@@ -1132,6 +1133,9 @@ such that:
 But this is a known inference, for which see \cite{GG}, Lemma 11.
 
 There is, of course, also a purely algebraic proof of this factorization; cf.~\cite{GvdB}, Proposition 6.1.4.
+
+\subsection*{Acknowledgements}
+For support during my stay in Stockholm, I am grateful to the University of Stockholm, the Arrhenius Foundation, and  the US Air Force Office of Sponsred Research through MURI Grant FA9550-15-1-0053.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{thebibliography}{300}
