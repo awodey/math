@@ -97,8 +97,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{A model structure on the cartesian cubical sets}
-\author{Steve Awodey \and Jonas Frey \and Pieter Hofstra}
-\date{\today}
 
 \maketitle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -144,7 +142,7 @@ The data involved in this type can be represented as follows:
 \xymatrix{
 & P0 \ar[rr] \ar[dd] |\hole  & & P \ar[dd] \\
 [\phi] \ar[ru] ^{s0} \ar[rr] \ar@{ >->}[dd] & & [\phi]\!\times\!\I \ar[ru]^s \ar@{ >->}[dd] & \\
-& 1 \ar[rr]_<<<<<<<<<{\delta_0}& & \I \\
+& 1 \ar[rr]_<<<<<<<<<{\delta_0} |>>>>>>>>>>>>>>>\hole & & \I \\
 \I^n \ar[ru] \ar[rr] \ar[ruuu]|>>>>>>>>>>>>>\hole _{a_0} & & \I^n\!\times\!\I \ar@{.>}[ruuu] _a \ar[ru]_{\pi_2} & }
 \end{equation}
 Here the left-hand vertical square is  understood to be a pullback of the right-hand one along the chosen endpoint $\delta_0 : 1 \to \I$ (the ``bias'').
@@ -153,13 +151,13 @@ Now write
 \[
 \widetilde{P}\ =\ \prod_{i:I}Pi
 \]
-for the type of sections of the projection $\sum_{i:I}Pi \to \I$, and write
+for the type of sections of the projection $P = \sum_{i:I}Pi \to \I$, and write
 \[
 \pi_0 : \widetilde{P} \to P0
 \]
-for the $0^{th}$-projection (i.e.\ the evaluation at $0:\I$).
+for the $0^{th}$-projection (i.e.\ the evaluation of $P : \I\to\Set$ at $0:\I$).
 
-Then the (0-biased) partial path-lifting structures on $P$ correspond to $+$-algebra structures on the projection $\pi_0 : \widetilde{P} \to P0$:
+Then the (0-biased) partial path-lifting structures on $P$ correspond to $+$-algebra structures on the projection $\pi_0 : \widetilde{P} \to P0$, as follows.
 
 \begin{proposition}
 For any $ P : \Set^\I$, there is an isomorphism
@@ -173,9 +171,9 @@ Consider the following diagram,
 \xymatrix{
 &  {\widetilde{P}} \ar[rr] \ar[dd] ^{\pi_0} & &  {\widetilde{P}}\times\I \ar[dd]^{\varepsilon} \\
 &&& \\
-& P0 \ar[rr] |>>>>>>>>>>>\hole \ar[dd] |\hole & & P \ar[dd] \\
-[\phi] \ar[ruuu]^>>>>>>>>>>>>{\overline{s}_0} \ar[ru]^>>>>{s0} \ar[rr] \ar@{ >->}[dd] & & [\phi]\!\times\!\I \ar[ruuu]^>>>>>>>>>>>>{\overline{s}} \ar[ru]^>>>>>>>s \ar@{ >->}[dd] & \\
-& 1 \ar[rr]_<<<<<<<<<{\delta_0}& & \I \\
+& P0 \ar[rr] |>>>>>>>>>>\hole \ar[dd] |\hole & & P \ar[dd] \\
+[\phi] \ar[ruuu]^>>>>>>>>>>>>{\overline{s}_0} \ar[ru]^>>>>{s0} \ar[rr] \ar@{ >->}[dd] & & [\phi]\!\times\!\I \ar[ruuu]^>>>>>>>>>>>>>{\overline{s}} \ar[ru]^>>>>>>>s \ar@{ >->}[dd] & \\
+& 1 \ar[rr]_<<<<<<<<<{\delta_0} |>>>>>>>>>>>>>>>>>>\hole & & \I \\
 \I^n \ar[ru] \ar[rr] \ar[ruuu]|>>>>>>>>>>>>>\hole _{a_0} & & \I^n\!\times\!\I \ar@{.>}[ruuu] _a \ar[ru]_{\pi_2} & }
 \end{equation}
 which is \eqref{diagram:ppl}, extended by the counit (evaluation) $\varepsilon : \widetilde{P}\times \I \to P$ over $\I$ on the right.  The pullback of $\varepsilon$ over $\I$ along $\delta_0$ is just $\pi_0 : \widetilde{P} \to P0$.  
