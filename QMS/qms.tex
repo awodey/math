@@ -130,7 +130,7 @@ and called the \emph{standard $n$-cubes}.
 Cofibrations, partial map classification, the functor $X^+$, the awfs of +-algebras.
 
 %%%%%
-\section{Partial path lifting (directed version)}
+\section{Partial path lifting (biased version)}
 
 We  first recall the specification of the trivial-cofibration/fibration WFS from \cite{GS}, and show that the resulting fibrations are equivalent to those specified in the ``logical style''  given in \cite{CCHM,OP}. 
 
@@ -171,7 +171,7 @@ An object $X$ is fibrant if and only if both of the pathspace projections $X^{\d
 %
 An analogous statement also holds for maps $f : X\to Y$ in place of objects $X$.
 
-\subsection{Logical specification of partial path lifting}
+\subsection{Local partial path lifting}
 
 To make the connection to the logical style of presentation used in \cite{CCHM,OP}, suppose we want to describe a (uniform) filling structure on an arbitrary $f : X\to Y$ with respect to all generating trivial cofibrations $m \otimes \delta_\epsilon : \I^n +_M (M\times\I) \to \I^{n+1}$,
 \begin{equation}\label{diagram:llpforf}
@@ -180,16 +180,16 @@ To make the connection to the logical style of presentation used in \cite{CCHM,O
 \I^{n}\times \I \ar@{.>}[ru] \ar[r]_c & Y.
 }
 \end{equation}
-By pulling back along $c$, it suffices to consider just the case $Y=\I^{n}\times \I$ and $c$ the identity map. Moreover, since we shall internalize the quantification over all cofibrations $m : M\mono \I^n$ using the classifier $\Phi$, it suffices to consider the following case internally,
+By pulling back along $c$, it suffices to consider  the case $Y=\I^{n}\times \I$ and $c$ the identity map. Moreover, since we shall internalize the quantification over all cofibrations $m : M\mono \I^n$ using the classifier $\Phi$, it suffices to consider just the following case internally,
 \begin{equation}\label{diagram:llpforf2}
 \xymatrix{
 1 +_{[\phi]} ([\phi]\times\I) \ar[d]_{\phi \otimes \delta_\epsilon} \ar[rr]^-{[a_0,s]} && X \ar[d] \\\
 1\times\I \ar@{.>}[rru]_-a \ar[rr]_-{\cong} && \I
 }
 \end{equation}
-where $[\phi] \mono 1$ is classified by $\phi : 1\rightarrow \Phi$.
+where the cofibration $[\phi] \mono 1$ is classified by $\phi : 1\rightarrow \Phi$.
 
-Using a universe $\Set$ in the internal language of $\widehat\C$, we can  regard the family $X\to \I$ internally as a map $P : \I\rightarrow\Set$ (switching notation from $X$ to $P$ to agree with \cite{OP}).  Thus we arrive at the following ``logical'' specification, in the internal language of $\widehat\C$, of the object of ``($0$-directed) lifting structures'' $L^0(P)$ on a family $P: \I\rightarrow\Set$\,:
+Using a universe $\Set$ in the internal language of $\widehat\C$, we can regard the family $X\to \I$ internally as a map $P : \I\rightarrow\Set$ (switching notation from $X$ to $P$ to agree with \cite{OP}).  Thus we arrive at the following local specification, expressed logically in the internal language of $\widehat\C$, of the object of ``($0$-directed) lifting structures'' $L^0(P)$ on a family $P: \I\rightarrow\Set$\,:
 %
 \begin{equation}\label{eqn:pplift}
 L^0(P)\ =\ \prod_{\phi:\Phi}\, \prod_{s: \prod_{i:I}(Pi)^\phi}\, \prod_{a_0:P0}\ a_0 |_\phi = s0\ 
@@ -227,7 +227,7 @@ for the type of sections of the projection $P = \sum_{i:I}Pi \to \I$, and write
 \]
 for the $0^{th}$-projection (i.e.\ the evaluation of $P : \I\to\Set$ at $0:\I$).
 
-Then the (0-directed) partial path-lifting structures on $P$ correspond to $+$-algebra structures on the projection $\pi_0 : \widetilde{P} \to P0$, as follows.
+Then the (0-directed) lifting structures on $P$ correspond to $+$-algebra structures on the projection $\pi_0 : \widetilde{P} \to P0$, as follows.
 
 \begin{proposition}
 For any $ P : \Set^\I$, there is an isomorphism
@@ -235,6 +235,42 @@ For any $ P : \Set^\I$, there is an isomorphism
 L^0(P)\ \cong\ \plusalg{\pi_0 : \widetilde{P} \to P0}\,.
 \]
 \end{proposition}
+%\begin{proof}
+%Consider the following diagram,
+%\begin{equation}\label{diagram:pplext}
+%\xymatrix{
+%&  {\widetilde{P}} \ar[rr] \ar[dd] ^{\pi_0} & &  {\widetilde{P}}\times\I \ar[dd]^{\varepsilon} \\
+%&&& \\
+%& P0 \ar[rr] |>>>>>>>>>>\hole \ar[dd] |\hole & & P \ar[dd] \\
+%[\phi] \ar[ruuu]^>>>>>>>>>>>>{\overline{s}_0} \ar[ru]^>>>>{s0} \ar[rr] \ar@{ >->}[dd] & & [\phi]\!\times\!\I \ar[ruuu]^>>>>>>>>>>>>>{\overline{s}} \ar[ru]^>>>>>>>s \ar@{ >->}[dd] & \\
+%& 1 \ar[rr]_<<<<<<<<<{\delta_0} |>>>>>>>>>>>>>>>>>>\hole & & \I \\
+%\I^n \ar[ru] \ar[rr] \ar[ruuu]|>>>>>>>>>>>>>\hole _{a_0} & & \I^n\!\times\!\I \ar@{.>}[ruuu] _a \ar[ru]_{\pi_2} & }
+%\end{equation}
+%which is \eqref{diagram:ppl}, extended by the counit (evaluation) $\varepsilon : \widetilde{P}\times \I \to P$ over $\I$ on the right, and with $\I^n$ replacing $1$ in order to reason externally.  The pullback of $\varepsilon$ over $\I$ along $\delta_0$ is just $\pi_0 : \widetilde{P} \to P0$.  
+%
+%Given an $L^0(P)$-structure we construct a $\plusalgx$-structure on $\pi_0 : \widetilde{P} \to P0$ as follows: for any $\I^n$ and cofibration $i_\phi : [\phi]\mono \I^n$ and any commutative square,
+%\[
+%\xymatrix{
+%[\phi] \ar@{>->}[d]_{i_\phi} \ar[rr]^{s} & & {\widetilde{P}}  \ar[d]^{\pi_0} \\
+%\I^n \ar[rr]_{a_0} && P0\,,
+%}
+%\]
+%we require a diagonal filler,
+%\[
+%\xymatrix{
+%[\phi] \ar@{>->}[d]_{i_\phi} \ar[rr]^{s} & & {\widetilde{P}}  \ar[d]^{\pi_0} \\
+%\I^n \ar[rr]_{a_0} \ar@{ .>}[rru]_j && P0\,,
+%}
+%\]
+%uniformly in $\I^n$ and $\phi$\,.  Transposing the span formed by $i_\phi$ and $s$ along the adjunction $\I^* \dashv \prod_{\I}$ gives the right-hand square in \eqref{diagram:pplext}, and the commutative square formed by $a_0$ and $\pi_0$ gives the rest of the data in that diagram. Thus the $L^0(P)$-structure gives an $a : \I^n\times\I\to P$ as indicated.  Looking at \eqref{diagram:pplext}, we see that $a$ lifts across $\varepsilon$ to a unique map $\overline{a} : \I^n\times\I\to \widetilde{P}\times\I$ over \I, by the universal property of $\varepsilon : \widetilde{P}\times\I \to P$.  We can therefore set $$j = \delta_0^*( \overline{a}) : \I^n \to \widetilde{P}\,.$$
+%
+%Suppose conversely that we have a $\plusalgx$-structure on $\pi_0 : \widetilde{P} \to P0$, and we want to build a (0-directed) partial path-lifting structure on $P$.  Take any $\I^n, \phi, s, a_0$ as indicated and we require an $a : \I^n\times\I\to P$ over $\I$.    From $s$ we get $\overline{s}$ by the universal property of $\varepsilon$, and therefore we get $\overline{s}_0$ by pullback.   From $\overline{s}_0$ and $a_0$ and the $\plusalgx$ structure on $\pi_0$ we get a map $j : \I^n \to \widetilde{P}$ over $P0$ which is a diagonal filler of the indicated square formed by $i_\phi, \overline{s}_0, a_0$ and $\pi_0$.  We then get the required map $a : \I^n\times\I\to P$ over $\I$ as the ($\I^* \dashv \prod_{\I}$)-transpose of $j$,
+%\[
+%a = \varepsilon \circ(j\times\I)\,.
+%\]
+%
+%We leave to the reader the verification that these assignments are mutually inverse.
+%\end{proof}
 \begin{proof}
 Consider the following diagram,
 \begin{equation}\label{diagram:pplext}
@@ -244,34 +280,33 @@ Consider the following diagram,
 & P0 \ar[rr] |>>>>>>>>>>\hole \ar[dd] |\hole & & P \ar[dd] \\
 [\phi] \ar[ruuu]^>>>>>>>>>>>>{\overline{s}_0} \ar[ru]^>>>>{s0} \ar[rr] \ar@{ >->}[dd] & & [\phi]\!\times\!\I \ar[ruuu]^>>>>>>>>>>>>>{\overline{s}} \ar[ru]^>>>>>>>s \ar@{ >->}[dd] & \\
 & 1 \ar[rr]_<<<<<<<<<{\delta_0} |>>>>>>>>>>>>>>>>>>\hole & & \I \\
-\I^n \ar[ru] \ar[rr] \ar[ruuu]|>>>>>>>>>>>>>\hole _{a_0} & & \I^n\!\times\!\I \ar@{.>}[ruuu] _a \ar[ru]_{\pi_2} & }
+1 \ar[ru] \ar[rr] \ar[ruuu]|>>>>>>>>>>>>>\hole _{a_0} & & 1\!\times\!\I \ar@{.>}[ruuu] _a \ar[ru]_{\pi_2} & }
 \end{equation}
-which is \eqref{diagram:ppl}, extended by the counit (evaluation) $\varepsilon : \widetilde{P}\times \I \to P$ over $\I$ on the right, and with $\I^n$ replacing $1$ in order to reason externally.  The pullback of $\varepsilon$ over $\I$ along $\delta_0$ is just $\pi_0 : \widetilde{P} \to P0$.  
+which is \eqref{diagram:ppl}, extended by the counit (evaluation) $\varepsilon : \widetilde{P}\times \I \to P$ over $\I$ on the right, and with $1$ still representing the domain of a variable to reason internally.  The pullback of $\varepsilon$ over $\I$ along $\delta_0$ is then the map $\pi_0 : \widetilde{P} \to P0$ that we are interested in.  
 
-Given an $L^0(P)$-structure we construct a $\plusalgx$-structure on $\pi_0 : \widetilde{P} \to P0$ as follows: for any $\I^n$ and cofibration $i_\phi : [\phi]\mono \I^n$ and any commutative square,
-\[
+Given an $L^0(P)$-structure, reasoning internally we construct a $\plusalgx$-structure on $\pi_0 : \widetilde{P} \to P0$ as follows: for any cofibration $i_\phi : [\phi]\mono 1$ and any commutative square,
+\begin{equation}\label{diagram:plusfiller}
 \xymatrix{
 [\phi] \ar@{>->}[d]_{i_\phi} \ar[rr]^{s} & & {\widetilde{P}}  \ar[d]^{\pi_0} \\
-\I^n \ar[rr]_{a_0} && P0\,,
+1 \ar[rr]_{a_0} && P0\,,
 }
-\]
+\end{equation}
 we require a diagonal filler,
 \[
 \xymatrix{
 [\phi] \ar@{>->}[d]_{i_\phi} \ar[rr]^{s} & & {\widetilde{P}}  \ar[d]^{\pi_0} \\
-\I^n \ar[rr]_{a_0} \ar@{ .>}[rru]_j && P0\,,
+1 \ar[rr]_{a_0} \ar@{ .>}[rru]_j && P0\,.
 }
 \]
-uniformly in $\I^n$ and $\phi$\,.  Transposing the span formed by $i_\phi$ and $s$ along the adjunction $\I^* \dashv \prod_{\I}$ gives the right-hand square in \eqref{diagram:pplex}, and the commutative square formed by $a_0$ and $\pi_0$ gives the rest of the data in that diagram. Thus the $L^0(P)$-structure gives an $a : \I^n\times\I\to P$ as indicated.  Looking at \eqref{diagram:pplext}, we see that $a$ lifts across $\varepsilon$ to a unique map $\overline{a} : \I^n\times\I\to \widetilde{P}\times\I$ over \I, by the universal property of $\varepsilon : \widetilde{P}\times\I \to P$.  We can therefore set $$j = \delta_0^*( \overline{a}) : \I^n \to \widetilde{P}\,.$$
+Transposing the top left span in \eqref{diagram:plusfiller} formed by $i_\phi$ and $s$ along the adjunction $\I^* \dashv \prod_{\I}$ gives the right-hand square in \eqref{diagram:pplext}, and the commutative square in \eqref{diagram:plusfiller} formed by $a_0$ and $\pi_0$ gives the rest of the data in \eqref{diagram:pplext}. Thus the assumed $L^0(P)$-structure gives an $a : 1\times\I\to P$ as indicated in \eqref{diagram:pplext}.  But then $a$ lifts uniquely across $\varepsilon$ to a map $\overline{a} : 1\times\I\to \widetilde{P}\times\I$ over \I, by the universal property of $\varepsilon : \widetilde{P}\times\I \to P$.  We can therefore set $$j = \delta_0^*( \overline{a}) : 1 \to \widetilde{P}\,.$$
 
-Suppose conversely that we have a $\plusalgx$-structure on $\pi_0 : \widetilde{P} \to P0$, and we want to build a (0-directed) partial path-lifting structure on $P$.  Take any $\I^n, \phi, s, a_0$ as indicated and we require an $a : \I^n\times\I\to P$ over $\I$.    From $s$ we get $\overline{s}$ by the universal property of $\varepsilon$, and therefore we get $\overline{s}_0$ by pullback.   From $\overline{s}_0$ and $a_0$ and the $\plusalgx$ structure on $\pi_0$ we get a map $j : \I^n \to \widetilde{P}$ over $P0$ which is a diagonal filler of the indicated square formed by $i_\phi, \overline{s}_0, a_0$ and $\pi_0$.  We then get the required map $a : \I^n\times\I\to P$ over $\I$ as the ($\I^* \dashv \prod_{\I}$)-transpose of $j$,
+Suppose conversely that we have a $\plusalgx$-structure on $\pi_0 : \widetilde{P} \to P0$, and we want to build a (0-directed) lifting structure on $P$.  Take any $\phi, s, a_0$ as indicated in \eqref{diagram:pplext}, and we require an $a : 1\times\I\to P$ over $\I$.    From $s$ we get $\overline{s}$ by the universal property of $\varepsilon$, and we therefore have $\overline{s}_0$ by pullback.   From $\overline{s}_0$ and $a_0$ and the $\plusalgx$ structure on $\pi_0$ we obtain a map $j : 1 \to \widetilde{P}$ over $P0$ which is a diagonal filler of the indicated square formed by $i_\phi, \overline{s}_0, a_0$ and $\pi_0$.  Finally, we obtain the required map $a : 1\times\I\to P$ over $\I$ as the ($\I^* \dashv \prod_{\I}$)-transpose of $j$,
 \[
 a = \varepsilon \circ(j\times\I)\,.
 \]
 
 We leave to the reader the verification that these assignments are mutually inverse.
 \end{proof}
-
 
 \[
 \xymatrix@=3em{
@@ -291,7 +326,7 @@ B_0 &  \ar[lu]  \ar@/_8ex/ [dd] G \ar[d]^{q'} & \\
 & B_0^{A_1} \ar[r]  & A_0.}
 \]
 
-\section{Undirected partial path lifting}
+\section{Unbiased partial path lifting}
 
 
 
