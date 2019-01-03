@@ -28,6 +28,7 @@
 \newcommand{\Set}{\ensuremath{\mathsf{Set}}}
 \newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
 \newcommand{\covpsh}[1]{\ensuremath{\mathsf{Set}^{#1}}}
+\newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
 %\renewcommand{\to}{\ensuremath{\rightarrow}}
 \newcommand{\pocorner}[1][dr]{\save*!/#1+1.2pc/#1:(1,-1)@^{|-}\restore}
 \newcommand{\pbcorner}[1][dr]{\save*!/#1-1.2pc/#1:(-1,1)@^{|-}\restore}
@@ -123,7 +124,7 @@ See \cite{parker:thesis} for further details.
 \section{Cubical sets}
 
 
-The category $\mathsf{cSet}$ of \emph{cubical sets} is the category of presheaves on the cartesian cube category $\C$,
+The category \cSet\ of \emph{cubical sets} is the category of presheaves on the cartesian cube category $\C$,
 \[
 \mathsf{cSet}\ =\ \psh{\C}\,.
 \]
@@ -134,33 +135,33 @@ and called the \emph{standard $n$-cubes}.
 \section{The cofibration algebraic weak factorization system}
 
 %Cofibrations, partial map classification, the functor $X^+$, the awfs of +-algebras.
-\paragraph{Cofibrations}
-The \emph{cofibrations} are a class of maps in $\mathsf{cSet}$, written $$c : A \mono B\,,$$  
-and assumed to satisy the following axioms:
+\paragraph{Cofibrations.}
+The \emph{cofibrations} are a class $\mathcal{C}$ of maps in $\mathsf{cSet}$, written $$c : A \mono B\,,$$  
+and are assumed to satisy the following axioms:
 \begin{enumerate}
-\item[C1.] All isomorphisms are cofibrations.
-\item[C2.] The composite of two cofibrations is a cofibration.
-\item[C3.] Cofibrations are monomorphisms.
-\item[C4.] Any pullback of a cofibration is a cofibration.
+\item[(C1)] All isomorphisms are cofibrations.
+\item[(C2)] The composite of two cofibrations is a cofibration.
+\item[(C3)] Cofibrations are monomorphisms.
+\item[(C4)] Any pullback of a cofibration is a cofibration.
 \end{enumerate}
 
-By conditions (C3-4), the cofibrant monos are classified by a pointed subobject $\Phi \mono \Omega$ of the standard subobject classifier $\top : 1 \to \Omega$ of $\mathsf{cSet}$. We shall call the canonical factorization $t : 1 \to \Phi$ the \emph{cofibration classifier}, even in the case when $\Phi = \Omega$.
+By conditions (C3-4), the cofibrations are classified by a (pointed) subobject $\Phi \hook \Omega$ (a not necessarily cofibrant mono) of the standard subobject classifier $\top : 1 \to \Omega$ of $\mathsf{cSet}$. We shall call the canonical factorization $t : 1 \to \Phi$ the \emph{cofibration classifier}.  Note that we permit the case where $\Phi = \Omega$, i.e.\ all monos are cofibrant.
 
-\paragraph{Cofibrant partial map classifier}
+\paragraph{Cofibrant partial map classifier.}
 The polynomial endofunctor \cite{GG} determined by the cofibration classifier $t : 1 \to \Phi$ is defined on objects by
 \[
-X\ \mapsto\ \Phi_! t_*(X)\ =\ \sum_{\phi: \Phi}X^{\phi}\,.
+X\ \mapsto\ \Phi_!\,t_*(X)\ =\ \sum_{\phi: \Phi}X^{\phi}\,.
 \]
-We shall call $X^+ := \sum_{\phi: \Phi}X^{\phi}$ the \emph{cofibrant partial map classifier} of $X$.
+We shall write $X^+ := \sum_{\phi: \Phi}X^{\phi}$.
 
 Observe that by the definition of $X^+$ there is a pullback square,
 \[
 \xymatrix{
-X \ar[d]\pbcorner \ar[r]^\eta & X^+ \ar[d]^{t_*X}\\
+X \ar[d]\pbcorner \ar[r] & X^+ \ar[d]^{t_*X}\\
 1 \ar[r]_{t} & \Phi
 }
 \]
-since $t$ is monic. Let $\eta : X\mono X^+$ be the indicated top horizontal map.
+since $t$ is monic. Let $\eta : X\mono X^+$ be the indicated top horizontal map; we call this map the \emph{cofibrant partial map classifier} of $X$.
  
 \begin{proposition}
 The map $\eta : X\mono X^+$ classifies partial maps with cofibrant domain, in the following sense.
@@ -180,26 +181,96 @@ Z \ar[r]_f & X^+\,.
 $\eta : X\mono X^+$ is a cofibration since it is a pullback of $t : 1\to \Phi$. The second statement follows directly from the definition of $X^+$ as a polynomial (see \cite{A:NM}, prop.~7). 
 \end{proof}
 
-\paragraph{+-Algebras}
+\paragraph{The +-Monad.}
 
 \begin{proposition}
-The pointed endofunctor determined by $\eta : X\mono X^+$ has a multiplication $\mu : X^{++} \to X^+$ making it a monad.
+The pointed endofunctor determined by $\eta_X : X\mono X^+$ has a natural multiplication $\mu_X : X^{++} \to X^+$ making it a monad.
 \end{proposition}
 
 \begin{proof}
-Since the cofibrations are closed under composition, the monad structure on $X^+$ follows as in \cite{AN}, proposition nm.  Explicitly, we have the following pullback square.
+Since the cofibrations are closed under composition, the monad structure on $X^+$ follows as in \cite{AN}, proposition nm.  Explicitly, $\mu_X$ is determined as the unique map making the following a pullback diagram.
 \[
 \xymatrix{
 X \ar@{>->}[d]_{\eta_X} \ar[r]^= & X \ar@{>->}[dd]^{\eta}\\
 X^+ \ar@{>->}[d]_{\eta_{X^+}} & \\
-X^{++} \ar[r]_\mu & X^+
+X^{++} \ar@{.>}[r]_\mu & X^+
 }
 \]
 \end{proof}
 
-\paragraph{The cofibration algebraic weak factorizaton system}
+\paragraph{Relative partial map classifier.}
 
+For any object $X\in\cSet$ the usual pullback functor $$X^* : \cSet \to \cSet/X\,,$$ taking any $A$ to the second projection $A\times X\to X$, not only preserves the subobject classifier $\Omega$, but also the cofibration classifier $\Phi \hook \Omega$, where a map in $\cSet/X$ is defined to be a cofibration if it is one in \cSet. Thus in $\cSet/X$ the \emph{(relative) cofibration classifier} is the map
+\[
+t \times X : 1\times X \to \Phi\times X	\quad\text{over $X$}
+\]
+which we may also write $t_X : 1_X \to \Phi_X$.  Like $t : 1\to \Phi$, this map determines a polynomial endofunctor  $$+_X : \cSet/X \to \cSet/X\,,$$ which commutes (up to natural isomorphism) with $+ : \cSet \to \cSet$ and $X^* : \cSet \to \cSet/X$ in the evident way:
+\[
+\xymatrix{
+\cSet/X \ar[r]^{+_X}& \cSet/X \\
+\cSet \ar[u]^{X^*} \ar[r]_+ & \ar[u]_{X^*}\cSet 
+}
+\]
+The endofunctor $+_X$ is also pointed $\eta : Y \to Y^+$ and has a monad multiplication $\mu_Y : Y^{++} \to Y^+$, for any $Y\to X$, for the same reason that $+$ has this structure.  Summarizing, we may say that \emph{the polynomial monad $+ : \cSet \to \cSet$ is fibered over \cSet}.
 
+\paragraph{The factorization system.}
+
+\begin{definition}
+A \emph{$+$-algebra} in \cSet\ is a cubical set $A$ together with a retraction $\alpha : A^+\to A$ of $\eta_A : A \to A^+$, i.e.\ an algebra for the pointed endofunctor $\eta : 1 \to (-)^+$.  Algebras for the monad $(+, \eta, \mu)$ will be referred to specifically as \emph{$(+, \eta, \mu)$-algebras}, or \emph{$+$-monad algebras}. 
+\end{definition}
+
+\begin{proposition}
+There is an (algebraic) weak factoriation system on \cSet\ given by taking as the left class the cofibrations and as the right class the (maps underlying) the relative $+$-algebras. Thus a right map is one $f :A\to X$ for which there is a retract $\alpha : A'\to A$ over $X$ of the canonical map $\eta_f : A\to A'$ over $X$,
+\[
+\xymatrix{
+A\ar[rd]_{f} \ar[r]^{\eta_f} \ar@/^6ex/ [rr]^= & A' \ar[r]^{\alpha} \ar[d]^-{f^+} & \ar[ld]^{f} A \\
+& X. &
+}
+\]
+\end{proposition}
+\begin{proof}
+The factorization of any map $f : Y\to X$ is given simply by applying the (relative) $+$-functor
+\[
+\xymatrix{
+Y\ar[rd]_{f} \ar[r]^{\eta_f} & Y' \ar[d]^-{f^+} \\
+& X. 
+}
+\]
+We know that the unit $\eta_f$ is always a cofibration, and since $f^+$ is the free algebra for the $+$-monad, it is in particular a $+$-algebra.
+
+For the lifting condition, consider a cofibration $c : B\mono C$, a right map $A\to X$, with a $+_X$-algebra structure map $\alpha: A^+ \to A$ over $X$, and a commutative square as indicated in the following.
+\[
+\xymatrix{
+B \ar@{>->}[dd]_{c} \ar[rr]^{g}  && A \ar[dd] \ar[rd]_{\eta} & \\
+ &&& A^+ \ar@/_4ex/ [lu]_\alpha  \ar[ld] \\
+C \ar[rr]_{f} && X &
+}
+\]
+Thus over $X$, we have the situation
+\[
+\xymatrix{
+B\ar@{>->}[d]_{c} \ar[r]^{g} & A \ar[d]^-{\eta} \\
+C \ar@{.>}[ru]_{d} & A^+ \ar@/_4ex/ [u]_\alpha
+}
+\]
+and we seek a diagonal filler as indicated.
+Since $(c,g) : B \leftarrowtail C \to A$ is a cofibrant partial map into $A$, there is a map $\varphi : C \to A^+$ (over X) making a (pullback) square,
+\[
+\xymatrix{
+B\ar@{>->}[d]_{c} \ar[r]^{g} & A \ar[d]^-{\eta} \\
+C \ar@{.>}[r]_{\varphi} & A^+ \ar@/_4ex/ [u]_\alpha
+}
+\]
+We thus have $d := \alpha\circ \varphi : C \to A$ as the required diagonal filler.
+
+The closure of the cofibrations under retracts follows from their classification by a universal object $t : 1 \to \Phi$, and the closure of the right maps under retracts follows from their being the algebras for a pointed endofunctor underlying a monad (cf.~\cite{RV}).  Algebraicity of this weak factorization system also follows directly, since $+$ is a monad.
+\end{proof}
+
+Summarizing, we have a weak factorization system $(\mathcal{L}, \mathcal{R})$ on the category \cSet\ of cubical sets, in which:
+\begin{align*}
+\mathcal{L}\ &=\ \mathcal{C}\quad \text{(the cofibrations)}\\
+\mathcal{R}\ &=\ +\mathsf{Alg}\quad \text{(the $+$-algebras)}\\
+\end{align*}
 
 %%%%%
 \section{Partial path lifting (biased version)}
