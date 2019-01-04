@@ -280,7 +280,7 @@ We shall call this the \emph{cofibration weak factorization system}.
 
 Our next goal is the specification of a second weak factorization system (the \emph{fibration weak factorization system}) with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the fibrations. 
 
-As a warm-up, we first recall the specification of the trivial-cofibration/fibration WFS from \cite{GS}.  (In an appendix we show that these fibrations are the same as those specified in the ``logical style'' of \cite{CCHM,OP}).  We shall then modify the specification of fibrations in order to arrive at an ``unbiased'' version more suitable for the cartesian setting.
+As a warm-up, we first recall the specification of the trivial-cofibration/fibration WFS from \cite{GS}.  (In an appendix we show that these fibrations agree with those specified in the ``logical style'' of \cite{CCHM,OP}).  In the subsequent section we shall modify the specification of fibrations in order to arrive at an ``unbiased'' version more suitable for the cartesian setting.
 
 A \emph{generating class of trivial cofibrations} are all maps of the form
 \begin{equation}\label{eq:genclasstrivcof}
@@ -331,17 +331,17 @@ Z +_C (C\times\I) \ar@{>->}[d]_{c\, \otimes \delta_\epsilon} \ar[r] & Y \ar[d]^f
 Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X\,,
 }
 \end{equation}
-with a generating trivial cofibration on the left, there is a diagonal filler $j$ as indicated.
+with a generating trivial cofibration on the left, there is a diagonal filler $j$ as indicated. This condition can be seen as a generalized homotopy lifting property.
 
-Fixing any map $u : A \to B$, the pushout-product is a functor on the arrow category 
+Now fix any map $u : A \to B$, and recall (e.g. from \cite{R}) that the pushout-product with $u$ is a functor on the arrow category 
 \[
 (-)\!\otimes u : \cSet^\mathbbm{2} \to\cSet^\mathbbm{2}\,.
 \]
-This functor has a right adjoint, the pullback-hom (or ``Leibniz exponential''), which for a map $f : X\to Y$ we will write as
+This functor has a right adjoint, the \emph{pullback-hom} (or ``Leibniz exponential''), which for a map $f : X\to Y$ we will write as
 \[
 (u \Rightarrow\! f) : Y^B \to (X^B \times_{X^A} Y^A) \,.
 \]
-The pullback-hom is determined as indicated in the following diagram (in which the unlabelled maps are the expected ones):
+The pullback-hom is determined as indicated in the following diagram (in which the unlabelled maps are the expected ones).
 \begin{equation}\label{diagram:pullbackhom}
 \xymatrix{
 Y^B \ar@/_4ex/ [rdd] \ar[rd]^{u\, \Rightarrow f} \ar@/^4ex/ [rrd] && \\
@@ -350,7 +350,7 @@ Y^B \ar@/_4ex/ [rdd] \ar[rd]^{u\, \Rightarrow f} \ar@/^4ex/ [rrd] && \\
 }
 \end{equation}
 
-It follows immediately that the pushout-product preserves colimits, and so the fibrations are equivalently determined by right-lifting against a generating \emph{set} of trivial cofibrations, consisting of all those $c \otimes \delta_\epsilon$ in $\mathcal{C}\otimes \delta_\epsilon$ where $c : C \mono Z$ has a representable codomain $Z=\I^n$.  Call these maps the \emph{basic trivial cofibrations}, and let 
+It follows that the pushout-product preserves colimits in the arrow category, and so the fibrations can equivalently be determined by right-lifting against a generating \emph{set} of trivial cofibrations, consisting of all those $c \otimes \delta_\epsilon$ in $\mathcal{C}\otimes \delta_\epsilon$ where $c : C \mono Z$ has a representable codomain $Z=\I^n$.  Call these maps the \emph{basic trivial cofibrations}, and let 
 \begin{equation}\label{eq:basictrivcof}
 \mathcal{B} = \{c \otimes \delta_\epsilon : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\,\epsilon = 0,1\}\,,
 \end{equation}
@@ -371,7 +371,7 @@ for a cofibration $c : C\mono \I^n$, an endpoint $\delta_\epsilon:1 \to \I$, and
 \I^{n}\times \I \ar@{.>}[ru]_{j(c,\epsilon)} \ar[r] & Y,
 }
 \end{equation}
-for each basic trivial cofibration $c \otimes \delta_\epsilon : B = (\I^n +_C (C\times\I)) \mono \I^{n+1}$, which is \emph{uniform} in the following sense: given any cubical map $u : \I^m \to \I^n$, the pullback $u^*c : u^*C\mono \I^m$ of $c : C\mono \I^n$ along $u$ determines another basic trivial cofibration $u^*c \otimes \delta_\epsilon : B' = (\I^m +_{u^*C} (u^*C\times\I)) \mono \I^{m+1}$ which fits into a commutative diagram of the form:
+for each basic trivial cofibration $c \otimes \delta_\epsilon : B = (\I^n +_C (C\times\I)) \mono \I^{n+1}$, which is \emph{uniform} in the following sense: given any cubical map $u : \I^m \to \I^n$, the pullback $u^*c : u^*C\mono \I^m$ of $c : C\mono \I^n$ along $u$ determines another basic trivial cofibration $u^*c \otimes \delta_\epsilon : B' = (\I^m +_{u^*C} (u^*C\times\I)) \mono \I^{m+1}$ which fits into a commutative diagram of the form
 \begin{equation}\label{diagram:directedfillers2}
 \xymatrix{
 \I^m +_{u^*C} (u^*C\times\I) \ar[d]_{u^*c\,\otimes\,\delta_\epsilon} \ar[r] & \I^n +_C (C\times\I) \ar[d]_{c\,\otimes\,\delta_\epsilon} \ar[r] & X \ar[d]^f \\
@@ -386,22 +386,87 @@ j(u^*c,\epsilon) = j(c,\epsilon)\circ (u\times \I).
 \begin{definition} A \emph{(uniform) fibration structure} on a map $f: Y\to X$ is a choice of fillers $j(c,\epsilon)$ as in \eqref{diagram:directedfillers} satisfying \eqref{eq:uniformfillers} for all $u : \I^m\to\I^n$.
 \end{definition}
 
-Clearly, any map $f: Y\to X$  that can be equipped with fibration structure is a fibration in the sense of \eqref{diagram:biasedfillers}.  We shall assume that every fibration comes with a chosen fibration structure. (See \cite{GS} for a proof that such a choice can be made.)  Using the adjunction on the arrow category, one can now show the following:
-\begin{proposition}
-An object $X$ is fibrant if and only if both of the pathspace projections $X^{\delta_\epsilon}: X^\I \to X$  are $+$-algebras. A map $f : X\to Y$ in place of objects $X$ ...
+Clearly, any map $f: Y\to X$  that can be equipped with fibration structure is a fibration in the sense of \eqref{diagram:biasedfillers}.  We shall assume that every fibration comes with a chosen fibration structure. (See \cite{GS} for a proof that such a choice can be made.)  Using the $\otimes\dashv\ \Rightarrow$ adjunction on the arrow category, we can now show the following (cf.~\cite{GG}, prop.~n.m).
+
+\begin{proposition}\label{prop:algequivfill}
+An object $X$ is fibrant if and only if both of the endpoint  projections $X^\I \to X$ from the pathspace are $+$-algebras. More generally, a map $f : Y\to X$ is a fibration iff both of the maps $$(\delta_\epsilon \Rightarrow f) : Y^I \to X^I\times_X Y$$ are $+$-algebras (for $\epsilon = 0,1$).
 \end{proposition}
-%
+\begin{proof}
+The first statement follows from the second, since the pathspace projections $X^\I \to X$  are just the maps 
+$$(\delta_\epsilon \Rightarrow\, !_X) : X^I \to (1^I\times_1 X) \cong X\,,$$
+for $!_X : X \to 1$.
 
+By definition, $f : X\to Y$ is a fibration if every square of the form
+\begin{equation}
+\xymatrix{
+Z +_C (C\times\I) \ar@{>->}[d]_{c\, \otimes\, \delta_\epsilon} \ar[r] & Y \ar[d]^f \\
+Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X\,,
+}
+\end{equation}
+with a generating trivial cofibration $c\, \otimes \delta_\epsilon$ on the left, has is a diagonal filler $j$ as indicated. In brief,
+\[
+(c\otimes\delta_\epsilon)\, \pitchfork\, f \qquad\text{(for all $c\in \mathcal{C}$)}.
+\]
+By the $\otimes\dashv\ \Rightarrow$ adjunction, this is equivalent to the condition  
+\[
+c\, \pitchfork\, (\delta_\epsilon\!\Rightarrow\! f) \qquad\text{(for all $c\in \mathcal{C}$)}.
+\]
+That is, every square 
+\begin{equation*}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r] & Y^I \ar[d]^{\delta_\epsilon \Rightarrow\,f} \\
+Z \ar@{.>}[ru]^{k} \ar[r] & X^I\times_X Y\,,
+}
+\end{equation*}
+with an arbitrary cofibration $c : C \mono Z$ on the left, has is a diagonal filler $k$ as indicated. 
+But this is just to say that the map $\delta_\epsilon\Rightarrow{f}$ is in the right class of the cofibrations, which is equivalent to being a $+$-algebra, as claimed.
+\end{proof}
 
-
-*** ToDo: Spell out the condition for a map $f : X\to Y$, namely that the maps $(\delta_\epsilon \Rightarrow f) : X^I \to Y^I\times_Y X$ are both $+$algebras (for $\epsilon = 0,1$), and then show that it is equivalent to the following ``local'' partial path lifting condition. ***
+Essentially the same argument also yields the following sharper formulation.
+\begin{corollary}
+Fibration structure on a map $f : Y\to X$ is equivalent to a pair of $+$-algebra structures on the maps $$(\delta_\epsilon\Rightarrow{f}) : Y^I \to X^I\times_X Y$$ for $\epsilon = 0,1$.
+\end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Unbiased partial path lifting}
+\section{Unbiased partial path-lifting}
 
 
+Rather than building a weak factorization system based on the foregoing notion of fibration (as is done in \cite{GG,OP}), we shall first eliminate the ``bias'' on a choice of endpoint $\delta_\epsilon : 1 \to \I$, expressed by the indexing $\epsilon = 0,1$.  Consider first the ``path-lifting'' condition, which is a simple special case of \eqref{diagram:biasedfillers} with $c =\, ! : 0\mono 1$, since $!\otimes\delta_\epsilon = \delta_\epsilon$:
+\begin{equation*}
+\xymatrix{
+1 \ar@{>->}[d]_{\delta_\epsilon} \ar[r] & Y \ar[d]^f \\
+\I \ar@{.>}[ru]_{j_\epsilon} \ar[r] & X\,.
+}
+\end{equation*}
+In toplogical spaces, rather than requiring lifts $j_\epsilon$ for each of the endpoints $\epsilon = 0,1$, we could instead require that there be a lift $j_i$ \emph{for each point $i: 1\to\I$ in the real interval $\I = [0,1]$}. Such ``unbiased path-lifting'' can be formulated in \cSet\ by introducing a ``generic point'' $\delta : 1\to \I$, by passing to $\cSet/\I$, and then requiring path-lifting with respect to $\delta$.  The following condition implements that basic idea but also adds partiality in the sense of the foregoing section.
+
+\begin{definition}[Fibration] Let $\delta : \I\to\I\times\I$ be the diagonal map.
+\begin{enumerate}
+\item An object $X$ is \emph{(unbiased) fibrant} if the map 
+\[
+(\delta\Rightarrow\! X) = \langle\mathsf{eval}, p_2\rangle : X^\I \times \I \to X\times \I
+\]
+is a $+$-algebra. 
+\item A map $f : Y\to X$ is an \emph{(unbiased) fibration} if the map 
+\[
+(\delta\Rightarrow\! f) = \langle f^\I\times \I, \langle \mathsf{eval},p_2 \rangle\rangle: Y^I\times \I \to (X^I \times \I)\times_{(X\times \I)} (Y\times\I)
+\]
+is a $+$-algebra.
+\end{enumerate}
+\end{definition}
+
+Now we can play the proof of Proposition \ref{prop:algequivfill} backwards in order to determine a class of generating trivial cofibrations for the unbiased case. We consider pairs of maps $z:Z\to\I$ and $c : C\mono Z$, where the former is regarded as an ``indexing'' and the latter is a cofibration, thus
+\[
+\xymatrix{
+C \ar[rd]_{zc} \ar@{>->}[r]^{c} & Z  \ar[d]^z \\
+& \I
+}
+\]
+can be regarded as an $\I$-indexed family of cofibrations.
 
 
+\begin{proposition}
+\end{proposition}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Appendix 1: Logical specification}
 
