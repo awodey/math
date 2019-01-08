@@ -1,4 +1,4 @@
-\xycompiled{qms-23}{2019/1/4:995 [qms:580]}{Xy-pic 3.8.8}%
+\xycompiled{qms-28}{2019/1/7:1296 [qms:696]}{Xy-pic 3.8.8}%
 {\xymatrixnocompile { & {\widetilde {P}} \ar [rr] \ar [dd] ^{\pi _0} & & {\widetilde {P}}\times \I \ar [dd]^{\varepsilon } \\ &&& \\ & P0 \ar [rr] |>>>>>>>>>>\hole \ar [dd] |\hole & & P \ar [dd] \\ [\phi ] \ar [ruuu]^>>>>>>>>>>>>{\overline {s}_0} \ar [ru]^>>>>{s0} \ar [rr] \ar @{ >->}[dd] & & [\phi ]\!\times \!\I \ar [ruuu]^>>>>>>>>>>>>>{\overline {s}} \ar [ru]^>>>>>>>s \ar @{ >->}[dd] & \\ & 1 \ar [rr]_<<<<<<<<<{\delta _0} |>>>>>>>>>>>>>>>>>>\hole & & \I \\ 1 \ar [ru] \ar [rr] \ar [ruuu]|>>>>>>>>>>>>>\hole _{a_0} & & 1\!\times \!\I \ar @{.>}[ruuu] _a \ar [ru]_{\pi _2} & }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%

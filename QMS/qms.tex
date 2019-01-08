@@ -270,9 +270,53 @@ The closure of the cofibrations under retracts follows from their classification
 Summarizing, we have a weak factorization system $(\mathcal{L}, \mathcal{R})$ on the category \cSet\ of cubical sets, in which:
 \begin{align*}
 \mathcal{L}\ &=\ \mathcal{C}\quad \text{(the cofibrations)}\\
-\mathcal{R}\ &=\ +\mathsf{Alg}\quad \text{(the relative $+$-algebras)}\\
+\mathcal{R}\ &=\ +\mathsf{Alg}\quad \text{(the relative $+$-algebras)}
 \end{align*}
-We shall call this the \emph{cofibration weak factorization system}.
+We shall call this the \emph{cofibration weak factorization system}. As here, we will sometimes say that an object (or map) is a (relative) $+$-algebra when it can be equipped with a (relative) $+$-algebra structure.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Uniform filling structure.}
+
+It will be convenient later to relate $+$-algebra structure and the more familiar diagonal filling condition of weak factorization systems with a special form of the latter that occurs in \cite{CCHM} in the form of a \emph{uniform filling structure}. 
+
+Consider a generating sub\emph{set} of cofibrations, consisting of all those $c\in\mathcal{C}$ where $c : C \mono Z$ has a representable codomain $Z=\I^n$.  Call these maps the \emph{basic cofibrations}, and let 
+\begin{equation}\label{eq:basiccof}
+\mathsf{BCof} = \{c : C\mono \I^n\,|\ c\in \mathcal{C}\}.
+\end{equation}
+%These subobjects $C \mono \I^{n}$ generalize the boundary inclusions.
+
+\begin{proposition} For any object $X$ in \cSet\ the following are equivalent:
+\begin{enumerate}
+\item $X$ is a \emph{$+$-algebra}, i.e.\ there is a retraction $\alpha :X^+ \to X$ of the unit $\eta : X\to X^+$.
+\item $X$ is  \emph{contractible} in the sense that it has the right lifting property with respect to all cofibrations,
+\[
+\mathcal{C}\, \pitchfork\,X.
+\]
+\item $X$ has a \emph{uniform filling structure}: 
+for each basic cofibration $c : C \mono \I^{n}$ and map $x : C\to X$ there is given an extension $j(c,x)$,
+\begin{equation}\label{diagram:directedfillers}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^{x} & X, \\
+\I^{n}\ar@{.>}[ru]_{j(c,x)} &
+}
+\end{equation}
+that is \emph{uniform in $\I^n$} in the following sense: given any cubical map $u : \I^m \to \I^n$, the pullback $u^*c : u^*C\mono \I^m$ is again a basic cofibration and fits into a commutative diagram of the form
+\begin{equation}\label{diagram:directedfillers3}
+\xymatrix{
+u^*C \ar@{>->}[d]_{u^*c} \ar[r]^{c^*u} \pbcorner &  C \ar@{>->}[d]_{c} \ar[r]^{x} & X. \\
+\I^{m} \ar[r]_{u} & \I^{n} \ar@{.>}[ru]_{j(c,x)} &
+}
+\end{equation}
+For the pair $(u^*c,\, x' := x\circ c^*u)$ in \eqref{diagram:directedfillers3} the chosen extension $j(u^*c,x'): \I^m \to X$, then satisfies
+\begin{equation}\label{eq:uniformfillers}
+j(u^*c,x') = j(c,x)\circ (u).
+\end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Yoneda.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Partial path lifting (biased version)}
@@ -333,7 +377,7 @@ Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X\,,
 \end{equation}
 with a generating trivial cofibration on the left, there is a diagonal filler $j$ as indicated. This condition can be seen as a generalized homotopy lifting property.
 
-Now fix any map $u : A \to B$, and recall (e.g. from \cite{R}) that the pushout-product with $u$ is a functor on the arrow category 
+To now relate this notion of fibration to the cofibration weak factorization system, fix any map $u : A \to B$, and recall (e.g. from \cite{R}) that the pushout-product with $u$ is a functor on the arrow category 
 \[
 (-)\!\otimes u : \cSet^\mathbbm{2} \to\cSet^\mathbbm{2}\,.
 \]
@@ -349,44 +393,6 @@ Y^B \ar@/_4ex/ [rdd] \ar[rd]^{u\, \Rightarrow f} \ar@/^4ex/ [rrd] && \\
 & X^B \ar[r] &  X^A 
 }
 \end{equation}
-
-It follows that the pushout-product preserves colimits in the arrow category, and so the fibrations can equivalently be determined by right-lifting against a generating \emph{set} of trivial cofibrations, consisting of all those $c \otimes \delta_\epsilon$ in $\mathcal{C}\otimes \delta_\epsilon$ where $c : C \mono Z$ has a representable codomain $Z=\I^n$.  Call these maps the \emph{basic (biased) trivial cofibrations}, and let 
-\begin{equation}\label{eq:basictrivcof}
-\mathcal{B} = \{c \otimes \delta_\epsilon : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\,\epsilon = 0,1\}\,,
-\end{equation}
-where the pushout-pullback $c\otimes\delta_\epsilon$ now takes the simpler form
-\begin{equation}\label{diagram:basicpushoutproduct}
-\xymatrix{
-C \ar@{>->}[d] \ar[r] & C\times \I \ar[d] \ar@/^4ex/ [rdd]\\
-\I^{n} \ar@/_4ex/ [rrd] \ar[r] &  \I^n +_C (C\times\I) \ar@{>->}[rd]_{m \otimes \delta_\epsilon} \\
-&& \I^{n}\times\I
-}
-\end{equation}
-for a cofibration $c : C\mono \I^n$, an endpoint $\delta_\epsilon:1 \to \I$, and with domain $B = \big(\I^n +_C (C\times\I)\big)$.   These subobjects $B \mono \I^{n+1}$ can be seen geometrically as generalized open box inclusions.
-
-\paragraph{Fibration structure.} For any fibration $f:Y\to X$ a (uniform, biased) fibration structure on $f$ is a choice of diagonal fillers $j(c,\epsilon)$,
-\begin{equation}\label{diagram:directedfillers}
-\xymatrix{
-\I^n +_C (C\times\I) \ar[d]_{c\,\otimes\,\delta_\epsilon} \ar[r] & X \ar[d]^f \\
-\I^{n}\times \I \ar@{.>}[ru]_{j(c,\epsilon)} \ar[r] & Y,
-}
-\end{equation}
-for each basic trivial cofibration $c \otimes \delta_\epsilon : B = (\I^n +_C (C\times\I)) \mono \I^{n+1}$, which is \emph{uniform} in the following sense: given any cubical map $u : \I^m \to \I^n$, the pullback $u^*c : u^*C\mono \I^m$ of $c : C\mono \I^n$ along $u$ determines another basic trivial cofibration $u^*c \otimes \delta_\epsilon : B' = (\I^m +_{u^*C} (u^*C\times\I)) \mono \I^{m+1}$ which fits into a commutative diagram of the form
-\begin{equation}\label{diagram:directedfillers2}
-\xymatrix{
-\I^m +_{u^*C} (u^*C\times\I) \ar[d]_{u^*c\,\otimes\,\delta_\epsilon} \ar[r] & \I^n +_C (C\times\I) \ar[d]_{c\,\otimes\,\delta_\epsilon} \ar[r] & X \ar[d]^f \\
-\I^{m}\times \I  \ar[r]_{u\times \I} & \I^{n}\times \I \ar@{.>}[ru]_{j(c,\epsilon)} \ar[r] & Y,
-}
-\end{equation}
-by applying the functor $(-)\otimes\,\delta_\epsilon$ to the pullback square relating $u^*c$ to $c$.  Now for the outer rectangle in \eqref{diagram:directedfillers2} there is a chosen diagonal filler $j(u^*c,\epsilon): \I^m\times\I\to X$, and for this map we require that
-\begin{equation}\label{eq:uniformfillers}
-j(u^*c,\epsilon) = j(c,\epsilon)\circ (u\times \I).
-\end{equation}
-
-\begin{definition} A \emph{(uniform, biased) fibration structure} on a map $f: Y\to X$ is a choice of fillers $j(c,\epsilon)$ as in \eqref{diagram:directedfillers} satisfying \eqref{eq:uniformfillers} for all $u : \I^m\to\I^n$.
-\end{definition}
-
-Clearly, any map $f: Y\to X$  that can be equipped with fibration structure is a fibration in the sense of \eqref{diagram:biasedfillers}.  We shall assume that every fibration comes with a chosen fibration structure. (See \cite{GS} for a proof that such a choice can always be made.)  
 
 Using the $\otimes\dashv\ \Rightarrow$ adjunction on the arrow category, we can now show the following (cf.~\cite{GG}, prop.~n.m).
 
@@ -420,14 +426,54 @@ C \ar@{>->}[d]_{c} \ar[r] & Y^I \ar[d]^{\delta_\epsilon \Rightarrow\,f} \\
 Z \ar@{.>}[ru]^{k} \ar[r] & X^I\times_X Y\,,
 }
 \end{equation*}
-with an arbitrary cofibration $c : C \mono Z$ on the left, has is a diagonal filler $k$ as indicated, for  $\epsilon = 0,1$. 
-But this is just to say that the maps $\delta_\epsilon\Rightarrow{f}$ are in the right class of the cofibrations, which is equivalent to being $+$-algebras, as claimed.
+with an arbitrary cofibration $c : C \mono Z$ on the left, there is a diagonal filler $k$ as indicated, for  $\epsilon = 0,1$. 
+But this is just to say that the maps $\delta_\epsilon\Rightarrow{f}$ are in the right class of the cofibrations, which is equivalent to their being $+$-algebras, as claimed.
 \end{proof}
 
-Essentially the same argument also yields the following sharper formulation.
+\paragraph{Fibration structure.}
+It follows from the $\otimes\dashv\ \Rightarrow$ adjunction that the pushout-product preserves colimits in the arrow category.  Thus we see that the fibrations can equivalently be determined by right-lifting against a generating \emph{set} of trivial cofibrations, consisting of all those $c \otimes \delta_\epsilon$ in $\mathcal{C}\otimes \delta_\epsilon$ where $c : C \mono Z$ has a representable codomain $Z=\I^n$.  Call these maps the \emph{basic (biased) trivial cofibrations}, and let 
+\begin{equation}\label{eq:basictrivcof}
+\mathcal{B} = \{c \otimes \delta_\epsilon : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\,\epsilon = 0,1\}\,,
+\end{equation}
+where the pushout-pullback $c\otimes\delta_\epsilon$ now takes the simpler form
+\begin{equation}\label{diagram:basicpushoutproduct}
+\xymatrix{
+C \ar@{>->}[d] \ar[r] & C\times \I \ar[d] \ar@/^4ex/ [rdd]\\
+\I^{n} \ar@/_4ex/ [rrd] \ar[r] &  \I^n +_C (C\times\I) \ar@{>->}[rd]_{m \otimes \delta_\epsilon} \\
+&& \I^{n}\times\I
+}
+\end{equation}
+for a cofibration $c : C\mono \I^n$, an endpoint $\delta_\epsilon:1 \to \I$, and with domain $B = \big(\I^n +_C (C\times\I)\big)$.   These subobjects $B \mono \I^{n+1}$ can be seen geometrically as generalized open box inclusions.
+
+For any fibration $f:Y\to X$  a (uniform, biased) fibration structure on $f$ is a choice of diagonal fillers $j(c,\epsilon)$,
+\begin{equation}\label{diagram:directedfillers}
+\xymatrix{
+\I^n +_C (C\times\I) \ar[d]_{c\,\otimes\,\delta_\epsilon} \ar[r] & X \ar[d]^f \\
+\I^{n}\times \I \ar@{.>}[ru]_{j(c,\epsilon)} \ar[r] & Y,
+}
+\end{equation}
+for each basic trivial cofibration $c \otimes \delta_\epsilon : B = (\I^n +_C (C\times\I)) \mono \I^{n+1}$, which is \emph{uniform} in the following sense: given any cubical map $u : \I^m \to \I^n$, the pullback $u^*c : u^*C\mono \I^m$ of $c : C\mono \I^n$ along $u$ determines another basic trivial cofibration $u^*c \otimes \delta_\epsilon : B' = (\I^m +_{u^*C} (u^*C\times\I)) \mono \I^{m+1}$ which fits into a commutative diagram of the form
+\begin{equation}\label{diagram:directedfillers2}
+\xymatrix{
+\I^m +_{u^*C} (u^*C\times\I) \ar[d]_{u^*c\,\otimes\,\delta_\epsilon} \ar[r] & \I^n +_C (C\times\I) \ar[d]_{c\,\otimes\,\delta_\epsilon} \ar[r] & X \ar[d]^f \\
+\I^{m}\times \I  \ar[r]_{u\times \I} & \I^{n}\times \I \ar@{.>}[ru]_{j(c,\epsilon)} \ar[r] & Y,
+}
+\end{equation}
+by applying the functor $(-)\otimes\,\delta_\epsilon$ to the pullback square relating $u^*c$ to $c$.  Now for the outer rectangle in \eqref{diagram:directedfillers2} there is a chosen diagonal filler $j(u^*c,\epsilon): \I^m\times\I\to X$, and for this map we require that
+\begin{equation}\label{eq:uniformfillers}
+j(u^*c,\epsilon) = j(c,\epsilon)\circ (u\times \I).
+\end{equation}
+This is a reformulation of the logical specification given in \cite{CCHM} (see the appendix).
+
+\begin{definition} A \emph{(uniform, biased) fibration structure} on a map $f: Y\to X$ is a choice of fillers $j(c,\epsilon)$ as in \eqref{diagram:directedfillers} satisfying \eqref{eq:uniformfillers} for all $u : \I^m\to\I^n$.
+\end{definition}
+
+Essentially the same argument as that given for Proposition \ref{prop:algequivfill} also yields the following sharper formulation in terms of fibration structure.
 \begin{corollary}
 Fibration structure on a map $f : Y\to X$ is equivalent to a pair of $+$-algebra structures on the maps $$(\delta_\epsilon\Rightarrow{f}) : Y^I \to X^I\times_X Y$$ for $\epsilon = 0,1$.
 \end{corollary}
+
+Finally, it is clear that any map $f: Y\to X$  that can be equipped with a fibration structure is a fibration in the sense of \eqref{diagram:biasedfillers}.  Conversely, it can be shown that every fibration in the latter sense can be equipped with a fibration structure (see \cite{GS}).  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Unbiased partial path-lifting}
@@ -440,21 +486,13 @@ Rather than building a weak factorization system based on the foregoing notion o
 \I \ar@{.>}[ru]_{j_\epsilon} \ar[r] & X\,.
 }
 \end{equation*}
+(Note that $0\mono 1$ is a cofibration by axioms C4 and C5).
 
-?????????????
+In toplogical spaces, rather than requiring lifts $j_\epsilon$ for each of the endpoints $\epsilon = 0,1$, we could instead require that there be a lift $j_i$ \emph{for each point $i: 1\to\I$ in the real interval $\I = [0,1]$}. Such ``unbiased path-lifting'' can be formulated in \cSet\ by introducing a ``generic point'' $\delta : 1\to \I$, by passing to $\cSet/\I$, and then requiring path-lifting with respect to $\delta$.  The following specification implements that  idea, while also adding partiality in the sense of the foregoing section.  We need the following strengthening of axiom C5.
 
-Do we need to ask that $0\mono 1$ is a cofibration?
-
-???????????????????
-
-
-In toplogical spaces, rather than requiring lifts $j_\epsilon$ for each of the endpoints $\epsilon = 0,1$, we could instead require that there be a lift $j_i$ \emph{for each point $i: 1\to\I$ in the real interval $\I = [0,1]$}. Such ``unbiased path-lifting'' can be formulated in \cSet\ by introducing a ``generic point'' $\delta : 1\to \I$, by passing to $\cSet/\I$, and then requiring path-lifting with respect to $\delta$.  The following condition implements that basic idea, while also adding partiality in the sense of the foregoing section.
-
-??????????
-
-add $\delta : \I\to\I\times\I$ is a cofibration?
-
-???????????
+\begin{enumerate}
+\item[(C5')] The diagonal map $\delta : \I\to\I\times\I$ is a cofibration.  
+\end{enumerate}
 
 \begin{definition}[Fibration] Let $\delta : \I\to\I\times\I$ be the diagonal map.
 \begin{enumerate}
@@ -471,7 +509,7 @@ is a $+$-algebra.
 \end{enumerate}
 \end{definition}
 
-Now we can play the proof of Proposition \ref{prop:algequivfill} backwards in order to determine a class of generating trivial cofibrations for the unbiased case. We consider pairs of maps $c : C\mono Z$ and $z:Z\to\I$, where the former is a cofibration and the latter is regarded as an ``indexing'', so that
+Now we can play the proof of Proposition \ref{prop:algequivfill} backwards in order to determine a class of generating trivial cofibrations for the unbiased case. We consider pairs of maps $c : C\mono Z$ and $z:Z\to\I$, where the former is a cofibration and the latter is regarded as an ``$\I$-indexing'', so that
 \[
 \xymatrix{
 C \ar[rd] \ar@{>->}[r]^{c} & Z  \ar[d]^z \\
@@ -482,7 +520,7 @@ can be regarded as an $\I$-indexed family of cofibrations.  Let
 \[
 \mathsf{Gph}(z) : Z\to Z\times\I\,,
 \]
-be the graph of $z : Z\to \I$, and then let
+be the graph of $z : Z\to \I$, i.e.\ $\mathsf{Gph}(z) = \langle 1_Z, z\rangle$, and then let
 \[
 c \otimes_z\!\delta := [\mathsf{Gph}(z), c\times\I] : Z+_C(C\times\I) \to Z\times \I\,,
 \]
@@ -495,15 +533,47 @@ Z \ar@/_4ex/ [rrd]_{\mathsf{Gph}(z)} \ar[r] &  Z +_C (C\times\I) \ar@{.>}[rd]_{c
 }
 \end{equation}
 
-?????Question?????
+This specification differs from the similar \eqref{diagram:pushoutproduct} by using $\mathsf{Gph}(z)$ for the inclusion $Z\mono Z\times\I$, rather than one of the ``face maps'' associated to the endpoint inclusions $\delta_\epsilon : 1\to\I$. (Note that a graph is always a cofibration by pulling back a diagonal.)
 
-need graph is a cofibration?
-
-
-This specification differs from the similar \eqref{diagram:pushoutproduct} by using the graph of $z$ for the inclusion $Z\mono Z\times\I$, rather than a ``face map'' associated to an endpoint inclusion $\delta_\epsilon : 1\to\I$. 
-
+The maps of the form $c\otimes_z\delta : Z +_C (C\times\I) \mono Z$  now form a \emph{class of generating trivial cofibrations} in the expected sense: Let 
+\[
+\mathcal{C}\otimes\delta\ =\ \{ c \otimes_z \delta : D \mono Z \times \I\ |\ c : C\mono Z, z:Z\to\I \}\,,
+\]
+then the fibrations are exactly the right class $(\mathcal{C}\otimes\delta)^{\pitchfork}$ of these.
 \begin{proposition}
+A map $f: Y\to X$ is an unbiased  fibration iff for every pair of maps $c : C\mono Z$ and $z:Z\to\I$, where the former is a cofibration, every commutative square of the following form has a diagonal filler, as indicated.
+\begin{equation}\label{diagram:unbiasedfibration}
+\xymatrix{
+Z +_C (C\times\I) \ar@{>->}[d]_{c\, \otimes_z\, \delta} \ar[r] & Y \ar[d]^f \\
+Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X.
+}
+\end{equation}
 \end{proposition}
+
+\begin{proof}
+
+\end{proof}
+
+As in the biased case, the fibrations can also be determined by right-lifting against a generating \emph{set} of trivial cofibrations, now consisting of all those $c \otimes_z \delta$ in $\mathcal{C}\otimes \delta$ where $c : C \mono Z$ has a representable codomain $Z=\I^n$.  Call these maps the \emph{basic (unbiased) trivial cofibrations}, and let 
+\begin{equation}\label{eq:basicunbiasedtrivcof}
+\mathcal{B} = \{c \otimes_z \delta : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\, z : \I^n \to \I\}\,,
+\end{equation}
+where the pushout-product $c\otimes_z \delta$ now has the form
+\begin{equation}\label{diagram:unbiasedbasicpushoutproduct}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^{\mathsf{Gph}(zc)} & C\times \I \ar[d] \ar@/^4ex/ [rdd]^{c\times\I}\\
+\I^n \ar@/_4ex/ [rrd]_{\mathsf{Gph}(z)} \ar[r] &  \I^n +_C (C\times\I) \ar@{.>}[rd]_{c\, \otimes_z \delta} \\
+&& \I^n\times\I\,.
+}
+\end{equation}
+for a cofibration $c : C\mono \I^n$, a indexing map $z : \I^n \to \I$, and with domain $B = \big(\I^n +_C (C\times\I)\big)$.   These subobjects $B \mono \I^{n+1}$ can again be seen geometrically as ``generalized open box'' inclusions, but now the floor or lid of the open box may be replaced by cross-section, given by the graph of a map $z:\I^n\to \I$.
+
+
+Essentially the same argument as that given for Proposition \ref{prop:algequivfill} also yields the following sharper formulation in terms of fibration structure.
+\begin{corollary}
+Fibration structure on a map $f : Y\to X$ is equivalent to $+$-algebra structure on the map $(\delta\Rightarrow{f})$.
+\end{corollary}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Appendix 1: Logical specification}
 
