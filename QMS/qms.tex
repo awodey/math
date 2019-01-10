@@ -42,7 +42,7 @@
 % arrows
 \newcommand{\hook}{\ensuremath{\hookrightarrow}}
 \newcommand{\mono}{\ensuremath{\rightarrowtail}}
-%\newcommand{\epi}{\ensuremath{\twoheadrightarrow}}
+\newcommand{\ra}{\ensuremath{\rightarrow}}
 
 
 % cubical sets
@@ -272,7 +272,10 @@ Summarizing, we have a weak factorization system $(\mathcal{L}, \mathcal{R})$ on
 \mathcal{L}\ &=\ \mathcal{C}\quad \text{(the cofibrations)}\\
 \mathcal{R}\ &=\ +\mathsf{Alg}\quad \text{(the relative $+$-algebras)}
 \end{align*}
-We shall call this the \emph{cofibration weak factorization system}. As here, we will sometimes say that an object (or map) is a (relative) $+$-algebra when it can be equipped with a (relative) $+$-algebra structure.
+We shall call this the \emph{cofibration weak factorization system}. As here, we will sometimes say that an object (or map) is a (relative) $+$-algebra when it can be equipped with a (relative) $+$-algebra structure; such maps will also be called \emph{trivial fibrations} and the class of all such will be denoted $\mathsf{TrivFib}$,
+\[
+\mathcal{C}^\pitchfork = \mathsf{TrivFib}.
+\]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Uniform filling structure.}
@@ -285,7 +288,7 @@ Consider a generating sub\emph{set} of cofibrations, consisting of all those $c\
 \end{equation}
 %These subobjects $C \mono \I^{n}$ generalize the boundary inclusions.
 
-\begin{proposition} For any object $X$ in \cSet\ the following are equivalent:
+\begin{proposition}\label{prop:uniformstructequiv} For any object $X$ in \cSet\ the following are equivalent:
 \begin{enumerate}
 \item $X$ is a \emph{$+$-algebra}, i.e.\ there is a retraction $\alpha :X^+ \to X$ of the unit $\eta : X\to X^+$.
 \item $X$ is  \emph{contractible} in the sense that it has the right lifting property with respect to all cofibrations,
@@ -433,7 +436,7 @@ But this is just to say that the maps $\delta_\epsilon\Rightarrow{f}$ are in the
 \paragraph{Fibration structure.}
 It follows from the $\otimes\dashv\ \Rightarrow$ adjunction that the pushout-product preserves colimits in the arrow category.  Thus we see that the fibrations can equivalently be determined by right-lifting against a generating \emph{set} of trivial cofibrations, consisting of all those $c \otimes \delta_\epsilon$ in $\mathcal{C}\otimes \delta_\epsilon$ where $c : C \mono Z$ has a representable codomain $Z=\I^n$.  Call these maps the \emph{basic (biased) trivial cofibrations}, and let 
 \begin{equation}\label{eq:basictrivcof}
-\mathcal{B} = \{c \otimes \delta_\epsilon : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\,\epsilon = 0,1\}\,,
+\mathcal{B}\otimes \delta_\epsilon = \{c \otimes \delta_\epsilon : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\,\epsilon = 0,1\}\,,
 \end{equation}
 where the pushout-pullback $c\otimes\delta_\epsilon$ now takes the simpler form
 \begin{equation}\label{diagram:basicpushoutproduct}
@@ -465,15 +468,15 @@ j(u^*c,\epsilon) = j(c,\epsilon)\circ (u\times \I).
 \end{equation}
 This is a reformulation of the logical specification given in \cite{CCHM} (see the appendix).
 
-\begin{definition} A \emph{(uniform, biased) fibration structure} on a map $f: Y\to X$ is a choice of fillers $j(c,\epsilon)$ as in \eqref{diagram:directedfillers} satisfying \eqref{eq:uniformfillers} for all $u : \I^m\to\I^n$.
+\begin{definition}\label{def:uniform} A \emph{(uniform, biased) fibration structure} on a map $f: Y\to X$ is a choice of fillers $j(c,\epsilon)$ as in \eqref{diagram:directedfillers} satisfying \eqref{eq:uniformfillers} for all $u : \I^m\to\I^n$.
 \end{definition}
 
 Essentially the same argument as that given for Proposition \ref{prop:algequivfill} also yields the following sharper formulation in terms of fibration structure.
-\begin{corollary}
+\begin{corollary}\label{cor:fibstrequivplustr}
 Fibration structure on a map $f : Y\to X$ is equivalent to a pair of $+$-algebra structures on the maps $$(\delta_\epsilon\Rightarrow{f}) : Y^I \to X^I\times_X Y$$ for $\epsilon = 0,1$.
 \end{corollary}
 
-Finally, it is clear that any map $f: Y\to X$  that can be equipped with a fibration structure is a fibration in the sense of \eqref{diagram:biasedfillers}.  Conversely, it can be shown that every fibration in the latter sense can be equipped with a fibration structure (see \cite{GS}).  
+Finally, it is clear that any map $f: Y\to X$  that can be equipped with a fibration structure is a fibration in the sense of \eqref{diagram:biasedfillers}.  Conversely, it can be shown that every fibration in the latter sense can be equipped with a fibration structure, as in Proposition \ref{prop:uniformstructequiv}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Unbiased partial path-lifting}
@@ -533,7 +536,7 @@ Z \ar@/_4ex/ [rrd]_{\mathsf{Gph}(z)} \ar[r] &  Z +_C (C\times\I) \ar@{.>}[rd]_{c
 }
 \end{equation}
 
-This specification differs from the similar \eqref{diagram:pushoutproduct} by using $\mathsf{Gph}(z)$ for the inclusion $Z\mono Z\times\I$, rather than one of the ``face maps'' associated to the endpoint inclusions $\delta_\epsilon : 1\to\I$. (Note that a graph is always a cofibration by pulling back a diagonal.)
+This specification differs from the similar \eqref{diagram:pushoutproduct} by using $\mathsf{Gph}(z)$ for the inclusion $Z\mono Z\times\I$, rather than one of the ``face maps'' associated to the endpoint inclusions $\delta_\epsilon : 1\to\I$. (Note that a graph is always a cofibration by pulling back a diagonal.)  The subobject $c \otimes_z\!\delta \mono Z\times \I$ is the join of the subobjects $\mathsf{Gph}(z) \mono Z\times \I$ and the cylinder $C\times \I \mono Z\times \I$.
 
 The maps of the form $c\otimes_z\delta : Z +_C (C\times\I) \mono Z$  now form a \emph{class of generating trivial cofibrations} in the expected sense: Let 
 \[
@@ -554,9 +557,11 @@ Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X.
 
 \end{proof}
 
-As in the biased case, the fibrations can also be determined by right-lifting against a generating \emph{set} of trivial cofibrations, now consisting of all those $c \otimes_z \delta$ in $\mathcal{C}\otimes \delta$ where $c : C \mono Z$ has a representable codomain $Z=\I^n$.  Call these maps the \emph{basic (unbiased) trivial cofibrations}, and let 
+\paragraph{Unbiased fibration structure.}
+
+As in the biased case, the fibrations can also be determined by right-lifting against a generating \emph{set} of trivial cofibrations, now consisting of all those $c \otimes_z \delta$ in $\mathcal{C}\otimes \delta$ for which $c : C \mono Z$ has a representable codomain $Z=\I^n$.  Call these maps the \emph{basic (unbiased) trivial cofibrations}, and let 
 \begin{equation}\label{eq:basicunbiasedtrivcof}
-\mathcal{B} = \{c \otimes_z \delta : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\, z : \I^n \to \I\}\,,
+\mathcal{B}\otimes \delta = \{c \otimes_z \delta : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\, z : \I^n \to \I\}\,,
 \end{equation}
 where the pushout-product $c\otimes_z \delta$ now has the form
 \begin{equation}\label{diagram:unbiasedbasicpushoutproduct}
@@ -566,13 +571,224 @@ C \ar@{>->}[d]_{c} \ar[r]^{\mathsf{Gph}(zc)} & C\times \I \ar[d] \ar@/^4ex/ [rdd
 && \I^n\times\I\,.
 }
 \end{equation}
-for a cofibration $c : C\mono \I^n$, a indexing map $z : \I^n \to \I$, and with domain $B = \big(\I^n +_C (C\times\I)\big)$.   These subobjects $B \mono \I^{n+1}$ can again be seen geometrically as ``generalized open box'' inclusions, but now the floor or lid of the open box may be replaced by cross-section, given by the graph of a map $z:\I^n\to \I$.
+for a cofibration $c : C\mono \I^n$, a indexing map $z : \I^n \to \I$, and with domain $B = \big(\I^n +_C (C\times\I)\big)$.   These subobjects $B \mono \I^{n+1}$ can again be seen geometrically as ``generalized open box'' inclusions, but now the floor or lid of the open box may be replaced by a cross-section, given by the graph of a map $z:\I^n\to \I$.
+
+For any map $f:Y\to X$  a (uniform, unbiased) fibration structure on $f$ is a choice of diagonal fillers $j(c,\epsilon)$,
+\begin{equation}\label{diagram:basicunbiasedfillers}
+\xymatrix{
+\I^n +_C (C\times\I) \ar[d]_{c\,\otimes_z\delta} \ar[r] & X \ar[d]^f \\
+\I^{n}\times \I \ar@{.>}[ru]_{j(c,z)} \ar[r] & Y,
+}
+\end{equation}
+for each basic trivial cofibration $c \otimes_z \delta : B \mono \I^{n+1}$, which is \emph{uniform} in $\I^n$ in the following sense: given any cubical map $u : \I^m \to \I^n$, the pullback $u^*c : u^*C\mono \I^m$ and the reindexing $zu : \I^m \to \I^n\to\I$ determine another basic trivial cofibration $u^*c \otimes_{zu} \delta : B' = (\I^m +_{u^*C} (u^*C\times\I)) \mono \I^{m+1}$ which fits into a commutative diagram of the form
+\begin{equation}\label{diagram:basicunbiasedfillersuniformity}
+\xymatrix{
+\I^m +_{u^*C} (u^*C\times\I) \ar[d]_{u^*c\,\otimes_{zu}\delta} \ar[r] & \I^n +_C (C\times\I) \ar[d]_{c\,\otimes_z\delta} \ar[r] & X \ar[d]^f \\
+\I^{m}\times \I  \ar[r]_{u\times \I} & \I^{n}\times \I \ar@{.>}[ru]_{j(c,z)} \ar[r] & Y.
+}
+\end{equation}
+%by applying the functor $(-)\otimes_z\delta$ to the pullback square relating $u^*c$ to $c$.  
+For the outer rectangle in \eqref{diagram:basicunbiasedfillersuniformity} there is a chosen diagonal filler $j(u^*c,zu): \I^m\times\I\to X$, and for this map we require that
+\begin{equation}\label{eq:uniformunbiasedfillers}
+j(u^*c,zu) = j(c,z)\circ (u\times \I).
+\end{equation}
+%This is a reformulation of the logical specification given in \cite{CCHM} (see the appendix).
+
+\begin{definition}\label{def:unbiasedfibstructure} A \emph{(uniform, unbiased) fibration structure} on a map $$f: Y\to X$$ is a choice of fillers $j(c,z)$ as in \eqref{diagram:basicunbiasedfillers} satisfying \eqref{eq:uniformunbiasedfillers} for all $u : \I^m\to\I^n$.
+\end{definition}
+
+In these terms, we have following analogue of Proposition \ref{prop:uniformstructequiv}.
+
+\begin{proposition}\label{prop:equivfibrstruc} For any object $X$ in \cSet\ the following are equivalent:
+\begin{enumerate}
+\item the canonical map $X^\I\times \I \to X\times \I$ is a \emph{$+$-algebra}.
+
+\item $X$ has the right lifting property with respect to all generating trivial cofibrations,
+\[
+(\mathcal{C}\otimes\delta)\, \pitchfork\,X.
+\]
+
+\item $X$ has a \emph{uniform fibration structure} in the sense of Definition \ref{def:unbiasedfibstructure}.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+Yoneda.
+\end{proof}
 
 
-Essentially the same argument as that given for Proposition \ref{prop:algequivfill} also yields the following sharper formulation in terms of fibration structure.
+A statement analogous to Proposition \ref{prop:equivfibrstruc} also holds for maps $f:Y\to X$ in place of objects $X$.  Indeed, as before, we have the following sharper formulation.
+
 \begin{corollary}
-Fibration structure on a map $f : Y\to X$ is equivalent to $+$-algebra structure on the map $(\delta\Rightarrow{f})$.
+Fibration structures on a map $f : Y\to X$ correspond uniquely to $+$-algebra structures on the map $(\delta\Rightarrow{f})$.
 \end{corollary}
+
+\section{The fibration weak factorization system}
+
+Summarizing the foregoing definitions and results, we have the following classes of maps:
+
+\begin{itemize}
+\item  The set of \emph{basic trivial cofibrations} was determined to be
+\begin{equation}\label{eq:basicunbiasedtrivcof}
+\mathcal{B}\otimes\delta = \{c \otimes_z \delta : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\, z : \I^n \to \I\}\,,
+\end{equation}
+where the pushout-product $c\otimes_z \delta$ has the form
+\begin{equation}\label{diagram:unbiasedbasicpushoutproduct2}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^{\mathsf{Gph}(zc)} & C\times \I \ar[d] \ar@/^4ex/ [rdd]^{c\times\I}\\
+\I^n \ar@/_4ex/ [rrd]_{\mathsf{Gph}(z)} \ar[r] &  \I^n +_C (C\times\I) \ar@{.>}[rd]_{c\, \otimes_z \delta} \\
+&& \I^n\times\I\,.
+}
+\end{equation}
+for any basic cofibration $c : C\mono \I^n$ and indexing map $z : \I^n \to \I$, with domain $B = \big(\I^n +_C (C\times\I)\big)$.
+
+\item The class $\mathcal{F}$ of \emph{fibrations}, written $f : Y\epi X$, may be characterized as the right class of these,
+\[
+(\mathcal{B}\otimes\delta)^\pitchfork\, =\,\mathcal{F}.
+\]
+
+\item The class of \emph{trivial cofibrations} is then defined to be left class of the fibrations,
+\[
+\mathsf{TrivCof}\, =\, ^{\pitchfork}\mathcal{F}.
+\]
+\end{itemize}
+
+It follows that the classes $\mathsf{TrivCof}$ and $\mathcal{F}$ are mutually weakly orthogonal,
+\[
+\mathsf{TrivCof}\, {\pitchfork}\, \mathcal{F},
+\]
+and are both closed under retracts, so it just remains to show that every map $f: X\to Y$ can be factored as $f  = g\circ h$ with $g\in \mathcal{F}$ and $h\in \mathsf{TrivCof}$.
+
+\begin{proposition}
+Every map $f: X\to Y$ in \cSet\ can be factored as $f  = g\circ h$,
+\begin{equation}%\label{diagram:factorize}
+\xymatrix{
+X \ar[rd]_{f} \ar@{>->}[r]^h & X'\ar@{->>}[d]^g\\
+& Y
+}
+\end{equation}
+with $h: X\mono X'$ a trivial cofibration and $g: X'\epi Y$ a fibration.
+\end{proposition}
+\begin{proof}
+This is a standard argument (cf.~\cite{Quillen,Garner}), which can be simplified a bit in this particular case.  We sketch the proof for the case $Y=1$; the general case is not essentially different.
+
+Thus let $X$ be any object, and we wish to find a fibrant object $X'$ and a trivial cofibration $h : X\mono X'$.
+For each basic trivial cofibration $\beta : B\mono \I^{k}$, we need to solve all extension problems of the form
+\begin{equation}\label{diagram:extensionforX}
+\xymatrix{
+B \ar@{>->}[d]_{\beta} \ar[r]^x & X.\\
+\ \I^{k} \ar@{..>}[ru]&
+}
+\end{equation}
+We first combine these into a single problem by taking a coproduct over all maps $x : B\ra X$,
+\begin{equation*}%\label{diagram:factorize}
+\xymatrix{
+{{\displaystyle\coprod_{x: B\ra X}} B} {\ar@{>->}[dd]_-{\displaystyle\coprod_{x: B\ra X}\beta}} {\ar[rr]^{[x]}} && X.\\
+&&\\
+{{\displaystyle\coprod_{x: B\ra X}} \I^{k}} {\ar@{..>}[rruu]} &&
+}
+\end{equation*}
+%Observe  that if $\beta = c \otimes_z \delta : \big(\I^n +_C (C\times\I)\big) \mono \I^{n+1} $ is a basic trivial cofibration with cofibration $c : C\mono \I^n$ and indexing map $z : \I^n \to \I$, then for any object $Z$, the map $Z\times \beta = (Z\times c) \otimes_{zp_2} \delta : \big((Z\times\I^n) +_{(Z\times C)} (Z\times C\times\I)\big) \mono Z\times\I^{n+1} $  is a generating trivial cofibration with cofibration $Z\times c : Z\times C\mono Z\times\I^n$ and indexing map $zp_2 : Z\times \I^n \to \I^n \to \I$.  
+%
+We then take the coproduct over all basic trivial cofibrations $\beta : B\mono \I^k$,
+\begin{equation*}%\label{diagram:factorize}
+\xymatrix{
+{\displaystyle\coprod_{\beta: B\mono\I^k}} {{\displaystyle\coprod_{x: B\ra X}} B} {\ar@{>->}[dd]_-{{\displaystyle\coprod_{\beta: B\mono\I^k}} \displaystyle\coprod_{x: B\ra X}\beta}} {\ar[rr]^-{[[x]_\beta]}} && X.\\
+&&\\
+{\displaystyle\coprod_{\beta: B\mono\I^k}} {{\displaystyle\coprod_{x: B\ra X}} \I^{k}} {\ar@{..>}[rruu]} &&
+}
+\end{equation*}
+%\begin{equation*}%\label{diagram:factorize}
+%\xymatrix{
+%{\displaystyle\coprod_{\beta: B\mono\I^k}} {X^B \times B} \ar@{>->}[dd]_{{\displaystyle\coprod_{\beta: B\mono\I^k}}X^B \times\beta} \ar[rr]^-{[\mathsf{eval}_\beta]} && X,\\
+%&&\\
+%{\displaystyle\coprod_{\beta: B\mono\I^k}}X^B \times \I^{k} \ar@{..>}[rruu]&&
+%}
+%\end{equation*}
+Note that a coproduct of trivial cofibrations is clearly a trivial cofibration. 
+
+Taking a pushout, the indicated map $h_1$ is then also a trivial cofibration because it is a pushout of one
+\begin{equation*}%\label{diagram:factorize}
+\xymatrix{
+{\displaystyle\coprod_{\beta: B\mono\I^k}} {{\displaystyle\coprod_{x: B\ra X}} B} {\ar@{>->}[dd]_-{{\displaystyle\coprod_{\beta: B\mono\I^k}} \displaystyle\coprod_{x: B\ra X}\beta}} {\ar[rr]^-{[[x]_\beta]}} && X \ar@{>->}[dd]_{h_1}.\\
+&&\\
+{\displaystyle\coprod_{\beta: B\mono\I^k}} {{\displaystyle\coprod_{x: B\ra X}} \I^{k}}{\ar[rr]} && {\pocorner} X_1
+}
+\end{equation*}
+Now iterate the construction to get a sequence of trivial cofibrations, of which we take $X'$ to be the colimit and $h :X\to X'$ the canonical map,
+\begin{equation*}%\label{diagram:factorize}
+\xymatrix{
+h:X \ar@{>->}[r]_-{h_1} & X_1 \ar@{>->}[r]_-{h_2} & X_2 \ar@{>->}[r]_-{h_3} \ar@{>->}[r] & \dots\ \ar@{>->}[r] & {\varinjlim X_n} = X'.
+}
+\end{equation*}
+
+To show that $X'$ is fibrant, consider an extension problem of the form \eqref{diagram:extensionforX} with $X'$ in place of $X$,
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+B \ar@{>->}[d]_{\beta} \ar[r]^-x & {\varinjlim X_n}\\
+\ \I^{k} \ar@{..>}[ru]&
+}
+\end{equation*}
+The subobject $B\mono \I^k$ has as domain an object $B$ that is a \emph{finite} colimit of maps $\I^m \ra \I^n$ of representables (as can be seen by considering sieves in the category of cubes), and is therefore finitely presented, in the sense that mapping out of it preserves filtered colimits.  Thus the map $x: B \to {\varinjlim X_n}$ must factor through some $x_k: B \to X_k$, giving rise to the problem
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+B \ar@{>->}[d]_{\beta} \ar[r]^-{x_k}  & X_k \ar[d] \\
+\ \I^{k} \ar@{..>}[r] &  {\varinjlim X_n}.
+}
+\end{equation*}
+But this has a solution in the next step, by the construction of $X_{k+1}$,
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+B \ar@{>->}[d]_{\beta} \ar[r]^-{x_k} & X_k \ar[d]^{h_{k+1}} \\
+\ \I^{k} \ar[r]  \ar@{..>}[rd] &  X_{k+1}\ar[d]\\
+& {\varinjlim X_n}.
+}
+\end{equation*}
+Thus $X'$ is fibrant.  Finally, $h : X\mono X'$ is clearly a trivial cofibration, as a sequential colimit of such. 
+\end{proof}
+
+We therefore have shown the following.
+
+\begin{proposition}
+There is a weak factorization system on the category \cSet\ in which the right maps are the fibrations and the left maps are the trivial cofibrations.
+\end{proposition}
+
+This will be called the \emph{fibration weak factorization system}.
+
+\section{Weak equivalences}
+
+\begin{definition}[Weak equivalence]
+A map $f: X\to Y$ in \cSet\ will be called a \emph{weak equivalence} if can be factored as $f  = g\circ h$,
+\begin{equation*}%\label{diagram:factorize}
+\xymatrix{
+X \ar[rd]_{f} \ar[r]^h & W\ar[d]^g\\
+& Y
+}
+\end{equation*}
+with $h: X\ra W$ a trivial cofibration and $g: W\ra Y$ a trivial fibration, i.e.\ a right map in the cofibration weak factorization system. Let 
+\[
+\mathcal{W} = \{f: X\to Y |\ f = g\circ h\ \text{for $g\in\mathsf{TrivFib}$ and $h\in\mathsf{TrivCof}$} \}
+\]
+ be the class of weak equivalences.
+\end{definition}
+
+Now observe that every trivial fibration $f\in\mathcal{C}^\pitchfork$ is indeed a fibration, because the basic trivial cofibrations are cofibrations; moreover, every trivial fibration is also a weak equivalence, since the identity maps are trivial cofibrations.  Thus we have
+\[
+\mathsf{TrivFib} \subseteq (\mathcal{W} \cap \mathcal{F}).
+\]
+Dually, every trivial cofibration $g\in{^{\pitchfork}\mathcal{F}}$ is a cofibration, because the trivial fibrations are fibrations; moreover, every trivial cofibration is also a weak equivalence, since the identity maps are trivial fibrations.  Thus we also have
+\[
+\mathsf{TrivCof} \subseteq (\mathcal{C} \cap \mathcal{W}).
+\]
+
+\begin{lemma}
+Let 
+\end{lemma}
+
+
+%%%%
+\end{document}
+%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Appendix 1: Logical specification}
