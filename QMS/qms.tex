@@ -717,11 +717,11 @@ Taking a pushout, the indicated map $h_1$ is then also a trivial cofibration bec
 }
 \end{equation*}
 Now iterate the construction to get a sequence of trivial cofibrations, of which we take $X'$ to be the colimit and $h :X\to X'$ the canonical map,
-\begin{equation*}%\label{diagram:factorize}
+\begin{equation}\label{def:fibrepl}
 \xymatrix{
 h:X \ar@{>->}[r]_-{h_1} & X_1 \ar@{>->}[r]_-{h_2} & X_2 \ar@{>->}[r]_-{h_3} \ar@{>->}[r] & \dots\ \ar@{>->}[r] & {\varinjlim X_n} = X'.
 }
-\end{equation*}
+\end{equation}
 
 To show that $X'$ is fibrant, consider an extension problem of the form \eqref{diagram:extensionforX} with $X'$ in place of $X$,
 \begin{equation*}%\label{diagram:extensionforX}
@@ -755,6 +755,12 @@ There is a weak factorization system on the category \cSet\ in which the right m
 \end{proposition}
 
 This will be called the \emph{fibration weak factorization system}.
+The following observation, which is easily proved, will be of use later on.
+
+\begin{corollary}
+The  construction given in \eqref{def:fibrepl} of the \emph{fibrant replacement}, $$X' = \varinjlim_n X_n$$ is functorial in $X$, and the canonical trivial cofibrations $h:X\mono X'$ are natural in $X$.
+\end{corollary}
+
 
 \section{Weak equivalences}
 
@@ -830,6 +836,37 @@ and therefore two weak factorization systems:
 \end{proposition}
 
 It thus remains ``only'' to prove that the weak equivalences satisfy the 3-for-2 property.
+
+\paragraph{Weak homotopy equivalence}
+
+Recall that a \emph{homotopy} between parallel maps $f, g: X\rightrightarrows Y$, written $\vartheta : f \sim g$,  is a map from the cylinder,
+\[
+\vartheta : \I\times X \to Y,
+\]
+such that $\vartheta \circ \mathsf{Gph}(\delta_0!) = f$ and $\vartheta \circ \mathsf{Gph}(\delta_1!) = g$.  
+
+Recall further that a map $f: X\to Y$ in \cSet\ is called a \emph{homotopy equivalence} if there is a \emph{quasi-inverse} $g: Y\to X$ and homotopies $\vartheta : 1_X \sim g\circ f$ and $\varphi : 1_Y\sim f\circ g$.
+
+\begin{definition}[Weak homotopy equivalence]
+A map $f: X\to Y$ will be called a \emph{weak homotopy equivalence} if the associated map between fibrant replacements $f' : X' \to Y'$ is a homotopy equivalence.
+\end{definition}
+
+\begin{proposition}
+If $Y$ is fibrant, then the relation of homotopy $f \sim g$ between maps $f,g: X\rightrightarrows Y$ is an equivalence relation.  Moreover, homotopy equivalences $f : X\ra Y$ between fibrant objects $X, Y$ satisfy the 3-for-2 condition. 
+\end{proposition}
+
+\begin{corollary}
+The weak homotopy equivalences $f : X\ra Y$ (among any objects $X, Y$) satisfy the 3-for-2 condition. 
+\end{corollary}
+
+Thus our goal of showing that the weak equivalences satisfy 3-for-2 is reduced to the following:
+\begin{proposition}
+A map $f: X\to Y$ is a weak equivalence if and only if it is a weak homotopy equivalence.
+\end{proposition}
+%
+For the proof, we will require several lemmas.
+
+
 
 %%%%
 \end{document}
