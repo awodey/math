@@ -837,37 +837,42 @@ and therefore two weak factorization systems:
 
 It thus remains ``only'' to prove that the weak equivalences satisfy the 3-for-2 property.
 
-%\paragraph{Weak homotopy equivalence}
+\paragraph{Weak homotopy equivalence}
+
+Recall that a \emph{homotopy} between parallel maps $f, g: X\rightrightarrows Y$, written $\vartheta : f \sim g$,  is a map from the cylinder,
+\[
+\vartheta : \I\times X \to Y,
+\]
+such that $\vartheta \circ \mathsf{Gph}(\delta_0!) = f$ and $\vartheta \circ \mathsf{Gph}(\delta_1!) = g$.  
+
+\begin{proposition}
+If $K$ is fibrant, then the relation of homotopy $f \sim g$ between maps $f,g: X\rightrightarrows K$ is an equivalence relation.  Moreover, it is compatible with composition. 
+\end{proposition}
+
+\begin{definition}[Connected components]
+The functor $$\pi_0 : \cSet\to\Set$$ is the left adjoint of the constant presheaf functor $\Delta : \Set\ra\cSet$.  For any cubical set $X$ we have a coequalizer $X_1\rightrightarrows X_0\ra \pi_0X$, where the two parallel arrows are the endpoints of the 1-cubes $X_1$ of $X$.   Thus for any Kan complex $K$ we have $\pi_0K = \hom(1,K)/\!\sim$, i.e.\ $\pi_0K$ is the set of points $1\ra K$, modulo the homotopy equivalence relation on them.
+\end{definition}
+
+Recall that a map $f: X\ra Y$ in \cSet\ is called a \emph{homotopy equivalence} if there is a \emph{quasi-inverse} $g: Y\ra X$ and homotopies $\vartheta : 1_X \sim g\circ f$ and $\varphi : 1_Y\sim f\circ g$.
+
+\begin{definition}[Weak homotopy equivalence]
+A map $f: X\ra Y$ will be called a \emph{weak homotopy equivalence} if for every fibrant object $K$, the ``internal precomposition'' map $K^f : K^Y \ra K^X$ is bijective on connected components, i.e.\  $$\pi_0K^f : \pi_0K^Y \to \pi_0K^X$$ is a bijection of sets.
+\end{definition}
+
+
+\begin{corollary}
+The weak homotopy equivalences $f : X\ra Y$ satisfy the 3-for-2 condition. 
+\end{corollary}
+
+Thus our goal of showing that the weak equivalences satisfy 3-for-2 is reduced to the following:
+\begin{proposition}
+A map $f: X\ra Y$ is a weak equivalence if and only if it is a weak homotopy equivalence.
+\end{proposition}
 %
-%Recall that a \emph{homotopy} between parallel maps $f, g: X\rightrightarrows Y$, written $\vartheta : f \sim g$,  is a map from the cylinder,
-%\[
-%\vartheta : \I\times X \to Y,
-%\]
-%such that $\vartheta \circ \mathsf{Gph}(\delta_0!) = f$ and $\vartheta \circ \mathsf{Gph}(\delta_1!) = g$.  
-%
-%Recall further that a map $f: X\to Y$ in \cSet\ is called a \emph{homotopy equivalence} if there is a \emph{quasi-inverse} $g: Y\to X$ and homotopies $\vartheta : 1_X \sim g\circ f$ and $\varphi : 1_Y\sim f\circ g$.
-%
-%\begin{definition}[Weak homotopy equivalence]
-%A map $f: X\to Y$ will be called a \emph{weak homotopy equivalence} if the associated map between fibrant replacements $f' : X' \to Y'$ is a homotopy equivalence.
-%\end{definition}
-%
-%\begin{proposition}
-%If $Y$ is fibrant, then the relation of homotopy $f \sim g$ between maps $f,g: X\rightrightarrows Y$ is an equivalence relation.  Moreover, homotopy equivalences $f : X\ra Y$ between fibrant objects $X, Y$ satisfy the 3-for-2 condition. 
-%\end{proposition}
-%
-%\begin{corollary}
-%The weak homotopy equivalences $f : X\ra Y$ (among any objects $X, Y$) satisfy the 3-for-2 condition. 
-%\end{corollary}
-%
-%Thus our goal of showing that the weak equivalences satisfy 3-for-2 is reduced to the following:
-%\begin{proposition}
-%A map $f: X\ra Y$ is a weak equivalence if and only if it is a weak homotopy equivalence, i.e.\ iff $f' : X'\ra Y'$ is a homotopy equivalence.
-%\end{proposition}
-%%
-%For the proof, we will require several lemmas.
-%
-%
-%
+For the proof, we will require several lemmas.
+
+
+
 %%%%
 \end{document}
 %%%%
