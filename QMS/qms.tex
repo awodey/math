@@ -869,7 +869,20 @@ Thus our goal of showing that the weak equivalences satisfy 3-for-2 is reduced t
 A map $f: X\ra Y$ is a weak equivalence if and only if it is a weak homotopy equivalence.
 \end{proposition}
 %
-For the proof, we will require several lemmas.
+
+For the proof, in addition to several lemmas, we will require the following proposition, the proof of which is deferred to the next section.
+
+\begin{proposition}
+Every fibration is a pullback of one over a fibrant object.  More precisely, for every fibration $f : Y\epi  X$ there exists a fibrant object $K$, a map $X\to K$, and a fibration $p : Z\epi K$ fitting into a pullback square,
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+Y \ar@{>>}[d]_{f} \ar[r] & Z \ar@{>>}[d]^{p} \\
+X \ar[r] &  K.
+}
+\end{equation*}
+\end{proposition}
+%
+This proposition is a consequence of several stronger ones, e.g.\ the equivalence extension property of \cite{Sattler:EEP}, but we will prefer to prove it directly.
 
 
 
