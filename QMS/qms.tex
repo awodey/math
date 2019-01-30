@@ -835,11 +835,11 @@ and therefore two weak factorization systems:
 \]
 \end{proposition}
 
-It thus remains ``only'' to prove that the weak equivalences satisfy the 3-for-2 property.
+It thus just remains to prove that the weak equivalences satisfy the 3-for-2 property.
 
 \paragraph{Weak homotopy equivalence}
 
-Recall that a \emph{homotopy} between parallel maps $f, g: X\rightrightarrows Y$, written $\vartheta : f \sim g$,  is a map from the cylinder,
+Recall that a \emph{homotopy} between parallel maps $f, g: X\rightrightarrows Y$, written $\vartheta : f \sim g$,  is a map from the cylinder of $X$,
 \[
 \vartheta : \I\times X \to Y,
 \]
@@ -871,6 +871,56 @@ A map $f: X\ra Y$ is a weak equivalence if and only if it is a weak homotopy equ
 %
 For the proof, we will require several lemmas.
 
+
+\begin{lemma}\label{lemma:FibWEtoWHE}
+A fibration $ f : Y \mono X$ that is a WE is a WHE.
+\end{lemma}
+\begin{proof}
+Let $c : A\mono B$ be a cofibration with a factorization $c = tf\circ tc : A \to W\to B$ where $tc\in\mathsf{TrivCof}$ and $tf\in\mathsf{TrivFib}$.  Let $f:Y\epi X$ be a fibration and consider a commutative diagram,
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+A \ar@{>->}[d]_{c} \ar[r]^-{a}  & Y \ar@{>>}[d]^{f} \\
+B \ar[r]_{b} &  X.
+}
+\end{equation*}
+\end{proof}
+
+\begin{lemma}\label{lemma:CofWEtoWHE}
+A cofibration $ c : A \mono B$ that is a WE is a WHE.
+\end{lemma}
+
+\begin{lemma}\label{lemma:FibWHEtoWE}
+A fibration $ f : Y \mono X$ that is a WHE is a WE and thus $f\in\mathsf{TrivFib}.$
+\end{lemma}
+
+%\begin{lemma}\label{lemma:CofLiftFibCod}
+%A cofibration $ c : A \mono B$ WHE is a WE if it lifts against any fibration $f : Y\to K$ with fibrant codomain.
+%\end{lemma}
+
+\begin{lemma}\label{lemma:CofWHEiffFibLift}
+A cofibration $ c : A \mono B$ is a WHE if and only if it lifts against any fibration $f : Y\to K$ with fibrant codomain.
+\end{lemma}
+%
+\begin{proof}
+Let $c : A\mono B$ be a cofibration and a WHE. 
+By lemma \ref{lemma:CofLiftFibCod}, $c$ is a trivial cofibration if $c\pitchfork f$ for every fibration $f:Y\epi K$ with fibrant codomain $K$. 
+Consider such a lifting problem,
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+A \ar@{>->}[d]_{c} \ar[r]^-{a}  & Y \ar@{>>}[d]^{f} \\
+B \ar[r]_{b} &  K.
+}
+\end{equation*}
+
+
+with a factorization $c = tf\circ tc : A \to W\to B$ where $tc\in\mathsf{TrivCof}$ and $tf\in\mathsf{TrivFib}$.  
+
+\end{proof}
+
+\begin{lemma}\label{lemma:CofWHEiffFibLift}
+A cofibration $ c : A \mono B$ is a WE if it lifts against any fibration $f : Y\to K$ with fibrant codomain.
+\end{lemma}
+%
 
 
 %%%%
