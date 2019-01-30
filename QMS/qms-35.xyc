@@ -1,4 +1,4 @@
-\xycompiled{qms-35}{2019/1/9:1166 [qms:734]}{Xy-pic 3.8.8}%
+\xycompiled{qms-35}{2019/1/29:1290 [qms:738]}{Xy-pic 3.8.8}%
 {\xymatrixnocompile { B \ar @{>->}[d]_{\beta } \ar [r]^-{x_k} & X_k \ar [d] \\ \ \I ^{k} \ar @{..>}[r] & {\varinjlim X_n}. }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%
