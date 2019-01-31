@@ -849,6 +849,9 @@ such that $\vartheta \circ \mathsf{Gph}(\delta_0!) = f$ and $\vartheta \circ \ma
 \begin{proposition}
 If $K$ is fibrant, then the relation of homotopy $f \sim g$ between maps $f,g: X\rightrightarrows K$ is an equivalence relation.  Moreover, it is compatible with composition. 
 \end{proposition}
+\begin{proof}
+???1
+\end{proof}
 
 \begin{definition}[Connected components]
 The functor $$\pi_0 : \cSet\to\Set$$ is the left adjoint of the constant presheaf functor $\Delta : \Set\ra\cSet$.  For any cubical set $X$ we have a coequalizer $X_1\rightrightarrows X_0\ra \pi_0X$, where the two parallel arrows are the endpoints of the 1-cubes $X_1$ of $X$.   Thus for any Kan complex $K$ we have $\pi_0K = \hom(1,K)/\!\sim$, i.e.\ $\pi_0K$ is the set of points $1\ra K$, modulo the homotopy equivalence relation on them.
@@ -860,55 +863,57 @@ Recall that a map $f: X\ra Y$ in \cSet\ is called a \emph{homotopy equivalence} 
 A map $f: X\ra Y$ will be called a \emph{weak homotopy equivalence} if for every fibrant object $K$, the ``internal precomposition'' map $K^f : K^Y \ra K^X$ is bijective on connected components, i.e.\  $$\pi_0K^f : \pi_0K^Y \to \pi_0K^X$$ is a bijection of sets.
 \end{definition}
 
-
-\begin{corollary}
-The weak homotopy equivalences $f : X\ra Y$ satisfy the 3-for-2 condition. 
-\end{corollary}
-
-Thus our goal of showing that the weak equivalences satisfy 3-for-2 is reduced to the following:
-\begin{proposition}
-A map $f: X\ra Y$ is a weak equivalence if and only if it is a weak homotopy equivalence.
-\end{proposition}
-%
-
-For the proof, in addition to several lemmas, we will require the following proposition, the proof of which is deferred to the next section.
-
-\begin{proposition}
-Every fibration is a pullback of one over a fibrant object.  More precisely, for every fibration $f : Y\epi  X$ there exists a fibrant object $K$, a map $X\to K$, and a fibration $p : Z\epi K$ fitting into a pullback square,
-\begin{equation*}%\label{diagram:extensionforX}
-\xymatrix{
-Y \ar@{>>}[d]_{f} \ar[r] & Z \ar@{>>}[d]^{p} \\
-X \ar[r] &  K.
-}
-\end{equation*}
-\end{proposition}
-%
-This proposition is a consequence of several stronger ones, e.g.\ the equivalence extension property of \cite{Sattler:EEP}. It is easily seen to be equivalent to the following special case.
-\begin{lemma}\label{lemma:fibextreplace}
-GIven any fibration $ f : Y \mono X$ and a trivial cofibration $\eta: X\ra X'$ to a fibrant object $X'$,
-there is a fibration $f' : Y' \epi X'$ such that $f$ is a pullback of $f'$ along $\eta$. 
+The following is almost immediate:
+\begin{lemma}\label{lemma:HEisWHE}
+A homotopy equivalence is weak homotopy equivalence.
 \end{lemma}
 
-\begin{lemma}\label{lemma:FibWEtoWHE}
-A fibration $ f : Y \mono X$ that is a WE is a WHE.
+\begin{lemma}
+The weak homotopy equivalences $f : X\ra Y$ satisfy the 3-for-2 condition. 
 \end{lemma}
 \begin{proof}
-Let $c : A\mono B$ be a cofibration with a factorization $c = tf\circ tc : A \to W\to B$ where $tc\in\mathsf{TrivCof}$ and $tf\in\mathsf{TrivFib}$.  Let $f:Y\epi X$ be a fibration and consider a commutative diagram,
+Follows from the corresponding fact about bijections of sets.
+\end{proof}
+
+Thus our goal of showing that the weak equivalences satisfy 3-for-2 is reduced to showing that a map is a weak equivalence (WE) if and only if it is a weak homotopy equivalence (WHE). This is proved via separate lemmas showing that a (co)fibration is a WE if and only if it is a WHE. 
+
+\begin{lemma}\label{lemma:FibWEtoWHE}
+A fibration $ p : Y \epi X$ that is a WE is a WHE.
+\end{lemma}
+\begin{proof}
+A fibration weak equivalence $f : Y\epi X$ is a trivial fibration, and therefore has a section $s: X\to Y$ (by lifting against the cofibration $0\mono X$.  Moreover, there is a homotopy $\vartheta : sf \sim 1_Y$, resulting from the lifting problem
+
+???2
 \begin{equation*}%\label{diagram:extensionforX}
-\xymatrix{
-A \ar@{>->}[d]_{c} \ar[r]^-{a}  & Y \ar@{>>}[d]^{f} \\
-B \ar[r]_{b} &  X.
-}
+%\xymatrix{
+%Y+Y \ar@{>->}[d]_{} \ar[r]^{}  & Y^\I \ar@{>>}[d]\\
+%Y \ar[r]_{\langle sf,1_Y\rangle} & Y\times Y.
+%}
 \end{equation*}
+Thus $f$ is a homotopy equivalence, and so a WHE by lemma \ref{HEisWHE}.
 \end{proof}
 
 \begin{lemma}\label{lemma:CofWEtoWHE}
-A cofibration $ c : A \mono B$ that is a WE is a WHE.
+A cofibration $c : A \mono B$ that is a WE is a WHE.
 \end{lemma}
 
-\begin{lemma}\label{lemma:FibWHEtoWE}
-A fibration $ f : Y \mono X$ that is a WHE is a WE and thus $f\in\mathsf{TrivFib}.$
+\begin{proof}
+Let the cofibration $c : A \mono B$ be a WE, so a trivial cofibration. 
+
+????3
+\end{proof}
+
+
+\begin{lemma}\label{CofWHEfibCodTrivCof}
+If $K$ is fibrant, any cofibration $c : A \mono K$ that is a WHE is a WE.
 \end{lemma}
+
+\begin{proof}
+Let the cofibration $c : A \mono K$ be a WHE.
+
+???4
+\end{proof}
+
 
 \begin{lemma}[\cite{Cisinski:??}, x.n.m]\label{lemma:CofWHEiffFibLift}
 A cofibration $ c : A \mono B$ is a WHE if and only if it lifts against all fibrations $f : Y\epi K$ with fibrant codomain.
@@ -940,11 +945,29 @@ B \ar[r]_{\eta} \ar@{-->}[ru]_{j} &  B'
 }
 \end{equation*}
 there is a diagonal filler $j : B\ra Y$.  Moreover, there is a section $s$ of $p$ with $s\eta = j$, since $\eta$ is a trivial cofibration. This exhibits $\eta c$ as a retract of $i$, and therefore also a trivial cofibration, and so a WHE.  Thus $c$ is also a WHE by 3 for 2.
-
 \end{proof}
 
+%\begin{proposition}
+%Every fibration is a pullback of one over a fibrant object.  More precisely, for every fibration $f : Y\epi  X$ there exists a fibrant object $K$, a map $X\to K$, and a fibration $p : Z\epi K$ fitting into a pullback square,
+%\begin{equation*}%\label{diagram:extensionforX}
+%\xymatrix{
+%Y \ar@{>>}[d]_{f} \ar[r] & Z \ar@{>>}[d]^{p} \\
+%X \ar[r] &  K.
+%}
+%\end{equation*}
+%\end{proposition}
+%%
+%This proposition is a consequence of several stronger ones, e.g.\ the equivalence extension property of \cite{Sattler:EEP}. It is easily seen to be equivalent to the following special case.
+
+To complete the proof that a cofibration WHE is a WE we require following fact, the proof of which is deferred to the next section.
+
+\begin{lemma}[Fibration extension]\label{lemma:fibextreplace}
+GIven a fibration $ f : Y \epi X$ and a trivial cofibration $\eta: X\ra X'$,
+there is a fibration $f' : Y' \epi X'$ such that $f$ is a pullback of $f'$ along $\eta$. 
+\end{lemma}
+
 \begin{lemma}\label{lemma:CofWEiffFibLift}
-A cofibration $ c : A \mono B$ is a WE, and thus a trivial cofibration, if it lifts against any fibration $f : Y\epi K$ with fibrant codomain.
+A cofibration that lifts against every fibration $f : Y\epi K$ with fibrant codomain is a WE.
 \end{lemma}
 
 \begin{proof}
@@ -973,10 +996,30 @@ B \ar[r]_{b} \ar@{-->}[ru]^{j} \ar@{-->}[rru]_{\quad j'} &  X  \ar[r]_\eta &  X'
 Thus $yjc = j'c = ya$.  But as a trivial cofibration, $\eta$ is monic, and as a pullback of $\eta$, $y$ is also monic. So $jc=a$.
 \end{proof}
 
-The previous two lemmas \ref{lemma:CofWHEiffFibLift} and \ref{lemma:CofWEiffFibLift} now combine to give.
+Combining the previous two lemmas \ref{lemma:CofWHEiffFibLift} and \ref{lemma:CofWEiffFibLift} we now have.
 \begin{corollary}\label{cor:CofWHEtoWE}
-A cofibration $ c : A \mono B$ that is a WHE is a WE and thus a trivial cofibration.
+A cofibration $ c : A \mono B$ that is a WHE is a WE.
 \end{corollary}
+
+Finally, we can show:
+
+\begin{lemma}\label{lemma:FibWHEtoWE}
+A fibration $ f : Y \epi X$ that is a WHE is a WE.
+\end{lemma}
+\begin{proof}
+Factor $ f : Y \epi X$ into a cofibration $i : Y\mono Z$ followed by a trivial fibration $p: Z\epi X$.  Then $f$ is a trivial fibration if $i\pitchfork f$, for then $f$ is a retract of $p$.  Since $p$ is a trivial fibration, it is a WHE by lemma \ref{lemma:FibWEtoWHE}.  Since $f$ is also a WHE, so is $i$ by 3-for-2.  Thus $i$ is a trivial cofibration by corollary \ref{cor:CofWHEtoWE}. Since $f$ is a fibration, $i\pitchfork f$ as required.
+\end{proof}
+
+\begin{proposition}\label{prop:WHEiffWE}
+A map $ f : X \mono Y$ is a WHE if and only if it is a WE.  Thus the weak equivalences $\mathcal{W}$ satisfy the 3-for-2 condition.
+\end{proposition}
+\begin{proof}
+Let $ f : X \epi Y$ be a WE and factor it into a trivial cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$.  Then both 
+$i$ and $p$ are WHE, whence so it $f$.  Conversely, let $f$ be a WHE and factor it into a trivial cofibration $i : X\mono Z$ followed by a fibration $p: Z\epi Y$. Since  $i$ is then a WHE, as is $f$, it follows that $p$ is as well.  Thus $p$ is also a WE, hence a trivial fibration. So $f$ is a WE.
+\end{proof}
+
+\section{The fibration extension property}
+
 
 %%%%
 \end{document}
