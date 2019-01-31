@@ -863,7 +863,7 @@ Recall that a map $f: X\ra Y$ in \cSet\ is called a \emph{homotopy equivalence} 
 A map $f: X\ra Y$ will be called a \emph{weak homotopy equivalence} if for every fibrant object $K$, the ``internal precomposition'' map $K^f : K^Y \ra K^X$ is bijective on connected components, i.e.\  $$\pi_0K^f : \pi_0K^Y \to \pi_0K^X$$ is a bijection of sets.
 \end{definition}
 
-The following is almost immediate:
+The following is immediate.
 \begin{lemma}\label{lemma:HEisWHE}
 A homotopy equivalence is weak homotopy equivalence.
 \end{lemma}
@@ -875,32 +875,60 @@ The weak homotopy equivalences $f : X\ra Y$ satisfy the 3-for-2 condition.
 Follows from the corresponding fact about bijections of sets.
 \end{proof}
 
-Thus our goal of showing that the weak equivalences satisfy 3-for-2 is reduced to showing that a map is a weak equivalence (WE) if and only if it is a weak homotopy equivalence (WHE). This is proved via separate lemmas showing that a (co)fibration is a WE if and only if it is a WHE. 
-
-\begin{lemma}\label{lemma:FibWEtoWHE}
-A fibration $ p : Y \epi X$ that is a WE is a WHE.
+\begin{lemma}\label{lem:WHEunwound}
+A map $f : X\ra Y$ is a \emph{weak homotopy equivalence} iff it satisfies the following two conditions.
+\begin{enumerate}
+\item For every fibrant object $K$, every map $x : X \ra K$ extends up to homotopy along $f$ to a map $y:Y\ra K$ such that $y\circ f \sim x$,
+\[
+\xymatrix{
+X \ar[d]_{f} \ar[r]^{x}  & K\\
+Y \ar@{..>}[ru]_{y}^{\sim}. &
+}
+\]
+\item For every fibrant object $K$, any maps $y, y' : Y \ra K$ such that $yf \sim y'f$, there is a homotopy $y\sim y'$,
+\[
+\xymatrix{
+X \ar[d]_{f} \ar[r]  & K^\I\ar[d] \\
+Y \ar@{..>}[ru] \ar[r] & K\times K.
+}
+\]
+\end{enumerate}
 \end{lemma}
 \begin{proof}
-A fibration weak equivalence $f : Y\epi X$ is a trivial fibration, and therefore has a section $s: X\to Y$ (by lifting against the cofibration $0\mono X$.  Moreover, there is a homotopy $\vartheta : sf \sim 1_Y$, resulting from the lifting problem
-
-???2
-\begin{equation*}%\label{diagram:extensionforX}
-%\xymatrix{
-%Y+Y \ar@{>->}[d]_{} \ar[r]^{}  & Y^\I \ar@{>>}[d]\\
-%Y \ar[r]_{\langle sf,1_Y\rangle} & Y\times Y.
-%}
-\end{equation*}
-Thus $f$ is a homotopy equivalence, and so a WHE by lemma \ref{HEisWHE}.
+Unwind the definition.
 \end{proof}
+
+Thus our goal of showing that the weak equivalences satisfy 3-for-2 is reduced to showing that a map is a weak equivalence (WE) if and only if it is a weak homotopy equivalence (WHE). This is proved via separate lemmas showing that a (co)fibration is a WE if and only if it is a WHE. 
 
 \begin{lemma}\label{lemma:CofWEtoWHE}
 A cofibration $c : A \mono B$ that is a WE is a WHE.
 \end{lemma}
 
 \begin{proof}
-Let the cofibration $c : A \mono B$ be a WE, so a trivial cofibration. 
+A cofibration $c : A \mono B$ that is a WE is a trivial cofibration. 
+So the result follows from Lemma \ref{lem:WHEunwound}.
+\end{proof}
 
-????3
+\begin{lemma}\label{lemma:FibWEtoWHE}
+A fibration $ p : Y \epi X$ that is a WE is a WHE.
+\end{lemma}
+\begin{proof}
+A fibration weak equivalence $f : Y\epi X$ is a trivial fibration, and therefore has a section $s: X\mono Y$, by the lifting problem:
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+0 \ar@{>->}[d]_{} \ar[r] & Y \ar@{>>}[d]^{f} \\
+X\ar[r]_{=} & X.
+}
+\end{equation*}
+%
+Moreover, there is a homotopy $\vartheta : sf \sim 1_Y$, resulting from the lifting problem
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+Y+Y \ar@{>->}[d]_{} \ar[r]^-{[sf, 1]}  & Y\ar@{>>}[d]^{f} \\
+\I\times Y \ar[r]_{f\pi_2} & X.
+}
+\end{equation*}
+Thus $f$ is a homotopy equivalence, and so a WHE by lemma \ref{lemma:HEisWHE}.
 \end{proof}
 
 
