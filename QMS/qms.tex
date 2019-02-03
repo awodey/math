@@ -303,16 +303,16 @@ C \ar@{>->}[d]_{c} \ar[r]^{x} & X, \\
 \I^{n}\ar@{.>}[ru]_{j(c,x)} &
 }
 \end{equation}
-that is \emph{uniform in $\I^n$} in the following sense: given any cubical map $u : \I^m \to \I^n$, the pullback $u^*c : u^*C\mono \I^m$ is again a basic cofibration and fits into a commutative diagram of the form
+in a way that is \emph{uniform in $\I^n$} in the following sense: given any cubical map $u : \I^m \to \I^n$, the pullback $u^*c : u^*C\mono \I^m$ is again a basic cofibration and fits into a commutative diagram of the form
 \begin{equation}\label{diagram:directedfillers3}
 \xymatrix{
-u^*C \ar@{>->}[d]_{u^*c} \ar[r]^{c^*u} \pbcorner &  C \ar@{>->}[d]_{c} \ar[r]^{x} & X. \\
+u^*C \ar@{>->}[d]_{c'} \ar[r]^{u'} \pbcorner &  C \ar@{>->}[d]_{c} \ar[r]^{x} & X. \\
 \I^{m} \ar[r]_{u} & \I^{n} \ar@{.>}[ru]_{j(c,x)} &
 }
 \end{equation}
-For the pair $(u^*c,\, x' := x\circ c^*u)$ in \eqref{diagram:directedfillers3} the chosen extension $j(u^*c,x'): \I^m \to X$, then satisfies
+For the pair $(c',\, xu')$ in \eqref{diagram:directedfillers3} the chosen extension $j(c',xu'): \I^m \to X$, is equal to  $j(c,x)\circ u$,
 \begin{equation}\label{eq:uniformfillers}
-j(u^*c,x') = j(c,x)\circ (u).
+j(c',xu') = j(c,x) u.
 \end{equation}
 \end{enumerate}
 \end{proposition}
@@ -538,10 +538,10 @@ Z \ar@/_4ex/ [rrd]_{\mathsf{Gph}(z)} \ar[r] &  Z +_C (C\times\I) \ar@{.>}[rd]_{c
 
 This specification differs from the similar \eqref{diagram:pushoutproduct} by using $\mathsf{Gph}(z)$ for the inclusion $Z\mono Z\times\I$, rather than one of the ``face maps'' associated to the endpoint inclusions $\delta_\epsilon : 1\to\I$. (Note that a graph is always a cofibration by pulling back a diagonal.)  The subobject $c \otimes_z\!\delta \mono Z\times \I$ is the join of the subobjects $\mathsf{Gph}(z) \mono Z\times \I$ and the cylinder $C\times \I \mono Z\times \I$.
 
-The maps of the form $c\otimes_z\delta : Z +_C (C\times\I) \mono Z$  now form a \emph{class of generating trivial cofibrations} in the expected sense: Let 
-\[
+The maps of the form $c\otimes_z\delta : Z +_C (C\times\I) \mono Z$  now form a \emph{class of generating trivial cofibrations} in the expected sense.  Let 
+\begin{equation}\label{eq:generatingtrivialcofibrations}
 \mathcal{C}\otimes\delta\ =\ \{ c \otimes_z \delta : D \mono Z \times \I\ |\ c : C\mono Z, z:Z\to\I \}\,,
-\]
+\end{equation}
 then the fibrations are exactly the right class $(\mathcal{C}\otimes\delta)^{\pitchfork}$ of these.
 \begin{proposition}
 A map $f: Y\to X$ is an unbiased  fibration iff for every pair of maps $c : C\mono Z$ and $z:Z\to\I$, where the former is a cofibration, every commutative square of the following form has a diagonal filler, as indicated.
@@ -626,22 +626,44 @@ Fibration structures on a map $f : Y\to X$ correspond uniquely to $+$-algebra st
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The fibration weak factorization system}
 
+\begin{definition}\label{def:FibWFSclasses}
 Summarizing the foregoing definitions and results, we have the following classes of maps:
 
+%\begin{itemize}
+%\item  The set of \emph{basic trivial cofibrations} was determined to be
+%\begin{equation}\label{eq:basicunbiasedtrivcof}
+%\mathcal{B}\otimes\delta = \{c \otimes_z \delta : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\, z : \I^n \to \I\}\,,
+%\end{equation}
+%where the pushout-product $c\otimes_z \delta$ has the form
+%\begin{equation}\label{diagram:unbiasedbasicpushoutproduct2}
+%\xymatrix{
+%C \ar@{>->}[d]_{c} \ar[r]^{\mathsf{Gph}(zc)} & C\times \I \ar[d] \ar@/^4ex/ [rdd]^{c\times\I}\\
+%\I^n \ar@/_4ex/ [rrd]_{\mathsf{Gph}(z)} \ar[r] &  \I^n +_C (C\times\I) \ar@{.>}[rd]_{c\, \otimes_z \delta} \\
+%&& \I^n\times\I\,.
+%}
+%\end{equation}
+%for any basic cofibration $c : C\mono \I^n$ and indexing map $z : \I^n \to \I$, with domain $B = \big(\I^n +_C (C\times\I)\big)$.
+%
+%\item The class $\mathcal{F}$ of \emph{fibrations}, written $f : Y\epi X$, may be characterized as the right class of these,
+%\[
+%(\mathcal{B}\otimes\delta)^\pitchfork\, =\,\mathcal{F}.
+%\]
+%
+
 \begin{itemize}
-\item  The set of \emph{basic trivial cofibrations} was determined to be
-\begin{equation}\label{eq:basicunbiasedtrivcof}
-\mathcal{B}\otimes\delta = \{c \otimes_z \delta : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\, z : \I^n \to \I\}\,,
+\item  The set of \emph{generating trivial cofibrations} was determined in \eqref{eq:generatingtrivialcofibrations} to be
+\begin{equation}\label{eq:genunbiasedtrivcof}
+\mathcal{C}\otimes\delta = \{c \otimes_z \delta : D \mono Z\times\I\ |\  c : C\mono Z,\, z : Z \to \I\}\,,
 \end{equation}
 where the pushout-product $c\otimes_z \delta$ has the form
 \begin{equation}\label{diagram:unbiasedbasicpushoutproduct2}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[r]^{\mathsf{Gph}(zc)} & C\times \I \ar[d] \ar@/^4ex/ [rdd]^{c\times\I}\\
-\I^n \ar@/_4ex/ [rrd]_{\mathsf{Gph}(z)} \ar[r] &  \I^n +_C (C\times\I) \ar@{.>}[rd]_{c\, \otimes_z \delta} \\
-&& \I^n\times\I\,.
+Z \ar@/_4ex/ [rrd]_{\mathsf{Gph}(z)} \ar[r] &  Z +_C (C\times\I) \ar@{.>}[rd]_{c\, \otimes_z \delta} \\
+&& Z\times\I\,.
 }
 \end{equation}
-for any basic cofibration $c : C\mono \I^n$ and indexing map $z : \I^n \to \I$, with domain $B = \big(\I^n +_C (C\times\I)\big)$.
+for any cofibration $c : C\mono Z$ and indexing map $z : Z \to \I$, with domain $D = \big(Z +_C (C\times\I)\big)$.
 
 \item The class $\mathcal{F}$ of \emph{fibrations}, written $f : Y\epi X$, may be characterized as the right class of these,
 \[
@@ -653,8 +675,9 @@ for any basic cofibration $c : C\mono \I^n$ and indexing map $z : \I^n \to \I$, 
 \mathsf{TrivCof}\, =\, ^{\pitchfork}\mathcal{F}.
 \]
 \end{itemize}
+\end{definition}
 
-It follows that the classes $\mathsf{TrivCof}$ and $\mathcal{F}$ are mutually weakly orthogonal,
+It follows from the specification that the classes $\mathsf{TrivCof}$ and $\mathcal{F}$ are mutually weakly orthogonal,
 \[
 \mathsf{TrivCof}\, {\pitchfork}\, \mathcal{F},
 \]
@@ -741,17 +764,18 @@ But this has a solution in the next step, by the construction of $X_{k+1}$,
 \begin{equation*}%\label{diagram:extensionforX}
 \xymatrix{
 B \ar@{>->}[d]_{\beta} \ar[r]^-{x_k} & X_k \ar[d]^{h_{k+1}} \\
-\ \I^{k} \ar[r]  \ar@{..>}[rd] &  X_{k+1}\ar[d]\\
+\ \I^{k} \ar[r]  \ar@{..>}[rd]_j &  X_{k+1}\ar[d]\\
 & {\varinjlim X_n}.
 }
 \end{equation*}
-Thus $X'$ is fibrant.  Finally, $h : X\mono X'$ is clearly a trivial cofibration, as a sequential colimit of such. 
+
+We still need to show the uniformity condition on the resulting fillers $j = j(\beta,x)$.  For this to work, we must modify the colimit construction \eqref{def:fibrepl} by interleaving certain coequalizers, in order to identify fillers added at different stages.  For details, see \cite{Garner, Awodey}.
 \end{proof}
 
 We therefore have shown the following.
 
 \begin{proposition}
-There is a weak factorization system on the category \cSet\ in which the right maps are the fibrations and the left maps are the trivial cofibrations.
+There is a weak factorization system on the category \cSet\ in which the right maps are the fibrations and the left maps are the trivial cofibrations, both as specified in definition \ref{def:FibWFSclasses}..
 \end{proposition}
 
 This will be called the \emph{fibration weak factorization system}.
@@ -850,7 +874,7 @@ such that $\vartheta \circ \mathsf{Gph}(\delta_0!) = f$ and $\vartheta \circ \ma
 If $K$ is fibrant, then the relation of homotopy $f \sim g$ between maps $f,g: X\rightrightarrows K$ is an equivalence relation.  Moreover, it is compatible with composition. 
 \end{proposition}
 \begin{proof}
-???1
+ add the proof ...
 \end{proof}
 
 \begin{definition}[Connected components]
@@ -931,17 +955,28 @@ Y+Y \ar@{>->}[d]_{} \ar[r]^-{[sf, 1]}  & Y\ar@{>>}[d]^{f} \\
 Thus $f$ is a homotopy equivalence, and so a WHE by lemma \ref{lemma:HEisWHE}.
 \end{proof}
 
-
-\begin{lemma}\label{CofWHEfibCodTrivCof}
-If $K$ is fibrant, any cofibration $c : A \mono K$ that is a WHE is a WE.
+\begin{lemma}\label{FibHETrivFib}
+If $K$ is fibrant, then any fibration $f : Y \epi K$ that is a HE is a WE.
 \end{lemma}
-
 \begin{proof}
-Let the cofibration $c : A \mono K$ be a WHE.
-
-???4
+add the proof ...
 \end{proof}
 
+\begin{lemma}\label{FibWHEfibCodTrivFib}
+If $K$ is fibrant, then any fibration $f : Y \epi K$ that is a WHE is a WE.
+\end{lemma}
+\begin{proof}
+Since $K$ is fibrant, so is $Y$, and since $f$ is a WHE, there are maps $s, t: K\ra Y$ such that $fs \sim 1_K$ and $tf\sim 1_Y$. 
+... turn this into a HE ... apply lemma \ref{FibHETrivFib}.
+\end{proof}
+
+\begin{lemma}\label{CofWHEfibCodTrivCof}
+If $K$ is fibrant, then any cofibration $c : A \mono K$ that is a WHE is a WE.
+\end{lemma}
+\begin{proof}
+Let $c : A \mono K$ be a cofibration WHE and factor it into a trivial cofibration $i : A\mono Z$ followed by a fibration $p: Z\epi K$.  Then both 
+$c$ and $i$ are WHE, whence so is $p$.   Since $K$ is fibrant, $p$ is a trivial fibration by lemma \ref{FibWHEfibCodTrivFib}, a thus $c$ is a WE.  
+\end{proof}
 
 \begin{lemma}[\cite{Cisinski:??}, x.n.m]\label{lemma:CofWHEiffFibLift}
 A cofibration $ c : A \mono B$ is a WHE if and only if it lifts against all fibrations $f : Y\epi K$ with fibrant codomain.
@@ -990,7 +1025,7 @@ there is a diagonal filler $j : B\ra Y$.  Moreover, there is a section $s$ of $p
 To complete the proof that a cofibration WHE is a WE we require following fact, the proof of which is deferred to the next section.
 
 \begin{lemma}[Fibration extension]\label{lemma:fibextreplace}
-GIven a fibration $ f : Y \epi X$ and a trivial cofibration $\eta: X\ra X'$,
+Given a fibration $ f : Y \epi X$ and a trivial cofibration $\eta: X\ra X'$,
 there is a fibration $f' : Y' \epi X'$ such that $f$ is a pullback of $f'$ along $\eta$. 
 \end{lemma}
 
@@ -1043,7 +1078,7 @@ A map $ f : X \mono Y$ is a WHE if and only if it is a WE.  Thus the weak equiva
 \end{proposition}
 \begin{proof}
 Let $ f : X \epi Y$ be a WE and factor it into a trivial cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$.  Then both 
-$i$ and $p$ are WHE, whence so it $f$.  Conversely, let $f$ be a WHE and factor it into a trivial cofibration $i : X\mono Z$ followed by a fibration $p: Z\epi Y$. Since  $i$ is then a WHE, as is $f$, it follows that $p$ is as well.  Thus $p$ is also a WE, hence a trivial fibration. So $f$ is a WE.
+$i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor it into a trivial cofibration $i : X\mono Z$ followed by a fibration $p: Z\epi Y$. Since  $i$ is then a WHE, as is $f$, it follows that $p$ is as well.  Thus $p$ is also a WE, hence a trivial fibration. So $f$ is a WE.
 \end{proof}
 
 \section{The fibration extension property}
