@@ -318,8 +318,74 @@ j(c',xu') = j(c,x) u.
 \end{proposition}
 
 \begin{proof}
-Yoneda.
-\end{proof}
+Let $(X, \alpha)$ be a \emph{$+$-algebra} and suppose given the span $(c,x)$ as below, with $c$ a cofibration. 
+\begin{equation*}%\label{diagram:proofdirectedfillers}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^{x} & X \\
+Z &
+}
+\end{equation*}
+Let $\chi(c,x): Z\to X^+$ be the classifying map of the partial map, so that we have a pullback square as follows.
+\begin{equation}\label{diagram:defphi}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^{x} \pbcorner & X \ar[d]^{\eta}, \\
+Z \ar[r]_{\chi(c,x)} & X^+
+}
+\end{equation}
+Then set
+\begin{equation}\label{def:phi}
+j = \alpha\circ\chi(c,x) : Z\to X
+\end{equation}
+to get a filler,
+\begin{equation}\label{diagram:defphi}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[rr]^{x} && X \ar[d]^{\eta} \\
+Z\ar@{.>}[rru]_{j} \ar[rr]_{\chi(c,x)} && X^+  \ar@/_4ex/ [u]_\alpha
+}
+\end{equation}
+since $j\circ c = \alpha\circ\chi(c,x)\circ c = \alpha\circ\eta \circ x = x$. Thus (1) implies (2).  To see that it also implies (3), observe that in the case where $Z=I^n$ and we specify, in \eqref{def:phi}, that
+\begin{equation}\label{def:j}
+j(c,x) = \alpha\circ\chi(c,x) : \I^n\to X
+\end{equation}
+then the assignment is natural in $\I^n$. Indeed,  given any $u : \I^m \to \I^n$, we have
+\begin{equation}\label{eq:proof,uniformfillers}
+j(c',xu') = \alpha\circ\chi(c',xu') = \alpha\circ\chi(c,x)\circ u = j(c,x) u,
+\end{equation}
+by the uniqueness of classifying maps.
+
+It is clear that (2) implies (1), since if $\mathcal{C} \pitchfork X$ then we can take as an algebra structure $\alpha : X^+ \to X$ some filler for the span
+\[
+\xymatrix{
+X \ar@{>->}[d]_{\eta} \ar[r]^{=} & X .\\
+X^+ \ar@{.>}[ru]_\alpha&
+}
+\]
+
+To see that (3) implies (1), suppose that $X$ has a uniform filling structure $j$ and we want to define an algebra structure $\alpha : X^+ \to X$. By Yoneda, for every $y : \I^n \to X^+$ we need a map $\alpha(y) : \I^n \to X$, and naturally in $\I^n$, in the sense that for any $u : \I^m \to \I^n$, we have
+\begin{equation}\label{eq:proof,plusstructure}
+\alpha(yu) = \alpha(y)u.
+\end{equation}
+Moreover, to ensure that $\alpha\eta = 1_X$, for any $x : \I^n \to X$ we must have $\alpha(\eta\circ x) = x$. So take $y : \I^n \to X^+$  and let $$\alpha(y) = j(y^*\eta, y'),$$
+as indicated below.
+\begin{equation}\label{diagram:definingalpha}
+\xymatrix{
+u^*C \ar@{>->}[d]_{u^*y^*\eta} \ar[r]^{u'} \pbcorner &  C \ar@{>->}[d]_{y^*\eta} \ar[rr]^{y'}\pbcorner && X \ar[d]^\eta . \\
+\I^{m} \ar[r]_{u} & \I^{n} \ar@{.>}[rru]_{j(y^*\eta,y')} \ar[rr]_{y} && X^+
+}
+\end{equation}
+Then for any $u : \I^m \to \I^n$, we indeed have 
+$$\alpha(yu) =  j\big( (yu)^*\eta, y'u' \big) = j(y^*\eta, y')\circ u = \alpha(y)u,$$
+ by the uniformity of $j$. Finally, if $y=\eta\circ x$ for some $x : \I^n\to X$ then 
+ $$\alpha(\eta x) =  j\big( (\eta x)^*\eta, (\eta x)'\big) = j(1_X, x) = x,$$
+ because the defining diagram for $\alpha(\eta x)$, i.e.\ the one on the right in \eqref{diagram:definingalpha}, then factors as
+ \begin{equation}\label{diagram:definingalphatwo}
+\xymatrix{
+\I^n \ar@{>->}[d]_{=} \ar[r]^{x} \pbcorner &  X \ar@{>->}[d]_{=} \ar[r]^{=}\pbcorner & X \ar[d]^\eta , \\
+\I^{n} \ar[r]_{x} & X  \ar[r]_{\eta} & X^+
+}
+\end{equation}
+and the only possible extension $j(1_X, x)$ for the span $(1_{\I^n}, x)$ is  $x$ itself.
+ \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Partial path lifting (biased version)}
