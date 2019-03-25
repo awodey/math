@@ -1024,10 +1024,29 @@ where we write the canonical inclusions into the ends of the cylinder as
 \end{definition}
 
 \begin{proposition}
-If $K$ is fibrant, then the relation of homotopy $f \sim g$ between maps $f,g: X\rightrightarrows K$ is an equivalence relation.  Moreover, it is compatible with composition. 
+If $K$ is fibrant, then the relation of homotopy $f \sim g$ between maps $f,g: X\rightrightarrows K$ is an equivalence relation.  Moreover, it is compatible with pre- and post-composition. 
 \end{proposition}
 \begin{proof}
- add the proof ... 
+For $f, g: X\rightrightarrows Y$, a homotopy $f\stackrel{\vartheta}{\sim} g : X\times\I \to Y$ is equivalent, under exponential transposition, to a path in the function space $\vartheta : \I\ra Y^X$ with endpoints $\vartheta_0 = \vartheta\circ\delta_0 = f: 1\ra Y^X$ and $\vartheta_1 = g$.  Note that $Y^X$ is fibrant if $Y$ is fibrant, so we can use box-filling in $Y^X$.    
+
+The reflexivity of homotopy $f\sim f$ is witnessed by $\rho:\I \ra 1 \stackrel{f}{\ra} Y^X$.  
+
+For symmetry $f\sim g\Rightarrow g\sim f$ take $\vartheta : \I\ra Y^X$ with $\vartheta_0 = f$ and $\vartheta_1 = g$ and we want to build $\vartheta' : \I\ra Y^X$ with $\vartheta'_0 = g$ and $\vartheta'_1 = f$. Take an open 2-box in $Y^X$ of the form
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+g  & f  \\
+f \ar[u]^{\vartheta} \ar[r]_\rho & f \ar[u]_\rho
+}
+\end{equation*}
+This box is a map $b : \I+_1 \I +_1 \I \to Y^X$ with the indicated components, and it has a filler $c : \I\times \I \to Y^X$, i.e.\ an extension along the canonical map $\I+_1 \I +_1 \I \mono \I\times\I$, which is a trivial cofibration.  Let $t : \I\ra \I\times\I$ be the evident missing top face of the 2-cube.  Then we can set $\vartheta' = ct : \I \ra Y^X$ to get a homotopy $\vartheta' : \I\ra Y^X$ with required endpoints.
+
+For transitivity, $f\stackrel{\vartheta}{\sim} g\ \&\ g\stackrel{\varphi}{\sim} h\Rightarrow f\sim h$, an analogous filling construction is used with the open box:
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+f  & h  \\
+f \ar[u]^{\rho} \ar[r]_\vartheta & g \ar[u]_\varphi
+}
+\end{equation*}
 \end{proof}
 
 \begin{definition}[Connected components]
