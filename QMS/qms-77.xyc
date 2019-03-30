@@ -1,14 +1,14 @@
-\xycompiled{qms-77}{2019/3/25:854 [qms:1488]}{Xy-pic 3.8.8}%
-{\xymatrixnocompile { [\phi ] \ar @{>->}[d]_{i_\phi } \ar [rr]^{s} & & {\widetilde {P}} \ar [d]^{\pi _0} \\ 1 \ar [rr]_{a_0} \ar @{ .>}[rru]_j && P0\,. }}\relax 
+\xycompiled{qms-77}{2019/3/30:1103 [qms:1493]}{Xy-pic 3.8.8}%
+{\xymatrixnocompile { [\varphi ] \ar @{>->}[d]_{i_\varphi } \ar [rr]^{s} & & {\widetilde {P}} \ar [d]^{\pi _0} \\ 1 \ar [rr]_{a_0} \ar @{ .>}[rru]_j && P0\,. }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%
 \xy@{""}{\edef \xymatrixprefix@@ {}}%
 \xy@{}{\matrixorigin@ }%
-\xy@{}{\L@c =9.30386pt\R@c =9.30386pt\D@c =8.47498pt\U@c =8.475pt\Edge@c ={\rectangleEdge }\idfromc@ {1,1}}%
+\xy@{}{\L@c =9.62323pt\R@c =9.62323pt\D@c =8.47498pt\U@c =8.475pt\Edge@c ={\rectangleEdge }\idfromc@ {1,1}}%
 \xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
-\xy@{}{\dimen@ =9.70686pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =9.30386pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.70686pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =3.0pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =9.70686pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =9.62323pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.70686pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =3.0pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
 \xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \X@c \xy@cossign@@ \R@ }%
-\xy@{}{\dimen@ =9.30386pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =9.70686pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =3.0pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =9.70686pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =9.62323pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =9.70686pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =3.0pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =9.70686pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
 \xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@sinabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c \xy@sinsign@@ \R@ }%
 \xy@{}{\L@c =3.0pt\R@c =3.0pt\D@c =4.36874pt\U@c =1.63126pt\Edge@c ={\rectangleEdge }\idfromc@ {1,2}}%
 \xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
@@ -25,9 +25,9 @@
 \xy@{}{\dimen@ =\xymatrixrowsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c -\xy@cossign@@ \R@ }%
 \xy@{}{\L@c =5.7375pt\R@c =5.7375pt\D@c =5.73749pt\U@c =7.31917pt\Edge@c ={\rectangleEdge }\idfromc@ {2,1}}%
 \xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
-\xy@{}{\dimen@ =9.70686pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =9.30386pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.70686pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =3.0pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =9.70686pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =9.62323pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.70686pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =3.0pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
 \xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \X@c \xy@cossign@@ \R@ }%
-\xy@{}{\dimen@ =9.30386pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =9.70686pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =3.0pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =9.70686pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =9.62323pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =9.70686pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =3.0pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =9.70686pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
 \xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@sinabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c \xy@sinsign@@ \R@ }%
 \xy@{}{\L@c =3.0pt\R@c =3.0pt\D@c =4.36874pt\U@c =1.63126pt\Edge@c ={\rectangleEdge }\idfromc@ {2,2}}%
 \xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
@@ -39,7 +39,7 @@
 \xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
 \xy@{}{\ifx \xymatrixsavedCOORD@ \relax \enter@ {\noexpand \let \noexpand \COORD@ \noexpand \xymatrixsavedCOORD@ }\let \xymatrixsavedCOORD@ =\COORD@ \let \COORD@ =\xymatrixCOORD@ \else \enter@ {}\fi }%
 \xy@{ENTRY "1,1"}{\Row =1 \Col =1\relax \cfromid@ {1,1}\pfromc@ }%
-\xy@@ix@{{!V\entrybox }{[\phi ] \ar @{>->}[d]_{i_\phi } \ar [rr]^{s} }}\relax 
+\xy@@ix@{{!V\entrybox }{[\varphi ] \ar @{>->}[d]_{i_\varphi } \ar [rr]^{s} }}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{\save }{\save@ }%
 \xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
@@ -68,7 +68,7 @@
 \xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
 \xy@{}{\leave@ }%
 \xy@{}{\enter@ \DirectionfromtheDirection@ }%
-\xy@@ix@{\labelbox {i_\phi }}\relax 
+\xy@@ix@{\labelbox {i_\varphi }}\relax 
 \xy@{}{\setbox \z@ =\expandafter \object \the \toks 9 \advance \L@c \labelmargin@ \advance \R@c \labelmargin@ \advance \D@c \labelmargin@ \advance \U@c \labelmargin@ \setboxz@h {\kern \labelmargin@ \boxz@ \kern \labelmargin@ }\A@ =\X@c \B@ =\Y@c \aboveDirection@ \xydashl@ \the \Edge@c \thr@@ \advance \A@ -\X@c \advance \B@ -\Y@c \advance \X@c 2\A@ \advance \Y@c 2\B@ \ht \z@ =\U@c \dp \z@ =\D@c \dimen@ =\L@c \advance \dimen@ \R@c \wd \z@ =\dimen@ \setbox \lastobjectbox@ =\hbox {\X@c =\L@c \Y@c =\z@ \Drop@@ }\drop@ {\box \lastobjectbox@ }{}\leave@ }%
 \xy@{|}{}%
 \xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%

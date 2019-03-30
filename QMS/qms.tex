@@ -138,7 +138,7 @@ and called the \emph{standard $n$-cubes}.
 %Cofibrations, partial map classification, the functor $X^+$, the awfs of +-algebras.
 \paragraph{Cofibrations.}
 The \emph{cofibrations} are a class $\mathcal{C}$ of maps in $\mathsf{cSet}$, written $$c : A \mono B\,,$$  
-and are assumed to satisy the following axioms:
+and are assumed to satisfy the following axioms:
 \begin{enumerate}
 \item[(C1)] All isomorphisms are cofibrations.
 \item[(C2)] The composite of two cofibrations is a cofibration.
@@ -146,14 +146,20 @@ and are assumed to satisy the following axioms:
 \item[(C4)] Any pullback of a cofibration is a cofibration.
 \end{enumerate}
 
-By conditions (C3-4), the cofibrations are classified by a (pointed) subobject $\Phi \hook \Omega$ (a not necessarily cofibrant mono) of the standard subobject classifier $\top : 1 \to \Omega$ of $\mathsf{cSet}$. We shall call the canonical factorization $t : 1 \to \Phi$ the \emph{cofibration classifier}.  Note that we permit the case where $\Phi = \Omega$, i.e.\ all monos are cofibrant.
+Moreover, we want the cofibrations to be classified by a  subobject $\Phi \hook \Omega$ of the standard subobject classifier $\top : 1 \ra \Omega$ of $\mathsf{cSet}$.  One way to ensure this is to further assume that they are closed under all colimits in the category of cartesian squares.  An equivalent way is to just assume it from the start:
+
+\begin{enumerate}
+\item[(C0)] There is a terminal object $\Phi' \mono \Phi$ in the category of cofibrations and cartesian squares.
+\end{enumerate}
+
+It follows from (C1) that $\Phi' = 1$ and the terminal cofibration $1 \mono \Phi$ is a factorization of $\top : 1 \ra \Omega$.  We call this map $t:1 \mono \Phi$ the \emph{cofibration classifier}.  Note that we permit the case where $\Phi = \Omega$, i.e.\ all monos are cofibrant.
 
 \paragraph{Cofibrant partial map classifier.}
-The polynomial endofunctor \cite{GG} determined by the cofibration classifier $t : 1 \to \Phi$ is defined on objects by
+The polynomial endofunctor \cite{GG} determined by the cofibration classifier $t : 1 \mono \Phi$ is defined on objects by
 \[
-X\ \mapsto\ \Phi_!\,t_*(X)\ =\ \sum_{\phi: \Phi}X^{\phi}\,.
+X\ \mapsto\ \Phi_!\,t_*(X)\ =\ \sum_{\varphi: \Phi}X^{\varphi}\,.
 \]
-We shall write $X^+ := \sum_{\phi: \Phi}X^{\phi}$.
+We shall write $X^+ := \sum_{\varphi: \Phi}X^{\varphi}$.
 
 Observe that by the definition of $X^+$ there is a pullback square,
 \[
@@ -1343,13 +1349,12 @@ Finally, pulling back along an arbitrary point $p : 1\ra X^\I$ we obtain the lef
 }
 \end{equation*}
 
-Since being a $+$-algebra (a trivial fibration) is a local property, we have shown:
+Since being a $+$-algebra (a trivial fibration) is a fiberwise property, we have shown:
 \begin{proposition}
 The map $f : Y\ra X$ is a fibration iff for all $p: X^\I$, the map ${\prod_{i:\I}}A(pi) \ra A(p0)$ just constructed (and its counterpart for $\epsilon = 1$) is a $+$-algebra.
 \end{proposition}
 
-The condition that ${\prod_{i:\I}}A(pi) \ra A(p0)$ is a $+$-algebra for all $p: X^\I$ is shown in Appendix 1 to be equivalent to the type-theoretic definition of \emph{fibration structure} on a type family $A: X\ra \U$ given in \cite{OP}.
-
+The (internal) condition that ${\prod_{i:\I}}A(pi) \ra A(p0)$ is a $+$-algebra for all $p: X^\I$ is shown in Appendix 1 to be equivalent to the type-theoretic definition of \emph{fibration structure} on a type family $A: X\ra \U$ given in \cite{OP}.  That this notion of fibration structure is closed under the formation of $\Pi$-types can be shown directly, much as in \cite{OP}, and was formally verified (in the setting without connections, but with unbiased fibrations) by \cite{Zesen}.
 
 \section{The fibration extension property}
 
@@ -1371,35 +1376,35 @@ To make the connection to the logical style of presentation used in \cite{CCHM,O
 By pulling back along $c$, it suffices to consider  the case $Y=\I^{n}\times \I$ and $c$ the identity map. Moreover, since we shall internalize the quantification over all cofibrations $m : M\mono \I^n$ using the classifier $\Phi$, it suffices to consider just the following case internally,
 \begin{equation}\label{diagram:llpforf2}
 \xymatrix{
-1 +_{[\phi]} ([\phi]\times\I) \ar[d]_{\phi \otimes \delta_\epsilon} \ar[rr]^-{[a_0,s]} && X \ar[d] \\\
+1 +_{[\varphi]} ([\varphi]\times\I) \ar[d]_{\varphi \otimes \delta_\epsilon} \ar[rr]^-{[a_0,s]} && X \ar[d] \\\
 1\times\I \ar@{.>}[rru]_-a \ar[rr]_-{\cong} && \I
 }
 \end{equation}
-where the cofibration $[\phi] \mono 1$ is classified by $\phi : 1\rightarrow \Phi$.
+where the cofibration $[\varphi] \mono 1$ is classified by $\varphi : 1\rightarrow \Phi$.
 
 Using a universe $\Set$ in the internal language of $\widehat\C$, we can regard the family $X\to \I$ internally as a map $P : \I\rightarrow\Set$ (switching notation from $X$ to $P$ to agree with \cite{OP}).  Thus we arrive at the following local specification, expressed logically in the internal language of $\widehat\C$, of the object of ``($0$-directed) lifting structures'' $L^0(P)$ on a family $P: \I\rightarrow\Set$\,:
 %
 \begin{equation}\label{eqn:pplift}
-L^0(P)\ =\ \prod_{\phi:\Phi}\, \prod_{s: \prod_{i:I}(Pi)^\phi}\, \prod_{a_0:P0}\ a_0 |_\phi = s0\ 
- \to\sum_{a:\prod_{i:I}Pi} (a0 = a_0) \times (a |_\phi = s)\,.
+L^0(P)\ =\ \prod_{\varphi:\Phi}\, \prod_{s: \prod_{i:I}(Pi)^\varphi}\, \prod_{a_0:P0}\ a_0 |_\varphi = s0\ 
+ \to\sum_{a:\prod_{i:I}Pi} (a0 = a_0) \times (a |_\varphi = s)\,.
 \end{equation}
 %
-Here the variables $s : \prod_{i:I}(Pi)^\phi$ and $a_0:P0$, and the condition $a_0 |_\phi = s0$, give the domain $1 +_{[\phi]} ([\phi]\times\I)$ of the arrow $[a_0,s]$ in \eqref{diagram:llpforf2}, and $a:\prod_{i:I}Pi$ is the diagonal filler, with $(a0 = a_0) \times (a |_\phi = s)$ expressing the commutitivity of the top triangle.
+Here the variables $s : \prod_{i:I}(Pi)^\varphi$ and $a_0:P0$, and the condition $a_0 |_\varphi = s0$, give the domain $1 +_{[\varphi]} ([\varphi]\times\I)$ of the arrow $[a_0,s]$ in \eqref{diagram:llpforf2}, and $a:\prod_{i:I}Pi$ is the diagonal filler, with $(a0 = a_0) \times (a |_\varphi = s)$ expressing the commutitivity of the top triangle.
 
-There is an analogous condition $L^1(P)$ in which $1$ replaces $0$ everywhere, describing (``directed'')  filling from the other end of the interval.  Note that \cite{CCHM, OP} derive the ``filling'' conclusion $$\sum_{a:\prod_{i:I}Pi} (a0 = a_0) \times (a |_\phi = s)$$ from (connections on $\I$ and) a weaker ``composition operation'' $$\sum_{a_1:P1} a_1 |_\phi = s_1\,,$$ but we will not take this approach.
+There is an analogous condition $L^1(P)$ in which $1$ replaces $0$ everywhere, describing (``directed'')  filling from the other end of the interval.  Note that \cite{CCHM, OP} derive the ``filling'' conclusion $$\sum_{a:\prod_{i:I}Pi} (a0 = a_0) \times (a |_\varphi = s)$$ from (connections on $\I$ and) a weaker ``composition operation'' $$\sum_{a_1:P1} a_1 |_\varphi = s_1\,,$$ but we will not take this approach.
 
 The specification of the type $L^0(P)$ of \eqref{eqn:pplift} can also be represented diagrammatically as follows:
 %\begin{equation}\label{diagram:ppl}
 %\xymatrix{
 %& P0 \ar[rr] \ar[dd] |\hole  & & P \ar[dd] \\
-%[\phi] \ar[ru] ^{s0} \ar[rr] \ar@{ >->}[dd] & & [\phi]\!\times\!\I \ar[ru]^s \ar@{ >->}[dd] & \\
+%[\varphi] \ar[ru] ^{s0} \ar[rr] \ar@{ >->}[dd] & & [\varphi]\!\times\!\I \ar[ru]^s \ar@{ >->}[dd] & \\
 %& 1 \ar[rr]_<<<<<<<<<{\delta_0} |>>>>>>>>>>>>>>>\hole & & \I \\
 %\I^n \ar[ru] \ar[rr] \ar[ruuu]|>>>>>>>>>>>>>\hole _{a_0} & & \I^n\!\times\!\I \ar@{.>}[ruuu] _a \ar[ru]_{\pi_2} & }
 %\end{equation}
 \begin{equation}\label{diagram:ppl}
 \xymatrix{
 & P0 \ar[rr] \ar[dd] |\hole  & & P \ar[dd] \\
-[\phi] \ar[ru] ^{s0} \ar[rr] \ar@{ >->}[dd] & & [\phi]\!\times\!\I \ar[ru]^s \ar@{ >->}[dd] & \\
+[\varphi] \ar[ru] ^{s0} \ar[rr] \ar@{ >->}[dd] & & [\varphi]\!\times\!\I \ar[ru]^s \ar@{ >->}[dd] & \\
 & 1 \ar[rr]_<<<<<<<<<{\delta_0} |>>>>>>>>>>>>>>>\hole & & \I \\
 1 \ar[ru] \ar[rr] \ar[ruuu]|>>>>>>>>>>>>>\hole _{a_0} & & 1\!\times\!\I \ar@{.>}[ruuu] _a \ar[ru]_{\pi_2} & }
 \end{equation}
@@ -1466,29 +1471,29 @@ Consider the following diagram,
 &  {\widetilde{P}} \ar[rr] \ar[dd] ^{\pi_0} & &  {\widetilde{P}}\times\I \ar[dd]^{\varepsilon} \\
 &&& \\
 & P0 \ar[rr] |>>>>>>>>>>\hole \ar[dd] |\hole & & P \ar[dd] \\
-[\phi] \ar[ruuu]^>>>>>>>>>>>>{\overline{s}_0} \ar[ru]^>>>>{s0} \ar[rr] \ar@{ >->}[dd] & & [\phi]\!\times\!\I \ar[ruuu]^>>>>>>>>>>>>>{\overline{s}} \ar[ru]^>>>>>>>s \ar@{ >->}[dd] & \\
+[\varphi] \ar[ruuu]^>>>>>>>>>>>>{\overline{s}_0} \ar[ru]^>>>>{s0} \ar[rr] \ar@{ >->}[dd] & & [\varphi]\!\times\!\I \ar[ruuu]^>>>>>>>>>>>>>{\overline{s}} \ar[ru]^>>>>>>>s \ar@{ >->}[dd] & \\
 & 1 \ar[rr]_<<<<<<<<<{\delta_0} |>>>>>>>>>>>>>>>>>>\hole & & \I \\
 1 \ar[ru] \ar[rr] \ar[ruuu]|>>>>>>>>>>>>>\hole _{a_0} & & 1\!\times\!\I \ar@{.>}[ruuu] _a \ar[ru]_{\pi_2} & }
 \end{equation}
 which is \eqref{diagram:ppl}, extended by the counit (evaluation) $\varepsilon : \widetilde{P}\times \I \to P$ over $\I$ on the right, and with $1$ still representing the domain of a variable to reason internally.  The pullback of $\varepsilon$ over $\I$ along $\delta_0$ is then the map $\pi_0 : \widetilde{P} \to P0$ that we are interested in.  
 
-Given an $L^0(P)$-structure, reasoning internally we construct a $\plusalgx$-structure on $\pi_0 : \widetilde{P} \to P0$ as follows: for any cofibration $i_\phi : [\phi]\mono 1$ and any commutative square,
+Given an $L^0(P)$-structure, reasoning internally we construct a $\plusalgx$-structure on $\pi_0 : \widetilde{P} \to P0$ as follows: for any cofibration $i_\varphi : [\varphi]\mono 1$ and any commutative square,
 \begin{equation}\label{diagram:plusfiller}
 \xymatrix{
-[\phi] \ar@{>->}[d]_{i_\phi} \ar[rr]^{s} & & {\widetilde{P}}  \ar[d]^{\pi_0} \\
+[\varphi] \ar@{>->}[d]_{i_\varphi} \ar[rr]^{s} & & {\widetilde{P}}  \ar[d]^{\pi_0} \\
 1 \ar[rr]_{a_0} && P0\,,
 }
 \end{equation}
 we require a diagonal filler,
 \[
 \xymatrix{
-[\phi] \ar@{>->}[d]_{i_\phi} \ar[rr]^{s} & & {\widetilde{P}}  \ar[d]^{\pi_0} \\
+[\varphi] \ar@{>->}[d]_{i_\varphi} \ar[rr]^{s} & & {\widetilde{P}}  \ar[d]^{\pi_0} \\
 1 \ar[rr]_{a_0} \ar@{ .>}[rru]_j && P0\,.
 }
 \]
-Transposing the top left span in \eqref{diagram:plusfiller} formed by $i_\phi$ and $s$ along the adjunction $\I^* \dashv \prod_{\I}$ gives the right-hand square in \eqref{diagram:pplext}, and the commutative square in \eqref{diagram:plusfiller} formed by $a_0$ and $\pi_0$ gives the rest of the data in \eqref{diagram:pplext}. Thus the assumed $L^0(P)$-structure gives an $a : 1\times\I\to P$ as indicated in \eqref{diagram:pplext}.  But then $a$ lifts uniquely across $\varepsilon$ to a map $\overline{a} : 1\times\I\to \widetilde{P}\times\I$ over \I, by the universal property of $\varepsilon : \widetilde{P}\times\I \to P$.  We can therefore set $$j = \delta_0^*( \overline{a}) : 1 \to \widetilde{P}\,.$$
+Transposing the top left span in \eqref{diagram:plusfiller} formed by $i_\varphi$ and $s$ along the adjunction $\I^* \dashv \prod_{\I}$ gives the right-hand square in \eqref{diagram:pplext}, and the commutative square in \eqref{diagram:plusfiller} formed by $a_0$ and $\pi_0$ gives the rest of the data in \eqref{diagram:pplext}. Thus the assumed $L^0(P)$-structure gives an $a : 1\times\I\to P$ as indicated in \eqref{diagram:pplext}.  But then $a$ lifts uniquely across $\varepsilon$ to a map $\overline{a} : 1\times\I\to \widetilde{P}\times\I$ over \I, by the universal property of $\varepsilon : \widetilde{P}\times\I \to P$.  We can therefore set $$j = \delta_0^*( \overline{a}) : 1 \to \widetilde{P}\,.$$
 
-Suppose conversely that we have a $\plusalgx$-structure on $\pi_0 : \widetilde{P} \to P0$, and we want to build a (0-directed) lifting structure on $P$.  Take any $\phi, s, a_0$ as indicated in \eqref{diagram:pplext}, and we require an $a : 1\times\I\to P$ over $\I$.    From $s$ we get $\overline{s}$ by the universal property of $\varepsilon$, and we therefore have $\overline{s}_0$ by pullback.   From $\overline{s}_0$ and $a_0$ and the $\plusalgx$ structure on $\pi_0$ we obtain a map $j : 1 \to \widetilde{P}$ over $P0$ which is a diagonal filler of the indicated square formed by $i_\phi, \overline{s}_0, a_0$ and $\pi_0$.  Finally, we obtain the required map $a : 1\times\I\to P$ over $\I$ as the ($\I^* \dashv \prod_{\I}$)-transpose of $j$,
+Suppose conversely that we have a $\plusalgx$-structure on $\pi_0 : \widetilde{P} \to P0$, and we want to build a (0-directed) lifting structure on $P$.  Take any $\varphi, s, a_0$ as indicated in \eqref{diagram:pplext}, and we require an $a : 1\times\I\to P$ over $\I$.    From $s$ we get $\overline{s}$ by the universal property of $\varepsilon$, and we therefore have $\overline{s}_0$ by pullback.   From $\overline{s}_0$ and $a_0$ and the $\plusalgx$ structure on $\pi_0$ we obtain a map $j : 1 \to \widetilde{P}$ over $P0$ which is a diagonal filler of the indicated square formed by $i_\varphi, \overline{s}_0, a_0$ and $\pi_0$.  Finally, we obtain the required map $a : 1\times\I\to P$ over $\I$ as the ($\I^* \dashv \prod_{\I}$)-transpose of $j$,
 \[
 a = \varepsilon \circ(j\times\I)\,.
 \]
