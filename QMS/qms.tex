@@ -1200,7 +1200,7 @@ $c$ and $i$ are WHE, and therefore so is $p$ by 3-for-2 for WHEs.   Since $K$ is
 \end{proof}
 
 \begin{lemma}[\cite{Cisinski:??}, x.n.m]\label{lemma:CofWHEiffFibLift}
-A cofibration $ c : A \mono B$ is a WHE if and only if it lifts against all fibrations $f : Y\epi K$ with fibrant codomain.
+A cofibration $ c : A \mono B$ WHE lifts against all fibrations $f : Y\epi K$ with fibrant codomain.
 \end{lemma}
 %
 \begin{proof}
@@ -1220,15 +1220,15 @@ B' \ar[ru]_{b'} &
 }
 \end{equation*}
 Since $\eta$ is a trivial cofibration, it is a WHE. So the composite $\eta c$ is also a WHE.  But since $B'$ is fibrant, $\eta c$ is then a trivial cofibration by lemma \ref{CofWHEfibCodTrivCof}.  Thus there is a lift $j : B'\ra Y$, and therefore also one $k = j\eta : B\ra Y$. 
-
-Conversely, suppose the cofibration $c : A\mono B$ lifts against every fibration with a fibrant codomain.   Let $\eta : B\mono B'$ be a fibrant replacement of $B$ as before, and factor $\eta c: A \to B'$ into a trivial cofibration $i : A\mono Y$ followed by a fibration $f : Y\epi B'$. Then in the diagram
-\begin{equation*}%\label{diagram:extensionforX}
-\xymatrix{
-A \ar@{>->}[d]_{c} \ar@{>->} [r]^-{i}  & Y \ar@{>>}[d]^{f} \\
-B \ar[r]_{\eta} \ar@{..>}[ru]_{j} &  B'
-}
-\end{equation*}
-there is a diagonal filler $j : B\ra Y$.  Moreover, there is then a section $s$ of $f$ with $s\eta = j$, since $\eta$ is a trivial cofibration. This exhibits $\eta c$ as a retract of $i$, and therefore also a trivial cofibration, and so a WHE.  Thus $c$ is also a WHE by 3 for 2.
+%
+%Conversely, suppose the cofibration $c : A\mono B$ lifts against every fibration with a fibrant codomain.   Let $\eta : B\mono B'$ be a fibrant replacement of $B$ as before, and factor $\eta c: A \to B'$ into a trivial cofibration $i : A\mono Y$ followed by a fibration $f : Y\epi B'$. Then in the diagram
+%\begin{equation*}%\label{diagram:extensionforX}
+%\xymatrix{
+%A \ar@{>->}[d]_{c} \ar@{>->} [r]^-{i}  & Y \ar@{>>}[d]^{f} \\
+%B \ar[r]_{\eta} \ar@{..>}[ru]_{j} &  B'
+%}
+%\end{equation*}
+%there is a diagonal filler $j : B\ra Y$.  Moreover, there is then a section $s$ of $f$ with $s\eta = j$, since $\eta$ is a trivial cofibration. This exhibits $\eta c$ as a retract of $i$, and therefore also a trivial cofibration, and so a WHE.  Thus $c$ is also a WHE by 3 for 2.
 \end{proof}
 
 %\begin{proposition}
@@ -1245,7 +1245,7 @@ there is a diagonal filler $j : B\ra Y$.  Moreover, there is then a section $s$ 
 
 To complete the proof that a cofibration WHE is a WE we will use the following fundamental fact, the proof of which is deferred to the next section.
 
-\begin{proposition}[Fibration extension]\label{lemma:fibextreplace}
+\begin{proposition}[Fibration extension]\label{prop:fibextreplace}
 Given a fibration $ f : Y \epi X$ and a trivial cofibration $\eta: X\ra X'$,
 there is a fibration $f' : Y' \epi X'$ such that $f$ is a pullback of $f'$ along $\eta$. 
 \end{proposition}
@@ -1263,7 +1263,7 @@ B \ar[r]_{b} &  X.
 }
 \end{equation}
 Let $\eta: X\ra X'$ be a fibrant replacement, so $\eta$ is a trivial cofibration and $X'$ is fibrant. 
-By lemma \ref{lemma:fibextreplace}, there is a fibration $f' : Y' \epi X'$ such that $f$ is a pullback of $f'$ along $\eta$. So we can extend diagram \eqref{diagram:CofWHEiffFibLift1} to obtain the following, in which the righthand square is a pullback.
+By proposition \ref{prop:fibextreplace}, there is a fibration $f' : Y' \epi X'$ such that $f$ is a pullback of $f'$ along $\eta$. So we can extend diagram \eqref{diagram:CofWHEiffFibLift1} to obtain the following, in which the righthand square is a pullback.
 \begin{equation}\label{diagram:CofWHEiffFibLift2}
 \xymatrix{
 A \ar@{>->}[d]_{c} \ar[r]^-{a}  & Y \ar@{>>}[d]^{f} {\pbcorner} \ar[r]^{y} & Y' \ar@{>>}[d]^{f'} \\
@@ -1281,11 +1281,12 @@ Thus $yjc = j'c = ya$.  But as a trivial cofibration, $\eta$ is monic, and as a 
 \end{proof}
 
 Combining the previous two lemmas \ref{lemma:CofWHEiffFibLift} and \ref{lemma:CofWEiffFibLift} we now have.
+
 \begin{corollary}\label{cor:CofWHEtoWE}
 A cofibration $ c : A \mono B$ that is a WHE is a WE.
 \end{corollary}
 
-Finally, we can show:
+The following is not required, but we state it anyway for the record:
 
 \begin{lemma}\label{lemma:FibWHEtoWE}
 A fibration $ f : Y \epi X$ that is a WHE is a WE.
@@ -1299,7 +1300,7 @@ A map $ f : X \mono Y$ is a WHE if and only if it is a WE.  Thus the weak equiva
 \end{proposition}
 \begin{proof}
 Let $ f : X \epi Y$ be a WE and factor it into a trivial cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$.  Then both 
-$i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor it into a trivial cofibration $i : X\mono Z$ followed by a fibration $p: Z\epi Y$. Since  $i$ is then a WHE, as is $f$, it follows that $p$ is as well.  Thus $p$ is also a WE, hence a trivial fibration. So $f$ is a WE.
+$i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor it into a cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$. Since  $p$ is then a WHE, as is $f$, it follows that $i$ is as well.  Thus $i$ is also a WE, by lemma \ref{cor:CofWHEtoWE}, hence a trivial fibration. So $f$ is a WE.
 \end{proof}
 
 \section{Frobenius}
