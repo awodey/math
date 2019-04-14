@@ -299,28 +299,28 @@ Consider a generating sub\emph{set} of cofibrations, consisting of all those cof
 \begin{proposition}\label{prop:uniformstructequiv} For any object $X$ in \cSet\ the following are equivalent:
 \begin{enumerate}
 \item $X$ is a \emph{$+$-algebra}, i.e.\ there is a retraction $\alpha :X^+ \to X$ of the unit $\eta : X\to X^+$.
-\item $X$ is  \emph{contractible} in the sense that it has the right lifting property with respect to all cofibrations,
+\item $X$ is  \emph{$\mathcal{C}$-injective}, in the sense that it has the right lifting property with respect to all cofibrations,
 \[
 \mathcal{C}\, \pitchfork\,X.
 \]
 \item $X$ has a \emph{uniform filling structure}: 
-for each basic cofibration $c : C \mono \I^{n}$ and map $x : C\to X$ there is given an extension $j(c,x)$,
+for each basic cofibration $c : C \mono \I^{n}$ and map $x : C\ra X$ there is given an extension $j(c,x)$,
 \begin{equation}\label{diagram:directedfillers}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[r]^{x} & X, \\
 \I^{n}\ar@{.>}[ru]_{j(c,x)} &
 }
 \end{equation}
-and the choice is \emph{uniform in $\I^n$} in the following sense: given any cubical map $u : \I^m \to \I^n$, the pullback $u^*c : u^*C\mono \I^m$ is again a basic cofibration and fits into a commutative diagram of the form
+and the choice is \emph{uniform in $\I^n$} in the following sense: given any cubical map $u : \I^m \ra \I^n$, the pullback $u^*c : u^*C\mono \I^m$ is again a basic cofibration and fits into a commutative diagram of the form
 \begin{equation}\label{diagram:directedfillers3}
 \xymatrix{
-u^*C \ar@{>->}[d]_{c'} \ar[r]^{u'} \pbcorner &  C \ar@{>->}[d]_{c} \ar[r]^{x} & X. \\
+u^*C \ar@{>->}[d]_{u^*c} \ar[r]^{c^*u} \pbcorner &  C \ar@{>->}[d]_{c} \ar[r]^{x} & X. \\
 \I^{m} \ar[r]_{u} & \I^{n} \ar@{.>}[ru]_{j(c,x)} &
 }
 \end{equation}
-For the pair $(c',\, xu')$ in \eqref{diagram:directedfillers3} the chosen extension $j(c',xu'): \I^m \to X$, is equal to  $j(c,x)\circ u$,
+For the pair $(u^*c,\, xc^*u)$ in \eqref{diagram:directedfillers3} the chosen extension $j(u^*c,xc^*u): \I^m \ra X$, is equal to  $j(c,x)\circ u$,
 \begin{equation}\label{eq:uniformfillers}
-j(c',xu') = j(c,x) u.
+j(u^*c,xc^*u) = j(c,x) u.
 \end{equation}
 \end{enumerate}
 \end{proposition}
@@ -337,7 +337,7 @@ Let $\chi(c,x): Z\to X^+$ be the classifying map of the evident partial map $(c,
 \begin{equation}\label{diagram:defphi}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[r]^{x} \pbcorner & X \ar[d]^{\eta} \\
-Z \ar[r]_{\chi(c,x)} & X^+
+Z \ar[r]_-{\chi(c,x)} & X^+
 }
 \end{equation}
 Then set
@@ -1501,6 +1501,12 @@ a = \varepsilon \circ(j\times\I)\,.
 
 We leave to the reader the verification that these assignments are mutually inverse.
 \end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \[
 \xymatrix@=3em{
