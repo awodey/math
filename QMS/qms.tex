@@ -616,7 +616,7 @@ j(u^*c \otimes \delta_\epsilon,x(u\times\I)') = j(c,x) (u\times\I).
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Unbiased partial path-lifting}
+\section{Unbiased partial path-lifting}\label{sec:unbiasedfibration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Rather than building a weak factorization system based on the foregoing notion of (biased) fibration (as is done in \cite{GG,OP}), we shall first eliminate the ``bias'' on a choice of endpoint $\delta_\epsilon : 1 \to \I$, expressed by the indexing $\epsilon = 0,1$.  This will have the effect of adding more trivial cofibrations, and thus more weak equivalences, to our model structure. Consider first the simple path-lifting condition, which is a special case of \eqref{diagram:biasedfillers} with $c =\, ! : 0\mono 1$, since $!\otimes\delta_\epsilon = \delta_\epsilon$:
@@ -1243,7 +1243,7 @@ Since $\eta$ is a trivial cofibration, it is a WHE. So the composite $\eta c$ is
 %%
 %This proposition is a consequence of several stronger ones, e.g.\ the equivalence extension property of \cite{Sattler:EEP}. It is easily seen to be equivalent to the following special case.
 
-To complete the proof that a cofibration WHE is a WE we will use the following fundamental fact, the proof of which is deferred to the next section.
+To complete the proof that a cofibration WHE is a WE we will use the following fundamental fact, the proof of which is deferred to section XX\ref{section:FEP}.
 
 \begin{proposition}[Fibration extension]\label{prop:fibextreplace}
 Given a fibration $ f : Y \epi X$ and a trivial cofibration $\eta: X\ra X'$,
@@ -1303,9 +1303,144 @@ Let $ f : X \epi Y$ be a WE and factor it into a trivial cofibration $i : X\mono
 $i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor it into a cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$. Since  $p$ is then a WHE, as is $f$, it follows that $i$ is as well.  Thus $i$ is also a WE, by lemma \ref{cor:CofWHEtoWE}, hence a trivial fibration. So $f$ is a WE.
 \end{proof}
 
-\section{Frobenius}
+\section{The Frobenius condition}
 
-In this section, we show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will eventually imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  But it is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a setting with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} provides an alternate route that is perhaps more direct, and in any event can also be applied without connections.  This approach proves the ``dual'' fact that the right adjoint to pullback along any \emph{fibration} $f : Y\ra X$ (which always exists in the ambient presheaf topos) preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  One aspect of this approach that deserves a closer analysis is the methodology (due to Coquand and first introduced in \cite{CCHM}) of defining an explicit type-theoretic notion of \emph{fibration structure} with which one can efficiently calculate in type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under the type-forming operations.  An algebraic/functorial analogue of this technique should be equally useful.
+In this section, we will show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} provides an alternate route that is perhaps more direct, and in any event can also be applied without connections.  This approach proves the ``dual'' fact that the right adjoint to pullback (which always exists in a topos) along any \emph{fibration} $f : Y\ra X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
+
+A novel aspect of this approach is the method (due to Coquand and first introduced in \cite{CCHM}) of reducing the (type-theoretically specified) notion of \emph{fibration structure} to the apparently weaker notion of a \emph{composition structure}.  Composition structure is more easily shown to be preserved by the type-forming operations like Sigma and Pi, when these concepts are formulated in type theory, as is done in \cite{CCHM}, or in the internal lanuage of the ambient presheaf topos, as in \cite{OP}.  This is due to the fact that one can then efficiently calculate using the rules of type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under Pi-types.  The approach taken here is a reformulation into categorical terms of those type-theoretic calculations.
+
+\subsection{Composition and filling}
+
+Let $p : 1 \to \I$ be any point of the interval (e.g.\ $\delta_0$), and $\epsilon_p := X^p : X^\I \to X$ the corresponding ``evaluation at $p$'' map.  Given another point $q : 1 \to \I$, there is an evident factorization 
+\[
+\epsilon_p = \pi_1 \circ \langle \epsilon_p, \epsilon_q\rangle : X^\I \to X\times X \to X.
+\]
+We will say that the object $X$ \emph{has composition (from $p$ to $q$)} if for every object $Z$ and cofibration $c:C\mono Z$ and commutative square 
+\begin{equation}\label{diagram:composition1}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]  & X^\I \ar[d]^{\epsilon_p} \\
+Z \ar[r] & X,
+}
+\end{equation}
+there is an arrow $k : Z \to X\times X$ as indicated below making both subdiagrams commute.
+\begin{equation}\label{diagram:composition2}
+\xymatrix{
+C \ar@{>->}[dd]_{c} \ar[r]  & X^\I \ar[d]^{\langle \epsilon_p, \epsilon_q\rangle} \\
+& X\times X \ar[d]^{\pi_1} \\
+Z \ar[r] \ar@{-->}[ru]^{k} & X,
+}
+\end{equation}
+
+If $X$ is fibrant in the biased sense of section \ref{sec:biasedfibration}, then $X$ clearly has composition from $\delta_0$ to $\delta_1$ (and back), since the outer rectangle then has a diagonal filler (as does the corresponding one with $\pi_2$ for $\pi_1$).  One can show the converse, that having composition implies filling for all such squares \eqref{diagram:coposition1}, in the case where the category of cubes is assumed to have connections.  Logical proofs of this fact can be found in \cite{CCHM,OP}; a diagrammatic proof analogous to the following one for the unbiased case can also be given, but is omitted here.
+
+If $X$ is fibrant in the unbiased sense of section \ref{sec:unbiasedfibration}, using the generic point $\delta : 1\ra \I$, then over $\I$ it will also have composition from any of $\delta, \delta_0, \delta_1$ to any other one, for the same reason as before: the map $(\delta\!\Rightarrow\!X) = X^\delta : X^\I \to X$ is a trivial cofibration there. In order to arrive at a property equivalent to unbiased filling, however, we use the following generic form of composition, which implies the various special cases. To formulate it, we introduce a second generic point by pulling back along the (say, first) projection $\pi : \I\times\I \ra \I$ to work in $\cSet/(\I\times\I)$, where in addition to $\delta, \delta_0, \delta_1$ we also have a second generic point $\delta' : 1 \ra \I$.
+
+\begin{definition}\label{def:unbiasedcomposition}
+An object $X$ will be said to have \emph{(unbiased) composition} if it has composition, in the sense of \eqref{diagram:composition2}, from $\delta$ to $\delta'$ over $\I\times \I$.
+\end{definition}
+
+\begin{proposition}\label{prop:comptofill}
+Composition implies filling; that is, every cubical set $X$ with composition is fibrant.
+\end{proposition}
+
+\begin{proof}
+Let $X$ be a cubical set with composition from  $\delta$ to $\delta'$ over $\I\times \I$, and suppose given a filling problem in $\cSet/\I$  of the form
+\begin{equation}\label{diagram:compimpfill}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^y  & X^\I \ar[d]^{\epsilon_\delta} \\
+Z \ar[r]_x & X.
+}
+\end{equation}
+Pulling back along $\pi : \I\times\I \ra \I$ to $\cSet/(\I\times\I)$, since $X$ has composition there is then a map $k : Z\to X\times X$ over $\I\times\I$ as indicated below.
+\begin{equation}\label{diagram:compimpfill2}
+\xymatrix{
+C \ar@{>->}[dd]_{c} \ar[r]^x  & X^\I \ar[d]^{\langle \epsilon_\delta, \epsilon_{\delta'}\rangle} \\
+& X\times X \ar[d]^{\pi_1} \\
+Z \ar[r]_y \ar@{..>}[ru]^{k} & X,
+}
+\end{equation}
+Transposing by the adjunction $\pi^* \dashv {\pi}_*$ results in a commutative diagram in $\cSet/\I$ of the form
+\begin{equation}\label{diagram:compimpfill3}
+\xymatrix{
+C \ar@{>->}[dd]_{c} \ar[r]^x  & X^\I \ar[dd]_{\epsilon_\delta} \ar[r]^{\rho_{X^\I}}
+	&  (X^{\I})^{\I} \ar[d]^{\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle} \\
+ & & (X\times X)^\I \ar[d]^{\pi_1^\I} \\
+Z \ar[r]_y \ar@{..>}[rru]^>>>>>>>>>{k} & X\ar[r]_{\rho_X} & X^I,
+}
+\end{equation}
+where $\rho_X : X\ra X^\I$ is the unit of $\pi^* \dashv {\pi}_*$, and similarly for $\rho_{X^\I}$.   
+
+Next observe that the maps $X^\delta : X^\I \ra X$ and $(X^\I)^\delta : (X^{\I})^{\I} \ra X^\I$ make the following commute, and indeed make $\epsilon_\delta$ a retract of $\pi_1\circ\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle$ in the arrow category of $\cSet/\I$.
+\begin{equation}\label{diagram:compimpfill4}
+\xymatrix{
+X^\I \ar[dd]_{\epsilon_\delta} \ar[r]^{\rho_{X^\I}} 
+	& (X^{\I})^{\I} \ar[d]^{\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle} \ar[r]^{(X^\I)^\delta} & X^\I \ar[dd]^{\epsilon_\delta}  \\
+ & (X\times X)^\I \ar[d]^{\pi_1^\I} & \\
+X\ar[r]_{\rho_X} & X^I \ar[r]_{X^\delta} & X,
+}
+\end{equation}
+To see that this commutes, note that the middle vertical composite is known to be $(\epsilon_\delta)^\I$ by construction.
+
+Finally, we claim that there is a map $\gamma: (X\times X)^\I \to X^\I$ making the following commute.
+\begin{equation}\label{diagram:compimpfill5}
+\xymatrix{
+X^\I \ar[dd]_{\epsilon_\delta} \ar[r]^{\rho_{X^\I}} 
+	& (X^{\I})^{\I} \ar[d]_{\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle} \ar[r]^{(X^\I)^\delta} & X^\I \ar[dd]^{\epsilon_\delta}  \\
+ & (X\times X)^\I \ar[d]_{\pi_1^\I} \ar@{..>}[ru]_{\gamma} & \\
+X\ar[r]_{\rho_X} & X^I \ar[r]_{X^{\delta}} & X,
+}
+\end{equation}
+Indeed, up to isomorphism, the right hand part of this last diagram is:
+\begin{equation}\label{diagram:compimpfill6}% _{ X^{ (\delta_{\I} ) } } % ^{ X^{ (\I_{\delta}) } } 
+\xymatrix{
+X^{\I\times\I} \ar[rd]^{X^\phi}\ar[dd]_{X^{(\delta_{\I})}}  \ar[rr]^{X^{(\I_{\delta})}} 
+ && X^\I \ar[dd]^{X^\delta}  \\
+& X^{\I+\I} \ar[ld]_{X^L} \ar@{..>}[ru]_{\gamma} & \\
+X^\I \ar[rr]_{X^{\delta}} && X,
+}
+\end{equation}
+in which all maps are of the form $X^{(-)}$, and are induced by the following,
+\begin{equation}\label{diagram:compimpfill7}
+\xymatrix{
+\I\times\I  && \I \ar[ll]_{\I_\delta}  \ar@{..>}[ld]^{G} \\
+ 	& \ar[lu]_{\phi} \I+\I & \\
+\I \ar[uu]^{\delta_\I}  \ar[ru]_{L} && \ar[ll]^{\delta}  \ar[uu]_{\delta}  1.
+}
+\end{equation}
+in which:
+\begin{align*}
+\I_\delta &:= \langle \delta!, 1_\I\rangle \\
+\delta_\I &:= \langle 1_\I,\delta!\rangle \\
+\phi &:= [\delta_\I, \I_\delta]\\
+L &:= \text{the left coproduct inclusion.}
+\end{align*}
+For $G : \I\ra \I+\I$ we can therefore also take the right coproduct inclusion $R$ to make everything commute .... .  
+
+XXXXX Need to add the side condition on the composiiton when the two points are the same.
+
+
+We then let $\gamma := X^R$ to complete the proof.
+\end{proof}
+
+
+
+\begin{remark}
+There is an enitirely analogous generalization, the details of which we omit, from compositon for an object $X$ to composition for a map $f : Y\to X$, just as for the notion of (trivial) fibration.  Also analogous is the promotion of the \emph{property} of an object or map ``having composition'' to the notion of a \emph{composition structure}.  This procedes via the notion of a \emph{uniform composition structure} with respect to cofibrations $c : C\mono \I^n$, with representable codomains, which can then be internalized as a suitable map representing the uniform structure, in a way that is entirely analogous to the case for trivial fibrations formulated in proposition \ref{prop:uniformstructequivrelative}.
+\end{remark}
+
+\subsection{Frobenius}
+
+\section{The fibration extension property}
+
+
+%%%%%
+%\end{document}
+%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Appendix 1: Logical specification}\label{appendix:logicalspec}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 In order to simplify the exposition in this section we will first consider biased fibration structures in the sense of section \ref{sec:biasedfibration}.  Recall that a (biased) fibration structure on a map $f :Y\ra X$ is essentially the same thing as a pair of $+$-algebra structures on the maps
 \[
@@ -1357,15 +1492,9 @@ The map $f : Y\ra X$ is a fibration iff for all $p: X^\I$, the map ${\prod_{i:\I
 
 The (internal) condition that ${\prod_{i:\I}}A(pi) \ra A(p0)$ is a $+$-algebra for all $p: X^\I$ is shown in Appendix 1 to be equivalent to the type-theoretic definition of \emph{fibration structure} on a type family $A: X\ra \U$ given in \cite{OP}.  That this notion of fibration structure is closed under the formation of $\Pi$-types can be shown directly, much as in \cite{OP}, and was formally verified (in the setting without connections, but with unbiased fibrations) by \cite{Zesen}.
 
-\section{The fibration extension property}
-
-
-%%%%%
-%\end{document}
-%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix 1: Logical specification}\label{appendix:logicalspec}
+%%%%%%%%
+XXXXXXXXXXX stitch together this gap XXXXXXXXXXXX
+%%%%%%%%
 
 To make the connection to the logical style of presentation used in \cite{CCHM,OP}, suppose we want to describe a (uniform) filling structure on an arbitrary $f : X\to Y$ with respect to all generating trivial cofibrations $m \otimes \delta_\epsilon : \I^n +_M (M\times\I) \to \I^{n+1}$,
 \begin{equation}\label{diagram:llpforf}
