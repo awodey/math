@@ -1331,11 +1331,9 @@ Z \ar[r] \ar@{-->}[ru]^{k} & X,
 }
 \end{equation}
 
-If $X$ is fibrant in the biased sense of section \ref{sec:biasedfibration}, then $X$ clearly has composition from $\delta_0$ to $\delta_1$ (and back), since the outer rectangle then has a diagonal filler (as does the corresponding one with $\pi_2$ for $\pi_1$).  One can show the converse, that having composition implies filling for all such squares \eqref{diagram:coposition1}, in the case where the category of cubes is assumed to have connections.  Logical proofs of this fact can be found in \cite{CCHM,OP}; a diagrammatic proof is given in an appendix 1.
+If $X$ is fibrant in the \emph{biased} sense of section \ref{sec:biasedfibration}, then $X$ clearly has composition from $\delta_0$ to $\delta_1$ (and back), since the outer rectangle then has a diagonal filler (as does the corresponding one with $\pi_2$ for $\pi_1$).   In the case where the category of cubes is assumed to have connections, one can also show the converse, that having composition implies diagonal filling for all such squares \eqref{diagram:coposition1}.  Logical proofs of this fact can be found in \cite{CCHM,OP}; a diagrammatic proof is given in Appendix 1.
 
-If $X$ is fibrant in the unbiased sense of section \ref{sec:unbiasedfibration} with the generic point $\delta : 1\ra \I$ over $\I$, then $X$ will have composition from any of $\delta, \delta_0, \delta_1$ to any other one, for the same reason as before: the map $(\delta\!\Rightarrow\!X) = X^\delta : X^\I \to X$ is a trivial fibration over $\I$. In order to arrive at a property equivalent to unbiased filling, however, we use a generic form of composition that implies the various special cases. To formulate it, we introduce a second generic point by pulling back along the (say, second) projection $\pi : \I\times\I \ra \I$ to work in $\cSet/(\I\times\I)$, where in addition to $\delta, \delta_0, \delta_1$ we now also have a second generic point $\delta' : 1 \ra \I$, given by the additional diagonal map over $\I\times \I$,
-
-
+If $X$ is fibrant in the \emph{unbiased} sense of section \ref{sec:unbiasedfibration}, with the generic point $\delta : 1\ra \I$ over $\I$, then $X$  will have composition over $\I$ from $\delta$ to either of $\delta_0, \delta_1$, for the same reason as before: the map $(\delta\!\Rightarrow\!X) = X^\delta : X^\I \to X$ is a trivial fibration over $\I$, by the definition of fibrancy. In order to arrive at a property equivalent to unbiased filling, we shall use a generic form of composition from $\delta$ to a second generic point $\delta'$.  This is obtained by pulling back along the (say, second) projection $\pi : \I\times\I \ra \I$ to work in $\cSet/(\I\times\I)$, where in addition to $\delta, \delta_0, \delta_1$ we now also have a point $\delta' : 1 \ra \I$, given by the additional diagonal map over $\I\times \I$,
 \begin{equation}\label{diagram:deltaprime}
 \xymatrix{
 \I\times\I  \ar[rd]_{\mathsf{id}} \ar[rr]^{\langle \pi_1, \pi_2, \pi_1\rangle}  && \I\times\I\times\I \ar[ld]^{\langle \pi_1, \pi_2\rangle} \\
@@ -1344,26 +1342,32 @@ If $X$ is fibrant in the unbiased sense of section \ref{sec:unbiasedfibration} w
 \end{equation}
 %$$\delta' :=\langle \pi_1, ..., \rangle: \I\times\I \to \I\times\I\times\I$$ 
 
-Observe that in $\cSet/\I\times\I$ the diagonal $\Delta : \I\mono \I\times\I$ is a subobject of the terminal object $\Delta\mono 1$, with associated base change 
+Observe that in $\cSet/\I\times\I$ the (binary) diagonal $\Delta : \I\mono \I\times\I$ is a subobject of the terminal object $\Delta\mono 1$, with associated base change 
 \begin{equation}\label{diagram:Deltabasechange}
 \xymatrix{
 \cSet/\I\ \ar@<-1ex>[rr]_{\Delta_*}  && \ar@<-1ex>[ll]_{\Delta^*} \ \cSet/\I\times\I \,.
 }
 \end{equation}
-
-The following is easily proved.
-\begin{lemma}
-For any object $X$ in $\cSet/\I\times\I$, let $\eta_X : X\ra X^\Delta$ be the unit of $\Delta^*\dashv \Delta_*$.  
-Given any objects and arrows $f, g : Y \rightrightarrows X$ in $\cSet/\I\times\I$,
-we have $\Delta^*f = \Delta^*g$ in $\cSet/\I$ if and only if the composites with $\eta_X$ are equal,
+%
+For any object $X$ in $\cSet/\I\times\I$, let $$\eta_X : X\ra X^\Delta$$ be the unit of $\Delta^*\dashv \Delta_*$.  
+Given objects and arrows $f, g : X \rightrightarrows Y$ in $\cSet/\I\times\I$, observe that
+ $\Delta^*f = \Delta^*g$ in $\cSet/\I$ if and only if the composites with $\eta_Y$ are equal,
 \begin{equation}\label{diagram:composeDelta}
 \xymatrix{
-Y \ar@<-1ex>[r]_{g}  \ar@<1ex>[r]^{f} & X \ar[r]_{\eta_X} & X^\Delta\,.
+X \ar@<-1ex>[r]_{g}  \ar@<1ex>[r]^{f} & Y \ar[r]^{\eta_Y} & Y^\Delta.
 }
 \end{equation}
-\end{lemma}
+%
+Indeed, consider the double naturality square
+\begin{equation}\label{diagram:Deltanatural}
+\xymatrix{
+X \ar[d]_{\eta_X} \ar@<-.8ex>[r]_{g}  \ar@<.8ex>[r]^{f} & Y \ar[d]^{\eta_Y} \\
+X^\Delta \ar@<-.8ex>[r]_{g^\Delta}  \ar@<.8ex>[r]^{f^\Delta} & Y^\Delta.
+}
+\end{equation}
+Then $\eta_Y f = \eta_Y g$ iff $f \eta_X= g\eta_X$ iff $\Delta^*f = \Delta^*g$.
 
-We can now define what it means for an object $X$ to have (unbiased) composition by saying that it has composition, in the sense of \eqref{diagram:composition2}, from $\delta$ to $\delta'$ over $\I\times \I$, and that, moreover, the two resulting maps $k_1, k_2 : Z\rightrightarrows X$ are coequalized by the unit $\eta_X : X\ra X^\Delta$.  We reformulate this condition equivalently as follows
+We can now define what it means for an object $X$ to have (unbiased) composition by saying that it has composition, in the sense of \eqref{diagram:composition2}, from $\delta$ to $\delta'$ over $\I\times \I$, and that, moreover, the two resulting maps $k_1, k_2 : Z\rightrightarrows X$ are coequalized by the unit $\eta_X : X\ra X^\Delta$.  We reformulate this condition equivalently as follows (cf.\ \cite{Coquand,ABCetc.}).
 
 \begin{definition}\label{def:unbiasedcomposition}
 An object $X$ will be said to have \emph{(unbiased) composition} if it satisfies the following condition: for every cofibration $c : C \mono Z$ in $\cSet/\I$ and every commutative square in $\cSet/\I$ of the form
@@ -1442,7 +1446,7 @@ Z \ar[r]_x \ar@{..>}[rrrru]^{\widetilde{x'}} & X \ar[rr]_{\eta^\pi_X}
 	&& X^\I \ar[r]_-{\pi_*\eta_X} & \pi_*X^\Delta.
 }
 \end{equation}
-Finally, we claim that $\pi_*X^\Delta \cong X$, and that, up to this iso,  $$\pi_*\eta_X = \epsilon_\delta : X^\I\ra X,$$ which will finish the proof, since this is a retraction of $\eta^\pi_X : X\ra X^\I$.  Indeed, writing out the object $\pi_*X^\Delta$ in terms of the two adjunctions $\pi^* \dashv {\pi}_*$ and $\Delta^* \dashv \Delta_*$ we have
+Finally, we claim that $\pi_*X^\Delta \cong X$, and that, up to this iso,  $$\pi_*\eta_X = \epsilon_\delta : X^\I\ra X,$$ which will finish the proof, since this is a retraction of $\eta^\pi_X : X\ra X^\I$.  Indeed, writing out the object $\pi_*X^\Delta$ explicitly, in terms of the two adjunctions $\pi^* \dashv {\pi}_*$ and $\Delta^* \dashv \Delta_*$, we have
 \[
 \pi_*X^\Delta = \pi_*\Delta_*\Delta^*\pi^*X \cong (\pi\circ\Delta)_*(\pi\circ\Delta)^*X \cong X,
 \]
@@ -1452,15 +1456,23 @@ To see that $\pi_*\eta_X = \epsilon_\delta$, first let us make the base change $
 \[
 \epsilon_\delta = \epsilon_{(\I^*X)} : X^\I \times \I \to X\times \I \quad\text{(over $\I$)}.
 \]  
-By a triangle law, this map has the inverse $\I^*(\eta_{X}^\I) : X\times\I \to X^\I \times \I$, where $$\eta_X^\I : X \ra X^\I$$ is the unit of $\I^*\dashv \I_*$ at $X$.  It suffices to show that $\I^*(\eta_{X}^\I)$ is also an inverse for $\pi_*\eta_X$ which, more explicitely is:
+By a triangle law, this map has the inverse $\I^*(\eta_{X}^\I) : X\times\I \to X^\I \times \I$, where $$\eta_X^\I : X \ra X^\I$$ is the unit of $\I^*\dashv \I_*$ at $X$.  It suffices to show that $\I^*(\eta_{X}^\I)$ is also an inverse for $\pi_*\eta_X$ which, more explicitly is:
 \[
-\pi_*\eta_X = \pi_*(\eta^\Delta_{\pi^*(\I^*X)}).
+\pi_*\eta_X = \pi_*(\eta^\Delta_{\pi^*(\I^*X)}),
 \]
-Since $\I^*$ preserves exponentials, we have
+where $\eta^\Delta$ is the unit of $\Delta^* \dashv \Delta_*$. Since $\I^*$ preserves exponentials, we have
 \[
 \I^*(\eta_{X}^\I) = \eta_{(\I^*X)}^\pi : \I^*X \to (\I^*X)^{\I^*\I} \cong \pi_*\pi^*(\I^*X)\quad\text{(over $\I$)}.
 \]
-Now, for the composition of the $\pi^* \dashv {\pi}_*$ and $\Delta^* \dashv \Delta_*$ adjunctions, the units $\eta^\pi$ and $\eta^\Delta$ satisfy the law
+Now, for the composition of the $\pi^* \dashv {\pi}_*$ and $\Delta^* \dashv \Delta_*$ adjunctions, 
+
+\begin{equation}\label{diagram:Deltapibasechange}
+\xymatrix{
+\cSet/\I\ \ar@<-1ex>[rr]_-{\Delta_*}  && \ar@<-1ex>[ll]_-{\Delta^*} \ \cSet/\I\times\I \ \ar@<-1ex>[rr]_-{\pi_*}  
+	&& \ar@<-1ex>[ll]_-{\pi^*} \ \cSet/\I 
+}
+\end{equation}
+the units $\eta^\pi$ and $\eta^\Delta$ satisfy the well-known law
 \[
 \eta^{\pi\circ\Delta} = \pi_*(\eta^{\Delta}_{\pi^*}) \circ (\eta^\pi)\,.
 \]
