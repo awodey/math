@@ -152,7 +152,7 @@ Moreover, we want the cofibrations to be classified by a  subobject $\Phi \hook 
 \item[(C0)] There is a terminal object $\Phi' \mono \Phi$ in the category of cofibrations and cartesian squares.
 \end{enumerate}
 
-It follows from (C1) that $\Phi' = 1$ and the terminal cofibration $1 \mono \Phi$ is a factorization of $\top : 1 \ra \Omega$.  We call this map $t:1 \mono \Phi$ the \emph{cofibration classifier}.  Note that we permit the case where $\Phi = \Omega$, i.e.\ all monos are cofibrant.
+It follows from (C1) that $\Phi' = 1$ and the terminal cofibration $1 \mono \Phi$ is a factorization of $\top : 1 \ra \Omega$.  We call this map $t:1 \mono \Phi$ the \emph{cofibration classifier}.  Note that we permit the case where $\Phi = \Omega$, i.e.\ all monos are cofibrations.
 
 \paragraph{Cofibrant partial map classifier.}
 The polynomial endofunctor \cite{GG} determined by the cofibration classifier $t : 1 \mono \Phi$ is defined on objects by
@@ -174,7 +174,7 @@ since $t$ is monic. Let $\eta : X\mono X^+$ be the indicated top horizontal map;
 The map $\eta : X\mono X^+$ classifies partial maps with cofibrant domain, in the following sense.
 \begin{enumerate}
 \item The map $\eta : X\mono X^+$ is a cofibration.
-\item For any object Z and any partial map $(s,g): Z\leftarrowtail S\to X$, with $s : S\mono Z$ cofibrant, there is a unique $f:Z\to X^+$ making a pullback square,
+\item For any object Z and any partial map $(s,g): Z\leftarrowtail S\ra X$, with $s : S\mono Z$ a cofibration, there is a unique $f:Z\ra X^+$ making a pullback square,
 \[
 \xymatrix{
 S \ar@{>->}[d]_{s} \pbcorner \ar[r]^g & X \ar@{>->}[d]^{\eta}\\
@@ -229,7 +229,7 @@ A \emph{relative $+$-algebra} in \cSet\ is a map $A \to X$ together with an alge
 \paragraph{The factorization system.}
 
 \begin{proposition}
-There is an (algebraic) weak factoriation system on \cSet\ given by taking as the left class the cofibrations and as the right class the (maps underlying) the relative $+$-algebras. Thus a right map is one $f :A\to X$ for which there is a retract $\alpha : A'\to A$ over $X$ of the canonical map $\eta_f : A\to A'$ over $X$,
+There is an (algebraic) weak factoriation system on \cSet\ given by taking as the left class the cofibrations and as the right class the (maps underlying) the relative $+$-algebras. Thus a right map is a map $f :A\to X$ for which there is a retract $\alpha : A'\to A$ over $X$ of the canonical map $\eta_f : A\to A'$ over $X$,
 \[
 \xymatrix{
 A\ar[rd]_{f} \ar[r]^{\eta_f} \ar@/^6ex/ [rr]^= & A' \ar[r]^{\alpha} \ar[d]^-{f^+} & \ar[ld]^{f} A \\
@@ -1307,11 +1307,11 @@ $i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor 
 
 In this section, we will show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} provides an alternate route that is perhaps more direct, and in any event can also be applied without connections.  This approach proves the ``dual'' fact that the right adjoint to pullback (which always exists in a topos) along any \emph{fibration} $f : Y\ra X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
 
-A novel aspect of this approach is the method (due to Coquand and first introduced in \cite{CCHM}) of reducing the (type-theoretically specified) notion of \emph{fibration structure} to the apparently weaker notion of a \emph{composition structure}.  Composition structure is more easily shown to be preserved by the type-forming operations like Sigma and Pi, when these concepts are formulated in type theory, as is done in \cite{CCHM}, or in the internal lanuage of the ambient presheaf topos, as in \cite{OP}.  This is due to the fact that one can then efficiently calculate using the rules of type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under Pi-types.  The approach taken here is a reformulation into categorical terms of those type-theoretic calculations.
+A novel aspect of this approach is the method (due to Coquand and first introduced in \cite{CCHM}) of reducing the (type-theoretically specified) notion of \emph{fibration structure} to the apparently weaker notion of a \emph{composition structure}.  Composition structure is more easily shown to be preserved by the type-forming operations like Sigma and Pi, when these concepts are formulated in type theory, as is done in \cite{CCHM}, or in the internal lanuage of the ambient presheaf topos, as in \cite{OP}.  This is due to the fact that one can then efficiently calculate using the rules of type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under Pi-types.  The approach taken here is a reformulation into diagrammatic language of those type-theoretic calculations.
 
 \subsection{Composition and filling}
 
-Let $p : 1 \to \I$ be any point of the interval (e.g.\ $\delta_0$), and $\epsilon_p := X^p : X^\I \to X$ the corresponding ``evaluation at $p$'' map.  Given another point $q : 1 \to \I$, there is an evident factorization 
+Let $p : 1 \ra \I$ be any point of the interval (e.g.\ $\delta_0$), and $\epsilon_p := X^p : X^\I \to X$ the corresponding ``evaluation at $p$'' map.  Given another point $q : 1 \to \I$, there is an evident factorization 
 \[
 \epsilon_p = \pi_1 \circ \langle \epsilon_p, \epsilon_q\rangle : X^\I \to X\times X \to X.
 \]
@@ -1331,12 +1331,57 @@ Z \ar[r] \ar@{-->}[ru]^{k} & X,
 }
 \end{equation}
 
-If $X$ is fibrant in the biased sense of section \ref{sec:biasedfibration}, then $X$ clearly has composition from $\delta_0$ to $\delta_1$ (and back), since the outer rectangle then has a diagonal filler (as does the corresponding one with $\pi_2$ for $\pi_1$).  One can show the converse, that having composition implies filling for all such squares \eqref{diagram:coposition1}, in the case where the category of cubes is assumed to have connections.  Logical proofs of this fact can be found in \cite{CCHM,OP}; a diagrammatic proof analogous to the following one for the unbiased case can also be given, but is omitted here.
+If $X$ is fibrant in the biased sense of section \ref{sec:biasedfibration}, then $X$ clearly has composition from $\delta_0$ to $\delta_1$ (and back), since the outer rectangle then has a diagonal filler (as does the corresponding one with $\pi_2$ for $\pi_1$).  One can show the converse, that having composition implies filling for all such squares \eqref{diagram:coposition1}, in the case where the category of cubes is assumed to have connections.  Logical proofs of this fact can be found in \cite{CCHM,OP}; a diagrammatic proof is given in an appendix 1.
 
-If $X$ is fibrant in the unbiased sense of section \ref{sec:unbiasedfibration}, using the generic point $\delta : 1\ra \I$, then over $\I$ it will also have composition from any of $\delta, \delta_0, \delta_1$ to any other one, for the same reason as before: the map $(\delta\!\Rightarrow\!X) = X^\delta : X^\I \to X$ is a trivial cofibration there. In order to arrive at a property equivalent to unbiased filling, however, we use the following generic form of composition, which implies the various special cases. To formulate it, we introduce a second generic point by pulling back along the (say, first) projection $\pi : \I\times\I \ra \I$ to work in $\cSet/(\I\times\I)$, where in addition to $\delta, \delta_0, \delta_1$ we also have a second generic point $\delta' : 1 \ra \I$.
+If $X$ is fibrant in the unbiased sense of section \ref{sec:unbiasedfibration} with the generic point $\delta : 1\ra \I$ over $\I$, then $X$ will have composition from any of $\delta, \delta_0, \delta_1$ to any other one, for the same reason as before: the map $(\delta\!\Rightarrow\!X) = X^\delta : X^\I \to X$ is a trivial fibration over $\I$. In order to arrive at a property equivalent to unbiased filling, however, we use a generic form of composition that implies the various special cases. To formulate it, we introduce a second generic point by pulling back along the (say, second) projection $\pi : \I\times\I \ra \I$ to work in $\cSet/(\I\times\I)$, where in addition to $\delta, \delta_0, \delta_1$ we now also have a second generic point $\delta' : 1 \ra \I$, given by the additional diagonal map over $\I\times \I$,
+
+
+\begin{equation}\label{diagram:deltaprime}
+\xymatrix{
+\I\times\I  \ar[rd]_{\mathsf{id}} \ar[rr]^{\langle \pi_1, \pi_2, \pi_1\rangle}  && \I\times\I\times\I \ar[ld]^{\langle \pi_1, \pi_2\rangle} \\
+&  \I\times\I &.
+}
+\end{equation}
+%$$\delta' :=\langle \pi_1, ..., \rangle: \I\times\I \to \I\times\I\times\I$$ 
+
+Observe that in $\cSet/\I\times\I$ the diagonal $\Delta : \I\mono \I\times\I$ is a subobject of the terminal object $\Delta\mono 1$, with associated base change 
+\begin{equation}\label{diagram:Deltabasechange}
+\xymatrix{
+\cSet/\I\ \ar@<-1ex>[rr]_{\Delta_*}  && \ar@<-1ex>[ll]_{\Delta^*} \ \cSet/\I\times\I \,.
+}
+\end{equation}
+
+The following is easily proved.
+\begin{lemma}
+For any object $X$ in $\cSet/\I\times\I$, let $\eta_X : X\ra X^\Delta$ be the unit of $\Delta^*\dashv \Delta_*$.  
+Given any objects and arrows $f, g : Y \rightrightarrows X$ in $\cSet/\I\times\I$,
+we have $\Delta^*f = \Delta^*g$ in $\cSet/\I$ if and only if the composites with $\eta_X$ are equal,
+\begin{equation}\label{diagram:composeDelta}
+\xymatrix{
+Y \ar@<-1ex>[r]_{g}  \ar@<1ex>[r]^{f} & X \ar[r]_{\eta_X} & X^\Delta\,.
+}
+\end{equation}
+\end{lemma}
+
+We can now define what it means for an object $X$ to have (unbiased) composition by saying that it has composition, in the sense of \eqref{diagram:composition2}, from $\delta$ to $\delta'$ over $\I\times \I$, and that, moreover, the two resulting maps $k_1, k_2 : Z\rightrightarrows X$ are coequalized by the unit $\eta_X : X\ra X^\Delta$.  We reformulate this condition equivalently as follows
 
 \begin{definition}\label{def:unbiasedcomposition}
-An object $X$ will be said to have \emph{(unbiased) composition} if it has composition, in the sense of \eqref{diagram:composition2}, from $\delta$ to $\delta'$ over $\I\times \I$.
+An object $X$ will be said to have \emph{(unbiased) composition} if it satisfies the following condition: for every cofibration $c : C \mono Z$ in $\cSet/\I$ and every commutative square in $\cSet/\I$ of the form
+\begin{equation*}\label{diagram:compdef1}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^y  & X^\I \ar[d]^{\epsilon_\delta} \\
+Z \ar[r]_x & X
+}
+\end{equation*}
+with $\epsilon_\delta := X^\delta : X^\I \to X$ the evaluation at the generic point $\delta : 1 \ra \I$, upon pulling back along $\pi : \I\times\I \ra \I$ to $\cSet/\I\times\I$, there is a map $x' : Z \ra X$ making the following commute, 
+\begin{equation}\label{diagram:compdef2}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^y  & X^\I \ar[d]_>>>>>>>{\epsilon_\delta} \ar[r]^{\epsilon_{\delta'}} &  X \ar[d]^{\eta_X}\\
+Z  \ar@{..>}[rru]_>>>>>>>>>{x'} \ar[r]_x & X \ar[r]_{\eta_X} & X^\Delta 
+}
+\end{equation}
+where $\epsilon_{\delta'} := X^{\delta'} : X^\I \to X$ is the evaluation at the second generic point $\delta' : 1 \ra \I$.
+
 \end{definition}
 
 \begin{proposition}\label{prop:comptofill}
@@ -1344,88 +1389,139 @@ Composition implies filling; that is, every cubical set $X$ with composition is 
 \end{proposition}
 
 \begin{proof}
-Let $X$ be a cubical set with composition from  $\delta$ to $\delta'$ over $\I\times \I$, and suppose given a filling problem in $\cSet/\I$  of the form
+Let $X$ be a cubical set with composition, and suppose given a filling problem in $\cSet/\I$  of the form
 \begin{equation}\label{diagram:compimpfill}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[r]^y  & X^\I \ar[d]^{\epsilon_\delta} \\
 Z \ar[r]_x & X.
 }
 \end{equation}
-Pulling back along $\pi : \I\times\I \ra \I$ to $\cSet/(\I\times\I)$, since $X$ has composition there is then a map $k : Z\to X\times X$ over $\I\times\I$ as indicated below.
+Pulling back to $\cSet/(\I\times\I)$ (but omitting the $\pi^*$ everywhere), since $X$ has composition there is a map $x' : Z \ra X$ making the following commute, 
 \begin{equation}\label{diagram:compimpfill2}
 \xymatrix{
-C \ar@{>->}[dd]_{c} \ar[r]^x  & X^\I \ar[d]^{\langle \epsilon_\delta, \epsilon_{\delta'}\rangle} \\
-& X\times X \ar[d]^{\pi_1} \\
-Z \ar[r]_y \ar@{..>}[ru]^{k} & X,
+C \ar@{>->}[d]_{c} \ar[r]^y  & X^\I \ar[d]_>>>>>>>{\epsilon_\delta} \ar[r]^{\epsilon_{\delta'}} 
+	&  X \ar[d]^{\eta_X}\\
+Z  \ar@{..>}[rru]_>>>>>>>>>{x'} \ar[r]_x & X \ar[r]_{\eta_X} & X^\Delta \,.
 }
 \end{equation}
+%where $\epsilon_{\delta'} := X^{\delta'} : X^\I \to X$ is the evaluation at the second generic point $\delta' : 1 \ra \I$.
+%
 Transposing by the adjunction $\pi^* \dashv {\pi}_*$ results in a commutative diagram in $\cSet/\I$ of the form
 \begin{equation}\label{diagram:compimpfill3}
 \xymatrix{
-C \ar@{>->}[dd]_{c} \ar[r]^x  & X^\I \ar[dd]_{\epsilon_\delta} \ar[r]^{\rho_{X^\I}}
-	&  (X^{\I})^{\I} \ar[d]^{\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle} \\
- & & (X\times X)^\I \ar[d]^{\pi_1^\I} \\
-Z \ar[r]_y \ar@{..>}[rru]^>>>>>>>>>{k} & X\ar[r]_{\rho_X} & X^I,
+C \ar@{>->}[d]_{c} \ar[r]^y  & X^\I \ar[d]_>>>>>>>{\epsilon_\delta} \ar[r]^{\widetilde{\epsilon_{\delta'}}} 
+	&  \pi_*\pi^*X \ar[d]^{\pi_*\eta_X} \\
+Z \ar[r]_x \ar@{..>}[rru]_>>>>>>>>>{\widetilde{x'}} & X\ar[r]_-{\widetilde{\eta_X}} & \pi_*X^\Delta,
 }
 \end{equation}
-where $\rho_X : X\ra X^\I$ is the unit of $\pi^* \dashv {\pi}_*$, and similarly for $\rho_{X^\I}$.   
-
-Next observe that the maps $X^\delta : X^\I \ra X$ and $(X^\I)^\delta : (X^{\I})^{\I} \ra X^\I$ make the following commute, and indeed make $\epsilon_\delta$ a retract of $\pi_1\circ\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle$ in the arrow category of $\cSet/\I$.
+where $\widetilde{\epsilon_{\delta'}} : X^\I \to \pi_*\pi^*X$ is the adjoint transpose of $\epsilon_{\delta'}$, and similarly for $\widetilde{x'}$ and $\widetilde{\eta_X}$.  To compute these transpositions, we factor them through the unit maps $\eta^\pi$ of the adjunction $\pi^* \dashv {\pi}_*$,
 \begin{equation}\label{diagram:compimpfill4}
 \xymatrix{
-X^\I \ar[dd]_{\epsilon_\delta} \ar[r]^{\rho_{X^\I}} 
-	& (X^{\I})^{\I} \ar[d]^{\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle} \ar[r]^{(X^\I)^\delta} & X^\I \ar[dd]^{\epsilon_\delta}  \\
- & (X\times X)^\I \ar[d]^{\pi_1^\I} & \\
-X\ar[r]_{\rho_X} & X^I \ar[r]_{X^\delta} & X,
+C \ar@{>->}[d]_{c} \ar[r]^y  & X^\I \ar[d]^{\epsilon_\delta} \ar[r]^{\eta^{\pi}_{X^\I}} 
+	&  (X^\I)^\I  \ar[d]^{(\epsilon_\delta)^\I} \ar[r]^{\pi_*{\epsilon_{\delta'}}}  &  \pi_*\pi^*X   \ar[d]^{\pi_*\eta_X} \\
+Z \ar[r]_x \ar@{..>}[rrru]^{\widetilde{x'}} & X \ar[r]_{\eta^\pi_X} 
+	& X^\I \ar[r]_-{\pi_*\eta_X} & \pi_*X^\Delta.
 }
 \end{equation}
-To see that this commutes, note that the middle vertical composite is known to be $(\epsilon_\delta)^\I$ by construction.
-
-Finally, we claim that there is a map $\gamma: (X\times X)^\I \to X^\I$ making the following commute.
+%
+Next, observe that $\pi_*\pi^*X = X^\I$ and, up to the iso $(X^\I)^\I \cong X^{\I\times\I}$, the map $\pi_*{\epsilon_{\delta'}}$ is
+\[
+\pi_*{\epsilon_{\delta'}} = X^{(\Delta: \I \mono \I\times\I)} : X^{\I\times\I} \to X^\I\,,
+\]
+which we write as $\Delta^* : X^{\I\times\I} \to X^\I$ to avoid confusion with the exponential object $X^\Delta$.
+The map $\Delta^* $ is plainly a retraction of 
+\[
+\eta^{\pi}_{X^\I} = X^{(\pi: \I\times\I\ra \I)}: X^\I \to (X^\I)^\I \cong X^{\I\times\I}\,.
+\]
+The last diagram \eqref{diagram:compimpfill4} now becomes
 \begin{equation}\label{diagram:compimpfill5}
 \xymatrix{
-X^\I \ar[dd]_{\epsilon_\delta} \ar[r]^{\rho_{X^\I}} 
-	& (X^{\I})^{\I} \ar[d]_{\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle} \ar[r]^{(X^\I)^\delta} & X^\I \ar[dd]^{\epsilon_\delta}  \\
- & (X\times X)^\I \ar[d]_{\pi_1^\I} \ar@{..>}[ru]_{\gamma} & \\
-X\ar[r]_{\rho_X} & X^I \ar[r]_{X^{\delta}} & X,
+C \ar@{>->}[d]_{c} \ar[r]^y  & X^\I \ar[d]^{\epsilon_\delta} \ar[rr]^{\eta^{\pi}_{X^\I}}  \ar@/^5ex/ [rrr] ^{=}
+	&&  X^{\I\times\I}  \ar[d]^{(\epsilon_\delta)^\I} \ar[r]^{\Delta^*}  &  X^\I   \ar[d]^{\pi_*\eta_X} \\
+Z \ar[r]_x \ar@{..>}[rrrru]^{\widetilde{x'}} & X \ar[rr]_{\eta^\pi_X} 
+	&& X^\I \ar[r]_-{\pi_*\eta_X} & \pi_*X^\Delta.
 }
 \end{equation}
-Indeed, up to isomorphism, the right hand part of this last diagram is:
-\begin{equation}\label{diagram:compimpfill6}% _{ X^{ (\delta_{\I} ) } } % ^{ X^{ (\I_{\delta}) } } 
-\xymatrix{
-X^{\I\times\I} \ar[rd]^{X^\phi}\ar[dd]_{X^{(\delta_{\I})}}  \ar[rr]^{X^{(\I_{\delta})}} 
- && X^\I \ar[dd]^{X^\delta}  \\
-& X^{\I+\I} \ar[ld]_{X^L} \ar@{..>}[ru]_{\gamma} & \\
-X^\I \ar[rr]_{X^{\delta}} && X,
-}
-\end{equation}
-in which all maps are of the form $X^{(-)}$, and are induced by the following,
-\begin{equation}\label{diagram:compimpfill7}
-\xymatrix{
-\I\times\I  && \I \ar[ll]_{\I_\delta}  \ar@{..>}[ld]^{G} \\
- 	& \ar[lu]_{\phi} \I+\I & \\
-\I \ar[uu]^{\delta_\I}  \ar[ru]_{L} && \ar[ll]^{\delta}  \ar[uu]_{\delta}  1.
-}
-\end{equation}
-in which:
-\begin{align*}
-\I_\delta &:= \langle \delta!, 1_\I\rangle \\
-\delta_\I &:= \langle 1_\I,\delta!\rangle \\
-\phi &:= [\delta_\I, \I_\delta]\\
-L &:= \text{the left coproduct inclusion.}
-\end{align*}
-For $G : \I\ra \I+\I$ we can therefore also take the right coproduct inclusion $R$ to make everything commute .... .  
+Finally, we claim that $\pi_*X^\Delta \cong X$, and that, up to this iso,  $$\pi_*\eta_X = \epsilon_\delta : X^\I\ra X,$$ which will finish the proof, since this is a retraction of $\eta^\pi_X : X\ra X^\I$.  Indeed, writing out the object $\pi_*X^\Delta$ in terms of the two adjunctions $\pi^* \dashv {\pi}_*$ and $\Delta^* \dashv \Delta_*$ we have
+\[
+\pi_*X^\Delta = \pi_*\Delta_*\Delta^*\pi^*X \cong (\pi\circ\Delta)_*(\pi\circ\Delta)^*X \cong X,
+\]
+since $(\pi\circ\Delta) = 1$.  
 
-XXXXX Need to add the side condition on the composiiton when the two points are the same.
-
-
-We then let $\gamma := X^R$ to complete the proof.
+To see that $\pi_*\eta_X = \epsilon_\delta$, first let us make the base change $$\I^* : \cSet \to \cSet/\I$$ explicit, so that $\epsilon_\delta$ is the counit of the adjunction $\I^* \dashv \I_*$ at $\I^*X$,
+\[
+\epsilon_\delta = \epsilon_{(\I^*X)} : X^\I \times \I \to X\times \I \quad\text{(over $\I$)}.
+\]  
+By a triangle law, this map has the inverse $\I^*(\eta_{X}^\I) : X\times\I \to X^\I \times \I$, where $$\eta_X^\I : X \ra X^\I$$ is the unit of $\I^*\dashv \I_*$ at $X$.  It suffices to show that $\I^*(\eta_{X}^\I)$ is also an inverse for $\pi_*\eta_X$ which, more explicitely is:
+\[
+\pi_*\eta_X = \pi_*(\eta^\Delta_{\pi^*(\I^*X)}).
+\]
+Since $\I^*$ preserves exponentials, we have
+\[
+\I^*(\eta_{X}^\I) = \eta_{(\I^*X)}^\pi : \I^*X \to (\I^*X)^{\I^*\I} \cong \pi_*\pi^*(\I^*X)\quad\text{(over $\I$)}.
+\]
+Now, for the composition of the $\pi^* \dashv {\pi}_*$ and $\Delta^* \dashv \Delta_*$ adjunctions, the units $\eta^\pi$ and $\eta^\Delta$ satisfy the law
+\[
+\eta^{\pi\circ\Delta} = \pi_*(\eta^{\Delta}_{\pi^*}) \circ (\eta^\pi)\,.
+\]
+But $\eta^{\pi\circ\Delta} = \mathsf{id}$, since $\pi\circ\Delta =1$.  We therefore have 
+\[
+\pi_*(\eta^\Delta_{\pi^*(\I^*X)}) \circ \eta_{(\I^*X)}^\pi = \eta^{(\pi\circ\Delta)}_{(\I^*X)} = \mathsf{id}_{(\I^*X)},
+\]
+as required.
 \end{proof}
 
-
+%the maps $X^\delta : X^\I \ra X$ and $(X^\I)^\delta : (X^{\I})^{\I} \ra X^\I$ make the following commute, and indeed make $\epsilon_\delta$ a retract of $\pi_1\circ\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle$ in the arrow category of $\cSet/\I$.
+%\begin{equation}\label{diagram:compimpfill4}
+%\xymatrix{
+%X^\I \ar[dd]_{\epsilon_\delta} \ar[r]^{\rho_{X^\I}} 
+%	& (X^{\I})^{\I} \ar[d]^{\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle} \ar[r]^{(X^\I)^\delta} & X^\I \ar[dd]^{\epsilon_\delta}  \\
+% & (X\times X)^\I \ar[d]^{\pi_1^\I} & \\
+%X\ar[r]_{\rho_X} & X^I \ar[r]_{X^\delta} & X,
+%}
+%\end{equation}
+%To see that this commutes, note that the middle vertical composite is known to be $(\epsilon_\delta)^\I$ by construction.
+%
+%Finally, we claim that there is a map $\gamma: (X\times X)^\I \to X^\I$ making the following commute.
+%\begin{equation}\label{diagram:compimpfill5}
+%\xymatrix{
+%X^\I \ar[dd]_{\epsilon_\delta} \ar[r]^{\rho_{X^\I}} 
+%	& (X^{\I})^{\I} \ar[d]_{\pi_*\langle \epsilon_\delta, \epsilon_{\delta'}\rangle} \ar[r]^{(X^\I)^\delta} & X^\I \ar[dd]^{\epsilon_\delta}  \\
+% & (X\times X)^\I \ar[d]_{\pi_1^\I} \ar@{..>}[ru]_{\gamma} & \\
+%X\ar[r]_{\rho_X} & X^I \ar[r]_{X^{\delta}} & X,
+%}
+%\end{equation}
+%Indeed, up to isomorphism, the right hand part of this last diagram is:
+%\begin{equation}\label{diagram:compimpfill6}% _{ X^{ (\delta_{\I} ) } } % ^{ X^{ (\I_{\delta}) } } 
+%\xymatrix{
+%X^{\I\times\I} \ar[rd]^{X^\phi}\ar[dd]_{X^{(\delta_{\I})}}  \ar[rr]^{X^{(\I_{\delta})}} 
+% && X^\I \ar[dd]^{X^\delta}  \\
+%& X^{\I+\I} \ar[ld]_{X^L} \ar@{..>}[ru]_{\gamma} & \\
+%X^\I \ar[rr]_{X^{\delta}} && X,
+%}
+%\end{equation}
+%in which all maps are of the form $X^{(-)}$, and are induced by the following,
+%\begin{equation}\label{diagram:compimpfill7}
+%\xymatrix{
+%\I\times\I  && \I \ar[ll]_{\I_\delta}  \ar@{..>}[ld]^{G} \\
+% 	& \ar[lu]_{\phi} \I+\I & \\
+%\I \ar[uu]^{\delta_\I}  \ar[ru]_{L} && \ar[ll]^{\delta}  \ar[uu]_{\delta}  1.
+%}
+%\end{equation}
+%in which:
+%\begin{align*}
+%\I_\delta &:= \langle \delta!, 1_\I\rangle \\
+%\delta_\I &:= \langle 1_\I,\delta!\rangle \\
+%\phi &:= [\delta_\I, \I_\delta]\\
+%L &:= \text{the left coproduct inclusion.}
+%\end{align*}
+%For $G : \I\ra \I+\I$ we can therefore also take the right coproduct inclusion $R$ to make everything commute .... .  
+%
+%XXXXX Need to add the side condition on the composition when the two points are the same.
+%We then let $\gamma := X^R$ to complete the proof.
 
 \begin{remark}
-There is an enitirely analogous generalization, the details of which we omit, from compositon for an object $X$ to composition for a map $f : Y\to X$, just as for the notion of (trivial) fibration.  Also analogous is the promotion of the \emph{property} of an object or map ``having composition'' to the notion of a \emph{composition structure}.  This procedes via the notion of a \emph{uniform composition structure} with respect to cofibrations $c : C\mono \I^n$, with representable codomains, which can then be internalized as a suitable map representing the uniform structure, in a way that is entirely analogous to the case for trivial fibrations formulated in proposition \ref{prop:uniformstructequivrelative}.
+There is an enitirely analogous generalization, the details of which we omit, from compostion for an object $X$ to composition for a map $f : Y\to X$, just as for the notion of (trivial) fibration.  Also analogous is the promotion of the \emph{property} of an object or map ``having composition'' to the notion of a \emph{composition structure}.  This procedes via the notion of a \emph{uniform composition structure} with respect to cofibrations $c : C\mono \I^n$, with representable codomains, which can then be internalized as a suitable map representing the uniform structure, in a way that is entirely analogous to the case for trivial fibrations formulated in proposition \ref{prop:uniformstructequivrelative}.
 \end{remark}
 
 \subsection{Frobenius}
@@ -1438,7 +1534,47 @@ There is an enitirely analogous generalization, the details of which we omit, fr
 %%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix 1: Logical specification}\label{appendix:logicalspec}
+\section*{Appendix 1: Filling from composition with connections}\label{appendix:comptofillconnection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For points $p, q: 1 \ra \I$, we will say that a cubical set $X$ \emph{has composition (from $p$ to $q$)} if for every object $Z$ and cofibration $c:C\mono Z$ and commutative square 
+\begin{equation}\label{apdiagram:composition1}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]  & X^\I \ar[d]^{\epsilon_p} \\
+Z \ar[r] & X,
+}
+\end{equation}
+there is a diagonal arrow $k : Z \to X\times X$ making both subdiagrams below commute,
+\begin{equation}\label{apdiagram:composition2}
+\xymatrix{
+C \ar@{>->}[dd]_{c} \ar[r]  & X^\I \ar[d]^{\langle \epsilon_p, \epsilon_q\rangle} \\
+& X\times X \ar[d]^{\pi_1} \\
+Z \ar[r] \ar@{-->}[ru]^{k} & X,
+}
+\end{equation}
+where $\epsilon_p : X^\I\to X$ is the ``evaluation at $p$'' map $X^p$.  
+
+\begin{proposition}
+Working in cubical sets with connections, if an object $X$ has composition (from $\delta_0$ to $\delta_1$ and back), then $X$ has Kan filling for all trivial cofibrations $c\otimes \delta : B \mono Z\times \I$, for all cofibrations $c : C\mono Z$ and $\delta = \delta_0 , \delta_1 : 1\to \I$. Thus $X$ is fibrant.  The same holds for maps $f: Y\to X$.
+\end{proposition}
+\begin{proof}
+We will only show the case of an object $X$; the case of a map $f: Y\to X$ is entirely analogous. 
+First, we require a lemma:
+
+\begin{lemma}
+If $X$ has composition, so does $\delta\Rightarrow X$ for both endpoints $\delta : 1 \to \I$.
+\end{lemma}
+\begin{proof}
+We need to show that 
+\end{proof}
+
+
+
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Appendix 2: Logical specification of filling}\label{appendix:logicalspec}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -1657,7 +1793,7 @@ B_0 &  \ar[lu]  \ar@/_8ex/ [dd] G \ar[d]^{q'} & \\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix 2:  A left-induced model structure on the Cartesian cubical sets}
+\section*{Appendix 3:  A left-induced model structure on the Cartesian cubical sets}
 
 We make use of the Sattler model structure \cite{sattler} on the \emph{Dedekind cubical sets} $\widehat\D = \psh{\D}$, where $\D$ is the category of \emph{Dedekind cubes}, defined as the Lawvere theory of distributive lattices.  The unique product-preserving functor 
 \[
