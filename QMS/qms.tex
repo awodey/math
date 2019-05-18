@@ -1303,13 +1303,13 @@ Let $ f : X \epi Y$ be a WE and factor it into a trivial cofibration $i : X\mono
 $i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor it into a cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$. Since  $p$ is then a WHE, as is $f$, it follows that $i$ is as well.  Thus $i$ is also a WE, by lemma \ref{cor:CofWHEtoWE}, hence a trivial fibration. So $f$ is a WE.
 \end{proof}
 
-\section{The Frobenius condition}
+In conclusion, we shall have a model structure once we have established the fibration extension property, Proposition \ref{prop:fibextreplace}.  The proof will require a number of intermediate results: the equivalence extension property (Section \ref{sec:EEP}), the Frobenius condition (Section \ref{sec:Frobenius}), and the reduction of filling to composition, to which we now turn.
 
-In this section, we will show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} provides an alternate route that is perhaps more direct, and in any event can also be applied without connections.  This approach proves the ``dual'' fact that the right adjoint to pullback (which always exists in a topos) along any \emph{fibration} $f : Y\ra X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
+\section{Composition}
 
-A novel aspect of this approach is the method (due to Coquand and first introduced in \cite{CCHM}) of reducing the (type-theoretically specified) notion of \emph{fibration structure} to the apparently weaker notion of a \emph{composition structure}.  Composition structure is more easily shown to be preserved by the type-forming operations like Sigma and Pi, when these concepts are formulated in type theory, as is done in \cite{CCHM}, or in the internal lanuage of the ambient presheaf topos, as in \cite{OP}.  This is due to the fact that one can then efficiently calculate using the rules of type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under Pi-types.  The approach taken here is a reformulation into diagrammatic language of those type-theoretic calculations.
+A novelty of the type-theoretic notion of fibration is the method (due to Coquand and first introduced in \cite{CCHM}) of reducing the (type-theoretically specified) notion of \emph{fibration structure} to the apparently weaker notion of a \emph{composition structure}.  Composition structure is more easily shown to be preserved by the type-forming operations like $\Sigma$ and $\Pi$, when these concepts are formulated in type theory, as is done in \cite{CCHM}, or in the internal lanuage of the ambient presheaf topos, as in \cite{OP}.  This is due to the fact that one can then efficiently calculate using the rules of type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under $\Pi$-types.  The approach taken here is a reformulation into diagrammatic language of those type-theoretic calculations.
 
-\subsection{Composition and filling}
+\subsection{Composition for an object}
 
 Let $p : 1 \ra \I$ be any point of the interval (e.g.\ $\delta_0$), and $\epsilon_p := X^p : X^\I \to X$ the corresponding ``evaluation at $p$'' map.  Given another point $q : 1 \to \I$, there is an evident factorization 
 \[
@@ -1532,13 +1532,86 @@ as required.
 %XXXXX Need to add the side condition on the composition when the two points are the same.
 %We then let $\gamma := X^R$ to complete the proof.
 
+\subsection{Composition for a map}
+We next generalize the notion of compostion for an object $X$ to composition for a map $f : Y\to X$, just as was done for the notion of (trivial) fibration.  First consider biased fibrations in the sense of section \ref{sec:biasedfibration}; recall from Corollary \ref{cor:fibstrequivplustr} that a (biased) fibration structure on a map $f :Y\ra X$ is the same thing as a pair of $+$-algebra structures on the maps
+\[
+(\delta_\epsilon\Rightarrow\!{f}) : Y^\I \to X^\I \times_{X} Y
+\]
+for $\epsilon = 0,1$.  The construction of $\delta_0\Rightarrow\!{f}$ is recalled from \eqref{diagram:pullbackhom} in the pullback diagram below, in which $X^{\delta_0}:X^\I \ra X$ is the evaluation map at $\delta_0 : 1\ra \I$.
+\begin{equation}\label{diagram:pullbackhomreview}
+\xymatrix{
+Y^\I \ar@/_4ex/ [rdd] \ar[rd]^{\delta_0\Rightarrow{f}} \ar@/^4ex/ [rrd] && \\
+& X^\I \times_{X} Y \ar[d] \ar[r] & Y \ar[d]^{f} \\
+& X^\I \ar[r]_{X^{\delta_0}} &  X
+}
+\end{equation}
+%
+Given another point $\delta_1 : 1\ra \I$, we have an analogous construction
+\begin{equation}\label{diagram:pullbackhomreviewprime}
+\xymatrix{
+Y^\I \ar@/_4ex/ [rdd] \ar[rd]^{\delta_1\Rightarrow{f}} \ar@/^4ex/ [rrd] && \\
+& X^\I \times_{X} Y \ar[d] \ar[r] & Y \ar[d]^{f} \\
+& X^\I \ar[r]_{X^{\delta_1}} &  X.
+}
+\end{equation}
+But note that now the pullback object $X^\I \times_{X} Y $ is a different one, with fiber over $p : \I \ra X$ being the fiber of $f$ over $p\delta_1$ rather than over $p\delta_0$.  Let us call these two different pulled-back maps $f_0:Y_0\ra X^\I$ and $f_1:Y_1 \ra X^\I$ and write $f^\epsilon := (\delta_\epsilon\Rightarrow{f})$.  There is then a commutative diagram,
+%
+\begin{equation}\label{diagram:composition1}
+\xymatrix{
+Y^\I \ar[d]_{f^0} \ar[rd]|{f^\I} \ar[r]^{f^1} & Y_1 \ar[d]^{f_1}\\
+Y_0 \ar[r]_{f_0} & X^\I\,,
+}
+\end{equation}
+%
+We will say that $f:Y\ra X$ \emph{has composition from 0 to 1} if for every cofibration $c : C\mono Z$ and maps $y_0 : Z\ra Y_0$ and $y : C\ra Y^\I$ making the square on the left below commute, there is a map $y_1 : Z\ra Y_1$ making the following commute.
+\begin{equation}\label{diagram:composition2}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^{y} & Y^\I \ar[d]_>>>>>>>{f^0} \ar[r]^{f^1} & Y_1 \ar[d]^{f_1}\\
+Z \ar@{..>}[rru]_>>>>>>{y_1} \ar[r]_{y_0} & Y_0 \ar[r]_{f_0} & X^\I
+}
+\end{equation}
+
+To define \emph{unbiased} composition, we begin with $f : Y\ra X$ in $\cSet$ and then move to $\cSet/\I$, where we have the generic point $\delta : 1\ra\I$.  Now we consider an arbitrary cofibration $c : C\mono Z$ and maps $y_\delta : Z\ra Y_\delta$ and $y : C\ra Y^\I$ making the square below commute
+\begin{equation}\label{diagram:composition3}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^{y} & Y^\I \ar[d]^{f^\delta} \\
+Z \ar[r]_{y_\delta} & Y_\delta 
+}
+\end{equation}
+where $Y_\delta$ and $f^\delta$ are defined in terms of $\delta : 1\ra \I$ just as were $Y_0$ and $f^0$ in terms of $\delta_0 : 1\ra \I$.  Passing to $\cSet/(\I\times \I)$ by a further pullback, as before we have another point $\delta':1\ra\I$, as well as a subobject $\Delta \mono 1$, determined by the further diagonals.
+
+\begin{definition}
+The map $f:Y\ra X$ \emph{has (unbiased) composition} if, in $\cSet/\I$, for any cofibration $c : C\mono Z$ and maps $y_\delta : Z\ra Y_\delta$ and $y : C\ra Y^\I$ as on the left below, there is in $\cSet/(\I\times \I)$ a map $y_{\delta'} : Z\ra Y_{\delta'}$ making the following commute
+\begin{equation}\label{diagram:composition4}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^{y} & Y^\I \ar[d]_>>>>>>>{f^\delta} \ar[r]^{f^{\delta'}} & Y_{\delta'} \ar[d]^{\eta_{Y_{\delta'}}}\\
+Z \ar@{..>}[rru]_>>>>>>{y_{\delta'}} \ar[r]_{y_\delta} & Y_\delta \ar[r]_{\eta_{Y_\delta}} & Y_\Delta\,,
+}
+\end{equation}
+where $Y_{\delta'}$ and $f^{\delta'}$ are defined in terms of $\delta' : 1\ra \I$, and $Y_\Delta$ is $Y_\delta^\Delta \cong Y_{\delta'}^\Delta$, since $\Delta^*{\delta} = \Delta^*{\delta'}$.
+\end{definition}
+
+
+\begin{proposition}\label{prop:comptofillmap}
+Composition implies filling for maps; that is, every $f : Y\ra X$ with composition is a fibration.
+\end{proposition}
+
+\begin{proof}
+Analogous to the proof of Proposition \ref{prop:comptofill}.
+\end{proof}
+
 \begin{remark}
-There is an enitirely analogous generalization, the details of which we omit, from compostion for an object $X$ to composition for a map $f : Y\to X$, just as for the notion of (trivial) fibration.  Also analogous is the promotion of the \emph{property} of an object or map ``having composition'' to the notion of a \emph{composition structure}.  This procedes via the notion of a \emph{uniform composition structure} with respect to cofibrations $c : C\mono \I^n$, with representable codomains, which can then be internalized as a suitable map representing the uniform structure, in a way that is entirely analogous to the case for trivial fibrations formulated in proposition \ref{prop:uniformstructequivrelative}.
+One can also promote the \emph{property} of an object or map of ``having composition'' to the notion of a \emph{composition structure}.  This procedes via the notion of a \emph{uniform composition structure}, which is defined with respect to cofibrations $c : C\mono \I^n$ with representable codomains, and a requirement of naturality in $\I^n$, and which can then be internalized as a suitable map representing the uniform structure, in a way that is analogous to the case for trivial fibrations formulated in proposition \ref{prop:uniformstructequivrelative}.
 \end{remark}
 
-\subsection{Frobenius}
+\section{The Frobenius condition}\label{sec:Frobenius}
 
-\section{The fibration extension property}
+In this section, we will show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} provides an alternate route that is perhaps more direct, and in any event can also be applied without connections.  This approach proves the ``dual'' fact that the right adjoint to pullback (which always exists in a topos) along any \emph{fibration} $f : Y\ra X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
+
+\section{The equivalence extension property}\label{sec:EEP}
+
+\section{The fibration extension property}\label{sec:FEP}
+
 
 
 %%%%%
