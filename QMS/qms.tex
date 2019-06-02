@@ -78,7 +78,10 @@
 
 % Universe
 \newcommand{\U}{\ensuremath{\mathcal{U}}}
-\newcommand{\UU}{\ensuremath{\widetilde{\mathcal{U}}}}
+\newcommand{\UU}{\ensuremath{\dot{\mathcal{U}}}}
+
+\newcommand{\V}{\ensuremath{\mathcal{V}}}
+\newcommand{\VV}{\ensuremath{\dot{\mathcal{V}}}}
 
 % theorem styles
 \newtheorem{theorem}{Theorem}
@@ -1365,7 +1368,7 @@ X \ar[d]_{\eta_X} \ar@<-.8ex>[r]_{g}  \ar@<.8ex>[r]^{f} & Y \ar[d]^{\eta_Y} \\
 X^\Delta \ar@<-.8ex>[r]_{g^\Delta}  \ar@<.8ex>[r]^{f^\Delta} & Y^\Delta.
 }
 \end{equation}
-Then $\eta_Y f = \eta_Y g$ iff $f \eta_X= g\eta_X$ iff $\Delta^*f = \Delta^*g$.
+Then $\eta_Y f = \eta_Y g$ iff $f^\Delta \eta_X= g^\Delta \eta_X : X\ra Y^\Delta$ iff $\Delta^*f = \Delta^*g : \Delta^*X \ra\Delta^*Y$, by transposition, since $Y^\Delta = \Delta_*\Delta^* Y$.
 
 We can now define what it means for an object $X$ to have (unbiased) composition by saying that it has composition, in the sense of \eqref{diagram:composition2}, from $\delta$ to $\delta'$ over $\I\times \I$, and that, moreover, the two resulting maps $k_1, k_2 : Z\rightrightarrows X$ are coequalized by the unit $\eta_X : X\ra X^\Delta$.  We reformulate this condition equivalently as follows (cf.\ \cite{Coquand,ABCetc.}).
 
@@ -1533,14 +1536,14 @@ as required.
 %We then let $\gamma := X^R$ to complete the proof.
 
 \subsection{Composition for a map}
-We next generalize the notion of compostion for an object $X$ to composition for a map $f : Y\to X$, just as was done for the notion of (trivial) fibration.  First consider biased fibrations in the sense of section \ref{sec:biasedfibration}; recall from Corollary \ref{cor:fibstrequivplustr} that a (biased) fibration structure on a map $f :Y\ra X$ is the same thing as a pair of $+$-algebra structures on the maps
+We next generalize the notion of compostion for an object $X$ to composition for a map $f : Y\to X$.  First consider biased fibrations in the sense of section \ref{sec:biasedfibration}; recall from Corollary \ref{cor:fibstrequivplustr} that a (biased) fibration structure on a map $f :Y\ra X$ is the same thing as a pair of $+$-algebra structures on the maps
 \[
 (\delta_\epsilon\Rightarrow\!{f}) : Y^\I \to X^\I \times_{X} Y
 \]
 for $\epsilon = 0,1$.  The construction of $\delta_0\Rightarrow\!{f}$ is recalled from \eqref{diagram:pullbackhom} in the pullback diagram below, in which $X^{\delta_0}:X^\I \ra X$ is the evaluation map at $\delta_0 : 1\ra \I$.
 \begin{equation}\label{diagram:pullbackhomreview}
 \xymatrix{
-Y^\I \ar@/_4ex/ [rdd] \ar[rd]^{\delta_0\Rightarrow{f}} \ar@/^4ex/ [rrd] && \\
+Y^\I \ar@/_4ex/ [rdd]_{f^\I} \ar[rd]^{\delta_0\Rightarrow{f}} \ar@/^4ex/ [rrd]^{Y^{\delta_0}} && \\
 & X^\I \times_{X} Y \ar[d] \ar[r] & Y \ar[d]^{f} \\
 & X^\I \ar[r]_{X^{\delta_0}} &  X
 }
@@ -1549,12 +1552,12 @@ Y^\I \ar@/_4ex/ [rdd] \ar[rd]^{\delta_0\Rightarrow{f}} \ar@/^4ex/ [rrd] && \\
 Given another point $\delta_1 : 1\ra \I$, we have an analogous construction
 \begin{equation}\label{diagram:pullbackhomreviewprime}
 \xymatrix{
-Y^\I \ar@/_4ex/ [rdd] \ar[rd]^{\delta_1\Rightarrow{f}} \ar@/^4ex/ [rrd] && \\
+Y^\I \ar@/_4ex/ [rdd]_{f^\I} \ar[rd]^{\delta_1\Rightarrow{f}} \ar@/^4ex/ [rrd]^{Y^{\delta_1}}  && \\
 & X^\I \times_{X} Y \ar[d] \ar[r] & Y \ar[d]^{f} \\
 & X^\I \ar[r]_{X^{\delta_1}} &  X.
 }
 \end{equation}
-But note that now the pullback object $X^\I \times_{X} Y $ is a different one, with fiber over $p : \I \ra X$ being the fiber of $f$ over $p\delta_1$ rather than over $p\delta_0$.  Let us call these two different pulled-back maps $f_0:Y_0\ra X^\I$ and $f_1:Y_1 \ra X^\I$ and write $f^\epsilon := (\delta_\epsilon\Rightarrow{f})$.  There is then a commutative diagram,
+But note that now the pullback object $X^\I \times_{X} Y $ is a different one, with fiber over $p : \I \ra X$ being the fiber of $f$ over $p\delta_1$ rather than over $p\delta_0$.  Let us call these two different pulled-back maps $f_0:Y_0\ra X^\I$ and $f_1:Y_1 \ra X^\I$ and write $f^\epsilon := (\delta_\epsilon\Rightarrow{f})$ for $\epsilon = 0,1$.  There is then a commutative diagram,
 %
 \begin{equation}\label{diagram:composition1}
 \xymatrix{
@@ -1585,10 +1588,10 @@ The map $f:Y\ra X$ \emph{has (unbiased) composition} if, in $\cSet/\I$, for any 
 \begin{equation}\label{diagram:composition4}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[r]^{y} & Y^\I \ar[d]_>>>>>>>{f^\delta} \ar[r]^{f^{\delta'}} & Y_{\delta'} \ar[d]^{\eta_{Y_{\delta'}}}\\
-Z \ar@{..>}[rru]_>>>>>>{y_{\delta'}} \ar[r]_{y_\delta} & Y_\delta \ar[r]_{\eta_{Y_\delta}} & Y_\Delta\,,
+Z \ar@{..>}[rru]_>>>>>>{y_{\delta'}} \ar[r]_{y_\delta} & Y_\delta \ar[r]_{\eta_{Y_\delta}} & Y^\Delta\,,
 }
 \end{equation}
-where $Y_{\delta'}$ and $f^{\delta'}$ are defined in terms of $\delta' : 1\ra \I$, and $Y_\Delta$ is $Y_\delta^\Delta \cong Y_{\delta'}^\Delta$, since $\Delta^*{\delta} = \Delta^*{\delta'}$.
+where $Y_{\delta'}$ and $f^{\delta'}$ are defined in terms of $\delta' : 1\ra \I$, and $Y^\Delta$ is $Y_\delta^\Delta = Y_{\delta'}^\Delta$, since $\Delta^*{\delta} = \Delta^*{\delta'}$.
 \end{definition}
 
 
@@ -1606,9 +1609,36 @@ One can also promote the \emph{property} of an object or map of ``having composi
 
 \section{The Frobenius condition}\label{sec:Frobenius}
 
-In this section, we will show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} provides an alternate route that is perhaps more direct, and in any event can also be applied without connections.  This approach proves the ``dual'' fact that the right adjoint to pullback (which always exists in a topos) along any \emph{fibration} $f : Y\ra X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
+In this section, we show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} provides an alternate route that is perhaps more direct, and in any event can also be applied without connections.  This approach proves the ``dual'' fact that the right adjoint to pullback (which always exists in a topos) along any \emph{fibration} $f : Y\ra X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
 
 \section{The equivalence extension property}\label{sec:EEP}
+
+\section{The universe}\label{sec:U}
+
+In this section, we define a universe $\pi: \dot{\U}\to \U$ of (small) types and show that $\pi$ is a fibration.  In the next section we shall use the EEP to show that $\U$ is fibrant.
+
+Let $\kappa$ be an inaccessible cardinal number, and call the sets of size strictly less than $\kappa$ \emph{small}.  Write $\Set_\kappa$ for the small sets, and $\cSet_\kappa = \Set_\kappa^{\C^{\mathrm{op}}}$ for the category of small set valued presheaves on the cube category $\C$.  By a \emph{small (uniform) fibration} we mean a (uniform) fibration in the category of small cubical sets, which we identify with the evident subcategory $\cSet_\kappa \subseteq \cSet$.  Finally, let $\dot{\Set}_\kappa$ be the category of small pointed sets, i.e.\ the coslice category $1/\Set_\kappa$.  There is an evident forgetful functor  $U:\dot{\Set}_\kappa \to {\Set}_\kappa$.
+% which induces another one $U^{\C^{op}} : \dot{\Set}_\kappa^{\C^{op}} \to {\Set}_\kappa^{\C^{op}}$ from small pointed presheaves to small presheaves.
+
+\begin{definition}
+The ($\kappa$-)\emph{universe} $p : \VV \to \V$ in $\cSet$ is defined:
+\begin{enumerate}
+
+\item $\V_n = \{ A: (\C/[n])^{op} \to \Set_\kappa\ \}$ i.e.\ the \emph{set} of small presheaves on $\C/[n]$.  The action of a $\C$ map $h : [m] \ra [n]$ is given by precomposition with postcomposition: from  $h : [m] \ra [n]$ we have  $\C/h : \C/[m] \ra \C/[n]$, which we can precompose with (transposed) $A: (\C/[n])\to \Set_\kappa^{op} $ to get (transposed) $A.h = A\circ (\C/h)$,
+\begin{equation}\label{diagram:U1}
+\xymatrix{
+[n] & \C/[n] \ar[r]^{A} & \Set_\kappa^{op} \\
+[m] \ar[u]^{h} & \C/[m] \ar[u]^{\C/h}  \ar[ru]_{A.h} &
+}
+\end{equation}
+
+\item $\VV_n = \{ a: (\C/[n])^{op} \to \dot{\Set}_\kappa\ \}$ i.e.\ the \emph{set} of small pointed presheaves on $\C/[n]$, with the corresponding action.
+
+\item For $a \in \VV_n$, let $p_n (a) = U(a) \in \V_n$, where $U : \dot{\Set_\kappa} \to {\Set_\kappa}$.
+\end{enumerate}
+\end{definition}
+
+
 
 \section{The fibration extension property}\label{sec:FEP}
 
