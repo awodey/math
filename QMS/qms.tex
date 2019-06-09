@@ -1637,9 +1637,116 @@ The ($\kappa$-)\emph{universe} $p : \VV \to \V$ in $\cSet$ is defined:
 \item For $a \in \VV_n$, let $p_n (a) = U(a) \in \V_n$, where $U : \dot{\Set_\kappa} \to {\Set_\kappa}$.
 \end{enumerate}
 \end{definition}
+Functoriality of $\V$ and $\VV$ and naturality of $p: \VV\ra\V$ are immediate. 
+
+\begin{lemma}
+For each $A : \I^n \ra \V$ there is a canonical choice of a small family $p_A : \overline{A}\ra \I^n$ and a map $q_A:\overline{A} \ra\VV$ making a pullback square as follows.
+\begin{equation}\label{diagram:U2}
+\xymatrix{
+\overline{A} \ar[d]_{p_A} \ar[r]^{q_A} & \VV\ar[d]^{p}  \\
+\I^n \ar[r]_{A} & \V
+}
+\end{equation}
+\end{lemma}
+%
+\begin{proof}
+Since $\I^n \cong y[n]$ is representable, there is a distinguished associated presheaf $A : (\C/[n])^{op} \ra \Set_\kappa$. Define $p_A : \overline{A} \ra \I^n$ by
+\[
+\overline{A}_k = \coprod_{h\in \C(k,n)} A(h) \qquad \ni (h, a)\,
+\]
+with first projection $(p_A)_k(h,a) = h$. Note that $\overline{A}_k$ is small.
+Then let $q_A:\overline{A} \ra\VV$ be defined on $(h,a): \I^k \ra \overline{A}$ by 
+\[
+(q_A)\circ(h, a) = a \in Ah
+\]
+as illustrated below.
+\begin{equation}\label{diagram:U3}
+\xymatrix@=5em{
+& \overline{A} \ar[d]^>>>>>>{p_A} \ar@{..>}[r]^{q_A} & \VV\ar[d]^{p}  \\
+\I^k \ar[r]_{h} \ar[ru]^{(h,a)}\ar[rru]_>>>>>>>>>>>{a} & \I^n \ar[r]_{A} & \V
+}
+\end{equation}
+The proof that it is a pullback is  left to the reader.
+\end{proof}
+
+\begin{lemma}\label{charforfamovercube}
+For each small family $p_E : E \ra \I^n$ there is a canonical map $\chi_E : \I^n \ra \V$ and a map $q_E:E \ra\VV$ making a pullback square as follows.
+\begin{equation}\label{diagram:U2}
+\xymatrix{
+E \ar[d]_{p_E} \ar[r]^{q_E} & \VV\ar[d]^{p}  \\
+\I^n \ar[r]_{\chi_E} & \V
+}
+\end{equation}
+\end{lemma}
+%
+\begin{proof}
+It suffices to give a small set $(\chi_E)_k(h)$ for each $h :[k] \ra [n]$ in a way that is functorial in $h \in \C/[n]$ and natural in $[k]$.  Thus let
+\[
+(\chi_E)_k(h) := \Gamma(h, E)\ = \ \{ s : \I^k \ra E \ |\ p_E\circ s = h \}.
+\]
+\[
+\xymatrix{& E \ar[d]^{p_E} \\ \I^k \ar@{..>}[ru]^{s}\ar[r]_h & \I^n } 
+\]
+which is small if each $E_k$ is.  Define $q_E:E \ra\VV$, similarly, on $e : \I^k \ra E$ by first composing with $p_E$ and then observing that $e \in  \Gamma(p_Ee, E)$.  Since the assignment is clearly natural in $[k]$ it therefore gives a map $\dot{e} : \I^k \ra \VV$ making the following commute.
+\begin{equation}\label{diagram:U4}
+\xymatrix@=5em{
+&E \ar[d]^>>>>>>>{p_E} \ar@{..>}[r]^{q_A} & \VV\ar[d]^{p}  \\
+\I^k \ar[r]_{p_Ee} \ar[ru]^{e}\ar[rru]_>>>>>>>>>>>{\dot{e}} & \I^n \ar[r]_{E} & \V
+}
+\end{equation}
+The proof that it is a pullback is again left to the reader.
+\end{proof}
+
+\begin{corollary}
+Given a small family $p_E : E \ra \I^n$ there is a unique isomorphism $E \cong \overline{\chi_E}$ over $\I^n$ making a commutative diagram as follows.
+
+\begin{equation}\label{diagram:U5}
+\xymatrix@=5em{
+E \ar[rd]_{p_E} \ar@/^2.0pc/[rr]^{q_E} \ar[r]^{\cong}& \overline{\chi_E} \ar[d]^{p_{\chi_E}} \ar[r]_{q_{\chi_E}} & \VV \ar[d]^{p}  \\
+ &\I^n \ar[r]_{\chi_E} & \V
+}
+\end{equation}
+\end{corollary}
+%
+
+\begin{proposition}
+For any cubical set $X$ and any small family $p_E : E \ra X$ there are canonical maps $\chi_E : X \ra \V$ and $q_E : E \ra\VV$ making a pullback square as follows.
+\begin{equation}\label{diagram:U6}
+\xymatrix{
+E \ar[d]_{p_E} \ar[r]^{q_E} & \VV\ar[d]^{p}  \\
+X \ar[r]_{\chi_E} & \V
+}
+\end{equation}
+Moreover, $\chi_E$ and $q_E$ are uniquely determined by the equations \eqref{eqns:U} below.
+\end{proposition}
+
+\begin{proof}
+Write $X = \varinjlim \I^n$ as a colimit of a cocone of maps $ x : \I^n \ra X$ from representables, over the canonical index category $([n],x) \in \int_\C X$.  Form the family of pullback squares below, where the dotted arrows represent cocones, and the one consisting of the $q_x : E_x \ra E$  is determined by taking the indicated pullbacks, and is therefore also a colimit. 
+\begin{equation}\label{diagram:U7}
+\xymatrix@=3em{
+E_x \ar[d]_{p_{E_x}} \ar[r]_{\cdot}^{q_x} \ar@/^2.0pc/[rr]^{q_{E_x}} \pbcorner & E \ar[d]_{p_{E}} \ar@{..>}[r]^{q_E} & \VV\ar[d]^{p}  \\
+\I^n \ar@/_2.0pc/[rr]_{\chi_{E_x}}  \ar[r]^{\cdot}_x & X \ar@{..>}[r]_{\chi_E} & \V
+}
+\end{equation}
+The maps $\chi_{E_x}$  and $q_{E_x}$ are determined by lemma \ref{charforfamovercube}, since the families $p_{E_x}$ are small if $p_E: E \ra X$ is.  Thus we can define the indicated maps $\chi_E$ and $q_E$ from the colimits as those uniquely determined by the equations:
+\begin{align}\label{eqns:U}
+\chi_E \circ x &= \chi_{E_x}\\
+q_E \circ q_{x} &= q_{E_x}
+\end{align}
+The square on the right is a pullback because the outer squares are all pullbacks,  the family of left-hand squares are pullbacks, and the family of maps $x : \I^n \ra X$ covers $X$.
+\end{proof}
+
+\begin{remark} 
+Note that the classification operation $$\chi : \cSet_\kappa/X \to \cSet(X, \V)$$ again has the evident ``pullback of $p : \VV\ra\V$'' operation 
+$$\overline{(-)} : \cSet(X, \V) \to \cSet_\kappa/X $$ as a left (quasi-)inverse $
+E \cong \overline{\chi_E}$, which is (pseudo-)natural in $X$, 
+but there is no corresponding uniqueness of classifying maps, relating $A : X\ra \V$ and $\chi_{\overline{A}} : X\ra\V$.  This is what is provided by the univalence of a universe $$p : \UU\ra\U$$ of \emph{fibrations}, which we now procede to construct.
+\end{remark}
 
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The fibration extension property}\label{sec:FEP}
 
 
