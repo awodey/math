@@ -1621,7 +1621,7 @@ In this section, we show that the fibration WFS from section \ref{FWFS} has the 
 
 \section{The universe}\label{sec:U}
 
-In this section, we define a universe $\pi: \dot{\U}\to \U$ of (small) types and show that $\pi$ is a fibration.  In the next section we shall use the EEP to show that $\U$ is fibrant.
+In this section, we define a universal small fibration $\dot{\U}\to \U$.  In the next section we shall use the EEP to show that $\U$ is a fibrant object.
 
 \subsection{Classifying families}
 
@@ -1854,8 +1854,9 @@ A^\I \ar@/_4ex/ [rdd]_{(p_A)^\I} \ar[rd]^{\delta\, \Rightarrow p_A} \ar@/^4ex/ [
 }
 \end{equation}
 
-\item A fibration structure on $p_A : A\ra X$ is then a relative +-algebra structure on $\delta\Rightarrow p_A$ in the slice category over the codomain. We continue further to construct the object $\Fib(A)\ra X$
+\item A fibration structure on $p_A : A\ra X$ is then a relative +-algebra structure on $\delta\Rightarrow p_A$ in the slice category over the codomain. 
 
+We next construct an object $\Fib(A)\ra X$ classifying such structures.
 For convenience, let us relabel the objects and arrows in the previous diagram as follows:
 \begin{align*}
 p &:= p_A\\
@@ -1873,7 +1874,7 @@ A^\I \ar[rd]_{\epsilon^A} && \\
 }
 \end{equation}
 
-\item A +-algebra structure on $\epsilon^A$ is a retract $\alpha$ of the unit $\eta$ as indicated below, where $D$ is the domain of the map $(\epsilon^A)^+$:
+\item A +-algebra structure on $\epsilon^A$ is a retract $\alpha$ over $A_\epsilon$ of the unit $\eta$ as indicated below, where $D$ is the domain of the map $(\epsilon^A)^+$:
 \begin{equation}\label{diagram:fibU3}
 \xymatrix{
 A^\I \ar[rd]_{\epsilon^A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[d]^{(\epsilon^A)^+} & \\
@@ -1989,7 +1990,7 @@ The remainder of the proof is just as for proposition \ref{prop:classtrivfib}.
 \end{proof}
 
 \begin{proposition}
-The map $\FFib\ra\Fib$ just constructed is has a canonical fibration structure.
+The map $\FFib\ra\Fib$ just constructed has a canonical fibration structure.
 \end{proposition}
 \begin{proof}
 Consider the following diagram, in which both squares are pullbacks.
@@ -1997,10 +1998,13 @@ Consider the following diagram, in which both squares are pullbacks.
 \xymatrix{
 \FFib \ar[d] \ar[r]  & \VV \ar[d]\\
 \Fib \ar[r] & \V\\
-\FFib(\FFib) \ar[u] \ar[r] & \Fib(\VV)\ar[u].
+\Fib(\FFib) \ar[u] \ar[r] & \Fib(\VV)\ar[u].
 }
 \end{equation}
-$\Fib(\VV)$ is the object of fibration structures on $\VV\ra\V$, and its pullback $\Fib(\FFib)$ is therefore the object of fibration structures on $\FFib\ra\Fib$.  Thus we seek a section of $\Fib(\FFib) \ra \Fib$.  But recall that $\Fib = \Fib(\VV)$ by definition, so the lower pullback square is the pullback of $\Fib(\VV)\ra \V$ against itself, which does indeed have a distinguished section.
+$\Fib(\VV)$ is the object of fibration structures on $\VV\ra\V$, and its pullback $\Fib(\FFib)$ is therefore the object of fibration structures on $\FFib\ra\Fib$.  Thus we seek a section of $\Fib(\FFib) \ra \Fib$.  But recall that $\Fib = \Fib(\VV)$ by definition, so the lower pullback square is the pullback of $\Fib(\VV)\ra \V$ against itself, which does indeed have a distinguished section, namely the diagonal
+\[
+\Delta : \Fib(\VV) \to \Fib(\VV)\times_\V\Fib(\VV).
+\]
 \end{proof}
 
 

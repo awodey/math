@@ -1,5 +1,5 @@
-\xycompiled{qms-115}{2019/6/10:1326 [qms:2001]}{Xy-pic 3.8.8}%
-{\xymatrixnocompile { \FFib \ar [d] \ar [r] & \VV \ar [d]\\ \Fib \ar [r] & \V \\ \FFib (\FFib ) \ar [u] \ar [r] & \Fib (\VV )\ar [u]. }}\relax 
+\xycompiled{qms-115}{2019/6/11:24 [qms:2002]}{Xy-pic 3.8.8}%
+{\xymatrixnocompile { \FFib \ar [d] \ar [r] & \VV \ar [d]\\ \Fib \ar [r] & \V \\ \Fib (\FFib ) \ar [u] \ar [r] & \Fib (\VV )\ar [u]. }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%
 \xy@{""}{\edef \xymatrixprefix@@ {}}%
@@ -188,7 +188,7 @@
 \xy@@ix@{{!V\entrybox }{\protect \ensuremath  {\mathcal {V}}}}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{ENTRY "3,1"}{\Row =3 \Col =1\relax \cfromid@ {3,1}\pfromc@ }%
-\xy@@ix@{{!V\entrybox }{\protect \ensuremath  {\dot {\mathsf {Fib}}}(\FFib ) \ar [u] \ar [r] }}\relax 
+\xy@@ix@{{!V\entrybox }{\protect \ensuremath  {\mathsf {Fib}}(\FFib ) \ar [u] \ar [r] }}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{\save }{\save@ }%
 \xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
