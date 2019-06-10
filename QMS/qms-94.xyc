@@ -1,5 +1,5 @@
-\xycompiled{qms-94}{2019/6/9:1053 [qms:1718]}{Xy-pic 3.8.8}%
-{\xymatrixnocompile { E \ar [d]_{p_E} \ar [r]^{q_E} & \VV \ar [d]^{p} \\ X \ar [r]_{\chi _E} & \V }}\relax 
+\xycompiled{qms-94}{2019/6/9:1320 [qms:1723]}{Xy-pic 3.8.8}%
+{\xymatrixnocompile { E \ar [d]_{p_E} \ar [r]^{q_E} \pbcorner & \VV \ar [d]^{p} \\ X \ar [r]_{\chi _E} & \V }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%
 \xy@{""}{\edef \xymatrixprefix@@ {}}%
@@ -27,7 +27,7 @@
 \xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
 \xy@{}{\ifx \xymatrixsavedCOORD@ \relax \enter@ {\noexpand \let \noexpand \COORD@ \noexpand \xymatrixsavedCOORD@ }\let \xymatrixsavedCOORD@ =\COORD@ \let \COORD@ =\xymatrixCOORD@ \else \enter@ {}\fi }%
 \xy@{ENTRY "1,1"}{\Row =1 \Col =1\relax \cfromid@ {1,1}\pfromc@ }%
-\xy@@ix@{{!V\entrybox }{E \ar [d]_{p_E} \ar [r]^{q_E} }}\relax 
+\xy@@ix@{{!V\entrybox }{E \ar [d]_{p_E} \ar [r]^{q_E} \pbcorner }}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{\save }{\save@ }%
 \xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
@@ -110,6 +110,10 @@
 \xy@{}{\Clast@@ }%
 \xy@{}{\setupDirection@ }%
 \xy@{PATHaction/{}}{}%
+\xy@{\restore }{\leave@ }%
+\xy@{\save }{\save@ }%
+\xy@@ix@{{!/dr-1.2pc/dr:(-1,1)@^}{|-}}\relax 
+\xy@{*!/dr-1.2pc/dr:(-1,1)@^{|-}}{\expandafter \drop@ \the \toks 9 }%
 \xy@{\restore }{\leave@ }%
 \xy@{ENTRY "1,2"}{\Row =1 \Col =2\relax \cfromid@ {1,2}\pfromc@ }%
 \xy@@ix@{{!V\entrybox }{\protect \ensuremath  {\dot {\mathcal {V}}}\ar [d]^{p} }}\relax 

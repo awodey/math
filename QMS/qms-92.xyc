@@ -1,5 +1,5 @@
-\xycompiled{qms-92}{2019/6/9:1024 [qms:1696]}{Xy-pic 3.8.8}%
-{\xymatrixnocompile @=5em{ &E \ar [d]^>>>>>>>{p_E} \ar @{..>}[r]^{q_A} & \VV \ar [d]^{p} \\ \I ^k \ar [r]_{p_Ee} \ar [ru]^{e}\ar [rru]_>>>>>>>>>>>{\dot {e}} & \I ^n \ar [r]_{E} & \V }}\relax 
+\xycompiled{qms-92}{2019/6/9:1301 [qms:1697]}{Xy-pic 3.8.8}%
+{\xymatrixnocompile @=5em{ &E \ar [d]^>>>>>>>{p_E} \ar @{..>}[r]^{q_E} & \VV \ar [d]^{p} \\ \I ^k \ar [r]_{p_Ee} \ar [ru]^{e}\ar [rru]_>>>>>>>>>>>{\dot {e}} & \I ^n \ar [r]_{E} & \V }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%
 \xy@{""}{\edef \xymatrixprefix@@ {}}%
@@ -46,7 +46,7 @@
 \xy@@ix@{{!V\entrybox }{}}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{ENTRY "1,2"}{\Row =1 \Col =2\relax \cfromid@ {1,2}\pfromc@ }%
-\xy@@ix@{{!V\entrybox }{E \ar [d]^>>>>>>>{p_E} \ar @{..>}[r]^{q_A} }}\relax 
+\xy@@ix@{{!V\entrybox }{E \ar [d]^>>>>>>>{p_E} \ar @{..>}[r]^{q_E} }}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{\save }{\save@ }%
 \xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
@@ -123,7 +123,7 @@
 \xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
 \xy@{}{\leave@ }%
 \xy@{}{\enter@ \DirectionfromtheDirection@ }%
-\xy@@ix@{\labelbox {q_A}}\relax 
+\xy@@ix@{\labelbox {q_E}}\relax 
 \xy@{}{\setbox \z@ =\expandafter \object \the \toks 9 \advance \L@c \labelmargin@ \advance \R@c \labelmargin@ \advance \D@c \labelmargin@ \advance \U@c \labelmargin@ \setboxz@h {\kern \labelmargin@ \boxz@ \kern \labelmargin@ }\A@ =\X@c \B@ =\Y@c \belowDirection@ \xydashl@ \the \Edge@c \thr@@ \advance \A@ -\X@c \advance \B@ -\Y@c \advance \X@c 2\A@ \advance \Y@c 2\B@ \ht \z@ =\U@c \dp \z@ =\D@c \dimen@ =\L@c \advance \dimen@ \R@c \wd \z@ =\dimen@ \setbox \lastobjectbox@ =\hbox {\X@c =\L@c \Y@c =\z@ \Drop@@ }\drop@ {\box \lastobjectbox@ }{}\leave@ }%
 \xy@{|}{}%
 \xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
