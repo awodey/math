@@ -1662,17 +1662,17 @@ B^\I \ar[r]|+  & B_\epsilon  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
 and we wish to show that $(\Pi_AB)^\I \ra (\Pi_AB)_\epsilon$ has a +-algebra structure. Adding some labels for reference, 
  \begin{equation}\label{diagram:frobenius3}
 \xymatrix{
-B^\I \ar[r]|+^{\delta\Rightarrow\alpha\beta}  & B_\epsilon  \ar[d]_{\beta_\epsilon} \pbcorner \ar[r]_{\epsilon_B}  & B \ar[d]^\beta\\
-& A_\epsilon \ar[d]_{\alpha_\epsilon} \pbcorner \ar[r]_{\epsilon_A} & A \ar[d]^\alpha\\
+B^\I \ar[r]|+^{\delta\Rightarrow\alpha\beta}  & B_\epsilon  \ar[d]_{\beta_\epsilon} \pbcorner \ar[r]  & B \ar[d]^\beta\\
+& A_\epsilon \ar[d]_{\alpha_\epsilon} \pbcorner \ar[r] & A \ar[d]^\alpha\\
 & X^\I \ar[r]_{\epsilon} &  X,\\
-(\Pi_AB)^\I  \ar[r]_{\delta\Rightarrow\alpha_*\beta}   & (\Pi_AB)_\epsilon  \ar[u]^{{\alpha_*\beta}_\epsilon} \ar[r]_{\epsilon_X}  & \Pi_AB \ar[u]_{\alpha_*\beta}\\
+(\Pi_AB)^\I  \ar[r]_{\delta\Rightarrow\alpha_*\beta}   & (\Pi_AB)_\epsilon  \ar[u]^{(\alpha_*\beta)_\epsilon} \ar[r]  & \Pi_AB \ar[u]_{\alpha_*\beta}\\
 }
 \end{equation}
 observe that by the Beck-Chevalley condition, we have an isomorphism 
 \[
 (\Pi_AB )_\epsilon \cong \Pi_{A_\epsilon} B_\epsilon \,.
 \]
-Let us regard $\delta\Rightarrow\alpha\beta$ as a map in the slice category over $A_\epsilon$, with the evident domain $\beta_\epsilon\circ (\delta\Rightarrow\alpha\beta)$.  Applying the pushforward along $\alpha_\epsilon$ gives the map $\delta\Rightarrow\alpha_*\beta$, as can be checked e.g.\ by reasoning in extensional dependent type theory as an internal language for LCCCs.  But now we use the fact that pushforward preserves +-algebras, because its left adjoint preserves cofibrations, to infer that $\delta\Rightarrow\alpha_*\beta$ is indeed a +-algebra, as required.
+Let us regard $\delta\Rightarrow\alpha\beta$ as a map in the slice category over $A_\epsilon$, with the evident domain $\beta_\epsilon\circ (\delta\Rightarrow\alpha\beta)$.  Applying the pushforward along $\alpha_\epsilon$ then gives the map $\delta\Rightarrow\alpha_*\beta$, as can be checked e.g.\ by reasoning in extensional dependent type theory as an internal language for LCCCs.  But now we use the fact that pushforward preserves +-algebras, because its left adjoint preserves cofibrations, to infer that $\delta\Rightarrow\alpha_*\beta$ is indeed a +-algebra, as required.
 \end{proof}
 
 
