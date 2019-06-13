@@ -1,4 +1,4 @@
-\xycompiled{qms-59}{2019/3/25:854 [qms:1161]}{Xy-pic 3.8.8}%
+\xycompiled{qms-59}{2019/6/13:640 [qms:1175]}{Xy-pic 3.8.9}%
 {\xymatrixnocompile { K \ar @{>->}[d]_{\iota _0} \ar [r]^{s} & Y\ar @{>>}[d]^{f} \\ K\times \I \ar [r]_{\vartheta } \ar @{..>}[ru]^{\vartheta '}& K\\ K \ar @{>->}[u]_{\iota _1} \ar [ru]_=& }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%

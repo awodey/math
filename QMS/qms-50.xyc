@@ -1,4 +1,4 @@
-\xycompiled{qms-50}{2019/3/21:718 [qms:978]}{Xy-pic 3.8.8}%
+\xycompiled{qms-50}{2019/6/13:640 [qms:995]}{Xy-pic 3.8.9}%
 {\xymatrixnocompile { A \ar @{>->}[dd]_{c} \ar [rd]_{tc} \ar [rr]^-{a} && Y \ar @{>>}[dd]^{f} \\ & W \ar [ld]_{tf} \ar @{.>}[ru]_{j} & \\ B \ar [rr]_{b} \ar @{.>}@/_2ex/[ru]_--{i} && X. }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%

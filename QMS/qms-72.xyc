@@ -1,4 +1,4 @@
-\xycompiled{qms-72}{2019/5/12:1262 [qms:1366]}{Xy-pic 3.8.8}%
+\xycompiled{qms-72}{2019/6/13:640 [qms:1375]}{Xy-pic 3.8.9}%
 {\xymatrixnocompile { X \ar [d]_{\eta _X} \ar @<-.8ex>[r]_{g} \ar @<.8ex>[r]^{f} & Y \ar [d]^{\eta _Y} \\ X^\Delta \ar @<-.8ex>[r]_{g^\Delta } \ar @<.8ex>[r]^{f^\Delta } & Y^\Delta . }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%

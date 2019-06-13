@@ -1,4 +1,4 @@
-\xycompiled{qms-42}{2019/3/21:722 [qms:878]}{Xy-pic 3.8.8}%
+\xycompiled{qms-42}{2019/6/13:640 [qms:897]}{Xy-pic 3.8.9}%
 {\xymatrixnocompile { {\coprod _{\beta }\coprod _{x} B} \ar @{>->}[dd]_-{\coprod _{\beta }\coprod _{x}\beta } {\ar [rr]^-{[[x]_\beta ]}} && X \ar @{>->}[dd]_{h_1}\\ &&\\ {\coprod _{\beta }\coprod _{x} \I ^{k}} \ar [rr] && {\pocorner } X_1\,. }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%

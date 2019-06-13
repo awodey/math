@@ -1,4 +1,4 @@
-\xycompiled{qms-21}{2019/3/19:1005 [qms:480]}{Xy-pic 3.8.8}%
+\xycompiled{qms-21}{2019/6/13:640 [qms:496]}{Xy-pic 3.8.9}%
 {\xymatrixnocompile { Z +_C (C\times \I ) \ar @{>->}[d]_{c\, \otimes \delta _\epsilon } \ar [r] & Y \ar [d]^f \\ Z\times \I \ar @{.>}[ru]_{j} \ar [r] & X }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%

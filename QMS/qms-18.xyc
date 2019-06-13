@@ -1,4 +1,4 @@
-\xycompiled{qms-18}{2019/3/19:1026 [qms:406]}{Xy-pic 3.8.8}%
+\xycompiled{qms-18}{2019/6/13:640 [qms:422]}{Xy-pic 3.8.9}%
 {\xymatrixnocompile { C \ar @{>->}[d]_{c} \ar [rr]^{x} && X \ar [d]^{f} \\ \I ^{n}\ar @{.>}[rru]_{j(c,x,y)} \ar [rr]_{y} && Y, }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%

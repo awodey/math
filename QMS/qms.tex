@@ -1615,7 +1615,66 @@ One can also promote the \emph{property} of an object or map of ``having composi
 
 \section{The Frobenius condition}\label{sec:Frobenius}
 
-In this section, we show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} provides an alternate route that is perhaps more direct, and in any event can also be applied without connections.  This approach proves the ``dual'' fact that the right adjoint to pullback (which always exists in a topos) along any \emph{fibration} $f : Y\ra X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
+In this section, we show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} provides an alternate route that is more direct, and in any event can also be applied without connections.  This approach proves the ``dual'' fact that the right adjoint to pullback (which always exists in a topos) along any \emph{fibration} $f : Y\ra X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
+
+We begin with a few lemmas ...
+
+Recall that a map $A\ra X$ is a fibration if (in the slice $\cSet/\I$, where there is a generic point $\delta : 1 \ra \I$) the map $\delta \Rightarrow f$ admits a +-algebra structure, where the construction of $\delta \Rightarrow f$ is recalled below.
+\begin{equation}\label{diagram:frobenius1}
+\xymatrix{
+A^\I \ar@/_4ex/ [rdd]_{f^\I} \ar[rd]^{\delta\Rightarrow{f}} \ar@/^4ex/ [rrd]^{Y^{\delta}}  && \\
+& X^\I \times_{X} Y \ar[d] \ar[r] & A \ar[d]^{f} \\
+& X^\I \ar[r]_{X^{\delta}} &  X.
+}
+\end{equation}
+Let us write this condition schematically as follows:
+\begin{equation}\label{diagram:frobenius1}
+\xymatrix{
+A^\I \ar[r]|+  & A_\epsilon\ar[d] \pbcorner \ar[r] & A \ar[d]\\
+& X^\I \ar[r]_{\epsilon} &  X,
+}
+\end{equation}
+where $\epsilon = X^{\delta}$ and the struck-through arrow indicates a +-algebra.
+
+\begin{proposition}
+Let $\beta: B\ra A$ and $\alpha : A \ra X$ be fibrations, then the pushforward $\alpha_*\beta : \Pi_AB \ra X$ is also a fibration.
+\end{proposition}
+
+\begin{proof}
+Since both $\beta: B\ra A$ and $\alpha : A \ra X$ are fibrations, so is their composite $B\ra X$, by lemma \ref{lemma:fibrationscompose}.
+Thus we have the following for the fibration structure on $B\ra X$.
+\begin{equation}\label{diagram:frobenius2}
+\xymatrix{
+B^\I \ar[r]|+  & B_\epsilon  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
+& A_\epsilon \ar[d] \pbcorner \ar[r] & A \ar[d]\\
+& X^\I \ar[r]_{\epsilon} &  X,
+}
+\end{equation}
+Adding the result of the pushforward underneath, we have
+ \begin{equation}\label{diagram:frobenius3}
+\xymatrix{
+B^\I \ar[r]|+  & B_\epsilon  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
+& A_\epsilon \ar[d] \pbcorner \ar[r] & A \ar[d]\\
+& X^\I \ar[r]_{\epsilon} &  X,\\
+(\Pi_AB)^\I  \ar[r]  & (\Pi_AB)_\epsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]\\
+}
+\end{equation}
+and we wish to show that $(\Pi_AB)^\I \ra (\Pi_AB)_\epsilon$ has a +-algebra structure. Adding some labels for reference, 
+ \begin{equation}\label{diagram:frobenius3}
+\xymatrix{
+B^\I \ar[r]|+^{\delta\Rightarrow\alpha\beta}  & B_\epsilon  \ar[d]_{\beta_\epsilon} \pbcorner \ar[r]_{\epsilon_B}  & B \ar[d]^\beta\\
+& A_\epsilon \ar[d]_{\alpha_\epsilon} \pbcorner \ar[r]_{\epsilon_A} & A \ar[d]^\alpha\\
+& X^\I \ar[r]_{\epsilon} &  X,\\
+(\Pi_AB)^\I  \ar[r]_{\delta\Rightarrow\alpha_*\beta}   & (\Pi_AB)_\epsilon  \ar[u]^{{\alpha_*\beta}_\epsilon} \ar[r]_{\epsilon_X}  & \Pi_AB \ar[u]_{\alpha_*\beta}\\
+}
+\end{equation}
+observe that by the Beck-Chevalley condition, we have an isomorphism 
+\[
+(\Pi_AB )_\epsilon \cong \Pi_{A_\epsilon} B_\epsilon \,.
+\]
+Let us regard $\delta\Rightarrow\alpha\beta$ as a map in the slice category over $A_\epsilon$, with the evident domain $\beta_\epsilon\circ (\delta\Rightarrow\alpha\beta)$.  Applying the pushforward along $\alpha_\epsilon$ gives the map $\delta\Rightarrow\alpha_*\beta$, as can be checked e.g.\ by reasoning in extensional dependent type theory as an internal language for LCCCs.  But now we use the fact that pushforward preserves +-algebras, because its left adjoint preserves cofibrations, to infer that $\delta\Rightarrow\alpha_*\beta$ is indeed a +-algebra, as required.
+\end{proof}
+
 
 \section{The equivalence extension property}\label{sec:EEP}
 

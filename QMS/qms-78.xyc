@@ -1,4 +1,4 @@
-\xycompiled{qms-78}{2019/5/12:1255 [qms:1431]}{Xy-pic 3.8.8}%
+\xycompiled{qms-78}{2019/6/13:640 [qms:1437]}{Xy-pic 3.8.9}%
 {\xymatrixnocompile { C \ar @{>->}[d]_{c} \ar [r]^y & X^\I \ar [d]^{\epsilon _\delta } \ar [r]^{\eta ^{\pi }_{X^\I }} & (X^\I )^\I \ar [d]^{(\epsilon _\delta )^\I } \ar [r]^{\pi _*{\epsilon _{\delta '}}} & \pi _*\pi ^*X \ar [d]^{\pi _*\eta _X} \\ Z \ar [r]_x \ar @{..>}[rrru]^{\widetilde {x'}} & X \ar [r]_{\eta ^\pi _X} & X^\I \ar [r]_-{\pi _*\eta _X} & \pi _*X^\Delta . }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%

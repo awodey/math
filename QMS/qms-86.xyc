@@ -1,4 +1,4 @@
-\xycompiled{qms-86}{2019/5/31:1014 [qms:1589]}{Xy-pic 3.8.8}%
+\xycompiled{qms-86}{2019/6/13:640 [qms:1598]}{Xy-pic 3.8.9}%
 {\xymatrixnocompile { C \ar @{>->}[d]_{c} \ar [r]^{y} & Y^\I \ar [d]_>>>>>>>{f^\delta } \ar [r]^{f^{\delta '}} & Y_{\delta '} \ar [d]^{\eta _{Y_{\delta '}}}\\ Z \ar @{..>}[rru]_>>>>>>{y_{\delta '}} \ar [r]_{y_\delta } & Y_\delta \ar [r]_{\eta _{Y_\delta }} & Y^\Delta \,, }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%
