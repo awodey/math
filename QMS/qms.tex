@@ -1314,7 +1314,7 @@ $i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor 
 
 In conclusion, we shall have a model structure once we have established the fibration extension property, Proposition \ref{prop:fibextreplace}.  The proof will require a number of intermediate results: the equivalence extension property (Section \ref{sec:EEP}), the Frobenius condition (Section \ref{sec:Frobenius}), and the reduction of filling to composition, to which we now turn.
 
-\section{Composition}
+\section{Composition}\label{sec:composition}
 
 A novelty of the type-theoretic notion of fibration is the method (due to Coquand and first introduced in \cite{CCHM}) of reducing the (type-theoretically specified) notion of \emph{fibration structure} to the apparently weaker notion of a \emph{composition structure}.  Composition structure is more easily shown to be preserved by the type-forming operations like $\Sigma$ and $\Pi$, when these concepts are formulated in type theory, as is done in \cite{CCHM}, or in the internal lanuage of the ambient presheaf topos, as in \cite{OP}.  This is due to the fact that one can then efficiently calculate using the rules of type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under $\Pi$-types.  The approach taken here is a reformulation into diagrammatic language of those type-theoretic calculations.
 
@@ -1698,8 +1698,11 @@ observe that by the Beck-Chevalley condition, we have an isomorphism
 Let us regard $\delta\Rightarrow\alpha\beta$ as a map in the slice category over $A_\epsilon$, with the evident domain $\beta_\epsilon\circ (\delta\Rightarrow\alpha\beta)$.  Applying the pushforward along $\alpha_\epsilon$ then gives the map $\delta\Rightarrow\alpha_*\beta$, as can be checked by a calculation in extensional dependent type theory as the internal language of LCCCs.  Now we use the fact that pushforward preserves +-algebras, which can be shown directly, or by by observing that its left adjoint preserves cofibrations, to infer that $\delta\Rightarrow\alpha_*\beta$ is indeed a +-algebra, as required.
 \end{proof}
 
-
 \section{The equivalence extension property}\label{sec:EEP}
+
+The equivalence extension property (EEP) will be seen to be equivalent, in the presence of a universe, to the univalence property of the universe.  We will show the EEP by using a variation on the original argument by Voevodsky.  
+
+[ ... as usual ... ] 
 
 \section{The universe}\label{sec:U}
 
@@ -2090,18 +2093,121 @@ $\Fib(\VV)$ is the object of fibration structures on $\VV\ra\V$, and its pullbac
 \end{proof}
 
 
-\subsection{Classifying equivariant fibrations}
-
-
+%\subsection{Classifying equivariant fibrations}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The fibration extension property}\label{sec:FEP}
 
+In the presence of a universal fibration $\UU\ra\U$ as was constructed in section \ref{sec:U}, the fibration extension property is equivalent to the statement that the base object $\U$ is fibrant.  This can be proven from the equivalence extension property (section \ref{sec:EEP}) by a very clever argument due to Coquand employing the reduction of filling to composition (section \ref{sec:composition}).
+
+[ .. add the simple proof ... ]
+
+This completes our proof of the 3-for-2 property for weak equivalences, and thus the verification of the model structure.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Appendix:  A left-induced model structure on the Cartesian cubical sets}
+
+We make use of the Sattler model structure \cite{sattler} on the \emph{Dedekind cubical sets} $\widehat\D = \psh{\D}$, where $\D$ is the category of \emph{Dedekind cubes}, defined as the Lawvere theory of distributive lattices.  The unique product-preserving functor 
+\[
+i : \C \to \D
+\]
+classifying the Dedekind interval $\I_\D \in \D$ induces an adjunction,
+\[
+i_! \dashv i^* \dashv i_*\ :\ \widehat\C \ \to \widehat\D \,,
+\]
+where $i^* (Q) = Q\circ i$, for $Q \in \D$.  
+
+\begin{lemma}
+Observe that $i_!$ is left exact since the Dedekind interval $\I_\D$ is \emph{strict}, $0 \neq 1 : 1\rightrightarrows\I_\D$.  Thus we have geometric morphisms:
+\[
+(i_! \dashv i^*) :\ \widehat\D \ \to \widehat\C \,,
+\]
+classifying the bipointed object $i_!(\I_\C) = \I_\D$,
+\[
+(i^* \dashv i_*) :\ \widehat\C \ \to \widehat\D \,,
+\]
+classifying the dLat $i^*(\I_\D) := \II$, where $\eta : \I_\C\to \II$ can be described pointwise as the distributive lattice completion of the corresponding bipointed set.
+
+Also, since $i$ is faithful so is $i_!$,  and since $i$ is surjective on objects $i^*$ is also faithful.
+
+It follows that:
+\begin{itemize}
+\item $\widehat\C$ is $(i_!\circ i^*)$-coalgebras on $\widehat\D$, 
+\item $\widehat\D$ is $(i^*\circ i_*)$-coalgebras on $\widehat\C$, 
+\item $\widehat\D$ is $(i^*\circ i_!)$-algebras on $\widehat\C$. 
+\end{itemize}
+\end{lemma}
+
+We will use the following transfer theorem for QMSs from \cite{Hess,Garner}:
+
+\begin{theorem*}[\cite{Hess,Garner}]
+Suppose $\widehat\D$ has a (cofibrantly generated) model structure $(\mathcal{C}_\D, \mathcal{W}_\D, \mathcal{F}_\D)$.  Given an adjunction 
+\[
+i_! \dashv i^* \ :\ \widehat\D \to \widehat\C\,,
+\]
+there is a \emph{left-induced model structure} on $\widehat\C$ if the following \emph{acyclicity condition} holds:
+\[
+(i_!^{-1}\mathcal{C}_\D)^{\pitchfork}\  \subset \  i_!^{-1}\mathcal{W}_\D\,.
+\]
+For the left-induced model structure $(\mathcal{C}_\C, \mathcal{W}_\C, \mathcal{F}_\C)$ on $\widehat\C$ we then have:
+\begin{align*}
+\mathcal{C}_\C\ &=\ i_!^{-1}\mathcal{C}_\D\,,\\
+\mathcal{W}_\C\ &=\ i_!^{-1}\mathcal{W}_\D\,.
+\end{align*}
+\end{theorem*}
+
+The Sattler model structure on $\widehat\D$ is given as follows (for a constructive treatment a smaller class of ``pointwise decidable cofibrations'' is used, but we consider the classical case first):
+\begin{align*}
+\mathcal{C}\ &=\ \text{monomorphisms}\,,\\
+\mathcal{W}\  &=\ \{ f \ |\ f = p\circ i ,\ p\in \mathcal{F}\cap\mathcal{W} ,\ i\in \mathcal{C}\cap\mathcal{W}\,\}\,,\\
+\mathcal{F}\  &=\ (\mathcal{C}\otimes\delta)^\pitchfork\,.
+\end{align*}
+where $\delta : 1\to\I$ is either endpoint inclusion.
+
+For the left-induced model structure on $\widehat\C$ we therefore have the following specification:
+\begin{align*}
+\mathcal{C}\ &=\ \text{monomorphisms},\\
+\mathcal{W}\  &=\ \{ f \ |\ i_!f = p\circ i ,\ p\in \mathcal{F}_\D\cap\mathcal{W}_\D ,\ i\in \mathcal{C}_\D\cap\mathcal{W}_\D\,\}\,,\\
+\mathcal{F}\  &=\ (\mathcal{C}\cap\mathcal{W})^\pitchfork\,.
+\end{align*}
+The determination  of $\mathcal{C}$ follows from the fact that $i_! :\widehat\C\to \widehat\D$ is conservative.
+
+To check the acyclicity condition, 
+\[
+(i_!^{-1}\mathcal{C}_\D)^{\pitchfork}\  \subset \  i_!^{-1}\mathcal{W}_\D\,,
+\]
+we know that $i_!^{-1}\mathcal{C}_\D$ consists of the monos in $\C$, so take $f : Y\to X$ in $(i_!^{-1}\mathcal{C}_\D)^{\pitchfork}$, apply $i_!$,  and factor the result as $i_!f = p\circ m : i_!Y\to Z\to i_!X$ with $p\in \mathcal{F}_\D\cap\mathcal{W}_\D$ and $m : i_!Y\to Z$ monic. We then need to show that $m$ is in~$\mathcal{W}_\D$.
+
+We can apply Theorem 2.2.1 of \cite{Hess}, with $\mathsf{K} = \widehat\C$, $\mathsf{M} = \widehat\D$, $V = i_!$, $k=i^*$, and:
+\begin{enumerate}
+\item $QX = X$ and $\epsilon = 1_X : X\to X$, so that $i_!1_X = 1_{i_!X}$ and therefore in $\mathcal{W}_\D$, while all objects are cofibrant,
+\item $Qf = f$ for any $f:X\to Y$ in $\widehat\C$, so that the naturality condition is similarly trivial,
+\item factor the codiagonal $X + X \to X$ as $\pi_2\circ j : X + X \to \I\times X \to X$ with $j = (\partial\I\times X) : X + X \to \I\times X$.
+ \end{enumerate}
+ It remains only to show that $i_!p : \i_!(\I\times X) \to i_!X$ is in $\mathcal{W}_\D$ and  $i_!j : i_!(X + X) \to i_!(\I\times X)$ is in $\mathcal{C}_\D$.  The latter  is clear, since $j$ is monic. To show the former, observe that for any $D\in \widehat\D$, the projection $\pi_2 : \I_\D\times D \to D$ is in $\mathcal{W}_\D$ by 3-for-2, since the ``cylinder end'' inclusion $D\to\I_\D\times D$, as a pullback of an endpoint inclusion, is a cofibration, and a strong deformation retract (using the connection on $\I$), and hence is in $\mathcal{W}_\D$ by \cite{GS}.
+
+Thus we have shown:
+
+\begin{theorem}
+There is a Quillen model structure $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ on the category $\widehat\C$ of cartesian cubical sets, in which
+\begin{align*}
+\mathcal{C}\ &=\ \text{monomorphisms},\\
+\mathcal{W}\  &=\ \{ f \ |\ i_!f = p\circ i ,\ p\in \mathcal{F}_\D\cap\mathcal{W}_\D\,,\ i\in \mathcal{C}_\D\cap\mathcal{W}_\D\,\}\,,\\
+\mathcal{F}\  &=\ (\mathcal{C}\cap\mathcal{W})^\pitchfork\,.
+\end{align*}
+where $i_! : \widehat\C \to\widehat\D$ is the left adjoint of precomposition along the canonical map $i : \C \to \D$ from Cartesian cubes to Dedekind cubes, and $(\mathcal{C}_\D, \mathcal{W}_\D, \mathcal{F}_\D)$ is the Sattler model structure on $\widehat\D$.
+\end{theorem}
 
 
-%%%%%
-%\end{document}
-%%%%%
+\bibliographystyle{alpha}
+\bibliography{references}
+
+
+
+
+%%%%
+\end{document}
+%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Appendix 1: Filling from composition with connections}\label{appendix:comptofillconnection}
@@ -2362,103 +2468,103 @@ B_0 &  \ar[lu]  \ar@/_8ex/ [dd] G \ar[d]^{q'} & \\
 \]
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix 3:  A left-induced model structure on the Cartesian cubical sets}
-
-We make use of the Sattler model structure \cite{sattler} on the \emph{Dedekind cubical sets} $\widehat\D = \psh{\D}$, where $\D$ is the category of \emph{Dedekind cubes}, defined as the Lawvere theory of distributive lattices.  The unique product-preserving functor 
-\[
-i : \C \to \D
-\]
-classifying the Dedekind interval $\I_\D \in \D$ induces an adjunction,
-\[
-i_! \dashv i^* \dashv i_*\ :\ \widehat\C \ \to \widehat\D \,,
-\]
-where $i^* (Q) = Q\circ i$, for $Q \in \D$.  
-
-\begin{lemma}
-Observe that $i_!$ is left exact since the Dedekind interval $\I_\D$ is \emph{strict}, $0 \neq 1 : 1\rightrightarrows\I_\D$.  Thus we have geometric morphisms:
-\[
-(i_! \dashv i^*) :\ \widehat\D \ \to \widehat\C \,,
-\]
-classifying the bipointed object $i_!(\I_\C) = \I_\D$,
-\[
-(i^* \dashv i_*) :\ \widehat\C \ \to \widehat\D \,,
-\]
-classifying the dLat $i^*(\I_\D) := \II$, where $\eta : \I_\C\to \II$ can be described pointwise as the distributive lattice completion of the corresponding bipointed set.
-
-Also, since $i$ is faithful so is $i_!$,  and since $i$ is surjective on objects $i^*$ is also faithful.
-
-It follows that:
-\begin{itemize}
-\item $\widehat\C$ is $(i_!\circ i^*)$-coalgebras on $\widehat\D$, 
-\item $\widehat\D$ is $(i^*\circ i_*)$-coalgebras on $\widehat\C$, 
-\item $\widehat\D$ is $(i^*\circ i_!)$-algebras on $\widehat\C$. 
-\end{itemize}
-\end{lemma}
-
-We will use the following transfer theorem for QMSs from \cite{Hess,Garner}:
-
-\begin{theorem*}[\cite{Hess,Garner}]
-Suppose $\widehat\D$ has a (cofibrantly generated) model structure $(\mathcal{C}_\D, \mathcal{W}_\D, \mathcal{F}_\D)$.  Given an adjunction 
-\[
-i_! \dashv i^* \ :\ \widehat\D \to \widehat\C\,,
-\]
-there is a \emph{left-induced model structure} on $\widehat\C$ if the following \emph{acyclicity condition} holds:
-\[
-(i_!^{-1}\mathcal{C}_\D)^{\pitchfork}\  \subset \  i_!^{-1}\mathcal{W}_\D\,.
-\]
-For the left-induced model structure $(\mathcal{C}_\C, \mathcal{W}_\C, \mathcal{F}_\C)$ on $\widehat\C$ we then have:
-\begin{align*}
-\mathcal{C}_\C\ &=\ i_!^{-1}\mathcal{C}_\D\,,\\
-\mathcal{W}_\C\ &=\ i_!^{-1}\mathcal{W}_\D\,.
-\end{align*}
-\end{theorem*}
-
-The Sattler model structure on $\widehat\D$ is given as follows (for a constructive treatment a smaller class of ``pointwise decidable cofibrations'' is used, but we consider the classical case first):
-\begin{align*}
-\mathcal{C}\ &=\ \text{monomorphisms}\,,\\
-\mathcal{W}\  &=\ \{ f \ |\ f = p\circ i ,\ p\in \mathcal{F}\cap\mathcal{W} ,\ i\in \mathcal{C}\cap\mathcal{W}\,\}\,,\\
-\mathcal{F}\  &=\ (\mathcal{C}\otimes\delta)^\pitchfork\,.
-\end{align*}
-where $\delta : 1\to\I$ is either endpoint inclusion.
-
-For the left-induced model structure on $\widehat\C$ we therefore have the following specification:
-\begin{align*}
-\mathcal{C}\ &=\ \text{monomorphisms},\\
-\mathcal{W}\  &=\ \{ f \ |\ i_!f = p\circ i ,\ p\in \mathcal{F}_\D\cap\mathcal{W}_\D ,\ i\in \mathcal{C}_\D\cap\mathcal{W}_\D\,\}\,,\\
-\mathcal{F}\  &=\ (\mathcal{C}\cap\mathcal{W})^\pitchfork\,.
-\end{align*}
-The determination  of $\mathcal{C}$ follows from the fact that $i_! :\widehat\C\to \widehat\D$ is conservative.
-
-To check the acyclicity condition, 
-\[
-(i_!^{-1}\mathcal{C}_\D)^{\pitchfork}\  \subset \  i_!^{-1}\mathcal{W}_\D\,,
-\]
-we know that $i_!^{-1}\mathcal{C}_\D$ consists of the monos in $\C$, so take $f : Y\to X$ in $(i_!^{-1}\mathcal{C}_\D)^{\pitchfork}$, apply $i_!$,  and factor the result as $i_!f = p\circ m : i_!Y\to Z\to i_!X$ with $p\in \mathcal{F}_\D\cap\mathcal{W}_\D$ and $m : i_!Y\to Z$ monic. We then need to show that $m$ is in~$\mathcal{W}_\D$.
-
-We can apply Theorem 2.2.1 of \cite{Hess}, with $\mathsf{K} = \widehat\C$, $\mathsf{M} = \widehat\D$, $V = i_!$, $k=i^*$, and:
-\begin{enumerate}
-\item $QX = X$ and $\epsilon = 1_X : X\to X$, so that $i_!1_X = 1_{i_!X}$ and therefore in $\mathcal{W}_\D$, while all objects are cofibrant,
-\item $Qf = f$ for any $f:X\to Y$ in $\widehat\C$, so that the naturality condition is similarly trivial,
-\item factor the codiagonal $X + X \to X$ as $\pi_2\circ j : X + X \to \I\times X \to X$ with $j = (\partial\I\times X) : X + X \to \I\times X$.
- \end{enumerate}
- It remains only to show that $i_!p : \i_!(\I\times X) \to i_!X$ is in $\mathcal{W}_\D$ and  $i_!j : i_!(X + X) \to i_!(\I\times X)$ is in $\mathcal{C}_\D$.  The latter  is clear, since $j$ is monic. To show the former, observe that for any $D\in \widehat\D$, the projection $\pi_2 : \I_\D\times D \to D$ is in $\mathcal{W}_\D$ by 3-for-2, since the ``cylinder end'' inclusion $D\to\I_\D\times D$, as a pullback of an endpoint inclusion, is a cofibration, and a strong deformation retract (using the connection on $\I$), and hence is in $\mathcal{W}_\D$ by \cite{GS}.
-
-Thus we have shown:
-
-\begin{theorem}
-There is a Quillen model structure $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ on the category $\widehat\C$ of cartesian cubical sets, in which
-\begin{align*}
-\mathcal{C}\ &=\ \text{monomorphisms},\\
-\mathcal{W}\  &=\ \{ f \ |\ i_!f = p\circ i ,\ p\in \mathcal{F}_\D\cap\mathcal{W}_\D\,,\ i\in \mathcal{C}_\D\cap\mathcal{W}_\D\,\}\,,\\
-\mathcal{F}\  &=\ (\mathcal{C}\cap\mathcal{W})^\pitchfork\,.
-\end{align*}
-where $i_! : \widehat\C \to\widehat\D$ is the left adjoint of precomposition along the canonical map $i : \C \to \D$ from Cartesian cubes to Dedekind cubes, and $(\mathcal{C}_\D, \mathcal{W}_\D, \mathcal{F}_\D)$ is the Sattler model structure on $\widehat\D$.
-\end{theorem}
-
-
-\bibliographystyle{alpha}
-\bibliography{references}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{Appendix 3:  A left-induced model structure on the Cartesian cubical sets}
+%
+%We make use of the Sattler model structure \cite{sattler} on the \emph{Dedekind cubical sets} $\widehat\D = \psh{\D}$, where $\D$ is the category of \emph{Dedekind cubes}, defined as the Lawvere theory of distributive lattices.  The unique product-preserving functor 
+%\[
+%i : \C \to \D
+%\]
+%classifying the Dedekind interval $\I_\D \in \D$ induces an adjunction,
+%\[
+%i_! \dashv i^* \dashv i_*\ :\ \widehat\C \ \to \widehat\D \,,
+%\]
+%where $i^* (Q) = Q\circ i$, for $Q \in \D$.  
+%
+%\begin{lemma}
+%Observe that $i_!$ is left exact since the Dedekind interval $\I_\D$ is \emph{strict}, $0 \neq 1 : 1\rightrightarrows\I_\D$.  Thus we have geometric morphisms:
+%\[
+%(i_! \dashv i^*) :\ \widehat\D \ \to \widehat\C \,,
+%\]
+%classifying the bipointed object $i_!(\I_\C) = \I_\D$,
+%\[
+%(i^* \dashv i_*) :\ \widehat\C \ \to \widehat\D \,,
+%\]
+%classifying the dLat $i^*(\I_\D) := \II$, where $\eta : \I_\C\to \II$ can be described pointwise as the distributive lattice completion of the corresponding bipointed set.
+%
+%Also, since $i$ is faithful so is $i_!$,  and since $i$ is surjective on objects $i^*$ is also faithful.
+%
+%It follows that:
+%\begin{itemize}
+%\item $\widehat\C$ is $(i_!\circ i^*)$-coalgebras on $\widehat\D$, 
+%\item $\widehat\D$ is $(i^*\circ i_*)$-coalgebras on $\widehat\C$, 
+%\item $\widehat\D$ is $(i^*\circ i_!)$-algebras on $\widehat\C$. 
+%\end{itemize}
+%\end{lemma}
+%
+%We will use the following transfer theorem for QMSs from \cite{Hess,Garner}:
+%
+%\begin{theorem*}[\cite{Hess,Garner}]
+%Suppose $\widehat\D$ has a (cofibrantly generated) model structure $(\mathcal{C}_\D, \mathcal{W}_\D, \mathcal{F}_\D)$.  Given an adjunction 
+%\[
+%i_! \dashv i^* \ :\ \widehat\D \to \widehat\C\,,
+%\]
+%there is a \emph{left-induced model structure} on $\widehat\C$ if the following \emph{acyclicity condition} holds:
+%\[
+%(i_!^{-1}\mathcal{C}_\D)^{\pitchfork}\  \subset \  i_!^{-1}\mathcal{W}_\D\,.
+%\]
+%For the left-induced model structure $(\mathcal{C}_\C, \mathcal{W}_\C, \mathcal{F}_\C)$ on $\widehat\C$ we then have:
+%\begin{align*}
+%\mathcal{C}_\C\ &=\ i_!^{-1}\mathcal{C}_\D\,,\\
+%\mathcal{W}_\C\ &=\ i_!^{-1}\mathcal{W}_\D\,.
+%\end{align*}
+%\end{theorem*}
+%
+%The Sattler model structure on $\widehat\D$ is given as follows (for a constructive treatment a smaller class of ``pointwise decidable cofibrations'' is used, but we consider the classical case first):
+%\begin{align*}
+%\mathcal{C}\ &=\ \text{monomorphisms}\,,\\
+%\mathcal{W}\  &=\ \{ f \ |\ f = p\circ i ,\ p\in \mathcal{F}\cap\mathcal{W} ,\ i\in \mathcal{C}\cap\mathcal{W}\,\}\,,\\
+%\mathcal{F}\  &=\ (\mathcal{C}\otimes\delta)^\pitchfork\,.
+%\end{align*}
+%where $\delta : 1\to\I$ is either endpoint inclusion.
+%
+%For the left-induced model structure on $\widehat\C$ we therefore have the following specification:
+%\begin{align*}
+%\mathcal{C}\ &=\ \text{monomorphisms},\\
+%\mathcal{W}\  &=\ \{ f \ |\ i_!f = p\circ i ,\ p\in \mathcal{F}_\D\cap\mathcal{W}_\D ,\ i\in \mathcal{C}_\D\cap\mathcal{W}_\D\,\}\,,\\
+%\mathcal{F}\  &=\ (\mathcal{C}\cap\mathcal{W})^\pitchfork\,.
+%\end{align*}
+%The determination  of $\mathcal{C}$ follows from the fact that $i_! :\widehat\C\to \widehat\D$ is conservative.
+%
+%To check the acyclicity condition, 
+%\[
+%(i_!^{-1}\mathcal{C}_\D)^{\pitchfork}\  \subset \  i_!^{-1}\mathcal{W}_\D\,,
+%\]
+%we know that $i_!^{-1}\mathcal{C}_\D$ consists of the monos in $\C$, so take $f : Y\to X$ in $(i_!^{-1}\mathcal{C}_\D)^{\pitchfork}$, apply $i_!$,  and factor the result as $i_!f = p\circ m : i_!Y\to Z\to i_!X$ with $p\in \mathcal{F}_\D\cap\mathcal{W}_\D$ and $m : i_!Y\to Z$ monic. We then need to show that $m$ is in~$\mathcal{W}_\D$.
+%
+%We can apply Theorem 2.2.1 of \cite{Hess}, with $\mathsf{K} = \widehat\C$, $\mathsf{M} = \widehat\D$, $V = i_!$, $k=i^*$, and:
+%\begin{enumerate}
+%\item $QX = X$ and $\epsilon = 1_X : X\to X$, so that $i_!1_X = 1_{i_!X}$ and therefore in $\mathcal{W}_\D$, while all objects are cofibrant,
+%\item $Qf = f$ for any $f:X\to Y$ in $\widehat\C$, so that the naturality condition is similarly trivial,
+%\item factor the codiagonal $X + X \to X$ as $\pi_2\circ j : X + X \to \I\times X \to X$ with $j = (\partial\I\times X) : X + X \to \I\times X$.
+% \end{enumerate}
+% It remains only to show that $i_!p : \i_!(\I\times X) \to i_!X$ is in $\mathcal{W}_\D$ and  $i_!j : i_!(X + X) \to i_!(\I\times X)$ is in $\mathcal{C}_\D$.  The latter  is clear, since $j$ is monic. To show the former, observe that for any $D\in \widehat\D$, the projection $\pi_2 : \I_\D\times D \to D$ is in $\mathcal{W}_\D$ by 3-for-2, since the ``cylinder end'' inclusion $D\to\I_\D\times D$, as a pullback of an endpoint inclusion, is a cofibration, and a strong deformation retract (using the connection on $\I$), and hence is in $\mathcal{W}_\D$ by \cite{GS}.
+%
+%Thus we have shown:
+%
+%\begin{theorem}
+%There is a Quillen model structure $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ on the category $\widehat\C$ of cartesian cubical sets, in which
+%\begin{align*}
+%\mathcal{C}\ &=\ \text{monomorphisms},\\
+%\mathcal{W}\  &=\ \{ f \ |\ i_!f = p\circ i ,\ p\in \mathcal{F}_\D\cap\mathcal{W}_\D\,,\ i\in \mathcal{C}_\D\cap\mathcal{W}_\D\,\}\,,\\
+%\mathcal{F}\  &=\ (\mathcal{C}\cap\mathcal{W})^\pitchfork\,.
+%\end{align*}
+%where $i_! : \widehat\C \to\widehat\D$ is the left adjoint of precomposition along the canonical map $i : \C \to \D$ from Cartesian cubes to Dedekind cubes, and $(\mathcal{C}_\D, \mathcal{W}_\D, \mathcal{F}_\D)$ is the Sattler model structure on $\widehat\D$.
+%\end{theorem}
+%
+%
+%\bibliographystyle{alpha}
+%\bibliography{references}
+%
 
 \end{document}
