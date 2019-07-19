@@ -112,6 +112,9 @@
 \author{Steve Awodey}
 \maketitle
 
+\setcounter{tocdepth}{1}
+\tableofcontents
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The cartesian cube category}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -125,7 +128,7 @@ The arrows,
 \[
 f : [n] \to [m]\,,
 \]
-maybe taken to be $m$-tuples of elements drawn from the set $\{0, x_1, ..., x_n, 1\}$ regarded as formal terms representing composites of faces, degeneracies, permutations, and diagonals.  Equivalently, the arrows $[n] \to [m]$ are arbitrary bipointed maps $[m]\to [n]$.
+maybe taken to be $m$-tuples of elements drawn from the set $\{0, x_1, ..., x_n, 1\}$ regarded as formal terms representing composites of faces, degeneracies, permutations, and diagonals.  Equivalently, the arrows $[n] \ra [m]$ are arbitrary bipointed maps $[m]\ra [n]$.
 \end{definition}
 See \cite{parker:thesis} for further details.
 
@@ -1252,12 +1255,18 @@ Since $\eta$ is a trivial cofibration, it is a WHE. So the composite $\eta c$ is
 %%
 %This proposition is a consequence of several stronger ones, e.g.\ the equivalence extension property of \cite{Sattler:EEP}. It is easily seen to be equivalent to the following special case.
 
-To complete the proof that a cofibration WHE is a WE we will use the following fundamental fact, the proof of which is deferred to section XX\ref{section:FEP}.
+To complete the proof that a cofibration WHE is a WE we will use the fact that the fibration weak factorization system satisfies the fibration extension property, the proof of which is deferred to section XX\ref{section:FEP}.
 
-\begin{proposition}[Fibration extension]\label{prop:fibextreplace}
-Given a fibration $ f : Y \epi X$ and a trivial cofibration $\eta: X\ra X'$,
+\begin{definition}[Fibration extension]\label{def:fibextreplace}
+The fibration weak factorization system is said to satisfy the \emph{fibration extension property} if the following holds: Given a fibration $ f : Y \epi X$ and a trivial cofibration $\eta: X\ra X'$,
 there is a fibration $f' : Y' \epi X'$ such that $f$ is a pullback of $f'$ along $\eta$. 
-\end{proposition}
+\begin{equation}\label{diagram:FEP}
+\xymatrix{
+Y \ar@{->>}[d]_{f} \ar[r]  \pbcorner & Y' \ar@{>>}[d]^{f'} \\
+X \ar@{>->}[r]_{\eta} &  X'.
+}
+\end{equation}
+\end{definition}
 
 \begin{lemma}\label{lemma:CofWEiffFibLift}
 A cofibration that lifts against every fibration $f : Y\epi K$ with fibrant codomain is a WE.
@@ -1272,7 +1281,7 @@ B \ar[r]_{b} &  X.
 }
 \end{equation}
 Let $\eta: X\ra X'$ be a fibrant replacement, so $\eta$ is a trivial cofibration and $X'$ is fibrant. 
-By proposition \ref{prop:fibextreplace}, there is a fibration $f' : Y' \epi X'$ such that $f$ is a pullback of $f'$ along $\eta$. So we can extend diagram \eqref{diagram:CofWHEiffFibLift1} to obtain the following, in which the righthand square is a pullback.
+By the fibration extension property of definition \ref{def:fibextreplace}, there is a fibration $f' : Y' \epi X'$ such that $f$ is a pullback of $f'$ along $\eta$. So we can extend diagram \eqref{diagram:CofWHEiffFibLift1} to obtain the following, in which the righthand square is a pullback.
 \begin{equation}\label{diagram:CofWHEiffFibLift2}
 \xymatrix{
 A \ar@{>->}[d]_{c} \ar[r]^-{a}  & Y \ar@{>>}[d]^{f} {\pbcorner} \ar[r]^{y} & Y' \ar@{>>}[d]^{f'} \\
@@ -1312,7 +1321,13 @@ Let $ f : X \epi Y$ be a WE and factor it into a trivial cofibration $i : X\mono
 $i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor it into a cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$. Since  $p$ is then a WHE, as is $f$, it follows that $i$ is as well.  Thus $i$ is also a WE, by lemma \ref{cor:CofWHEtoWE}, hence a trivial fibration. So $f$ is a WE.
 \end{proof}
 
-In conclusion, we shall have a model structure once we have established the fibration extension property, Proposition \ref{prop:fibextreplace}.  The proof will require a number of intermediate results: the equivalence extension property (Section \ref{sec:EEP}), the Frobenius condition (Section \ref{sec:Frobenius}), and the reduction of filling to composition, to which we now turn.
+We summarize the results to this point in the following.
+\begin{theorem}\label{theorem:QMSmodFEP}
+
+Assume the fibration weak factorization system of Definition \ref{def:FibWFSclasses} satisfies the fibration extension property of Definition \ref{def:fibextreplace}.  Then the weak equivalences have the 3-for-2 property and we therefore have a Quillen model structure.
+\end{theorem}
+
+The proof of the fibration extension property will require several intermediate results: the equivalence extension property (Section \ref{sec:EEP}), the Frobenius condition (Section \ref{sec:Frobenius}), and the reduction of filling to composition (Section \ref{sec:composition}), to which we now turn.
 
 \section{Composition}\label{sec:composition}
 
@@ -1615,9 +1630,9 @@ One can also promote the \emph{property} of an object or map of ``having composi
 
 \section{The Frobenius condition}\label{sec:Frobenius}
 
-In this section, we show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} provides an alternate route that is more direct, and in any event can also be applied without connections.  This approach proves the ``dual'' fact that the right adjoint to pullback (which always exists in a topos) along any \emph{fibration} $f : Y\ra X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
+In this section, we show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} can be applied without connections and is also more direct.  This approach proves the ``dual'' fact that the \emph{pushforward} operation, which is right adjoint to pullback, and which always exists in a topos, when applied along any \emph{fibration} $f : Y\epi X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
 
-Recall that a map $A\ra X$ is a fibration if (in the slice $\cSet/\I$, where there is a generic point $\delta : 1 \ra \I$) the map $\delta \Rightarrow f$ admits a +-algebra structure, where the construction of $\delta \Rightarrow f$ is recalled below.
+Recall that a map $f:A\ra X$ is a fibration if (in the slice $\cSet/\I$, where there is a generic point $\delta : 1 \ra \I$) the map $\delta \Rightarrow f$ admits a +-algebra structure (and so is a trivial fibration), where the construction of $\delta \Rightarrow f$ is recalled below.
 \begin{equation}\label{diagram:frobenius1}
 \xymatrix{
 A^\I \ar@/_4ex/ [rdd]_{f^\I} \ar[rd]^{\delta\Rightarrow{f}} \ar@/^4ex/ [rrd]^{A^{\delta}}  && \\
@@ -1628,18 +1643,18 @@ A^\I \ar@/_4ex/ [rdd]_{f^\I} \ar[rd]^{\delta\Rightarrow{f}} \ar@/^4ex/ [rrd]^{A^
 Let us write this condition schematically as follows:
 \begin{equation}\label{diagram:frobenius1}
 \xymatrix{
-A^\I \ar[r]|+  & A_\epsilon\ar[d] \pbcorner \ar[r] & A \ar[d]\\
+A^\I \ar[r]|| \ar[r]  & A_\epsilon\ar[d] \pbcorner \ar[r] & A \ar[d]^f \\
 & X^\I \ar[r]_{\epsilon} &  X,
 }
 \end{equation}
-where $\epsilon = X^{\delta}$, $A_\epsilon = X^\I \times_{X} A$, and the struck-through arrow indicates a +-algebra.
+where $\epsilon = X^{\delta}$, $A_\epsilon = X^\I \times_{X} A$, and the struck-through arrow indicates that it admits a +-algebra structure.
 
 \begin{lemma}\label{lemma:fibrationscompose}
 Let $\beta: B\ra A$ and $\alpha : A \ra X$ be fibrations, then the composite $\alpha\circ\beta : B \ra X$ is also a fibration.
 \end{lemma}
 
 \begin{proof}
-We have the following for the fibration structures on $B\ra A$ and $A\ra X$.
+We have the following for the fibration structures on $B\ra A$ and $A\ra X$ (with obvious notation).
 \begin{equation}\label{diagram:fibcomposition1}
 %\xymatrix{
 %B^\I \ar[r]|+  & B_{\epsilon_A} \ar[r]  \ar[d] \pbcorner & B'  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
@@ -1648,54 +1663,192 @@ We have the following for the fibration structures on $B\ra A$ and $A\ra X$.
 %}
 %\end{equation}
 \xymatrix{
-B^\I \ar[r]|+  & B_{\epsilon_A} \ar[rr]  \ar[d] \pbcorner & & B \ar[d]\\
-&A^\I \ar[r]|+ & A_{\epsilon} \ar[d] \pbcorner \ar[r] & A \ar[d]\\
-&& X^\I \ar[r]_{\epsilon} &  X,
+B^\I \ar[r]|| \ar[r]  & B_{\epsilon_A} \ar[rr]  \ar[d] \pbcorner & & B \ar[d]\\
+&A^\I \ar[r]|| \ar[r] & A_{\epsilon_X} \ar[d] \pbcorner \ar[r] & A \ar[d]\\
+&& X^\I \ar[r]_{\epsilon_X} &  X,
 }
 \end{equation}
-
-
+Pulling back $B\ra A$ in two steps we therefore obtain,
+\begin{equation}\label{diagram:fibcomposition2}
+\xymatrix{
+B^\I \ar[r]|| \ar[r]   & B_{\epsilon_A} \ar[r]  \ar[d] \pbcorner & B_{\epsilon_X}  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
+&A^\I \ar[r]|| \ar[r]  & A_{\epsilon_X} \ar[d] \pbcorner \ar[r] & A \ar[d]\\
+&& X^\I \ar[r]_{\epsilon_X} &  X,
+}
+\end{equation}
+Now use the fact that trivial fibrations are closed under pullback along all maps, and under composition, to infer that the indicated map $B^\I \to B_{\epsilon_X} $ is also one, as required.
 \end{proof}
 
-
-
-\begin{proposition}
-Let $\beta: B\ra A$ and $\alpha : A \ra X$ be fibrations, then the pushforward $\alpha_*\beta : \Pi_AB \ra X$ is also a fibration.
+\begin{proposition}[Frobenius]
+Let $\alpha : A \ra X$ and $\beta: B\ra A$  be fibrations, then the pushforward $\alpha_*\beta : \Pi_AB \ra X$ is also a fibration.
 \end{proposition}
 
 \begin{proof}
-Since both $\beta: B\ra A$ and $\alpha : A \ra X$ are fibrations, so is their composite $B\ra X$, by lemma \ref{lemma:fibrationscompose}.
-Thus we have the following for the fibration structure on $B\ra X$.
-\begin{equation}\label{diagram:frobenius2}
+Given the fibrations $\alpha : A \ra X$ and $\beta: B\ra A$, let $p : A^\I \ra A_\epsilon$ and $q : B^\I \ra p^*B$ be the associated +-algebras, so that we have the following situation, with all squares pullbacks.
+\begin{equation}\label{diagram:frobenius1}
 \xymatrix{
-B^\I \ar[r]|+  & B_\epsilon  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
-& A_\epsilon \ar[d] \pbcorner \ar[r] & A \ar[d]\\
-& X^\I \ar[r]_{\epsilon} &  X,
+B^\I \ar[r]|| \ar[r]_{q}   & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]\\
+&A^\I \ar[r]|| \ar[r]_{p}  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]\\
+&& X^\I \ar[r]_{\epsilon} &  X,
 }
 \end{equation}
-Adding the result of the pushforward underneath, we have
- \begin{equation}\label{diagram:frobenius3}
+Adding (some composites and) the relevant pushforward underneath, we have
+ \begin{equation}\label{diagram:frobenius2}
 \xymatrix{
-B^\I \ar[r]|+  & B_\epsilon  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
-& A_\epsilon \ar[d] \pbcorner \ar[r] & A \ar[d]\\
-& X^\I \ar[r]_{\epsilon} &  X,\\
-(\Pi_AB)^\I  \ar[r]  & (\Pi_AB)_\epsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]\\
+B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d] \\
+& A^\I \ar[r]|| \ar[r]_{p} \ar[rd]  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d] \\
+&& X^\I \ar[r]_{\epsilon} &  X \\
+& (\Pi_AB)^\I  \ar[r]_r  \ar[ru] & (\Pi_AB)_\epsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]\\
 }
 \end{equation}
-and we wish to show that $(\Pi_AB)^\I \ra (\Pi_AB)_\epsilon$ has a +-algebra structure. Adding some labels for reference, 
- \begin{equation}\label{diagram:frobenius3}
-\xymatrix{
-B^\I \ar[r]|+^{\delta\Rightarrow\alpha\beta}  & B_\epsilon  \ar[d]_{\beta_\epsilon} \pbcorner \ar[r]  & B \ar[d]^\beta\\
-& A_\epsilon \ar[d]_{\alpha_\epsilon} \pbcorner \ar[r] & A \ar[d]^\alpha\\
-& X^\I \ar[r]_{\epsilon} &  X,\\
-(\Pi_AB)^\I  \ar[r]_{\delta\Rightarrow\alpha_*\beta}   & (\Pi_AB)_\epsilon  \ar[u]^{(\alpha_*\beta)_\epsilon} \ar[r]  & \Pi_AB \ar[u]_{\alpha_*\beta}\\
-}
-\end{equation}
-observe that by the Beck-Chevalley condition, we have an isomorphism 
+and we wish to show that the indicated map $r : (\Pi_AB)^\I \to (\Pi_AB)_\epsilon$
+% \begin{equation}\label{eq:frobenius}
+%r : (\Pi_AB)^\I \to (\Pi_AB)_\epsilon
+%\end{equation}
+ admits a +-algebra structure. We will do so by showing that it is a retract of a known +-algebra.
+%Adding some labels for reference, 
+% \begin{equation}\label{diagram:frobenius3}
+%\xymatrix{
+%B^\I \ar[r]|+^{\delta\Rightarrow\alpha\beta}  & B_\epsilon  \ar[d]_{\beta_\epsilon} \pbcorner \ar[r]  & B \ar[d]^\beta\\
+%& A_\epsilon \ar[d]_{\alpha_\epsilon} \pbcorner \ar[r] & A \ar[d]^\alpha\\
+%& X^\I \ar[r]_{\epsilon} &  X,\\
+%(\Pi_AB)^\I  \ar[r]_{\delta\Rightarrow\alpha_*\beta}   & (\Pi_AB)_\epsilon  \ar[u]^{(\alpha_*\beta)_\epsilon} \ar[r]  & \Pi_AB \ar[u]_{\alpha_*\beta}\\
+%}
+%\end{equation}
+
+Indeed, let us apply the pushforward along the indicated canonical map $\alpha^\I:A^\I \ra X^\I$ to the +-algebra $q : B^\I \ra p^*B_\epsilon$, regarded as an arrow over $A^\I$.  We obtain an arrow over $X^\I$ of the form
+\[
+\Pi_{A^\I}\,q :  \Pi_{A^\I}\,B^\I \to \Pi_{A^\I}\,p^*B_\epsilon
+\]
+which is a trivial fibration, and thus admits a +-algebra structure, since pushforward preserves trivial fibrations (because its left adjoint, pullback, preserves cofibrations).
+
+Now observe that by the Beck-Chevalley condition, we have an isomorphism 
 \[
 (\Pi_AB )_\epsilon \cong \Pi_{A_\epsilon} B_\epsilon \,.
 \]
-Let us regard $\delta\Rightarrow\alpha\beta$ as a map in the slice category over $A_\epsilon$, with the evident domain $\beta_\epsilon\circ (\delta\Rightarrow\alpha\beta)$.  Applying the pushforward along $\alpha_\epsilon$ then gives the map $\delta\Rightarrow\alpha_*\beta$, as can be checked by a calculation in extensional dependent type theory as the internal language of LCCCs.  Now we use the fact that pushforward preserves +-algebras, which can be shown directly, or by by observing that its left adjoint preserves cofibrations, to infer that $\delta\Rightarrow\alpha_*\beta$ is indeed a +-algebra, as required.
+Moreover, since $\Pi_{A^\I} \cong \Pi_{A_\epsilon} \circ p_*$, we have
+\[
+ \Pi_{A^\I}\,p^*B_\epsilon \cong \Pi_{A_\epsilon} p_*p^* B_\epsilon \,,
+\]
+so there is a map over $X^\I$  (the image under $\Pi_{A_\epsilon}$ of the unit $B_\epsilon \ra p_*p^* B_\epsilon$):
+\begin{equation}\label{diagram:frobenius3}
+\xymatrix{
+& X^\I  \\
+ (\Pi_AB)^\I  \ar[r]_r   \ar[ru] & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]\\
+ \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,q} & \Pi_{A_\epsilon} p_*p^* B_\epsilon
+}
+\end{equation}
+Our objective is now to fill in the further arrows $\varphi, \psi,\vartheta$ indicated below in order to get a retraction in the arrow category over $X^\I$.
+\begin{equation}\label{diagram:frobenius4}
+\xymatrix{
+& X^\I  \\
+ (\Pi_AB)^\I  \ar[r]_r  \ar[ru] \ar@{..>}[d]_\varphi & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]\\
+ \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,q} \ar@{..>}[d]_\psi & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar@{..>}[d]^\vartheta\\
+  (\Pi_AB)^\I  \ar[r]_r  & \Pi_{A_\epsilon}B_\epsilon \\
+}
+\end{equation}
+
+\smallskip
+
+\noindent For $\vartheta$: referring to the diagram \eqref{diagram:frobenius2}, since $p : A^\I \ra A_\epsilon$ is a trivial fibration, it has a section $o :  A_\epsilon \ra A^\I$.  Pulling back $p^*B_\epsilon \ra A^\I$ along $o$ results in an iso over~$A_\epsilon$,
+\[
+o^*p^* B_\epsilon \cong B_\epsilon \,,
+\]
+and so by adjointness there is a map over $A^\I$,
+\[
+p^* B_\epsilon \to o_* B_\epsilon \,,
+\]
+to which we can apply $p_*$ to obtain,
+\[
+p_*p^* B_\epsilon \to p_*o_*B_\epsilon \cong B_\epsilon\,,
+\]
+which is a retraction of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ gives the desired retraction $\vartheta$.
+
+\medskip
+\noindent For $\psi$, we require a map 
+\[
+\psi:\Pi_{A^\I}B^\I \to (\Pi_AB)^\I \qquad \text{over $X^\I$.}
+\]
+Using the adjunction $\I^*\!\dashv \I_*$ and the fact that $(\Pi_AB)^\I  \cong \I_*\I^*(\Pi_AB)$ and $X^\I \cong \I_*\I^*X$, it suffices to give a map  
+\[
+\I^*(\Pi_{A^\I}B^\I) \to \I^*(\Pi_AB) \qquad \text{over $\I^*X$}
+\]
+where $\I^*(\Pi_{A^\I}\,B^\I)$ is over $\I^*X$ by composition with the counit $$\varepsilon: \I^*(X^\I)\cong \I^*\I_*\I^*X \to \I^*X.$$ 
+Thus, dropping the $\I^*$ everywhere for readability (and since $\I^*$ preserves all the operations involved), it suffices to give
+\begin{equation}\label{eq:needforpsi}
+\Pi_{A^\I}B^\I \to (\Pi_AB)_\varepsilon \qquad \text{over $X^\I$.}
+\end{equation}
+We are thus in a situation very similar to diagram \ref{diagram:frobenius2},  
+\begin{equation}\label{diagram:frobenius4}
+\xymatrix{
+B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\varepsilon \ar[r]  \ar[d]  & B_{\varepsilon}  \ar[d]   \ar[r] & B \ar[d] \\
+& A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\varepsilon} \ar[d]   \ar[r] & A \ar[d] \\
+&& X^\I \ar[r]_{\varepsilon} &  X \\
+& \Pi_{A^\I}B^\I \ar[ru] \ar@{..>}[r]_\psi  & (\Pi_AB)_\varepsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]\\
+}
+\end{equation}
+except that in the (here implicit) further slice over $\I$, the counit $\varepsilon: \I^*(X^\I) \ra \I^*X$ agrees with the evaluation at the (new) generic point $\delta': 1\ra \I$.  
+Observe that in fact $\delta' = \I^*\delta$, so that under $\I^*$ the former $\epsilon = X^\delta : X^\I \ra X$ in \eqref{diagram:frobenius2} becomes the counit $\varepsilon : X^\I \ra X$.
+
+We can now reason as we did for $\vartheta$, using a section $o :  A_\varepsilon \ra A^\I$ of the trivial fibration $p : A^\I \ra A_\varepsilon$. Referring to diagram \eqref{diagram:frobenius4}, we have
+\[
+o^*q : o^*B^\I \to o^*p^* B_\varepsilon \cong B_\varepsilon  \qquad \text{over $A_\varepsilon$}
+\]
+and so by $o^*\dashv o_*$ there is a map, 
+\[
+B^\I \to o_*B_\varepsilon  \qquad \text{over $A^\I$}
+\]
+applying $p_*$ we obtain,
+\[
+p_*B^\I \to p_*o_*B_\varepsilon \cong B_\varepsilon  \qquad \text{over $A_\varepsilon$}
+\]
+from which, by applying $\Pi_{A_\varepsilon}$, we obtain,
+\[
+\Pi_{A^\I}B^\I \cong \Pi_{A_\varepsilon} p_*B^\I \to \Pi_{A_\varepsilon}B_\varepsilon  \qquad \text{over $X^\I$}
+\]
+as required in \eqref{eq:needforpsi}.
+
+\medskip
+\noindent For $\varphi$, we require a map 
+\[
+\varphi : (\Pi_AB)^\I \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$.}
+\]
+To that end, we take an arbitrary $Z \ra X^\I$ and associate to any map 
+\[
+Z \to (\Pi_AB)^\I \qquad \text{over $X^\I$}
+\]
+another map 
+\[
+Z \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$}
+\]
+in a way that is natural in $Z \ra X^\I$.  
+
+Indeed, consider the following diagram, which extends \eqref{diagram:frobenius2}.
+\begin{equation}\label{diagram:frobenius5}
+\xymatrix{
+B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
+& A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]& \ar[d] \ar[l] \ar@{..>}[lu]_{iii}A\times_X (Z\times \I) \\
+Z \ar[rr] \ar@{..>}[rd]_-{i} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
+& (\Pi_AB)^\I \ar[ru] \ar@{..>}[r]_\varphi  & \Pi_{A^\I}B^\I   \ar[u] \ar[r] & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]\\
+}
+\end{equation}
+Any map $i$ induces a unique map $ii$, which in turn determines a unique map $iii$.  We now apply $(-)^\I$ to the two righthand columns and interpolate the result on the left, using the unit $Z \ra (Z\times \I)^\I$.
+\begin{equation*}\label{diagram:frobenius6}
+\xymatrix{
+B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[rr]  \ar[d]  && B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
+(A\times_X (Z\times \I))^\I \ar[r] \ar[rd] \ar@{..>}[u]^{iv} & A^\I \ar[rr]|| \ar[rr]_{p}  \ar[rrd]  && A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]
+	& \ar[d] \ar[l] \ar@{..>}[lu]_{iii} A\times_X (Z\times \I) \\
+Z \ar[r] \ar@{..>}[rd]_-{i} & (Z\times \I)^\I \ar[rr] \ar[d] \ar@{..>}[rrd]^<<<<<<<{v} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
+& (\Pi_AB)^\I \ar[rru] \ar@{..>}[rr]_\varphi  && \Pi_{A^\I}B^\I   \ar[u] \ar[r]  & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]\\
+}
+\end{equation*}
+We therefore have the map $iv = (iii)^\I$, and since $(-)^\I$ preserves pullbacks,
+\[
+(A\times_X (Z\times \I))^\I \cong (A^\I\times_{X^\I} (Z\times \I)^\I\,.
+\]  
+Thus there is an associated map $v$, which, when precomposed with the unit $Z \ra (Z\times \I)^\I$ gives the desired map $Z \to \Pi_{A^\I}B^\I$.
+
+The verification that \eqref{diagram:frobenius4} commutes and is a retract is left to the reader.
 \end{proof}
 
 \section{The equivalence extension property}\label{sec:EEP}
