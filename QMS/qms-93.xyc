@@ -1,5 +1,5 @@
-\xycompiled{qms-93}{2019/7/18:1249 [qms:1702]}{Xy-pic 3.8.9}%
-{\xymatrixnocompile { B^\I \ar [r]|| \ar [r]_{q} \ar [rd] & p^*B_\epsilon \ar [r] \ar [d] & B_{\epsilon } \ar [d] \ar [r] & B \ar [d] \\ & A^\I \ar [r]|| \ar [r]_{p} \ar [rd] & A_{\epsilon } \ar [d] \ar [r] & A \ar [d] \\ && X^\I \ar [r]_{\epsilon } & X \\ & (\Pi _AB)^\I \ar [r]_r \ar [ru] & (\Pi _AB)_\epsilon \ar [u] \ar [r] & \Pi _AB \ar [u]\\ }}\relax 
+\xycompiled{qms-93}{2019/7/19:763 [qms:1702]}{Xy-pic 3.8.9}%
+{\xymatrixnocompile { B^\I \ar [r]|| \ar [r]_{q} \ar [rd] & p^*B_\epsilon \ar [r] \ar [d] & B_{\epsilon } \ar [d] \ar [r] & B \ar [d] \\ & A^\I \ar [r]|| \ar [r]_{p} \ar [rd] & A_{\epsilon } \ar [d] \ar [r] & A \ar [d] \\ && X^\I \ar [r]_{\epsilon } & X \\ & (\Pi _AB)^\I \ar [r]_r \ar [ru] & (\Pi _AB)_\epsilon \ar [u] \ar [r] & \Pi _AB \ar [u] }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%
 \xy@{""}{\edef \xymatrixprefix@@ {}}%
@@ -834,7 +834,7 @@
 \xy@{PATHaction/{}}{}%
 \xy@{\restore }{\leave@ }%
 \xy@{ENTRY "4,4"}{\Row =4 \Col =4\relax \cfromid@ {4,4}\pfromc@ }%
-\xy@@ix@{{!V\entrybox }{\Pi _AB \ar [u]}}\relax 
+\xy@@ix@{{!V\entrybox }{\Pi _AB \ar [u] }}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{\save }{\save@ }%
 \xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%

@@ -1,5 +1,5 @@
-\xycompiled{qms-95}{2019/7/18:1256 [qms:1748]}{Xy-pic 3.8.9}%
-{\xymatrixnocompile { & X^\I \\ (\Pi _AB)^\I \ar [r]_r \ar [ru] \ar @{..>}[d]_\varphi & \Pi _{A_\epsilon }B_\epsilon \ar [u] \ar [d]\\ \Pi _{A^\I }B^\I \ar [r]_-{\Pi _{A^\I }\,q} \ar @{..>}[d]_\psi & \Pi _{A_\epsilon } p_*p^* B_\epsilon \ar @{..>}[d]^\vartheta \\ (\Pi _AB)^\I \ar [r]_r & \Pi _{A_\epsilon }B_\epsilon \\ }}\relax 
+\xycompiled{qms-95}{2019/7/19:762 [qms:1748]}{Xy-pic 3.8.9}%
+{\xymatrixnocompile { & X^\I \\ (\Pi _AB)^\I \ar [r]_r \ar [ru] \ar @{..>}[d]_\varphi & \Pi _{A_\epsilon }B_\epsilon \ar [u] \ar [d]\\ \Pi _{A^\I }B^\I \ar [r]_-{\Pi _{A^\I }\,q} \ar @{..>}[d]_\psi & \Pi _{A_\epsilon } p_*p^* B_\epsilon \ar @{..>}[d]^\vartheta \\ (\Pi _AB)^\I \ar [r]_r & \Pi _{A_\epsilon }B_\epsilon }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%
 \xy@{""}{\edef \xymatrixprefix@@ {}}%

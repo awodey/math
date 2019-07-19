@@ -1698,7 +1698,7 @@ Adding (some composites and) the relevant pushforward underneath, we have
 B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d] \\
 & A^\I \ar[r]|| \ar[r]_{p} \ar[rd]  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d] \\
 && X^\I \ar[r]_{\epsilon} &  X \\
-& (\Pi_AB)^\I  \ar[r]_r  \ar[ru] & (\Pi_AB)_\epsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]\\
+& (\Pi_AB)^\I  \ar[r]_r  \ar[ru] & (\Pi_AB)_\epsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]
 }
 \end{equation}
 and we wish to show that the indicated map $r : (\Pi_AB)^\I \to (\Pi_AB)_\epsilon$
@@ -1730,7 +1730,7 @@ Moreover, since $\Pi_{A^\I} \cong \Pi_{A_\epsilon} \circ p_*$, we have
 \[
  \Pi_{A^\I}\,p^*B_\epsilon \cong \Pi_{A_\epsilon} p_*p^* B_\epsilon \,,
 \]
-so there is a map over $X^\I$  (the image under $\Pi_{A_\epsilon}$ of the unit $B_\epsilon \ra p_*p^* B_\epsilon$):
+so the image under $\Pi_{A_\epsilon}$ of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ is a map over $X^\I$ of the form:
 \begin{equation}\label{diagram:frobenius3}
 \xymatrix{
 & X^\I  \\
@@ -1738,23 +1738,23 @@ so there is a map over $X^\I$  (the image under $\Pi_{A_\epsilon}$ of the unit $
  \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,q} & \Pi_{A_\epsilon} p_*p^* B_\epsilon
 }
 \end{equation}
-Our objective is now to fill in the further arrows $\varphi, \psi,\vartheta$ indicated below in order to get a retraction in the arrow category over $X^\I$.
+Our objective is now to fill in the further arrows $\varphi, \psi,\vartheta$ indicated below in order to exhibit $r$ as a retraction of $\Pi_{A^\I}\,q$ in the arrow category over $X^\I$.
 \begin{equation}\label{diagram:frobenius4}
 \xymatrix{
 & X^\I  \\
  (\Pi_AB)^\I  \ar[r]_r  \ar[ru] \ar@{..>}[d]_\varphi & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]\\
  \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,q} \ar@{..>}[d]_\psi & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar@{..>}[d]^\vartheta\\
-  (\Pi_AB)^\I  \ar[r]_r  & \Pi_{A_\epsilon}B_\epsilon \\
+  (\Pi_AB)^\I  \ar[r]_r  & \Pi_{A_\epsilon}B_\epsilon
 }
 \end{equation}
 
 \smallskip
 
-\noindent For $\vartheta$: referring to the diagram \eqref{diagram:frobenius2}, since $p : A^\I \ra A_\epsilon$ is a trivial fibration, it has a section $o :  A_\epsilon \ra A^\I$.  Pulling back $p^*B_\epsilon \ra A^\I$ along $o$ results in an iso over~$A_\epsilon$,
+\noindent $\bullet$ For $\vartheta$: referring to the diagram \eqref{diagram:frobenius2}, since $p : A^\I \ra A_\epsilon$ is a trivial fibration, it has a section $o :  A_\epsilon \ra A^\I$.  Pulling  $p^*B_\epsilon \ra A^\I$ back along $o$ results in an iso over~$A_\epsilon$,
 \[
 o^*p^* B_\epsilon \cong B_\epsilon \,,
 \]
-and so by adjointness there is a map over $A^\I$,
+and so by the adjunction $o^*\!\dashv o_*$ there is a map over $A^\I$,
 \[
 p^* B_\epsilon \to o_* B_\epsilon \,,
 \]
@@ -1762,10 +1762,10 @@ to which we can apply $p_*$ to obtain,
 \[
 p_*p^* B_\epsilon \to p_*o_*B_\epsilon \cong B_\epsilon\,,
 \]
-which is a retraction of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ gives the desired retraction $\vartheta$.
+which is easily seen to be a retraction of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ gives the desired retraction $\vartheta : \Pi_{A_\epsilon}B_\epsilon \ra \Pi_{A_\epsilon}p_*p^* B_\epsilon$ of $r$.
 
 \medskip
-\noindent For $\psi$, we require a map 
+\noindent $\bullet$ For $\psi$, we require a map 
 \[
 \psi:\Pi_{A^\I}B^\I \to (\Pi_AB)^\I \qquad \text{over $X^\I$.}
 \]
@@ -1773,22 +1773,34 @@ Using the adjunction $\I^*\!\dashv \I_*$ and the fact that $(\Pi_AB)^\I  \cong \
 \[
 \I^*(\Pi_{A^\I}B^\I) \to \I^*(\Pi_AB) \qquad \text{over $\I^*X$}
 \]
-where $\I^*(\Pi_{A^\I}\,B^\I)$ is over $\I^*X$ by composition with the counit $$\varepsilon: \I^*(X^\I)\cong \I^*\I_*\I^*X \to \I^*X.$$ 
-Thus, dropping the $\I^*$ everywhere for readability (and since $\I^*$ preserves all the operations involved), it suffices to give
-\begin{equation}\label{eq:needforpsi}
-\Pi_{A^\I}B^\I \to (\Pi_AB)_\varepsilon \qquad \text{over $X^\I$.}
+where $\I^*(\Pi_{A^\I}\,B^\I)$ is over $\I^*X$ by composition with the counit
+\[
+\varepsilon: \I^*(X^\I)\cong \I^*\I_*\I^*X \to \I^*X
+\]
+as indicated in
+\begin{equation}\label{diagram:frobenius5}
+\xymatrix{
+\I^*(\Pi_{A^\I}B^\I) \ar[r] \ar[d] &  \I^*(\Pi_AB)  \ar[d] \\
+\I^*(X^\I) \ar[r]_\varepsilon & \I^*X\,.
+}
 \end{equation}
-We are thus in a situation very similar to diagram \ref{diagram:frobenius2},  
-\begin{equation}\label{diagram:frobenius4}
+Thus, pulling back to $\I^*(X^\I)$ and dropping the $\I^*$ everywhere for readability (which we may do since $\I^*$ preserves all the operations involved), it suffices to give
+\begin{equation}\label{eq:needforpsi}
+\Pi_{A^\I}B^\I \to \varepsilon^*(\Pi_AB) \qquad \text{over $X^\I$}
+\end{equation}
+in the slice over $\I$. Recall, however, that we were \emph{already} working over $\I$, so by slicing over $\I$ again we are now in the slice category over $\I\times\I$.  In particular, there are now two different ``generic points'' $\delta, \delta' : 1 \ra \I$, as was the case in the treatment of composition in section \ref{sec:composition}.
+
+We are thus in a situation analogous to that of diagram \ref{diagram:frobenius2},  
+\begin{equation}\label{diagram:frobenius6}
 \xymatrix{
 B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\varepsilon \ar[r]  \ar[d]  & B_{\varepsilon}  \ar[d]   \ar[r] & B \ar[d] \\
 & A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\varepsilon} \ar[d]   \ar[r] & A \ar[d] \\
 && X^\I \ar[r]_{\varepsilon} &  X \\
-& \Pi_{A^\I}B^\I \ar[ru] \ar@{..>}[r]_\psi  & (\Pi_AB)_\varepsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]\\
+& \Pi_{A^\I}B^\I \ar[ru] \ar@{..>}[r]_\psi  & (\Pi_AB)_\varepsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]
 }
 \end{equation}
-except that in the (here implicit) further slice over $\I$, the counit $\varepsilon: \I^*(X^\I) \ra \I^*X$ agrees with the evaluation at the (new) generic point $\delta': 1\ra \I$.  
-Observe that in fact $\delta' = \I^*\delta$, so that under $\I^*$ the former $\epsilon = X^\delta : X^\I \ra X$ in \eqref{diagram:frobenius2} becomes the counit $\varepsilon : X^\I \ra X$.
+except that here the ``counit'' $\varepsilon: X^\I \ra X$ is evaluation at the new generic point $\delta': 1\ra \I$, and similarly, \emph{mutatis mutandis}, for the maps $p$ and $q$.  
+Observe, however, that on the subobject $\Delta = \I \mono \I\times\I$ these two points agree, and so, therefore, do their respective evaluations $$\Delta^*\epsilon = \Delta^*\varepsilon: \Delta^*X^\I \to \Delta^*X\,.$$
 
 We can now reason as we did for $\vartheta$, using a section $o :  A_\varepsilon \ra A^\I$ of the trivial fibration $p : A^\I \ra A_\varepsilon$. Referring to diagram \eqref{diagram:frobenius4}, we have
 \[
@@ -1804,12 +1816,12 @@ p_*B^\I \to p_*o_*B_\varepsilon \cong B_\varepsilon  \qquad \text{over $A_\varep
 \]
 from which, by applying $\Pi_{A_\varepsilon}$, we obtain,
 \[
-\Pi_{A^\I}B^\I \cong \Pi_{A_\varepsilon} p_*B^\I \to \Pi_{A_\varepsilon}B_\varepsilon  \qquad \text{over $X^\I$}
+\Pi_{A^\I}B^\I \cong \Pi_{A_\varepsilon} p_*B^\I \to \Pi_{A_\varepsilon}B_\varepsilon  \cong \varepsilon^*(\Pi_{A}B)   \qquad \text{over $X^\I$}
 \]
 as required in \eqref{eq:needforpsi}.
 
 \medskip
-\noindent For $\varphi$, we require a map 
+\noindent $\bullet$ For $\varphi$, we require a map 
 \[
 \varphi : (\Pi_AB)^\I \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$.}
 \]
@@ -1824,29 +1836,29 @@ Z \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$}
 in a way that is natural in $Z \ra X^\I$.  
 
 Indeed, consider the following diagram, which extends \eqref{diagram:frobenius2}.
-\begin{equation}\label{diagram:frobenius5}
+\begin{equation}\label{diagram:frobenius7}
 \xymatrix{
 B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
 & A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]& \ar[d] \ar[l] \ar@{..>}[lu]_{iii}A\times_X (Z\times \I) \\
 Z \ar[rr] \ar@{..>}[rd]_-{i} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
-& (\Pi_AB)^\I \ar[ru] \ar@{..>}[r]_\varphi  & \Pi_{A^\I}B^\I   \ar[u] \ar[r] & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]\\
+& (\Pi_AB)^\I \ar[ru] \ar@{..>}[r]_\varphi  & \Pi_{A^\I}B^\I   \ar[u] \ar[r] & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]
 }
 \end{equation}
-Any map $i$ induces a unique map $ii$, which in turn determines a unique map $iii$.  We now apply $(-)^\I$ to the two righthand columns and interpolate the result on the left, using the unit $Z \ra (Z\times \I)^\I$.
-\begin{equation*}\label{diagram:frobenius6}
+Any map $i$ induces a unique map $ii$ by exponential transposition, which in turn determines a unique map $iii$ by the universal property of $\Pi_AB$.  We now apply $(-)^\I$ to the two righthand columns and interpolate the result on the left, using the unit $Z \ra (Z\times \I)^\I$.
+\begin{equation*}\label{diagram:frobenius8}
 \xymatrix{
 B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[rr]  \ar[d]  && B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
 (A\times_X (Z\times \I))^\I \ar[r] \ar[rd] \ar@{..>}[u]^{iv} & A^\I \ar[rr]|| \ar[rr]_{p}  \ar[rrd]  && A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]
 	& \ar[d] \ar[l] \ar@{..>}[lu]_{iii} A\times_X (Z\times \I) \\
 Z \ar[r] \ar@{..>}[rd]_-{i} & (Z\times \I)^\I \ar[rr] \ar[d] \ar@{..>}[rrd]^<<<<<<<{v} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
-& (\Pi_AB)^\I \ar[rru] \ar@{..>}[rr]_\varphi  && \Pi_{A^\I}B^\I   \ar[u] \ar[r]  & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]\\
+& (\Pi_AB)^\I \ar[rru] \ar@{..>}[rr]_\varphi  && \Pi_{A^\I}B^\I   \ar[u] \ar[r]  & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]
 }
 \end{equation*}
 We therefore have the map $iv = (iii)^\I$, and since $(-)^\I$ preserves pullbacks,
 \[
 (A\times_X (Z\times \I))^\I \cong (A^\I\times_{X^\I} (Z\times \I)^\I\,.
 \]  
-Thus there is an associated map $v$, which, when precomposed with the unit $Z \ra (Z\times \I)^\I$ gives the desired map $Z \to \Pi_{A^\I}B^\I$.
+Thus there is an associated map $v$ by the universal property of $\Pi_{A^\I}B^\I$, which, when precomposed with the unit $Z \ra (Z\times \I)^\I$ gives the desired map $Z \to \Pi_{A^\I}B^\I$.
 
 The verification that \eqref{diagram:frobenius4} commutes and is a retract is left to the reader.
 \end{proof}
