@@ -1,4 +1,4 @@
-\xycompiled{qms-97}{2019/7/19:730 [qms:1795]}{Xy-pic 3.8.9}%
+\xycompiled{qms-97}{2019/7/19:1049 [qms:1800]}{Xy-pic 3.8.9}%
 {\xymatrixnocompile { B^\I \ar [r]|| \ar [r]_{q} \ar [rd] & p^*B_\varepsilon \ar [r] \ar [d] & B_{\varepsilon } \ar [d] \ar [r] & B \ar [d] \\ & A^\I \ar [r]|| \ar [r]_{p} \ar [rd] & A_{\varepsilon } \ar [d] \ar [r] & A \ar [d] \\ && X^\I \ar [r]_{\varepsilon } & X \\ & \Pi _{A^\I }B^\I \ar [ru] \ar @{..>}[r]_\psi & (\Pi _AB)_\varepsilon \ar [u] \ar [r] & \Pi _AB \ar [u] }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%

@@ -1292,7 +1292,7 @@ By assumption, there is a lift $j' : B\ra Y'$ with $f' j' = \eta b$ and $j'c = y
 \begin{equation}\label{diagram:CofWHEiffFibLift2}
 \xymatrix{
 A \ar@{>->}[d]_{c} \ar[r]^-{a}  & Y \ar@{>>}[d]_<<<<{f} {\pbcorner} \ar[r]^{y} & Y' \ar@{>>}[d]^{f'} \\
-B \ar[r]_{b} \ar@{-->}[ru]^{j} \ar@{-->}[rru]_>>>>{j'} &  X  \ar[r]_\eta &  X'.
+B \ar[r]_{b} \ar@{..>}[ru]^{j} \ar@{..>}[rru]_>>>>{j'} &  X  \ar[r]_\eta &  X'.
 }
 \end{equation}
 Thus $yjc = j'c = ya$.  But as a trivial cofibration, $\eta$ is monic, and as a pullback of $\eta$, $y$ is also monic. So $jc=a$.
@@ -1351,7 +1351,7 @@ there is an arrow $k : Z \to X\times X$ as indicated below making both subdiagra
 \xymatrix{
 C \ar@{>->}[dd]_{c} \ar[r]  & X^\I \ar[d]^{\langle \epsilon_p, \epsilon_q\rangle} \\
 & X\times X \ar[d]^{\pi_1} \\
-Z \ar[r] \ar@{-->}[ru]^{k} & X,
+Z \ar[r] \ar@{..>}[ru]^{k} & X,
 }
 \end{equation}
 
@@ -1650,7 +1650,7 @@ A^\I \ar[r]|| \ar[r]  & A_\epsilon\ar[d] \pbcorner \ar[r] & A \ar[d]^f \\
 where $\epsilon = X^{\delta}$, $A_\epsilon = X^\I \times_{X} A$, and the struck-through arrow indicates that it admits a +-algebra structure.
 
 \begin{lemma}\label{lemma:fibrationscompose}
-Let $\beta: B\ra A$ and $\alpha : A \ra X$ be fibrations, then the composite $\alpha\circ\beta : B \ra X$ is also a fibration.
+Let  $\alpha : A \ra X$ and $\beta: B\ra A$ be fibrations, then the composite $\alpha\circ\beta : B \ra X$ is also a fibration.
 \end{lemma}
 
 \begin{proof}
@@ -1676,7 +1676,7 @@ B^\I \ar[r]|| \ar[r]   & B_{\epsilon_A} \ar[r]  \ar[d] \pbcorner & B_{\epsilon_X
 && X^\I \ar[r]_{\epsilon_X} &  X,
 }
 \end{equation}
-Now use the fact that trivial fibrations are closed under pullback along all maps, and under composition, to infer that the indicated map $B^\I \to B_{\epsilon_X} $ is also one, as required.
+Now use the fact that trivial fibrations are closed under pullback along all maps, and under composition, to infer that the indicated map $B^\I \to B_{\epsilon_X} $ is also a trivial fibration, as required.
 \end{proof}
 
 \begin{proposition}[Frobenius]
@@ -1684,7 +1684,7 @@ Let $\alpha : A \ra X$ and $\beta: B\ra A$  be fibrations, then the pushforward 
 \end{proposition}
 
 \begin{proof}
-Given the fibrations $\alpha : A \ra X$ and $\beta: B\ra A$, let $p : A^\I \ra A_\epsilon$ and $q : B^\I \ra p^*B$ be the associated +-algebras, so that we have the following situation, with all squares pullbacks.
+Given the fibrations $\alpha : A \ra X$ and $\beta: B\ra A$, let $p : A^\I \ra A_\epsilon$ and $q : B^\I \ra p^*B_\epsilon$ be the associated +-algebras, so that we have the following situation, with all squares pullbacks.
 \begin{equation}\label{diagram:frobenius1}
 \xymatrix{
 B^\I \ar[r]|| \ar[r]_{q}   & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]\\
@@ -1701,7 +1701,7 @@ B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}
 & (\Pi_AB)^\I  \ar[r]_r  \ar[ru] & (\Pi_AB)_\epsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]
 }
 \end{equation}
-and we wish to show that the indicated map $r : (\Pi_AB)^\I \to (\Pi_AB)_\epsilon$
+and we wish to show that the indicated associated map $r : (\Pi_AB)^\I \to (\Pi_AB)_\epsilon$
 % \begin{equation}\label{eq:frobenius}
 %r : (\Pi_AB)^\I \to (\Pi_AB)_\epsilon
 %\end{equation}
@@ -1720,7 +1720,7 @@ Indeed, let us apply the pushforward along the indicated canonical map $\alpha^\
 \[
 \Pi_{A^\I}\,q :  \Pi_{A^\I}\,B^\I \to \Pi_{A^\I}\,p^*B_\epsilon
 \]
-which is a trivial fibration, and thus admits a +-algebra structure, since pushforward preserves trivial fibrations (because its left adjoint, pullback, preserves cofibrations).
+which is a trivial fibration, and thus admits a +-algebra structure, because pushforward preserves trivial fibrations (since its left adjoint, pullback, preserves cofibrations).
 
 Now observe that by the Beck-Chevalley condition, we have an isomorphism 
 \[
@@ -1728,13 +1728,13 @@ Now observe that by the Beck-Chevalley condition, we have an isomorphism
 \]
 Moreover, since $\Pi_{A^\I} \cong \Pi_{A_\epsilon} \circ p_*$, we have
 \[
- \Pi_{A^\I}\,p^*B_\epsilon \cong \Pi_{A_\epsilon} p_*p^* B_\epsilon \,,
+ \Pi_{A^\I}\,p^*B_\epsilon \cong \Pi_{A_\epsilon} p_*p^* B_\epsilon \,.
 \]
-so the image under $\Pi_{A_\epsilon}$ of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ is a map over $X^\I$ of the form:
+Thus the image of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ under $\Pi_{A_\epsilon}$ is a map $s$ over $X^\I$ of the form:
 \begin{equation}\label{diagram:frobenius3}
 \xymatrix{
 & X^\I  \\
- (\Pi_AB)^\I  \ar[r]_r   \ar[ru] & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]\\
+ (\Pi_AB)^\I  \ar[r]_r   \ar[ru] & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]^{s}\\
  \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,q} & \Pi_{A_\epsilon} p_*p^* B_\epsilon
 }
 \end{equation}
@@ -1742,7 +1742,7 @@ Our objective is now to fill in the further arrows $\varphi, \psi,\vartheta$ ind
 \begin{equation}\label{diagram:frobenius4}
 \xymatrix{
 & X^\I  \\
- (\Pi_AB)^\I  \ar[r]_r  \ar[ru] \ar@{..>}[d]_\varphi & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]\\
+ (\Pi_AB)^\I  \ar[r]_r  \ar[ru] \ar@{..>}[d]_\varphi & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]^{s}\\
  \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,q} \ar@{..>}[d]_\psi & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar@{..>}[d]^\vartheta\\
   (\Pi_AB)^\I  \ar[r]_r  & \Pi_{A_\epsilon}B_\epsilon
 }
@@ -1760,9 +1760,9 @@ p^* B_\epsilon \to o_* B_\epsilon \,,
 \]
 to which we can apply $p_*$ to obtain,
 \[
-p_*p^* B_\epsilon \to p_*o_*B_\epsilon \cong B_\epsilon\,,
+p_*p^* B_\epsilon \to p_*o_*B_\epsilon \cong B_\epsilon\,.
 \]
-which is easily seen to be a retraction of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ gives the desired retraction $\vartheta : \Pi_{A_\epsilon}B_\epsilon \ra \Pi_{A_\epsilon}p_*p^* B_\epsilon$ of $r$.
+This is easily seen to be a retraction of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ gives the desired retraction $\vartheta : \Pi_{A_\epsilon}B_\epsilon \ra \Pi_{A_\epsilon}p_*p^* B_\epsilon$ of $s$.
 
 \medskip
 \noindent $\bullet$ For $\psi$, we require a map 
@@ -1799,8 +1799,9 @@ B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\varepsilon \ar[r]  \ar[d]  & B_{\varep
 & \Pi_{A^\I}B^\I \ar[ru] \ar@{..>}[r]_\psi  & (\Pi_AB)_\varepsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]
 }
 \end{equation}
-except that here the ``counit'' $\varepsilon: X^\I \ra X$ is evaluation at the new generic point $\delta': 1\ra \I$, and similarly, \emph{mutatis mutandis}, for the maps $p$ and $q$.  
-Observe, however, that on the subobject $\Delta = \I \mono \I\times\I$ these two points agree, and so, therefore, do their respective evaluations $$\Delta^*\epsilon = \Delta^*\varepsilon: \Delta^*X^\I \to \Delta^*X\,.$$
+except that here the ``counit'' $\varepsilon: X^\I \ra X$ is evaluation at the new generic point $\delta': 1\ra \I$, and similarly, \emph{mutatis mutandis}, for the indicated maps $p$ and $q$ (which we do not bother to rename).  
+Observe, however, that on the subobject $\Delta = \I \mono \I\times\I$ the two points $\delta, \delta'$ agree, and so, therefore, do their respective evaluations $$\Delta^*\epsilon = \Delta^*\varepsilon: \Delta^*X^\I \to \Delta^*X\,.$$
+It follows that $p$ and $q$ are also +-algebras. 
 
 We can now reason as we did for $\vartheta$, using a section $o :  A_\varepsilon \ra A^\I$ of the trivial fibration $p : A^\I \ra A_\varepsilon$. Referring to diagram \eqref{diagram:frobenius4}, we have
 \[
@@ -1833,7 +1834,7 @@ another map
 \[
 Z \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$}
 \]
-in a way that is natural in $Z \ra X^\I$.  
+in a way that is natural in the object $Z \ra X^\I$.  
 
 Indeed, consider the following diagram, which extends \eqref{diagram:frobenius2}.
 \begin{equation}\label{diagram:frobenius7}
@@ -1854,11 +1855,11 @@ Z \ar[r] \ar@{..>}[rd]_-{i} & (Z\times \I)^\I \ar[rr] \ar[d] \ar@{..>}[rrd]^<<<<
 & (\Pi_AB)^\I \ar[rru] \ar@{..>}[rr]_\varphi  && \Pi_{A^\I}B^\I   \ar[u] \ar[r]  & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]
 }
 \end{equation*}
-We therefore have the map $iv = (iii)^\I$, and since $(-)^\I$ preserves pullbacks,
+We therefore have the map $iv = (iii)^\I$, and since $(-)^\I$ preserves pullbacks, the domain of $iv$ is
 \[
-(A\times_X (Z\times \I))^\I \cong (A^\I\times_{X^\I} (Z\times \I)^\I\,.
+(A\times_X (Z\times \I))^\I \cong A^\I\times_{X^\I} (Z\times \I)^\I\,.
 \]  
-Thus there is an associated map $v$ by the universal property of $\Pi_{A^\I}B^\I$, which, when precomposed with the unit $Z \ra (Z\times \I)^\I$ gives the desired map $Z \to \Pi_{A^\I}B^\I$.
+Thus by the universal property of $\Pi_{A^\I}B^\I$ there is an associated map $v$, which, when precomposed with the unit $Z \ra (Z\times \I)^\I$ gives the desired map $Z \to \Pi_{A^\I}B^\I$.
 
 The verification that \eqref{diagram:frobenius4} commutes and is a retract is left to the reader.
 \end{proof}
@@ -2390,7 +2391,7 @@ there is a diagonal arrow $k : Z \to X\times X$ making both subdiagrams below co
 \xymatrix{
 C \ar@{>->}[dd]_{c} \ar[r]  & X^\I \ar[d]^{\langle \epsilon_p, \epsilon_q\rangle} \\
 & X\times X \ar[d]^{\pi_1} \\
-Z \ar[r] \ar@{-->}[ru]^{k} & X,
+Z \ar[r] \ar@{..>}[ru]^{k} & X,
 }
 \end{equation}
 where $\epsilon_p : X^\I\to X$ is the ``evaluation at $p$'' map $X^p$.  
