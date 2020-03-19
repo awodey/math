@@ -1632,7 +1632,7 @@ One can also promote the \emph{property} of an object or map of ``having composi
 
 In this section, we show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} can be applied without connections and is also more direct.  This approach proves the ``dual'' fact that the \emph{pushforward} operation, which is right adjoint to pullback, and which always exists in a topos, when applied along any \emph{fibration} $f : Y\epi X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
 
-Recall that a map $f:A\ra X$ is a fibration if (in the slice $\cSet/\I$, where there is a generic point $\delta : 1 \ra \I$) the map $\delta \Rightarrow f$ admits a +-algebra structure (and so is a trivial fibration), where the construction of $\delta \Rightarrow f$ is recalled below.
+Recall that a map $f:A\ra X$ is a fibration if (in the slice $\cSet/\I$, where there is a generic point $\delta : 1 \ra \I$) the map $\delta \Rightarrow f$ admits a +-algebra structure (and so is a trivial fibration), where the definition of $\delta \Rightarrow f$ is recalled below.
 \begin{equation}\label{diagram:frobenius1}
 \xymatrix{
 A^\I \ar@/_4ex/ [rdd]_{f^\I} \ar[rd]^{\delta\Rightarrow{f}} \ar@/^4ex/ [rrd]^{A^{\delta}}  && \\
@@ -1676,8 +1676,16 @@ B^\I \ar[r]|| \ar[r]   & B_{\epsilon_A} \ar[r]  \ar[d] \pbcorner & B_{\epsilon_X
 && X^\I \ar[r]_{\epsilon_X} &  X,
 }
 \end{equation}
-Now use the fact that trivial fibrations are closed under pullback along all maps, and under composition, to infer that the indicated map $B^\I \to B_{\epsilon_X} $ is also a trivial fibration, as required.
+Now use the fact that trivial fibrations are closed under pullback along all maps, and under composition, to infer that the indicated composite map $B^\I \to B_{\epsilon_X} $ is also a trivial fibration, as required.
 \end{proof}
+
+\begin{lemma}\label{lemma:pluspushforward}
++-algebras push forward.
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+
 
 \begin{proposition}[Frobenius]
 Let $\alpha : A \ra X$ and $\beta: B\ra A$  be fibrations, then the pushforward $\alpha_*\beta : \Pi_AB \ra X$ is also a fibration.
@@ -1701,7 +1709,7 @@ B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}
 & (\Pi_AB)^\I  \ar[r]_r  \ar[ru] & (\Pi_AB)_\epsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]
 }
 \end{equation}
-and we wish to show that the indicated associated map $r : (\Pi_AB)^\I \to (\Pi_AB)_\epsilon$
+and we wish to show that the indicated  map $r : (\Pi_AB)^\I \to (\Pi_AB)_\epsilon$
 % \begin{equation}\label{eq:frobenius}
 %r : (\Pi_AB)^\I \to (\Pi_AB)_\epsilon
 %\end{equation}
@@ -1716,11 +1724,11 @@ and we wish to show that the indicated associated map $r : (\Pi_AB)^\I \to (\Pi_
 %}
 %\end{equation}
 
-Indeed, let us apply the pushforward along the indicated canonical map $\alpha^\I:A^\I \ra X^\I$ to the +-algebra $q : B^\I \ra p^*B_\epsilon$, regarded as an arrow over $A^\I$.  We obtain an arrow over $X^\I$ of the form
+Indeed, let us apply the pushforward, along the indicated canonical map $\alpha^\I:A^\I \ra X^\I$, to the +-algebra $q : B^\I \ra p^*B_\epsilon$, regarded as an arrow over $A^\I$.  We obtain an arrow over $X^\I$ of the form
 \[
 \Pi_{A^\I}\,q :  \Pi_{A^\I}\,B^\I \to \Pi_{A^\I}\,p^*B_\epsilon
 \]
-which is a trivial fibration, and thus admits a +-algebra structure, because pushforward preserves trivial fibrations (since its left adjoint, pullback, preserves cofibrations).
+which is a +-algebra, because these are preserved by pushforward by lemma \ref{lemma:pluspushforward}.
 
 Now observe that by the Beck-Chevalley condition, we have an isomorphism 
 \[
@@ -1738,7 +1746,7 @@ Thus the image of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ under $\Pi_{A_\eps
  \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,q} & \Pi_{A_\epsilon} p_*p^* B_\epsilon
 }
 \end{equation}
-Our objective is now to fill in the further arrows $\varphi, \psi,\vartheta$ indicated below in order to exhibit $r$ as a retraction of $\Pi_{A^\I}\,q$ in the arrow category over $X^\I$.
+Our objective is now to fill in the further arrows $\varphi, \psi,\vartheta$ indicated below in order to exhibit $r$ as a retract of $\Pi_{A^\I}\,q$ in the arrow category over $X^\I$.
 \begin{equation}\label{diagram:frobenius4}
 \xymatrix{
 & X^\I  \\
@@ -1748,6 +1756,49 @@ Our objective is now to fill in the further arrows $\varphi, \psi,\vartheta$ ind
 }
 \end{equation}
 
+\smallskip
+
+\noindent $\bullet$ For $\varphi$, we require a map 
+\[
+\varphi : (\Pi_AB)^\I \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$.}
+\]
+%To that end, we take an arbitrary $Z \ra X^\I$ and associate to any map 
+%\[
+%Z \to (\Pi_AB)^\I \qquad \text{over $X^\I$}
+%\]
+%another map 
+%\[
+%Z \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$}
+%\]
+%in a way that is natural in the object $Z \ra X^\I$.  
+
+Consider the following diagram, which is based on \eqref{diagram:frobenius2}.
+\begin{equation}\label{diagram:frobenius7}
+\xymatrix{
+B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d] & \\
+& A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]&  \ar[d]  \ar[l] \ar@{..>}[lu]_{c}\Pi_AB\times_{X} A\\
+ (\Pi_AB \times_{X} A)^\I \ar@{..>}[uu]^{c^\I} \ar[ru] \ar[rd] && X^\I \ar[r]_{\epsilon} &  X &   \Pi_AB \ar[l]\\
+& (\Pi_AB)^\I \ar[ru] \ar@{..>}[r]_\varphi  & \Pi_{A^\I}B^\I   \ar[u] & &
+}
+\end{equation}
+The map $c$ is the counit at $B\ra A$ of the pullback-pushforward adjunction along $A\ra X$. The right-hand side of the diagram, including $c$ and the associated pullback square, reappear on the left under the functor $(-)^\I$, which preserves the pullback. Thus we can take $\varphi$ to be the transpose of $c^\I$ under the pullback-pushforward adjunction along $A^I\ra X^\I$.
+
+%Any map $i$ induces a unique map $ii$ by exponential transposition, which in turn determines a unique map $iii$ by the universal property of $\Pi_AB$.  We now apply $(-)^\I$ to the two righthand columns and interpolate the result on the left, using the unit $Z \ra (Z\times \I)^\I$.
+%\begin{equation*}\label{diagram:frobenius8}
+%\xymatrix{
+%B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[rr]  \ar[d]  && B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
+%(A\times_X (Z\times \I))^\I \ar[r] \ar[rd] \ar@{..>}[u]^{iv} & A^\I \ar[rr]|| \ar[rr]_{p}  \ar[rrd]  && A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]
+%	& \ar[d] \ar[l] \ar@{..>}[lu]_{iii} A\times_X (Z\times \I) \\
+%Z \ar[r] \ar@{..>}[rd]_-{i} & (Z\times \I)^\I \ar[rr] \ar[d] \ar@{..>}[rrd]^<<<<<<<{v} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
+%& (\Pi_AB)^\I \ar[rru] \ar@{..>}[rr]_\varphi  && \Pi_{A^\I}B^\I   \ar[u] \ar[r]  & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]
+%}
+%\end{equation*}
+%We therefore have the map $iv = (iii)^\I$, and since $(-)^\I$ preserves pullbacks, the domain of $iv$ is
+%\[
+%(A\times_X (Z\times \I))^\I \cong A^\I\times_{X^\I} (Z\times \I)^\I\,.
+%\]  
+%Thus by the universal property of $\Pi_{A^\I}B^\I$ there is an associated map $v$, which, when precomposed with the unit $Z \ra (Z\times \I)^\I$ gives the desired map $Z \to \Pi_{A^\I}B^\I$.
+%
 \smallskip
 
 \noindent $\bullet$ For $\vartheta$: referring to the diagram \eqref{diagram:frobenius2}, since $p : A^\I \ra A_\epsilon$ is a trivial fibration, it has a section $o :  A_\epsilon \ra A^\I$.  Pulling  $p^*B_\epsilon \ra A^\I$ back along $o$ results in an iso over~$A_\epsilon$,
@@ -1762,7 +1813,7 @@ to which we can apply $p_*$ to obtain,
 \[
 p_*p^* B_\epsilon \to p_*o_*B_\epsilon \cong B_\epsilon\,.
 \]
-This is easily seen to be a retraction of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ gives the desired retraction $\vartheta : \Pi_{A_\epsilon}B_\epsilon \ra \Pi_{A_\epsilon}p_*p^* B_\epsilon$ of $s$.
+This is easily seen to be a retraction of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ gives the desired retraction $\vartheta :  \Pi_{A_\epsilon}p_*p^* B_\epsilon \ra \Pi_{A_\epsilon}B_\epsilon $ of $s$.
 
 \medskip
 \noindent $\bullet$ For $\psi$, we require a map 
@@ -1821,46 +1872,46 @@ from which, by applying $\Pi_{A_\varepsilon}$, we obtain,
 \]
 as required in \eqref{eq:needforpsi}.
 
-\medskip
-\noindent $\bullet$ For $\varphi$, we require a map 
-\[
-\varphi : (\Pi_AB)^\I \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$.}
-\]
-To that end, we take an arbitrary $Z \ra X^\I$ and associate to any map 
-\[
-Z \to (\Pi_AB)^\I \qquad \text{over $X^\I$}
-\]
-another map 
-\[
-Z \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$}
-\]
-in a way that is natural in the object $Z \ra X^\I$.  
-
-Indeed, consider the following diagram, which extends \eqref{diagram:frobenius2}.
-\begin{equation}\label{diagram:frobenius7}
-\xymatrix{
-B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
-& A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]& \ar[d] \ar[l] \ar@{..>}[lu]_{iii}A\times_X (Z\times \I) \\
-Z \ar[rr] \ar@{..>}[rd]_-{i} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
-& (\Pi_AB)^\I \ar[ru] \ar@{..>}[r]_\varphi  & \Pi_{A^\I}B^\I   \ar[u] \ar[r] & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]
-}
-\end{equation}
-Any map $i$ induces a unique map $ii$ by exponential transposition, which in turn determines a unique map $iii$ by the universal property of $\Pi_AB$.  We now apply $(-)^\I$ to the two righthand columns and interpolate the result on the left, using the unit $Z \ra (Z\times \I)^\I$.
-\begin{equation*}\label{diagram:frobenius8}
-\xymatrix{
-B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[rr]  \ar[d]  && B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
-(A\times_X (Z\times \I))^\I \ar[r] \ar[rd] \ar@{..>}[u]^{iv} & A^\I \ar[rr]|| \ar[rr]_{p}  \ar[rrd]  && A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]
-	& \ar[d] \ar[l] \ar@{..>}[lu]_{iii} A\times_X (Z\times \I) \\
-Z \ar[r] \ar@{..>}[rd]_-{i} & (Z\times \I)^\I \ar[rr] \ar[d] \ar@{..>}[rrd]^<<<<<<<{v} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
-& (\Pi_AB)^\I \ar[rru] \ar@{..>}[rr]_\varphi  && \Pi_{A^\I}B^\I   \ar[u] \ar[r]  & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]
-}
-\end{equation*}
-We therefore have the map $iv = (iii)^\I$, and since $(-)^\I$ preserves pullbacks, the domain of $iv$ is
-\[
-(A\times_X (Z\times \I))^\I \cong A^\I\times_{X^\I} (Z\times \I)^\I\,.
-\]  
-Thus by the universal property of $\Pi_{A^\I}B^\I$ there is an associated map $v$, which, when precomposed with the unit $Z \ra (Z\times \I)^\I$ gives the desired map $Z \to \Pi_{A^\I}B^\I$.
-
+%\medskip
+%\noindent $\bullet$ For $\varphi$, we require a map 
+%\[
+%\varphi : (\Pi_AB)^\I \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$.}
+%\]
+%To that end, we take an arbitrary $Z \ra X^\I$ and associate to any map 
+%\[
+%Z \to (\Pi_AB)^\I \qquad \text{over $X^\I$}
+%\]
+%another map 
+%\[
+%Z \to \Pi_{A^\I}B^\I \qquad \text{over $X^\I$}
+%\]
+%in a way that is natural in the object $Z \ra X^\I$.  
+%
+%Indeed, consider the following diagram, which extends \eqref{diagram:frobenius2}.
+%\begin{equation}\label{diagram:frobenius7}
+%\xymatrix{
+%B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
+%& A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]& \ar[d] \ar[l] \ar@{..>}[lu]_{iii}A\times_X (Z\times \I) \\
+%Z \ar[rr] \ar@{..>}[rd]_-{i} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
+%& (\Pi_AB)^\I \ar[ru] \ar@{..>}[r]_\varphi  & \Pi_{A^\I}B^\I   \ar[u] \ar[r] & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]
+%}
+%\end{equation}
+%Any map $i$ induces a unique map $ii$ by exponential transposition, which in turn determines a unique map $iii$ by the universal property of $\Pi_AB$.  We now apply $(-)^\I$ to the two righthand columns and interpolate the result on the left, using the unit $Z \ra (Z\times \I)^\I$.
+%\begin{equation*}\label{diagram:frobenius8}
+%\xymatrix{
+%B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[rr]  \ar[d]  && B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
+%(A\times_X (Z\times \I))^\I \ar[r] \ar[rd] \ar@{..>}[u]^{iv} & A^\I \ar[rr]|| \ar[rr]_{p}  \ar[rrd]  && A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]
+%	& \ar[d] \ar[l] \ar@{..>}[lu]_{iii} A\times_X (Z\times \I) \\
+%Z \ar[r] \ar@{..>}[rd]_-{i} & (Z\times \I)^\I \ar[rr] \ar[d] \ar@{..>}[rrd]^<<<<<<<{v} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
+%& (\Pi_AB)^\I \ar[rru] \ar@{..>}[rr]_\varphi  && \Pi_{A^\I}B^\I   \ar[u] \ar[r]  & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]
+%}
+%\end{equation*}
+%We therefore have the map $iv = (iii)^\I$, and since $(-)^\I$ preserves pullbacks, the domain of $iv$ is
+%\[
+%(A\times_X (Z\times \I))^\I \cong A^\I\times_{X^\I} (Z\times \I)^\I\,.
+%\]  
+%Thus by the universal property of $\Pi_{A^\I}B^\I$ there is an associated map $v$, which, when precomposed with the unit $Z \ra (Z\times \I)^\I$ gives the desired map $Z \to \Pi_{A^\I}B^\I$.
+%
 The verification that \eqref{diagram:frobenius4} commutes and is a retract is left to the reader.
 \end{proof}
 
