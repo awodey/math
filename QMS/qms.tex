@@ -438,6 +438,22 @@ j(u^*c,xc^*u,yu) = j(c,x,y)u.
 \end{enumerate}
 \end{proposition}
 
+We next collect some basic facts about $+$-algebras/trivial fibrations: they have sections, they are closed under composition and retracts, and they are closed under pullback and pushforward along all maps.
+
+\begin{corollary}\label{cor:plusalgsection} 
+A +-algebra $A\ra X$ always has a section $s : X\ra A$.
+\end{corollary}
+\begin{proof}
+It suffices to find a filler for the following diagram.
+\begin{equation}\label{diagram:plussection}
+\xymatrix{
+0 \ar@{>->}[d] \ar[r] & A \ar[d] \\
+X\ar@{.>}[ru]_s \ar[r]_{=} & X
+}
+\end{equation}
+But $0 \ra X$ is always a cofibration by assumption.
+\end{proof}
+
 \begin{corollary}\label{cor:plusalgcompose} 
 If $f:Y\ra X$ is a $+$-algebra over $X$ and $g:Z\ra Y$ is a $+$-algebra over $Y$, then there is a canonical way of making  $f\circ g:Z\ra X$ into a $+$-algebra over $X$.
 \end{corollary}
@@ -452,7 +468,34 @@ Z \ar@{>->}[d]_{\eta} \ar[rr]^{g} && Y \ar[d]^{f} \\
 Now use the fact that $g$ is a $+$-algebra to get a canonical retraction of $\eta$ over~$Y$.
 \end{proof}
 
-The proof of the following is a straighforward application of the general fact that a left adjoint preserves the left class of a weak factorization system if and only if its right adjoint preserves the right class.  We give a more detailed argument for this case since we will need an analogous version later. 
+\begin{corollary}\label{cor:plusalgretract} 
+If $f:Y\ra X$ is a $+$-algebra over $X$ and $f':Y'\ra X'$ is a retract of $f$ in the arrow category, then $f'$ is a $+$-algebra over $X'$.
+%\begin{equation}\label{diagram:plusretract}
+%\xymatrix{
+%Z \ar@{>->}[d]_{\eta} \ar[rr]^{g} && Y \ar[d]^{f} \\
+%(\Sigma_YZ)^+\ar@{.>}[rru]_{j} \ar[rr] && X,
+%}
+%\end{equation}
+\end{corollary}
+\begin{proof}
+The right class of a weak factorization system is always closed under retracts.
+\end{proof}
+
+\begin{corollary}\label{cor:plusalgpullback} 
+For any map $f:Y\ra X$ and any $+$-algebra $A\ra B$ over $X$,  the pullback $f^*A \ra Y$ is a $+$-algebra over~$Y$.  
+\begin{equation}\label{diagram:pluspushforward1}
+\xymatrix{
+f^*A \ar[d]  \ar[rr] \pbcorner & & A \ar[d]  \\
+Y \ar[rr]_f && X
+}
+\end{equation}
+\end{corollary}
+\begin{proof}
+The right class of a weak factorization system is always stable under pullback, but one can also see directly that a pullback of a $+$-algebra is again a $+$-algebra, using the fact that the $+$-endofunctor commutes with pullbacks.
+\end{proof}
+
+
+The proof of the following is a straighforward application of the general fact that a left adjoint preserves the left class of a weak factorization system if and only if its right adjoint preserves the right class.  We give a more detailed argument for this special case since we will need an analogous version later. 
 
 \begin{corollary}\label{cor:plusalgpushforward} 
 For any map $f:Y\ra X$ and any $+$-algebra $A\ra Y$ over $Y$,  the pushforward $f_*A \ra X$ is a $+$-algebra over~$X$.  
@@ -1701,10 +1744,16 @@ A^\I \ar[r]|| \ar[r]  & A_\epsilon\ar[d] \pbcorner \ar[r] & A \ar[d]^f \\
 \end{equation}
 where $\epsilon = X^{\delta}$, $A_\epsilon = X^\I \times_{X} A$, and the struck-through arrow indicates that it admits a +-algebra structure.
 
+\begin{lemma}\label{lemma:fibrationspullback}
+Let  $g : Y\ra X$ be any map and $f:A \ra X$ a fibration, then the pullback $g^*f : g^*A \ra Y$ is also a fibration.
+\end{lemma}
+\begin{proof}
+This is clear, since fibrations are the right class of a weak factorization system, but let us see how the ``algebraic'' specification \eqref{diagram:frobenius1} is also stable under under pullback.
+\end{proof}
+
 \begin{lemma}\label{lemma:fibrationscompose}
 Let  $\alpha : A \ra X$ and $\beta: B\ra A$ be fibrations, then the composite $\alpha\circ\beta : B \ra X$ is also a fibration.
 \end{lemma}
-
 \begin{proof}
 We have the following for the fibration structures on $B\ra A$ and $A\ra X$ (with obvious notation).
 \begin{equation}\label{diagram:fibcomposition1}
@@ -1731,20 +1780,12 @@ B^\I \ar[r]|| \ar[r]   & B_{\epsilon_A} \ar[r]  \ar[d] \pbcorner & B_{\epsilon_X
 Now use the fact that trivial fibrations are closed under pullback along all maps, and under composition, to infer that the indicated composite map $B^\I \to B_{\epsilon_X} $ is also a trivial fibration, as required.
 \end{proof}
 
-\begin{lemma}\label{lemma:pluspushforward}
-+-algebras push forward.
-\end{lemma}
-\begin{proof}
-
-\end{proof}
-
-\begin{lemma}\label{lemma:trivfibsect}
-+-algebras have a section.
-\end{lemma}
-\begin{proof}
-
-\end{proof}
-
+%\begin{lemma}\label{lemma:pluspushforward}
+%+-algebras push forward.
+%\end{lemma}
+%\begin{proof}
+%This is Corollary \ref{cor:plusalgpushforward}. 
+%\end{proof}
 
 \begin{proposition}[Frobenius]
 Let $\alpha : A \ra X$ and $\beta: B\ra A$  be fibrations, then the pushforward $\alpha_*\beta : \Pi_AB \ra X$ is also a fibration.
