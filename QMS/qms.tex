@@ -1828,7 +1828,7 @@ Indeed, let us apply the pushforward, along the indicated canonical map $\alpha^
 \[
 \Pi_{A^\I}\,q :  \Pi_{A^\I}\,B^\I \to \Pi_{A^\I}\,p^*B_\epsilon
 \]
-which is a +-algebra, because these are preserved by pushforward by lemma \ref{lemma:pluspushforward}.
+which is a +-algebra, because these are preserved by pushforward, according to Lemma \ref{cor:plusalgpushforward}.
 
 Now observe that by the Beck-Chevalley condition, we have an isomorphism 
 \[
@@ -1838,7 +1838,8 @@ Moreover, since $\Pi_{A^\I} \cong \Pi_{A_\epsilon} \circ p_*$, we have
 \[
  \Pi_{A^\I}\,p^*B_\epsilon \cong \Pi_{A_\epsilon} p_*p^* B_\epsilon \,.
 \]
-Thus the image of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ under $\Pi_{A_\epsilon}$ is a map $s$ over $X^\I$ of the form:
+Thus the image of the unit $\eta : B_\epsilon \ra p_*p^* B_\epsilon$ under $\Pi_{A_\epsilon}$ is a map 
+$s = \Pi_{A_\epsilon}\eta$ over $X^\I$ of the form:
 \begin{equation}\label{diagram:frobenius3}
 \xymatrix{
 & X^\I  \\
@@ -1881,7 +1882,11 @@ B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}
 & (\Pi_AB)^\I \ar[ru] \ar@{..>}[r]_\varphi  & \Pi_{A^\I}B^\I   \ar[u] & &
 }
 \end{equation}
-The map $c$ is the counit at $B\ra A$ of the pullback-pushforward adjunction along $A\ra X$. The right-hand side of the diagram, including $c$ and the associated pullback square, reappear on the left under the functor $(-)^\I$, which preserves the pullback. Thus we can take $\varphi$ to be the transpose of $c^\I$ under the pullback-pushforward adjunction along $A^I\ra X^\I$.
+The map $c$ is the counit at $B\ra A$ of the pullback-pushforward adjunction along $A\ra X$. The right-hand side of the diagram, including $c$ and the associated pullback square, reappear on the left under the functor $(-)^\I$, which preserves the pullback. Thus we can take $\varphi$ to be the transpose of $c^\I$ under the pullback-pushforward adjunction along $A^I\ra X^\I$,
+\[
+\varphi = \widetilde{c^\I}.
+\]
+A diagram chase involving the pullback-pushforward adjunction along $A_\epsilon\ra X^\I$ shows that the upper square in \eqref{diagram:frobenius4} commutes.
 
 %Any map $i$ induces a unique map $ii$ by exponential transposition, which in turn determines a unique map $iii$ by the universal property of $\Pi_AB$.  We now apply $(-)^\I$ to the two righthand columns and interpolate the result on the left, using the unit $Z \ra (Z\times \I)^\I$.
 %\begin{equation*}\label{diagram:frobenius8}
@@ -1901,7 +1906,7 @@ The map $c$ is the counit at $B\ra A$ of the pullback-pushforward adjunction alo
 %
 \smallskip
 
-\noindent $\bullet$ For $\vartheta$: referring to the diagram \eqref{diagram:frobenius2}, since $p : A^\I \ra A_\epsilon$ is a trivial fibration, it has a section $o :  A_\epsilon \ra A^\I$ by lemma \ref{lemma:trivfibsect}.  Pulling  $p^*B_\epsilon \ra A^\I$ back along $o$ results in an iso over~$A_\epsilon$,
+\noindent $\bullet$ For $\vartheta$: referring to the diagram \eqref{diagram:frobenius2}, since $p : A^\I \ra A_\epsilon$ is a trivial fibration, it has a section $o :  A_\epsilon \ra A^\I$ by lemma \ref{cor:plusalgsection}.  Pulling  $p^*B_\epsilon \ra A^\I$ back along $o$ results in an iso over~$A_\epsilon$,
 \[
 o^*p^* B_\epsilon \cong B_\epsilon \,,
 \]
@@ -1909,69 +1914,132 @@ and so by the adjunction $o^*\!\dashv o_*$ there is a map over $A^\I$,
 \[
 p^* B_\epsilon \to o_* B_\epsilon \,,
 \]
-to which we can apply $p_*$ to obtain,
+to which we can apply $p_*$ to obtain a map,
 \[
-p_*p^* B_\epsilon \to p_*o_*B_\epsilon \cong B_\epsilon\,.
+\rho : p_*p^* B_\epsilon \to p_*o_*B_\epsilon \cong B_\epsilon\,\quad \text{over $A_\epsilon$.}
 \]
-This is easily seen to be a retraction of the unit $B_\epsilon \ra p_*p^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ gives the desired retraction $\vartheta :  \Pi_{A_\epsilon}p_*p^* B_\epsilon \ra \Pi_{A_\epsilon}B_\epsilon $ of $s$.
+This is a retraction of the unit $\eta : B_\epsilon \ra p_*p^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ therefore gives the desired retraction $$\vartheta = \Pi_{A_\epsilon}\rho :  \Pi_{A_\epsilon}p_*p^* B_\epsilon \ra \Pi_{A_\epsilon}B_\epsilon$$ of $s$.
 
 \medskip
 \noindent $\bullet$ For $\psi$, we require a map 
 \[
 \psi:\Pi_{A^\I}B^\I \to (\Pi_AB)^\I \qquad \text{over $X^\I$.}
 \]
-Using the adjunction $\I^*\!\dashv \I_*$ and the fact that $(\Pi_AB)^\I  \cong \I_*\I^*(\Pi_AB)$ and $X^\I \cong \I_*\I^*X$, it suffices to give a map  
-\[
-\I^*(\Pi_{A^\I}B^\I) \to \I^*(\Pi_AB) \qquad \text{over $\I^*X$}
-\]
-where $\I^*(\Pi_{A^\I}\,B^\I)$ is over $\I^*X$ by composition with the counit
-\[
-\varepsilon: \I^*(X^\I)\cong \I^*\I_*\I^*X \to \I^*X
-\]
-as indicated in
-\begin{equation}\label{diagram:frobenius5}
+Consider the following diagram resulting from combining \eqref{diagram:frobenius2} and \eqref{diagram:frobenius4}, and in which all arrows are those already introduced and the dotted one labelled $\alpha$ is the evident composite.
+\begin{equation}\label{diagram:frobenius8}
 \xymatrix{
-\I^*(\Pi_{A^\I}B^\I) \ar[r] \ar[d] &  \I^*(\Pi_AB)  \ar[d] \\
-\I^*(X^\I) \ar[r]_\varepsilon & \I^*X\,.
+& X^\I \ar[r]^\epsilon & X \\
+ (\Pi_AB)^\I  \ar[r]  \ar[ru] \ar[d] & \Pi_{A_\epsilon}B  \ar[u] \ar[d] \ar[r] & \Pi_{A}B \ar[u]\ar[dd]^= \\
+ \Pi_{A^\I}B^\I \ar[r] \ar@{..>}[rrd]^>>>>>>>>>>>\alpha & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar[d] & \\
+  (\Pi_AB)^\I  \ar[r]  & \Pi_{A_\epsilon}B_\epsilon \ar[r] & \Pi_{A}B 
 }
 \end{equation}
-Thus, pulling back to $\I^*(X^\I)$ and dropping the $\I^*$ everywhere for readability (which we may do since $\I^*$ preserves all the operations involved), it suffices to give
-\begin{equation}\label{eq:needforpsi}
-\Pi_{A^\I}B^\I \to \varepsilon^*(\Pi_AB) \qquad \text{over $X^\I$}
-\end{equation}
-in the slice over $\I$, where $\varepsilon : X^\I \to X$ is evaluation at the (new) generic point $\delta_2: 1\to \I$.  Since we were \emph{already} working over $\I$,  by slicing over $\I$ again we are now in the slice category over $\I\times\I$.  In particular, there are now two different ``generic points'' $\delta_1, \delta_2 : 1 \ra \I$ (as was the case in the treatment of composition in section \ref{sec:composition}).
-
-We are thus in a situation analogous to that of diagram \ref{diagram:frobenius2},  
-\begin{equation}\label{diagram:frobenius6}
+Now recall that we are working in the slice category over $\I$, and the objects  $\Pi_{A^\I}B^\I $, $\Pi_{A}B$, and $(\Pi_AB)^\I $ are in the image of the base change $\I^*$, and so are actually  of the form $\I^*\Pi_{A^\I}B^\I $, $\I^*\Pi_{A}B$, and $\I^*((\Pi_AB)^\I) $.  Indeed, the latter is 
+\[
+\I^*((\Pi_AB)^\I) = \I^*\I_*\I^*\Pi_AB\,.
+\]
+Since the lower horizontal map is the counit $\varepsilon$ of the base change $\I^* \dashv \I_*$, the map $\alpha$ factors as $\varepsilon\circ\I^*\tilde{\alpha}$, where $\tilde{\alpha}$ is the adjoint transpose of $\alpha$, as shown in the following.
+\begin{equation}\label{diagram:frobenius9}
 \xymatrix{
-B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\varepsilon \ar[r]  \ar[d]  & B_{\varepsilon}  \ar[d]   \ar[r] & B \ar[d] \\
-& A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\varepsilon} \ar[d]   \ar[r] & A \ar[d] \\
-&& X^\I \ar[r]_{\varepsilon} &  X \\
-& \Pi_{A^\I}B^\I \ar[ru] \ar@{..>}[r]_\psi  & (\Pi_AB)_\varepsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]
+\I^*\Pi_{A^\I}B^\I \ar[d]_{\I^*\tilde{\alpha}} \ar[r] \ar@{..>}[rrd]^>>>>>>>>>>>\alpha & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar[d] & \\
+  \I^*\I_*\I^*\Pi_AB  \ar[r] \ar@/_4ex/ [rr]_\varepsilon & \Pi_{A_\epsilon}B_\epsilon \ar[r] & \I^*\Pi_{A}B 
 }
 \end{equation}
-except that here the map $\varepsilon: X^\I \ra X$ is evaluation at the new generic point $\delta_2: 1\ra \I$, and similarly, \emph{mutatis mutandis}, for the indicated maps $p_2$ and $q_2$.  
-Observe, however, that on the subobject $\Delta = \I \mono \I\times\I$ the two points $\delta, \delta'$ agree, and so, therefore, do their respective evaluations $$\Delta^*\epsilon = \Delta^*\varepsilon: \Delta^*X^\I \to \Delta^*X\,.$$
-It follows that $p$ and $q$ are also +-algebras. 
+We set $\psi = \I^*\tilde{\alpha}$, making the square commute.  
 
-We can now reason as we did for $\vartheta$, using a section $o :  A_\varepsilon \ra A^\I$ of the trivial fibration $p : A^\I \ra A_\varepsilon$. Referring to diagram \eqref{diagram:frobenius4}, we have
-\[
-o^*q : o^*B^\I \to o^*p^* B_\varepsilon \cong B_\varepsilon  \qquad \text{over $A_\varepsilon$}
-\]
-and so by $o^*\dashv o_*$ there is a map, 
-\[
-B^\I \to o_*B_\varepsilon  \qquad \text{over $A^\I$}
-\]
-applying $p_*$ we obtain,
-\[
-p_*B^\I \to p_*o_*B_\varepsilon \cong B_\varepsilon  \qquad \text{over $A_\varepsilon$}
-\]
-from which, by applying $\Pi_{A_\varepsilon}$, we obtain,
-\[
-\Pi_{A^\I}B^\I \cong \Pi_{A_\varepsilon} p_*B^\I \to \Pi_{A_\varepsilon}B_\varepsilon  \cong \varepsilon^*(\Pi_{A}B)   \qquad \text{over $X^\I$}
-\]
-as required in \eqref{eq:needforpsi}.
+We  have now defined all the maps below, the squares involving $\varphi$ and $\psi$ commute, and the  composite of $\vartheta$ and $s$  is the identity.
+\begin{equation}\label{diagram:frobenius8}
+\xymatrix{
+& X^\I \ar[r] & X \\
+ (\Pi_AB)^\I  \ar[r]  \ar[ru] \ar[d]_{\varphi} & \Pi_{A_\epsilon}B  \ar[u] \ar[d]^s \ar[r] & \Pi_{A}B \ar[u]\ar[dd]^= \\
+ \Pi_{A^\I}B^\I \ar[r] \ar[d]_{\psi} & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar[d]^\vartheta & \\
+  (\Pi_AB)^\I  \ar[r] \ar@/_4ex/ [rr]_\varepsilon & \Pi_{A_\epsilon}B_\epsilon \ar[r] & \Pi_{A}B 
+}
+\end{equation}
 
+To see that $\psi\circ\varphi = 1$, observe that each map is in the image of $\I^*$, say:
+\begin{align*}
+\varphi &= \I^*f\\
+\psi &= \I^*g\,,
+\end{align*}
+where  $g = \tilde{\alpha}$.
+%\begin{equation}\label{diagram:frobenius9}
+%\xymatrix{
+%& X^\I \ar[r]^\epsilon & X \\
+% (\Pi_AB)^\I  \ar[r]  \ar[ru] \ar[d] & \Pi_{A_\epsilon}B  \ar[u] \ar[d] \ar[r] & \Pi_{A}B \ar[u]\ar[dd]^= \\
+% \Pi_{A^\I}B^\I \ar[d]_{\I^*\tilde{\alpha}} \ar[r] \ar@{..>}[rrd]^>>>>>>>>>>>\alpha & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar[d] & \\
+%  (\Pi_AB)^\I  \ar[r] \ar@/_4ex/ [rr]_\varepsilon & \Pi_{A_\epsilon}B_\epsilon \ar[r] & \Pi_{A}B 
+%}
+%\end{equation}
+Recall that  in general the unit $\varepsilon$ satisfies, 
+\[
+\varepsilon\circ \I^*(h) = \tilde{h}
+\]
+for any map $h : X \ra \I_*Y$.  Thus
+\begin{align*}
+\varepsilon\circ\psi\circ\varphi &= \varepsilon\circ\I^*g\circ\I^*f\\
+&= \varepsilon\circ\I^*(g\circ f)\\
+&= \widetilde{(g\circ f)}.
+\end{align*}
+On the other hand, a diagram chase on \eqref{diagram:frobenius8} shows that 
+\[
+\varepsilon\circ\psi\circ\varphi = \varepsilon.
+\]
+Therefore $g\circ f = \tilde{\varepsilon} = 1$, so $\psi\circ\varphi = \I^*g\circ\I^*f = \I^*(g\circ f) = \I^*1 = 1$.
+
+%
+%Using the adjunction $\I^*\!\dashv \I_*$ and the fact that $(\Pi_AB)^\I  \cong \I_*\I^*(\Pi_AB)$ and $X^\I \cong \I_*\I^*X$, it suffices to give a map  
+%\[
+%\I^*(\Pi_{A^\I}B^\I) \to \I^*(\Pi_AB) \qquad \text{over $\I^*X$}
+%\]
+%where $\I^*(\Pi_{A^\I}\,B^\I)$ is over $\I^*X$ by composition with the counit
+%\[
+%\varepsilon: \I^*(X^\I)\cong \I^*\I_*\I^*X \to \I^*X
+%\]
+%as indicated in
+%\begin{equation}\label{diagram:frobenius5}
+%\xymatrix{
+%\I^*(\Pi_{A^\I}B^\I) \ar[r] \ar[d] &  \I^*(\Pi_AB)  \ar[d] \\
+%\I^*(X^\I) \ar[r]_\varepsilon & \I^*X\,.
+%}
+%\end{equation}
+%Thus, pulling back to $\I^*(X^\I)$ and dropping the $\I^*$ everywhere for readability (which we may do since $\I^*$ preserves all the operations involved), it suffices to give
+%\begin{equation}\label{eq:needforpsi}
+%\Pi_{A^\I}B^\I \to \varepsilon^*(\Pi_AB) \qquad \text{over $X^\I$}
+%\end{equation}
+%in the slice over $\I$, where $\varepsilon : X^\I \to X$ is evaluation at the (new) generic point $\delta_2: 1\to \I$.  Since we were \emph{already} working over $\I$,  by slicing over $\I$ again we are now in the slice category over $\I\times\I$.  In particular, there are now two different ``generic points'' $\delta_1, \delta_2 : 1 \ra \I$ (as was the case in the treatment of composition in section \ref{sec:composition}).
+%
+%We are thus in a situation analogous to that of diagram \ref{diagram:frobenius2},  
+%\begin{equation}\label{diagram:frobenius6}
+%\xymatrix{
+%B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\varepsilon \ar[r]  \ar[d]  & B_{\varepsilon}  \ar[d]   \ar[r] & B \ar[d] \\
+%& A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\varepsilon} \ar[d]   \ar[r] & A \ar[d] \\
+%&& X^\I \ar[r]_{\varepsilon} &  X \\
+%& \Pi_{A^\I}B^\I \ar[ru] \ar@{..>}[r]_\psi  & (\Pi_AB)_\varepsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]
+%}
+%\end{equation}
+%except that here the map $\varepsilon: X^\I \ra X$ is evaluation at the new generic point $\delta_2: 1\ra \I$, and similarly, \emph{mutatis mutandis}, for the indicated maps $p_2$ and $q_2$.  
+%Observe, however, that on the subobject $\Delta = \I \mono \I\times\I$ the two points $\delta, \delta'$ agree, and so, therefore, do their respective evaluations $$\Delta^*\epsilon = \Delta^*\varepsilon: \Delta^*X^\I \to \Delta^*X\,.$$
+%It follows that $p$ and $q$ are also +-algebras. 
+%
+%We can now reason as we did for $\vartheta$, using a section $o :  A_\varepsilon \ra A^\I$ of the trivial fibration $p : A^\I \ra A_\varepsilon$. Referring to diagram \eqref{diagram:frobenius4}, we have
+%\[
+%o^*q : o^*B^\I \to o^*p^* B_\varepsilon \cong B_\varepsilon  \qquad \text{over $A_\varepsilon$}
+%\]
+%and so by $o^*\dashv o_*$ there is a map, 
+%\[
+%B^\I \to o_*B_\varepsilon  \qquad \text{over $A^\I$}
+%\]
+%applying $p_*$ we obtain,
+%\[
+%p_*B^\I \to p_*o_*B_\varepsilon \cong B_\varepsilon  \qquad \text{over $A_\varepsilon$}
+%\]
+%from which, by applying $\Pi_{A_\varepsilon}$, we obtain,
+%\[
+%\Pi_{A^\I}B^\I \cong \Pi_{A_\varepsilon} p_*B^\I \to \Pi_{A_\varepsilon}B_\varepsilon  \cong \varepsilon^*(\Pi_{A}B)   \qquad \text{over $X^\I$}
+%\]
+%as required in \eqref{eq:needforpsi}.
+%
 %\medskip
 %\noindent $\bullet$ For $\varphi$, we require a map 
 %\[
@@ -2012,13 +2080,12 @@ as required in \eqref{eq:needforpsi}.
 %\]  
 %Thus by the universal property of $\Pi_{A^\I}B^\I$ there is an associated map $v$, which, when precomposed with the unit $Z \ra (Z\times \I)^\I$ gives the desired map $Z \to \Pi_{A^\I}B^\I$.
 %
-The verification that \eqref{diagram:frobenius4} commutes and is a retract is left to the reader.
 \end{proof}
 
 \section{The equivalence extension property}\label{sec:EEP}
 
-The equivalence extension property (EEP) will be seen to be equivalent, in the presence of a universe, to the univalence property of the universe.  We will show the EEP by using a variation on the original argument by Voevodsky.  
-
+%The equivalence extension property (EEP) will be seen to be equivalent, in the presence of a universe, to the univalence property of the universe.  We will show the EEP by using a variation on the original argument by Voevodsky.  
+%
 [ ... as usual ... ] 
 
 \section{The universe}\label{sec:U}
