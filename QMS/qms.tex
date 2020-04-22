@@ -749,13 +749,40 @@ Let $\delta : \I\to\I\times\I$ be the diagonal map.
 (\delta\Rightarrow\! X) = \langle\mathsf{eval}, p_2\rangle : X^\I \times \I \to X\times \I
 \]
 is a $+$-algebra. 
-\item A map $f : Y\ra X$ is an \emph{(unbiased) fibration} if the map 
+\item\label{item:fibration} A map $f : Y\ra X$ is an \emph{(unbiased) fibration} if the map 
 \[
 (\delta\Rightarrow\! f) = \langle f^\I\times \I, \langle \mathsf{eval},p_2 \rangle\rangle: Y^\I\times \I \to (X^\I \times \I)\times_{(X\times \I)} (Y\times\I)
 \]
 is a $+$-algebra.
 \end{enumerate}
 \end{definition}
+
+Condition \eqref{item:fibration} above says that the pullback-hom of the generic point $\delta : 1\ra \I$ with $\I^*f$, constructed in the slice category $\cSet/\I$, is a $+$-algebra.  This can be reformulated as follows.
+
+\begin{proposition}
+A map $f : Y\ra X$ is an (unbiased) fibration if and only if the canonical map $c$ to the pullback, in the following diagram, is a $+$-algebra.
+\begin{equation}\label{diagram:unbiasedfibrationeval}
+\xymatrix{
+Y^\I\times \I \ar@/^4ex/ [rrrd]^{\mathsf{eval}} \ar@/_4ex/ [rdd]_{f^\I\times \I} \ar@{..>}[rd]_{c}  && \\
+& Y_\mathsf{eval} \pbcorner  \ar[d] \ar[rr] && Y \ar[d]^f \\
+& X^\I \times \I \ar[rr]_{\mathsf{eval}} && X.
+}
+\end{equation}
+\end{proposition}
+\begin{proof}
+We interpolate another pullback into the rectangle in \eqref{diagram:unbiasedfibrationeval} to obtain
+\begin{equation}\label{diagram:unbiasedfibrationeval2}
+\xymatrix{
+ Y_\mathsf{eval} \pbcorner  \ar[d] \ar[r] & Y\times \I \ar[d] \pbcorner \ar[r] & Y \ar[d]^f \\
+ X^\I \times \I \ar[r] & X\times \I \ar[r] & X
+}
+\end{equation}
+with the evident maps. The lefthand square is therefore a pullback, so we indeed have that 
+\[
+Y_\mathsf{eval}\ =\ (X^\I \times \I)\times_{(X\times \I)} (Y\times\I)
+\]
+and $c = (\delta\Rightarrow\! f)$.
+\end{proof}
 
 Now we can run the proof of Proposition \ref{prop:algequivfill} backwards in order to determine a class of generating trivial cofibrations for the unbiased case. We consider pairs of maps $c : C\mono Z$ and $z:Z\to\I$, where the former is a cofibration and the latter is regarded as an ``$\I$-indexing'', so that
 \[
@@ -1748,7 +1775,7 @@ where $\epsilon = X^{\delta}$, $A_\epsilon = X^\I \times_{X} A$, and the struck-
 Let  $g : Y\ra X$ be any map and $f:A \ra X$ a fibration, then the pullback $g^*f : g^*A \ra Y$ is also a fibration.
 \end{lemma}
 \begin{proof}
-This is clear, since fibrations are the right class of a weak factorization system, but let us see how the ``algebraic'' specification \eqref{diagram:frobenius1} is also stable under under pullback.
+This is clear, since fibrations are the right class of a weak factorization system, but let us see how the ``algebraic'' specification \eqref{diagram:frobenius1} is also stable under pullback ...
 \end{proof}
 
 \begin{lemma}\label{lemma:fibrationscompose}

@@ -1,33 +1,67 @@
-\xycompiled{qms-129}{2020/4/21:1006 [qms:2398]}{Xy-pic 3.8.9}%
-{\xymatrixnocompile { \Fib (A) \ar [d] \ar [r] \pbcorner & \ar [d] \Pi _{i:\I }\Fib (A)_i \\ X \ar [r]_{\rho } & X^\I }}\relax 
+\xycompiled{qms-129}{2020/4/22:820 [qms:2397]}{Xy-pic 3.8.9}%
+{\xymatrixnocompile { &A^\I \ar [d]_{\epsilon ^A} \ar [r]_\eta & \ar @{.>}@/_1pc/[l]_\alpha D \ar [ld]^<<<<<{(\epsilon ^A)^+} \\ +\mathsf {Alg}(\epsilon ^A) \ar [r] & A_\epsilon \ar [d]_{p_\epsilon } \ar [r] \pbcorner & A \ar [d]^{p} \\ F_A \ar [r] & X^\I \ar [r]_{\epsilon } & X }}\relax 
 \xy@{\xymatrix }{\enter@ {\def \noexpand \xy@minX@@ {\xy@minX@@ }\def \noexpand \xy@maxX@@ {\xy@maxX@@ }\def \noexpand \xy@minY@@ {\xy@minY@@ }\def \noexpand \xy@maxY@@ {\xy@maxY@@ }\edef \noexpand \xymatrixprefix@@ {\codeof \xymatrixprefix@@ }}}%
 \xy@{}{\save@ \edef \matrixorigin@ {\X@c =\the \X@c \Y@c =\the \Y@c }\edef \xy@minX@@ {\the \X@c }\edef \xy@maxX@@ {\the \X@c }\edef \xy@minY@@ {\the \Y@c }\edef \xy@maxY@@ {\the \Y@c }}%
 \xy@{""}{\edef \xymatrixprefix@@ {}}%
 \xy@{}{\matrixorigin@ }%
-\xy@{}{\L@c =18.61899pt\R@c =18.619pt\D@c =8.47498pt\U@c =8.475pt\Edge@c ={\rectangleEdge }\idfromc@ {1,1}}%
+\xy@{}{\L@c =3.0pt\R@c =3.0pt\D@c =4.36874pt\U@c =1.63126pt\Edge@c ={\rectangleEdge }\idfromc@ {1,1}}%
 \xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
-\xy@{}{\dimen@ =8.47499pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =18.61899pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =8.47499pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =28.83035pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =9.0889pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =24.94385pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.0889pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =9.7461pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
 \xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \X@c \xy@cossign@@ \R@ }%
-\xy@{}{\dimen@ =18.61899pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =8.47499pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =28.83035pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =8.47499pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =24.94385pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.7461pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
 \xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@sinabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c \xy@sinsign@@ \R@ }%
-\xy@{}{\L@c =28.83035pt\R@c =28.83035pt\D@c =8.47498pt\U@c =8.475pt\Edge@c ={\rectangleEdge }\idfromc@ {1,2}}%
+\xy@{}{\L@c =8.88683pt\R@c =8.88684pt\D@c =5.73749pt\U@c =9.70284pt\Edge@c ={\rectangleEdge }\idfromc@ {1,2}}%
+\xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
+\xy@{}{\dimen@ =9.0889pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =9.7461pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.0889pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =7.96552pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \X@c \xy@cossign@@ \R@ }%
+\xy@{}{\dimen@ =9.7461pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =7.96552pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@sinabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c \xy@sinsign@@ \R@ }%
+\xy@{}{\L@c =7.68492pt\R@c =7.68494pt\D@c =5.73749pt\U@c =7.745pt\Edge@c ={\rectangleEdge }\idfromc@ {1,3}}%
 \xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
 \xy@{}{\cfromid@ {1,1}}%
-\xy@{}{\dimen@ =8.47499pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =28.83035pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =7.72015pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =28.83035pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =7.72015pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =24.94385pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.0889pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =24.94385pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
 \xy@{}{\dimen@ =\xymatrixrowsep@ \dimen@ =\xy@sinabs@@ \dimen@ \advance \R@ \dimen@ \advance \X@c \xy@sinsign@@ \R@ }%
-\xy@{}{\dimen@ =28.83035pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =8.47499pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =28.83035pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =7.72015pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =24.94385pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =7.72015pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =24.94385pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
 \xy@{}{\dimen@ =\xymatrixrowsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c -\xy@cossign@@ \R@ }%
-\xy@{}{\L@c =7.96552pt\R@c =7.96552pt\D@c =5.73749pt\U@c =7.745pt\Edge@c ={\rectangleEdge }\idfromc@ {2,1}}%
+\xy@{}{\L@c =24.94385pt\R@c =24.94386pt\D@c =8.47498pt\U@c =9.70284pt\Edge@c ={\rectangleEdge }\idfromc@ {2,1}}%
 \xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
-\xy@{}{\dimen@ =8.47499pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =18.61899pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =8.47499pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =28.83035pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =9.0889pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =24.94385pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.0889pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =9.7461pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
 \xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \X@c \xy@cossign@@ \R@ }%
-\xy@{}{\dimen@ =18.61899pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =8.47499pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =28.83035pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =8.47499pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =24.94385pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.7461pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
 \xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@sinabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c \xy@sinsign@@ \R@ }%
-\xy@{}{\L@c =9.7461pt\R@c =9.7461pt\D@c =5.73749pt\U@c =9.70284pt\Edge@c ={\rectangleEdge }\idfromc@ {2,2}}%
+\xy@{}{\L@c =9.07433pt\R@c =9.07434pt\D@c =7.37997pt\U@c =7.745pt\Edge@c ={\rectangleEdge }\idfromc@ {2,2}}%
+\xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
+\xy@{}{\dimen@ =9.0889pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =9.7461pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.0889pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =7.96552pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \X@c \xy@cossign@@ \R@ }%
+\xy@{}{\dimen@ =9.7461pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =7.96552pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@sinabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c \xy@sinsign@@ \R@ }%
+\xy@{}{\L@c =7.10625pt\R@c =7.10626pt\D@c =5.73749pt\U@c =7.745pt\Edge@c ={\rectangleEdge }\idfromc@ {2,3}}%
+\xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
+\xy@{}{\cfromid@ {2,1}}%
+\xy@{}{\dimen@ =9.0889pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =24.94385pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =8.56766pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =24.94385pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =\xymatrixrowsep@ \dimen@ =\xy@sinabs@@ \dimen@ \advance \R@ \dimen@ \advance \X@c \xy@sinsign@@ \R@ }%
+\xy@{}{\dimen@ =24.94385pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =24.94385pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =8.56766pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =\xymatrixrowsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c -\xy@cossign@@ \R@ }%
+\xy@{}{\L@c =9.9541pt\R@c =9.95412pt\D@c =7.4325pt\U@c =7.745pt\Edge@c ={\rectangleEdge }\idfromc@ {3,1}}%
+\xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
+\xy@{}{\dimen@ =9.0889pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =24.94385pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.0889pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =9.7461pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \X@c \xy@cossign@@ \R@ }%
+\xy@{}{\dimen@ =24.94385pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.7461pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@sinabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c \xy@sinsign@@ \R@ }%
+\xy@{}{\L@c =9.7461pt\R@c =9.7461pt\D@c =5.73749pt\U@c =9.70284pt\Edge@c ={\rectangleEdge }\idfromc@ {3,2}}%
+\xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
+\xy@{}{\dimen@ =9.0889pt\R@ =\xy@cotabs@@ \dimen@ \dimen@ =9.7461pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =9.0889pt\B@ =\xy@cotabs@@ \dimen@ \dimen@ =7.96552pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@cosabs@@ \dimen@ \advance \R@ \dimen@ \advance \X@c \xy@cossign@@ \R@ }%
+\xy@{}{\dimen@ =9.7461pt\R@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \R@ >\dimen@ \R@ =\dimen@ \fi \dimen@ =7.96552pt\B@ =\xy@tanabs@@ \dimen@ \dimen@ =9.0889pt\relax \ifdim \B@ >\dimen@ \B@ =\dimen@ \fi \advance \R@ \B@ }%
+\xy@{}{\dimen@ =\xymatrixcolsep@ \dimen@ =\xy@sinabs@@ \dimen@ \advance \R@ \dimen@ \advance \Y@c \xy@sinsign@@ \R@ }%
+\xy@{}{\L@c =7.96552pt\R@c =7.96552pt\D@c =5.73749pt\U@c =7.745pt\Edge@c ={\rectangleEdge }\idfromc@ {3,3}}%
 \xy@{}{\dimen@ =\X@c \advance \dimen@ -\L@c \ifdim \dimen@ <\xy@minX@@ \edef \xy@minX@@ {\the \dimen@ }\fi \dimen@ =\X@c \advance \dimen@ +\R@c \ifdim \dimen@ >\xy@maxX@@ \edef \xy@maxX@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ -\D@c \ifdim \dimen@ <\xy@minY@@ \edef \xy@minY@@ {\the \dimen@ }\fi \dimen@ =\Y@c \advance \dimen@ +\U@c \ifdim \dimen@ >\xy@maxY@@ \edef \xy@maxY@@ {\the \dimen@ }\fi }%
 \xy@{}{\ifx \xymatrixsavedCOORD@ \relax \enter@ {\noexpand \let \noexpand \COORD@ \noexpand \xymatrixsavedCOORD@ }\let \xymatrixsavedCOORD@ =\COORD@ \let \COORD@ =\xymatrixCOORD@ \else \enter@ {}\fi }%
 \xy@{ENTRY "1,1"}{\Row =1 \Col =1\relax \cfromid@ {1,1}\pfromc@ }%
-\xy@@ix@{{!V\entrybox }{\protect \ensuremath  {\mathsf {Fib}}(A) \ar [d] \ar [r] \pbcorner }}\relax 
+\xy@@ix@{{!V\entrybox }{}}\relax 
+\xy@{}{\expandafter \dropentry@ \the \toks 9}%
+\xy@{ENTRY "1,2"}{\Row =1 \Col =2\relax \cfromid@ {1,2}\pfromc@ }%
+\xy@@ix@{{!V\entrybox }{A^\I \ar [d]_{\epsilon ^A} \ar [r]_\eta }}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{\save }{\save@ }%
 \xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
@@ -38,7 +72,189 @@
 \xy@{~+{}}{}%
 \xy@{}{\pfromc@ }%
 \xy@{[d]}{\def \thematrixCOORD@@ {[d]}}%
-\xy@{}{\expandafter \let \expandafter \next@ \csname Q@2,1\endcsname \ifx \next@ \relax \xyerror@RC {2,1}\else \next@ \fi }%
+\xy@{}{\expandafter \let \expandafter \next@ \csname Q@2,2\endcsname \ifx \next@ \relax \xyerror@RC {2,2}\else \next@ \fi }%
+\xy@{}{\setupDirection@ \dimen@ =\PATHslide@@ \dimen@ii =-\sinDirection \dimen@ \ifPATHomitslide@@ \else \advance \X@p \dimen@ii \fi \advance \X@c \dimen@ii \dimen@ii = \cosDirection \dimen@ \ifPATHomitslide@@ \else \advance \Y@p \dimen@ii \fi \advance \Y@c \dimen@ii \PATHomitslide@@false \resetupDirection@ }%
+\xy@{PATHaction={\preconnect \dir {-}}}{}%
+\xy@@ix@{{\dir }{-}}\relax 
+\xy@{\connect \dir {-}}{\expandafter \preconnect@ \the \toks 9 }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{}}\relax 
+\xy@{\drop !Ch\dir {}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{_}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@{}{\enter@ \DirectionfromtheDirection@ }%
+\xy@@ix@{\labelbox {\epsilon ^A}}\relax 
+\xy@{}{\setbox \z@ =\expandafter \object \the \toks 9 \advance \L@c \labelmargin@ \advance \R@c \labelmargin@ \advance \D@c \labelmargin@ \advance \U@c \labelmargin@ \setboxz@h {\kern \labelmargin@ \boxz@ \kern \labelmargin@ }\A@ =\X@c \B@ =\Y@c \aboveDirection@ \xydashl@ \the \Edge@c \thr@@ \advance \A@ -\X@c \advance \B@ -\Y@c \advance \X@c 2\A@ \advance \Y@c 2\B@ \ht \z@ =\U@c \dp \z@ =\D@c \dimen@ =\L@c \advance \dimen@ \R@c \wd \z@ =\dimen@ \setbox \lastobjectbox@ =\hbox {\X@c =\L@c \Y@c =\z@ \Drop@@ }\drop@ {\box \lastobjectbox@ }{}\leave@ }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{>}{\def \PLACEf@ {{1}}\PLACEedgec@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{>}}\relax 
+\xy@{\drop !Ch\dir {>}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{}{\Clast@@ }%
+\xy@{}{\setupDirection@ }%
+\xy@{PATHaction/{}}{}%
+\xy@{\restore }{\leave@ }%
+\xy@{\save }{\save@ }%
+\xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
+\xy@{~={\preconnect \dir {-}}}{}%
+\xy@{~/{}}{}%
+\xy@{~<{|<*h\dir {}}}{}%
+\xy@{~>{|>*h\dir {>}}}{}%
+\xy@{~+{}}{}%
+\xy@{}{\pfromc@ }%
+\xy@{[r]}{\def \thematrixCOORD@@ {[r]}}%
+\xy@{}{\expandafter \let \expandafter \next@ \csname Q@1,3\endcsname \ifx \next@ \relax \xyerror@RC {1,3}\else \next@ \fi }%
+\xy@{}{\setupDirection@ \dimen@ =\PATHslide@@ \dimen@ii =-\sinDirection \dimen@ \ifPATHomitslide@@ \else \advance \X@p \dimen@ii \fi \advance \X@c \dimen@ii \dimen@ii = \cosDirection \dimen@ \ifPATHomitslide@@ \else \advance \Y@p \dimen@ii \fi \advance \Y@c \dimen@ii \PATHomitslide@@false \resetupDirection@ }%
+\xy@{PATHaction={\preconnect \dir {-}}}{}%
+\xy@@ix@{{\dir }{-}}\relax 
+\xy@{\connect \dir {-}}{\expandafter \preconnect@ \the \toks 9 }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{}}\relax 
+\xy@{\drop !Ch\dir {}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{_}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@{}{\enter@ \DirectionfromtheDirection@ }%
+\xy@@ix@{\labelbox {\eta }}\relax 
+\xy@{}{\setbox \z@ =\expandafter \object \the \toks 9 \advance \L@c \labelmargin@ \advance \R@c \labelmargin@ \advance \D@c \labelmargin@ \advance \U@c \labelmargin@ \setboxz@h {\kern \labelmargin@ \boxz@ \kern \labelmargin@ }\A@ =\X@c \B@ =\Y@c \aboveDirection@ \xydashl@ \the \Edge@c \thr@@ \advance \A@ -\X@c \advance \B@ -\Y@c \advance \X@c 2\A@ \advance \Y@c 2\B@ \ht \z@ =\U@c \dp \z@ =\D@c \dimen@ =\L@c \advance \dimen@ \R@c \wd \z@ =\dimen@ \setbox \lastobjectbox@ =\hbox {\X@c =\L@c \Y@c =\z@ \Drop@@ }\drop@ {\box \lastobjectbox@ }{}\leave@ }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{>}{\def \PLACEf@ {{1}}\PLACEedgec@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{>}}\relax 
+\xy@{\drop !Ch\dir {>}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{}{\Clast@@ }%
+\xy@{}{\setupDirection@ }%
+\xy@{PATHaction/{}}{}%
+\xy@{\restore }{\leave@ }%
+\xy@{ENTRY "1,3"}{\Row =1 \Col =3\relax \cfromid@ {1,3}\pfromc@ }%
+\xy@@ix@{{!V\entrybox }{\relax \arSAFE @{.>}@/_1pc/[l]_\alpha D \ar [ld]^<<<<<{(\epsilon ^A)^+} }}\relax 
+\xy@{}{\expandafter \dropentry@ \the \toks 9}%
+\xy@{\save }{\save@ }%
+\xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
+\xy@{~={\save @(,\xy@ {**{} ?+/_1pc/+/_1pc/ @+c}{\setupDirection@ \vfromslide@ {_1pc}\X@c =2\X@c \advance \X@c \X@p \advance \X@c .5\d@X \Y@c =2\Y@c \advance \Y@c \Y@p \advance \Y@c .5\d@Y \czeroEdge@ \spushc@ }\restore \preconnect \crvi {.}}}{}%
+\xy@{~/{\POS @i @) }}{}%
+\xy@{~<{|<*h\dir {}}}{}%
+\xy@{~>{|>*h\dir {>}}}{}%
+\xy@{~+{}}{}%
+\xy@{}{\pfromc@ }%
+\xy@{[l]}{\def \thematrixCOORD@@ {[l]}}%
+\xy@{}{\expandafter \let \expandafter \next@ \csname Q@1,2\endcsname \ifx \next@ \relax \xyerror@RC {1,2}\else \next@ \fi }%
+\xy@{}{\setupDirection@ \dimen@ =\PATHslide@@ \dimen@ii =-\sinDirection \dimen@ \ifPATHomitslide@@ \else \advance \X@p \dimen@ii \fi \advance \X@c \dimen@ii \dimen@ii = \cosDirection \dimen@ \ifPATHomitslide@@ \else \advance \Y@p \dimen@ii \fi \advance \Y@c \dimen@ii \PATHomitslide@@false \resetupDirection@ }%
+\xy@{PATHaction={\save @(,\xy@ {**{} ?+/_1pc/+/_1pc/ @+c}{\setupDirection@ \vfromslide@ {_1pc}\X@c =2\X@c \advance \X@c \X@p \advance \X@c .5\d@X \Y@c =2\Y@c \advance \Y@c \Y@p \advance \Y@c .5\d@Y \czeroEdge@ \spushc@ }\restore \preconnect \crvi {.}}}{}%
+\xy@{\save }{\save@ }%
+\xy@{@(}{\senter@ }%
+\xy@{,}{\comma@@ }%
+\xy@{**{} ?+/_1pc/+/_1pc/ @+c}{\setupDirection@ \vfromslide@ {_1pc}\X@c =2\X@c \advance \X@c \X@p \advance \X@c .5\d@X \Y@c =2\Y@c \advance \Y@c \Y@p \advance \Y@c .5\d@Y \czeroEdge@ \spushc@ }%
+\xy@{\restore }{\leave@ }%
+\xy@@ix@{{\crvi }{.}}\relax 
+\xy@{\connect \crvi {.}}{\expandafter \preconnect@ \the \toks 9 }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{}}\relax 
+\xy@{\drop !Ch\dir {}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{_}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@{}{\enter@ \DirectionfromtheDirection@ }%
+\xy@@ix@{\labelbox {\alpha }}\relax 
+\xy@{}{\setbox \z@ =\expandafter \object \the \toks 9 \advance \L@c \labelmargin@ \advance \R@c \labelmargin@ \advance \D@c \labelmargin@ \advance \U@c \labelmargin@ \setboxz@h {\kern \labelmargin@ \boxz@ \kern \labelmargin@ }\A@ =\X@c \B@ =\Y@c \aboveDirection@ \xydashl@ \the \Edge@c \thr@@ \advance \A@ -\X@c \advance \B@ -\Y@c \advance \X@c 2\A@ \advance \Y@c 2\B@ \ht \z@ =\U@c \dp \z@ =\D@c \dimen@ =\L@c \advance \dimen@ \R@c \wd \z@ =\dimen@ \setbox \lastobjectbox@ =\hbox {\X@c =\L@c \Y@c =\z@ \Drop@@ }\drop@ {\box \lastobjectbox@ }{}\leave@ }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{>}{\def \PLACEf@ {{1}}\PLACEedgec@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{>}}\relax 
+\xy@{\drop !Ch\dir {>}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{}{\Clast@@ }%
+\xy@{}{\setupDirection@ }%
+\xy@{PATHaction/{\POS @i @) }}{}%
+\xy@{@i}{\sinit@ }%
+\xy@{@)}{\sleave@ }%
+\xy@{\restore }{\leave@ }%
+\xy@{\save }{\save@ }%
+\xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
+\xy@{~={\preconnect \dir {-}}}{}%
+\xy@{~/{}}{}%
+\xy@{~<{|<*h\dir {}}}{}%
+\xy@{~>{|>*h\dir {>}}}{}%
+\xy@{~+{}}{}%
+\xy@{}{\pfromc@ }%
+\xy@{[ld]}{\def \thematrixCOORD@@ {[ld]}}%
+\xy@{}{\expandafter \let \expandafter \next@ \csname Q@2,2\endcsname \ifx \next@ \relax \xyerror@RC {2,2}\else \next@ \fi }%
+\xy@{}{\setupDirection@ \dimen@ =\PATHslide@@ \dimen@ii =-\sinDirection \dimen@ \ifPATHomitslide@@ \else \advance \X@p \dimen@ii \fi \advance \X@c \dimen@ii \dimen@ii = \cosDirection \dimen@ \ifPATHomitslide@@ \else \advance \Y@p \dimen@ii \fi \advance \Y@c \dimen@ii \PATHomitslide@@false \resetupDirection@ }%
+\xy@{PATHaction={\preconnect \dir {-}}}{}%
+\xy@@ix@{{\dir }{-}}\relax 
+\xy@{\connect \dir {-}}{\expandafter \preconnect@ \the \toks 9 }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{}}\relax 
+\xy@{\drop !Ch\dir {}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{^}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@{}{\enter@ \DirectionfromtheDirection@ }%
+\xy@@ix@{\labelbox {(\epsilon ^A)^+}}\relax 
+\xy@{}{\setbox \z@ =\expandafter \object \the \toks 9 \advance \L@c \labelmargin@ \advance \R@c \labelmargin@ \advance \D@c \labelmargin@ \advance \U@c \labelmargin@ \setboxz@h {\kern \labelmargin@ \boxz@ \kern \labelmargin@ }\A@ =\X@c \B@ =\Y@c \belowDirection@ \xydashl@ \the \Edge@c \thr@@ \advance \A@ -\X@c \advance \B@ -\Y@c \advance \X@c 2\A@ \advance \Y@c 2\B@ \ht \z@ =\U@c \dp \z@ =\D@c \dimen@ =\L@c \advance \dimen@ \R@c \wd \z@ =\dimen@ \setbox \lastobjectbox@ =\hbox {\X@c =\L@c \Y@c =\z@ \Drop@@ }\drop@ {\box \lastobjectbox@ }{}\leave@ }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{>}{\def \PLACEf@ {{1}}\PLACEedgec@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{>}}\relax 
+\xy@{\drop !Ch\dir {>}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{}{\Clast@@ }%
+\xy@{}{\setupDirection@ }%
+\xy@{PATHaction/{}}{}%
+\xy@{\restore }{\leave@ }%
+\xy@{ENTRY "2,1"}{\Row =2 \Col =1\relax \cfromid@ {2,1}\pfromc@ }%
+\xy@@ix@{{!V\entrybox }{+\mathsf {Alg}(\epsilon ^A) \ar [r] }}\relax 
+\xy@{}{\expandafter \dropentry@ \the \toks 9}%
+\xy@{\save }{\save@ }%
+\xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
+\xy@{~={\preconnect \dir {-}}}{}%
+\xy@{~/{}}{}%
+\xy@{~<{|<*h\dir {}}}{}%
+\xy@{~>{|>*h\dir {>}}}{}%
+\xy@{~+{}}{}%
+\xy@{}{\pfromc@ }%
+\xy@{[r]}{\def \thematrixCOORD@@ {[r]}}%
+\xy@{}{\expandafter \let \expandafter \next@ \csname Q@2,2\endcsname \ifx \next@ \relax \xyerror@RC {2,2}\else \next@ \fi }%
 \xy@{}{\setupDirection@ \dimen@ =\PATHslide@@ \dimen@ii =-\sinDirection \dimen@ \ifPATHomitslide@@ \else \advance \X@p \dimen@ii \fi \advance \X@c \dimen@ii \dimen@ii = \cosDirection \dimen@ \ifPATHomitslide@@ \else \advance \Y@p \dimen@ii \fi \advance \Y@c \dimen@ii \PATHomitslide@@false \resetupDirection@ }%
 \xy@{PATHaction={\preconnect \dir {-}}}{}%
 \xy@@ix@{{\dir }{-}}\relax 
@@ -63,6 +279,50 @@
 \xy@{}{\setupDirection@ }%
 \xy@{PATHaction/{}}{}%
 \xy@{\restore }{\leave@ }%
+\xy@{ENTRY "2,2"}{\Row =2 \Col =2\relax \cfromid@ {2,2}\pfromc@ }%
+\xy@@ix@{{!V\entrybox }{A_\epsilon \ar [d]_{p_\epsilon } \ar [r] \pbcorner }}\relax 
+\xy@{}{\expandafter \dropentry@ \the \toks 9}%
+\xy@{\save }{\save@ }%
+\xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
+\xy@{~={\preconnect \dir {-}}}{}%
+\xy@{~/{}}{}%
+\xy@{~<{|<*h\dir {}}}{}%
+\xy@{~>{|>*h\dir {>}}}{}%
+\xy@{~+{}}{}%
+\xy@{}{\pfromc@ }%
+\xy@{[d]}{\def \thematrixCOORD@@ {[d]}}%
+\xy@{}{\expandafter \let \expandafter \next@ \csname Q@3,2\endcsname \ifx \next@ \relax \xyerror@RC {3,2}\else \next@ \fi }%
+\xy@{}{\setupDirection@ \dimen@ =\PATHslide@@ \dimen@ii =-\sinDirection \dimen@ \ifPATHomitslide@@ \else \advance \X@p \dimen@ii \fi \advance \X@c \dimen@ii \dimen@ii = \cosDirection \dimen@ \ifPATHomitslide@@ \else \advance \Y@p \dimen@ii \fi \advance \Y@c \dimen@ii \PATHomitslide@@false \resetupDirection@ }%
+\xy@{PATHaction={\preconnect \dir {-}}}{}%
+\xy@@ix@{{\dir }{-}}\relax 
+\xy@{\connect \dir {-}}{\expandafter \preconnect@ \the \toks 9 }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{}}\relax 
+\xy@{\drop !Ch\dir {}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{_}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@{}{\enter@ \DirectionfromtheDirection@ }%
+\xy@@ix@{\labelbox {p_\epsilon }}\relax 
+\xy@{}{\setbox \z@ =\expandafter \object \the \toks 9 \advance \L@c \labelmargin@ \advance \R@c \labelmargin@ \advance \D@c \labelmargin@ \advance \U@c \labelmargin@ \setboxz@h {\kern \labelmargin@ \boxz@ \kern \labelmargin@ }\A@ =\X@c \B@ =\Y@c \aboveDirection@ \xydashl@ \the \Edge@c \thr@@ \advance \A@ -\X@c \advance \B@ -\Y@c \advance \X@c 2\A@ \advance \Y@c 2\B@ \ht \z@ =\U@c \dp \z@ =\D@c \dimen@ =\L@c \advance \dimen@ \R@c \wd \z@ =\dimen@ \setbox \lastobjectbox@ =\hbox {\X@c =\L@c \Y@c =\z@ \Drop@@ }\drop@ {\box \lastobjectbox@ }{}\leave@ }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{>}{\def \PLACEf@ {{1}}\PLACEedgec@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{>}}\relax 
+\xy@{\drop !Ch\dir {>}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{}{\Clast@@ }%
+\xy@{}{\setupDirection@ }%
+\xy@{PATHaction/{}}{}%
+\xy@{\restore }{\leave@ }%
 \xy@{\save }{\save@ }%
 \xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
 \xy@{~={\preconnect \dir {-}}}{}%
@@ -72,7 +332,7 @@
 \xy@{~+{}}{}%
 \xy@{}{\pfromc@ }%
 \xy@{[r]}{\def \thematrixCOORD@@ {[r]}}%
-\xy@{}{\expandafter \let \expandafter \next@ \csname Q@1,2\endcsname \ifx \next@ \relax \xyerror@RC {1,2}\else \next@ \fi }%
+\xy@{}{\expandafter \let \expandafter \next@ \csname Q@2,3\endcsname \ifx \next@ \relax \xyerror@RC {2,3}\else \next@ \fi }%
 \xy@{}{\setupDirection@ \dimen@ =\PATHslide@@ \dimen@ii =-\sinDirection \dimen@ \ifPATHomitslide@@ \else \advance \X@p \dimen@ii \fi \advance \X@c \dimen@ii \dimen@ii = \cosDirection \dimen@ \ifPATHomitslide@@ \else \advance \Y@p \dimen@ii \fi \advance \Y@c \dimen@ii \PATHomitslide@@false \resetupDirection@ }%
 \xy@{PATHaction={\preconnect \dir {-}}}{}%
 \xy@@ix@{{\dir }{-}}\relax 
@@ -101,8 +361,8 @@
 \xy@@ix@{{!/dr-1.2pc/dr:(-1,1)@^}{|-}}\relax 
 \xy@{*!/dr-1.2pc/dr:(-1,1)@^{|-}}{\expandafter \drop@ \the \toks 9 }%
 \xy@{\restore }{\leave@ }%
-\xy@{ENTRY "1,2"}{\Row =1 \Col =2\relax \cfromid@ {1,2}\pfromc@ }%
-\xy@@ix@{{!V\entrybox }{\relax \arSAFE [d] \Pi _{i:\I }\Fib (A)_i }}\relax 
+\xy@{ENTRY "2,3"}{\Row =2 \Col =3\relax \cfromid@ {2,3}\pfromc@ }%
+\xy@@ix@{{!V\entrybox }{A \ar [d]^{p} }}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{\save }{\save@ }%
 \xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
@@ -113,7 +373,51 @@
 \xy@{~+{}}{}%
 \xy@{}{\pfromc@ }%
 \xy@{[d]}{\def \thematrixCOORD@@ {[d]}}%
-\xy@{}{\expandafter \let \expandafter \next@ \csname Q@2,2\endcsname \ifx \next@ \relax \xyerror@RC {2,2}\else \next@ \fi }%
+\xy@{}{\expandafter \let \expandafter \next@ \csname Q@3,3\endcsname \ifx \next@ \relax \xyerror@RC {3,3}\else \next@ \fi }%
+\xy@{}{\setupDirection@ \dimen@ =\PATHslide@@ \dimen@ii =-\sinDirection \dimen@ \ifPATHomitslide@@ \else \advance \X@p \dimen@ii \fi \advance \X@c \dimen@ii \dimen@ii = \cosDirection \dimen@ \ifPATHomitslide@@ \else \advance \Y@p \dimen@ii \fi \advance \Y@c \dimen@ii \PATHomitslide@@false \resetupDirection@ }%
+\xy@{PATHaction={\preconnect \dir {-}}}{}%
+\xy@@ix@{{\dir }{-}}\relax 
+\xy@{\connect \dir {-}}{\expandafter \preconnect@ \the \toks 9 }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{<}{\def \PLACEf@ {{0}}\PLACEedgep@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{}}\relax 
+\xy@{\drop !Ch\dir {}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{^}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@{}{\enter@ \DirectionfromtheDirection@ }%
+\xy@@ix@{\labelbox {p}}\relax 
+\xy@{}{\setbox \z@ =\expandafter \object \the \toks 9 \advance \L@c \labelmargin@ \advance \R@c \labelmargin@ \advance \D@c \labelmargin@ \advance \U@c \labelmargin@ \setboxz@h {\kern \labelmargin@ \boxz@ \kern \labelmargin@ }\A@ =\X@c \B@ =\Y@c \belowDirection@ \xydashl@ \the \Edge@c \thr@@ \advance \A@ -\X@c \advance \B@ -\Y@c \advance \X@c 2\A@ \advance \Y@c 2\B@ \ht \z@ =\U@c \dp \z@ =\D@c \dimen@ =\L@c \advance \dimen@ \R@c \wd \z@ =\dimen@ \setbox \lastobjectbox@ =\hbox {\X@c =\L@c \Y@c =\z@ \Drop@@ }\drop@ {\box \lastobjectbox@ }{}\leave@ }%
+\xy@{|}{}%
+\xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
+\xy@{>}{\def \PLACEf@ {{1}}\PLACEedgec@@ }%
+\xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
+\xy@{}{\leave@ }%
+\xy@@ix@{{!Ch\dir }{>}}\relax 
+\xy@{\drop !Ch\dir {>}}{\expandafter \drop@ \the \toks 9 }%
+\xy@{}{\Cbreak@@ }%
+\xy@{}{\Clast@@ }%
+\xy@{}{\setupDirection@ }%
+\xy@{PATHaction/{}}{}%
+\xy@{\restore }{\leave@ }%
+\xy@{ENTRY "3,1"}{\Row =3 \Col =1\relax \cfromid@ {3,1}\pfromc@ }%
+\xy@@ix@{{!V\entrybox }{F_A \ar [r] }}\relax 
+\xy@{}{\expandafter \dropentry@ \the \toks 9}%
+\xy@{\save }{\save@ }%
+\xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
+\xy@{~={\preconnect \dir {-}}}{}%
+\xy@{~/{}}{}%
+\xy@{~<{|<*h\dir {}}}{}%
+\xy@{~>{|>*h\dir {>}}}{}%
+\xy@{~+{}}{}%
+\xy@{}{\pfromc@ }%
+\xy@{[r]}{\def \thematrixCOORD@@ {[r]}}%
+\xy@{}{\expandafter \let \expandafter \next@ \csname Q@3,2\endcsname \ifx \next@ \relax \xyerror@RC {3,2}\else \next@ \fi }%
 \xy@{}{\setupDirection@ \dimen@ =\PATHslide@@ \dimen@ii =-\sinDirection \dimen@ \ifPATHomitslide@@ \else \advance \X@p \dimen@ii \fi \advance \X@c \dimen@ii \dimen@ii = \cosDirection \dimen@ \ifPATHomitslide@@ \else \advance \Y@p \dimen@ii \fi \advance \Y@c \dimen@ii \PATHomitslide@@false \resetupDirection@ }%
 \xy@{PATHaction={\preconnect \dir {-}}}{}%
 \xy@@ix@{{\dir }{-}}\relax 
@@ -138,8 +442,8 @@
 \xy@{}{\setupDirection@ }%
 \xy@{PATHaction/{}}{}%
 \xy@{\restore }{\leave@ }%
-\xy@{ENTRY "2,1"}{\Row =2 \Col =1\relax \cfromid@ {2,1}\pfromc@ }%
-\xy@@ix@{{!V\entrybox }{X \ar [r]_{\rho } }}\relax 
+\xy@{ENTRY "3,2"}{\Row =3 \Col =2\relax \cfromid@ {3,2}\pfromc@ }%
+\xy@@ix@{{!V\entrybox }{X^\I \ar [r]_{\epsilon } }}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{\save }{\save@ }%
 \xy@{\afterPATH {\afterar@@ }}{\def \PATHslide@@ {\z@ }}%
@@ -150,7 +454,7 @@
 \xy@{~+{}}{}%
 \xy@{}{\pfromc@ }%
 \xy@{[r]}{\def \thematrixCOORD@@ {[r]}}%
-\xy@{}{\expandafter \let \expandafter \next@ \csname Q@2,2\endcsname \ifx \next@ \relax \xyerror@RC {2,2}\else \next@ \fi }%
+\xy@{}{\expandafter \let \expandafter \next@ \csname Q@3,3\endcsname \ifx \next@ \relax \xyerror@RC {3,3}\else \next@ \fi }%
 \xy@{}{\setupDirection@ \dimen@ =\PATHslide@@ \dimen@ii =-\sinDirection \dimen@ \ifPATHomitslide@@ \else \advance \X@p \dimen@ii \fi \advance \X@c \dimen@ii \dimen@ii = \cosDirection \dimen@ \ifPATHomitslide@@ \else \advance \Y@p \dimen@ii \fi \advance \Y@c \dimen@ii \PATHomitslide@@false \resetupDirection@ }%
 \xy@{PATHaction={\preconnect \dir {-}}}{}%
 \xy@@ix@{{\dir }{-}}\relax 
@@ -168,7 +472,7 @@
 \xy@{}{\expandafter \Calong@@ \PLACEf@ \czeroEdge@ }%
 \xy@{}{\leave@ }%
 \xy@{}{\enter@ \DirectionfromtheDirection@ }%
-\xy@@ix@{\labelbox {\rho }}\relax 
+\xy@@ix@{\labelbox {\epsilon }}\relax 
 \xy@{}{\setbox \z@ =\expandafter \object \the \toks 9 \advance \L@c \labelmargin@ \advance \R@c \labelmargin@ \advance \D@c \labelmargin@ \advance \U@c \labelmargin@ \setboxz@h {\kern \labelmargin@ \boxz@ \kern \labelmargin@ }\A@ =\X@c \B@ =\Y@c \aboveDirection@ \xydashl@ \the \Edge@c \thr@@ \advance \A@ -\X@c \advance \B@ -\Y@c \advance \X@c 2\A@ \advance \Y@c 2\B@ \ht \z@ =\U@c \dp \z@ =\D@c \dimen@ =\L@c \advance \dimen@ \R@c \wd \z@ =\dimen@ \setbox \lastobjectbox@ =\hbox {\X@c =\L@c \Y@c =\z@ \Drop@@ }\drop@ {\box \lastobjectbox@ }{}\leave@ }%
 \xy@{|}{}%
 \xy@{}{\enter@ {\pfromthep@ }\Creset@@ \def \PLACEf@ {{.5}}\let \PLACEedgep@@ =\PLACEedgep@ \let \PLACEedgec@@ =\PLACEedgec@ }%
@@ -182,8 +486,8 @@
 \xy@{}{\setupDirection@ }%
 \xy@{PATHaction/{}}{}%
 \xy@{\restore }{\leave@ }%
-\xy@{ENTRY "2,2"}{\Row =2 \Col =2\relax \cfromid@ {2,2}\pfromc@ }%
-\xy@@ix@{{!V\entrybox }{X^\I }}\relax 
+\xy@{ENTRY "3,3"}{\Row =3 \Col =3\relax \cfromid@ {3,3}\pfromc@ }%
+\xy@@ix@{{!V\entrybox }{X }}\relax 
 \xy@{}{\expandafter \dropentry@ \the \toks 9}%
 \xy@{}{\leave@ }%
 \xy@{}{}%
