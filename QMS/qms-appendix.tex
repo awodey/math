@@ -1096,7 +1096,7 @@ If $f: X\ra Y$ is a homotopy equivalence, then so is $K^f : K^Y \to K^X$ for any
 The weak homotopy equivalences $f : X\ra Y$ satisfy the 3-for-2 condition. 
 \end{lemma}
 \begin{proof}
-Follows from the corresponding fact about bijections of sets.
+This follows from the corresponding fact about bijections of sets.
 \end{proof}
 
 Our goal of showing that the weak equivalences satisfy 3-for-2 is now reduced to showing that a map is a weak equivalence (WE) if and only if it is a weak homotopy equivalence (WHE). This will be proved in four cases, showing that a (co)fibration is a WE if and only if it is a WHE. 
@@ -1314,11 +1314,11 @@ Factor $ f : Y \epi X$ into a cofibration $i : Y\mono Z$ followed by a trivial f
 \end{proof}
 
 \begin{proposition}\label{prop:WHEiffWE}
-A map $ f : X \mono Y$ is a WHE if and only if it is a WE.  Thus the weak equivalences $\mathcal{W}$ satisfy the 3-for-2 condition.
+A map $ f : X \ra Y$ is a WE if and only if it is a WHE.  Thus the weak equivalences $\mathcal{W}$ satisfy the 3-for-2 condition.
 \end{proposition}
 \begin{proof}
-Let $ f : X \epi Y$ be a WE and factor it into a trivial cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$.  Then both 
-$i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor it into a cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$. Since  $p$ is then a WHE, as is $f$, it follows that $i$ is as well.  Thus $i$ is also a WE, by lemma \ref{cor:CofWHEtoWE}, hence a trivial fibration. So $f$ is a WE.
+Let $ f : X \ra Y$ be a WE and factor it into a trivial cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$.  Then both 
+$i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor it into a cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\epi Y$. Since  $p$ is then a WHE, as is $f$, it follows that $i$ is as well.  Thus $i$ is also a WE, by lemma \ref{cor:CofWHEtoWE}, hence a trivial cofibration. So $f$ is a WE.
 \end{proof}
 
 We summarize the results to this point in the following.

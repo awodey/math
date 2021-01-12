@@ -1534,7 +1534,7 @@ where $\epsilon_{\delta'} := X^{\delta'} : X^\I \to X$ is the evaluation at the 
 
 \end{definition}
 
-\begin{proposition}\label{prop:comptofill}
+\begin{proposition}\label{prop:comptofillobj}
 Composition implies filling; that is, every cubical set $X$ with composition is fibrant.
 \end{proposition}
 
@@ -2509,14 +2509,218 @@ $\Fib(\VV)$ is the object of fibration structures on $\VV\ra\V$, and its pullbac
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The fibration extension property}\label{sec:FEP}
 
-In the presence of a universal fibration $\UU\ra\U$ as was constructed in section \ref{sec:U}, the fibration extension property is equivalent to the statement that the base object $\U$ is fibrant.  This can be proven from the equivalence extension property (section \ref{sec:EEP}) by a very clever argument due to Coquand employing the reduction of filling to composition (section \ref{sec:composition}).
+In the presence of a universal fibration $\UU\ra\U$ as was constructed in section \ref{sec:U}, the fibration extension property is equivalent to the statement that the base object $\U$ is fibrant.  For Kan simplicial sets, Voevodsky proved this directly using minimal fibrations \cite{VVuniverse}.
+Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. 
+The following argument, also using the equivalence extension property,  is due to Coquand and employs the reduction of filling to composition (section \ref{sec:composition}).
 
-[ .. add the simple proof ... ]
+\begin{proposition}
+The universe $\U$ is fibrant.
+\end{proposition}
+By the reduction of filling to composition (Proposition \ref{prop:comptofillobj}), it suffices to show:
+\begin{lemma}
+The universe $\U$ has composition.
+\end{lemma}
+\begin{proof}
+Consider a composition problem
+\[
+\xymatrix{
+C \ar@{>->}[dd]_{c} \ar[rr]  && \U^\II \ar[d] \\
+&& \U\times \U\ar[d] \\
+Z \ar[rr]  \ar@{..>}[rru]^{k} && \U
+}
+\]
+We claim that the canonical map $\U^\II \to \U\times \U$ factors over $\U\times\U$ through the object $\mathsf{Eq}$ 
+of equivalences, via a map $i$ as indicated below.
+\begin{equation}\label{diag:idtoeq}
+\xymatrix{
+C \ar@{>->}[ddd]_{c} \ar[rr]  && \U^\II \ar[d]^i \\
+&& \mathsf{Eq} \ar[d]  \\
+&& \U\times \U\ar[d] \\
+Z \ar[rr] \ar@{..>}[rruu]^{j}  \ar@{..>}[rru]^{k} && \U
+}
+\end{equation}
+Since the projection $\mathsf{Eq} \to \U$ is a trivial fibration by the equivalence extension property \ref{fillinthereference}, there is a diagonal filler $j$.  Composing gives the required $k$.
 
-This completes our proof of the 3-for-2 property for weak equivalences, and thus the verification of the model structure.
+The claimed map $i$ is usually known as $\mathsf{IdtoEq}: U^\II \ra \mathsf{Eq}$, and is defined by transport. 
+
+[ fill this in ...]
+
+\end{proof}
+
+Finally, for the case of unbiased filling we need the more general form of composition going from one generic point $p : 1\ra\II$ to another $q : 1\ra\II$, rather than from one endpoint to another.
+
+
+[ fill this in ...]
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix:  A left-induced model structure on the Cartesian cubical sets}
+\section*{Appendix 1: Filling from composition, with connections}\label{appendix:comptofillconnection}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+For two points $p, q: 1 \ra \I$, a cubical set $X$ \emph{has composition from $p$ to $q$} if for every object $Z$ and cofibration $c:C\mono Z$ and commutative square 
+\begin{equation}\label{apdiagram:composition1}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]  & X^\I \ar[d]^{\epsilon_p} \\
+Z \ar[r] & X,
+}
+\end{equation}
+there is a diagonal arrow $k : Z \to X\times X$ making both subdiagrams below commute,
+\begin{equation}\label{apdiagram:composition2}
+\xymatrix{
+C \ar@{>->}[dd]_{c} \ar[r]  & X^\I \ar[d]^{\langle \epsilon_p, \epsilon_q\rangle} \\
+& X\times X \ar[d]^{\pi_1} \\
+Z \ar[r] \ar@{..>}[ru]^{k} & X,
+}
+\end{equation}
+where $\epsilon_p : X^\I\to X$ is the ``evaluation at $p$'' map $X^p$, and similarly for $\epsilon_q : X^\I\to X$.  
+
+\begin{proposition}
+In cubical sets with connections, if an object $X$ has composition from $\delta_0$ to $\delta_1$ and back, then $X$ has filling for all trivial cofibrations $c\otimes \delta : B \mono Z\times \I$, where $c : C\mono Z$ is any cofibraiton and $\delta = \delta_0 , \delta_1 : 1\to \I$. %Thus $X$ is fibrant.  The same holds for maps $f: Y\to X$.
+\end{proposition}
+
+%\begin{proof}
+%First, we require a lemma:
+%
+%\begin{lemma}
+%If $X$ has composition, so does $\delta\Rightarrow X$ for both endpoints $\delta : 1 \to \I$.
+%\end{lemma}
+%\begin{proof}
+%We need to show that 
+%\end{proof}
+%
+%\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Filling and Composition}
+
+An object $X$ has filling for all trivial cofibrations  $c\otimes \delta : B \mono Z\times \I$ iff for all cofibrations $c : C \mono Z$ and squares as below there is a diagonal filler
+\[
+\xymatrix{
+ C \ar@{>->}[d]_{c} \ar[r] & X^\II  \ar[d]^{\delta\Rightarrow X} \\
+ Z\ar[r] \ar@{..>}[ru] & X
+}
+\]
+where the Leibniz exponential $\delta\Rightarrow X : X^\II \ra X$ is ``evaluation at the endpoint $\delta: 1 \ra \II$'' (and we require the condition for both endpoints $\delta = \delta_0 , \delta_1$).  Clearly if $X$ has filling then it has composition, since there is then a diagonal filler $k$ making both subdiagrams commute in
+\[
+\xymatrix{
+ C \ar@{>->}[dd]_{c} \ar[r] & X^\II  \ar[d]^{\partial\Rightarrow X} \\
+ 	& X\times X  \ar[d] \\
+ Z\ar[r] \ar@{..>}[ru]^k & X
+}
+\]
+where $(\partial\Rightarrow X) : X^\II \ra X\times X$ is the Leibniz exponential of $X$ by the boundary map $\partial: 1+1 \ra \II$, and we require the condition for both projections $X\times X\ra X$.
+
+Conversely, we can obtain filling from composition as follows: 
+to fill the following open 2-box in $X$:
+\[
+\xymatrix{
+A'&& B'  \\
+\\
+A \ar[uu]^a \ar[rr]_p && B \ar[uu]_b  
+}
+\]
+First make a higher-dimensional composition problem using the connections on the right and left sides: 
+\[
+\xymatrix{
+A' &&& B'  \\
+ & A \ar[lu]_a \ar[r]^p & B \ar[ru]^b & \\
+ & A \ar[ld]_= \ar[r]_p \ar[u]^=  & B \ar[u]_= \ar[rd]^= & \\
+A \ar[uuu]^a \ar[rrr]_p &&&  B  \ar[uuu]_b 
+}
+\]
+Then since $X$ has composition, the (partial) open 3-box has a top face, which is then a filler for the original open 2-box.
+\[
+\xymatrix{
+A' &&& B'  \\
+ & A \ar[lu]_a \ar[r]^p & B \ar[ru]^b & \\
+ & A \ar[ld]_= \ar[r]_p \ar[u]^=  & B \ar[u]_= \ar[rd]^= & \\
+A \ar[uuu]^a \ar[rrr]_p &&&  B  \ar[uuu]_b
+}
+\]
+
+For a general, algebraic proof, first 
+%show that if $X$ has composition, then so does $\delta\Rightarrow X$.
+use the connections to get maps in $\mathcal{E}^\mathbbm{2}$ of the form
+\[
+\xymatrix{
+\delta  & \ar[l]_=\delta \ar[d] \\
+\delta \otimes \delta \ar[u] & i \otimes \delta  \ar[l] 
+}
+\]
+where $i : 1 \ra 1+1$.
+
+Applying the functor $(-)\Rightarrow X$ gives the top square in:
+\[
+\xymatrix{
+\delta \Rightarrow\!X \ar[d]  \ar[r]^= & \delta\Rightarrow\!X \\
+\delta \otimes \delta\Rightarrow\!X  \ar[d]_\cong \ar[r] & i \otimes \delta\Rightarrow\!X   \ar[u] \\
+\delta\Rightarrow\!(\delta\Rightarrow\!X)   \ar[r] & \delta\Rightarrow\!(i\Rightarrow\!X)  \ar[u]_\cong \\
+}
+\]
+while the bottom one is by the $\otimes\dashv\,\Rightarrow$ adjunction.
+
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Filling and Composition}
+
+So for any cofibration $c : C \mono Z$ and filling problem
+\[
+\xymatrix{
+C \ar@{>->}[d]_c \ar[r] & X^\II \ar[d]^{\delta\Rightarrow\!X} \\
+Z \ar[r] & X
+}
+\]
+we can extend on the right as follows.
+\[
+\xymatrix{
+C \ar@{>->}[d]_c \ar[r] & X^\II \ar[d]^{\delta\Rightarrow\!X}  \ar[r] \ar@/^1pc/[rrrrr]^{=} & \cdot \ar[d]^{\delta\Rightarrow\!(\delta\Rightarrow\!X)}  \ar[rr] 
+	&& \cdot \ar[d]^{\delta\Rightarrow\!(i\Rightarrow\!X)}  \ar[rr]  && X^\II \ar[d]^{\delta\Rightarrow\!X}  \\
+Z \ar[r] & X  \ar[r] \ar@/_1pc/[rrrrr]_{=} & \cdot  \ar[rr] && \cdot  \ar[rr] && X
+}
+\]
+
+Transposing the left three squares yields
+\[
+\xymatrix{
+\cdot \ar@{>->}[d]_{c\otimes \delta} \ar[rr] &&\cdot \ar@{>->}[d]_{(\delta\Rightarrow\!X)\otimes \delta} \ar[r] & X^\II \ar[d]^{\delta\Rightarrow\!X}  \ar[rr] && X^{1+1} \ar[d]^{i\Rightarrow\!X}   \\
+\cdot \ar[rr] && \cdot \ar[r] & X  \ar[rr]_= && X  
+}
+\]
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Filling and Composition}
+which has a diagonal filler by composition, since $c\otimes \delta$ is also a cofibration.
+\[
+\xymatrix{
+\cdot \ar@{>->}[d]_{c\otimes \delta} \ar[rr] &&\cdot \ar@{>->}[d]_{(\delta\Rightarrow\!X)\otimes \delta} \ar[r] &  X^\II \ar[d]^{\delta\Rightarrow\!X}  \ar[rr] && X^{1+1} \ar[d]^{i\Rightarrow\!X}   \\
+\cdot \ar[rr] \ar@{..>}[rrrrru]&& \cdot \ar[r] &  X  \ar[rr]_= && X  
+}
+\]
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Filling and Composition}
+
+Transposing back thus gives a diagonal filler
+\[
+\xymatrix{
+C \ar@{>->}[d]_c \ar[r] & X^\II \ar[d]^{\delta\Rightarrow\!X}  \ar[r] \ar@/^1pc/[rrrrr]^{=} & \cdot \ar[d]^{\delta\Rightarrow\!(\delta\Rightarrow\!X)}  \ar[rr] 
+	&& \cdot \ar[d]^{\delta\Rightarrow\!(i\Rightarrow\!X)}  \ar[rr]  && X^\II \ar[d]^{\delta\Rightarrow\!X}  \\
+Z \ar[r] \ar@{..>}[rrrru] & X  \ar[r] \ar@/_1pc/[rrrrr]_{=} & \cdot  \ar[rr] && \cdot  \ar[rr] && X
+}
+\] 
+which provides a filler for the original problem
+\[
+\xymatrix{
+C \ar@{>->}[d]_c \ar[r] & X^\II \ar[d]^{\delta\Rightarrow\!X} \\
+Z \ar[r] \ar@{..>}[ru] & X
+}
+\]
+\qed
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Appendix 2:  A left-induced model structure on the Cartesian cubical sets}
 
 We make use of the Sattler model structure \cite{sattler} on the \emph{Dedekind cubical sets} $\widehat\D = \psh{\D}$, where $\D$ is the category of \emph{Dedekind cubes}, defined as the Lawvere theory of distributive lattices.  The unique product-preserving functor 
 \[
@@ -2620,48 +2824,9 @@ where $i_! : \widehat\C \to\widehat\D$ is the left adjoint of precomposition alo
 \end{document}
 %%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix 1: Filling from composition with connections}\label{appendix:comptofillconnection}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-For points $p, q: 1 \ra \I$, we will say that a cubical set $X$ \emph{has composition (from $p$ to $q$)} if for every object $Z$ and cofibration $c:C\mono Z$ and commutative square 
-\begin{equation}\label{apdiagram:composition1}
-\xymatrix{
-C \ar@{>->}[d]_{c} \ar[r]  & X^\I \ar[d]^{\epsilon_p} \\
-Z \ar[r] & X,
-}
-\end{equation}
-there is a diagonal arrow $k : Z \to X\times X$ making both subdiagrams below commute,
-\begin{equation}\label{apdiagram:composition2}
-\xymatrix{
-C \ar@{>->}[dd]_{c} \ar[r]  & X^\I \ar[d]^{\langle \epsilon_p, \epsilon_q\rangle} \\
-& X\times X \ar[d]^{\pi_1} \\
-Z \ar[r] \ar@{..>}[ru]^{k} & X,
-}
-\end{equation}
-where $\epsilon_p : X^\I\to X$ is the ``evaluation at $p$'' map $X^p$.  
-
-\begin{proposition}
-Working in cubical sets with connections, if an object $X$ has composition (from $\delta_0$ to $\delta_1$ and back), then $X$ has Kan filling for all trivial cofibrations $c\otimes \delta : B \mono Z\times \I$, for all cofibrations $c : C\mono Z$ and $\delta = \delta_0 , \delta_1 : 1\to \I$. Thus $X$ is fibrant.  The same holds for maps $f: Y\to X$.
-\end{proposition}
-\begin{proof}
-We will only show the case of an object $X$; the case of a map $f: Y\to X$ is entirely analogous. 
-First, we require a lemma:
-
-\begin{lemma}
-If $X$ has composition, so does $\delta\Rightarrow X$ for both endpoints $\delta : 1 \to \I$.
-\end{lemma}
-\begin{proof}
-We need to show that 
-\end{proof}
-
-
-
-\end{proof}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix 2: Logical specification of filling}\label{appendix:logicalspec}
+\section*{Appendix: Logical specification of filling}\label{appendix:logicalspec}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
