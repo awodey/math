@@ -2,7 +2,7 @@
 % Model structure on the cartesian cubes
 % Begun March 2018
 %%
-\documentclass[11pt]{article}
+\documentclass[12pt]{article}
 \usepackage{amsmath}
 \usepackage{amssymb,latexsym}
 \usepackage{amsthm}
@@ -535,7 +535,7 @@ in which $f^*c$ is a cofibration, because these are preserved by pullbacks.  Thu
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Partial path lifting (biased version)}\label{sec:biasedfibration}
+\section{Partial box filling (biased)}\label{sec:biasedfibration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Our next goal is the specification of a second weak factorization system (the \emph{fibration weak factorization system}) with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the fibrations. 
@@ -723,7 +723,7 @@ j(u^*c \otimes \delta_\epsilon,x(u\times\I)') = j(c,x) (u\times\I).
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Unbiased partial path-lifting}\label{sec:unbiasedfibration}
+\section{Partial box filling (unbiased)}\label{sec:unbiasedfibration}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Rather than building a weak factorization system based on the foregoing notion of (biased) fibration (as is done in \cite{GG,OP}), we shall first eliminate the ``bias'' on a choice of endpoint $\delta_\epsilon : 1 \to \I$, expressed by the indexing $\epsilon = 0,1$.  This will have the effect of adding more trivial cofibrations, and thus more weak equivalences, to our model structure. Consider first the simple path-lifting condition, which is a special case of \eqref{diagram:biasedfillers} with $c =\, ! : 0\mono 1$, since $!\otimes\delta_\epsilon = \delta_\epsilon$:
@@ -1477,7 +1477,7 @@ Z \ar[r] \ar@{..>}[ru]^{k} & X,
 }
 \end{equation}
 
-If $X$ is fibrant in the \emph{biased} sense of section \ref{sec:biasedfibration}, then $X$ clearly has composition from $\delta_0$ to $\delta_1$ (and back), since the outer rectangle then has a diagonal filler (as does the corresponding one with $\pi_2$ for $\pi_1$).   In the case where the category of cubes is assumed to have connections, one can also show the converse, that having composition implies diagonal filling for all such squares \eqref{diagram:coposition1}.  Logical proofs of this fact can be found in \cite{CCHM,OP}; a diagrammatic proof is given in Appendix 1.
+If $X$ is fibrant in the \emph{biased} sense of section \ref{sec:biasedfibration}, then $X$ clearly has composition from $\delta_0$ to $\delta_1$ (and back), since the outer rectangle then has a diagonal filler (as does the corresponding one with $\pi_2$ for $\pi_1$).   In the case where the category of cubes is assumed to have connections, one can also show the converse, that having composition implies diagonal filling for all such squares \eqref{diagram:composition1}; logical proofs of this fact can be found in \cite{CCHM,OP}, and a diagrammatic proof is given in Appendix 1.
 
 If $X$ is fibrant in the \emph{unbiased} sense of section \ref{sec:unbiasedfibration}, with the generic point $\delta : 1\ra \I$ over $\I$, then $X$  will have composition over $\I$ from $\delta$ to either of $\delta_0, \delta_1$, for the same reason as before: the map $(\delta\!\Rightarrow\!X) = X^\delta : X^\I \to X$ is a trivial fibration over $\I$, by the definition of fibrancy. In order to arrive at a property equivalent to unbiased filling, we shall use a generic form of composition from $\delta$ to a second generic point $\delta'$.  This is obtained by pulling back along the (say, second) projection $\pi : \I\times\I \ra \I$ to work in $\cSet/(\I\times\I)$, where in addition to $\delta, \delta_0, \delta_1$ we now also have a point $\delta' : 1 \ra \I$, given by the additional diagonal map over $\I\times \I$,
 \begin{equation}\label{diagram:deltaprime}
@@ -1511,7 +1511,8 @@ X \ar[d]_{\eta_X} \ar@<-.8ex>[r]_{g}  \ar@<.8ex>[r]^{f} & Y \ar[d]^{\eta_Y} \\
 X^\Delta \ar@<-.8ex>[r]_{g^\Delta}  \ar@<.8ex>[r]^{f^\Delta} & Y^\Delta.
 }
 \end{equation}
-Then $\eta_Y f = \eta_Y g$ iff $f^\Delta \eta_X= g^\Delta \eta_X : X\ra Y^\Delta$ iff $\Delta^*f = \Delta^*g : \Delta^*X \ra\Delta^*Y$, by transposition, since $Y^\Delta = \Delta_*\Delta^* Y$.
+Then $\eta_Y f = \eta_Y g$ iff $f^\Delta \eta_X= g^\Delta \eta_X : X\ra Y^\Delta$ iff $\Delta^*f = \Delta^*g : \Delta^*X \ra\Delta^*Y$, by transposition, since $Y^\Delta = \Delta_*\Delta^* Y$. 
+% (A dual condition involving the counit $X\times \Delta \ra X$ also holds.)
 
 We can now define what it means for an object $X$ to have (unbiased) composition by saying that it has composition, in the sense of \eqref{diagram:composition2}, from $\delta$ to $\delta'$ over $\I\times \I$, and that, moreover, the two resulting maps $k_1, k_2 : Z\rightrightarrows X$ are coequalized by the unit $\eta_X : X\ra X^\Delta$.  We reformulate this condition equivalently as follows (cf.\ \cite{Coquand,ABCetc.}).
 
@@ -1702,7 +1703,7 @@ Y^\I \ar@/_4ex/ [rdd]_{f^\I} \ar[rd]^{\delta_1\Rightarrow{f}} \ar@/^4ex/ [rrd]^{
 \end{equation}
 But note that now the pullback object $X^\I \times_{X} Y $ is a different one, with fiber over $p : \I \ra X$ being the fiber of $f$ over $p\delta_1$ rather than over $p\delta_0$.  Let us call these two different pulled-back maps $f_0:Y_0\ra X^\I$ and $f_1:Y_1 \ra X^\I$ and write $f^\epsilon := (\delta_\epsilon\Rightarrow{f})$ for $\epsilon = 0,1$.  There is then a commutative diagram,
 %
-\begin{equation}\label{diagram:composition1}
+\begin{equation}\label{diagram:composition3}
 \xymatrix{
 Y^\I \ar[d]_{f^0} \ar[rd]|{f^\I} \ar[r]^{f^1} & Y_1 \ar[d]^{f_1}\\
 Y_0 \ar[r]_{f_0} & X^\I\,,
@@ -1710,7 +1711,7 @@ Y_0 \ar[r]_{f_0} & X^\I\,,
 \end{equation}
 %
 We will say that $f:Y\ra X$ \emph{has composition from 0 to 1} if for every cofibration $c : C\mono Z$ and maps $y_0 : Z\ra Y_0$ and $y : C\ra Y^\I$ making the square on the left below commute, there is a map $y_1 : Z\ra Y_1$ making the following commute.
-\begin{equation}\label{diagram:composition2}
+\begin{equation}\label{diagram:composition4}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[r]^{y} & Y^\I \ar[d]_>>>>>>>{f^0} \ar[r]^{f^1} & Y_1 \ar[d]^{f_1}\\
 Z \ar@{..>}[rru]_>>>>>>{y_1} \ar[r]_{y_0} & Y_0 \ar[r]_{f_0} & X^\I
@@ -1743,7 +1744,7 @@ Composition implies filling for maps; that is, every $f : Y\ra X$ with compositi
 \end{proposition}
 
 \begin{proof}
-Analogous to the proof of Proposition \ref{prop:comptofill}.
+Analogous to the proof of Proposition \ref{prop:comptofillobj}.
 \end{proof}
 
 \begin{remark}
@@ -2541,7 +2542,7 @@ Z \ar[rr] \ar@{..>}[rruu]^{j}  \ar@{..>}[rru]^{k} && \U
 \end{equation}
 Since the projection $\mathsf{Eq} \to \U$ is a trivial fibration by the equivalence extension property \ref{fillinthereference}, there is a diagonal filler $j$.  Composing gives the required $k$.
 
-The claimed map $i$ is usually known as $\mathsf{IdtoEq}: U^\II \ra \mathsf{Eq}$, and is defined by transport. 
+The claimed map $i$ is usually known as $\mathsf{IdtoEq}: \U^\II \ra \mathsf{Eq}$, and is defined by transport. 
 
 [ fill this in ...]
 
@@ -2558,7 +2559,7 @@ Finally, for the case of unbiased filling we need the more general form of compo
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 For two points $p, q: 1 \ra \I$, a cubical set $X$ \emph{has composition from $p$ to $q$} if for every object $Z$ and cofibration $c:C\mono Z$ and commutative square 
-\begin{equation}\label{apdiagram:composition1}
+\begin{equation}\label{apdiagram:composition3}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[r]  & X^\I \ar[d]^{\epsilon_p} \\
 Z \ar[r] & X,
