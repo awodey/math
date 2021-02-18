@@ -45,7 +45,8 @@
 \newcommand{\hook}{\ensuremath{\hookrightarrow}}
 \newcommand{\mono}{\ensuremath{\rightarrowtail}}
 \newcommand{\ra}{\ensuremath{\rightarrow}}
-%\renewcommand{\to}{\ensuremath{\rightarrow}}
+\newcommand{\cof}{\ensuremath{\rightarrowtail}}
+\newcommand{\fib}{\ensuremath{\epi}}
 
 
 % cubical sets
@@ -2510,9 +2511,7 @@ $\Fib(\VV)$ is the object of fibration structures on $\VV\ra\V$, and its pullbac
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The fibration extension property}\label{sec:FEP}
 
-In the presence of a universal fibration $\UU\ra\U$ as was constructed in section \ref{sec:U}, the fibration extension property is equivalent to the statement that the base object $\U$ is fibrant.  For Kan simplicial sets, Voevodsky proved this directly using minimal fibrations \cite{VVuniverse}.
-Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. 
-The following argument, also using the equivalence extension property,  is due to Coquand and employs the reduction of filling to composition (section \ref{sec:composition}).
+In the presence of a universal fibration $\UU\ra\U$ as was constructed in section \ref{sec:U}, the fibration extension property is closely related to the statement that the base object $\U$ is fibrant (see below).  For Kan simplicial sets, Voevodsky proved this directly using minimal fibrations \cite{VVuniverse}.  Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. The following argument, also using the equivalence extension property,  is due to Coquand and employs the reduction of filling to composition (section \ref{sec:composition}).
 
 \begin{proposition}
 The universe $\U$ is fibrant.
@@ -2542,7 +2541,7 @@ Z \ar[rr] \ar@{..>}[rruu]^{j}  \ar@{..>}[rru]^{k} && \U
 \end{equation}
 Since the projection $\mathsf{Eq} \to \U$ is a trivial fibration by the equivalence extension property \ref{fillinthereference}, there is a diagonal filler $j$.  Composing gives the required $k$.
 
-The claimed map $i$ is usually known as $\mathsf{IdtoEq}: \U^\II \ra \mathsf{Eq}$, and is defined by transport. 
+The claimed map $i$ is usually known as $\mathsf{IdtoEq}: \U^\II \ra \mathsf{Eq}$, and is defined in type theory by transport. 
 
 [ fill this in ...]
 
@@ -2552,6 +2551,130 @@ Finally, for the case of unbiased filling we need the more general form of compo
 
 
 [ fill this in ...]
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{The fibration extension property}\label{sec:FEP}
+
+Returning to the exact relation between the fibration extension property (Definition \ref{def:fibextreplace}) and the condition that the base object $\U$ is fibrant, we can easily see that the latter implies the former.  Indeed, let $t : X\cof X'$ be a trivial cofibration and $Y \fib X$ a fibration.  To extend $Y$ along $t$, take a classifying map $y : X \to \U$, so that $Y \cong y^*\UU$ over $X$. If $\U$ is fibrant then we can extend $y$ along $t : X\cof X'$ to get $y' : X' \to \U$ with $y = y'\circ t$.  The pullback $Y' = (y')^*\UU \fib X'$ is then a fibration such that $t^*Y' \cong t^*(y')^*\UU\cong y^*\UU \cong Y$ over $X$. 
+
+Conversely, we remark that the FEP implies the fibrancy of $\U$, given the following ``alignment'' lemma, which will be required below (cf.(2') of~\cite{Shu:UAERP}).
+
+\begin{lemma}\label{lem:alignment}
+Given a fibration $Y\epi X$ with classifying map $y : X \to \U$, a cofibration $t : X\cof X'$, and a (small) fibration $Y'\epi X'$ with $Y \cong t^*Y'$ over $X$, there is a classifying map $y' : X' \to \U$ for $Y'$ with $y'\circ t = y$.
+\[
+\xymatrix{
+Y \ar@{->>}[dd] \ar[rd] \ar[rr] && \UU \ar@{->>}[dd] \\
+& Y' \ar@{->>}[dd] \ar@{..>}[ru] & \\
+X  \ar@{>->}[rd]_t \ar[rr]_<<<<<<<<{y}  && \U  \\
+& X' \ar@{..>}[ru]_{y'} &
+}
+\]
+\end{lemma}
+\begin{proof}
+This is routine using Yoneda and the fact that cofibrations have decidable monos as components.  In more detail, since $Y'\epi X'$ is small, there is a classifying map $z : X' \to \U$,  perhaps not commuting with $t$. Nonetheless we can use $z$ to define the desired $y' : X' \to \U$ objectwise as follows: Take any map from a representable $x': \I^n \to X'$ and consider whether it factors through $t$, say as $x' = t\circ x$ for some (necessarily unique) $x: \I^n \to X$.  If $x'$ does factor, set  $y'\circ x' = y\circ x$; if not, set $y'\circ x' = z\circ x'$.  This specification is clearly natural in $I^n$, so it defines $y': X'\to\U$, and the specification ensures that $y'\circ t = y$, and that the pullback of $\UU$ along $y'$ is the same as that along $z$, namely $Y'\fib X'$.
+\end{proof}
+
+We shall prove that $\U$ is fibrant using the equivalence extension property (section \ref{sec:EEP}).  This approach was first used in \cite{CCHM} via a different argument employing the reduction of filling to composition, which we do not require.
+
+\begin{proposition}
+The base $\U$ of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:U} is  fibrant.
+\end{proposition}
+
+\begin{proof}
+To show that $\U$ is fibrant, we need to solve the following filling problem for an arbitrary cofibration $c:C \cof Z$, thus showing that $\U^{\delta_0} : \U^\I \to \U$ is a trivial cofibration (for, say, the point $\delta_0 :1\to \I $).
+\begin{equation}\label{diag:Ufib1}
+\xymatrix{
+C \ar@{>->}[dd]_c \ar[rr]^{\tilde{a}} && \U^\I \ar[dd]^{\U^{\delta_0}} \\
+&& \\
+Z  \ar@{..>}[rruu] \ar[rr]_{b}  && \U  \\
+}
+\end{equation}
+Transposing $\tilde{a}$ to $a : C\times \I \to \U$ and taking pullbacks of $\UU\fib \U$ along $a$ and $b$ to get  corresponding fibrations $A\fib C\times \I$ and $B\fib Z$, we have the following equivalent condition.  Letting $$C_0 : C\cong C\times1 \to C\times \I$$ be the evident inclusion of the $0$-end of the cylinder, let $A_0 = (C_0)^*A \fib C$ be the ``slice of $A$ over $C_0$''.  We then have $c^*B \cong A_0$ over $C$ by the outer square of \eqref{diag:Ufib1}.
+\[
+\xymatrix{
+&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  A \ar@{->>}[dd] \\
+&& && \\
+&& \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd] C\times\I \\
+B \ar@{->>}[dd] &&&& \\
+&&&& \\
+Z \ar[rrr]_{Z_0} &&& Z\times\I &
+}
+\]
+The diagonal filler in \eqref{diag:Ufib1} corresponds, again by transposition and pullback of $\UU\fib\U$, to a fibration $D\fib Z\times \I$ with $(c\times \I)^*D \cong A$ over $C\times \I$
+ and $(Z_0)^*D \cong B$ over $Z$, as indicated below.
+\[
+\xymatrix{
+&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] \\
+&& && \\
+&& \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd]^{c\times\I} C\times\I \\
+B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] & \\
+&&&& \\
+Z \ar[rrr]_{Z_0} &&& Z\times\I &
+}
+\]
+We construct $D\fib Z\times \I$ by the equivalence extension property as follows.  Apply the functor $(-)\times\I$ to the left (pullback) face of the above cube to get the following with a new pullback square on the right, with the indicated fibrations.
+\begin{equation}\label{diag:Ufib2}
+\begin{gathered}
+\xymatrix{
+&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] &&  \ar@{->>}[lldd] A_0\times\I \ar[lddd]  \\
+&& && &&\\
+&& \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd]^{c\times\I} C\times\I && \\
+B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] && \ar@{->>}[lldd] B\times\I &\\
+&&&& &&\\
+Z \ar[rrr]_{Z_0} &&& Z\times\I &&&
+}
+\end{gathered}
+\end{equation}
+We claim there is a weak equivalence $e:A \simeq A_0\times \I$ over $C\times \I$, from which follow  by the EEP:
+
+\begin{enumerate}
+\item[(i)] a fibration $D\fib Z\times \I$ with $(c\times\I)^*D \cong A$ over $C\times\I$, and 
+\item[(ii)] a weak equivalence $f:D\simeq B\times\I$ over $Z\times \I$ with $(c\times\I)^*f \cong e$ over $C\times\I$. 
+\end{enumerate}
+It then remains only to show that $B\cong (Z_0)^*D$ over $Z$.
+
+To get $e$, consider the following square, in which the top map is $A_0\times \delta_0$ (after $A_0\cong A_0\times 1$) and the others are those from the previous diagram.
+\begin{equation}\label{diag:Ufibn}
+\xymatrix{
+A_0 \ar@{>->}[dd] \ar@{>->}[rr] && A_0\times\I \ar@{>>}[dd] \\
+&& \\
+A  \ar@{>>}[rr] &&  C\times\I 
+}
+\end{equation}
+The square is easily seen to commute, and the maps with $A_0$ as domain are trivial cofibrations by Frobenius (proposition \ref{prop:Frobenius}), because each is the pullback of a trivial cofibration along a fibration.
+Applying a simple lemma (given below as \ref{lem:simple}) gives the required weak equivalence $e:A \simeq A_0\times \I$ over $C\times \I$.  
+
+To see that $B\cong (Z_0)^*D$ over $Z$, recall from the proof of the EEP that the map $f:B\cong (Z_0)^*D$ is the pushforward of  $e:A \simeq A_0\times \I$ along the cofibration $d_0\times\I :A_0\times\I \cof B\times\I$, calling the evident map $d_0:A_0\cof B$ in \eqref{diag:Ufib2}.  That is, by construction $f = (d_0\times\I)_*\,e$.  We can apply the Beck-Chevalley condition for the pushforward using the pullback square on the left below.
+\begin{equation}
+\xymatrix{
+A_0 \ar@{>->}[dd] \ar@{>->}[rr] \pbcorner && A_0\times\I \ar@{>>}[dd] && \ar[ll]_e A\\
+&& \\
+B  \ar@{>->}[rr]  &&  B\times\I  && \ar[ll]^f D
+}
+\end{equation}
+Since the pullback of $e$ along the top of the square is the identity, the same is true (up to isomorophism) for the pullback of $f$ along the bottom.
+
+An application of the alignment lemma \ref{lem:alignment} completes the proof.
+\end{proof}
+
+\begin{lemma}\label{lem:simple}
+Suppose the following square commutes and the indicated cofibrations are trivial.
+\begin{equation}\label{diag:standard1}
+\xymatrix{
+A \ar@{>->}[dd] \ar@{>->}[rr] && C \ar@{>>}[dd] \\
+&& \\
+B  \ar@{>>}[rr] &&  D \\
+}
+\end{equation}
+Then there is a weak equivalence $e : B \simeq C$ over $D$ (and under $A$).
+\end{lemma}
+\begin{proof}
+Use the fact that any two diagonal fillers are homotopic to get a homotopy equivalence $e : B \simeq C$ filling the square.
+\end{proof}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2821,9 +2944,9 @@ where $i_! : \widehat\C \to\widehat\D$ is the left adjoint of precomposition alo
 
 
 
-%%%%
+%%%
 \end{document}
-%%%%
+%%%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
