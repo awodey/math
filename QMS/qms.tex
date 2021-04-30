@@ -2111,12 +2111,7 @@ Therefore $g\circ f = \tilde{\varepsilon} = 1$, so $\psi\circ\varphi = \I^*g\cir
 %
 \end{proof}
 
-\section{The equivalence extension property}\label{sec:EEP}
-
-%The equivalence extension property (EEP) will be seen to be equivalent, in the presence of a universe, to the univalence property of the universe.  We will show the EEP by using a variation on the original argument by Voevodsky.  
-%
-[ ... as usual ... ] 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The universe}\label{sec:U}
 
 In this section, we define a universal small fibration $\dot{\U}\to \U$.  In the next section we shall use the EEP to show that $\U$ is a fibrant object.
@@ -2508,6 +2503,171 @@ $\Fib(\VV)$ is the object of fibration structures on $\VV\ra\V$, and its pullbac
 
 %\subsection{Classifying equivariant fibrations}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The equivalence extension property}\label{sec:EEP}
+
+The equivalence extension property (EEP) is equivalent to the \emph{univalence} of the universal fibration $\UU\ra\U$  constructed in section \ref{sec:U}.  Our proof of the EEP is a reformulation of a type-theoretic argument due to Coquand \cite{CCHM}.  See \cite{sattler} for another reformulation.
+%Of course, we must avoid the use of the general 3-for-2 condition for weak equivalences.  
+
+We first recall some basic facts and make some simple observations. For any map $f :X\to Y$, recall the \emph{pathspace factorization} $f = t\circ s$ indicated below.
+%\begin{equation}\label{diag:pathspace factorization}
+%\xymatrix{
+%X \ar[r]^-s \ar[dd]_= & f^*(Y^\I)  \ar[d] \ar[rr] \pbcorner && Y^\I \ar[d] \ar[rd] & \\
+%& X\times Y \ar[d] \ar[rr]  \pbcorner && \ar[d]^{p_1} Y\times Y \ar[r]_-{p_2}& Y\\
+%X \ar[r]_= & X \ar[rr]_f  && Y &\\
+%}
+%\end{equation}
+\begin{equation}\label{diag:pathspace factorization}
+\xymatrix{
+X \ar@/_1.5pc/[dd]_= \ar[d]^s \ar[rr]^f \pbcorner && Y \ar[d]_r \ar[rd]^=\\
+P_f  \ar[d]^{p_f} \ar[rr]^{p_0^*f}  \pbcorner && Y^\I \ar[d]_{p_0} \ar[r]^-{p_1} & Y \\
+X \ar[rr]_f  &&  Y &
+}
+\end{equation}
+Here $p_0, p_1$ are the evaluations $Y^{\delta_{0}}, Y^{\delta_{1}}$ at the endpoints $\delta_0, \delta_1 : 1\to\I$, and let $r:= Y^!$ for $! : \I\to 1$.   Then let $P_f:= f^*(Y^\I)$ and $p_f : f^*p_0$.  Let $s:= f^*r : X\to P_f$ (over $X$), and $t:= p_1\circ p_0^*f : P_f \to Y$, the horizontal composite across the middle of the diagram. 
+
+We make the following well-known observations.
+\begin{enumerate}
+\item If $f:X\to Y$ is over a base $Z$, then the factorization $t\circ s:X\to P_f \to Y$ is stable under pullback along any map $g : Z' \to Z$, in the sense that $g^*P_f = P_{g^*f} : g^*X \to g^* Y$, and similarly for $g^*s$ and $g^*t$.  Note that in this case we form the pathspace $Y^\I$ as an exponential in the slice category over $Z$.
+
+\item The retraction $p_0\circ r = 1_Y$ pulls back along $f$ to a retraction $p_f \circ s =1_X$.
+
+\item If $Y$ is fibrant (either as an object, or over a base $Y\to Z$), then $p_0 : Y^\I \to Y$ is a trivial fibration (as is $p_1$).  In that case, its pullback $p_f : P_f \to X$ is also a trivial fibration.
+
+\item If $X$ and $Y$ are both fibrant, then $t= p_1\circ p_0^*f : P_f \to Y$ is a fibration.  This can be seen by factoring the maps $p_0, p_1 :Y^\I \rightrightarrows  Y$ through the product projections as $\pi_0\circ p, \pi_1\circ p : Y^\I \to Y\times Y \rightrightarrows Y$, and then interpolating the pullback along the map $(f,1_X) : X\times Y\to Y\times Y$ into \eqref{diag:pathspace factorization} as indicated below.
+\begin{equation}\label{diag:pathspace factorization2}
+\xymatrix{
+& X \ar[d]^s \ar[rr]^f \pbcorner && Y \ar[d]_r \\
+& \ar[ld]_t P_f  \ar[d]^{p'} \ar[rr]^{p_0^*f} \pbcorner && Y^\I \ar[d]_{p} \ar[rd]^{p_1}\\
+Y & \ar[l]^-{\pi'_1} X\times Y\ar[d]^-{\pi'_0} \ar[rr]_{(f,1_Y)} \pbcorner  &&  Y\times Y \ar[d]_{\pi_0} \ar[r]_-{\pi_1} & Y \\
+& X \ar[rr]_f  &&  Y &
+}
+\end{equation}
+The second factor $t = p_1\circ p_0^*f : P_f \to Y$ now appears also as $\pi_1\circ(f,1_Y)\circ p'$, which is $p': P_f \to X\times Y$ followed by the second projection $\pi'_1 : X\times Y \to Y$ (which is not a pullback). But if $Y$ is fibrant, then $p : Y^\I \to Y\times Y$ is a fibration, and then so is $p'$. And if $X$ is fibrant, then the projection $\pi'_1:X\times Y \to Y$ is a fibration. Thus in this case, $t = \pi'_1\circ p' : P_f \to Y$ is a fibration, as claimed.
+
+\item Summarizing (1)-(4), for any map $f : X\to Y$, we have a stable factorization $f = t\circ s : X\to P_f \to Y$, in which $s$ has a retraction $p_f$, which is a trivial fibration when $Y$ is fibrant, and $t$ is a fibration when both $X$ and $Y$ are fibrant.  \begin{equation}\label{diag:pathspace factorization3}
+\xymatrix{
+X \ar[r]^s \ar[rd]_f & \ar@{.>}@/_1.5pc/[l]_{p_f} P_f \ar[d]^t \\
+& Y
+}
+\end{equation}Note that the retraction $p_f : P_f \to X$ is \emph{not} over $Y$.
+\end{enumerate}
+
+The following lemma will also be needed. Note that it concerns only the cofibration weak factorization system studied in section \ref{sec:cofibrations}.
+
+\begin{lemma}\label{lemma:etaTF}
+Let $p: E \epi B$ be a trivial fibration and $c : C\mono B$ a cofibration.  Then the unit $\eta:E \to c_*c^*E$ of the base change $c^*\dashv c_*$ along $c$ is a trivial fibration.
+\end{lemma}
+
+\begin{proof}
+The map $\eta:E \to c_*c^*E$ is the pullback-hom $c\!\Rightarrow\! p$, as is easily checked.
+By lemma \ref{lemma:Leibniz}, for any cofibration $a : A \mono Z$ we have the equivalence of diagonal filling conditions,
+\[
+a \pitchfork c\!\Rightarrow\!p  \quad\text{iff}\quad a\!\otimes\!c \pitchfork p.
+\]
+But $a\otimes c$ is a cofibration by axiom (C6), which says that cofibrations are closed under pushout-products.  So $a\otimes c \pitchfork p$ indeed holds, since $p$ is a trivial fibration.
+\end{proof}
+
+\begin{proposition}[EEP]
+Weak equivalences extended along cofibrations in the following sense: given a cofibration $c:C' \mono C$ and fibrations $A'\epi C'$ and $B\epi C$, and a weak equivalence $w':A' \simeq c^*B$ over $C'$,
+\begin{equation}\label{diag:EEP}
+\xymatrix{
+A' \ar@{->>}[dd] \ar[rd]_{\sim}^{w'} \ar@{..>}[rr] && A \ar@{..>>}[dd] \ar@{..>}[rd]_{\sim}^{w} \\
+& c^*B \ar@{->>}[ld] \ar[rr]  && B \ar@{->>}[ld] \\
+C' \ar@{>->}[rr]_c && C
+}
+\end{equation}
+there is a fibration $A\epi C$ and a weak equivalence $w: A \simeq B$ over $C$ that pulls back along $c:C' \mono C$ to $w'$, so that $c^*w = w'$.
+
+\end{proposition}
+%
+\begin{proof}
+Call the given fibration $q:B\to C$ and let $b:=  q^*c : c^*B \to B$ be the indicated pullback, which is thus also a cofibration. Let $w := b_*w' : A\to B$ be the pushforward of $w'$ along $b$.  Composing with $q$ gives the map $p:= q\circ w:A\to C$.  Since $b$ is monic, we indeed have $b^*w = w'$, thus filling in all the dotted arrows in \eqref{diag:EEP}.  Note moreover that $c^*w =  b^*w = w'$, as required. It remains to show that $p:A\to C$ is a fibration and $w : A\to B$ is a weak equivalence.   
+\begin{equation}\label{diag:EEPfactored}
+\xymatrix{
+A' \ar@{->>}[dddd] \ar[rrdd]_{\sim}^{w'} \ar@{>->}[rrrr] && && A \ar[dddd]_>>>>>>>>>>>>p \ar[rrdd]^{w} \ar[rr]^s && \ar@{.>}@/_1.5pc/[ll]_{p_w} P_w \ar[dd]^t \\
+\\
+&& c^*B \ar@{->>}[lldd] \ar@{>->}[rrrr]_<<<<<<<<<<b  &&&& B \ar@{->>}[lldd]^q  \\
+\\
+C' \ar@{>->}[rrrr]_c &&&& C &&
+}
+\end{equation}
+Let us write $p':= c^*p : A' \to C'$ and $B' := c^*B$ and $q':= c^*q$.
+Now let $w=t\circ s$ be the pathspace factorization \eqref{diag:pathspace factorization} of $w$, as a map over $C$.  Since $q:B \to C$ is a fibration, by the foregoing remarks on pathspace factorizations, we know that $s : A\to P_w$ has a retraction $p_w : P_w \to A$ which is a trivial fibration.  The retraction $p_w$ is a map over $C$, but not over $B$.  
+
+The pathspace factorization $w=t\circ s : A \to P_w \to B$ is stable under pullback along $c$, providing a pathspace factorization $w'=t'\circ s' : A' \to P_{w'} \to B'$ over $C'$.  Since both $p'$ and $q'$ are fibrations, $s' : A' \to P_{w'}$ has a retract $p_{w'}: P_{w'} \to A'$ that is a trivial fibration, and now $t' : P_{w'} \to B'$ is a fibration, since $q' : B' \to C'$ is a fibration.
+\begin{equation}\label{diag:EEPfactored2}
+\xymatrix{
+A' \ar@{->>}[dddd]_{p'} \ar[rrdd]_{\sim}^{w'}  \ar[rr]^{s'} && \ar@{.>>}@/_1.5pc/[ll]_{p_{w'}} P_{w'} 
+	\ar@{->>}[dd]^{t'} \\
+\\
+&& B' \ar@{->>}[lldd]^{q'} \\
+\\
+C' &&
+}
+\end{equation}
+Thus the composite $q'\circ t' : P_{w'} \to B' \to C'$ is a fibration and therefore, by the retraction (over $C'$) with the trivial fibration $p_{w'}$, we have that $s' : A' \to P_{w'}$ is a weak equivalence, by 3-for-2 for weak equivalences between fibrations.  For the same reason, $t'$ is then a weak equivalence, and therefore a trivial fibration.
+
+Since $t' = c^*t = b^*t$ is a trivial fibration, its pushforward $b_*b^*t$ along $b$ is also one.  Moreover, $b_*b^*t : b_*b^*P_w \to B$ admits a unit $\eta : P_w \to  b_*b^*P_w$ (over~$B$).  
+\begin{equation}\label{diag:EEPfactored3}
+\xymatrix{
+A' \ar@{->>}[dddd] \ar[rrdd]_{\sim}^{w'} \ar@{>->}[rrrr] && && A \ar[dddd]_>>>>>>>>>>>>p \ar[rrdd]^{w} \ar[rr]^s && \ar@{.>}@/_1.5pc/[ll]_{p_w} P_w \ar[dd]^t \ar[rr]^-\eta && b_*b^*P_w \ar[lldd]^{b_*b^*t}\\
+\\
+&& B' \ar@{->>}[lldd] \ar@{>->}[rrrr]_<<<<<<<<<<b  &&&& B \ar@{->>}[lldd]^q &&&& \\
+\\
+C' \ar@{>->}[rrrr]_c &&&& C &&&&
+}
+\end{equation}
+We now \emph{claim} that $\eta : P_w \to  b_*b^*P_w$ is a trivial fibration.  Given that,  the composite $t = b_*b^*t \circ \eta$ is also a trivial fibration, whence $q\circ t : P_w \to C$ is a fibration, and so its retract $p:A\to C$ is a fibration.  Moreover, since $s$ is a section of the trivial fibration $p_w: P_w\to A$ between fibrations, as before it is also a weak equivalence. Thus $w=t\circ s$ is a weak equivalence, and we are finished. 
+
+To prove the remaining claim that $\eta : P_w \to  b_*b^*P_w$ is a trivial fibration, we want to use lemma \ref{lemma:etaTF}, but to apply that directly we would need $t : P_w \to B$ to be a trivial fibration, which we do not have at that point.  Instead, we will show that $\eta$ is a pullback of the corresponding unit at the trivial fibration $p_1 : B^\I \to B$.
+
+Consider the following cube (viewed with $b:B'\to B$ at the front).
+\begin{equation}\label{diag:ppcube}
+\xymatrix{
+P_{w'} \ar@{->>}[ddd]_{p_{w'}} \ar[rrd]^{(p'_0)^*w'} \ar@{>->}[rrr]^{\overline{a}}
+		&&& P_w \ar[ddd]^{p_w} \ar[rrd]^{p_0^*w} &&\\
+&& B'^\I \ar@{->>}[ddd]_{p'_0} \ar@{>->}[rrr]^{\overline{b}}  
+		&&& B^\I \ar@{->>}[ddd]^{p_0} \\
+\\
+A' \ar@{>->}[rrr]_>>>>>>>>>>>a  \ar[rrd]_{w'}
+		&&& A \ar[rrd]^{w} &&\\
+&& B'\ar@{>->}[rrr]_b &&& B
+}
+\end{equation}
+The right hand face is a pullback by definition, and the remainder results from pulling the right face back along $b$. Thus all faces are pullbacks.  The base is also a pushforward, $w = b_*w'$, again by definition.  We claim the top is therefore also a pushforward, $p_0^*w = \overline{b}_*((p'_0)^*w')$. Indeed, since the front face is a pullback, the Beck-Chevalley condition applies and we have $\overline{b}_*(p'_0)^*(w') = p_0^*\,b_*(w') = p_0^*w$.
+
+Now consider the following, in which the top square remains the same, but $p_0$ has been relaced by $p_1 : B^\I \to B$, so the composite at right is by definition $t = p_1\circ p_0^*w$.
+\begin{equation}\label{diag:twounits}
+\xymatrix{
+P_{w'} \ar@{->>}[ddddrr]_{t'} \ar[rrd]^{(p'_0)^*w'} \ar@{>->}[rrr]^{\overline{a}}
+		&&& P_w \ar[ddddrr]_t \ar[rrd]^{p_0^*w} &&\\
+&& B'^\I \ar@{->>}[ddd]^{p'_1} \ar@{>->}[rrr]^<<<<<<<<<<<<<{\overline{b}}  
+		&&& B^\I \ar@{->>}[ddd]^{p_1} \\
+\\
+\\
+&& B'\ar@{>->}[rrr]_b &&& B
+}
+\end{equation}
+The horizontal direction is still pullback along $b$.  Let us rename $u := p_0^*w$ so that $(p'_0)^*w' = b^*u$ and $t' = b^*t$ and $p'_1 = b^*p_1$ to make this clear, and we then add the pushforward along $b$ on the right, in order to obtain the two units $\eta$.
+\begin{equation}\label{diag:twounits2}
+\xymatrix{
+b^*P_{w} \ar@{->>}[ddddrr]_{b^*t} \ar[rrd]^{b^*u} \ar@{>->}[rrr]^{\overline{a}}
+		&&& P_w \ar[ddddrr]_t \ar[rrd]^{u} \ar[rr]^{\eta_t}
+		&& b_*b^* P_w  \ar[rrd]^{b_*b^* u} \ar[ddddrr]_{b_*b^* t}&&\\
+&& b^*B^\I \ar@{->>}[ddd]^{b^*p_1} \ar@{>->}[rrr]^<<<<<<<<<<<<<{\overline{b}}  
+		&&& B^\I \ar@{->>}[ddd]^{p_1} \ar[rr]^{\eta_{p_1}} 
+		&& b_*b^* B^\I \ar[ddd]^{b_*b^*p_1}\\
+\\
+\\
+&& B'\ar@{>->}[rrr]_b &&& B  \ar[rr]_= && B
+}
+\end{equation}
+By the usual calculation of pushforwards in slice categories, $\overline{b}_* = \eta_{p_1}^*\circ b_*$, and so for $b^*u$ we have $\overline{b}_*b^* u = \eta_{p_1}^*b_*b^* u$.  But as we just determined in \eqref{diag:ppcube} the top left square is also a pushforward, thus $u = \eta_{p_1}^*b_*b^* u$, and so the top right square is a pullback. 
+
+Now to finish the proof as planned, $p_1 : B^\I \to B$ is a trivial fibration because $q : B\to C$ is a fibration, and $b : B' \mono B$ is a cofibration because it is a pullback of $a : A'\mono A$.  Thus by lemma \ref{lemma:etaTF}, we have that $\eta_{p_1}: B^\I \to  b_*b^*B^\I$ is a trivial fibration, and so its pullback $\eta_t : P_w \to  b_*b^*P_w$ is a trivial fibration, as claimed.
+\end{proof}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The fibration extension property}\label{sec:FEP}
 
@@ -2547,16 +2707,6 @@ The claimed map $i$ is usually known as $\mathsf{IdtoEq}: \U^\II \ra \mathsf{Eq}
 
 \end{proof}
 
-Finally, for the case of unbiased filling we need the more general form of composition going from one generic point $p : 1\ra\II$ to another $q : 1\ra\II$, rather than from one endpoint to another.
-
-
-[ fill this in ...]
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\subsection{The fibration extension property}\label{sec:FEP}
 
 Returning to the exact relation between the fibration extension property (Definition \ref{def:fibextreplace}) and the condition that the base object $\U$ is fibrant, we can easily see that the latter implies the former.  Indeed, let $t : X\cof X'$ be a trivial cofibration and $Y \fib X$ a fibration.  To extend $Y$ along $t$, take a classifying map $y : X \to \U$, so that $Y \cong y^*\UU$ over $X$. If $\U$ is fibrant then we can extend $y$ along $t : X\cof X'$ to get $y' : X' \to \U$ with $y = y'\circ t$.  The pullback $Y' = (y')^*\UU \fib X'$ is then a fibration such that $t^*Y' \cong t^*(y')^*\UU\cong y^*\UU \cong Y$ over $X$. 
 
