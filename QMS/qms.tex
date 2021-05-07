@@ -308,9 +308,9 @@ Summarizing, we have a weak factorization system $(\mathcal{L}, \mathcal{R})$ on
 \mathcal{L}\ &=\ \mathcal{C}\quad \text{(the cofibrations)}\\
 \mathcal{R}\ &=\ +\mathsf{Alg}\quad \text{(the relative $+$-algebras)}
 \end{align*}
-We shall call this the \emph{cofibration weak factorization system}. As here, we will sometimes say that an object (or map) is a (relative) $+$-algebra when it can be equipped with a (relative) $+$-algebra structure; such maps will also be called \emph{trivial fibrations} and the class of all such is denoted $\mathsf{TrivFib}$,
+We shall call this the \emph{cofibration weak factorization system}. As here, we will sometimes say that an object (or map) is a (relative) $+$-algebra when it can be equipped with a (relative) $+$-algebra structure; such maps will also be called \emph{trivial fibrations} and the class of all such is denoted $\mathsf{TFib}$,
 \[
-\mathsf{TrivFib} = \mathcal{C}^\pitchfork.
+\mathsf{TFib} = \mathcal{C}^\pitchfork.
 \]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -563,7 +563,7 @@ As a warm-up, we first recall the specification of the trivial-cofibration/fibra
 
 
 A \emph{generating class of (biased) trivial cofibrations} are all maps of the form
-\begin{equation}\label{eq:genclasstrivcof}
+\begin{equation}\label{eq:genclassTCof}
 c \otimes \delta_\epsilon : D \to Z\times \I\,,
 \end{equation}
 where:
@@ -671,7 +671,7 @@ But this is just to say that the maps $\delta_\epsilon\Rightarrow{f}$ are in the
 \paragraph{Fibration structure.}
 The $\otimes\dashv\ \Rightarrow$ adjunction determines the fibrations in terms of the trivial fibrations, which in turn can be determined by \emph{uniform} lifting against a \emph{set} of basic cofibrations, by proposition \ref{prop:uniformstructequivrelative}.  We can similarly determine the fibrations by uniform lifting against a \emph{set} of trivial cofibrations, consisting of all those $c \otimes \delta_\epsilon$ in $\mathcal{C}\otimes \delta_\epsilon$ where $c : C \mono Z$ has a representable codomain $Z=\I^n$.  
 Call these maps the \emph{basic (biased) trivial cofibrations}, and let 
-\begin{equation}\label{eq:basictrivcof}
+\begin{equation}\label{eq:basicTCof}
 \mathcal{B}\otimes \delta_\epsilon = \{c \otimes \delta_\epsilon : B \mono \I^{n+1}\ |\ c : C\mono \I^n,\,\epsilon = 0,1,\ n\geq 0 \},
 \end{equation}
 where the pushout-product $c\otimes\delta_\epsilon$ now takes the simpler form
@@ -855,7 +855,7 @@ Suppose that for all $c : C\mono Z$ and $z:Z\ra\I$, we have $(c\otimes_z\delta) 
 \paragraph{Unbiased fibration structure.}
 
 As in the biased case, the fibrations can also be determined by \emph{uniform} right-lifting against a generating \emph{set} of trivial cofibrations, now consisting of all those $c \otimes_z \delta$ in $\mathcal{C}\otimes \delta$ for which $c : C \mono Z$ has a representable codomain $Z=\I^n$.  Call these maps the \emph{basic (unbiased) trivial cofibrations}, and let 
-\begin{equation}\label{eq:basicunbiasedtrivcof}
+\begin{equation}\label{eq:basicunbiasedTCof}
 \mathcal{B}\otimes \delta = \{c \otimes_z \delta : B \mono \I^{n+1}\ |\ c : C\mono \I^n,\, z : \I^n \ra \I,\,n\geq 0\}\,,
 \end{equation}
 where the pushout-product $c\otimes_z \delta$ now has the form
@@ -934,7 +934,7 @@ Summarizing the foregoing definitions and results, we have the following classes
 
 %\begin{itemize}
 %\item  The set of \emph{basic trivial cofibrations} was determined to be
-%\begin{equation}\label{eq:basicunbiasedtrivcof}
+%\begin{equation}\label{eq:basicunbiasedTCof}
 %\mathcal{B}\otimes\delta = \{c \otimes_z \delta : B \mono \I^{n+1}\ |\ n\geq 0\,, c : C\mono \I^n,\, z : \I^n \to \I\}\,,
 %\end{equation}
 %where the pushout-product $c\otimes_z \delta$ has the form
@@ -955,7 +955,7 @@ Summarizing the foregoing definitions and results, we have the following classes
 
 \begin{itemize}
 \item  The \emph{generating trivial cofibrations} were determined in \eqref{eq:generatingtrivialcofibrations} to be
-\begin{equation}\label{eq:genunbiasedtrivcof}
+\begin{equation}\label{eq:genunbiasedTCof}
 \mathcal{C}\otimes\delta = \{c \otimes_z \delta : D \mono Z\times\I\ |\  c : C\mono Z,\, z : Z \to \I\}\,,
 \end{equation}
 where the pushout-product $c\otimes_z \delta$ has the form
@@ -975,16 +975,16 @@ for any cofibration $c : C\mono Z$ and indexing map $z : Z \ra \I$, with domain 
 
 \item The class of \emph{trivial cofibrations} is defined to be left class of the fibrations,
 \[
-\mathsf{TrivCof}\, =\, ^{\pitchfork}\mathcal{F}.
+\mathsf{TCof}\, =\, ^{\pitchfork}\mathcal{F}.
 \]
 \end{itemize}
 \end{definition}
 
-It follows from the specification that the classes $\mathsf{TrivCof}$ and $\mathcal{F}$ are mutually weakly orthogonal,
+It follows from the specification that the classes $\mathsf{TCof}$ and $\mathcal{F}$ are mutually weakly orthogonal,
 \[
-\mathsf{TrivCof}\, {\pitchfork}\, \mathcal{F},
+\mathsf{TCof}\, {\pitchfork}\, \mathcal{F},
 \]
-and are both closed under retracts, so in order to have a weak factorization system $(\mathsf{TrivCof}, \mathcal{F})$  it just remains to show that every map $f: X\ra Y$ can be factored as $f  = g\circ h$ with $g\in \mathcal{F}$ and $h\in \mathsf{TrivCof}$.
+and are both closed under retracts, so in order to have a weak factorization system $(\mathsf{TCof}, \mathcal{F})$  it just remains to show that every map $f: X\ra Y$ can be factored as $f  = g\circ h$ with $g\in \mathcal{F}$ and $h\in \mathsf{TCof}$.
 
 \begin{proposition}
 Every map $f: X\to Y$ in \cSet\ can be factored as $f  = g\circ h$,
@@ -1101,25 +1101,25 @@ X \ar[rd]_{f} \ar[r]^h & W\ar[d]^g\\
 \end{equation*}
 with $h: X\ra W$ a trivial cofibration and $g: W\ra Y$ a trivial fibration, i.e.\ a right map in the cofibration weak factorization system. Let 
 \[
-\mathcal{W} = \{f: X\to Y |\ f = g\circ h\ \text{for $g\in\mathsf{TrivFib}$ and $h\in\mathsf{TrivCof}$} \}
+\mathcal{W} = \{f: X\to Y |\ f = g\circ h\ \text{for $g\in\mathsf{TFib}$ and $h\in\mathsf{TCof}$} \}
 \]
  be the class of weak equivalences.
 \end{definition}
 
 Observe that every trivial fibration $f\in\mathcal{C}^\pitchfork$ is indeed a fibration, because the generating trivial cofibrations are indeed cofibrations; moreover, every trivial fibration is also a weak equivalence, since the identity maps are trivial cofibrations.  Thus we have
 \[
-\mathsf{TrivFib} \subseteq (\mathcal{F} \cap \mathcal{W}).
+\mathsf{TFib} \subseteq (\mathcal{F} \cap \mathcal{W}).
 \]
 Thus, because the trivial fibrations are fibrations, every trivial cofibration $g\in{^{\pitchfork}\mathcal{F}}$ is a cofibration; moreover, every trivial cofibration is also a weak equivalence, since the identity maps are also trivial fibrations.  Thus we also have
 \[
-\mathsf{TrivCof} \subseteq (\mathcal{C} \cap \mathcal{W}).
+\mathsf{TCof} \subseteq (\mathcal{C} \cap \mathcal{W}).
 \]
 
 \begin{lemma}
-$(\mathcal{C} \cap \mathcal{W})  \subseteq \mathsf{TrivCof}.$
+$(\mathcal{C} \cap \mathcal{W})  \subseteq \mathsf{TCof}.$
 \end{lemma}
 \begin{proof}
-Let $c : A\mono B$ be a cofibration with a factorization $$c = tf\circ tc : A \ra W\ra B$$ where $tc\in\mathsf{TrivCof}$ and $tf\in\mathsf{TrivFib}$.  Let $f:Y\epi X$ be a fibration and consider a commutative diagram,
+Let $c : A\mono B$ be a cofibration with a factorization $$c = tf\circ tc : A \ra W\ra B$$ where $tc\in\mathsf{TCof}$ and $tf\in\mathsf{TFib}$.  Let $f:Y\epi X$ be a fibration and consider a commutative diagram,
 \begin{equation*}%\label{diagram:extensionforX}
 \xymatrix{
 A \ar@{>->}[d]_{c} \ar[r]^-{a}  & Y \ar@{>>}[d]^{f} \\
@@ -1147,14 +1147,14 @@ Let $k = j\circ i$. Then $k \circ c = j\circ i \circ c = j \circ tc = a$, and $f
 
 The proof of the following is dual:
 \begin{lemma}
-$(\mathcal{F} \cap \mathcal{W})  \subseteq \mathsf{TrivFib}.$
+$(\mathcal{F} \cap \mathcal{W})  \subseteq \mathsf{TFib}.$
 \end{lemma}
 
 \begin{proposition}\label{prop:FWC}
 For the three classes of maps $\mathcal{C}, \mathcal{W}, \mathcal{F}$ in \cSet, we have 
 \begin{align*}
-\mathcal{F}\cap\mathcal{W} &= \mathsf{TrivFib}, \\
-\mathcal{C}\cap\mathcal{W} &= \mathsf{TrivCof},
+\mathcal{F}\cap\mathcal{W} &= \mathsf{TFib}, \\
+\mathcal{C}\cap\mathcal{W} &= \mathsf{TCof},
 \end{align*}
 and therefore two weak factorization systems:
 \[
@@ -1301,7 +1301,7 @@ Y+Y \ar@{>->}[d]_{[\iota_0, \iota_1]} \ar[r]^-{[sf, 1]}  & Y\ar@{>>}[d]^{f} \\
 Thus $f$ is a homotopy equivalence, and so a WHE by lemma \ref{lemma:HEisWHE}.
 \end{proof}
 
-\begin{lemma}\label{FibHETrivFib}
+\begin{lemma}\label{FibHETFib}
 If $K$ is fibrant, then any fibration $f : Y \epi K$ that is a HE is a WE.
 \end{lemma}
 \begin{proof}
@@ -1334,7 +1334,7 @@ K\ar[r]_{=} \ar[ru]_{s}^{\sim} & K,
 Now we can correct $s: K\ra Y$ to a homotopic $t : K\ra Y$ over $f$ by using the homotopy $\varphi : sc\sim y$  to get a map $\varphi : C\ra Y^\I$ over $f$.  Since $f$ is a fibration, the projections $p_0, p_1:Y^\I \ra Y$ over $f$ are trivial fibrations, and so there is a lift $\varphi': K\ra Y^\I$ for which $t:= p_1\varphi'$ has $tc= y$ and $ft=1_K$, and so is a filler for \eqref{diagram:FHEisWE}.
 \end{proof}
 
-\begin{lemma}\label{FibWHEfibCodTrivFib}
+\begin{lemma}\label{FibWHEfibCodTFib}
 If $K$ is fibrant, then any fibration $f : Y \epi K$ that is a WHE is a WE.
 \end{lemma}
 \begin{proof}
@@ -1345,15 +1345,15 @@ Y \ar[d]_{f} \ar[r]^{f\vartheta}  & K^\I \ar[d] \\
 K \ar@{..>}[ru]_{\varphi} \ar[r]_-{\langle fs, 1_K\rangle} & K\times K.
 }
 \]
-By lemma \ref{lem:WHEunwound}(2) there is a diagonal filler $\varphi : fs\sim 1_K$, and so $f$ is a HE. Now apply lemma \ref{FibHETrivFib}.
+By lemma \ref{lem:WHEunwound}(2) there is a diagonal filler $\varphi : fs\sim 1_K$, and so $f$ is a HE. Now apply lemma \ref{FibHETFib}.
 \end{proof}
 
-\begin{lemma}\label{CofWHEfibCodTrivCof}
+\begin{lemma}\label{CofWHEfibCodTCof}
 If $K$ is fibrant, then any cofibration $c : A \mono K$ that is a WHE is a WE.
 \end{lemma}
 \begin{proof}
 Let $c : A \mono K$ be a cofibration WHE and factor it into a trivial cofibration $i : A\mono Z$ followed by a fibration $p: Z\epi K$.  By lemma \ref{lem:WHEunwound}, it is clear that a trivial cofibration is a WHE.  So both 
-$c$ and $i$ are WHE, and therefore so is $p$ by 3-for-2 for WHEs.   Since $K$ is fibrant, $p$ is a trivial fibration by lemma \ref{FibWHEfibCodTrivFib}, and thus $c$ is a WE.  
+$c$ and $i$ are WHE, and therefore so is $p$ by 3-for-2 for WHEs.   Since $K$ is fibrant, $p$ is a trivial fibration by lemma \ref{FibWHEfibCodTFib}, and thus $c$ is a WE.  
 \end{proof}
 
 \begin{lemma}[\cite{Cisinski:??}, x.n.m]\label{lemma:CofWHEiffFibLift}
@@ -1376,7 +1376,7 @@ B \ar[r]_{b} \ar[d]_\eta &  K\\
 B' \ar[ru]_{b'} & 
 }
 \end{equation*}
-Since $\eta$ is a trivial cofibration, it is a WHE. So the composite $\eta c$ is also a WHE.  But since $B'$ is fibrant, $\eta c$ is then a trivial cofibration by lemma \ref{CofWHEfibCodTrivCof}.  Thus there is a lift $j : B'\ra Y$, and therefore also one $k = j\eta : B\ra Y$. 
+Since $\eta$ is a trivial cofibration, it is a WHE. So the composite $\eta c$ is also a WHE.  But since $B'$ is fibrant, $\eta c$ is then a trivial cofibration by lemma \ref{CofWHEfibCodTCof}.  Thus there is a lift $j : B'\ra Y$, and therefore also one $k = j\eta : B\ra Y$. 
 %
 %Conversely, suppose the cofibration $c : A\mono B$ lifts against every fibration with a fibrant codomain.   Let $\eta : B\mono B'$ be a fibrant replacement of $B$ as before, and factor $\eta c: A \to B'$ into a trivial cofibration $i : A\mono Y$ followed by a fibration $f : Y\epi B'$. Then in the diagram
 %\begin{equation*}%\label{diagram:extensionforX}
@@ -2329,7 +2329,7 @@ X \ar[r]_{\chi_A} & \V\\
 }
 \end{equation}
 
-\begin{proposition}\label{prop:classtrivfib}
+\begin{proposition}\label{prop:classTFib}
 There is a \emph{universal small trivial fibration}  $$\TTFib\ra\TFib.$$  Every small trivial fibration $A \ra X$ is a pullback of $\TTFib\ra\TFib$ along a canonically determined classifying map $X\ra \TFib$.
 \begin{equation}\label{diagram:classifytf}
 \xymatrix{
@@ -2398,7 +2398,7 @@ A_\epsilon &:= X^\I \times_X A\\
 \end{align*}
 so that (the working part of) our diagram becomes:
 \begin{equation}\label{diagram:fibU2}
-\xymatrix{
+\xymatrix@=2em{
 A^\I \ar[rd]_{\epsilon^A} && \\
 & A_\epsilon\ar[d]_{p_\epsilon} \ar[r] \pbcorner & A \ar[d]^{p} \\
 & X^\I \ar[r]_{\epsilon} &  X 
@@ -2517,7 +2517,7 @@ Now we can take $\Fib = \Fib(\VV)$, which comes with its projection $\Fib(\VV) \
 \Fib \ar[r] & \V.
 }
 \]
-The remainder of the proof is just as for proposition \ref{prop:classtrivfib}.
+The remainder of the proof is just as for proposition \ref{prop:classTFib}.
 \end{proof}
 
 \begin{proposition}
@@ -2629,7 +2629,7 @@ there is a fibration $A\epi C$ and a weak equivalence $w: A \simeq B$ over $C$ t
 \begin{proof}
 Call the given fibration $q:B\to C$ and let $b:=  q^*c : c^*B \to B$ be the indicated pullback, which is thus also a cofibration. Let $w := b_*w' : A\to B$ be the pushforward of $w'$ along $b$.  Composing with $q$ gives the map $p:= q\circ w:A\to C$.  Since $b$ is monic, we indeed have $b^*w = w'$, thus filling in all the dotted arrows in \eqref{diag:EEP}.  Note moreover that $c^*w =  b^*w = w'$, as required. It remains to show that $p:A\to C$ is a fibration and $w : A\to B$ is a weak equivalence.   
 \begin{equation}\label{diag:EEPfactored}
-\xymatrix{
+\xymatrix@=1.5em{
 A' \ar@{->>}[dddd] \ar[rrdd]_{\sim}^{w'} \ar@{>->}[rrrr] && && A \ar[dddd]_>>>>>>>>>>>>p \ar[rrdd]^{w} \ar[rr]^s && \ar@{.>}@/_1.5pc/[ll]_{p_w} P_w \ar[dd]^t \\
 \\
 && c^*B \ar@{->>}[lldd] \ar@{>->}[rrrr]_<<<<<<<<<<b  &&&& B \ar@{->>}[lldd]^q  \\
@@ -2642,7 +2642,7 @@ Now let $w=t\circ s$ be the pathspace factorization \eqref{diag:pathspace factor
 
 The pathspace factorization $w=t\circ s : A \to P_w \to B$ is stable under pullback along $c$, providing a pathspace factorization $w'=t'\circ s' : A' \to P_{w'} \to B'$ over $C'$.  Since both $p'$ and $q'$ are fibrations, the retract $p_{w'}: P_{w'} \to A'$ is a trivial fibration, and now $t' : P_{w'} \to B'$ is a fibration.
 \begin{equation}\label{diag:EEPfactored2}
-\xymatrix{
+\xymatrix@=1.5em{
 A' \ar@{->>}[dddd]_{p'} \ar[rrdd]_{\sim}^{w'}  \ar[rr]^{s'} && \ar@{.>>}@/_1.5pc/[ll]_{p_{w'}} P_{w'} 
 	\ar@{->>}[dd]^{t'} \\
 \\
@@ -2655,7 +2655,7 @@ Thus the composite $q'\circ t' : P_{w'} \to B' \to C'$ is a fibration and theref
 
 Since $t' = c^*t = b^*t$ is a trivial fibration, its pushforward $b_*b^*t$ along $b$ is also one.  Moreover, $b_*b^*t : b_*b^*P_w \to B$ admits a unit $\eta : P_w \to  b_*b^*P_w$ (over~$B$).  
 \begin{equation}\label{diag:EEPfactored3}
-\xymatrix{
+\xymatrix@=1.5em{
 A' \ar@{->>}[dddd] \ar[rrdd]_{\sim}^{w'} \ar@{>->}[rrrr] && && A \ar[dddd]_>>>>>>>>>>>>p \ar[rrdd]^{w} \ar[rr]^s && \ar@{.>}@/_1.5pc/[ll]_{p_w} P_w \ar[dd]^t \ar[rr]^-\eta && b_*b^*P_w \ar[lldd]^{b_*b^*t}\\
 \\
 && B' \ar@{->>}[lldd] \ar@{>->}[rrrr]_<<<<<<<<<<b  &&&& B \ar@{->>}[lldd]^q &&&& \\
@@ -2669,7 +2669,7 @@ To prove the remaining claim that $\eta : P_w \to  b_*b^*P_w$ is a trivial fibra
 
 Consider the following cube (viewed with $b:B'\to B$ at the front).
 \begin{equation}\label{diag:ppcube}
-\xymatrix{
+\xymatrix@=1.5em{
 P_{w'} \ar@{->>}[ddd]_{p_{w'}} \ar[rrd]^{(p'_0)^*w'} \ar@{>->}[rrr]^{\overline{a}}
 		&&& P_w \ar[ddd]^{p_w} \ar[rrd]^{p_0^*w} &&\\
 && B'^\I \ar@{->>}[ddd]_{p'_0} \ar@{>->}[rrr]^{\overline{b}}  
@@ -2684,8 +2684,8 @@ The right hand face is a pullback by definition, and the remainder results from 
 
 Now consider the following, in which the top square remains the same as in \eqref{diag:ppcube}, but $p_0$ has been relaced by $p_1 : B^\I \to B$, so the composite at right is by definition $t = p_1\circ p_0^*w$.
 \begin{equation}\label{diag:twounits}
-\xymatrix{
-P_{w'} \ar@{->>}[ddddrr]_{t'} \ar[rrd]^{(p'_0)^*w'} \ar@{>->}[rrr]^{\overline{a}}
+\xymatrix@=1.5em{
+P_{w'} \ar@{->>}[ddddrr]_{t'} \ar[rrd]^>>>>>>{(p'_0)^*w'} \ar@{>->}[rrr]^{\overline{a}}
 		&&& P_w \ar[ddddrr]_t \ar[rrd]^{p_0^*w} &&\\
 && B'^\I \ar@{->>}[ddd]^{p'_1} \ar@{>->}[rrr]^<<<<<<<<<<<<<{\overline{b}}  
 		&&& B^\I \ar@{->>}[ddd]^{p_1} \\
@@ -2696,11 +2696,11 @@ P_{w'} \ar@{->>}[ddddrr]_{t'} \ar[rrd]^{(p'_0)^*w'} \ar@{>->}[rrr]^{\overline{a}
 \end{equation}
 The horizontal direction is still pullback along $b$.  Let us rename $p_0^*w=:u$ so that $(p'_0)^*w' = b^*u$ and $t' = b^*t$ and $p'_1 = b^*p_1$ to make this clear, and we then add the pushforward along $b$ on the right, in order to obtain the two units $\eta$.
 \begin{equation}\label{diag:twounits2}
-\xymatrix{
+\xymatrix@=1.5em{
 b^*P_{w} \ar@{->>}[ddddrr]_{b^*t} \ar[rrd]^{b^*u} \ar@{>->}[rrr]^{\overline{a}}
 		&&& P_w \ar[ddddrr]_t \ar[rrd]^{u} \ar[rr]^{\eta_t}
 		&& b_*b^* P_w  \ar[rrd]^{b_*b^* u} \ar[ddddrr]_{b_*b^* t}&&\\
-&& b^*B^\I \ar@{->>}[ddd]^{b^*p_1} \ar@{>->}[rrr]^<<<<<<<<<<<<<{\overline{b}}  
+&& b^*B^\I \ar@{->>}[ddd]^{b^*p_1} \ar@{>->}[rrr]^<<<<<<<<<{\overline{b}}  
 		&&& B^\I \ar@{->>}[ddd]^{p_1} \ar[rr]^{\eta_{p_1}} 
 		&& b_*b^* B^\I \ar[ddd]^{b_*b^*p_1}\\
 \\
@@ -2782,15 +2782,14 @@ The base $\U$ of the universal fibration $\UU\ra\U$ constructed in section \ref{
 \begin{proof}
 To show that $\U$ is fibrant, we need to solve the following filling problem for an arbitrary cofibration $c:C \cof Z$, thus showing that $\U^{\delta_0} : \U^\I \to \U$ is a trivial cofibration (for, say, the point $\delta_0 :1\to \I $).
 \begin{equation}\label{diag:Ufib1}
-\xymatrix{
-C \ar@{>->}[dd]_c \ar[rr]^{\tilde{a}} && \U^\I \ar[dd]^{\U^{\delta_0}} \\
-&& \\
-Z  \ar@{..>}[rruu] \ar[rr]_{b}  && \U  \\
+\xymatrix@=3em{
+C \ar@{>->}[d]_c \ar[r]^{\tilde{a}} & \U^\I \ar[d]^{\U^{\delta_0}} \\
+Z  \ar@{..>}[ru] \ar[r]_{b}  & \U  \\
 }
 \end{equation}
 Transposing $\tilde{a}$ to $a : C\times \I \to \U$ and taking pullbacks of $\UU\fib \U$ along $a$ and $b$ to get  corresponding fibrations $A\fib C\times \I$ and $B\fib Z$, we have the following equivalent condition.  Letting $$C_0 : C\cong C\times1 \to C\times \I$$ be the evident inclusion of the $0$-end of the cylinder, let $A_0 = (C_0)^*A \fib C$ be the ``slice of $A$ over $C_0$''.  We then have $c^*B \cong A_0$ over $C$ by the outer square of \eqref{diag:Ufib1}.
 \[
-\xymatrix{
+\xymatrix@=1em{
 && \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  A \ar@{->>}[dd] \\
 && && \\
 && \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd] C\times\I \\
@@ -2802,7 +2801,7 @@ Z \ar[rrr]_{Z_0} &&& Z\times\I &
 The diagonal filler in \eqref{diag:Ufib1} corresponds, again by transposition and pullback of $\UU\fib\U$, to a fibration $D\fib Z\times \I$ with $(c\times \I)^*D \cong A$ over $C\times \I$
  and $(Z_0)^*D \cong B$ over $Z$, as indicated below.
 \[
-\xymatrix{
+\xymatrix@=1em{
 && \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] \\
 && && \\
 && \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd]^{c\times\I} C\times\I \\
@@ -2814,7 +2813,7 @@ Z \ar[rrr]_{Z_0} &&& Z\times\I &
 We construct $D\fib Z\times \I$ by the equivalence extension property as follows.  Apply the functor $(-)\times\I$ to the left (pullback) face of the above cube to get the following with a new pullback square on the right, with the indicated fibrations.
 \begin{equation}\label{diag:Ufib2}
 \begin{gathered}
-\xymatrix{
+\xymatrix@=1em{
 && \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] &&  \ar@{->>}[lldd] A_0\times\I \ar[lddd]  \\
 && && &&\\
 && \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd]^{c\times\I} C\times\I && \\
@@ -2835,9 +2834,8 @@ It then remains only to show that $B\cong (Z_0)^*D$ over $Z$.
 To get $e$, consider the following square, in which the top map is $A_0\times \delta_0$ (after $A_0\cong A_0\times 1$) and the others are those from the previous diagram.
 \begin{equation}\label{diag:Ufibn}
 \xymatrix{
-A_0 \ar@{>->}[dd] \ar@{>->}[rr] && A_0\times\I \ar@{>>}[dd] \\
-&& \\
-A  \ar@{>>}[rr] &&  C\times\I 
+A_0 \ar@{>->}[d] \ar@{>->}[r] & A_0\times\I \ar@{>>}[d] \\
+A  \ar@{>>}[r] &  C\times\I 
 }
 \end{equation}
 The square is easily seen to commute, and the maps with $A_0$ as domain are trivial cofibrations by Frobenius (proposition \ref{prop:Frobenius}), because each is the pullback of a trivial cofibration along a fibration.
@@ -2846,9 +2844,8 @@ Applying a simple lemma (given below as \ref{lem:simple}) gives the required wea
 To see that $B\cong (Z_0)^*D$ over $Z$, recall from the proof of the EEP that the map $f:B\cong (Z_0)^*D$ is the pushforward of  $e:A \simeq A_0\times \I$ along the cofibration $d_0\times\I :A_0\times\I \cof B\times\I$, calling the evident map $d_0:A_0\cof B$ in \eqref{diag:Ufib2}.  That is, by construction $f = (d_0\times\I)_*\,e$.  We can apply the Beck-Chevalley condition for the pushforward using the pullback square on the left below.
 \begin{equation}
 \xymatrix{
-A_0 \ar@{>->}[dd] \ar@{>->}[rr] \pbcorner && A_0\times\I \ar@{>>}[dd] && \ar[ll]_e A\\
-&& \\
-B  \ar@{>->}[rr]  &&  B\times\I  && \ar[ll]^f D
+A_0 \ar@{>->}[d] \ar@{>->}[r] \pbcorner & A_0\times\I \ar@{>>}[d] & \ar[l]_-e A\\
+B  \ar@{>->}[r]  &  B\times\I  & \ar[l]^-f D
 }
 \end{equation}
 Since the pullback of $e$ along the top of the square is the identity, the same is true (up to isomorophism) for the pullback of $f$ along the bottom.
@@ -2860,9 +2857,8 @@ An application of the alignment lemma \ref{lem:alignment} along the trivial cofi
 Suppose the following square commutes and the indicated cofibrations are trivial.
 \begin{equation}\label{diag:standard1}
 \xymatrix{
-A \ar@{>->}[dd] \ar@{>->}[rr] && C \ar@{>>}[dd] \\
-&& \\
-B  \ar@{>>}[rr] &&  D \\
+A \ar@{>->}[d] \ar@{>->}[r] & C \ar@{>>}[d] \\
+B  \ar@{>>}[r] &  D \\
 }
 \end{equation}
 Then there is a weak equivalence $e : B \simeq C$ over $D$ (and under $A$).
@@ -2876,7 +2872,7 @@ By Theorem \ref{theorem:QMSmodFEP}, finally, we have the following.
 \begin{theorem}\label{theorem:QMS}
 There is a Quillen model structure $(\CC,\WW,\FF)$ on the category of cubical sets, where:
 \begin{enumerate}
-\item the cofibrations $\CC$ are any class of monos satisfying axioms (C1)-(C6),
+\item the cofibrations $\CC$ are any class of monos satisfying axioms (C0)-(C6),
 \item the fibrations $\FF$ are the maps $f : Y\to X$ for which the canonical map 
 \[
 (f^\I \times \I, \mathrm{eval}_Y) : Y^\I \times \I\to (X^\I \times \I)\times_X Y
