@@ -1483,7 +1483,7 @@ If the fibration weak factorization system of Definition \ref{def:FibWFSclasses}
 %Let $(\CC, \WW, \FF)$ be a Barton quasi-model structure \cite{Barton} (on a presheaf category).   If the $(\CC\cap\WW, \FF)$ weak factorization system satisfies the fibration extension property of Definition \ref{def:fibextreplace}.  Then $(\CC, \WW, \FF)$ is a Quillen model structure.
 %\end{theorem}
 
-The proof of the fibration extension property will occupy the remainder of this paper.  It requires several intermediate results: the equivalence extension property (Section \ref{sec:EEP}), the universal fibration \ref{sec:U}, and the Frobenius condition \ref{sec:Frobenius}, to which we now turn.
+The proof of the fibration extension property will occupy the remainder of this paper.  It requires several intermediate results: the equivalence extension property (Section \ref{sec:EEP}), a universal fibration (section \ref{sec:U}), and the Frobenius condition (section \ref{sec:Frobenius}), to which we now turn.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2154,7 +2154,8 @@ Therefore $g\circ f = \tilde{\varepsilon} = 1$, so $\psi\circ\varphi = \I^*g\cir
 \section{The universe}\label{sec:U}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this section, we define a universal small fibration $\dot{\U}\to \U$.  In the next section we shall use the EEP to show that $\U$ is a fibrant object.
+In this section, we define a universal small fibration $\dot{\U}\to \U$.  
+In section \ref{sec:FEP} we will show that the base $\U$ is a fibrant object, using the equivalence extension property of section \ref{sec:EEP}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classifying families}
@@ -2760,9 +2761,13 @@ In the presence of a universal fibration $\UU\ra\U$, as was constructed in secti
 %\end{proof}
 %
 
-Returning to the exact relation between the fibration extension property and the condition that the base object $\U$ is fibrant, we can easily see that the latter implies the former.  Indeed, let $t : X\cof X'$ be a trivial cofibration and $Y \fib X$ a fibration.  To extend $Y$ along $t$, take a classifying map $y : X \to \U$, so that $Y \cong y^*\UU$ over $X$. If $\U$ is fibrant then we can extend $y$ along $t : X\cof X'$ to get $y' : X' \to \U$ with $y = y'\circ t$.  The pullback $Y' = (y')^*\UU \fib X'$ is then a fibration such that $t^*Y' \cong t^*(y')^*\UU\cong y^*\UU \cong Y$ over $X$. 
+Returning to the exact relation between the fibration extension property and the condition that the base object $\U$ is fibrant, we can easily see that the latter implies the former.  Indeed, let $t : X\cof X'$ be a trivial cofibration and $Y \fib X$ a fibration.  To extend $Y$ along $t$, take a classifying map $y : X \to \U$, so that $Y \cong y^*\UU$ over $X$. If $\U$ is fibrant then we can extend $y$ along $t : X\cof X'$ to get $y' : X' \to \U$ with $y = y'\circ t$.  The pullback $Y' = (y')^*\UU \fib X'$ is then a fibration such that $t^*Y' \cong t^*(y')^*\UU\cong y^*\UU \cong Y$ over $X$.  Thus for the record.
 
-Conversely, we remark that the FEP implies the fibrancy of $\U$, given the following ``alignment'' lemma, which will be required below (cf.(2') of~\cite{Shu:UAERP}).
+\begin{proposition}\label{prop:UfibtoFEP}
+If the base object $\U$ of the universal fibration $\UU\ra\U$ is fibrant, then the fibration weak factorization system has the fibration extension property.
+\end{proposition}
+
+Conversely, we remark that the FEP implies the fibrancy of $\U$, given the following ``alignment'' lemma, which will also be required below (cf.(2') of~\cite{Shu:UAERP}).
 
 \begin{lemma}\label{lem:alignment}
 Given a fibration $Y\epi X$ with classifying map $y : X \to \U$, a cofibration $t : X\cof X'$, and a (small) fibration $Y'\epi X'$ with $Y \cong t^*Y'$ over $X$, there is a classifying map $y' : X' \to \U$ for $Y'$ with $y'\circ t = y$.
@@ -2872,6 +2877,12 @@ Then there is a weak equivalence $e : B \simeq C$ over $D$ (and under $A$).
 \begin{proof}
 Use the fact that any two diagonal fillers are homotopic to get a homotopy equivalence $e : B \simeq C$ filling the square.
 \end{proof}
+
+Applying proposition \ref{prop:UfibtoFEP} therefore yields the following.
+
+\begin{corollary}
+The fibration weak factorization system has the fibration extension property (definition \ref{def:fibextreplace}). 
+\end{corollary}
 
 By Theorem \ref{theorem:QMSmodFEP}, finally, we have the following.
 
