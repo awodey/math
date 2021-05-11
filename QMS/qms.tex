@@ -4,6 +4,10 @@
 %%
 \documentclass[12pt]{amsart}
 %\documentclass[12pt]{article}
+
+\usepackage{ebgaramond}
+\usepackage{euscript}
+
 \usepackage{amsmath}
 \usepackage{amssymb,latexsym}
 \usepackage{amsthm}
@@ -83,7 +87,7 @@
 
 % Universe
 \newcommand{\U}{\ensuremath{\mathcal{U}}}
-\newcommand{\UU}{\ensuremath{\dot{\mathcal{U}}}}
+\newcommand{\UU}{\ensuremath{\,\dot{\mathcal{U}}}}
 
 \newcommand{\V}{\ensuremath{\mathcal{V}}}
 \newcommand{\VV}{\ensuremath{\dot{\mathcal{V}}}}
@@ -112,7 +116,8 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{A Quillen model structure on the category of cartesian cubical sets}
+\title{A Quillen model structure on\\
+the category of cartesian cubical sets}
 \author{Steve Awodey}
 \maketitle
 
@@ -2287,7 +2292,7 @@ The square on the right is a pullback because the outer squares are all pullback
 Note that the classification operation $$\chi : \cSet_\kappa/X \to \cSet(X, \V)$$ again has the evident ``pullback of $p : \VV\ra\V$'' operation 
 $$E : \cSet(X, \V) \to \cSet_\kappa/X $$ as a left (quasi-)inverse $
 E \cong E_{\chi_E}$, which is (pseudo-)natural in $X$. 
-But there is no corresponding uniqueness of classifying maps, relating $A : X\ra \V$ and $\chi_{E_A} : X\ra\V$.  This is what is provided by the univalence of a universe $$p : \UU\ra\U$$ of \emph{fibrations}, which we now procede to construct.
+But there is no corresponding uniqueness of classifying maps, relating $A : X\ra \V$ and $\chi_{E_A} : X\ra\V$.  (This is what is provided, in a suitable sense, by the \emph{univalence} of the universe $\UU\ra\U$ of fibrations, to be established in section \ref{sec:EEP}.)
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2370,6 +2375,19 @@ Consider the following diagram, in which all the squares (including the distorte
 }
 \end{equation}
 A trivial fibration structure $\alpha$ on $A\ra X$ is a section the object of +-algebra structures on $A$, occurring in the diagram as $\TFib(A)$, the pullback of $\TFib$.  Such sections correspond uniquely to factorizations $\alpha'$ of $\chi_A$ as indicated, which in turn induce pullback squares of the required kind \eqref{diagram:classifytf}.
+
+Note that the map $p_t : \TTFib\ra\TFib$ has a canonical trivial fibration structure. Indeed, consider the following diagram, in which both squares are pullbacks.
+\begin{equation}\label{diagram:fibisfib}
+\xymatrix{
+\TTFib \ar[d]_{p_t} \ar[r]  & \VV \ar[d]\\
+\TFib \ar[r] & \V\\
+\TFib(\TTFib) \ar[u] \ar[r] & \TFib(\VV)\ar[u].
+}
+\end{equation}
+$\TFib(\VV)$ is the object of trivial fibration structures on $\VV\ra\V$, and its pullback $\TFib(\TTFib)$ is therefore the object of trivial fibration structures on $p_t : \TTFib\ra\TFib$.  Thus we seek a section of $\TFib(\TTFib) \ra \TFib$.  But recall that $\TFib = \TFib(\VV)$ by definition, so the lower pullback square is the pullback of $\TFib(\VV)\ra \V$ against itself, which does indeed have a distinguished section, namely the diagonal
+\[
+\Delta : \TFib(\VV) \to \TFib(\VV)\times_\V\TFib(\VV).
+\]
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2467,8 +2485,8 @@ It follows directly from the adjunction $\I^*\dashv \I_*$ that sections of $\Fib
 \end{enumerate}
 
 
-\begin{proposition}
-There is a \emph{universal small fibration}  $$\FFib\ra\Fib.$$  Every small fibration $A \ra X$ is a pullback of $\FFib\ra\Fib$ along a canonically determined classifying map $X\ra \Fib$.
+\begin{proposition}\label{prop:UniversalFib}
+The map $$\FFib\ra\Fib$$ just constructed is a \emph{universal small fibration}.    Every small fibration $A \ra X$ is a pullback of $\FFib\ra\Fib$ along a canonically determined classifying map $X\ra \Fib$.
 \begin{equation}\label{diagram:classifyfib}
 \xymatrix{
 A \ar[d] \ar[r]  \pbcorner & \FFib\ar[d]\\
@@ -2514,7 +2532,6 @@ It remains to show that $\Fib(B)$ is a pullback of $\Fib(A)$ along $f:Y\ra X$, a
 \end{equation}
 The sides of the cube are pullbacks by the construction of $\Fib(A)$ and $\Fib(B)$. The front face is the root of the pullback \eqref{eq:pbFB} and is thus also a pullback, since the root is a right adjoint. The base commutes by naturality of the unit, and so the back face is also a pullback as required.
 
-
 Now we can take $\Fib = \Fib(\VV)$, which comes with its projection $\Fib(\VV) \ra \V$, and define the universal small fibration $\FFib\ra\Fib$ by pulling back the universal small family,
 \[
 \xymatrix{
@@ -2522,27 +2539,30 @@ Now we can take $\Fib = \Fib(\VV)$, which comes with its projection $\Fib(\VV) \
 \Fib \ar[r] & \V.
 }
 \]
-The remainder of the proof is just as for proposition \ref{prop:classTFib}.
+The remainder of the proof is just as for proposition \ref{prop:classTFib}.  
 \end{proof}
 
-\begin{proposition}
-The map $\FFib\ra\Fib$ just constructed has a canonical fibration structure.
-\end{proposition}
-\begin{proof}
-Consider the following diagram, in which both squares are pullbacks.
-\begin{equation}\label{diagram:fibisfib}
-\xymatrix{
-\FFib \ar[d] \ar[r]  & \VV \ar[d]\\
-\Fib \ar[r] & \V\\
-\Fib(\FFib) \ar[u] \ar[r] & \Fib(\VV)\ar[u].
-}
-\end{equation}
-$\Fib(\VV)$ is the object of fibration structures on $\VV\ra\V$, and its pullback $\Fib(\FFib)$ is therefore the object of fibration structures on $\FFib\ra\Fib$.  Thus we seek a section of $\Fib(\FFib) \ra \Fib$.  But recall that $\Fib = \Fib(\VV)$ by definition, so the lower pullback square is the pullback of $\Fib(\VV)\ra \V$ against itself, which does indeed have a distinguished section, namely the diagonal
-\[
-\Delta : \Fib(\VV) \to \Fib(\VV)\times_\V\Fib(\VV).
-\]
-\end{proof}
+%\begin{lemma}\label{lemma:Fibfib}
+%The map $\FFib\ra\Fib$ just constructed has a canonical fibration structure.
+%\end{lemma}
+%\begin{proof}
+%Consider the following diagram, in which both squares are pullbacks.
+%\begin{equation}\label{diagram:fibisfib}
+%\xymatrix{
+%\FFib \ar[d] \ar[r]  & \VV \ar[d]\\
+%\Fib \ar[r] & \V\\
+%\Fib(\FFib) \ar[u] \ar[r] & \Fib(\VV)\ar[u].
+%}
+%\end{equation}
+%$\Fib(\VV)$ is the object of fibration structures on $\VV\ra\V$, and its pullback $\Fib(\FFib)$ is therefore the object of fibration structures on $\FFib\ra\Fib$.  Thus we seek a section of $\Fib(\FFib) \ra \Fib$.  But recall that $\Fib = \Fib(\VV)$ by definition, so the lower pullback square is the pullback of $\Fib(\VV)\ra \V$ against itself, which does indeed have a distinguished section, namely the diagonal
+%\[
+%\Delta : \Fib(\VV) \to \Fib(\VV)\times_\V\Fib(\VV).
+%\]
+%\end{proof}
 
+\begin{definition}\label{def:U}
+Write $\UU \ra \U$ for the universal small fibration $\FFib\ra\Fib$ constructed in proposition~\ref{prop:UniversalFib}.
+\end{definition}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The equivalence extension property}\label{sec:EEP}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2786,11 +2806,11 @@ This is routine using Yoneda and the fact that cofibrations have decidable monos
 We shall prove that $\U$ is fibrant using the equivalence extension property (section \ref{sec:EEP}), via a different argument than the one used in \cite{CCHM}, avoiding the reduction of filling to composition, which we therefore do not require.
 
 \begin{proposition}
-The base $\U$ of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:U} is  fibrant.
+The base $\,\U$ of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:U} is  fibrant.
 \end{proposition}
 
 \begin{proof}
-To show that $\U$ is fibrant, we need to solve the following filling problem for an arbitrary cofibration $c:C \cof Z$, thus showing that $\U^{\delta_0} : \U^\I \to \U$ is a trivial cofibration (for, say, the point $\delta_0 :1\to \I $).
+To show that $\,\U$ is fibrant, we need to solve the following filling problem for an arbitrary cofibration $c:C \cof Z$, thus showing that $\,\U^{\delta_0} : \U^\I \to\, \U$ is a trivial cofibration (for, say, the point $\delta_0 :1\to \I $).
 \begin{equation}\label{diag:Ufib1}
 \xymatrix@=3em{
 C \ar@{>->}[d]_c \ar[r]^{\tilde{a}} & \U^\I \ar[d]^{\U^{\delta_0}} \\
