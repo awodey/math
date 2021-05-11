@@ -2,7 +2,10 @@
 % Model structure on the cartesian cubes
 % Begun March 2018
 %%
-\documentclass[12pt]{amsart}
+%\documentclass[12pt]{amsart}
+\documentclass[12pt]{article}
+%\documentclass[12pt,letterpaper]{memoir}
+%\usepackage{pal}
 \usepackage{amsmath}
 \usepackage{amssymb,latexsym}
 \usepackage{amsthm}
@@ -12,7 +15,7 @@
 \input{diagxy}
 \CompileMatrices       
 \usepackage{url}
-\usepackage{fullpage}
+%\usepackage{fullpage}
 
 
 % categories
@@ -116,7 +119,7 @@
 \maketitle
 
 \begin{abstract}
-Here's an abstract.
+Add an abstract.
 \end{abstract}
 
 \setcounter{tocdepth}{1}
@@ -125,6 +128,8 @@ Here's an abstract.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Add an introduction.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Cartesian cubical sets}
@@ -199,7 +204,7 @@ X \ar[d]\pbcorner \ar[r] & X^+ \ar[d]^{t_*X}\\
 since $t$ is monic. Let $\eta : X\mono X^+$ be the indicated top horizontal map; we call this map the \emph{cofibrant partial map classifier} of $X$.
  
 \begin{proposition}
-The map $\eta : X\mono X^+$ classifies partial maps with cofibrant domain, in the following sense.
+The map $\eta : X\mono X^+$ classifies partial maps into $X$ with cofibrant domain, in the following sense.
 \begin{enumerate}
 \item The map $\eta : X\mono X^+$ is a cofibration.
 \item For any object Z and any partial map $(s,g): Z\leftarrowtail S\ra X$, with $s : S\mono Z$ a cofibration, there is a unique $f:Z\ra X^+$ making a pullback square,
@@ -213,7 +218,7 @@ Z \ar[r]_f & X^+\,.
 \end{proposition}
 
 \begin{proof}
-$\eta : X\mono X^+$ is a cofibration since it is a pullback of $t : 1\to \Phi$. The second statement follows directly from the definition of $X^+$ as a polynomial (see \cite{A:NM}, prop.~7). 
+The map $\eta : X\mono X^+$ is a cofibration since it is a pullback of $t : 1\to \Phi$. Observe that $(\eta, 1_X) : X^+\leftarrowtail X\ra X$ is therefore a partial map into $X$ with cofibrant domain. The second statement follows directly from the definition of $X^+$ as a polynomial (see \cite{A:NM}, prop.~7). 
 \end{proof}
 
 \paragraph{The +-Monad.}
@@ -2675,7 +2680,7 @@ P_{w'} \ar@{->>}[ddd]_{p_{w'}} \ar[rrd]^{(p'_0)^*w'} \ar@{>->}[rrr]^{\overline{a
 && B'^\I \ar@{->>}[ddd]_{p'_0} \ar@{>->}[rrr]^{\overline{b}}  
 		&&& B^\I \ar@{->>}[ddd]^{p_0} \\
 \\
-A' \ar@{>->}[rrr]_>>>>>>>>>>>a  \ar[rrd]_{w'}
+A' \ar@{>->}[rrr]_>>>>>>>a  \ar[rrd]_{w'}
 		&&& A \ar[rrd]^{w} &&\\
 && B'\ar@{>->}[rrr]_b &&& B
 }
@@ -2687,7 +2692,7 @@ Now consider the following, in which the top square remains the same as in \eqre
 \xymatrix@=1.5em{
 P_{w'} \ar@{->>}[ddddrr]_{t'} \ar[rrd]^>>>>>>{(p'_0)^*w'} \ar@{>->}[rrr]^{\overline{a}}
 		&&& P_w \ar[ddddrr]_t \ar[rrd]^{p_0^*w} &&\\
-&& B'^\I \ar@{->>}[ddd]^{p'_1} \ar@{>->}[rrr]^<<<<<<<<<<<<<{\overline{b}}  
+&& B'^\I \ar@{->>}[ddd]^{p'_1} \ar@{>->}[rrr]^<<<<<<<<{\overline{b}}  
 		&&& B^\I \ar@{->>}[ddd]^{p_1} \\
 \\
 \\
@@ -2710,14 +2715,15 @@ b^*P_{w} \ar@{->>}[ddddrr]_{b^*t} \ar[rrd]^{b^*u} \ar@{>->}[rrr]^{\overline{a}}
 \end{equation}
 By the usual calculation of pushforwards in slice categories, $\overline{b}_* = \eta_{p_1}^*\circ b_*$, and so for $b^*u$ we have $\overline{b}_*b^* u = \eta_{p_1}^*b_*b^* u$.  But as we just determined in \eqref{diag:ppcube} the top left square is already a pushforward, and therefore $u = \eta_{p_1}^*b_*b^* u$,  so the top right naturality square is a pullback. 
 
-To finish the proof as planned, $p_1 : B^\I \to B$ is a trivial fibration because $q : B\to C$ is a fibration, and $b : B' \mono B$ is a cofibration because it is a pullback of $a : A'\mono A$.  Thus by lemma \ref{lemma:etaTF}, we have that $\eta_{p_1}: B^\I \to  b_*b^*B^\I$ is a trivial fibration, and so its pullback $\eta_t : P_w \to  b_*b^*P_w$ is a trivial fibration, as claimed.
+To finish the proof as planned, $p_1 : B^\I \to B$ is a trivial fibration because $q : B\to C$ is a fibration, and $b : B' \mono B$ is a cofibration because it is a pullback of $c : C'\mono C$.  Thus by lemma \ref{lemma:etaTF}, we have that $\eta_{p_1}: B^\I \to  b_*b^*B^\I$ is a trivial fibration, and so its pullback $\eta_t : P_w \to  b_*b^*P_w$ is a trivial fibration, as claimed.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The fibration extension property}\label{sec:FEP}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In the presence of a universal fibration $\UU\ra\U$ as was constructed in section \ref{sec:U}, the fibration extension property is closely related to the statement that the base object $\U$ is fibrant (see below).  For Kan simplicial sets, Voevodsky proved this directly using minimal fibrations \cite{VVuniverse}.  Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. In \cite{CCHM}, Coquand uses the equivalence extension property to prove that $\U$ is fibrant without assuming 3-for-2 for weak equivalences, using a reduction of general box-filling to a condition called ``Kan-composition''.   We give a formulation of this argument in an appendix \ref{App:Comp}.
+In the presence of a universal fibration $\UU\ra\U$, as was constructed in section \ref{sec:U}, the fibration extension property (Definition \ref{def:fibextreplace})  is closely related to the statement that the base object $\U$ is fibrant (see below).  For Kan simplicial sets, Voevodsky proved this directly using minimal fibrations \cite{VVuniverse}.  Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. In \cite{CCHM}, Coquand uses the equivalence extension property to prove that $\U$ is fibrant without assuming 3-for-2 for weak equivalences, using a reduction of general box-filling to a condition called ``Kan-composition''.   
+%We give a formulation of this argument in an appendix \ref{App:Comp}.
 %
 %\begin{proposition}
 %The universe $\U$ is fibrant.
@@ -2754,7 +2760,7 @@ In the presence of a universal fibration $\UU\ra\U$ as was constructed in sectio
 %\end{proof}
 %
 
-Returning to the exact relation between the fibration extension property (Definition \ref{def:fibextreplace}) and the condition that the base object $\U$ is fibrant, we can easily see that the latter implies the former.  Indeed, let $t : X\cof X'$ be a trivial cofibration and $Y \fib X$ a fibration.  To extend $Y$ along $t$, take a classifying map $y : X \to \U$, so that $Y \cong y^*\UU$ over $X$. If $\U$ is fibrant then we can extend $y$ along $t : X\cof X'$ to get $y' : X' \to \U$ with $y = y'\circ t$.  The pullback $Y' = (y')^*\UU \fib X'$ is then a fibration such that $t^*Y' \cong t^*(y')^*\UU\cong y^*\UU \cong Y$ over $X$. 
+Returning to the exact relation between the fibration extension property and the condition that the base object $\U$ is fibrant, we can easily see that the latter implies the former.  Indeed, let $t : X\cof X'$ be a trivial cofibration and $Y \fib X$ a fibration.  To extend $Y$ along $t$, take a classifying map $y : X \to \U$, so that $Y \cong y^*\UU$ over $X$. If $\U$ is fibrant then we can extend $y$ along $t : X\cof X'$ to get $y' : X' \to \U$ with $y = y'\circ t$.  The pullback $Y' = (y')^*\UU \fib X'$ is then a fibration such that $t^*Y' \cong t^*(y')^*\UU\cong y^*\UU \cong Y$ over $X$. 
 
 Conversely, we remark that the FEP implies the fibrancy of $\U$, given the following ``alignment'' lemma, which will be required below (cf.(2') of~\cite{Shu:UAERP}).
 
@@ -2773,7 +2779,7 @@ X  \ar@{>->}[rd]_t \ar[rr]_<<<<<<<<{y}  && \U  \\
 This is routine using Yoneda and the fact that cofibrations have decidable monos as components.  In more detail, since $Y'\epi X'$ is small, there is a classifying map $z : X' \to \U$,  perhaps not commuting with $t$. Nonetheless we can use $z$ to define the desired $y' : X' \to \U$ objectwise as follows: Take any map from a representable $x': \I^n \to X'$ and consider whether it factors through $t$, say as $x' = t\circ x$ for some (necessarily unique) $x: \I^n \to X$.  If $x'$ does factor, set  $y'\circ x' = y\circ x$; if not, set $y'\circ x' = z\circ x'$.  This specification is clearly natural in $I^n$, so it defines $y': X'\to\U$, and the specification ensures that $y'\circ t = y$, and that the pullback of $\UU$ along $y'$ is the same as that along $z$, namely $Y'\fib X'$.
 \end{proof}
 
-We shall prove that $\U$ is fibrant using the equivalence extension property (section \ref{sec:EEP}).  This approach was first used in \cite{CCHM} via a different argument employing the reduction of filling to composition, which we do not require.
+We shall prove that $\U$ is fibrant using the equivalence extension property (section \ref{sec:EEP}), via a different argument than the one used in \cite{CCHM}, avoiding the reduction of filling to composition, which we therefore do not require.
 
 \begin{proposition}
 The base $\U$ of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:U} is  fibrant.
