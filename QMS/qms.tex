@@ -2,10 +2,8 @@
 % Model structure on the cartesian cubes
 % Begun March 2018
 %%
-%\documentclass[12pt]{amsart}
-\documentclass[12pt]{article}
-%\documentclass[12pt,letterpaper]{memoir}
-%\usepackage{pal}
+\documentclass[12pt]{amsart}
+%\documentclass[12pt]{article}
 \usepackage{amsmath}
 \usepackage{amssymb,latexsym}
 \usepackage{amsthm}
@@ -15,7 +13,7 @@
 \input{diagxy}
 \CompileMatrices       
 \usepackage{url}
-%\usepackage{fullpage}
+\usepackage{fullpage}
 
 
 % categories
@@ -560,14 +558,14 @@ in which $f^*c$ is a cofibration, because these are preserved by pullbacks.  Thu
 
 Our next goal is the specification of a second weak factorization system, the \emph{fibration weak factorization system}, with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the fibrations. 
 
-As a warm-up, we first recall the specification of the trivial-cofibration/fibration WFS from \cite{GS}.  
-(In \cite{AGH} it is shown that these fibrations agree with those specified in the ``logical style'' of \cite{CCHM,OP}).  In the subsequent section we modify the specification of fibrations in order to arrive at an ``unbiased'' version that is more appropriate for the cartesian setting.
+As a warm-up, we first recall the specification of the trivial-cofibration/fibration WFS from \cite{GS}, where the interval $\I$ is assumed to have connections.  
+(In \cite{AGH} it is shown that these fibrations agree with those specified in the ``logical style'' of \cite{CCHM,OP}).  We then modify the specifications in order to arrive at an ``unbiased'' version that is more appropriate to the cartesian setting, and results in more trivial cofibrations.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Partial box filling (biased)}\label{sec:biasedfibration}
+\subsection{Partial box filling (biased version)}\label{sec:biasedfibration}
 
 
-A \emph{generating class of (biased) trivial cofibrations} are all maps of the form
+A \emph{generating class of biased trivial cofibrations} are all maps of the form
 \begin{equation}\label{eq:genclassTCof}
 c \otimes \delta_\epsilon : D \to Z\times \I\,,
 \end{equation}
@@ -596,6 +594,7 @@ In order to insure that such maps are indeed cofibrations, we assume  two furthe
 \end{enumerate}
 
 In place of (C6), we could require that cofibrations be closed under the join operation $A\vee B$ in the lattice of subobjects of an object.
+\medskip
 
 \paragraph{Fibrations (biased version).}
 Let 
@@ -607,11 +606,11 @@ be the class of all such pushout-products of arbitrary cofibrations $c : C \mono
 %\begin{proposition}
 %Cofibrations are closed under pushout-products.  In particular, the maps $m \otimes \delta_\epsilon : D(m,\delta_\epsilon) \to \I^{n+1}$\,,$ are cofibrations.
 %\end{proposition}
-The \emph{(biased) fibrations} are defined to be the right class of these generating trivial cofibrations,
+The \emph{biased fibrations} are defined to be the right class of these generating trivial cofibrations,
 \[
 (\mathcal{C}\otimes \delta_\epsilon)^\pitchfork\ =\ \mathcal{F}\,.
 \]
-Thus a map $f : Y\to X$ is a (biased) fibration if for every commutative square of the form
+Thus a map $f : Y\to X$ is a biased fibration if for every commutative square of the form
 \begin{equation}\label{diagram:biasedfillers}
 \xymatrix{
 Z +_C (C\times\I) \ar@{>->}[d]_{c\, \otimes \delta_\epsilon} \ar[r] & Y \ar[d]^f \\
@@ -748,10 +747,10 @@ j(u^*c \otimes \delta_\epsilon,x(u\times\I)') = j(c,x) (u\times\I).
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Partial box filling (unbiased)}\label{subsec:unbiasedfibration}
+\subsection{Partial box filling (unbiased version)}\label{subsec:unbiasedfibration}
 
 
-Rather than building a weak factorization system based on the foregoing notion of (biased) fibration (as is done in \cite{GG,OP}), we shall first eliminate the ``bias'' on a choice of endpoint $\delta_\epsilon : 1 \to \I$, expressed by the indexing $\epsilon = 0,1$.  This will have the effect of adding more trivial cofibrations, and thus more weak equivalences, to our model structure. Consider first the simple path-lifting condition, which is a special case of \eqref{diagram:biasedfillers} with $c =\, ! : 0\mono 1$, since $!\otimes\delta_\epsilon = \delta_\epsilon$:
+Rather than building a weak factorization system based on the foregoing notion of biased fibration (as is done in \cite{GS}), we shall first eliminate the ``bias'' on a choice of endpoint $\delta_\epsilon : 1 \to \I$, expressed by the indexing $\epsilon = 0,1$.  This will have the effect of adding more trivial cofibrations, and thus more weak equivalences, to our model structure. Consider first the simple path-lifting condition, which is a special case of \eqref{diagram:biasedfillers} with $c =\, ! : 0\mono 1$, since $!\otimes\delta_\epsilon = \delta_\epsilon$:
 \begin{equation*}
 \xymatrix{
 1 \ar@{>->}[d]_{\delta_\epsilon} \ar[r] & Y \ar[d]^f \\
@@ -2889,12 +2888,12 @@ By Theorem \ref{theorem:QMSmodFEP}, finally, we have the following.
 \begin{theorem}\label{theorem:QMS}
 There is a Quillen model structure $(\CC,\WW,\FF)$ on the category of cubical sets, where:
 \begin{enumerate}
-\item the cofibrations $\CC$ are any class of monos satisfying axioms (C0)-(C6),
+\item the cofibrations $\CC$ are any class of monomorphisms satisfying axioms (C0)-(C6),
 \item the fibrations $\FF$ are the maps $f : Y\to X$ for which the canonical map 
 \[
 (f^\I \times \I, \mathrm{eval}_Y) : Y^\I \times \I\to (X^\I \times \I)\times_X Y
 \]
-is right-orthogonal to $\CC$.
+lifts on the right against $\CC$.
 \end{enumerate}
 \end{theorem}
 
