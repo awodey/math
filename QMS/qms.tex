@@ -18,7 +18,9 @@
 \CompileMatrices       
 \usepackage{url}
 %\usepackage{fullpage}
-
+\usepackage[colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,
+     		filecolor=blue,urlcolor=blue]{hyperref}
+\newcommand{\ednote}[1]{[\textit{\color{red}{#1}}]} % editorial note
 
 % categories
 \newcommand{\bbtwo}{\ensuremath{\mathbbm{2}}}
@@ -793,7 +795,7 @@ In toplogical spaces, rather than requiring lifts $j_\epsilon$ for each of the e
 \begin{definition}[Fibration]\label{def:unbiasedfibration}
 Let $\delta : \I\ra\I\times\I$ be the diagonal map.
 \begin{enumerate}
-\item An object $X$ is \emph{(unbiased) fibrant} if the map 
+\item\label{item:fibrant} An object $X$ is \emph{(unbiased) fibrant} if the map 
 \[
 (\delta\Rightarrow\! X) = \langle\mathsf{eval}, p_2\rangle : X^\I \times \I \ra X\times \I
 \]
@@ -806,7 +808,8 @@ is a $+$-algebra.
 \end{enumerate}
 \end{definition}
 
-Condition \eqref{item:fibration} above says that the pullback-hom of the generic point $\delta : 1\ra \I$ with $\I^*f$, constructed in the slice category $\cSet/\I$, is a $+$-algebra.  This can be reformulated as follows.
+Condition \eqref{item:fibrant} above says that evaluation at the generic point $\delta : 1\ra \I$, i.e.\ the map $X^\delta: X^\I \ra X$ constructed in the slice category $\cSet/\I$, is a $+$-algebra.  
+Condition \eqref{item:fibration} says that the pullback-hom of the generic point $\delta : 1\ra \I$ with $\I^*f$, constructed in the slice category $\cSet/\I$, is a $+$-algebra.  The latter can be reformulated as follows.
 
 \begin{proposition}
 A map $f : Y\ra X$ is an (unbiased) fibration if and only if the canonical map $c$ to the pullback, in the following diagram, is a $+$-algebra.
@@ -2767,7 +2770,7 @@ Note that $p : A \ra C$ is small if $q : B\ra C$ is small.
 \section{The fibration extension property}\label{sec:FEP}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In the presence of a universal fibration $\UU\ra\U$, as was constructed in section \ref{sec:U}, the fibration extension property (Definition \ref{def:fibextreplace})  is closely related to the statement that the base object $\U$ is fibrant.  For Kan simplicial sets, Voevodsky proved the latter directly using minimal fibrations \cite{VVuniverse}.  Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. In \cite{CCHM}, Coquand uses the equivalence extension property to prove that $\U$ is fibrant, without assuming 3-for-2 for weak equivalences, by a neat argument using a reduction of general box-filling to a condition called ``Kan-composition''.   We shall prove that $\U$ is fibrant using the equivalence extension property via a different argument than that in \cite{CCHM}, avoiding the reduction of filling to composition, which we therefore do not require.
+In the presence of a universal fibration $\UU\ra\U$, as was constructed in section \ref{sec:U}, the fibration extension property (Definition \ref{def:fibextreplace})  is closely related to the statement that the base object $\U$ is fibrant.  For Kan simplicial sets, Voevodsky proved the latter directly using minimal fibrations \cite{VVuniverse}.  Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as stated in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. In \cite{CCHM}, Coquand uses the equivalence extension property to prove that $\U$ is fibrant, without assuming 3-for-2 for weak equivalences, by a neat argument using a reduction of general box-filling to a condition called ``Kan-composition''.   We shall prove that $\U$ is fibrant using the equivalence extension property via a different argument than that in \cite{CCHM}, avoiding the reduction of filling to composition, which we therefore do not require.
 
 
 
@@ -2811,7 +2814,7 @@ In the presence of a universal fibration $\UU\ra\U$, as was constructed in secti
 Returning to the relation between the fibration extension property and the condition that the base object $\U$ is fibrant, it is easily seen that the latter implies the former.  Indeed, let $t : X\cof X'$ be a trivial cofibration and $Y \fib X$ a fibration.  To extend $Y$ along $t$, take a classifying map $y : X \ra \U$, so that $Y \cong y^*\UU$ over $X$. If $\U$ is fibrant then we can extend $y$ along $t : X\cof X'$ to get $y' : X' \ra \U$ with $y = y'\circ t$.  The pullback $Y' = (y')^*\UU \fib X'$ is then a (small) fibration such that $t^*Y' \cong t^*(y')^*\UU\cong y^*\UU \cong Y$ over $X$.  Thus for the record.
 
 \begin{proposition}\label{prop:UfibtoFEP}
-If the base object $\U$ of the universal fibration $\UU\ra\U$ is fibrant, then the fibration weak factorization system has the fibration extension property.
+If the base object $\,\U$ of the universal fibration $\UU\ra\U$ is fibrant, then the fibration weak factorization system has the fibration extension property.
 \end{proposition}
 
 Conversely, we merely note that the FEP clearly implies the fibrancy of $\U$, given the following ``alignment'' lemma, which will also be required below (cf.(2') of~\cite{Shu:UAERP}).
@@ -2828,7 +2831,7 @@ X  \ar@{>->}[rd]_t \ar[rr]_<<<<<<<<{y}  && \U  \\
 \]
 \end{lemma}
 \begin{proof}
-This is routine using Yoneda and assuming that cofibrations $A \mono B$ have \emph{complemented} monos as components $A[n] \mono B[n]$.\footnote{This of course holds if our base category $\Set$ is classical; otherwise, we need to take this as a further axiom on $\CC$.}  In more detail, since $Y'\epi X'$ is small, there is a classifying map $z : X' \ra \U$,  perhaps not commuting with $t$. Nonetheless we can use $z$ to define the desired $y' : X' \ra \U$ objectwise as follows: Take any map from a representable $x' : \I^n \ra X'$ and consider whether it factors through $t$, say as $x' = t\circ x$ for some (necessarily unique) $x: \I^n \ra X$.  If $x'$ does factor, set  $y'\circ x' = y\circ x$; if not, set $y'\circ x' = z\circ x'$.  This specification is clearly natural in $I^n$, so it defines $y': X'\ra\U$, and the specification ensures that $y'\circ t = y$, and that the pullback of $\UU$ along $y'$ is the same as that along $z$, namely $Y'\fib X'$.
+This is routine using Yoneda and assuming that cofibrations $A \mono B$ have \emph{complemented} monos as components $A[n] \mono B[n]$.\footnote{This of course holds if the base category $\Set$ is classical; otherwise, one needs to take this as a further axiom on $\CC$.}  In more detail, since $Y'\epi X'$ is small, there is a classifying map $z : X' \ra \U$,  perhaps not commuting with $t$. Nonetheless, we can use $z$ to define the desired $y' : X' \ra \U$ objectwise as follows: Take any map from a representable $x' : \I^n \ra X'$ and consider whether it factors through $t$, say as $x' = t\circ x$ for some (necessarily unique) $x: \I^n \ra X$.  If $x'$ does factor, set  $y'\circ x' = y\circ x$; if not, set $y'\circ x' = z\circ x'$.  This specification is clearly natural in $I^n$, so it defines $y': X'\ra\U$, and the specification ensures that $y'\circ t = y$, and that the pullback of $\UU$ along $y'$ is the same as that along $z$, namely $Y'\fib X'$.
 \end{proof}
 
 \begin{corollary}
@@ -2837,11 +2840,11 @@ The fibration extension property implies that the base $\U$ of the universal fib
 
 Now we use the equivalence extension property to show that $\U$ is fibrant.
 \begin{proposition}
-The base $\,\U$ of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:U} is  fibrant.
+The base $\,\U$ of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:U} is a fibrant object.
 \end{proposition}
 
 \begin{proof}
-To show that $\,\U$ is fibrant, we need to solve the following filling problem for an arbitrary cofibration $c:C \cof Z$, thus showing that $\,\U^{\delta_0} : \U^\I \ra\, \U$ is a trivial fibration (for, say, the point $\delta_0 :1\ra \I $).
+We need to solve the following filling problem for an arbitrary cofibration $c:C \cof Z$, thus showing that $\,\U^{\delta_0} : \U^\I \ra\, \U$ is a trivial fibration (for, say, the point $\delta_0 :1\ra \I $).\ednote{say something about using $\delta_0$}
 \begin{equation}\label{diag:Ufib1}
 \xymatrix@=3em{
 C \ar@{>->}[d]_c \ar[r]^{\tilde{a}} & \U^\I \ar[d]^{\U^{\delta_0}} \\
@@ -2909,7 +2912,8 @@ A_0 \ar@{>->}[d] \ar@{>->}[r] \pbcorner & A_0\times\I \ar@{>>}[d] & \ar[l]_-e A\
 B  \ar@{>->}[r]  &  B\times\I  & \ar[l]^-f D
 }
 \end{equation}
-Since the pullback of $e$ along the top of the square is the identity, the same is true (up to isomorophism) for the pullback of $f$ along the bottom.
+The pullback of $e$ along the top of the square is the identity on $A_0$, as can be seen by pulling back $e$ as a map over $C\times \I$ along $C_0 :  C\ra C\times\I$.
+Thus the same is true (up to isomorophism) for the pullback of $f$ along the bottom.
 
 An application of the alignment lemma \ref{lem:alignment} along the trivial cofibration $c\otimes \delta_0$ completes the proof.
 \end{proof}
