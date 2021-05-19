@@ -39,7 +39,6 @@
 \newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
 \newcommand{\covpsh}[1]{\ensuremath{\mathsf{Set}^{#1}}}
 \newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
-%\renewcommand{\ra}{\ensuremath{\rightarrow}}
 \newcommand{\pocorner}[1][dr]{\save*!/#1+1.2pc/#1:(1,-1)@^{|-}\restore}
 \newcommand{\pbcorner}[1][dr]{\save*!/#1-1.2pc/#1:(-1,1)@^{|-}\restore}
 %\newcommand{\pbcornertransp}[1][dr]{\save*!/#1+1000pc/#1:(5000,5000)@^{|-}\restore}
@@ -56,6 +55,7 @@
 \newcommand{\ra}{\ensuremath{\rightarrow}}
 \newcommand{\cof}{\ensuremath{\rightarrowtail}}
 \newcommand{\fib}{\ensuremath{\epi}}
+%\renewcommand{\to}{\ensuremath{\rightarrow}}
 
 
 % cubical sets
@@ -133,6 +133,8 @@ Add an abstract.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ednote{need to fix long arrows and epi arrow commands}
 
 Add an introduction.
 
@@ -589,7 +591,6 @@ As a warm-up, we first recall the specification of the trivial-cofibration/fibra
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Partial box filling (biased version)}\label{sec:biasedfibration}
 
-
 A \emph{generating class of biased trivial cofibrations} are all maps of the form
 \begin{equation}\label{eq:genclassTCof}
 c \otimes \delta_\epsilon : D \ra Z\times \I\,,
@@ -620,7 +621,7 @@ In order to insure that such maps are indeed cofibrations, we assume  two furthe
 
 Note that since $\delta_0$ and $\delta_1$ are disjoint, by (C5) we have that $0 \ra 1$ is a cofibration, and hence that $0\ra A$ is a cofibration, for all objects $A$.
 
-In place of (C6), we could require that cofibrations be closed under the join operation $A\vee B$ in the lattice of subobjects of an object.
+In place of (C6), we could equivantly require the cofibrations to be closed under the join operation $A\vee B$ in the lattice of subobjects of an object (as is done in \cite{CCHS,OP}).
 \medskip
 
 \paragraph{Fibrations (biased version).}
@@ -663,7 +664,42 @@ Y^B \ar@/_4ex/ [rdd] \ar[rd]^{u\, \Rightarrow f} \ar@/^4ex/ [rrd] && \\
 }
 \end{equation}
 
-Using the $\otimes\dashv\ \Rightarrow$ adjunction on the arrow category, we can now show the following (cf.~\cite{GG}, prop.~n.m).
+The $\otimes\dashv\ \Rightarrow$ adjunction on the arrow category has the following useful relation to weak factorization systems (cf.~\cite{GS,Riehl,JT}), where for any maps $a : A \ra B$ and $f : X\ra Y$ we write 
+\[
+a\, \pitchfork\, f 
+\]
+to mean that for every solid square of the form
+\begin{equation}\label{eq:defpitchfork}
+\xymatrix{
+A\ar[d]_{a} \ar[r] & X \ar[d]^f \\
+B \ar@{.>}[ru] \ar[r] & Y
+}
+\end{equation}
+there exists a dotted diagonal filler as indicated. 
+
+Moreover, let us define the \emph{set}
+\[
+[a\, \pitchfork\, f]\ := \{ j : B \to X\ |\ f\circ j = j\circ 
+\]
+Then there is a presheaf ...
+
+\ednote{fill this in and \cite{Riehl}.}
+
+
+%%% Leibniz Lemma
+\begin{lemma}\label{lemma:Leibniz}
+For any maps $a : A_0 \to A_1, b : B_0 \to B_1, c : C_0 \to C_1$ in $\cSet$, 
+the following \emph{conditions} are equivalent
+\[
+(a\otimes b)\, \pitchfork\, c\  \Leftrightarrow\ a\, \pitchfork\, (b\Rightarrow\! c).
+\]
+Moreover, there is an isomorphism of the \emph{sets},
+\[
+[(a\otimes b)\, \pitchfork\, c]\  \cong\ [a\, \pitchfork\, b\Rightarrow\! c]\,,
+\]
+which is natural in all three arguments, in the expected sense.
+\end{lemma}
+%%%
 
 \begin{proposition}\label{prop:algequivfill}
 An object $X$ is fibrant if and only if both of the endpoint  projections $X^\I \ra X$ from the pathspace are (relative) $+$-algebras (over $X$). More generally, a map $f : Y\ra X$ is a fibration iff both of the maps $$(\delta_\epsilon \Rightarrow f) : Y^I \ra X^I\times_X Y$$ are $+$-algebras (for $\epsilon = 0,1$).
@@ -2593,7 +2629,7 @@ Write $\UU \ra \U$ for the universal small fibration $\FFib\ra\Fib$ constructed 
 \section{The equivalence extension property}\label{sec:EEP}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The equivalence extension property (EEP) is closely related to the \emph{univalence} of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:U} (see \cite{Shu2015}).  We shall use it in section \ref{sec:FEP} to show that the base object $\U$ is fibrant, which implies the fibration extension property.  Our proof of the EEP is a reformulation of a type-theoretic argument due to Coquand \cite{CCHM}.  See \cite{sattler} for another reformulation.
+The equivalence extension property (EEP) is closely related to the \emph{univalence} of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:U} (see \cite{Shu2015}).  We shall use it in section \ref{sec:FEP} to show that the base object $\U$ is fibrant, which implies the fibration extension property.  Our proof of the EEP is a reformulation of a type-theoretic argument due to Coquand \cite{CCHM}, which in turn is a modification of the original argument of Voevodsky \cite{KLV}.  See \cite{sattler} for another reformulation.
 %Of course, we must avoid the use of the general 3-for-2 condition for weak equivalences.  
 
 We first recall some basic facts and make some simple observations. For any map $f :X\ra Y$, recall the \emph{pathspace factorization} $f = t\circ s$ indicated below.
@@ -2629,7 +2665,7 @@ We make the following well-known observations.
 
 \item If $Y$ is fibrant (either as an object, or over a base $Y\ra Z$), then $p_0 : Y^\I \ra Y$ is a trivial fibration (as is $p_1$).  In that case, its pullback $p_f : P_f \ra X$ is also a trivial fibration.
 
-\item If $X$ and $Y$ are both fibrant, then $t= p_1\circ p_0^*f : P_f \ra Y$ is a fibration.  This can be seen by factoring the maps $p_0, p_1 :Y^\I \rightrightarrows  Y$ through the product projections as $\pi_0\circ p, \pi_1\circ p : Y^\I \ra Y\times Y \rightrightarrows Y$, and then interpolating the pullback along the map $(f,1_X) : X\times Y\ra Y\times Y$ into \eqref{diag:pathspace factorization} as indicated below.
+\item If $X$ and $Y$ are both fibrant, then $t= p_1\circ p_0^*f : P_f \ra Y$ is a fibration.  This can be seen by factoring the maps $p_0, p_1 :Y^\I \rightrightarrows  Y$ through the product projections as $\pi_0\circ p, \pi_1\circ p : Y^\I \ra Y\times Y \rightrightarrows Y$, with $p = (p_0, p_1)$, and then interpolating the pullback along the map $(f,1_X) : X\times Y\ra Y\times Y$ into \eqref{diag:pathspace factorization} as indicated below.
 \begin{equation}\label{diag:pathspace factorization2}
 \xymatrix{
 & X \ar[d]^s \ar[rr]^f \pbcorner && Y \ar[d]_r \\
@@ -2657,11 +2693,11 @@ Let $p: E \epi B$ be a trivial fibration and $c : C\mono B$ a cofibration.  Then
 
 \begin{proof}
 The unit map $\eta:E \ra c_*c^*E$ is the pullback-hom $c\!\Rightarrow\! p$, as is easily checked.
-By lemma \ref{lemma:Leibniz}, for any cofibration $a : A \mono Z$ we have the equivalence of diagonal filling conditions,
+By lemma \ref{lemma:Leibniz}, for any map $a : A \to Z$ we have the equivalence of diagonal filling conditions,
 \[
 a \pitchfork c\!\Rightarrow\!p  \quad\text{iff}\quad a\!\otimes\!c \pitchfork p.
 \]
-But $a\otimes c$ is a cofibration by axiom (C6), which says that cofibrations are closed under pushout-products.  So $a\otimes c \pitchfork p$ indeed holds, since $p$ is a trivial fibration.
+But since $c : C\mono B$ is a cofibration, $a\otimes c$ is also a cofibration if $a : A \mono Z$ is one by axiom (C6), which says that cofibrations are closed under pushout-products.  So $a\otimes c \pitchfork p$ indeed holds, since $p$ is a trivial fibration.
 \end{proof}
 
 \begin{proposition}[EEP]
@@ -2745,7 +2781,7 @@ P_{w'} \ar@{->>}[ddddrr]_{t'} \ar[rrd]^>>>>>>{(p'_0)^*w'} \ar@{>->}[rrr]^{\overl
 && B'\ar@{>->}[rrr]_b &&& B
 }
 \end{equation}
-The horizontal direction is still pullback along $b$.  Let us rename $p_0^*w=:u$ so that $(p'_0)^*w' = b^*u$ and $t' = b^*t$ and $p'_1 = b^*p_1$ to make this clear, and we then add the pushforward along $b$ on the right, in order to obtain the two units $\eta$.
+The horizontal direction is still pullback along $b$; let us rename $p_0^*w=:u$ so that $(p'_0)^*w' = b^*u$ and $t' = b^*t$ and $p'_1 = b^*p_1$ to make this clear. We then add the pushforward along $b$ on the right, in order to obtain the two units $\eta$.
 \begin{equation}\label{diag:twounits2}
 \xymatrix@=1.5em{
 b^*P_{w} \ar@{->>}[ddddrr]_{b^*t} \ar[rrd]^{b^*u} \ar@{>->}[rrr]^{\overline{a}}
@@ -2759,7 +2795,7 @@ b^*P_{w} \ar@{->>}[ddddrr]_{b^*t} \ar[rrd]^{b^*u} \ar@{>->}[rrr]^{\overline{a}}
 && B'\ar@{>->}[rrr]_b &&& B  \ar[rr]_= && B
 }
 \end{equation}
-By the usual calculation of pushforwards in slice categories, $\overline{b}_* = \eta_{p_1}^*\circ b_*$, and so for $b^*u$ we have $\overline{b}_*b^* u = \eta_{p_1}^*b_*b^* u$.  But as we just determined in \eqref{diag:ppcube} the top left square is already a pushforward, and therefore $u = \eta_{p_1}^*b_*b^* u$,  so the top right naturality square is a pullback. 
+By the usual calculation of pushforwards in slice categories, $\overline{b}_* \cong \eta_{p_1}^*\circ b_*$, and so for $b^*u$ we have $\overline{b}_*b^* u = \eta_{p_1}^*b_*b^* u$.  But as we just determined in \eqref{diag:ppcube} the top left square is already a pushforward, and therefore $u = \eta_{p_1}^*b_*b^* u$,  so the top right naturality square is a pullback. 
 
 To finish the proof as planned, $p_1 : B^\I \ra B$ is a trivial fibration because $q : B\ra C$ is a fibration, and $b : B' \mono B$ is a cofibration because it is a pullback of $c : C'\mono C$.  Thus by lemma \ref{lemma:etaTF}, we have that $\eta_{p_1}: B^\I \ra  b_*b^*B^\I$ is a trivial fibration, and so its pullback $\eta_t : P_w \ra  b_*b^*P_w$ is a trivial fibration, as claimed.
 \end{proof}
@@ -2767,6 +2803,10 @@ To finish the proof as planned, $p_1 : B^\I \ra B$ is a trivial fibration becaus
 \begin{remark}
 Note that $p : A \ra C$ is small if $q : B\ra C$ is small.
 \end{remark}
+
+\ednote{
+Expected to use alignment here.  Also expected to need closure of cofibrations under $\Pi_\I$.
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The fibration extension property}\label{sec:FEP}
