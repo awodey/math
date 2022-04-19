@@ -1,0 +1,403 @@
+%%
+% On H-S universes
+% April 2022
+%%
+%\documentclass[12pt]{amsart}
+\documentclass[11pt]{article}
+
+%\usepackage{ebgaramond}
+%\usepackage{euscript}
+
+\usepackage{amsmath}
+\usepackage{amssymb,latexsym}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{bbm}
+\usepackage[all,cmtip]{xy}
+\input{diagxy}
+%\CompileMatrices       
+\usepackage{url}
+%\usepackage{fullpage}
+\usepackage[colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,
+     		filecolor=blue,urlcolor=blue]{hyperref}
+\newcommand{\ednote}[1]{[\textit{\color{red}{#1}}]} % editorial note
+
+% categories
+\newcommand{\bbtwo}{\ensuremath{\mathbbm{2}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\A}{\ensuremath{\mathbb{A}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\D}{\ensuremath{\mathbb{D}}}
+\newcommand{\B}{\ensuremath{\mathbb{B}}}
+\newcommand{\T}{\ensuremath{\mathbb{T}}}
+\newcommand{\CC}{\ensuremath{\mathcal{C}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+\newcommand{\FF}{\ensuremath{\mathcal{F}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+%\newcommand{\EE}{\ensuremath{\mathcal{E}}}
+\newcommand{\op}[1]{\ensuremath{{#1}^{\mathrm{op}}}}
+\newcommand{\psh}[1]{\ensuremath{\mathsf{Set}^{\op{#1}}}}
+\newcommand{\Set}{\ensuremath{\mathsf{Set}}}
+\newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
+\newcommand{\covpsh}[1]{\ensuremath{\mathsf{Set}^{#1}}}
+\newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
+\newcommand{\pocorner}[1][dr]{\save*!/#1+1.2pc/#1:(1,-1)@^{|-}\restore}
+\newcommand{\pbcorner}[1][dr]{\save*!/#1-1.2pc/#1:(-1,1)@^{|-}\restore}
+%\newcommand{\pbcornertransp}[1][dr]{\save*!/#1+1000pc/#1:(5000,5000)@^{|-}\restore}
+\newcommand{\y}{\ensuremath{\mathsf{y}}} % Yoneda embedding
+\newcommand{\yon}{\ensuremath{\mathsf{y}}} % Yoneda embedding
+\newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
+\renewcommand{\hom}{\ensuremath{\mathrm{Hom}}}
+\newcommand{\plusalg}[1]{\ensuremath{^+\!\mathsf{Alg}{(#1)}}}
+\newcommand{\plusalgx}{\ensuremath{^+\!\mathsf{Alg}}}
+
+
+% arrows
+\newcommand{\hook}{\ensuremath{\hookrightarrow}}
+\newcommand{\mono}{\ensuremath{\rightarrowtail}}
+\newcommand{\ra}{\ensuremath{\rightarrow}}
+\newcommand{\cof}{\ensuremath{\rightarrowtail}}
+\newcommand{\fib}{\ensuremath{\epi}}
+%\renewcommand{\to}{\ensuremath{\rightarrow}}
+
+
+% cubical sets
+\newcommand{\I}{\ensuremath{\mathrm{I}}}
+\newcommand{\II}{\ensuremath{\mathbb{I}}}
+\renewcommand{\H}{\ensuremath{\mathbb{H}}}
+\newcommand{\HH}{\ensuremath{\mathcal{H}}}
+
+% type theory
+\newcommand{\G}{\ensuremath{\Gamma}}
+\newcommand{\defeq}{=_{\mathrm{def}}}
+\newcommand{\type}{\mathsf{type}}       
+\newcommand{\types}[2]{#1 \vdash #2:\type}
+\newcommand{\Gtypes}[1]{\types{\Gamma}{#1}}
+\newcommand{\term}[2]{#1\,:\,#2}
+\newcommand{\terms}[2]{#1 \vdash #2}
+\newcommand{\Gterms}[1]{\terms{\Gamma}{#1}}
+\newcommand{\ext}[2]{{#1\!\centerdot\! #2}}
+\newcommand{\ty}{\ensuremath{\,:\,}}
+\newcommand{\pair}[1]{\ensuremath{\langle #1\rangle}}
+\newcommand{\exdot}{\ensuremath{\!\centerdot\!}}
+\newcommand{\texdot}{\ensuremath{\centerdot}}
+
+% Id types
+\newcommand{\Id}{\mathsf{Id}}
+\newcommand{\id}[1]{\Id_{#1}}
+\newcommand{\refl}{\mathsf{refl}}
+\newcommand{\idrec}{\mathsf{idrec}}
+\newcommand{\jay}{\mathsf{j}}
+\renewcommand{\i}{\mathsf{i}}
+
+% Universe
+\newcommand{\U}{\ensuremath{\mathcal{U}}}
+\newcommand{\UU}{\ensuremath{\,\dot{\mathcal{U}}}}
+
+\newcommand{\V}{\ensuremath{\mathcal{V}}}
+\newcommand{\VV}{\ensuremath{\dot{\mathcal{V}}}}
+
+\newcommand{\Fib}{\ensuremath{\mathsf{Fib}}}
+\newcommand{\FFib}{\ensuremath{\dot{\mathsf{Fib}}}}
+\newcommand{\TFib}{\ensuremath{\mathsf{TFib}}}
+\newcommand{\TTFib}{\ensuremath{\dot{\mathsf{TFib}}}}
+
+
+% Adjunction as a two-way rule
+\newcommand{\adjunction}[2]{%
+  \begin{tabular}{c}
+    $#1$ \\
+    \noalign{
+      \vskip 2pt      
+      \hrule
+      \vskip 1pt      
+      \hrule
+      \vskip 2pt      
+      }
+    $#2$
+  \end{tabular}
+  }
+
+\newcommand{\adjunctionx}[3]{%
+  \begin{tabular}{c}
+    $#1$ \\
+    \noalign{
+      \vskip 2pt      
+      \hrule
+      \vskip 1pt
+      \hrule
+      \vskip 2pt      
+      }
+    $#2$ \\
+    \noalign{
+      \vskip 2pt      
+      \hrule
+      \vskip 1pt
+      \hrule
+      \vskip 2pt      
+      }
+    $#3$
+  \end{tabular}
+  }
+
+\newcommand{\adjrule}{\noalign{\vskip 2pt \hrule \vskip 1pt \hrule \vskip 2pt}}
+\newcommand{\longadjunction}[1]{
+\begin{tabular}{>{$}c<{$}}
+#1
+\end{tabular}
+}
+
+
+% theorem styles
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition} 
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary} 
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark} 
+\newtheorem*{remarks*}{Remarks}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{A note on Hofmann-Streicher universes}
+\author{Steve Awodey}
+\maketitle
+
+%\begin{abstract}
+%Add an abstract.
+%\end{abstract}
+
+%\setcounter{tocdepth}{1}
+%\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{1. The Hofmann-Streicher universe}\label{sec:U}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let $\C$ be a small category and $\widehat{\C} = \psh{\C}$ the category of presheaves on $\C$.
+In \cite{HS}, the authors define a (type-theoretic) \emph{universe} 
+\begin{equation}\label{eq:universe}
+{\mathsf{E}l} \to U
+\end{equation}
+ in $\widehat{\C}$ as follows. For $I\in\C$, set
+ \begin{align}
+ U(I)\ &=\ \mathsf{ob}(\widehat{\C/_I})\,,\label{eq:universeob}\\ 
+ {\mathsf{E}l}(\langle I, A\rangle) &=\ A(id_I)\,,\label{eq:universeel}
+ \end{align}
+with an evident associated action on morphisms, which need not concern us for the moment.  A few comments are required: 
+%
+\begin{enumerate}
+%
+\item Since $U:\op{\C}\to \Set$, we have taken the underlying \emph{set} of objects $\mathsf{ob}(\widehat{\C/_I})$ of the category $\widehat{\C/_I}$ in \eqref{eq:universeob}.
+% 
+\item In \eqref{eq:universeel}, and elsewhere, the authors steadfastly adopt the ``categories with families'' point of view in describing the morphism ${\mathsf{E}l} \to U$ in $\widehat{\C}$ as an object in
+\begin{equation}\label{eq:elements}\textstyle
+\widehat{\C}/_U \simeq \widehat{\int_{\C}U}\,,
+\end{equation}
+and thus as a presheaf on the \emph{category of elements} $\int_{\C}U$ of $U\in\widehat{\C}$ (rather than as an object in $\widehat{\C}$).  Thus the argument $\langle I, A\rangle\in \int_{\C}U$ in \eqref{eq:universeel} consists of an object $I\in\C$ and an element $A\in U(I)$.
+%
+\item In order to account for size issues, the authors assume a Grothendieck universe $\V$ in $\Set$, the elements of which are called \emph{small sets}.  The category $\C$ is then assumed to be small, as are the values of the presheaves (unless otherwise stated).  
+%
+\end{enumerate}
+
+The presheaf $U$ is regarded as the Grothendieck universe $\V$ ``lifted'' from $\Set$ to $\psh{\C}$.
+We will analyse the construction of \eqref{eq:universe} from a slightly different perspective in order to arrive at its basic property as a classifier for small families. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{2. An adjunction}
+
+Fix a small index category $\C$.  For a presheaf $X$ on $\C$, recall that the \emph{category of elements} is the comma category,
+\[\textstyle
+\int_\C X\ =\ \yon_\C/_X\,,
+\] 
+where $\yon_\C : \C \to \psh\C$ is the Yoneda embedding. 
+While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe ${\mathsf{E}l} \to U$ at the point \eqref{eq:elements}, the authors seem to have missed a trick, which can be used to simplify things:
+
+\begin{proposition}
+The category of elements functor $\int_\C : \widehat\C \to \Cat$ has a right adjoint, which we denote
+\[\textstyle
+\int_\C\dashv \nu_\C : \Cat \to \widehat\C\,.
+\]
+For a small category $\A$, we call the presheaf $\nu_\C(\A)$ the \emph{$\C$-nerve} of $\A$.
+\end{proposition}
+\begin{proof}
+For  $\A\in\Cat$ and $c\in\C$ define $\nu_{\C}(\A)(c)$ to be the Hom-set,
+\begin{align*}
+\nu_\C(\A)(c) &= \Cat\big( {\C/_c}\,,\, \A \big)\,,
+\end{align*}
+with contravariant action on $h : d\to c$ given by precomposing a functor $P : {\C/_c}\to\A$  with the postcomposition functor
+\[
+{\C/_h} : {\C/_d}\to {\C/_c} \,.
+\]
+For the claimed adjunction, observe that the slice category $\C/_c$ is the category of elements of the representable functor $\y{c}$,
+\[\textstyle
+\int_\C\y{c} \cong \C/_c\,.
+\]
+ Thus for representables $\y{c}$\,, we have the required natural isomorphism
+ \[\textstyle
+ \widehat\C\big( \y{c}\,,\ \nu_\C(\A) \big)\ \cong\ \nu_\C(\A)(c)\  =\ \Cat\big( {\C/_c}\,,\ \A \big)\ \cong\ \Cat\big( \int_\C\y{c},\ \A \big)\,.
+  \]
+For arbitrary presheaves $X$, one can use the colimit representation of $X$ over $\int_\C X$, and the easy to prove fact that $\int_\C$ itself preserves colimits.  Indeed, for any category $\D$, we have an isomorphism  in $\Cat$,
+\[
+\varinjlim_{d\in\D}\,\D/_d \ \cong\ \D\,.
+\]
+\end{proof}
+%
+When $\C$ is fixed, as here, we may omit the subscript from the notation $\int_\C$ and $\yon_\C$ and $\nu_\C$. Furthermore, we  write $$\A^\nu = \nu_\C(\A)\,.$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{3. Classifying families}
+
+Let $\kappa$ be an inaccessible cardinal number, and call the sets of size strictly less than $\kappa$ \emph{small}.  Write $\Set_\kappa$ for the category of small sets and $\cSet_\kappa = \Set_\kappa^{\C^{\mathrm{op}}}$ for the category of small set valued presheaves on the cube category $\C$.  By a \emph{small fibration} we mean a fibration in the category of small cubical sets, which we identify with the evident subcategory $\cSet_\kappa \subseteq \cSet$.  Finally, let $\dot{\Set}_\kappa$ be the category of small pointed sets, i.e.\ the coslice category $1/\Set_\kappa$.  There is an evident forgetful functor  $U:\dot{\Set}_\kappa \ra {\Set}_\kappa$.
+% which induces another one $U^{\C^{op}} : \dot{\Set}_\kappa^{\C^{op}} \ra {\Set}_\kappa^{\C^{op}}$ from small pointed presheaves to small presheaves.
+
+\begin{definition}
+The ($\kappa$-)\emph{universe} $p : \VV \ra \V$ in $\cSet$ is defined:
+\begin{enumerate}
+
+\item $\V_n = \{ A: \C/[n] \ra \Set^{op}_\kappa\ \}$, the \emph{set} of small presheaves on $\C/[n]$.  
+
+The action of a map $h : [m] \ra [n]$ in  $\C$  is given by precomposition with postcomposition: from  $h : [m] \ra [n]$ we have  $\C/h : \C/[m] \ra \C/[n]$, which we precompose with any $A: \C/[n]\ra \Set_\kappa^{op} $ to get $A.h = A\circ \C/h$,
+\begin{equation}\label{diagram:U1}
+\xymatrix{
+[n] & \C/[n] \ar[r]^{A} & \Set_\kappa^{op} \\
+[m] \ar[u]^{h} & \C/[m] \ar[u]^{\C/h}  \ar[ru]_{A.h} &
+}
+\end{equation}
+
+\item $\VV_n = \{ a: \C/[n] \ra \dot{\Set}^{op}_\kappa\ \}$, the \emph{set} of small pointed presheaves on $\C/[n]$, with the corresponding action.
+
+\item For $a \in \VV_n$, let $p_n (a) = U(a) \in \V_n$, where $U : \dot{\Set_\kappa} \ra {\Set_\kappa}$.
+\end{enumerate}
+\end{definition}
+Functoriality of $\V$ and $\VV$ and naturality of $p: \VV\ra\V$ are immediate. 
+
+\begin{lemma}
+For each $A : \I^n \ra \V$ there is a canonical choice of a small family $p_A : E_A\ra \I^n$ and a map $q_A: E_A \ra\VV$ making a pullback square as follows.
+\begin{equation}\label{diagram:U2}
+\xymatrix{
+E_A \ar[d]_{p_A} \ar[r]^{q_A}  \pbcorner& \VV\ar[d]^{p}  \\
+\I^n \ar[r]_{A} & \V
+}
+\end{equation}
+\end{lemma}
+%
+\begin{proof}
+Since $\I^n \cong y[n]$ is representable, there is a distinguished associated presheaf $A : (\C/[n])^{op} \ra \Set_\kappa$. Define $p_A : E_A \ra \I^n$ by
+\[
+(E_A)_k = \coprod_{h\in \C(k,n)} A(h) \qquad \ni (h, a)\,
+\]
+with first projection $(p_A)_k(h,a) = h$. Note that $(E_A)_k$ is small.
+Then let $q_A:E_A \ra\VV$ be defined on $(h,a): \I^k \ra E_A$ by 
+\[
+(q_A)\circ(h, a) = a \in Ah
+\]
+as illustrated below.
+\begin{equation}\label{diagram:U3}
+\xymatrix@=5em{
+& E_A \ar[d]^>>>>>>{p_A} \ar@{..>}[r]^{q_A} & \VV\ar[d]^{p}  \\
+\I^k \ar[r]_{h} \ar[ru]^{(h,a)}\ar[rru]_>>>>>>>>>>>{a} & \I^n \ar[r]_{A} & \V
+}
+\end{equation}
+The proof that the square is a pullback is left to the reader.
+\end{proof}
+
+\begin{lemma}\label{charforfamovercube}
+For each small family $p_E : E \ra \I^n$ there is a canonical map $\chi_E : \I^n \ra \V$ and a map $q_E:E \ra\VV$ making a pullback square as follows.
+\begin{equation}\label{diagram:U2}
+\xymatrix{
+E \ar[d]_{p_E} \ar[r]^{q_E}  \pbcorner& \VV\ar[d]^{p}  \\
+\I^n \ar[r]_{\chi_E} & \V
+}
+\end{equation}
+\end{lemma}
+%
+\begin{proof}
+It suffices to give a small set $(\chi_E)_k(h)$ for each $h :[k] \ra [n]$ in a way that is functorial in $h \in \C/[n]$ and natural in $[k]$.  Thus let
+\[
+(\chi_E)_k(h) := \Gamma(h, E)\ = \ \{ e : \I^k \ra E \ |\ p_E\circ e = h \}.
+\]
+\[
+\xymatrix{& E \ar[d]^{p_E} \\ \I^k \ar@{..>}[ru]^{e}\ar[r]_h & \I^n } 
+\]
+which is small if each $E_k$ is.  
+
+To define $q_E:E \ra\VV$,  take any $e : \I^k \ra E$ and first compose with $p_E$ and observe that $e \in  \Gamma(p_Ee, E)$.  Thus the assignment gives a map $\dot{e} : \I^k \ra \VV$ making the solid arrows in the following commute.
+\begin{equation}\label{diagram:U4}
+\xymatrix@=5em{
+&E \ar[d]^>>>>>>>{p_E} \ar@{..>}[r]^{q_E} & \VV\ar[d]^{p}  \\
+\I^k \ar[r]_{p_Ee} \ar[ru]^{e}\ar[rru]_>>>>>>>>>>>{\dot{e}} & \I^n \ar[r]_{E} & \V
+}
+\end{equation}
+Since the assignment of $\dot{e}$ to $e$ is natural in $[k]$, we get the required map $q_E : E\ra \VV$.
+The proof that the square is a pullback is again left to the reader.
+\end{proof}
+
+\begin{corollary}
+Given a small family $p_E : E \ra \I^n$ there is a unique isomorphism $E \cong E_{\chi_E}$ over $\I^n$ making a commutative diagram as follows.
+
+\begin{equation}\label{diagram:U5}
+\xymatrix@=5em{
+E \ar[rd]_{p_E} \ar@/^2.0pc/[rr]^{q_E} \ar[r]^{\cong}  & E_{\chi_E} \ar[d]^{p_{\chi_E}} \ar[r]_{q_{\chi_E}} & \VV \ar[d]^{p}  \\
+ &\I^n \ar[r]_{\chi_E} & \V
+}
+\end{equation}
+\end{corollary}
+%
+
+\begin{proposition}\label{prop:familyclassifier}
+For any cubical set $X$ and any small family $p_E : E \ra X$ there are canonical maps $\chi_E : X \ra \V$ and $q_E : E \ra\VV$ making a pullback square as follows.
+\begin{equation}\label{diagram:U6}
+\xymatrix{
+E \ar[d]_{p_E} \ar[r]^{q_E}  \pbcorner & \VV\ar[d]^{p}  \\
+X \ar[r]_{\chi_E} & \V
+}
+\end{equation}
+Moreover, $\chi_E$ and $q_E$ are uniquely determined by the equations \eqref{eqns:U} below.
+\end{proposition}
+
+\begin{proof}
+Write $X = \varinjlim_{x} \I^n$ as a colimit of a cocone of maps $ x : \I^n \ra X$ from representables, over the canonical index category $([n],x) \in \int_\C X$.  Form the family of pullback squares below, where the arrows with a dot represent cocones, and the cocone consisting of the $q_x : E_x \ra E$  is determined by taking pullbacks along $p_E$, and is therefore also a colimit. 
+\begin{equation}\label{diagram:U7}
+\xymatrix@=3em{
+E_x \ar[d]_{p_{E_x}} \ar[r]_{\cdot}^{q_x} \ar@/^2.0pc/[rr]^{q_{E_x}} \pbcorner & E \ar[d]_{p_{E}} \ar@{..>}[r]^{q_E} & \VV\ar[d]^{p}  \\
+\I^n \ar@/_2.0pc/[rr]_{\chi_{E_x}}  \ar[r]^{\cdot}_x & X \ar@{..>}[r]_{\chi_E} & \V
+}
+\end{equation}
+The maps $\chi_{E_x}$  and $q_{E_x}$ are determined by lemma \ref{charforfamovercube}, since the families $p_{E_x}$ are small if $p_E: E \ra X$ is.  Thus we can define the indicated maps $\chi_E$ and $q_E$ from the colimits as those uniquely determined by the equations:
+\begin{align}\label{eqns:U}
+\chi_E \circ x &= \chi_{E_x}\\
+q_E \circ q_{x} &= q_{E_x}
+\end{align}
+The square on the right is a pullback because the outer squares are all pullbacks,  the family of left-hand squares are pullbacks, and the family of maps $x : \I^n \ra X$ covers $X$.
+\end{proof}
+
+\begin{remark} 
+Note that the classification operation $$\chi : \cSet_\kappa/X \ra \cSet(X, \V)$$ again has the evident ``pullback of $p : \VV\ra\V$'' operation 
+$$E : \cSet(X, \V) \ra \cSet_\kappa/X $$ as a left (quasi-)inverse $
+E \cong E_{\chi_E}$, which is (pseudo-)natural in $X$. 
+But there is no corresponding uniqueness of classifying maps, relating $A : X\ra \V$ and $\chi_{E_A} : X\ra\V$.  (This is what is provided, in a suitable sense, by the \emph{univalence} of the universe $\UU\ra\U$ of fibrations, to be established in section \ref{sec:EEP}.)
+\end{remark}
+
+
+
+\bibliographystyle{alpha}
+\bibliography{../references}
+
+%%%
+\end{document}
+%%%
+
