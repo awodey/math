@@ -147,6 +147,14 @@
 \end{tabular}
 }
 
+% commutative diagrams
+\usepackage{tikz}
+\usepackage{pdfpages}
+\usepackage{tikz-cd}
+\newcommand{\pbmark}{\ar[dr, phantom, "\lrcorner" very near start, shift right=.5ex]}	% pullback mark
+\newcommand{\pbbmark}{\ar[drr, phantom, "\lrcorner" very near start, shift right=.5ex]}	% pullback mark
+
+
 
 % theorem styles
 \newtheorem{theorem}{Theorem}
@@ -217,19 +225,19 @@ The presheaf $U$ is regarded as the Grothendieck universe $\V$ ``lifted'' from $
 We will analyse the construction of \eqref{eq:universe} from a slightly different perspective in order to arrive at its basic property as a classifier for small families. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{2. An adjunction}
+\subsection*{2. An unused adjunction}
 
-Fix a small index category $\C$.  For a presheaf $X$ on $\C$, recall that the \emph{category of elements} is the comma category,
+Fix a small index category $\C$.  For a presheaf $X$ on $\C$, recall that the category of elements is the comma category,
 \[\textstyle
 \int_\C X\ =\ \yon_\C/_X\,,
 \] 
-where $\yon_\C : \C \to \psh\C$ is the Yoneda embedding. 
+where $\yon_\C : \C \to \psh\C$ is the Yoneda embedding, which we may omit and write simply $\C/_X$. 
 While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe ${\mathsf{E}l} \to U$ at the point \eqref{eq:elements}, the authors seem to have missed a trick, which can be used to simplify things:
 
 \begin{proposition}
 The category of elements functor $\int_\C : \widehat\C \to \Cat$ has a right adjoint, which we denote
-\[\textstyle
-\int_\C\dashv \nu_\C : \Cat \to \widehat\C\,.
+\[
+\nu_\C : \Cat \to \widehat\C\,.
 \]
 For a small category $\A$, we call the presheaf $\nu_\C(\A)$ the \emph{$\C$-nerve} of $\A$.
 \end{proposition}
@@ -244,22 +252,76 @@ with contravariant action on $h : d\to c$ given by precomposing a functor $P : {
 \]
 For the claimed adjunction, observe that the slice category $\C/_c$ is the category of elements of the representable functor $\y{c}$,
 \[\textstyle
-\int_\C\y{c} \cong \C/_c\,.
+\int_\C\y{c}\ \cong\ \C/_c\,.
 \]
- Thus for representables $\y{c}$\,, we have the required natural isomorphism
+ Thus for all representables $\y{c}$\,, we have the required natural isomorphism
  \[\textstyle
  \widehat\C\big( \y{c}\,,\ \nu_\C(\A) \big)\ \cong\ \nu_\C(\A)(c)\  =\ \Cat\big( {\C/_c}\,,\ \A \big)\ \cong\ \Cat\big( \int_\C\y{c},\ \A \big)\,.
   \]
-For arbitrary presheaves $X$, one can use the colimit representation of $X$ over $\int_\C X$, and the easy to prove fact that $\int_\C$ itself preserves colimits.  Indeed, for any category $\D$, we have an isomorphism  in $\Cat$,
+For arbitrary presheaves $X$, one can use the presentation of $X$ as a colimit of representables over the index category over $\int_\C X$, and the easy to prove fact that $\int_\C$ itself preserves colimits.  Indeed, for any category $\D$, we have an isomorphism in $\Cat$,
 \[
 \varinjlim_{d\in\D}\,\D/_d \ \cong\ \D\,.
 \]
+%\vspace{-3em}
 \end{proof}
-%
-When $\C$ is fixed, as here, we may omit the subscript from the notation $\int_\C$ and $\yon_\C$ and $\nu_\C$. Furthermore, we  write $$\A^\nu = \nu_\C(\A)\,.$$
 
+When $\C$ is fixed, as here, we may omit the subscript from the notation $\int_\C$ and $\yon_\C$ and $\nu_\C$.
+The unit and counit maps
+\begin{align*}\textstyle
+\eta :&\ \textstyle  X \to \nu{\int\!{X}}\,, \\
+\epsilon :&\ \textstyle  \int\nu\A \to \A\,,
+\end{align*}
+ are as follows.  At $c\in\C$, for $x : \y{c}\ra X$, the functor $\eta_c(x) : \C/_c \to \C/_X$ is just composition with $x$, which may be written
+\[
+\eta_c(x) = \C/_x : \C/_c \to \C/_X\,.
+\]
+For $\A$, the functor $ \epsilon : \int\nu\A \to \A$ takes a pair $(c, f : \C/_c \to \A)$ to the object $f(1_c) \in \A$,
+\[
+\epsilon(c,f) = f(1_c).
+\]
+\begin{lemma}
+For any $f : X\to Y$, the  naturality square below is a pullback.
+\begin{equation}\label{eq:naturality}\textstyle
+\begin{tikzcd}
+	 X \ar[d, swap,"f"] \ar[r, "{\eta_X}"] & \nu{\int\!{X}} \ar[d, "{ \nu{\int\!{f}}}"]\\  
+	Y \ar[r, swap,"{\eta_Y}"] &   \nu{\int\!{Y}}.
+ \end{tikzcd}
+ \end{equation}
+ 
+\end{lemma}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{3. Classifying families}
+
+Note that for the terminal presheaf $1\in\widehat{\C}$ we have $\int 1 \cong\C$, so for every $X\in\widehat{\C}$ there is a canonical projection  $\int X \to\C$, which is easily seen to be a discrete fibration. Ignoring size issues for the moment, discrete fibrations  in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets.  For every presheaf $X\in\widehat{\C}$, we therefore have a pullback diagram
+\[\textstyle
+\begin{tikzcd}
+	 \int X \ar[d] \ar[r] \pbmark & \op{\dot{\Set}} \ar[d]\\  
+	\C \ar[r,swap,"X"] &  \op{\Set}.
+ \end{tikzcd}
+ \]
+ Transposing by the adjunction $\int\dashv \nu$ then gives a commutative square in $\widehat{\C}$,
+\begin{equation}\label{eq:classifyuniverse}\textstyle
+\begin{tikzcd}
+	 X \ar[d] \ar[r] & \nu\op{\dot{\Set}} \ar[d]\\  
+	1 \ar[r,swap,"\tilde{X}"] &  \nu\op{\Set}.
+ \end{tikzcd}
+ \end{equation}
+Let us write $\VV \to \V$ for the map on the right, so that
+\begin{align}\label{eq:universedef}\textstyle
+\VV\, &=\, \nu\op{\dot{\Set}}\\  
+\V\, &=\, \nu\op{\Set}.\notag
+ \end{align}
+
+\begin{lemma}
+The square \eqref{eq:classifyuniverse} is a pullback in $\widehat{\C}$. More generally, for any map $X\ra Y$ in $\widehat{\C}$, there is a pullback square 
+\begin{equation}\label{eq:classifyuniverse}\textstyle
+\begin{tikzcd}
+	 X \ar[d] \pbmark \ar[r] & \nu\op{\dot{\Set}} \ar[d] \ar[r, "{=}"] & \VV \ar[d]\\  
+	Y \ar[r] &  \nu\op{\Set}\ar[r,swap, "{=}"] & \V.
+ \end{tikzcd}
+ \end{equation}
+\end{lemma}
+
 
 Let $\kappa$ be an inaccessible cardinal number, and call the sets of size strictly less than $\kappa$ \emph{small}.  Write $\Set_\kappa$ for the category of small sets and $\cSet_\kappa = \Set_\kappa^{\C^{\mathrm{op}}}$ for the category of small set valued presheaves on the cube category $\C$.  By a \emph{small fibration} we mean a fibration in the category of small cubical sets, which we identify with the evident subcategory $\cSet_\kappa \subseteq \cSet$.  Finally, let $\dot{\Set}_\kappa$ be the category of small pointed sets, i.e.\ the coslice category $1/\Set_\kappa$.  There is an evident forgetful functor  $U:\dot{\Set}_\kappa \ra {\Set}_\kappa$.
 % which induces another one $U^{\C^{op}} : \dot{\Set}_\kappa^{\C^{op}} \ra {\Set}_\kappa^{\C^{op}}$ from small pointed presheaves to small presheaves.
