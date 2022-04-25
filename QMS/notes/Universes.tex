@@ -58,7 +58,8 @@
 \newcommand{\ra}{\ensuremath{\rightarrow}}
 \newcommand{\cof}{\ensuremath{\rightarrowtail}}
 \newcommand{\fib}{\ensuremath{\epi}}
-%\renewcommand{\to}{\ensuremath{\rightarrow}}
+\renewcommand{\to}{\ensuremath{\rightarrow}}
+\newcommand{\too}{\ensuremath{\longrightarrow}}
 
 
 % cubical sets
@@ -94,6 +95,8 @@
 \newcommand{\U}{\ensuremath{\mathcal{U}}}
 \newcommand{\UU}{\ensuremath{\,\dot{\mathcal{U}}}}
 
+\newcommand{\SSet}{\ensuremath{\,\dot{\Set}}}
+
 \newcommand{\V}{\ensuremath{\mathcal{V}}}
 \newcommand{\VV}{\ensuremath{\dot{\mathcal{V}}}}
 
@@ -102,7 +105,7 @@
 \newcommand{\TFib}{\ensuremath{\mathsf{TFib}}}
 \newcommand{\TTFib}{\ensuremath{\dot{\mathsf{TFib}}}}
 
-\newcommand{\elem}[1]{\int\!{#1}}
+\newcommand{\elem}[1]{\textstyle\int\!{#1}}
 
 
 % Adjunction as a two-way rule
@@ -198,7 +201,7 @@
 \subsection*{1. The Hofmann-Streicher universe}\label{sec:U}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In \cite{HS}, the authors define a (type-theoretic) \emph{universe} 
+In \cite{HS:1997} the authors define a (type-theoretic) \emph{universe} 
 \begin{equation}\label{eq:universe}
 {\mathsf{E}l} \to U
 \end{equation}
@@ -211,7 +214,7 @@ with an evident associated action on morphisms, which need not concern us for th
 %
 \begin{enumerate}
 %
-\item Since $U:\op{\C}\to \Set$, we have taken the underlying \emph{set} $\mathsf{ob}(\widehat{\C/_I})$ of objects of the category $\widehat{\C/_I}$ in \eqref{eq:universeob}.
+\item Since $U:\op{\C}\too \Set$, we have taken the underlying \emph{set} $\mathsf{ob}(\widehat{\C/_I})$ of objects of the category $\widehat{\C/_I}$ in \eqref{eq:universeob}.
 % 
 \item In \eqref{eq:universeel}, and throughout, the authors steadfastly adopt the ``categories with families'' point of view in describing the morphism ${\mathsf{E}l} \ra U$ in $\widehat{\C}$ as an object in
 \begin{equation}\label{eq:elements}\textstyle
@@ -237,9 +240,9 @@ where $\yon_\C : \C \to \psh\C$ is the Yoneda embedding, which we may supress an
 While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe ${\mathsf{E}l} \ra U$ at the point \eqref{eq:elements}, the authors seem to have missed a trick, which can be used to simplify things:
 
 \begin{proposition}
-The category of elements functor $\int_\C : \widehat\C \to \Cat$ has a right adjoint, which we denote
+The category of elements functor $\int_\C : \widehat\C \too \Cat$ has a right adjoint, which we denote
 \[
-\nu_\C : \Cat \to \widehat\C\,.
+\nu_\C : \Cat \too \widehat\C\,.
 \]
 For a small category $\A$, we call the presheaf $\nu_\C(\A)$ the \emph{$\C$-nerve} of $\A$.
 \end{proposition}
@@ -250,7 +253,7 @@ For  $\A\in\Cat$ and $c\in\C$ define $\nu_{\C}(\A)(c)$ to be the Hom-set,
 \end{align*}
 with contravariant action on $h : d\to c$ given by precomposing a functor $P : {\C/_c}\to\A$  with the postcomposition functor
 \[
-{\C/_h} : {\C/_d}\to {\C/_c} \,.
+{\C/_h} : {\C/_d}\too {\C/_c} \,.
 \]
 For the adjunction, observe that the slice category $\C/_c$ is the category of elements of the representable functor $\y{c}$\,,
 \[\textstyle
@@ -258,9 +261,9 @@ For the adjunction, observe that the slice category $\C/_c$ is the category of e
 \]
  Thus for all representables $\y{c}$\,, we have the required natural isomorphism
  \[\textstyle
- \widehat\C\big( \y{c}\,,\ \nu_\C(\A) \big)\ \cong\ \nu_\C(\A)(c)\  =\ \Cat\big( {\C/_c}\,,\ \A \big)\ \cong\ \Cat\big( \int_\C\y{c},\ \A \big)\,.
+ \widehat\C\big( \y{c}\,,\, \nu_\C(\A) \big)\ \cong\ \nu_\C(\A)(c)\  =\ \Cat\big( {\C/_c}\,,\, \A \big)\ \cong\ \Cat\big( \int_\C\y{c}\,,\, \A \big)\,.
   \]
-For arbitrary presheaves $X$, one can use the presentation of $X$ as a colimit of representables over the index category $\int_\C X$, and the easy to prove fact that $\int_\C$ itself preserves colimits.  Indeed, for any category $\D$, we have an isomorphism in $\Cat$,
+For arbitrary presheaves $X$, one uses the presentation of $X$ as a colimit of representables over the index category $\int_\C X$, and the easy to prove fact that $\int_\C$ itself preserves colimits.  Indeed, for any category $\D$, we have an isomorphism in $\Cat$,
 \[
 \varinjlim_{d\in\D}\,\D/_d \ \cong\ \D\,.
 \]
@@ -269,34 +272,50 @@ For arbitrary presheaves $X$, one can use the presentation of $X$ as a colimit o
 
 When $\C$ is fixed, as here, we may omit the subscript from the notation $\int_\C$ and $\yon_\C$ and $\nu_\C$.  The unit and counit maps of the adjunction $\int \dashv \nu$, vis.\
 \begin{align*}\textstyle
-\eta :&\ \textstyle  X \to \nu{\elem{X}}\,, \\
-\epsilon :&\ \textstyle  \elem\nu\A \to \A\,,
+\eta :&\ \textstyle  X \too \nu{\elem{X}}\,, \\
+\epsilon :&\ \textstyle  \elem\nu\A \too \A\,,
 \end{align*}
- are as follows.  At $c\in\C$, for $x : \y{c}\ra X$, the functor $\eta_c(x) : \C/_c \to \C/_X$ is just composition with $x$, 
-\[
-\eta_c(x) = \C/_x : \C/_c \to \C/_X\,.
-\]
+ are as follows.  At $c\in\C$, for $x : \y{c}\ra X$, the functor $(\eta_X)_c(x) : \C/_c \to \C/_X$ is just composition with $x$, 
+\begin{equation}\label{eq:eta}
+(\eta_X)_c(x) = \C/_x : \C/_c \too \C/_X\,.
+\end{equation}
 For $\A\in\Cat$, the functor $ \epsilon : \int\nu\A \to \A$ takes a pair $(c\in\C, f : \C/_c \to \A)$ to the object $f(1_c) \in \A$,
 \[
 \epsilon(c,f) = f(1_c).
 \]
 \begin{lemma}\label{lemma:natpb}
-For any $f : X\to Y$, the  naturality square below is a pullback.
+For any $f : Y\to X$, the naturality square below is a pullback.
 \begin{equation}\label{eq:naturality}\textstyle
 \begin{tikzcd}
-	 X \ar[d, swap,"f"] \ar[r, "{\eta_X}"] & \nu{\int\!{X}} \ar[d, "{ \nu{\int\!{f}}}"]\\  
-	Y \ar[r, swap,"{\eta_Y}"] &   \nu{\int\!{Y}}.
+	 Y \ar[d, swap,"f"] \ar[r, "{\eta_Y}"] & \nu{\int\!{Y}} \ar[d, "{ \nu{\int\!{f}}}"]\\  
+	X \ar[r, swap,"{\eta_X}"] &   \nu{\int\!{X}}.
  \end{tikzcd}
  \end{equation}
 \end{lemma}
-\begin{proof}
 
+\begin{proof}
+It suffices to prove it for the case $f : X\ra 1$.  Thus consider the square 
+\begin{equation}\label{eq:naturalityobject}\textstyle
+\begin{tikzcd}
+	 X \ar[d] \ar[r, "{\eta_X}"] & \nu{\int\!{X}} \ar[d]\\  
+	1\ar[r, swap,"{\eta_1}"] &   \nu{\int\! 1}.
+ \end{tikzcd}
+ \end{equation}
+Evaluating at $c\in\C$ and applying \eqref{eq:eta} then gives the following square in $\Set$.
+\begin{equation}\label{eq:naturalityobjecteval}\textstyle
+\begin{tikzcd}
+	 Xc \ar[d] \ar[r, "{\C/_{-}}"] & \Cat\big( {\C/_c}\,,\, {\C/_X}\, \big) \ar[d]\\  
+	1c\ar[r, swap, "{\C/_{-}}"] &   \Cat\big( {\C/_c}\,,\, \C/_1 \big)
+ \end{tikzcd}
+ \end{equation}
+The image of $*\in 1c$ along the bottom is the forgetful functor $U_c : \C/_c\to \C$, and its fiber under the map on the right is therefore the set of functors $F : {\C/_c}\to {\C/_X}$ such that $U_X\circ F = U_c$, where $U_X : \C/_X\to \C$ is also a forgetful functor. But any such $F$ is easily seen to be uniquely of the form $\C/_{x}$ for $x = F(1_c) : \y{c} \to X$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{3. Classifying families}
 
-Note that for the terminal presheaf $1\in\widehat{\C}$ we have $\elem{1} \cong\C$, so for every $X\in\widehat{\C}$ there is a canonical projection  $\elem X \to\C$, which is easily seen to be a discrete fibration. Ignoring size issues for the moment, discrete fibrations  in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets.  For every presheaf $X\in\widehat{\C}$, we therefore have a pullback diagram
+For the terminal presheaf $1\in\widehat{\C}$, we have $\elem{1} \cong\C$, so for every $X\in\widehat{\C}$ there is a canonical projection  $\elem X \ra\C$, which is easily seen to be a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
+Ignoring size issues for the moment, recall that discrete fibrations in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets.  For every presheaf $X\in\widehat{\C}$, we therefore have a pullback diagram in $\Cat$,
 \begin{equation}\label{eq:classifyuniversecat}\textstyle
 \begin{tikzcd}
 	 \elem X \ar[d] \ar[r] \pbmark & \op{\dot{\Set}} \ar[d]\\  
@@ -312,11 +331,11 @@ Note that for the terminal presheaf $1\in\widehat{\C}$ we have $\elem{1} \cong\C
  \end{equation}
 
 \begin{lemma}
-The square \eqref{eq:classifyuniversetype} is a pullback in $\widehat{\C}$. More generally, for any map $X\ra Y$ in $\widehat{\C}$, there is a pullback square 
+The square \eqref{eq:classifyuniversetype} is a pullback in $\widehat{\C}$. More generally, for any map $Y\ra X$ in $\widehat{\C}$, there is a pullback square 
 \begin{equation}\label{eq:classifyuniversefamily}\textstyle
 \begin{tikzcd}
-	 X \ar[d] \pbmark \ar[r] & \nu\op{\dot{\Set}} \ar[d] \\  
-	Y \ar[r] &  \nu\op{\Set}\,.
+	 Y \ar[d] \pbmark \ar[r] & \nu\op{\dot{\Set}} \ar[d] \\  
+	X \ar[r] &  \nu\op{\Set}\,.
  \end{tikzcd}
  \end{equation}
 \end{lemma}
@@ -325,15 +344,148 @@ The square \eqref{eq:classifyuniversetype} is a pullback in $\widehat{\C}$. More
 Apply the right adjoint $\nu$ to the pullback square \eqref{eq:classifyuniversecat} and paste the naturality square \eqref{eq:naturality} from Lemma \ref{lemma:natpb} on the left, to obtain the transposed square \eqref{eq:classifyuniversefamily} as a pasting of two pullbacks.
 \end{proof}
 
-Let us write $\VV \to \V$ for the map on the right in \eqref{eq:classifyuniversetype} and \eqref{eq:classifyuniversefamily}, so that
+Let us write $\VV \to \V$ for the vertical map on the right in \eqref{eq:classifyuniversefamily}, so that
 \begin{align}\label{eq:universedef}\textstyle
 \VV\, &=\, \nu\op{\dot{\Set}}\\  
 \V\, &=\, \nu\op{\Set}.\notag
  \end{align}
+ 
+ We can summarize our results so far as follows.
+
+ \begin{proposition}\label{prop:Vclassifies}
+The nerve $\VV\to\V$  of the classifier for discrete fibrations $\op\SSet\to\op\Set$, as defined in \eqref{eq:universedef}, classifies natural transformations $Y\to X$ in $\widehat{\C}$, in the sense that there is always a pullback square,
+\begin{equation}\label{eq:classifyuniversefamily2}\textstyle
+\begin{tikzcd}
+	 Y \ar[d] \pbmark \ar[r] & \VV \ar[d] \\  
+	X \ar[r,swap, "\tilde{Y} "] &  \V.
+ \end{tikzcd}
+ \end{equation}
+The classifying map $\tilde{Y} : X\to \V$ is determined by the adjunction $\int \dashv \mu$ as the transpose of the classifiyng map of the discrete fibration $\elem X\to\elem Y$.
+\end{proposition}
+ 
+ Of course, $\VV\to\V$ itself cannot be a map in $\widehat{\C}$, for reasons of size.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{4. Small maps}
+
+Let $\alpha$ be a cardinal number and call the sets that are strictly smaller $\alpha$-\emph{small}.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
+Call a presheaf $X : \op{\C} \to \Set$ $\alpha$-small if all of its values are $\alpha$-small sets, and thus if, and only if, it factors through $\Set_\alpha\hook\Set$. Call a map $f:Y\to X$ of presheaves $\alpha$-small if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\C$ and $x\in Xc$). The latter condition is of course equivalent to saying that, in the pullback square over the element $x:\y{c} \to X$, 
+\begin{equation}\label{eq:smallmap}\textstyle
+\begin{tikzcd}
+	 Y_x \ar[d] \pbmark \ar[r] & Y \ar[d, "f"] \\  
+	\y{c} \ar[r,swap,"x"] &  X,
+ \end{tikzcd}
+ \end{equation}
+the presheaf $Y_x$ is $\alpha$-small.
+
+% Consider $\Set_\alpha^{\C^{\mathrm{op}}}$, the category of $\alpha$-small set valued presheaves on $\C$.  
+% and similarly for the small pointed sets $\SSet_\alpha\hook\SSet$
+
+Now let us restrict the specification \eqref{eq:universedef} of $\VV\to\V$ to the $\alpha$-small sets:
+\begin{align}\label{eq:universedefalpha}\textstyle
+\VV_\alpha\, &=\, \nu \dot{\Set^{\mathsf{op}}_\alpha}\\  
+\V_\alpha\, &=\, \nu \Set^{\mathsf{op}}_\alpha. \notag
+ \end{align}
+Then the evident forgetful map $\VV_\alpha\to\V_\alpha$ \emph{is} a map in the category $\widehat{\C}$ of presheaves, and it is in fact $\alpha$-small. Moreover, it has the following basic property, which is just a restriction of the basic property of $\VV\to\V$ stated in Proposition \ref{prop:Vclassifies}.
+
+ \begin{proposition}\label{prop:Valphaclassifies}
+The map $\VV_\alpha\to\V_\alpha$ classifies $\alpha$-small maps $f:Y\to X$ in $\widehat{\C}$, in the sense that there is always a pullback square,
+\begin{equation}\label{eq:classifyuniversefamilyalpha}\textstyle
+\begin{tikzcd}
+	 Y \ar[d] \pbmark \ar[r] & \VV_\alpha \ar[d] \\  
+	X \ar[r,swap, "\tilde{Y}"] &  \V_\alpha.
+ \end{tikzcd}
+ \end{equation}
+The classifying map $\tilde{Y} : X\to \V_\alpha$ is determined by the adjunction $\int \dashv \mu$ as (the factorization of) the transpose of the classifiyng map of the discrete fibration $\elem X\to\elem Y$.
+\end{proposition}
+
+\begin{proof} If $Y\to X$ is small, its classifying map $\tilde{Y} : X\to\V$ factors through $\V_\alpha \hook \V$, as indicated below, 
+\begin{equation}\label{eq:classifyuniversetype2}\textstyle
+\begin{tikzcd}
+	 Y \ar[d] \ar[rr, bend left] \ar[r] & \nu\op{\dot{\Set_\alpha}} \ar[d] \ar[r,hook] & \nu\op{\dot{\Set}} \ar[d]\\  
+	X \ar[rr, bend right, swap,"\tilde{Y}"] \ar[r] &  \nu\op{\Set_\alpha} \ar[r,hook] &  \nu\op{\Set},
+ \end{tikzcd}
+ \end{equation}
+%
+in virtue of the following adjoint transposition,
+\begin{equation}\label{eq:adjointtranspose}\textstyle
+\begin{tikzcd}
+	 \elem Y \ar[d] \ar[rr, bend left] \ar[r] & \op{\dot{\Set_\alpha}} \ar[d] \ar[r,hook] & \op{\dot{\Set}} \ar[d]\\  
+	 \elem X \ar[rr, bend right, ] \ar[r]  &  \op{\Set_\alpha} \ar[r,hook]  &  \op{\Set}.
+ \end{tikzcd}
+  \end{equation}
+Note that the square on the right is evidently a pullback, and the one on the left therefore is, too, because the outer rectangle is the classifying pulback of the discrete fibration $\elem Y \to \elem X$, as stated.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{5. Examples}
+
+\begin{enumerate}
+%
+\item Let $\alpha = \kappa$ be a strongly inaccessible cadinal, so that $\mathsf{ob}({\Set_\kappa})$ is a Grothendieck universe.  Then the Hofmann-Streicher universe of \eqref{eq:universe} is recovered in the present setting as the $\kappa$-small map classifier
+\begin{equation*}
+\VV_\kappa \too \V_\kappa
+\end{equation*}
+ in the sense of Proposition \ref{prop:Valphaclassifies}.  Indeed, for $c\in\C$, we have 
+ \begin{align}
+  \V_{\kappa}{c}\ &=\ \nu(\Set^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\C/_c}\,,\, \Set^{\mathsf{op}}_\kappa \big) = \mathsf{ob}(\widehat{\C/_c})\  =\ \U{c} \,\notag\\ 
+   \VV_{\kappa}{c}\ &=\ \nu(\SSet^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\C/_c}\,,\, \SSet^{\mathsf{op}}_\kappa \big) = \textstyle\int_{\C/_c}{\mathsf{E}l}(\langle c, A\rangle) \,.
+ \end{align}
+
+\item By functoriality of $\nu : \Cat \to \widehat{\C}$, a sequence of Grothendieck universes $$\U \subseteq {\U\,}' \subseteq ...$$ in $\Set$ gives rise to a (cumulative) sequence of such type-theoretic universes $$\V \mono {\V\,}' \mono ...$$ in $\widehat{\C}$. More precisely, there is a sequence of  cartesian squares,
+\begin{equation}\label{eq:Vhierarchy}\textstyle
+\begin{tikzcd}
+	 \VV \ar[d] \ar[r,tail] \pbmark & {\VV\,'} \ar[d] \ar[r,tail] \pbmark & \dots \\  
+	 \V  \ar[r, tail]  &  {\V\,}' \ar[r,tail]  & \dots\,,
+ \end{tikzcd}
+  \end{equation}
+in the image of $\nu : \Cat\too\widehat\C$, classifying small maps in $\widehat\C$ of increasing size, in the sense of Proposition \ref{prop:Valphaclassifies}.
+
+\item Let $\alpha = 2$ so that $1\to 2$ is the subobject classifier of $\Set$, and 
+$$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$ is then a classifier in $\Cat$ for full subcategories $\mathbb{S}\hook\A$ that are closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$ (``total sieves'').  The
+%\[
+%\VV_{2} = \nu \mathbbm{1} = 1 \too \Omega = \nu \mathbbm{2} = \V_{2} \,,
+%\] 
+ ``lifted universe''  $\VV_{2}  \to \V_{2}$ is then the subobject classifier $1\to\Omega$ of $\widehat\C$,
+\[
+1 = \nu \mathbbm{1} = \VV_{2} \too  \V_{2} = \nu \mathbbm{2} = \Omega  \,.
+\]
+
+\item Let $i : \mathbbm{2} \hook \Set_\kappa$ and $ p : \Set_\kappa \to \mathbbm{2} $ be the embedding-retraction pair with $i : \mathbbm{2} \hook \Set_\kappa$ the inclusion of the full subcategory on the sets $ \{0, 1\}$ and $p : \Set_\kappa \to \mathbbm{2}$ the retraction that takes $0 = \emptyset$ to itself, and everything else (i.e.\ the non-empty sets) to $1 = \{\emptyset\}$. There is a retraction (of arrows) in $\Cat$,
+%
+\begin{equation}\label{eq:Setretraction}\textstyle
+\begin{tikzcd}
+	 \mathbbm{1} \ar[d]  \ar[r,hook] \pbmark & \SSet_\kappa \ar[d] \ar[r] &\mathbbm{1} \ar[d] \\  
+	 \mathbbm{2}   \ar[r,hook,swap, "i"]  &  \Set_\kappa \ar[r, swap, two heads, "p"]  & \mathbbm{2} 
+ \end{tikzcd}
+  \end{equation}
+  where the left square is a pullback.  
+    
+  By the functoriality of $\nu : \Cat \to \widehat{\C}$ we then have a retract diagram in $\widehat\C$, again with a pullback on the left, 
+\begin{equation}\label{eq:Vretraction}\textstyle
+\begin{tikzcd}
+	 1 \ar[d]  \ar[r,hook] \pbmark & \VV_\kappa \ar[d] \ar[r] &1\ar[d] \\  
+	 \Omega   \ar[r,hook,swap, "\{-\}"]  &  \V_\kappa  \ar[r, swap, two heads, "{[-]}"]  &  \Omega 
+ \end{tikzcd}
+  \end{equation}
+  where for any $\phi : X\to \Omega$ the subobject $\{\phi\}\mono X$ is classified as a small map by the composite $\{\phi\} : X\to \V_\kappa$\,, and for any small map $A\to X$, the image $[A] \mono X$ is classified as a subobject by the composite $[\alpha] : X\to \V_\kappa \to \Omega$\,, where $\alpha : X\to \V_\kappa$ classifies $A\to X$.  The idempotent composite $$|\!|\!-\!|\!| = [\{-\}] : \V_\kappa  \too \V_\kappa $$ is the \emph{propositional truncation modality} in the natural model of type theory given by $\VV_\kappa\to \V_\kappa$ (see \cite{AGH}).
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Acknowledgement}
+
+Thanks to Mathieu Anel and Emily Riehl for discussions.
+
+\bibliographystyle{alpha}
+\bibliography{../references}
+
+%%%
+\end{document}
+%%%
 
 
 
-Let $\kappa$ be an inaccessible cardinal number, and call the sets of size strictly less than $\kappa$ \emph{small}.  Write $\Set_\kappa$ for the category of small sets and $\cSet_\kappa = \Set_\kappa^{\C^{\mathrm{op}}}$ for the category of small set valued presheaves on the cube category $\C$.  By a \emph{small fibration} we mean a fibration in the category of small cubical sets, which we identify with the evident subcategory $\cSet_\kappa \subseteq \cSet$.  Finally, let $\dot{\Set}_\kappa$ be the category of small pointed sets, i.e.\ the coslice category $1/\Set_\kappa$.  There is an evident forgetful functor  $U:\dot{\Set}_\kappa \ra {\Set}_\kappa$.
+By a \emph{small fibration} we mean a fibration in the category of small cubical sets, which we identify with the evident subcategory $\cSet_\kappa \subseteq \cSet$.  Finally, let $\dot{\Set}_\kappa$ be the category of small pointed sets, i.e.\ the coslice category $1/\Set_\kappa$.  There is an evident forgetful functor  $U:\dot{\Set}_\kappa \ra {\Set}_\kappa$.
 % which induces another one $U^{\C^{op}} : \dot{\Set}_\kappa^{\C^{op}} \ra {\Set}_\kappa^{\C^{op}}$ from small pointed presheaves to small presheaves.
 
 \begin{definition}
@@ -464,7 +616,10 @@ E \cong E_{\chi_E}$, which is (pseudo-)natural in $X$.
 But there is no corresponding uniqueness of classifying maps, relating $A : X\ra \V$ and $\chi_{E_A} : X\ra\V$.  (This is what is provided, in a suitable sense, by the \emph{univalence} of the universe $\UU\ra\U$ of fibrations, to be established in section \ref{sec:EEP}.)
 \end{remark}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Acknowledgement}
 
+Thanks to Mathieu Anel and Emily Riehl for discussions.
 
 \bibliographystyle{alpha}
 \bibliography{../references}
