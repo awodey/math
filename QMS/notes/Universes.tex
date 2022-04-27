@@ -247,7 +247,8 @@ The category of elements functor $\int_\C : \widehat\C \too \Cat$ has a right ad
 For a small category $\A$, we call the presheaf $\nu_\C(\A)$ the \emph{$\C$-nerve} of $\A$.
 \end{proposition}
 \begin{proof}
-For  $\A\in\Cat$ and $c\in\C$ define $\nu_{\C}(\A)(c)$ to be the Hom-set,
+As suggested by the name, the adjunction $\int_\C\! \dashv \nu_\C$ can be seen as the familiar ``realization $\dashv$ nerve'' construction with respect to the covariant functor $\C/- : \C\to\Cat$.
+In detail, for  $\A\in\Cat$ and $c\in\C$ define $\nu_{\C}(\A)(c)$ to be the Hom-set,
 \begin{align*}
 \nu_\C(\A)(c) &= \Cat\big( {\C/_c}\,,\, \A \big)\,,
 \end{align*}
@@ -267,7 +268,6 @@ For arbitrary presheaves $X$, one uses the presentation of $X$ as a colimit of r
 \[
 \varinjlim_{d\in\D}\,\D/_d \ \cong\ \D\,.
 \]
-%\vspace{-3em}
 \end{proof}
 
 When $\C$ is fixed, as here, we may omit the subscript from the notation $\int_\C$ and $\yon_\C$ and $\nu_\C$.  The unit and counit maps of the adjunction $\int \dashv \nu$, vis.\
