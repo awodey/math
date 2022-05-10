@@ -36,7 +36,8 @@
 \newcommand{\BB}{\ensuremath{\mathcal{B}}}
 %\newcommand{\EE}{\ensuremath{\mathcal{E}}}
 \newcommand{\op}[1]{\ensuremath{{#1}^{\mathrm{op}}}}
-\newcommand{\psh}[1]{\ensuremath{\mathsf{Set}^{\op{#1}}}}
+\newcommand{\pshx}[1]{\ensuremath{\mathsf{Set}^{\op{#1}}}}
+\newcommand{\psh}[1]{\ensuremath{[\op{#1},\mathsf{Set}]}}
 \newcommand{\Set}{\ensuremath{\mathsf{Set}}}
 \newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
 \newcommand{\covpsh}[1]{\ensuremath{\mathsf{Set}^{#1}}}
@@ -180,13 +181,13 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{A note on Hofmann-Streicher universes}
+\title{A remark on Hofmann-Streicher universes}
 \author{Steve Awodey}
 \maketitle
 
-%\begin{abstract}
-%Add an abstract.
-%\end{abstract}
+\begin{abstract}
+We have another look at the construction by Hofmann and Streicher of a semantic universe ${\mathsf{E}l} \to U$ for the interpretation of Martin-L\"of type theory in a presheaf category $\psh{\C}$.  It turns out that ${\mathsf{E}l} \to U$  can be described as the \emph{categorical nerve} of the classifier $\dot{\Set} \to \Set$ for discrete fibrations in $\Cat$, where the nerve is right adjoint to the well-known ``Grothendieck construction'' taking a presheaf $P : \op{\C}\to\Set$ to its category of elements ~$\int_\C P$.
+\end{abstract}
 
 %\setcounter{tocdepth}{1}
 %\tableofcontents
@@ -195,7 +196,7 @@
 %\section*{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\noindent Let $\C$ be a small category and $\widehat{\C} = \psh{\C}$ the category of presheaves on $\C$.
+\noindent Let $\widehat{\C} = \psh{\C}$ be the category of presheaves on a small category~$\C$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{1. The Hofmann-Streicher universe}\label{sec:U}
