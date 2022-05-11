@@ -186,7 +186,7 @@
 \maketitle
 
 \begin{abstract}
-We have another look at the construction by Hofmann and Streicher of a semantic universe ${\mathsf{E}l} \to U$ for the interpretation of Martin-L\"of type theory in a presheaf category $\psh{\C}$.  It turns out that ${\mathsf{E}l} \to U$  can be described as the \emph{categorical nerve} of the classifier $\dot{\Set} \to \Set$ for discrete fibrations in $\Cat$, where the nerve is right adjoint to the well-known ``Grothendieck construction'' taking a presheaf $P : \op{\C}\to\Set$ to its category of elements ~$\int_\C P$.
+We have another look at the construction by Hofmann and Streicher of a semantic universe ${\mathsf{E}l} \to U$ for the interpretation of Martin-L\"of type theory in a presheaf category $\psh{\C}$.  It turns out that ${\mathsf{E}l} \to U$  can be described as the \emph{categorical nerve} of the classifier $\dot{\Set}^{\mathsf{op}} \to \op{\Set}$ for discrete fibrations in $\Cat$, where the nerve is right adjoint to the well-known ``Grothendieck construction'' taking a presheaf $P : \op{\C}\to\Set$ to its category of elements ~$\int_\C P$.
 \end{abstract}
 
 %\setcounter{tocdepth}{1}
@@ -238,7 +238,7 @@ For a presheaf $X$ on $\C$, recall that the category of elements is the comma ca
 \int_\C X\ =\ \yon_\C/_X\,,
 \] 
 where $\yon_\C : \C \to \psh\C$ is the Yoneda embedding, which we may supress and write simply $\C/_X$. 
-While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe ${\mathsf{E}l} \ra U$ at the point \eqref{eq:elements}, the authors seem to have missed a trick, which can be used to simplify things:
+While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe ${\mathsf{E}l} \ra U$ at the point \eqref{eq:elements}, the authors seem to have missed a trick  which would have simplified things:
 
 \begin{proposition}
 The category of elements functor $\int_\C : \widehat\C \too \Cat$ has a right adjoint, which we denote
@@ -248,8 +248,16 @@ The category of elements functor $\int_\C : \widehat\C \too \Cat$ has a right ad
 For a small category $\A$, we call the presheaf $\nu_\C(\A)$ the \emph{$\C$-nerve} of $\A$.
 \end{proposition}
 \begin{proof}
-As suggested by the name, the adjunction $\int_\C\! \dashv \nu_\C$ can be seen as the familiar ``realization $\dashv$ nerve'' construction with respect to the covariant functor $\C/- : \C\to\Cat$.
-In detail, for  $\A\in\Cat$ and $c\in\C$ define $\nu_{\C}(\A)(c)$ to be the Hom-set,
+As suggested by the name, the adjunction $\int_\C\! \dashv \nu_\C$ can be seen as the familiar ``realization $\dashv$ nerve'' construction with respect to the covariant functor $\C/- : \C\to\Cat$, as indicated below.
+\begin{equation}\label{eq:nerve}\textstyle
+\begin{tikzcd}
+	 \widehat\C \ar[rr, swap,"\int_\C"] &&  \ar[ll, swap,bend right=20, "{ \nu_\C}"] \Cat\\  
+	 \\
+	\C \ar[uu, hook, "\yon"] \ar[rruu, swap,"{\C/_{-}}"] &&
+ \end{tikzcd}
+ \end{equation}
+%
+In detail, for  $\A\in\Cat$ and $c\in\C$, let $\nu_{\C}(\A)(c)$ be the Hom-set of functors,
 \begin{align*}
 \nu_\C(\A)(c) &= \Cat\big( {\C/_c}\,,\, \A \big)\,,
 \end{align*}
@@ -261,7 +269,7 @@ For the adjunction, observe that the slice category $\C/_c$ is the category of e
 \[\textstyle
 \int_\C\y{c}\ \cong\ \C/_c\,.
 \]
- Thus for all representables $\y{c}$\,, we have the required natural isomorphism
+ Thus for representables $\y{c}$\,, we have the required natural isomorphism
  \[\textstyle
  \widehat\C\big( \y{c}\,,\, \nu_\C(\A) \big)\ \cong\ \nu_\C(\A)(c)\  =\ \Cat\big( {\C/_c}\,,\, \A \big)\ \cong\ \Cat\big( \int_\C\y{c}\,,\, \A \big)\,.
   \]
@@ -271,7 +279,7 @@ For arbitrary presheaves $X$, one uses the presentation of $X$ as a colimit of r
 \]
 \end{proof}
 
-When $\C$ is fixed, as here, we may omit the subscript from the notation $\int_\C$ and $\yon_\C$ and $\nu_\C$.  The unit and counit maps of the adjunction $\int \dashv \nu$, vis.\
+When $\C$ is fixed, as here, we may omit the subscript from the notation $\yon_\C$ and  $\int_\C$ and $\nu_\C$.  The unit and counit maps of the adjunction $\int \dashv \nu$, vis.\
 \begin{align*}\textstyle
 \eta :&\ \textstyle  X \too \nu{\elem{X}}\,, \\
 \epsilon :&\ \textstyle  \elem\nu\A \too \A\,,
