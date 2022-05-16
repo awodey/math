@@ -215,13 +215,13 @@ with an evident associated action on morphisms, which need not concern us for th
 %
 \begin{enumerate}
 %
-\item Since $U:\op{\C}\too \Set$, we have taken the underlying \emph{set} $\mathsf{ob}(\widehat{\C/_I})$ of objects of the category $\widehat{\C/_I}$ in \eqref{eq:universeob}.
+\item  In \eqref{eq:universeob}, we have taken the underlying set of objects of the category $\widehat{\C/_I}=\psh{\C/_I}$.
 % 
 \item In \eqref{eq:universeel}, and throughout, the authors steadfastly adopt the ``categories with families'' point of view in describing the morphism ${\mathsf{E}l} \ra U$ in $\widehat{\C}$ as an object in
 \begin{equation}\label{eq:elements}\textstyle
 \widehat{\int_{\C}U}\ \simeq\ \widehat{\C}/_U\,,
 \end{equation}
-and thus as a presheaf on the \emph{category of elements} $\int_{\C}U$ (rather than specifying the object ${\mathsf{E}l}$  in $\widehat{\C}$).  Thus the argument $\langle I, A\rangle\in \int_{\C}U$ in \eqref{eq:universeel} consists of an object $I\in\C$ and an element $A\in U(I)$.
+and thus as a presheaf on the \emph{category of elements} $\int_{\C}U$, rather than specifying the object ${\mathsf{E}l}$  in $\widehat{\C}$.  Thus the argument $\langle I, A\rangle\in \int_{\C}U$ in \eqref{eq:universeel} consists of an object $I\in\C$ and an element $A\in U(I)$.
 %
 \item In order to account for size issues, the authors assume a Grothendieck universe $\U$ in $\Set$, the elements of which are called \emph{small}.  The category $\C$ is then assumed to be small, as are the values of the presheaves (unless otherwise stated).  
 %
@@ -437,9 +437,34 @@ Note that the square on the right is evidently a pullback, and the one on the le
 \end{equation*}
  in the sense of Proposition \ref{prop:Valphaclassifies}.  Indeed, for $c\in\C$, we have 
  \begin{align}
-  \V_{\kappa}{c}\ &=\ \nu(\Set^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\C/_c}\,,\, \Set^{\mathsf{op}}_\kappa \big) = \mathsf{ob}(\widehat{\C/_c})\  =\ U{c} \,\notag\\ 
-   \VV_{\kappa}{c}\ &=\ \nu(\SSet^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\C/_c}\,,\, \SSet^{\mathsf{op}}_\kappa \big) = \textstyle\int_{\C/_c}{\mathsf{E}l}(\langle c, A\rangle) \,.
- \end{align}
+  \V_{\kappa}{c}\ &=\ \nu(\Set^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\C/_c}\,,\, \Set^{\mathsf{op}}_\kappa \big)\  =\ \mathsf{ob}(\widehat{\C/_c})\ =\ U{c} \,.
+   \end{align} 
+For $\VV_{\kappa}$ we then have,
+   \begin{align}\label{eq:veedotc}
+   \VV_{\kappa}{c}\ =\ \nu(\SSet^{\mathsf{op}}_\kappa)(c)\ &=\ \Cat\big( {\C/_c}\,,\, \SSet^{\mathsf{op}}_\kappa \big) \notag \\ 
+   &\cong\ {\textstyle \coprod_{A\in Uc}\Cat_{{\C/_c}}\big( {\C/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}
+   \end{align}
+   where the $A$-summand in \eqref{eq:veedotc} is defined by taking sections of the  pullback indicated below.
+   \begin{equation}\label{eq:pbforindexing}\textstyle
+\begin{tikzcd}
+	A^*\Set^{\mathsf{op}}_\kappa \ar[d] \ar[r] \pbmark & \SSet^{\mathsf{op}}_\kappa \ar[d]\\  
+	\C/_c \ar[r,swap,"A"] \ar[u, bend left, dotted] \ar[ur, dotted] &  \Set^{\mathsf{op}}_\kappa
+ \end{tikzcd}
+ \end{equation}
+ But $A^*\Set^{\mathsf{op}}_\kappa\ \cong\ {\textstyle \int_{\C/_c}A}$ over $\C/_c\,$, and sections of this discrete fibration in $\Cat$ correspond uniquely to natural maps $1\to A$ in $\widehat{{\C/_c}}$. Since $1$ in $\widehat{{\C/_c}}$ is representable, we can continue \eqref{eq:veedotc} by
+  \begin{align*}
+   \VV_{\kappa}{c}\ &\cong\ {\textstyle \coprod_{A\in Uc}\Cat_{{\C/_c}}\big( {\C/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}\\
+   	&\cong\ {\textstyle \coprod_{A\in Uc} \widehat{{\C/_c}}(1, A)}\\
+	&\cong\ {\textstyle \coprod_{A\in Uc} A(1_c) } \\
+	& \cong\ {\textstyle \coprod_{A\in Uc} {\mathsf{E}l}(\langle c, A\rangle)}\,.
+   \end{align*}
+ 
+% The second line is in virtue of the iso,
+%  \begin{align}
+%  \V_{\kappa}{c}\ &=\ \nu(\Set^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\C/_c}\,,\, \Set^{\mathsf{op}}_\kappa \big)\  =\ U{c} \,\notag\\ 
+%   \VV_{\kappa}{c}\ &=\ \nu(\SSet^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\C/_c}\,,\, \SSet^{\mathsf{op}}_\kappa \big)
+%   = \textstyle{ \coprod_{A\in U{c}} }A(1_c) = \textstyle\coprod_{A\in U{c}}{\mathsf{E}l}(\langle c, A\rangle) \,.
+% \end{align}
 
 \item By functoriality of $\nu : \Cat \to \widehat{\C}$, a sequence of Grothendieck universes $$\U \subseteq {\U\,}' \subseteq ...$$ in $\Set$ gives rise to a (cumulative) sequence of type-theoretic universes $$\V \mono {\V\,}' \mono ...$$ in $\widehat{\C}$. More precisely, there is a sequence of  cartesian squares,
 \begin{equation}\label{eq:Vhierarchy}\textstyle
