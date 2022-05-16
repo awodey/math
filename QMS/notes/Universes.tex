@@ -204,12 +204,13 @@ We have another look at the construction by Hofmann and Streicher of a semantic 
 
 In \cite{HS:1997} the authors define a (type-theoretic) \emph{universe} 
 \begin{equation}\label{eq:universe}
-{\mathsf{E}l} \to U
+E \too U
 \end{equation}
  in $\widehat{\C}$ as follows. For $I\in\C$, set
  \begin{align}
- U(I)\ &=\ \mathsf{ob}(\widehat{\C/_I})\,,\label{eq:universeob}\\ 
- {\mathsf{E}l}(\langle I, A\rangle) &=\ A(id_I)\,,\label{eq:universeel}
+	U(I)\ &=\ \mathsf{ob}(\widehat{\C/_I}) \label{eq:universeob}\\ 
+	E(I)\ &=\ {\textstyle \coprod_{A\in U(I)}{\mathsf{E}l}(\langle I, A\rangle)}\\
+ 	{\mathsf{E}l}(\langle I, A\rangle)\ &=\ A(id_I) \label{eq:universeel}
  \end{align}
 with an evident associated action on morphisms, which need not concern us for the moment.  A few comments are required: 
 %
@@ -217,11 +218,11 @@ with an evident associated action on morphisms, which need not concern us for th
 %
 \item  In \eqref{eq:universeob}, we have taken the underlying set of objects of the category $\widehat{\C/_I}=\psh{\C/_I}$.
 % 
-\item In \eqref{eq:universeel}, and throughout, the authors steadfastly adopt the ``categories with families'' point of view in describing the morphism ${\mathsf{E}l} \ra U$ in $\widehat{\C}$ as an object in
+\item In \eqref{eq:universeel}, and throughout, the authors steadfastly adopt the ``categories with families'' point of view in describing the morphism $E \ra U$ in $\widehat{\C}$ as an object in
 \begin{equation}\label{eq:elements}\textstyle
 \widehat{\int_{\C}U}\ \simeq\ \widehat{\C}/_U\,,
 \end{equation}
-and thus as a presheaf on the \emph{category of elements} $\int_{\C}U$, rather than specifying the object ${\mathsf{E}l}$  in $\widehat{\C}$.  Thus the argument $\langle I, A\rangle\in \int_{\C}U$ in \eqref{eq:universeel} consists of an object $I\in\C$ and an element $A\in U(I)$.
+and thus as a presheaf on the \emph{category of elements} $\int_{\C}U$, rather than specifying the object $E$ in $\widehat{\C}$.  Thus the argument $\langle I, A\rangle\in \int_{\C}U$ in \eqref{eq:universeel} consists of an object $I\in\C$ and an element $A\in U(I)$.
 %
 \item In order to account for size issues, the authors assume a Grothendieck universe $\U$ in $\Set$, the elements of which are called \emph{small}.  The category $\C$ is then assumed to be small, as are the values of the presheaves (unless otherwise stated).  
 %
@@ -433,7 +434,7 @@ Note that the square on the right is evidently a pullback, and the one on the le
 %
 \item Let $\alpha = \kappa$ a strongly inaccessible cadinal, so that $\mathsf{ob}({\Set_\kappa})$ is a Grothendieck universe.  Then the Hofmann-Streicher universe of \eqref{eq:universe} is recovered in the present setting as the $\kappa$-small map classifier
 \begin{equation*}
-{\mathsf{E}l}\, \cong\, \VV_\kappa \too \V_\kappa\, \cong\, U
+E\, \cong\, \VV_\kappa \too \V_\kappa\, \cong\, U
 \end{equation*}
  in the sense of Proposition \ref{prop:Valphaclassifies}.  Indeed, for $c\in\C$, we have 
  \begin{align}
@@ -442,7 +443,7 @@ Note that the square on the right is evidently a pullback, and the one on the le
 For $\VV_{\kappa}$ we then have,
    \begin{align}\label{eq:veedotc}
    \VV_{\kappa}{c}\ =\ \nu(\SSet^{\mathsf{op}}_\kappa)(c)\ &=\ \Cat\big( {\C/_c}\,,\, \SSet^{\mathsf{op}}_\kappa \big) \notag \\ 
-   &\cong\ {\textstyle \coprod_{A\in Uc}\Cat_{{\C/_c}}\big( {\C/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}
+   &\cong\ {\textstyle \coprod_{A\in\V_{\kappa}{c}}\Cat_{{\C/_c}}\big( {\C/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}
    \end{align}
    where the $A$-summand in \eqref{eq:veedotc} is defined by taking sections of the  pullback indicated below.
    \begin{equation}\label{eq:pbforindexing}\textstyle
@@ -451,12 +452,13 @@ For $\VV_{\kappa}$ we then have,
 	\C/_c \ar[r,swap,"A"] \ar[u, bend left, dotted] \ar[ur, dotted] &  \Set^{\mathsf{op}}_\kappa
  \end{tikzcd}
  \end{equation}
- But $A^*\Set^{\mathsf{op}}_\kappa\ \cong\ {\textstyle \int_{\C/_c}A}$ over $\C/_c\,$, and sections of this discrete fibration in $\Cat$ correspond uniquely to natural maps $1\to A$ in $\widehat{{\C/_c}}$. Since $1$ in $\widehat{{\C/_c}}$ is representable, we can continue \eqref{eq:veedotc} by
+ But $A^*\Set^{\mathsf{op}}_\kappa\ \cong\ {\textstyle \int_{\C/_c}\!A}$ over $\C/_c\,$, and sections of this discrete fibration in $\Cat$ correspond uniquely to natural maps $1\to A$ in $\widehat{{\C/_c}}$.  Since $1$  is representable in $\widehat{{\C/_c}}$ we can continue \eqref{eq:veedotc} by
   \begin{align*}
-   \VV_{\kappa}{c}\ &\cong\ {\textstyle \coprod_{A\in Uc}\Cat_{{\C/_c}}\big( {\C/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}\\
-   	&\cong\ {\textstyle \coprod_{A\in Uc} \widehat{{\C/_c}}(1, A)}\\
-	&\cong\ {\textstyle \coprod_{A\in Uc} A(1_c) } \\
-	& \cong\ {\textstyle \coprod_{A\in Uc} {\mathsf{E}l}(\langle c, A\rangle)}\,.
+   \VV_{\kappa}{c}\ &\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}}\Cat_{{\C/_c}}\big( {\C/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}\\
+   	&\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} \widehat{{\C/_c}}(1, A)}\\
+	&\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} A(1_c) } \\
+	& =\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} {\mathsf{E}l}(\langle c, A\rangle)}\\
+	& =\  E c\,.
    \end{align*}
  
 % The second line is in virtue of the iso,
