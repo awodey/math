@@ -325,7 +325,7 @@ The image of $*\in 1c$ along the bottom is the forgetful functor $U_c : \C/_c\to
 \subsection*{3. Classifying families}
 
 For the terminal presheaf $1\in\widehat{\C}$, we have $\elem{1} \cong\C$, so for every $X\in\widehat{\C}$ there is a canonical projection  $\elem X \ra\C$, which is easily seen to be a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
-Ignoring size issues for the moment, recall that discrete fibrations in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets.  For every presheaf $X\in\widehat{\C}$, we therefore have a pullback diagram in $\Cat$,
+Ignoring size issues for the moment, recall that discrete fibrations in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets (cf.~\cite{W:2007}).  For every presheaf $X\in\widehat{\C}$, we therefore have a pullback diagram in $\Cat$,
 \begin{equation}\label{eq:classifyuniversecat}\textstyle
 \begin{tikzcd}
 	 \elem X \ar[d] \ar[r] \pbmark & \op{\dot{\Set}} \ar[d]\\  
@@ -478,11 +478,7 @@ For $\VV_{\kappa}$ we then have,
 in the image of $\nu : \Cat\too\widehat\C$, classifying small maps in $\widehat\C$ of increasing size, in the sense of Proposition \ref{prop:Valphaclassifies}.
 
 \item Let $\alpha = 2$ so that $1\to 2$ is the subobject classifier of $\Set$, and 
-$$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$ is then a classifier in $\Cat$ for full subcategories $\mathbb{S}\hook\A$ that are closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$ (``total sieves'').  The
-%\[
-%\VV_{2} = \nu \mathbbm{1} = 1 \too \Omega = \nu \mathbbm{2} = \V_{2} \,,
-%\] 
- ``lifted universe''  $\VV_{2}  \to \V_{2}$ is then the subobject classifier $1\to\Omega$ of $\widehat\C$,
+$$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$ is then a classifier in $\Cat$ for sieves, i.e.\ full subcategories $\mathbb{S}\hook\A$ closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$.  The nerve $\VV_{2}  \to \V_{2}$ is then exactly the subobject classifier $1\to\Omega$ of $\widehat\C$,
 \[
 1 = \nu \mathbbm{1} = \VV_{2} \too  \V_{2} = \nu \mathbbm{2} = \Omega  \,.
 \]
@@ -497,7 +493,7 @@ $$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$
   \end{equation}
   where the left square is a pullback.  
     
-By the functoriality of $\nu : \Cat \to \widehat{\C}$ we then have a retract diagram in $\widehat\C$, again with a pullback on the left, 
+By the functoriality of (\,$\op{-}$ and) $\nu : \Cat \to \widehat{\C}$ we then have a retract diagram in $\widehat\C$, again with a pullback on the left, 
 \begin{equation}\label{eq:Vretraction}\textstyle
 \begin{tikzcd}
 	 1 \ar[d]  \ar[r,hook] \pbmark & \VV_\kappa \ar[d] \ar[r] &1\ar[d] \\  
@@ -507,159 +503,12 @@ By the functoriality of $\nu : \Cat \to \widehat{\C}$ we then have a retract dia
   where for any $\phi : X\to \Omega$ the subobject $\{\phi\}\mono X$ is classified as a small map by the composite $\{\phi\} : X\to \V_\kappa$\,, and for any small map $A\to X$, the image $[A] \mono X$ is classified as a subobject by the composite $[\alpha] : X\to \V_\kappa \to \Omega$\,, where $\alpha : X\to \V_\kappa$ classifies $A\to X$.  The idempotent composite $$|\!|\!-\!|\!| = \{[-]\} : \V_\kappa  \too \V_\kappa $$ is the \emph{propositional truncation modality} in the natural model of type theory given by $\VV_\kappa\to \V_\kappa$ (see \cite{AGH}).
 \end{enumerate}
 
-\ednote{factor through $\Cat/\C$ for right adjoint?}
-
-\ednote{$\mathbbm{1}\to \mathbbm{2}$ classifies what in $\Cat$}
+%\ednote{factor through $\Cat/\C$ for right adjoint?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Acknowledgement}
 
-Thanks to Mathieu Anel and Emily Riehl for discussions, and to Evan Cavallo and Taichi Uemura for the reference to Grothendieck for the nerve functor.
-
-\bibliographystyle{alpha}
-\bibliography{../references}
-
-%%%
-\end{document}
-%%%
-
-
-
-By a \emph{small fibration} we mean a fibration in the category of small cubical sets, which we identify with the evident subcategory $\cSet_\kappa \subseteq \cSet$.  Finally, let $\dot{\Set}_\kappa$ be the category of small pointed sets, i.e.\ the coslice category $1/\Set_\kappa$.  There is an evident forgetful functor  $U:\dot{\Set}_\kappa \ra {\Set}_\kappa$.
-% which induces another one $U^{\C^{op}} : \dot{\Set}_\kappa^{\C^{op}} \ra {\Set}_\kappa^{\C^{op}}$ from small pointed presheaves to small presheaves.
-
-\begin{definition}
-The ($\kappa$-)\emph{universe} $p : \VV \ra \V$ in $\cSet$ is defined:
-\begin{enumerate}
-
-\item $\V_n = \{ A: \C/[n] \ra \Set^{op}_\kappa\ \}$, the \emph{set} of small presheaves on $\C/[n]$.  
-
-The action of a map $h : [m] \ra [n]$ in  $\C$  is given by precomposition with postcomposition: from  $h : [m] \ra [n]$ we have  $\C/h : \C/[m] \ra \C/[n]$, which we precompose with any $A: \C/[n]\ra \Set_\kappa^{op} $ to get $A.h = A\circ \C/h$,
-\begin{equation}\label{diagram:U1}
-\xymatrix{
-[n] & \C/[n] \ar[r]^{A} & \Set_\kappa^{op} \\
-[m] \ar[u]^{h} & \C/[m] \ar[u]^{\C/h}  \ar[ru]_{A.h} &
-}
-\end{equation}
-
-\item $\VV_n = \{ a: \C/[n] \ra \dot{\Set}^{op}_\kappa\ \}$, the \emph{set} of small pointed presheaves on $\C/[n]$, with the corresponding action.
-
-\item For $a \in \VV_n$, let $p_n (a) = U(a) \in \V_n$, where $U : \dot{\Set_\kappa} \ra {\Set_\kappa}$.
-\end{enumerate}
-\end{definition}
-Functoriality of $\V$ and $\VV$ and naturality of $p: \VV\ra\V$ are immediate. 
-
-\begin{lemma}
-For each $A : \I^n \ra \V$ there is a canonical choice of a small family $p_A : E_A\ra \I^n$ and a map $q_A: E_A \ra\VV$ making a pullback square as follows.
-\begin{equation}\label{diagram:U2}
-\xymatrix{
-E_A \ar[d]_{p_A} \ar[r]^{q_A}  \pbcorner& \VV\ar[d]^{p}  \\
-\I^n \ar[r]_{A} & \V
-}
-\end{equation}
-\end{lemma}
-%
-\begin{proof}
-Since $\I^n \cong y[n]$ is representable, there is a distinguished associated presheaf $A : (\C/[n])^{op} \ra \Set_\kappa$. Define $p_A : E_A \ra \I^n$ by
-\[
-(E_A)_k = \coprod_{h\in \C(k,n)} A(h) \qquad \ni (h, a)\,
-\]
-with first projection $(p_A)_k(h,a) = h$. Note that $(E_A)_k$ is small.
-Then let $q_A:E_A \ra\VV$ be defined on $(h,a): \I^k \ra E_A$ by 
-\[
-(q_A)\circ(h, a) = a \in Ah
-\]
-as illustrated below.
-\begin{equation}\label{diagram:U3}
-\xymatrix@=5em{
-& E_A \ar[d]^>>>>>>{p_A} \ar@{..>}[r]^{q_A} & \VV\ar[d]^{p}  \\
-\I^k \ar[r]_{h} \ar[ru]^{(h,a)}\ar[rru]_>>>>>>>>>>>{a} & \I^n \ar[r]_{A} & \V
-}
-\end{equation}
-The proof that the square is a pullback is left to the reader.
-\end{proof}
-
-\begin{lemma}\label{charforfamovercube}
-For each small family $p_E : E \ra \I^n$ there is a canonical map $\chi_E : \I^n \ra \V$ and a map $q_E:E \ra\VV$ making a pullback square as follows.
-\begin{equation}\label{diagram:U2}
-\xymatrix{
-E \ar[d]_{p_E} \ar[r]^{q_E}  \pbcorner& \VV\ar[d]^{p}  \\
-\I^n \ar[r]_{\chi_E} & \V
-}
-\end{equation}
-\end{lemma}
-%
-\begin{proof}
-It suffices to give a small set $(\chi_E)_k(h)$ for each $h :[k] \ra [n]$ in a way that is functorial in $h \in \C/[n]$ and natural in $[k]$.  Thus let
-\[
-(\chi_E)_k(h) := \Gamma(h, E)\ = \ \{ e : \I^k \ra E \ |\ p_E\circ e = h \}.
-\]
-\[
-\xymatrix{& E \ar[d]^{p_E} \\ \I^k \ar@{..>}[ru]^{e}\ar[r]_h & \I^n } 
-\]
-which is small if each $E_k$ is.  
-
-To define $q_E:E \ra\VV$,  take any $e : \I^k \ra E$ and first compose with $p_E$ and observe that $e \in  \Gamma(p_Ee, E)$.  Thus the assignment gives a map $\dot{e} : \I^k \ra \VV$ making the solid arrows in the following commute.
-\begin{equation}\label{diagram:U4}
-\xymatrix@=5em{
-&E \ar[d]^>>>>>>>{p_E} \ar@{..>}[r]^{q_E} & \VV\ar[d]^{p}  \\
-\I^k \ar[r]_{p_Ee} \ar[ru]^{e}\ar[rru]_>>>>>>>>>>>{\dot{e}} & \I^n \ar[r]_{E} & \V
-}
-\end{equation}
-Since the assignment of $\dot{e}$ to $e$ is natural in $[k]$, we get the required map $q_E : E\ra \VV$.
-The proof that the square is a pullback is again left to the reader.
-\end{proof}
-
-\begin{corollary}
-Given a small family $p_E : E \ra \I^n$ there is a unique isomorphism $E \cong E_{\chi_E}$ over $\I^n$ making a commutative diagram as follows.
-
-\begin{equation}\label{diagram:U5}
-\xymatrix@=5em{
-E \ar[rd]_{p_E} \ar@/^2.0pc/[rr]^{q_E} \ar[r]^{\cong}  & E_{\chi_E} \ar[d]^{p_{\chi_E}} \ar[r]_{q_{\chi_E}} & \VV \ar[d]^{p}  \\
- &\I^n \ar[r]_{\chi_E} & \V
-}
-\end{equation}
-\end{corollary}
-%
-
-\begin{proposition}\label{prop:familyclassifier}
-For any cubical set $X$ and any small family $p_E : E \ra X$ there are canonical maps $\chi_E : X \ra \V$ and $q_E : E \ra\VV$ making a pullback square as follows.
-\begin{equation}\label{diagram:U6}
-\xymatrix{
-E \ar[d]_{p_E} \ar[r]^{q_E}  \pbcorner & \VV\ar[d]^{p}  \\
-X \ar[r]_{\chi_E} & \V
-}
-\end{equation}
-Moreover, $\chi_E$ and $q_E$ are uniquely determined by the equations \eqref{eqns:U} below.
-\end{proposition}
-
-\begin{proof}
-Write $X = \varinjlim_{x} \I^n$ as a colimit of a cocone of maps $ x : \I^n \ra X$ from representables, over the canonical index category $([n],x) \in \int_\C X$.  Form the family of pullback squares below, where the arrows with a dot represent cocones, and the cocone consisting of the $q_x : E_x \ra E$  is determined by taking pullbacks along $p_E$, and is therefore also a colimit. 
-\begin{equation}\label{diagram:U7}
-\xymatrix@=3em{
-E_x \ar[d]_{p_{E_x}} \ar[r]_{\cdot}^{q_x} \ar@/^2.0pc/[rr]^{q_{E_x}} \pbcorner & E \ar[d]_{p_{E}} \ar@{..>}[r]^{q_E} & \VV\ar[d]^{p}  \\
-\I^n \ar@/_2.0pc/[rr]_{\chi_{E_x}}  \ar[r]^{\cdot}_x & X \ar@{..>}[r]_{\chi_E} & \V
-}
-\end{equation}
-The maps $\chi_{E_x}$  and $q_{E_x}$ are determined by lemma \ref{charforfamovercube}, since the families $p_{E_x}$ are small if $p_E: E \ra X$ is.  Thus we can define the indicated maps $\chi_E$ and $q_E$ from the colimits as those uniquely determined by the equations:
-\begin{align}\label{eqns:U}
-\chi_E \circ x &= \chi_{E_x}\\
-q_E \circ q_{x} &= q_{E_x}
-\end{align}
-The square on the right is a pullback because the outer squares are all pullbacks,  the family of left-hand squares are pullbacks, and the family of maps $x : \I^n \ra X$ covers $X$.
-\end{proof}
-
-\begin{remark} 
-Note that the classification operation $$\chi : \cSet_\kappa/X \ra \cSet(X, \V)$$ again has the evident ``pullback of $p : \VV\ra\V$'' operation 
-$$E : \cSet(X, \V) \ra \cSet_\kappa/X $$ as a left (quasi-)inverse $
-E \cong E_{\chi_E}$, which is (pseudo-)natural in $X$. 
-But there is no corresponding uniqueness of classifying maps, relating $A : X\ra \V$ and $\chi_{E_A} : X\ra\V$.  (This is what is provided, in a suitable sense, by the \emph{univalence} of the universe $\UU\ra\U$ of fibrations, to be established in section \ref{sec:EEP}.)
-\end{remark}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Acknowledgement}
-
-Thanks to Mathieu Anel and Emily Riehl for discussions.
+Thanks to Mathieu Anel and Emily Riehl for discussions, and to Evan Cavallo, Ivan Di Liberti, and Taichi Uemura for help with the references.
 
 \bibliographystyle{alpha}
 \bibliography{../references}
