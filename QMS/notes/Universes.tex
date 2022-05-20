@@ -241,7 +241,7 @@ For a presheaf $X$ on $\C$, recall that the category of elements is the comma ca
 where $\yon_\C : \C \to \psh\C$ is the Yoneda embedding, which we may supress and write simply $\C/_X$. 
 While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe ${\mathsf{E}l} \ra U$ at the point \eqref{eq:elements}, the authors seem to have missed a trick  which would have simplified things:
 
-\begin{proposition}
+\begin{proposition}[\cite{G:1983},\S{28}]
 The category of elements functor $\int_\C : \widehat\C \too \Cat$ has a right adjoint, which we denote
 \[
 \nu_\C : \Cat \too \widehat\C\,.
@@ -507,10 +507,14 @@ By the functoriality of $\nu : \Cat \to \widehat{\C}$ we then have a retract dia
   where for any $\phi : X\to \Omega$ the subobject $\{\phi\}\mono X$ is classified as a small map by the composite $\{\phi\} : X\to \V_\kappa$\,, and for any small map $A\to X$, the image $[A] \mono X$ is classified as a subobject by the composite $[\alpha] : X\to \V_\kappa \to \Omega$\,, where $\alpha : X\to \V_\kappa$ classifies $A\to X$.  The idempotent composite $$|\!|\!-\!|\!| = \{[-]\} : \V_\kappa  \too \V_\kappa $$ is the \emph{propositional truncation modality} in the natural model of type theory given by $\VV_\kappa\to \V_\kappa$ (see \cite{AGH}).
 \end{enumerate}
 
+\ednote{factor through $\Cat/\C$ for right adjoint?}
+
+\ednote{$\mathbbm{1}\to \mathbbm{2}$ classifies what in $\Cat$}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Acknowledgement}
 
-Thanks to Mathieu Anel and Emily Riehl for discussions.
+Thanks to Mathieu Anel and Emily Riehl for discussions, and to Evan Cavallo and Taichi Uemura for the reference to Grothendieck for the nerve functor.
 
 \bibliographystyle{alpha}
 \bibliography{../references}
