@@ -181,12 +181,16 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{A remark on Hofmann-Streicher universes}
+\title{On Hofmann-Streicher universes}
 \author{Steve Awodey}
 \maketitle
 
+\centerline{\emph{to the memory of Erik Palmgren}}
+
+\bigskip
+
 \begin{abstract}
-We have another look at the construction by Hofmann and Streicher of a semantic universe ${\mathsf{E}l} \to U$ for the interpretation of Martin-L\"of type theory in a presheaf category $\psh{\C}$.  It turns out that ${\mathsf{E}l} \to U$  can be described as the \emph{categorical nerve} of the classifier $\dot{\Set}^{\mathsf{op}} \to \op{\Set}$ for discrete fibrations in $\Cat$, where the nerve is right adjoint to the well-known ``Grothendieck construction'' taking a presheaf $P : \op{\C}\to\Set$ to its category of elements ~$\int_\C P$.
+We have another look at the construction by Hofmann and Streicher of a universe $(U,{\mathsf{E}l})$ for the interpretation of Martin-L\"of type theory in a presheaf category $\psh{\C}$.  It turns out that $(U,{\mathsf{E}l})$ can be described as the \emph{categorical nerve} of the classifier $\dot{\Set}^{\mathsf{op}} \to \op{\Set}$ for discrete fibrations in $\Cat$, where the nerve functor is right adjoint to the so-called ``Grothendieck construction'' taking a presheaf $P : \op{\C}\to\Set$ to its category of elements $\int_\C P$.
 \end{abstract}
 
 %\setcounter{tocdepth}{1}
@@ -202,34 +206,38 @@ We have another look at the construction by Hofmann and Streicher of a semantic 
 \subsection*{1. The Hofmann-Streicher universe}\label{sec:U}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In \cite{HS:1997} the authors define a (type-theoretic) \emph{universe} 
-\begin{equation}\label{eq:universe}
-E \too U
-\end{equation}
- in $\widehat{\C}$ as follows. For $I\in\C$, set
+In \cite{HS:1997} the authors define a (type-theoretic) \emph{universe}  $(U, {\mathsf{E}l})$ 
+%\begin{equation}\label{eq:universe}
+%E \too U
+%\end{equation}
+with $U\in\widehat{\C}$ and $\textstyle{\mathsf{E}l} \in \widehat{\int_\C U}$ as follows. For $I\in\C$, set
  \begin{align}
-	U(I)\ &=\ \mathsf{ob}(\widehat{\C/_I}) \label{eq:universeob}\\ 
-	E(I)\ &=\ {\textstyle \coprod_{A\in U(I)}{\mathsf{E}l}(\langle I, A\rangle)}\\
- 	{\mathsf{E}l}(\langle I, A\rangle)\ &=\ A(id_I) \label{eq:universeel}
+	U(I)\ &=\ \Cat\big(\op{\C/_I}, \Set\big) \label{eq:universeob}\\ 
+	%E(I)\ &=\ {\textstyle \coprod_{A\in U(I)}{\mathsf{E}l}(\langle I, A\rangle)}\\
+ 	{\mathsf{E}l}(I, A)\ &=\ A(id_I) \label{eq:universeel}
  \end{align}
 with an evident associated action on morphisms, which need not concern us for the moment.  A few comments are required: 
 %
 \begin{enumerate}
 %
-\item  In \eqref{eq:universeob}, we have taken the underlying set of objects of the category $\widehat{\C/_I}=\psh{\C/_I}$.
+\item  In \eqref{eq:universeob}, we have taken the \emph{underlying set of objects} of the category $\widehat{\C/_I}=\psh{\C/_I}$ (in contrast to the specification in \cite{HS:1997}).
 % 
-\item In \eqref{eq:universeel}, and throughout, the authors steadfastly adopt the ``categories with families'' point of view in describing the morphism $E \ra U$ in $\widehat{\C}$ as an object in
+\item In \eqref{eq:universeel}, and throughout, the authors steadfastly adopt a ``categories with families'' point of view in describing a morphism $E \ra U$ in $\widehat{\C}$ instead as an object in
 \begin{equation}\label{eq:elements}\textstyle
 \widehat{\int_{\C}U}\ \simeq\ \widehat{\C}/_U\,,
 \end{equation}
-and thus as a presheaf on the \emph{category of elements} $\int_{\C}U$, rather than specifying the object $E$ in $\widehat{\C}$.  Thus the argument $\langle I, A\rangle\in \int_{\C}U$ in \eqref{eq:universeel} consists of an object $I\in\C$ and an element $A\in U(I)$.
+that is, as a presheaf on the \emph{category of elements} $\int_{\C}U$, rather than specifying an arrow $E\to U$ in $\widehat{\C}$ with,
+\[
+E(I)\ =\ {\textstyle \coprod_{A\in U(I)}{\mathsf{E}l}(I, A)}
+\]
+Thus the argument $(I, A) \in \int_{\C}U$ in \eqref{eq:universeel} consists of an object $I\in\C$ and an element $A\in U(I)$.
 %
 \item In order to account for size issues, the authors assume a Grothendieck universe $\U$ in $\Set$, the elements of which are called \emph{small}.  The category $\C$ is then assumed to be small, as are the values of the presheaves (unless otherwise stated).  
 %
 \end{enumerate}
 
 The presheaf $U$, which is not small, is regarded as the Grothendieck universe $\U$ ``lifted'' from $\Set$ to $\psh{\C}$.
-We will analyse the construction of \eqref{eq:universe} from a slightly different perspective in order to arrive at its basic property as a classifier for small families in $\widehat\C$. 
+We will analyse the construction of $(U, {\mathsf{E}l})$  from a slightly different perspective in order to arrive at its basic property as a classifier for small families in $\widehat\C$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{2. An unused adjunction}
@@ -239,7 +247,7 @@ For a presheaf $X$ on $\C$, recall that the category of elements is the comma ca
 \int_\C X\ =\ \yon_\C/_X\,,
 \] 
 where $\yon_\C : \C \to \psh\C$ is the Yoneda embedding, which we may supress and write simply $\C/_X$. 
-While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe ${\mathsf{E}l} \ra U$ at the point \eqref{eq:elements}, the authors seem to have missed a trick  which would have simplified things:
+While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe $(U, {\mathsf{E}l})$ at the point \eqref{eq:elements}, the authors seem to have missed a trick  which would have simplified things:
 
 \begin{proposition}[\cite{G:1983},\S{28}]
 The category of elements functor $\int_\C : \widehat\C \too \Cat$ has a right adjoint, which we denote
@@ -262,7 +270,7 @@ In detail, for  $\A\in\Cat$ and $c\in\C$, let $\nu_{\C}(\A)(c)$ be the Hom-set o
 \begin{align*}
 \nu_\C(\A)(c) &= \Cat\big( {\C/_c}\,,\, \A \big)\,,
 \end{align*}
-with contravariant action on $h : d\to c$ given by precomposing a functor $P : {\C/_c}\to\A$  with the postcomposition functor
+with contravariant action on $h : d\to c$ given by pre-composing a functor $P : {\C/_c}\to\A$  with the post-composition functor
 \[
 {\C/_h} : {\C/_d}\too {\C/_c} \,.
 \]
@@ -354,13 +362,13 @@ The square \eqref{eq:classifyuniversetype} is a pullback in $\widehat{\C}$. More
 Apply the right adjoint $\nu$ to the pullback square \eqref{eq:classifyuniversecat} and paste the naturality square \eqref{eq:naturality} from Lemma \ref{lemma:natpb} on the left, to obtain the transposed square \eqref{eq:classifyuniversefamily} as a pasting of two pullbacks.
 \end{proof}
 
-Let us write $\VV \to \V$ for the vertical map on the right in \eqref{eq:classifyuniversefamily}, so that
+Let us write $\VV \to \V$ for the vertical map on the right in \eqref{eq:classifyuniversefamily},  that is, let
 \begin{align}\label{eq:universedef}\textstyle
 \VV\, &=\, \nu\op{\dot{\Set}}\\  
 \V\, &=\, \nu\op{\Set}.\notag
  \end{align}
  
- We can summarize our results so far as follows.
+ We can then summarize our results so far as follows.
 
  \begin{proposition}\label{prop:Vclassifies}
 The nerve $\VV\to\V$  of the classifier for discrete fibrations $\op\SSet\to\op\Set$, as defined in \eqref{eq:universedef}, classifies natural transformations $Y\to X$ in $\widehat{\C}$, in the sense that there is always a pullback square,
@@ -378,7 +386,7 @@ The classifying map $\tilde{Y} : X\to \V$ is determined by the adjunction $\int 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{4. Small maps}
 
-Let $\alpha$ be a cardinal number and call the sets that are strictly smaller $\alpha$-\emph{small}.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
+Let $\alpha$ be a cardinal number, and call the sets that are strictly smaller than it $\alpha$-\emph{small}.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
 Call a presheaf $X : \op{\C} \to \Set$ $\alpha$-small if all of its values are $\alpha$-small sets, and thus if, and only if, it factors through $\Set_\alpha\hook\Set$. Call a map $f:Y\to X$ of presheaves $\alpha$-small if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\C$ and $x\in Xc$). The latter condition is of course equivalent to saying that, in the pullback square over the element $x:\y{c} \to X$, 
 \begin{equation}\label{eq:smallmap}\textstyle
 \begin{tikzcd}
@@ -468,7 +476,7 @@ For $\VV_{\kappa}$ we then have,
 %   = \textstyle{ \coprod_{A\in U{c}} }A(1_c) = \textstyle\coprod_{A\in U{c}}{\mathsf{E}l}(\langle c, A\rangle) \,.
 % \end{align}
 
-\item By functoriality of $\nu : \Cat \to \widehat{\C}$, a sequence of Grothendieck universes $$\U \subseteq {\U\,}' \subseteq ...$$ in $\Set$ gives rise to a (cumulative) sequence of type-theoretic universes $$\V \mono {\V\,}' \mono ...$$ in $\widehat{\C}$. More precisely, there is a sequence of  cartesian squares,
+\item By functoriality of the nerve $\nu : \Cat \to \widehat{\C}$, a sequence of Grothendieck universes $$\U \subseteq {\U\,}' \subseteq ...$$ in $\Set$ gives rise to a (cumulative) sequence of type-theoretic universes $$\V \mono {\V\,}' \mono ...$$ in $\widehat{\C}$. More precisely, there is a sequence of  cartesian squares,
 \begin{equation}\label{eq:Vhierarchy}\textstyle
 \begin{tikzcd}
 	 \VV \ar[d] \ar[r,tail] \pbmark & {\VV\,'} \ar[d] \ar[r,tail] \pbmark & \dots \\  
@@ -478,7 +486,7 @@ For $\VV_{\kappa}$ we then have,
 in the image of $\nu : \Cat\too\widehat\C$, classifying small maps in $\widehat\C$ of increasing size, in the sense of Proposition \ref{prop:Valphaclassifies}.
 
 \item Let $\alpha = 2$ so that $1\to 2$ is the subobject classifier of $\Set$, and 
-$$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$ is then a classifier in $\Cat$ for sieves, i.e.\ full subcategories $\mathbb{S}\hook\A$ closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$.  The nerve $\VV_{2}  \to \V_{2}$ is then exactly the subobject classifier $1\to\Omega$ of $\widehat\C$,
+$$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$ is then a classifier in $\Cat$ for \emph{sieves}, i.e.\ full subcategories $\mathbb{S}\hook\A$ closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$.  The nerve $\VV_{2}  \to \V_{2}$ is then exactly the subobject classifier $1\to\Omega$ of $\widehat\C$,
 \[
 1 = \nu \mathbbm{1} = \VV_{2} \too  \V_{2} = \nu \mathbbm{2} = \Omega  \,.
 \]
