@@ -42,8 +42,8 @@
 \newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
 \newcommand{\covpsh}[1]{\ensuremath{\mathsf{Set}^{#1}}}
 \newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
-\newcommand{\pocorner}[1][dr]{\save*!/#1+1.2pc/#1:(1,-1)@^{|-}\restore}
-\newcommand{\pbcorner}[1][dr]{\save*!/#1-1.2pc/#1:(-1,1)@^{|-}\restore}
+%\newcommand{\pocorner}[1][dr]{\save*!/#1+1.2pc/#1:(1,-1)@^{|-}\restore}
+%\newcommand{\pbcorner}[1][dr]{\save*!/#1-1.2pc/#1:(-1,1)@^{|-}\restore}
 %\newcommand{\pbcornertransp}[1][dr]{\save*!/#1+1000pc/#1:(5000,5000)@^{|-}\restore}
 \newcommand{\y}{\ensuremath{\mathsf{y}}} % Yoneda embedding
 \newcommand{\yon}{\ensuremath{\mathsf{y}}} % Yoneda embedding
@@ -159,6 +159,13 @@
 \usepackage{tikz-cd}
 \newcommand{\pbmark}{\ar[dr, phantom, "\lrcorner" very near start, shift right=.5ex]}	% pullback mark
 \newcommand{\pbbmark}{\ar[drr, phantom, "\lrcorner" very near start, shift right=.5ex]}	% pullback mark
+
+% tikz
+
+\newcommand{\pbcorner}{\arrow[dr,phantom,"\lrcorner" very near start]}
+\newcommand{\ppbcorner}{\arrow[drr,phantom,"\lrcorner" very near start]}
+\newcommand{\pocorner}{\arrow[dr,phantom,"\ulcorner" very near end]}
+\newcommand{\ppocorner}{\arrow[dr,phantom,"\ulcorner" very near end]}
 
 
 
@@ -340,7 +347,7 @@ Ignoring size issues for the moment, recall that discrete fibrations in $\Cat$ a
 	\C \ar[r,swap,"X"] &  \op{\Set}.
  \end{tikzcd}
  \end{equation}
- Transposing by the adjunction $\int\dashv \nu$ then gives a commutative square in $\widehat{\C}$,
+ Using $\elem{1} \cong\C$ and transposing by the adjunction $\int \dashv \nu$ then gives a commutative square in $\widehat{\C}$,
 \begin{equation}\label{eq:classifyuniversetype}\textstyle
 \begin{tikzcd}
 	 X \ar[d] \ar[r] & \nu\op{\dot{\Set}} \ar[d]\\  
@@ -378,13 +385,61 @@ The nerve $\VV\to\V$  of the classifier for discrete fibrations $\op\SSet\to\op\
 	X \ar[r,swap, "\tilde{Y} "] &  \V.
  \end{tikzcd}
  \end{equation}
-The classifying map $\tilde{Y} : X\to \V$ is determined by the adjunction $\int \dashv \nu$ as the transpose of the classifiyng map of the discrete fibration $\elem X\to\elem Y$.
+The classifying map $\tilde{Y} : X\to \V$ is determined by the adjunction $\int \dashv \nu$ as the transpose of the classifying map of the discrete fibration $\elem Y\to\elem X$.  
 \end{proposition}
- 
- Of course, $\VV\to\V$ itself cannot be a map in $\widehat{\C}$, for reasons of size.
+
+For a given natural transformation $Y\to X$, the classifying map $\tilde{Y} : X\to \V$ is not in general unique. Nonetheless, we can make use of the construction of $\VV\to\V$ as the nerve of the discrete fibration classifier $\op\SSet\to\op\Set$, for which classifying functors $\C \to \op\Set$ are unique up to natural isomorphism, to infer the following proposition, which plays a role in \cite{Shu:15,GSS} and elsewhere.
+
+\begin{proposition}[Realignment]\label{prop:realignment}
+Given a monomorphism $c : C\cof X$ and a family $Y\to X$, let $y_c : C \to \V$ classify the pullback $c^*Y\to C$.  Then there is a classifying map $y: X \to \V$ for $Y\to X$ with $y\circ c = y_c$.
+%
+\begin{equation}\label{diagram:realignment}
+\begin{tikzcd}
+c^*Y \ar[dd] \ar[rd] \ar[rr] && \VV \ar[dd] \\
+& Y \ar[dd] \ar[ru, dotted] & \\
+C  \ar[rd, tail,swap, "c"] \ar[rr, near start, "y_c"] && \V  \\
+& X \ar[ru, dotted, swap, "y"] &
+\end{tikzcd}
+\end{equation}
+\end{proposition}
+%
+\begin{proof}
+Transposing the realignment problem \eqref{diagram:realignment} for presheaves across the adjunction $\int\dashv \nu$ results in the following realignment problem for discrete fibrations.
+\begin{equation}\label{diagram:realignment2}
+\begin{tikzcd}
+\elem  c^*Y \ar[dd] \ar[rd] \ar[rr] && \op{\dot{\Set}}  \ar[dd] \\
+&\elem  Y \ar[dd] \ar[ru, dotted] & \\
+\elem  C  \ar[rd, tail,swap, "{\elem  c}"] \ar[rr, near start, "\widetilde{y_c}"] && \op{{\Set}}   \\
+& \elem  X \ar[ru, dotted, swap, "\tilde{y}"] &
+\end{tikzcd}
+\end{equation}
+The category of elements functor $\int $ is easily seen to preserve pullbacks, hence monos; thus let us consider the general case of a functor  $C : \C \mono \D$ which is monic in $\Cat$, a pullback of discrete fibrations as on the left below, and a presheaf $E : \C \to  \op{{\Set}}$ with $\elem E \cong \mathbb{E}$ over $\C$. 
+\begin{equation}\label{diagram:realignment3}
+\begin{tikzcd}
+\mathbb{E} \ar[dd] \ar[rd] \ar[rr] && \op{\dot{\Set}}  \ar[dd] \\
+& \mathbb{F}  \ar[dd] \ar[ru, dotted] & \\
+\C  \ar[rd, tail,swap, "{C}"] \ar[rr, near start, "E"] && \op{{\Set}}   \\
+& \D \ar[ru, dotted, swap, "F"] &
+\end{tikzcd}
+\end{equation}
+Let $F_0 : \D \to  \op{\Set}$ with $\elem F_0 \cong \mathbb{F}$ over $\D$; we seek $F : \D \to  \op{{\Set}}$ with $\elem F \cong \mathbb{F}$ over $\D$ and, moreover, $F\circ C = E$.  Since $F_0\circ C$ and $E$ both classify $\mathbb{E}$, there is a natural iso $e : F_0\circ C \cong E$.
+Consider the following diagram
+\begin{equation}\label{diagram:realignment4}
+\begin{tikzcd}
+\C \ar[dd, tail, swap, "{C}"]  \ar[rr, "e"] && {\op{(\Set^{\cong})}}  \ar[dd,"{p_1}"] \ar[r,swap,"{p_2}"] &  {\op{\Set}} \\
+&&&\\
+\D  \ar[rr,swap, "F_0"]  \ar[rruu, dotted, swap, "f"] && \op{\Set} &  \\
+\end{tikzcd}
+\end{equation}
+where $\Set^{\cong}$ is the category of isos in $\Set$, with $p_1, p_2$ the (opposites of the) domain and codomain projections.  There is a well-known weak factorization system on $\Cat$ (part of the ``canonical model structure'') with injective-on-objects functors on the left and isofibrations on the right.  Thus there is a diagonal filler $f$ as indicated.  The functor $F := p_2 f : \D \to \op{\Set}$ is then  the one we seek.
+\end{proof}
+
+Of course, as defined in \eqref{eq:universedef}, the classifier $\VV\to\V$ cannot be a map in $\widehat{\C}$, for reasons of size; we now address this.  
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{4. Small maps}
+ 
 
 Let $\alpha$ be a cardinal number, and call the sets that are strictly smaller than it $\alpha$-\emph{small}.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
 Call a presheaf $X : \op{\C} \to \Set$ $\alpha$-small if all of its values are $\alpha$-small sets, and thus if, and only if, it factors through $\Set_\alpha\hook\Set$. Call a map $f:Y\to X$ of presheaves $\alpha$-small if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\C$ and $x\in Xc$). The latter condition is of course equivalent to saying that, in the pullback square over the element $x:\y{c} \to X$, 
