@@ -1,7 +1,9 @@
 %%
 % Model structure on the cartesian cubes
 % Begun March 2018
-%%
+%
+% New start as qmspaper in 5.2022
+%
 %\documentclass[12pt]{amsart}
 \documentclass[12pt]{article}
 
@@ -23,11 +25,13 @@
 \newcommand{\ednote}[1]{[\textit{\color{red}{#1}}]} % editorial note
 
 % categories
+\newcommand{\A}{\ensuremath{\mathbb{A}}}
 \newcommand{\bbtwo}{\ensuremath{\mathbbm{2}}}
 \newcommand{\C}{\ensuremath{\boxempty}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\D}{\ensuremath{\mathbb{D}}}
 \newcommand{\B}{\ensuremath{\mathbb{B}}}
+\newcommand{\bbC}{\ensuremath{\mathbb{C}}}
 \newcommand{\T}{\ensuremath{\mathbb{T}}}
 \newcommand{\CC}{\ensuremath{\mathcal{C}}}
 \newcommand{\WW}{\ensuremath{\mathcal{W}}}
@@ -39,22 +43,21 @@
 \newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
 \newcommand{\covpsh}[1]{\ensuremath{\mathsf{Set}^{#1}}}
 \newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
-\newcommand{\pocorner}[1][dr]{\save*!/#1+1.2pc/#1:(1,-1)@^{|-}\restore}
-\newcommand{\pbcorner}[1][dr]{\save*!/#1-1.2pc/#1:(-1,1)@^{|-}\restore}
 %\newcommand{\pbcornertransp}[1][dr]{\save*!/#1+1000pc/#1:(5000,5000)@^{|-}\restore}
 \newcommand{\y}{\ensuremath{\mathsf{y}}} % Yoneda embedding
+\newcommand{\yon}{\ensuremath{\mathsf{y}}} % Yoneda embedding
 \newcommand{\Hom}{\ensuremath{\mathrm{Hom}}}
 \renewcommand{\hom}{\ensuremath{\mathrm{Hom}}}
 \newcommand{\plusalg}[1]{\ensuremath{^+\!\mathsf{Alg}{(#1)}}}
 \newcommand{\plusalgx}{\ensuremath{^+\!\mathsf{Alg}}}
-
+\newcommand{\op}[1]{\ensuremath{{#1}^{\mathrm{op}}}}
 
 % arrows
 \newcommand{\hook}{\ensuremath{\hookrightarrow}}
 \newcommand{\mono}{\ensuremath{\rightarrowtail}}
 \newcommand{\ra}{\ensuremath{\rightarrow}}
 \newcommand{\cof}{\ensuremath{\rightarrowtail}}
-\newcommand{\fib}{\ensuremath{\onto}}
+\newcommand{\fib}{\ensuremath{\twoheadrightarrow}}
 \renewcommand{\to}{\ensuremath{\rightarrow}}
 \newcommand{\too}{\ensuremath{\longrightarrow}}
 \newcommand{\onto}{\ensuremath{\twoheadrightarrow}}
@@ -66,6 +69,7 @@
 \newcommand{\II}{\ensuremath{\mathbb{I}}}
 \renewcommand{\H}{\ensuremath{\mathbb{H}}}
 \newcommand{\HH}{\ensuremath{\mathcal{H}}}
+\newcommand{\del}{\ensuremath{\partial}}
 
 % type theory
 \newcommand{\G}{\ensuremath{\Gamma}}
@@ -97,10 +101,16 @@
 \newcommand{\V}{\ensuremath{\mathcal{V}}}
 \newcommand{\VV}{\ensuremath{\dot{\mathcal{V}}}}
 
+\newcommand{\SSet}{\ensuremath{\,\dot{\Set}}}
+
 \newcommand{\Fib}{\ensuremath{\mathsf{Fib}}}
 \newcommand{\FFib}{\ensuremath{\dot{\mathsf{Fib}}}}
 \newcommand{\TFib}{\ensuremath{\mathsf{TFib}}}
 \newcommand{\TTFib}{\ensuremath{\dot{\mathsf{TFib}}}}
+
+\newcommand{\elem}[1]{\textstyle\int\!{#1}}
+
+
 
 % theorem styles
 \newtheorem{theorem}{Theorem}
@@ -117,11 +127,29 @@
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 
+% commutative diagrams
+\usepackage{tikz}
+\usepackage{pdfpages}
+\usepackage{tikz-cd}
+\newcommand{\pbmark}{\ar[dr, phantom, "\lrcorner" very near start, shift right=.5ex]}	% pullback mark
+\newcommand{\pbbmark}{\ar[drr, phantom, "\lrcorner" very near start, shift right=.5ex]}	% pullback mark
+
+% xypic
+\newcommand{\pocorner}[1][dr]{\save*!/#1+1.2pc/#1:(1,-1)@^{|-}\restore}
+\newcommand{\pbcorner}[1][dr]{\save*!/#1-1.2pc/#1:(-1,1)@^{|-}\restore}
+
+% tikz
+%\newcommand{\pbcorner}{\arrow[dr,phantom,"\lrcorner" very near start]} % changed to pbmark
+\newcommand{\ppbcorner}{\arrow[drr,phantom,"\lrcorner" very near start]}
+%\newcommand{\pocorner}{\arrow[dr,phantom,"\ulcorner" very near end]} % changed to pomark
+\newcommand{\ppocorner}{\arrow[dr,phantom,"\ulcorner" very near end]}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Cubical model structures}
+\title{Cartesian cubical model categories}
 \author{Steve Awodey}
 \maketitle
 
@@ -136,9 +164,20 @@ Add an abstract.
 \section*{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ednote{need to fix epi arrow command}
+Lawvere, Grothendieck, Kan, Serre, 
+ 
 
-Add an introduction.
+
+Filling and composition, varieties of cubes, options for cofibrations, endpoints vs. generic point, related work.
+
+AWFS and structured fibrations, classifying types, universe, tiny interval.
+
+Constructive except for SOA, fibrant replacement w/o quotients, pathspace factorization vs. Id types.
+
+Ch. 1-2 of cubical.tex.
+
+
+
 
 %To do:
 %
@@ -159,7 +198,7 @@ Add an introduction.
 %- not necessary to actually build the model - but we could.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Cubical sets}
+\section{Cartesian cubical sets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 There are now many treatments of cubical sets in the literature, inclusing \cite{Grandis, Grandis, Jardine, Jardine, Bezem, OrtonPitts, Coquand, Cisinski}.  Our construction is intended to work in \emph{all} of these, insofar as the axioms in Definition \ref{axioms} below are satisfied.   
@@ -189,6 +228,7 @@ Note that the representables $\I^n$ are closed under finite products, $\I^n \tim
 \begin{proposition}\label{prop:Itiny}
 For each $n$, the $n$-cube $\I^n$ is \emph{tiny}, in the sense that the exponential (or ``internal $\hom$'') functor $(-)^{\I^n} : \cSet\too\cSet$ has a right adjoint.
 \end{proposition}
+\noindent (See \cite{Lawvere} for more on such ``amazing right adjoints''.)
 
 \begin{proof}
 It clearly suffices to prove the claim for $n=1$.   For any cubical set $X$, the exponential $X^\I$ is a ``shift by one dimension'', 
@@ -209,11 +249,16 @@ X_\I(n) &\cong \hom(\I^n, X_\I) \\
 using the fact that $\I^\I \cong (\I+1)$ as in \cite{Fiore}.
 \end{proof}
 
+\begin{remark}
+size of the homsets in cartesian vs. other cubes.
+fullness of the cubical nerve functor from Cat.
+other stuff from old notes.
+\end{remark}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The cofibration weak factorization system}\label{sec:cofibrations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Cofibrations, partial map classification, the functor $X^+$, the awfs of +-algebras.
 \begin{definition}[Cofibration]\label{def:cofibration}
 The \emph{cofibrations}, written $$c : A \mono B\,,$$ are any class $\mathcal{C}$ of monomorphisms in $\mathsf{cSet}$
 satisfying the following axioms:
@@ -227,21 +272,25 @@ We also require the cofibrations to be classified by a subobject $\Phi \hook \Om
 \begin{enumerate}
 \item[(C4)] There is a terminal object $t:1\mono \Phi$ in the category of cofibrations and cartesian squares.
 \end{enumerate}
-Note that we permit the case $\Phi = \Omega$ where all monos are cofibrations.
+Two further axioms for cofibrations will be added in Section \ref{sec:biasedfibration}, one in Section \ref{subsec:unbiasedfibration}, and a final one in Section \ref{sec:realignment} (see Appendix \ref{appendix:Cofibrations} for a summary).  Note that we also permit the case $\Phi = \Omega$, so that all monos are cofibrations, in which case no axioms are required.
 \end{definition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{The cofibrant partial map classifier.}
-We shall write $$X^+ := \sum_{\varphi: \Phi}X^{[\varphi]}\ =\ \Phi_!\,t_*(X)\,,$$
-for the polynomial endofunctor $\cSet\too \cSet$ determined by the cofibration classifier $t : 1 \mono \Phi$ (see  \cite{GG}). 
-Observe that by the definition of $X^+$ there is a pullback square,
+Write 
+\begin{equation}\label{eq:partialmapclassifier}
+X^+ := \sum_{\varphi: \Phi}X^{[\varphi]}\ =\ \Phi_!\,t_*(X)\,,
+\end{equation}
+for the polynomial endofunctor $\cSet\too \cSet$ determined by the cofibration classifier $t : 1 \mono \Phi$ (see  \cite{GK}).  The reader familiar with type theory will recognize the  similarity to the ``partiality'' or ``lifting''  monad.  
+
+Observe that since $t$ is monic there is a pullback square,
 \[
 \xymatrix{
 X \ar[d]\pbcorner \ar[r] & X^+ \ar[d]^{t_*X}\\
-1 \ar[r]_{t} & \Phi
+1 \ar[r]_{t} & \Phi.
 }
 \]
-since $t$ is monic. Let $\eta : X\mono X^+$ be the indicated top horizontal map; we call this map the \emph{cofibrant partial map classifier} of $X$.
+Let $\eta : X\mono X^+$ be the indicated top horizontal map; we call this map the \emph{cofibrant partial map classifier} of $X$.
  
 \begin{proposition}\label{prop:cofparclass}
 The map $\eta : X\mono X^+$ classifies partial maps into $X$ with cofibrant domain, in the following sense.
@@ -261,14 +310,14 @@ Z \ar[r]_f & X^+
 The map $\eta : X\mono X^+$ is a cofibration since it is a pullback of $t : 1\ra \Phi$. Observe that $(\eta, 1_X) : X^+\leftarrowtail X\ra X$ is therefore a partial map into $X$ with cofibrant domain. The second statement is the universal property of $X^+$ as a polynomial (see \cite{AN}, prop.~7). 
 \end{proof}
 
-\paragraph{The +-monad.}
+%\paragraph{The +-monad.}
 
 \begin{proposition}\label{prop:plusmonad}
 The pointed endofunctor determined by $\eta_X : X\mono X^+$ has a natural multiplication $\mu_X : X^{++} \ra X^+$ making it a monad.
 \end{proposition}
 
 \begin{proof}
-Since the cofibrations are closed under composition, the monad structure on $X^+$ follows as in \cite{AN}, proposition nm.  Explicitly, $\mu_X$ is determined by proposition \ref{prop:cofparclass} as the unique map making the following a pullback diagram.
+Since the cofibrations are closed under composition, the monad structure on $X^+$ follows as in \cite{AN}, proposition XY.  Explicitly, $\mu_X$ is determined by proposition \ref{prop:cofparclass} as the unique map making the following a pullback diagram.
 \[
 \xymatrix{
 X \ar@{>->}[d]_{\eta_X} \ar[r]^= & X \ar@{>->}[dd]^{\eta}\\
@@ -292,12 +341,12 @@ which we may also write $t_X : 1_X \ra \Phi_X$.  Like $t : 1\ra \Phi$, this map 
 \cSet \ar[u]^{X^*} \ar[r]_+ & \ar[u]_{X^*}\cSet 
 }
 \end{equation}
-The endofunctor $+_X$ is also pointed $\eta : Y \ra Y^+$ and has a monad multiplication $\mu_Y : Y^{++} \ra Y^+$, for any $Y\ra X$, for the same reason that $+$ has this structure.  Summarizing, we may say that \emph{the polynomial monad $+ : \cSet \ra \cSet$ is fibered over \cSet}.
+The endofunctor $+_X$ is also pointed $\eta_Y : Y \ra Y^+$ and has a natural monad multiplication $\mu_Y : Y^{++} \ra Y^+$, for any $Y\ra X$, for the same reason that $+$ has this structure.  Summarizing, we may say that \emph{the polynomial monad $+ : \cSet \ra \cSet$ is indexed (or fibered) over \cSet}.
 
 \begin{definition}\label{def:+alg}
 A \emph{$+$-algebra} in \cSet\ is a cubical set $A$ together with a retraction $\alpha : A^+\ra A$ of $\eta_A : A \ra A^+$, i.e.\ an algebra for the pointed endofunctor $(+ : \cSet\ra \cSet,\ \eta : 1 \ra +)$.  Algebras for the monad $(+, \eta, \mu)$ will be referred to specifically as \emph{$(+, \eta, \mu)$-algebras}, or \emph{$+$-monad algebras}. 
 
-A \emph{relative $+$-algebra} in \cSet\ is a map $A \ra X$ together with an algebra structure for the pointed endofunctor $+_X : \cSet/_X \ra \cSet/_X$.
+A \emph{relative $+$-algebra} in \cSet\ is a map $A \ra X$ together with an algebra structure over the codomain $X$ for the pointed endofunctor $+_X : \cSet/_X \ra \cSet/_X$.
 \end{definition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -316,17 +365,17 @@ A\ar[rd]_{f} \ar[r]^{\eta_f} \ar@/^5ex/ [rr]^= & A' \ar[r]^{\alpha} \ar[d]^-{f^+
 The factorization of a map $f : Y\ra X$ is given by applying the relative $+$-functor over the codomain,
 \[
 \xymatrix{
-Y\ar[rd]_{f} \ar@{>->}[r]^{\eta_f} & Y' \ar[d]^-{f^+} \\
+Y\ar[rd]_{f} \ar@{>->}[r]^{\eta_f} & Y' \ar[d]^-{f^{+_X}} \\
 & X. 
 }
 \]
-We know by proposition \ref{prop:cofparclass} that the unit $\eta_f$ is always a cofibration, and since $f^+$ is the free algebra for the $+$-monad of proposition \ref{prop:plusmonad}, it is in particular a $+$-algebra.
+We know by proposition \ref{prop:cofparclass} that the unit $\eta_f$ is always a cofibration, and since $f^{+_{X}}$ is the free algebra for the $+_X$-monad, it is in particular a $+_X$-algebra.
 
-For the lifting condition, consider a cofibration $c : B\mono C$, a right map $A\ra X$, with $+_X$-algebra structure map $\alpha: A^+ \ra A$ over $X$, and a commutative square as indicated in the following.
+For the lifting condition, consider a cofibration $c : B\mono C$, a right map $A\ra X$, with $+_X$-algebra structure map $\alpha: A^{+_{X}} \ra A$ over $X$, and a commutative square as indicated in the following.
 \[
 \xymatrix{
 B \ar@{>->}[dd]_{c} \ar[rr]^{g}  && A \ar[dd] \ar[rd]_{\eta} & \\
- &&& A^+ \ar@/_4ex/ [lu]_\alpha  \ar[ld] \\
+ &&& A^{+_{X}} \ar@/_4ex/ [lu]_\alpha  \ar[ld] \\
 C \ar[rr]_{f} && X &
 }
 \]
@@ -347,26 +396,28 @@ C \ar@{.>}[r]_{\varphi} & A^+ \ar@/_4ex/ [u]_\alpha
 \]
 We thus have $d := \alpha\circ \varphi : C \ra A$ as the required diagonal filler.
 
-The closure of the cofibrations under retracts follows from their classification by a universal object $t : 1 \ra \Phi$, and the closure of the right maps under retracts follows from their being the algebras for a pointed endofunctor underlying a monad (cf.~\cite{RV}).  Algebraicity of this weak factorization system follows directly, since $+$ is a monad.
+The closure of the cofibrations under retracts follows from their classification by a universal object $t : 1 \ra \Phi$, and the closure of the right maps under retracts follows from their being the algebras for a pointed endofunctor underlying a monad (cf.~\cite{RV}).  Algebraicity of this weak factorization system is immediate, since $+$ is a monad.
 \end{proof}
 
-Summarizing, we have an algebraic weak factorization system $(\mathcal{L}, \mathcal{R})$ on the category \cSet\ of cubical sets, in which:
+Summarizing, we have an algebraic weak factorization system $(\mathcal{C}, \mathcal{C}^\pitchfork)$ on the category \cSet\ of cubical sets, where:
 \begin{align*}
-\mathcal{L}\ &=\ \text{the cofibrations $\mathcal{C}$}\\
-\mathcal{R}\ &=\  \text{the maps underlying the relative $+$-algebras}
+\mathcal{C}\ &=\ \text{the cofibrations}\\
+\mathcal{C}^\pitchfork\ &=\  \text{the maps underlying relative $+$-algebras}
 \end{align*}
-We shall call this the \emph{cofibration weak factorization system}. The right maps will be called \emph{trivial fibrations} and denoted by
+We shall call this the \emph{cofibration weak factorization system}. The right maps will be denoted
 \[
-\mathsf{TFib} = \mathcal{C}^\pitchfork.
+\mathsf{TFib} = \mathcal{C}^\pitchfork
 \]
+and called \emph{trivial fibrations}.
+
 The cofibration algebraic weak factorization system is a refinement of the one defined in \cite{BurkeGarner} and mentioned in \cite{GambinoSattler}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Uniform filling structure.}
 
-It is convenient to relate $+$-algebra structure with the more familiar diagonal filling condition of cofibrantly generated weak factorization systems, and specifically a special form occuring in \cite{CCHM} under the name \emph{uniform filling structure}. 
+It is convenient to relate relative $+$-algebra structure with the more familiar diagonal filling condition of cofibrantly generated weak factorization systems, and specifically the special form occuring in \cite{CCHM} under the name \emph{uniform filling structure}. 
 
-Consider a generating sub\emph{set} of cofibrations consisting of those $c : C \mono \I^n$ with representable codomain, and call these the \emph{basic cofibrations}.
+Consider a generating sub\emph{set} of cofibrations consisting of those with representable codomain $c : C \mono \I^n$, and call these the \emph{basic cofibrations}.
 \begin{equation}\label{eq:basiccof}
 \mathsf{BCof} = \{c : C\mono \I^n\,|\ c\in \mathcal{C}, n\geq 0 \}.
 \end{equation}
@@ -378,7 +429,7 @@ Consider a generating sub\emph{set} of cofibrations consisting of those $c : C \
 \[
 \mathcal{C}\, \pitchfork\,X.
 \]
-\item $X$ can be given a \emph{uniform filling structure:} 
+\item $X$ admits a \emph{uniform filling structure:} 
 for each basic cofibration $c : C \mono \I^{n}$ and map $x : C\ra X$ there is given an extension $j(c,x)$,
 \begin{equation}\label{diagram:uniformbasic}
 \xymatrix{
@@ -386,14 +437,16 @@ C \ar@{>->}[d]_{c} \ar[r]^{x} & X, \\
 \I^{n}\ar@{.>}[ru]_{j(c,x)} &
 }
 \end{equation}
-and the choice is \emph{uniform in $\I^n$} in the following sense: given any cubical map $u : \I^m \ra \I^n$, the pullback $u^*c : u^*C\mono \I^m$, which is again a basic cofibration, fits into a commutative diagram of the form
+and the choice is \emph{uniform in $\I^n$} in the following sense.  
+
+Given any cubical map $u : \I^m \ra \I^n$, the pullback $u^*c : u^*C\mono \I^m$, which is again a basic cofibration, fits into a commutative diagram of the form
 \begin{equation}\label{diagram:uniformbasic2}
 \xymatrix{
 u^*C \ar@{>->}[d]_{u^*c} \ar[rr]^{c^*u} \pbcorner &&  C \ar@{>->}[d]_{c} \ar[r]^{x} & X. \\
 \I^{m} \ar[rr]_{u} && \I^{n} \ar@{.>}[ru]_{j(c,x)} &
 }
 \end{equation}
-For the pair $(u^*c,\, x\circ c^*u)$ in \eqref{diagram:uniformbasic2}, the chosen extension $j(u^*c,x\circ c^*u): \I^m \ra X$, is equal to  $j(c,x)\circ u$,
+For the pair $(u^*c,\, x\circ c^*u)$ in \eqref{diagram:uniformbasic2}, the chosen extension $j(u^*c,x\circ c^*u): \I^m \ra X$, is required to be equal to  $j(c,x)\circ u$,
 \begin{equation}\label{eq:uniformfillers}
 j(u^*c,x\circ c^*u) = j(c,x) \circ u.
 \end{equation}
@@ -434,7 +487,7 @@ then the assignment is natural in $\I^n$. Indeed,  given any $u : \I^m \ra \I^n$
 \begin{equation}\label{eq:proof,uniformfillers}
 j(c',xu') = \alpha\circ\chi(c',xu') = \alpha\circ\chi(c,x)\circ u = j(c,x) u,
 \end{equation}
-by the uniqueness of classifying maps.
+by the uniqueness of the classifying maps.
 
 It is clear that (2) implies (1), since if $\mathcal{C} \pitchfork X$ then we can take as an algebra structure $\alpha : X^+ \ra X$ any filler for the span
 \[
@@ -470,11 +523,11 @@ $$\alpha(yu) =  j\big( (yu)^*\eta, y'u' \big) = j(y^*\eta, y')\circ u = \alpha(y
 and the only possible extension $j(1_X, x)$ for the span $(1_{\I^n}, x)$ is  $x$ itself.
  \end{proof}
  
-The relative version of the foregoing is entirely analogous, since the $+$-functor is fibered over $\cSet$ in the sense of diagram \eqref{diag:+fibered}.  We can therefore omit the entirely analogous proof.  The statement is as follows.
+The relative version of the foregoing is entirely analogous, since the $+$-functor is fibered over $\cSet$ in the sense of diagram \eqref{diag:+fibered}.  We can therefore omit the entirely analogous proof of the following.
  
  \begin{proposition}\label{prop:uniformstructequivrelative} For any map $f : Y\ra X$ in \cSet\ the following are equivalent:
 \begin{enumerate}
-\item $f:Y\ra X$ admits a \emph{(relative) $+$-algebra structure (over $X$)}, i.e.\ there is a retraction  $\alpha :Y' \ra Y$ over X of the unit $\eta : Y\ra Y'$, where $f^+ : Y' \ra X$ is the result of the relative $+$-functor applied to $f$, as in definition \ref{def:+alg}.
+\item $f:Y\ra X$ admits a \emph{relative $+$-algebra structure over $X$}, i.e.\ there is a retraction  $\alpha :Y' \ra Y$ over X of the unit $\eta : Y\ra Y'$, where $f^+ : Y' \ra X$ is the result of the relative $+$-functor applied to $f$, as in definition \ref{def:+alg}.
 \item $f:Y\ra  X$ is a \emph{trivial fibration},
 \[
 \mathcal{C}\, \pitchfork\,f.
@@ -527,7 +580,7 @@ Every trivial fibration $A\ra X$ has a section $s : X\ra A$.
 \end{enumerate}
 \end{corollary}
 \begin{proof}
-These  are all standard.
+(1) holds because all objects are cofibrant by (C0). (5) is a consequence of (C3), stability of cofibrations under pullback, by a standard argument using the adjunction $f^* \dashv f_*$.  The rest hold for the right maps in any weak factorization system.
 \end{proof}
 
 %It suffices to find a filler for the following diagram.
@@ -623,7 +676,7 @@ These  are all standard.
 \section{The fibration weak factorization system}\label{FWFS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We now specify a second weak factorization system, with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the \emph{fibrations}. For comparison, we first recall the trivial-cofibration/fibration weak factorization system from \cite{GS}, which makes use of connecitons on the interval $\I$, an assumption that we do without (in \cite{AGH} it is shown that  the fibrations of \cite{GS} agree with those specified in the ``logical style'' of \cite{CCHM,OP}).  
+We now specify a second weak factorization system, with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the \emph{fibrations}. For comparison, we first recall the ``biased'' trivial-cofibration/fibration weak factorization system from \cite{GS}, which makes use of \emph{connections}, $$\vee,\wedge : \I\times\I \too \I,$$ on the cubes, which we do not assume (in \cite{AGH} it is shown that the fibrations of \cite{GS} agree with those specified in the ``logical style'' of \cite{CCHM,OP}).  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Partial box filling (biased version)}\label{sec:biasedfibration}
@@ -638,11 +691,11 @@ where:
 
 \item $\delta_\epsilon : 1 \ra \I$ is one of the two \emph{endpoint inclusions}, for $\epsilon = 0,1$.
 
-\item $c\otimes\delta_\epsilon$ is the pushout-product indicated in the following diagram (in which the unlabelled maps are the expected ones).
+\item $c\otimes\delta_\epsilon$ is the \emph{pushout-product} indicated in the following diagram.
 \begin{equation}\label{diagram:pushoutproduct}
 \xymatrix{
-C\times 1 \ar[d] \ar[r] & C\times \I \ar[d] \ar@/^4ex/ [rdd]\\
-Z\times 1 \ar@/_4ex/ [rrd] \ar[r] &  Z +_C (C\times\I) \ar[rd]_{c \otimes \delta_\epsilon} \\
+C\times 1 \ar[d]_{C\times 1} \ar[r]^{C\times \delta_\epsilon} & C\times \I \ar[d] \ar@/^4ex/ [rdd]^{c\times \I}\\
+Z\times 1 \ar@/_4ex/ [rrd]_{Z\times \delta_\epsilon} \ar[r] &  Z +_C (C\times\I) \ar@{..>}[rd]_{c\, \otimes\, \delta_\epsilon} \\
 && Z\times\I
 }
 \end{equation}
@@ -651,12 +704,12 @@ Z\times 1 \ar@/_4ex/ [rrd] \ar[r] &  Z +_C (C\times\I) \ar[rd]_{c \otimes \delta
 \end{enumerate}
 
 In order to ensure that such maps are indeed cofibrations, we assume  two further axioms:
-\begin{enumerate}
+\begin{enumerate}\label{cofibration_axioms}
 \item[(C5)] The endpoint inclusions $\delta_\epsilon : 1 \ra \I$ are cofibrations.
 \item[(C6)] The cofibrations are closed under pushout-products.  
 \end{enumerate}
 
-Note that if we assume $\delta_0$ and $\delta_1$ are disjoint (as they are in most categories of cubical sets), then by (C5) we have that $0 \ra 1$ is a cofibration, and hence that $0\ra A$ is a cofibration, for all objects $A$, so that (C0) is not required in that case.  In place of (C6), we could require the cofibrations to be closed under the join operation $A\vee B$ in the lattice of subobjects of an object (as is done in \cite{CCHS,OP}).
+Note that if we assume $\delta_0$ and $\delta_1$ are disjoint (as they are in most categories of cubical sets), then by (C5) we have that $0 \ra 1$ is a cofibration, and hence that $0\ra A$ is a cofibration, for all objects $A$, so that (C0) is no longer required.  In place of (C6), we could require the cofibrations to be closed under the join operation $A\vee B$ in the lattice of subobjects of an object (as is done in \cite{CCHM,OP}).
 \medskip
 
 \paragraph{Fibrations (biased version).}
@@ -672,7 +725,7 @@ The \emph{biased fibrations} are defined to be the right class of these maps,
 Thus a map $f : Y\ra X$ is a biased fibration if for every commutative square of the form
 \begin{equation}\label{diagram:biasedfillers}
 \xymatrix{
-Z +_C (C\times\I) \ar@{>->}[d]_{c\, \otimes \delta_\epsilon} \ar[r] & Y \ar[d]^f \\
+Z +_C (C\times\I) \ar@{>->}[d]_{c\, \otimes\, \delta_\epsilon} \ar[r] & Y \ar[d]^f \\
 Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X
 }
 \end{equation}
@@ -682,16 +735,16 @@ To relate this notion of fibration to the cofibration weak factorization system,
 \[
 (-)\!\otimes u : \cSet^\mathbbm{2} \ra\cSet^\mathbbm{2}\,.
 \]
-This functor has a right adjoint, the \emph{pullback-hom}, which for a map $f : X\ra Y$ we write as
+This functor has a right adjoint, the \emph{pullback-hom}, which for a map $f : X\ra Y$ we shall write as
 \[
-(u \Rightarrow\! f) : Y^B \ra (X^B \times_{X^A} Y^A) \,.
+(u \Rightarrow\! f) : Y^B \too (X^B \times_{X^A} Y^A) \,.
 \]
-The pullback-hom is determined as indicated in the following diagram (in which the unlabelled maps are the expected ones).
+The pullback-hom is determined as indicated in the following diagram.
 \begin{equation}\label{diagram:pullbackhom}
 \xymatrix{
-Y^B \ar@/_4ex/ [rdd] \ar[rd]^{u\, \Rightarrow f} \ar@/^4ex/ [rrd] && \\
-& X^B \times_{X^A} Y^A \ar[d] \ar[r] & Y^A \ar[d] \\
-& X^B \ar[r] &  X^A 
+Y^B \ar@/_4ex/[rdd]_{f^B} \ar@{.>}[rd]^{u\, \Rightarrow f} \ar@/^4ex/ [rrd]^{Y^u} && \\
+& X^B \times_{X^A} Y^A \ar[d] \ar[r] & Y^A \ar[d]^{f^A} \\
+& X^B \ar[r]_{X^u} &  X^A 
 }
 \end{equation}
 
@@ -764,20 +817,20 @@ An object $X$ is fibrant if and only if both of the endpoint  projections $X^\I 
 %\end{proof}
 
 \paragraph{Fibration structure (biased version).}
-The $\otimes\dashv\ \Rightarrow$ adjunction determines the fibrations in terms of the trivial fibrations, which in turn can be determined by \emph{uniform} lifting against a \emph{set} of basic cofibrations, by proposition \ref{prop:uniformstructequivrelative}.  We can similarly determine the fibrations by uniform lifting against a \emph{set} of basic trivial cofibrations, consisting of all those $c \otimes \delta_\epsilon$ in $\mathcal{C}\otimes \delta_\epsilon$ where $c : C \mono \I^n$, with a representable codomain.  
+The $\otimes\dashv\ \Rightarrow$ adjunction determines the fibrations in terms of the trivial fibrations, which in turn can be determined by \emph{uniform} lifting against a \emph{set} of basic cofibrations, by proposition \ref{prop:uniformstructequivrelative}.  The fibrations are similarly determined by \emph{uniform} lifting against the \emph{set} of biased trivial cofibrations consisting of all those $c \otimes \delta_\epsilon$ in $\mathcal{C}\otimes \delta_\epsilon$ where $c : C \mono \I^n$ is a basic cofibration.  
 Call these maps the \emph{basic biased trivial cofibrations}, and let 
 \begin{equation}\label{eq:basicTCof}
-\mathcal{B}\otimes \delta_\epsilon = \{c \otimes \delta_\epsilon : B \mono \I^{n+1}\ |\ c : C\mono \I^n,\,\epsilon = 0,1,\ n\geq 0 \},
+\mathsf{BCof}\otimes \delta_\epsilon = \{c \otimes \delta_\epsilon : B \mono \I^{n+1}\ |\ c : C\mono \I^n,\,\epsilon = 0,1,\ n\geq 0 \},
 \end{equation}
 where the pushout-product $c\otimes\delta_\epsilon$ now takes the simpler form
 \begin{equation}\label{diagram:basicpushoutproduct}
 \xymatrix{
 C \ar@{>->}[d] \ar[r] & C\times \I \ar[d] \ar@/^4ex/ [rdd]\\
-\I^{n} \ar@/_4ex/ [rrd] \ar[r] &  \I^n +_C (C\times\I) \ar@{>->}[rd]_{c \otimes \delta_\epsilon} \\
+\I^{n} \ar@/_4ex/ [rrd] \ar[r] &  \I^n +_C (C\times\I) \ar@{>->}[rd]_{c\, \otimes\, \delta_\epsilon} \\
 && \I^{n}\times\I
 }
 \end{equation}
-for a cofibration $c : C\mono \I^n$, an endpoint $\delta_\epsilon:1 \ra \I$, and with domain $B = \big(\I^n +_C (C\times\I)\big)$.   These subobjects $B \mono \I^{n+1}$ can be seen geometrically as generalized open box inclusions.
+for a basic cofibration $c : C\mono \I^n$, an endpoint $\delta_\epsilon:1 \ra \I$, and with domain $B = \big(\I^n +_C (C\times\I)\big)$.   These subobjects $B \mono \I^{n+1}$ can be seen geometrically as generalized open box inclusions.
 
 For any map $f:Y\ra X$  a \emph{uniform, biased fibration structure} on $f$ is a choice of diagonal fillers $j_\epsilon(c,x,y)$,
 \begin{equation}\label{diagram:directedfillers}
@@ -786,18 +839,18 @@ For any map $f:Y\ra X$  a \emph{uniform, biased fibration structure} on $f$ is a
 \I^{n}\times \I \ar@{.>}[rru]_{j_\epsilon(c,x,y)} \ar[rr]_y && Y,
 }
 \end{equation}
-for each basic biased trivial cofibration $c \otimes \delta_\epsilon : B = (\I^n +_C (C\times\I)) \mono \I^{n+1}$ and maps $x : B\ra X$ and $y : \I^{n+1}\ra Y$, which is \emph{uniform in $\I^{n}$} in the following sense: given any cubical map $u : \I^m \ra \I^n$, the pullback $u^*c : u^*C\mono \I^m$ of $c : C\mono \I^n$ along $u$ determines another basic biased trivial cofibration $$u^*c \otimes \delta_\epsilon : B' = (\I^m +_{u^*C} (u^*C\times\I)) \mono \I^{m+1},$$ which fits into a commutative diagram of the form
+for each basic biased trivial cofibration $c \otimes \delta_\epsilon : B = (\I^n +_C (C\times\I)) \mono \I^{n+1}$ and maps $x : B\ra X$ and $y : \I^{n+1}\ra Y$, which is \emph{uniform in $\I^{n}$} in the following sense: Given any cubical map $u : \I^m \ra \I^n$, the pullback $u^*c : u^*C\mono \I^m$ of $c : C\mono \I^n$ along $u$ determines another basic biased trivial cofibration $$u^*c \otimes \delta_\epsilon : B' = (\I^m +_{u^*C} (u^*C\times\I)) \mono \I^{m+1},$$ which fits into a commutative diagram of the form
 \begin{equation}\label{diagram:directedfillers2}
 \xymatrix{
 \I^m +_{u^*C} (u^*C\times\I) \ar[d]_{u^*c\,\otimes\,\delta_\epsilon} \ar[rr]^-{(u\times\I)'} && \I^n +_C (C\times\I) \ar[d]_{c\,\otimes\,\delta_\epsilon} \ar[r]^-{x} & X \ar[d]^f \\
 \I^{m}\times \I  \ar[rr]_{u\times \I} && \I^{n}\times \I \ar@{.>}[ru]_{j_\epsilon(c,x,y)} \ar[r]_{y} & Y,
 }
 \end{equation}
-by applying the functor $(-)\otimes\,\delta_\epsilon$ to the pullback square relating $u^*c$ to $c$.  Now for the outer rectangle in \eqref{diagram:directedfillers2} there is a chosen diagonal filler $$j_\epsilon(u^*c,x\circ(u\times\I)', y\circ(u\times\I)): \I^m\times\I\ra X$$ and for this map we require that
+by applying the functor $(-)\otimes\,\delta_\epsilon$ to the pullback square relating $u^*c$ to $c$.  For the outer rectangle in \eqref{diagram:directedfillers2} there is then a chosen diagonal filler $$j_\epsilon(u^*c,x\circ(u\times\I)', y\circ(u\times\I)): \I^m\times\I\ra X$$ and for this map we require that
 \begin{equation}\label{eq:uniformfillers}
 j_\epsilon(u^*c,x\circ (u\times\I)', y\circ(u\times\I)) = j_\epsilon(c,x,y)\circ(u\times \I).
 \end{equation}
-This can be seen to be a reformulation of the logical specification given in \cite{CCHM} (see \cite{AGH}).
+This can be shown to be a reformulation of the logical specification given in \cite{CCHM} (see \cite{AGH}).
 
 \begin{definition}\label{def:uniform} A \emph{uniform, biased fibration structure} on a map $f: Y\ra X$ is a choice of fillers $j_\epsilon(c,x,y)$ as in \eqref{diagram:directedfillers} satisfying \eqref{eq:uniformfillers} for all maps $u : \I^m\ra\I^n$.
 \end{definition}
@@ -812,7 +865,7 @@ Finally, we have the analogue of proposition \ref{prop:uniformstructequiv} for f
 \begin{corollary}\label{cor:uniformfibstructequiv}  For any object $X$ in \cSet\ the following are equivalent:
 \begin{enumerate}
 \item $X$ is \emph{biased fibrant}, i.e.\ every partial map to $X$ with a generating biased trivial cofibration $D \mono Z \times \I$ as domain of definition extends to a total map $Z \times \I \ra X$,
-$$\mathcal{C}\otimes \delta_\epsilon\ \pitchfork\ X$$
+$$\mathcal{C}\otimes \delta_\epsilon\ \pitchfork\ X\,.$$
 
 \item The canonical maps $(\delta_\epsilon\Rightarrow{X}) : X^I \ra X$ are trivial fibrations.
 
@@ -823,7 +876,7 @@ B \ar@{>->}[d]_{c \otimes \delta_\epsilon} \ar[r]^{x} & X, \\
 \I^{n+1}\ar@{.>}[ru]_{j_\epsilon(c,x)} &
 }
 \end{equation}
-and the choice is \emph{uniform in $\I^n$} in the following sense: given any cubical map $u : \I^m \ra \I^n$, the pullback  $u^*c \otimes \delta_\epsilon : B'\mono \I^{m}\times\I$ fits into a commutative diagram of the form
+and the choice is \emph{uniform in $\I^n$} in the following sense: Given any cubical map $u : \I^m \ra \I^n$, the pullback  $u^*c \otimes \delta_\epsilon : B'\mono \I^{m}\times\I$ fits into a commutative diagram of the form
 \begin{equation}\label{diagram:directedfillers3}
 \xymatrix{
 B' \ar@{>->}[d]_{u^*c \otimes \delta_\epsilon} \ar[rr]^{(u\times\I)'} \pbcorner &&  B \ar@{>->}[d]_{c \otimes \delta_\epsilon } \ar[r]^{x} & X. \\
@@ -841,7 +894,7 @@ j(u^*c \otimes \delta_\epsilon,x\circ(u\times\I)') = j(c,x) (u\times\I).
 \subsection{Partial box filling (unbiased version)}\label{subsec:unbiasedfibration}
 
 
-Rather than building a weak factorization system based on the foregoing notion of biased fibration (as is done in \cite{GS}), we shall first eliminate the bias on a choice of endpoint $\delta_\epsilon : 1 \ra \I$, expressed by the indexing $\epsilon = 0,1$.  This will have the effect of adding more trivial cofibrations, and thus more weak equivalences, to our model structure. Consider first the simple path-lifting condition for a map $f : Y \to X$, which is a special case of \eqref{diagram:biasedfillers} with $c =\, ! : 0\mono 1$, since $!\otimes\delta_\epsilon = \delta_\epsilon$:
+Rather than building a weak factorization system based on the foregoing notion of biased fibration (as is done in \cite{GS}), we shall first eliminate the ``bias'' on a choice of endpoint $\delta_\epsilon : 1 \ra \I$, expressed by the indexing $\epsilon = 0,1$.  This will have the effect of adding more trivial cofibrations, and thus more weak equivalences, to our model structure. Consider first the simple path-lifting condition for a map $f : Y \to X$, which is a special case of \eqref{diagram:biasedfillers} with $c =\, ! : 0\mono 1$, since $!\otimes\delta_\epsilon = \delta_\epsilon$:
 \begin{equation*}
 \xymatrix{
 1 \ar@{>->}[d]_{\delta_\epsilon} \ar[r] & Y \ar[d]^f \\
@@ -850,13 +903,13 @@ Rather than building a weak factorization system based on the foregoing notion o
 \end{equation*}
 %(Note that $0\mono 1$ is a cofibration by axioms C4 and C5).
 
-In topological spaces, for instance, rather than requiring lifts $j_\epsilon$ for each of the endpoints $\epsilon = 0,1$  of the real interval $\I = [0,1]$, one could instead require that there be a lift $j_i$ \emph{for each point} $i: 1\ra\I$. Such ``unbiased path-lifting'' can be formulated in \cSet\ by introducing a ``generic point'' $\delta : 1\ra \I$ by passing to $\cSet/\I$ via the pullback functor $\I^* : \cSet\to \cSet/\I$, and then requiring path-lifting for $\I^*f$ with respect to $\delta$.  The following specification implements that  idea, while also adding partiality in the sense of the foregoing section.  We first replace axiom (C5) with the following stronger assumption.
+In topological spaces, for instance, rather than requiring lifts $j_\epsilon$ for each of the endpoints $\epsilon = 0,1$  of the real interval $\I = [0,1]$, one could instead require there to be a lift $j_i$ \emph{for each point} $i: 1\ra\I$. Such ``unbiased path-lifting'' can be formulated in \cSet\ by introducing a ``generic point'' $\delta : 1\ra \I$ by passing to $\cSet/\I$ via the pullback functor $\I^* : \cSet\to \cSet/\I$, and then requiring path-lifting for $\I^*f$ with respect to $\delta$.  The following specification implements that  idea, while also adding cofibrant partiality, as in the biased case.  We first replace axiom (C5) with the following stronger assumption.
 
 \begin{enumerate}
 \item[(C7)] The diagonal map $\delta : \I\ra\I\times\I$ is a cofibration.  
 \end{enumerate}
 
-Th unbiased notion of a fibration is now as follows.
+The unbiased notion of a fibration is now as follows.
 
 \begin{definition}[Fibration]\label{def:unbiasedfibration}
 Let $\delta : \I\ra\I\times\I$ be the diagonal map.
@@ -911,9 +964,9 @@ C \ar[rd] \ar@{>->}[r]^{c} & Z  \ar[d]^z \\
 \]
 is regarded as an $\I$-indexed family of cofibrations.  Let 
 \[
-\mathsf{Gph}(z) : Z\ra Z\times\I\,,
+\mathsf{Gph}(z) = \langle 1_Z, z\rangle : Z\too Z\times\I\,,
 \]
-be the graph of $z : Z\ra \I$, i.e.\ $\mathsf{Gph}(z) = \langle 1_Z, z\rangle$, and  define
+be the graph of $z : Z\ra \I$, and  define
 \[
 c \otimes_z\!\delta := [\mathsf{Gph}(z), c\times\I] : Z+_C(C\times\I) \ra Z\times \I\,,
 \]
@@ -928,7 +981,7 @@ Z \ar@/_4ex/ [rrd]_{\mathsf{Gph}(z)} \ar[r] &  Z +_C (C\times\I) \ar@{.>}[rd]_{c
 
 This specification differs from the similar \eqref{diagram:pushoutproduct} by using $\mathsf{Gph}(z)$ for the inclusion $Z\mono Z\times\I$, rather than one of the ``face maps'' associated to the endpoint inclusions $\delta_\epsilon : 1\ra\I$. (Note that a graph is always a cofibration by pulling back a diagonal.)  The subobject $c \otimes_z\!\delta \mono Z\times \I$ is the join of the subobjects $\mathsf{Gph}(z) \mono Z\times \I$ and the cylinder $C\times \I \mono Z\times \I$.
 
-Observe that the endpoints $\delta_\epsilon : 1 \ra \I$ are of the form $c \otimes_z\!\delta$ by taking $Z = 1$ and $z = \delta_\epsilon$ and $c =\ ! : 0 \ra 1$, so that biased filling is subsumed. 
+Note that the endpoints $\delta_\epsilon : 1 \ra \I$ are of the form $c \otimes_z\!\delta$ by taking $Z = 1$ and $z = \delta_\epsilon$ and $c =\ ! : 0 \ra 1$, so that biased filling is subsumed. 
 
 The maps of the form $c\otimes_z\delta : Z +_C (C\times\I) \mono Z$  now form a \emph{class of generating trivial cofibrations} in the expected sense.  Let 
 \begin{equation}\label{eq:generatingtrivialcofibrations}
@@ -952,11 +1005,11 @@ Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X.
 Suppose that for all $c : C\mono Z$ and $z:Z\ra\I$, we have $(c\otimes_z\delta) \pitchfork f$ in $\cSet$. Pulling $f$ back over $\I$, this is equivalent to the condition $c\otimes\delta \pitchfork \I^*f$ in $\cSet/\I$, for all cofibrations $c : C\mono Z$ over $\I$, which is equivalent to $c\pitchfork(\delta\Rightarrow \I^*f)$ in $\cSet/\I$ for all cofibrations $c : C\mono Z$.  But this in turn means that $\delta\Rightarrow\I^*f$ is a trivial fibration, which by definition means that $f$ is a fibration.
 \end{proof}
 
-\paragraph{Unbiased fibration structure.}
+\paragraph{Unbiased fibration structure.}\label{sec:unbiasedfibration}
 
-As in the biased case, the fibrations can also be determined by \emph{uniform} right-lifting against a generating \emph{set} of trivial cofibrations, now consisting of all those $c \otimes_z \delta$ in $\mathcal{C}\otimes \delta$ for which $c : C \mono \I^n$, with a representable codomain.  Call these maps the \emph{basic (unbiased) trivial cofibrations}, and let 
+As in the biased case, the fibrations can  be determined by \emph{uniform} right-lifting against a generating \emph{set} of trivial cofibrations, now consisting of all those $c \otimes_z \delta$ in $\mathcal{C}\otimes \delta$ for which $c : C \mono \I^n$ is basic.  Call these maps the \emph{basic (unbiased) trivial cofibrations}, and let 
 \begin{equation}\label{eq:basicunbiasedTCof}
-\mathcal{B}\otimes \delta = \{c \otimes_z \delta : B \mono \I^{n+1}\ |\ c : C\mono \I^n,\, z : \I^n \ra \I,\,n\geq 0\}\,,
+\mathsf{BCof}\otimes \delta = \{c \otimes_z \delta : B \mono \I^{n+1}\ |\ c : C\mono \I^n,\, z : \I^n \ra \I,\,n\geq 0\}\,,
 \end{equation}
 where the pushout-product $c\otimes_z \delta$ now has the form
 \begin{equation}\label{diagram:unbiasedbasicpushoutproduct}
@@ -966,16 +1019,16 @@ C \ar@{>->}[d]_{c} \ar[r]^{\mathsf{Gph}(zc)} & C\times \I \ar[d] \ar@/^4ex/ [rdd
 && \I^n\times\I
 }
 \end{equation}
-for a cofibration $c : C\mono \I^n$, an indexing map $z : \I^n \ra \I$, and with domain $B = \big(\I^n +_C (C\times\I)\big)$.   These subobjects $B \mono \I^{n+1}$ can again be seen geometrically as ``generalized open box inclusions", but now the floor or lid of the open box may be replaced by a ``cross-section'' given by the graph of a map $z:\I^n\ra \I$.
+for a basic cofibration $c : C\mono \I^n$, an indexing map $z : \I^n \ra \I$, and with domain $B = \big(\I^n +_C (C\times\I)\big)$.   These subobjects $B \mono \I^{n+1}$ can again be seen geometrically as ``generalized open box inclusions", but now the floor or lid of the open box may be replaced by a ``cross-section'' given by the graph of a map $z:\I^n\ra \I$.
 
-For any map $f:Y\ra X$  a  (uniform, unbiased) fibration structure on $f$ is a choice of diagonal fillers $j(c,z,x,y)$,
+For any map $f:Y\ra X$  a (uniform, unbiased) fibration structure on $f$ is a choice of diagonal fillers $j(c,z,x,y)$,
 \begin{equation}\label{diagram:basicunbiasedfillers}
 \xymatrix{
 B \ar@{>->}[d]_{c\,\otimes_z\delta} \ar[rr]^x && X \ar[d]^f \\
 \I^{n}\times \I \ar@{.>}[rru]_{j(c,z,x,y)} \ar[rr]_y && Y,
 }
 \end{equation}
-for each basic trivial cofibration $c \otimes_z \delta : B \mono \I^{n+1}$, which is \emph{uniform} in $\I^n$ in the following sense: given any cubical map $u : \I^m \ra \I^n$, the pullback $u^*c : u^*C\mono \I^m$ and the reindexing $zu : \I^m \ra \I^n\ra\I$ determine another basic trivial cofibration $u^*c \otimes_{zu} \delta : B' = (\I^m +_{u^*C} (u^*C\times\I)) \mono \I^{m+1}$ which fits into a commutative diagram of the form
+for each basic trivial cofibration $c \otimes_z \delta : B \mono \I^{n+1}$, which is \emph{uniform} in $\I^n$ in the following sense: Given any cubical map $u : \I^m \ra \I^n$, the pullback $u^*c : u^*C\mono \I^m$ and the reindexing $zu : \I^m \ra \I^n\ra\I$ determine another basic trivial cofibration $u^*c \otimes_{zu} \delta : B' = (\I^m +_{u^*C} (u^*C\times\I)) \mono \I^{m+1}$ which fits into a commutative diagram of the form
 \begin{equation}\label{diagram:basicunbiasedfillersuniformity}
 \xymatrix{
 B' \ar[d]_{u^*c\,\otimes_{zu}\delta} \ar[rr]^{(u\times \I)'} \pbcorner  && B \ar[d]_{c\,\otimes_z\delta} \ar[rr]^x && X \ar[d]^f \\
@@ -1019,9 +1072,9 @@ is a relative $+$-algebra over $X\times \I$.  By proposition \ref{prop:uniformst
 A statement analogous to the foregoing also holds for maps $f:Y\ra X$ in place of objects $X$.  Indeed, as before, we have the following sharper formulation.
 
 \begin{corollary}
-Fibration structures on a map $f : Y\ra X$ correspond uniquely to $+$-algebra structures on the map $(\delta\Rightarrow{f})$ (cf.\ definition \ref{def:unbiasedfibration}),
+Fibration structures on a map $f : Y\ra X$ correspond uniquely to relative $+$-algebra structures on the map $(\delta\Rightarrow{f})$ (cf.\ definition \ref{def:unbiasedfibration}),
 \[
-(\delta\Rightarrow{f}) : Y^I\times \I \ra (X^I \times \I)\times_{(X\times \I)} (Y\times\I)
+(\delta\Rightarrow{f}) : Y^I\times \I \too (X^I \times \I)\times_{(X\times \I)} (Y\times\I)
 \]
 \end{corollary}
 
@@ -1082,7 +1135,7 @@ for any cofibration $c : C\mono Z$ and indexing map $z : Z \ra \I$, with domain 
 
 It follows that the classes $\mathsf{TCof}$ and $\mathcal{F}$ are mutually weakly orthogonal,
 \[
-\mathsf{TCof}\, {\pitchfork}\, \mathcal{F},
+\mathsf{TCof}\ {\pitchfork}\ \mathcal{F},
 \]
 and are closed under retracts.  Thus to have a weak factorization system $(\mathsf{TCof}, \mathcal{F})$ it just remains to show that every map $f: X\ra Y$ can be factored as $f  = g\circ h$ with $g\in \mathcal{F}$ and $h\in \mathsf{TCof}$.
 
@@ -1090,14 +1143,14 @@ and are closed under retracts.  Thus to have a weak factorization system $(\math
 Every map $f: X\ra Y$ in \cSet\ can be factored as $f  = p\circ i$,
 \begin{equation}%\label{diagram:factorize}
 \xymatrix{
-X \ar[rd]_{f} \ar@{>->}[r]^i & Y'\ar@{->>}[d]^p\\
+X \ar[rd]_{f} \ar@{>->}[r]^i & X'\ar@{->>}[d]^p\\
 & Y
 }
 \end{equation}
-with $i: X\mono Y'$ a trivial cofibration and $p: Y'\onto Y$ a fibration.
+with $i: X\mono X'$ a trivial cofibration and $p: X'\onto Y$ a fibration.
 \end{proposition}
 \begin{proof}
-This is a standard argument (cf.~\cite{Quillen,Garner}), which is simpified in this case by the fact that the codomians of the generating trivial cofibrations are not just representable, but tiny. The reader is referred to \cite{awodey} for the details (in a similar case).
+We can use a standard argument (the ``algebraic small objects argument'', cf.~\cite{Garner}), further simpified by the fact that the codomains of the basic trivial cofibrations $c\, \otimes_z \,\delta : B \mono \I^{n+1}$ are not just representable, but \emph{tiny} in the sense of Proposition \ref{prop:Itiny}, while the domains are not merely ``small'', but finitely presented.  The reader is referred to \cite{A:cubical} for details (in a similar case).
 \end{proof}
 %
 %Thus let $X$ be any object, and we wish to find a fibrant object $X'$ and a trivial cofibration $h : X\mono X'$.
@@ -1181,15 +1234,22 @@ There is a weak factorization system on the category \cSet\ in which the right m
 \end{proposition}
 
 This will be called the \emph{fibration weak factorization system}.
-The following observation will be of use later on, the proof can be found in \cite{Garner, Awodey}.
+The following observation will be of use later on; a proof can be found in \cite{Garner, Awodey}.
 
 \begin{corollary}
-The construction of the \emph{fibrant replacement}, $$f' = \varinjlim_n f_n$$ is functorial in $f$, and the canonical trivial cofibrations $i:X\mono Y'$ are natural in $X$.  
-%There is also a natural monad multiplication $\mu:X''\ra X'$.
+The \emph{fibrant replacement} of a map $f:X\to Y$ 
+\begin{equation}%\label{diagram:factorize}
+\xymatrix{
+X \ar[rd]_{f} \ar@{>->}[r]^{i_f} & X'\ar@{->>}[d]^{f'}\\
+& Y \,,
+}
+\end{equation}
+can be given as an $\omega$-colimit in the slice category over $Y$, $$f' = \varinjlim_n f_n$$
+so that it is functorial, and the canonical trivial cofibrations $i_f : X\mono X'$ over $Y$ are natural, in $f : X \to Y$.  
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Weak equivalences}
+\section{The weak equivalences}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{definition}[Weak equivalence]
@@ -1207,7 +1267,7 @@ with $h: X\ra W$ a trivial cofibration and $g: W\ra Y$ a trivial fibration. Let
  be the class of weak equivalences.
 \end{definition}
 
-Observe that every trivial fibration $f\in\mathcal{C}^\pitchfork$ is indeed a fibration, because the generating trivial cofibrations are indeed cofibrations; moreover, every trivial fibration is also a weak equivalence, since the identity maps are trivial cofibrations.  Thus we have
+Observe that every trivial fibration $f\in\mathcal{C}^\pitchfork$ is indeed a fibration, because the generating trivial cofibrations are cofibrations; moreover, every trivial fibration is also a weak equivalence, since the identity maps are trivial cofibrations.  Thus we have
 \[
 \mathsf{TFib} \subseteq (\mathcal{F} \cap \mathcal{W}).
 \]
@@ -1274,14 +1334,13 @@ The following are equivalent for a map $f: X\ra Y$.
 %\begin{proof}
 %\end{proof}
 
-It thus remains only to prove that the weak equivalences satisfy the 3-for-2 property.  
-Proving this will take the rest of the paper!
-
 %%%%%%%%%%%%%%%%%
-\paragraph{Weak homotopy equivalence}
+\paragraph{Weak homotopy equivalence.}
+
+To show that the weak equivalences satisfy the 3-for-2 condition, we shall follow the approach of \cite{Joyal}, verifying that many of the same arguments go through in the current setting -- up to a certain point.
 
 \begin{definition}\label{homotopy}
-By a \emph{homotopy} between parallel maps $f, g: X\rightrightarrows Y$, written $\vartheta : f \sim g$,  we shall mean a map from the \emph{cylinder of $X$} built using the (representable) interval~$\I$,
+By a \emph{homotopy} between parallel maps $f, g: X\rightrightarrows Y$, written $\vartheta : f \sim g$,  we  mean a map from the \emph{cylinder of $X$} built using the (representable) interval~$\I$,
 \[
 \vartheta : \I\times{X} \ra Y,
 \]
@@ -1296,14 +1355,13 @@ where we write the canonical inclusions into the ends of the cylinder as
 \[
 \iota_\epsilon = \mathsf{Gph}(\delta_\epsilon!) : X\ra \I\times X\,,\qquad \epsilon = 0,1 .
 \]  
-
 \end{definition}
 
 \begin{proposition}
 If $K$ is fibrant, then the relation of homotopy $f \sim g$ between maps $f,g: X\rightrightarrows K$ is an equivalence relation.  Moreover, it is compatible with pre- and post-composition. 
 \end{proposition}
 \begin{proof}
-For $f, g: X\rightrightarrows Y$, a homotopy $f\stackrel{\vartheta}{\sim} g : X\times\I \ra Y$ is equivalent, under exponential transposition, to a path in the function space $\vartheta : \I\ra Y^X$ with endpoints $\vartheta_0 = \vartheta\circ\delta_0 = f: 1\ra Y^X$ and $\vartheta_1 = g$.  Note that $Y^X$ is fibrant if $Y$ is fibrant, so we can use box-filling in $Y^X$.    
+For $f, g: X\rightrightarrows Y$, a homotopy $f\stackrel{\vartheta}{\sim} g : X\times\I \ra Y$ is equivalent, under exponential transposition, to a path in the function space $\vartheta : \I\ra Y^X$ with endpoints $\vartheta_0 = \vartheta\circ\delta_0 = f: 1\ra Y^X$ and $\vartheta_1 = g$.  Note that $Y^X$ is fibrant if $Y$ is fibrant, since the generating trivial cofibrations are closed under taking the product with a fixed object.  So we can use box-filling in $Y^X$.    
 
 The reflexivity of homotopy $f\sim f$ is witnessed by $\rho:\I \ra 1 \stackrel{f}{\ra} Y^X$.  
 
@@ -1314,20 +1372,20 @@ g  & f  \\
 f \ar[u]^{\vartheta} \ar[r]_\rho & f \ar[u]_\rho
 }
 \end{equation*}
-This box is a map $b : \I+_1 \I +_1 \I \ra Y^X$ with the indicated components, and it has a filler $c : \I\times \I \ra Y^X$, i.e.\ an extension along the canonical map $\I+_1 \I +_1 \I \mono \I\times\I$, which is a trivial cofibration.  Let $t : \I\ra \I\times\I$ be the evident missing top face of the 2-cube.  Then we can set $\vartheta' = ct : \I \ra Y^X$ to get a homotopy $\vartheta' : \I\ra Y^X$ with required endpoints.
+This box is a map $b : \I+_1 \I +_1 \I \ra Y^X$ with the indicated components, and it has a filler $c : \I\times \I \ra Y^X$, i.e.\ an extension along the canonical map $\I+_1 \I +_1 \I \mono \I\times\I$, which is a trivial cofibration.  Let $t : \I\ra \I\times\I$ be the evident missing top face of the 2-cube.  We can set $\vartheta' = c\circ t : \I \ra Y^X$ to get a homotopy $\vartheta' : \I\ra Y^X$ with required endpoints.
 
-For transitivity, $f\stackrel{\vartheta}{\sim} g\ \&\ g\stackrel{\varphi}{\sim} h\Rightarrow f\sim h$, an analogous filling construction is used with the open box:
+For transitivity, $f\stackrel{\vartheta}{\sim} g\ \&\ g\stackrel{\varphi}{\sim} h\Rightarrow f\sim h$, an analogous filling construction can be used with the open box:
 \begin{equation*}%\label{diagram:extensionforX}
 \xymatrix{
 f  & h  \\
 f \ar[u]^{\rho} \ar[r]_\vartheta & g \ar[u]_\varphi
 }
 \end{equation*}
-Compatibility under pre- and post-composition is shown by representing homotopy by mapping into the pathspace, for precomposition, and out of the cylinder, for post-composition.
+Compatibility under pre- and post-composition is shown by representing homotopies by mapping into the pathspace, for precomposition, and out of the cylinder, for post-composition.
 \end{proof}
 
 \begin{definition}[Connected components]
-The functor $$\pi_0 : \cSet\ra\Set$$ is defined, for any cubical set $X$, to be the coequalizer $$X_1\rightrightarrows X_0\ra \pi_0X,$$ where the two parallel arrows are the maps $X_{\delta_0}, X_{\delta_1} : X_1 \rightrightarrows X_0$ induced by the endpoints $\delta_0, \delta_1 : 1 \rightrightarrows \I$.   For any Kan complex $K$ we therefore have $\pi_0K = \hom(1,K)/\!\!\sim$, that is, $\pi_0K$ is the set of points $1\ra K$, modulo the homotopy equivalence relation on them.
+The functor $$\pi_0 : \cSet\ra\Set$$ is defined on a cubical set $X$ as the coequalizer $$X_1\rightrightarrows X_0\ra \pi_0X,$$ where the two parallel arrows are the maps $X_{\delta_0}, X_{\delta_1} : X_1 \rightrightarrows X_0$ induced by the endpoints $\delta_0, \delta_1 : 1 \rightrightarrows \I$.   For any fibrant object $K$ we therefore have $\pi_0K = \hom(1,K)/\!\!\sim$, that is, $\pi_0K$ is the set of points $1\ra K$, modulo the homotopy equivalence relation on them.
 \end{definition}
 
 One can show that in fact $\pi_0X = \varinjlim_n X_n$, the colimit being left adjoint to the constant presheaf functor $\Delta : \Set\ra\cSet$. Since the category $\B$ of finite strictly bipointed sets is sifted, we have:
@@ -1338,8 +1396,8 @@ The functor $\pi_0: \cSet\ra\Set$ preserves finite products.
 
 As usual, a map $f: X\ra Y$ in \cSet\ will be called a \emph{homotopy equivalence} if there is a \emph{quasi-inverse} $g: Y\ra X$ and homotopies $\vartheta : 1_X \sim g\circ f$ and $\varphi : 1_Y\sim f\circ g$.
 
-\begin{definition}[Weak homotopy equivalence]
-A map $f: X\ra Y$ will be called a \emph{weak homotopy equivalence} if for every fibrant object $K$, the ``internal precomposition'' map $K^f : K^Y \ra K^X$ is bijective on connected components, i.e.\  $$\pi_0K^f : \pi_0K^Y \ra \pi_0K^X$$ is a bijection of sets.
+\begin{definition}[Weak homotopy equivalence]\label{def:WHE}
+A map $f: X\ra Y$ is called a \emph{weak homotopy equivalence} if for every fibrant object $K$, the ``internal precomposition'' map $K^f : K^Y \ra K^X$ is bijective on connected components,  $$\pi_0K^f : \pi_0K^Y \cong \pi_0K^X\,.$$
 \end{definition}
 
 \begin{lemma}\label{lemma:HEisWHE}
@@ -1354,7 +1412,7 @@ If $f: X\ra Y$ is a homotopy equivalence, then so is $K^f : K^Y \ra K^X$ for any
 The weak homotopy equivalences $f : X\ra Y$ satisfy the 3-for-2 condition. 
 \end{lemma}
 \begin{proof}
-Follows from the corresponding fact about bijections of sets.
+This follows from the corresponding fact about bijections of sets.
 \end{proof}
 
 Our goal of showing that the weak equivalences satisfy 3-for-2 is now reduced to showing that a map is a weak equivalence (WE) if and only if it is a weak homotopy equivalence (WHE). This will be proved in four cases, showing that a (co)fibration is a WE if and only if it is a WHE. 
@@ -1380,7 +1438,7 @@ Y \ar@{..>}[ru] \ar[r]_-{\langle y,y'\rangle} & K\times K.
 \end{enumerate}
 \end{lemma}
 \begin{proof}
-Unwind the definition.
+Condition (1) says exactly that the internal precomposition map $K^f : K^Y \ra K^X$ is surjective on connected components, while (2) says just that it is injective.
 \end{proof}
 
 \begin{lemma}\label{lemma:CofWEtoWHE}
@@ -1389,7 +1447,7 @@ A cofibration $c : A \mono B$ that is a WE is a WHE.
 
 \begin{proof}
 A cofibration $c : A \mono B$ that is a WE is a trivial cofibration by proposition \ref{prop:FWC}. 
-So the result follows from Lemma \ref{lem:WHEunwound}, and the fact that $K^\I\ra K\times K$ is always a fibration when $K$ is fibrant.
+So the result follows from Lemma \ref{lem:WHEunwound}, together with the fact that $K^\del: K^\I\ra K^{1+1}\cong K\times K$ is a fibration whenever $K$ is fibrant, since $\del : 1+1 \cof \I$ is a cofibration, 
 \end{proof}
 
 \begin{lemma}\label{lemma:FibWEtoWHE}
@@ -1404,7 +1462,7 @@ X\ar[r]_{=} & X,
 }
 \end{equation*}
 %
-since $0\ra X$ is always a cofibration. Moreover, there is a homotopy $\vartheta : sf \sim 1_Y$, resulting from the lifting problem
+since $0\ra X$ is a cofibration. Moreover, there is a homotopy $\vartheta : sf \sim 1_Y$, resulting from the lifting problem
 \begin{equation*}%\label{diagram:extensionforX}
 \xymatrix{
 Y+Y \ar@{>->}[d]_{[\iota_0, \iota_1]} \ar[r]^-{[sf, 1]}  & Y\ar@{>>}[d]^{f} \\
@@ -1413,6 +1471,10 @@ Y+Y \ar@{>->}[d]_{[\iota_0, \iota_1]} \ar[r]^-{[sf, 1]}  & Y\ar@{>>}[d]^{f} \\
 \end{equation*}
 Thus $f$ is a homotopy equivalence, and so a WHE by lemma \ref{lemma:HEisWHE}.
 \end{proof}
+
+\begin{corollary}
+A WE $e : X \simeq Y$ is a WHE, since $e$ can be factored into a trivial cofibration followed by a trivial fibration, each of which is a WHE, and these are closed under composition. 
+\end{corollary}
 
 \begin{lemma}\label{FibHETFib}
 If $K$ is fibrant, then any fibration $f : Y \onto K$ that is a HE is a WE.
@@ -1513,11 +1575,11 @@ Since $\eta$ is a trivial cofibration, it is a WHE. So the composite $\eta c$ is
 %%
 %This proposition is a consequence of several stronger ones, e.g.\ the equivalence extension property of \cite{Sattler:EEP}. It is easily seen to be equivalent to the following special case.
 
-To complete the proof that a cofibration WHE is a WE we will use the fact that the fibration weak factorization system satisfies the fibration extension property, the proof of which is deferred to section \ref{sec:FEP}.
+To complete the proof that a cofibration WHE is a WE, we use the following \emph{fibration extension property} (FEP), the proof of which is deferred to section \ref{sec:FEP}.
 
-\begin{definition}[Fibration extension]\label{def:fibextreplace}
-The fibration weak factorization system is said to satisfy the \emph{fibration extension property} (FEP) if the following holds: Given a fibration $ f : Y \onto X$ and a trivial cofibration $\eta: X\ra X'$,
-there is a fibration $f' : Y' \onto X'$ such that $f$ is a pullback of $f'$ along $\eta$. 
+\begin{definition}[Fibration extension property]\label{def:fibextreplace}
+For any fibration $ f : Y \onto X$ and trivial cofibration $\eta: X\ra X'$,
+there is a fibration $f' : Y' \onto X'$ of which $f$ is a pullback along $\eta$, 
 \begin{equation}\label{diagram:FEP}
 \xymatrix{
 Y \ar@{->>}[d]_{f} \ar[r]  \pbcorner & Y' \ar@{>>}[d]^{f'} \\
@@ -1576,13 +1638,16 @@ Assuming the FEP, a map $ f : X \mono Y$ is a WHE if and only if it is a WE.  Th
 \end{proposition}
 \begin{proof}
 Let $ f : X \onto Y$ be a WE and factor it into a trivial cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\onto Y$.  Then both 
-$i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor it into a cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\onto Y$. Since  $p$ is then a WHE, as is $f$, it follows that $i$ is as well.  Thus $i$ is also a WE, by lemma \ref{cor:CofWHEtoWE}, hence a trivial fibration. So $f$ is a WE.
+$i$ and $p$ are WHE, whence so is $f$.  Conversely, let $f$ be a WHE and factor it into a cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\onto Y$. Since  $p$ is then a WHE, as is $f$, it follows that $i$ is as well.  Thus $i$ is also a WE, by lemma \ref{cor:CofWHEtoWE}, hence a trivial cofibration. So $f$ is a WE.
 \end{proof}
 
-We summarize the results to this point in the following.
+Our results thus far can now be summarized as follows.
 
 \begin{theorem}\label{theorem:QMSmodFEP}
-If the fibration weak factorization system of Definition \ref{def:FibWFSclasses} satisfies the fibration extension property of Definition \ref{def:fibextreplace}, then the weak equivalences $\WW$ have the 3-for-2 property, and so by Proposition \ref{prop:FWC}, the three classes $(\CC,\WW,\FF)$ form a Quillen model structure.
+Assume the fibration weak factorization system of Definition \ref{def:FibWFSclasses} satisfies the fibration extension property of Definition \ref{def:fibextreplace} (as will be shown in Corollary \ref{cor:FEP}). 
+Then the weak equivalences $\WW$ have the 3-for-2 property, and so by Proposition \ref{prop:FWC}, the three classes $(\CC,\WW,\FF)$ determined by Definition \ref{def:FibWFSclasses} form a Quillen model structure on the category $\cSet$ of cubical sets.
+
+The weak equivalences are those maps $f: X\ra Y$ for which $K^f : K^Y \to K^X$ is bijective on connected components whenever $K$ is fibrant.
 \end{theorem}
 
 %Since lemmas n-m hold in greater generality, we can reformulate this result as follows:
@@ -1591,7 +1656,7 @@ If the fibration weak factorization system of Definition \ref{def:FibWFSclasses}
 %Let $(\CC, \WW, \FF)$ be a Barton quasi-model structure \cite{Barton} (on a presheaf category).   If the $(\CC\cap\WW, \FF)$ weak factorization system satisfies the fibration extension property of Definition \ref{def:fibextreplace}.  Then $(\CC, \WW, \FF)$ is a Quillen model structure.
 %\end{theorem}
 
-The proof of the fibration extension property will occupy the remainder of this paper.  It requires several intermediate results: the equivalence extension property (Section \ref{sec:EEP}), a universal fibration (section \ref{sec:U}), and the Frobenius condition (section \ref{sec:Frobenius}), to which we now turn.
+The proof of the fibration extension property will occupy the second half of these lectures, concluding in Section  \ref{sec:FEP}.  It requires several intermediate results, namely the equivalence extension property (Section \ref{sec:EEP}), a universal fibration (Section \ref{sec:U}), and the Frobenius condition (Section \ref{sec:Frobenius}), to which we now turn.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1901,12 +1966,12 @@ The proof of the fibration extension property will occupy the remainder of this 
 \section{The Frobenius condition}\label{sec:Frobenius}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this section, we show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} can be applied without connections and is also more direct.  This approach proves the ``dual'' fact that the \emph{pushforward} operation, which is right adjoint to pullback, and which always exists in a topos, when applied along any \emph{fibration} $f : Y\onto X$ preserves fibrations.  This corresponds to the type-theoretic $\Pi$-formation rule.  
+In this section, we show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} can be applied without connections and is also more direct.  This approach proves the dual fact that the \emph{pushforward} operation, which is right adjoint to pullback, and which always exists in a topos, when applied along any \emph{fibration} $f : Y\onto X$ preserves fibrations.  This fact corresponds to the type-theoretic $\Pi$-formation rule.  
 
-Recall that a map $f:A\ra X$ is a fibration if (in the slice $\cSet/\I$, where there is a generic point $\delta : 1 \ra \I$) the map $\delta \Rightarrow f$ admits a +-algebra structure (and so is a trivial fibration), where the definition of $\delta \Rightarrow f$ is recalled below.
+Recall from Definition \ref{def:unbiasedfibration} that a map $f:A\ra X$ is a fibration just if, when pulled back to the slice category $\cSet/\I$ where there is a generic point $\delta : 1 \ra \I$, the map $\delta \Rightarrow f$ admits a +-algebra structure, and so is a trivial fibration. The definition of $\delta \Rightarrow f$ is recalled below.
 \begin{equation}\label{diagram:frobenius1}
 \xymatrix{
-A^\I \ar@/_4ex/ [rdd]_{f^\I} \ar[rd]^{\delta\Rightarrow{f}} \ar@/^4ex/ [rrd]^{A^{\delta}}  && \\
+A^\I \ar@/_3ex/ [rdd]_{f^\I} \ar[rd]^{\delta\Rightarrow{f}} \ar@/^3ex/ [rrd]^{A^{\delta}}  && \\
 & X^\I \times_{X} A \ar[d] \ar[r] & A \ar[d]^{f} \\
 & X^\I \ar[r]_{X^{\delta}} &  X.
 }
@@ -1924,14 +1989,14 @@ where $\epsilon = X^{\delta}$, $A_\epsilon = X^\I \times_{X} A$, and the struck-
 Let  $g : Y\ra X$ be any map and $f:A \ra X$ a fibration, then the pullback $g^*f : g^*A \ra Y$ is also a fibration.
 \end{lemma}
 \begin{proof}
-This is clear, since fibrations are the right class of a weak factorization system, but let us see how the ``algebraic'' specification \eqref{diagram:frobenius1} is also stable under pullback ...
+This is clear, since fibrations are the right class of a weak factorization system, but note that the algebraic structure indicated in  \eqref{diagram:frobenius1} is also stable under pullback, since the $+$-algebras are pullback stable.
 \end{proof}
 
 \begin{lemma}\label{lemma:fibrationscompose}
 Let  $\alpha : A \ra X$ and $\beta: B\ra A$ be fibrations, then the composite $\alpha\circ\beta : B \ra X$ is also a fibration.
 \end{lemma}
 \begin{proof}
-We have the following for the fibration structures on $B\ra A$ and $A\ra X$ (with obvious notation).
+Again for maps in the right class of a weak factorization system this is immediate.  But let us see how the \emph{fibration structures} also compose.  We have the following diagram for the fibration structures on $B\ra A$ and $A\ra X$ (with obvious notation).
 \begin{equation}\label{diagram:fibcomposition1}
 %\xymatrix{
 %B^\I \ar[r]|+  & B_{\epsilon_A} \ar[r]  \ar[d] \pbcorner & B'  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
@@ -1945,7 +2010,7 @@ B^\I \ar[r]|| \ar[r]  & B_{\epsilon_A} \ar[rr]  \ar[d] \pbcorner & & B \ar[d]\\
 && X^\I \ar[r]_{\epsilon_X} &  X,
 }
 \end{equation}
-Pulling back $B\ra A$ in two steps we therefore obtain,
+Pulling back $B\ra A$ in two steps we therefore obtain the interpolant $B_{\epsilon_X} $,
 \begin{equation}\label{diagram:fibcomposition2}
 \xymatrix{
 B^\I \ar[r]|| \ar[r]   & B_{\epsilon_A} \ar[r]  \ar[d] \pbcorner & B_{\epsilon_X}  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
@@ -1969,7 +2034,7 @@ Let $\alpha : A \ra X$ and $\beta: B\ra A$  be fibrations, then the pushforward 
 
 \begin{proof}
 Given the fibrations $\alpha : A \ra X$ and $\beta: B\ra A$, let $p : A^\I \ra A_\epsilon$ and $q : B^\I \ra p^*B_\epsilon$ be the associated +-algebras, so that we have the following situation, with all squares pullbacks.
-\begin{equation}\label{diagram:frobenius1}
+\begin{equation}\label{diagram:frobenius1.5}
 \xymatrix{
 B^\I \ar[r]|| \ar[r]_{q}   & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]\\
 &A^\I \ar[r]|| \ar[r]_{p}  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]\\
@@ -2259,172 +2324,529 @@ Therefore $g\circ f = \tilde{\varepsilon} = 1$, so $\psi\circ\varphi = \I^*g\cir
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{The universe}\label{sec:U}
+\section{A universal fibration}\label{sec:U}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this section, we define a universal small fibration $\dot{\U}\ra \U$.  
-In section \ref{sec:FEP} we will show that the base $\U$ is a fibrant object, using the equivalence extension property of section \ref{sec:EEP}.
+In this section we construct a \emph{universal small fibration} $\dot{\U}\ra \U$.  
+It will then be shown  in Section \ref{sec:FEP} that the base object $\U$ is fibrant, using the equivalence extension property to be proved in Section \ref{sec:EEP}.   
+Our construction of $\dot{\U}\ra \U$ makes use of a new analysis of the well-known Hofmann-Streicher universe in a category $\widehat{\bbC} = [\op{\bbC}, \Set]$ of presheaves on a small category~$\bbC$, which was used in \cite{HS:1997} to interpret dependent type theory (but occurs already in \cite{SGA4}). See \cite{awodey:HSuniverse} for further details. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Classifying families}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Classifying families}\label{sec:U}
 
-Let $\kappa$ be an inaccessible cardinal number, and call the sets of size strictly less than $\kappa$ \emph{small}.  Write $\Set_\kappa$ for the category of small sets and $\cSet_\kappa = \Set_\kappa^{\C^{\mathrm{op}}}$ for the category of small set valued presheaves on the cube category $\C$.  By a \emph{small fibration} we mean a fibration in the category of small cubical sets, which we identify with the evident subcategory $\cSet_\kappa \subseteq \cSet$.  Finally, let $\dot{\Set}_\kappa$ be the category of small pointed sets, i.e.\ the coslice category $1/\Set_\kappa$.  There is an evident forgetful functor  $U:\dot{\Set}_\kappa \ra {\Set}_\kappa$.
-% which induces another one $U^{\C^{op}} : \dot{\Set}_\kappa^{\C^{op}} \ra {\Set}_\kappa^{\C^{op}}$ from small pointed presheaves to small presheaves.
-
-\begin{definition}
-The ($\kappa$-)\emph{universe} $p : \VV \ra \V$ in $\cSet$ is defined:
-\begin{enumerate}
-
-\item $\V_n = \{ A: \C/[n] \ra \Set^{op}_\kappa\ \}$, the \emph{set} of small presheaves on $\C/[n]$.  
-
-The action of a map $h : [m] \ra [n]$ in  $\C$  is given by precomposition with postcomposition: from  $h : [m] \ra [n]$ we have  $\C/h : \C/[m] \ra \C/[n]$, which we precompose with any $A: \C/[n]\ra \Set_\kappa^{op} $ to get $A.h = A\circ \C/h$,
-\begin{equation}\label{diagram:U1}
-\xymatrix{
-[n] & \C/[n] \ar[r]^{A} & \Set_\kappa^{op} \\
-[m] \ar[u]^{h} & \C/[m] \ar[u]^{\C/h}  \ar[ru]_{A.h} &
-}
-\end{equation}
-
-\item $\VV_n = \{ a: \C/[n] \ra \dot{\Set}^{op}_\kappa\ \}$, the \emph{set} of small pointed presheaves on $\C/[n]$, with the corresponding action.
-
-\item For $a \in \VV_n$, let $p_n (a) = U(a) \in \V_n$, where $U : \dot{\Set_\kappa} \ra {\Set_\kappa}$.
-\end{enumerate}
+\begin{definition}[\cite{HS:1997}]\label{def:HSuniverse}
+Let $\bbC$ be a small category.  A (type-theoretic) \emph{universe}  $(U, {\mathsf{E}l})$  consists of 
+$U\in\widehat{\bbC}$ and $\textstyle{\mathsf{E}l} \in \widehat{\int_\bbC U}$ with: 
+ \begin{align}
+	U(c)\ &=\ \Cat\big(\op{\bbC/_c}, \Set\big) \label{eq:universeob}\\ 
+	%E(I)\ &=\ {\textstyle \coprod_{A\in U(I)}{\mathsf{E}l}(\langle I, A\rangle)}\\
+ 	{\mathsf{E}l}(c, A)\ &=\ A(id_c) \label{eq:universeel}
+ \end{align}
+with the evident associated action on morphisms.  
 \end{definition}
-Functoriality of $\V$ and $\VV$ and naturality of $p: \VV\ra\V$ are immediate. 
+
+A few comments are required: 
+%
+\begin{itemize}
+%
+\item In contrast to \cite{HS:1997}, in \eqref{eq:universeob}  we take the underlying \emph{set of objects} of the functor category $\widehat{\bbC/_c}=[\op{\bbC/_c}, \Set]$.
+%\psh{\bbC/_c}$.
+
+\item Following \cite{HS:1997}, \eqref{eq:universeel} adopts the ``categories with families'' point of view in specifying a presheaf on the category of elements $\int_{\bbC}U$, rather than an arrow $E\to U$ in $\widehat{\bbC}$, using the equivalence
+\begin{equation}\label{eq:elements}\textstyle
+\widehat{\int_{\bbC}U}\ \simeq\ \widehat{\bbC}/_U\,.
+\end{equation}
+This equivalence is mediated by setting
+\[
+E(c)\ =\ {\textstyle \coprod_{A\in U(c)}{\mathsf{E}l}(c, A)}.
+\]
+The argument $(c, A) \in \int_{\bbC}U$ in \eqref{eq:universeel} thus consists of an object $c\in\bbC$ and an element $A\in U(c)$.
+%
+\item To account for size issues, the authors of \cite{HS:1997} assume a Grothendieck universe $u$ in $\Set$, the elements of which are called \emph{small}. The category $\bbC$ is assumed to be small, as are the values of the presheaves, unless otherwise stated.  
+%
+\end{itemize}
+
+The presheaf $U$, which is not small, is then regarded as the Grothendieck universe $u$ ``lifted'' from $\Set$ to $[\op{\bbC}, \Set]$ \cite{Streicher:lifting}.  We first analyse this specification of $(U, {\mathsf{E}l})$ from a different perspective, in order to establish its basic property as a classifier for small families in $\widehat\bbC$. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{A realization-nerve adjunction.}
+
+For a presheaf $X$ on $\bbC$, recall that the category of elements is the comma category,
+\[\textstyle
+\int_\bbC X\ =\ \yon_\bbC/_X\,,
+\] 
+where $\yon_\bbC : \bbC \to \psh\bbC$ is the Yoneda embedding, which we sometimes supress and write simply $\bbC/_X$ for $\yon_\bbC/_X$. 
+%While the category of elements $\int_\bbC X$ is used in the specification of the Hofmann-Streicher universe $(U, {\mathsf{E}l})$ at the point \eqref{eq:elements}, the authors seem to have missed a trick  which would have simplified things:
+
+\begin{proposition}[\cite{G:1983},\S{28}]
+The category of elements functor $$\textstyle \int_\bbC : \widehat\bbC \too \Cat$$ has a right adjoint,
+\[
+\nu_\bbC : \Cat \too \widehat\bbC\,.
+\]
+For a small category $\A$, we shall call the presheaf $\nu_\bbC(\A)$ the \emph{($\bbC$-)nerve} of $\A$.
+\end{proposition}
+\begin{proof}
+The adjunction $\int_\bbC\! \dashv \nu_\bbC$ is an instance of the usual ``realization/nerve'' adjunction, here with respect to the covariant slice category functor $\bbC/- : \bbC\to\Cat$, as indicated below.
+\begin{equation}\label{eq:nerve}\textstyle
+\begin{tikzcd}
+	 \widehat\bbC \ar[rr, swap,"\int_\bbC"] &&  \ar[ll, swap,bend right=20, "{ \nu_\bbC}"] \Cat\\  
+	 \\
+	\bbC \ar[uu, hook, "\yon"] \ar[rruu, swap,"{\bbC/_{-}}"] &&
+ \end{tikzcd}
+ \end{equation}
+%
+In detail, for  $\A\in\Cat$ and $c\in\bbC$, let $\nu_{\bbC}(\A)(c)$ be the Hom-set of functors,
+\begin{align*}
+\nu_\bbC(\A)(c) &= \Cat\big( {\bbC/_c}\,,\, \A \big)\,,
+\end{align*}
+with contravariant action on $h : d\to c$ given by pre-composing a functor $P : {\bbC/_c}\to\A$  with the post-composition functor
+\[
+{\bbC/_h} : {\bbC/_d}\too {\bbC/_c} \,.
+\]
+For the adjunction, observe that the slice category $\bbC/_c$ is the category of elements of the representable functor $\y{c}$\,,
+\[\textstyle
+\int_\bbC\y{c}\ \cong\ \bbC/_c\,.
+\]
+ Thus for representables $\y{c}$\,, we have the required natural isomorphism
+ \[\textstyle
+ \widehat\bbC\big( \y{c}\,,\, \nu_\bbC(\A) \big)\ \cong\ \nu_\bbC(\A)(c)\  =\ \Cat\big( {\bbC/_c}\,,\, \A \big)\ \cong\ \Cat\big( \int_\bbC\y{c}\,,\, \A \big)\,.
+  \]
+For arbitrary presheaves $X$, one uses the presentation of $X$ as a colimit of representables over the index category $\int_\bbC X$, and the easy to prove fact that $\int_\bbC$ itself preserves colimits.  Indeed, for any category $\D$, we have an isomorphism in $\Cat$,
+\[
+\varinjlim_{d\in\D}\,\D/_d \ \cong\ \D\,.
+\]
+\end{proof}
+
+When $\bbC$ is fixed, we may omit the subscript in the notation $\yon_\bbC$ and  $\int_\bbC$ and $\nu_\bbC$.  The unit and counit maps of the adjunction $\int \dashv \nu$, 
+\begin{align*}\textstyle
+\eta :&\ \textstyle  X \too \nu{\elem{X}}\,, \\
+\epsilon :&\ \textstyle  \elem\nu\A \too \A\,,
+\end{align*}
+ are then as follows.  At $c\in\bbC$, for $x : \y{c}\ra X$, the functor $(\eta_X)_c(x) : \bbC/_c \to \bbC/_X$ is just composition with $x$, 
+\begin{equation}\label{eq:eta}
+(\eta_X)_c(x) = \bbC/_x : \bbC/_c \too \bbC/_X\,.
+\end{equation}
+For $\A\in\Cat$, the functor $ \epsilon : \int\nu\A \to \A$ takes a pair $(c\in\bbC, f : \bbC/_c \to \A)$ to the object $f(1_c) \in \A$,
+\[
+\epsilon(c,f) = f(1_c).
+\]
+\begin{lemma}\label{lemma:natpb}
+For any $f : Y\to X$, the naturality square below is a pullback.
+\begin{equation}\label{eq:naturality}\textstyle
+\begin{tikzcd}
+	 Y \ar[d, swap,"f"] \ar[r, "{\eta_Y}"] & \nu{\int\!{Y}} \ar[d, "{ \nu{\int\!{f}}}"]\\  
+	X \ar[r, swap,"{\eta_X}"] &   \nu{\int\!{X}}.
+ \end{tikzcd}
+ \end{equation}
+\end{lemma}
+
+\begin{proof}
+It suffices to prove this for the case $f : X\ra 1$.  Thus consider the square 
+\begin{equation}\label{eq:naturalityobject}\textstyle
+\begin{tikzcd}
+	 X \ar[d] \ar[r, "{\eta_X}"] & \nu{\int\!{X}} \ar[d]\\  
+	1\ar[r, swap,"{\eta_1}"] &   \nu{\int\! 1}.
+ \end{tikzcd}
+ \end{equation}
+Evaluating at $c\in\bbC$ and applying \eqref{eq:eta} gives the following square in $\Set$.
+\begin{equation}\label{eq:naturalityobjecteval}\textstyle
+\begin{tikzcd}
+	 Xc \ar[d] \ar[r, "{\bbC/_{-}}"] & \Cat\big( {\bbC/_c}\,,\, {\bbC/_X}\, \big) \ar[d]\\  
+	1c\ar[r, swap, "{\bbC/_{-}}"] &   \Cat\big( {\bbC/_c}\,,\, \bbC/_1 \big)
+ \end{tikzcd}
+ \end{equation}
+The image of $*\in 1c$ along the bottom is the forgetful functor $U_c : \bbC/_c\to \bbC$, and its fiber under the map on the right is the set of functors $F : {\bbC/_c}\to {\bbC/_X}$ such that $U_X\circ F = U_c$, where $U_X : \bbC/_X\to \bbC$ is also a forgetful functor. But any such $F$ is uniquely of the form $\bbC/_{x}$ for $x = F(1_c) : \y{c} \to X$.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{A universal family.}
+
+For the terminal presheaf $1\in\widehat{\bbC}$ we have $\elem{1} \cong\bbC$, so for every $X\in\widehat{\bbC}$ there is a canonical projection  $\elem X \ra\bbC$, which is a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
+Ignoring size issues temporarily, recall that discrete fibrations in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets (cf.~\cite{W:2007}).  For every presheaf $X\in\widehat{\bbC}$, we therefore have a pullback diagram in $\Cat$,
+\begin{equation}\label{eq:classifyuniversecat}\textstyle
+\begin{tikzcd}
+	 \elem X \ar[d] \ar[r] \pbmark & \op{\dot{\Set}} \ar[d]\\  
+	\bbC \ar[r,swap,"X"] &  \op{\Set}.
+ \end{tikzcd}
+ \end{equation}
+Using $\bbC\cong\elem{1}$ and transposing by the adjunction $\int \dashv \nu$ then gives a commutative square in $\widehat{\bbC}$ of the form:
+\begin{equation}\label{eq:classifyuniversetype}\textstyle
+\begin{tikzcd}
+	 X \ar[d] \ar[r] & \nu\op{\dot{\Set}} \ar[d]\\  
+	1 \ar[r,swap,"\tilde{X}"] &  \nu\op{\Set}.
+ \end{tikzcd}
+ \end{equation}
 
 \begin{lemma}
-For each $A : \I^n \ra \V$ there is a canonical choice of a small family $p_A : E_A\ra \I^n$ and a map $q_A: E_A \ra\VV$ making a pullback square as follows.
-\begin{equation}\label{diagram:U2}
-\xymatrix{
-E_A \ar[d]_{p_A} \ar[r]^{q_A}  \pbcorner& \VV\ar[d]^{p}  \\
-\I^n \ar[r]_{A} & \V
-}
-\end{equation}
+The square \eqref{eq:classifyuniversetype} is a pullback in $\widehat{\bbC}$. More generally, for any map $Y\ra X$ in $\widehat{\bbC}$, there is a canonical pullback square 
+\begin{equation}\label{eq:classifyuniversefamily}\textstyle
+\begin{tikzcd}
+	 Y \ar[d] \pbmark \ar[r] & \nu\op{\dot{\Set}} \ar[d] \\  
+	X \ar[r] &  \nu\op{\Set}\,.
+ \end{tikzcd}
+ \end{equation}
 \end{lemma}
-%
+
 \begin{proof}
-Since $\I^n \cong y[n]$ is representable, there is a distinguished associated presheaf $A : (\C/[n])^{op} \ra \Set_\kappa$. Define $p_A : E_A \ra \I^n$ by
-\[
-(E_A)_k = \coprod_{h\in \C(k,n)} A(h) \qquad \ni (h, a)\,
-\]
-with first projection $(p_A)_k(h,a) = h$. Note that $(E_A)_k$ is small.
-Then let $q_A:E_A \ra\VV$ be defined on $(h,a): \I^k \ra E_A$ by 
-\[
-(q_A)\circ(h, a) = a \in Ah
-\]
-as illustrated below.
-\begin{equation}\label{diagram:U3}
-\xymatrix@=5em{
-& E_A \ar[d]^>>>>>>{p_A} \ar@{..>}[r]^{q_A} & \VV\ar[d]^{p}  \\
-\I^k \ar[r]_{h} \ar[ru]^{(h,a)}\ar[rru]_>>>>>>>>>>>{a} & \I^n \ar[r]_{A} & \V
-}
-\end{equation}
-The proof that the square is a pullback is left to the reader.
+Apply the right adjoint $\nu$ to the pullback square \eqref{eq:classifyuniversecat} and paste the naturality square \eqref{eq:naturality} from Lemma \ref{lemma:natpb} on the left, to obtain the transposed square \eqref{eq:classifyuniversefamily} as a pasting of two pullbacks.
 \end{proof}
 
-\begin{lemma}\label{charforfamovercube}
-For each small family $p_E : E \ra \I^n$ there is a canonical map $\chi_E : \I^n \ra \V$ and a map $q_E:E \ra\VV$ making a pullback square as follows.
-\begin{equation}\label{diagram:U2}
-\xymatrix{
-E \ar[d]_{p_E} \ar[r]^{q_E}  \pbcorner& \VV\ar[d]^{p}  \\
-\I^n \ar[r]_{\chi_E} & \V
-}
-\end{equation}
-\end{lemma}
-%
-\begin{proof}
-It suffices to give a small set $(\chi_E)_k(h)$ for each $h :[k] \ra [n]$ in a way that is functorial in $h \in \C/[n]$ and natural in $[k]$.  Thus let
-\[
-(\chi_E)_k(h) := \Gamma(h, E)\ = \ \{ e : \I^k \ra E \ |\ p_E\circ e = h \}.
-\]
-\[
-\xymatrix{& E \ar[d]^{p_E} \\ \I^k \ar@{..>}[ru]^{e}\ar[r]_h & \I^n } 
-\]
-which is small if each $E_k$ is.  
+Let us write $\VV \to \V$ for the vertical map on the right in \eqref{eq:classifyuniversefamily}, setting
+\begin{align}\label{eq:universedef}\textstyle
+\VV\, &:=\, \nu\op{\dot{\Set}}\\  
+\V\, &:=\, \nu\op{\Set}.\notag
+ \end{align}
+ 
+ We summarize our results so far as follows.
 
-To define $q_E:E \ra\VV$,  take any $e : \I^k \ra E$ and first compose with $p_E$ and observe that $e \in  \Gamma(p_Ee, E)$.  Thus the assignment gives a map $\dot{e} : \I^k \ra \VV$ making the solid arrows in the following commute.
-\begin{equation}\label{diagram:U4}
-\xymatrix@=5em{
-&E \ar[d]^>>>>>>>{p_E} \ar@{..>}[r]^{q_E} & \VV\ar[d]^{p}  \\
-\I^k \ar[r]_{p_Ee} \ar[ru]^{e}\ar[rru]_>>>>>>>>>>>{\dot{e}} & \I^n \ar[r]_{E} & \V
-}
-\end{equation}
-Since the assignment of $\dot{e}$ to $e$ is natural in $[k]$, we get the required map $q_E : E\ra \VV$.
-The proof that the square is a pullback is again left to the reader.
-\end{proof}
-
-\begin{corollary}
-Given a small family $p_E : E \ra \I^n$ there is a unique isomorphism $E \cong E_{\chi_E}$ over $\I^n$ making a commutative diagram as follows.
-
-\begin{equation}\label{diagram:U5}
-\xymatrix@=5em{
-E \ar[rd]_{p_E} \ar@/^2.0pc/[rr]^{q_E} \ar[r]^{\cong}  & E_{\chi_E} \ar[d]^{p_{\chi_E}} \ar[r]_{q_{\chi_E}} & \VV \ar[d]^{p}  \\
- &\I^n \ar[r]_{\chi_E} & \V
-}
-\end{equation}
-\end{corollary}
-%
-
-\begin{proposition}\label{prop:familyclassifier}
-For any cubical set $X$ and any small family $p_E : E \ra X$ there are canonical maps $\chi_E : X \ra \V$ and $q_E : E \ra\VV$ making a pullback square as follows.
-\begin{equation}\label{diagram:U6}
-\xymatrix{
-E \ar[d]_{p_E} \ar[r]^{q_E}  \pbcorner & \VV\ar[d]^{p}  \\
-X \ar[r]_{\chi_E} & \V
-}
-\end{equation}
-Moreover, $\chi_E$ and $q_E$ are uniquely determined by the equations \eqref{eqns:U} below.
+ \begin{proposition}\label{prop:Vclassifies}
+The nerve $\VV\to\V$  of the classifier for discrete fibrations $\op\SSet\to\op\Set$, as defined in \eqref{eq:universedef}, classifies natural transformations $Y\to X$ in $\widehat{\bbC}$, in the sense that there is always a pullback square,
+\begin{equation}\label{eq:classifyuniversefamily2}\textstyle
+\begin{tikzcd}
+	 Y \ar[d] \pbmark \ar[r] & \VV \ar[d] \\  
+	X \ar[r,swap, "\tilde{Y} "] &  \V.
+ \end{tikzcd}
+ \end{equation}
+The classifying map $\tilde{Y} : X\to \V$ is determined by the adjunction $\int \dashv \nu$ as the transpose of the classifying map of the discrete fibration $\elem Y\to\elem X$.  
 \end{proposition}
 
-\begin{proof}
-Write $X = \varinjlim_{x} \I^n$ as a colimit of a cocone of maps $ x : \I^n \ra X$ from representables, over the canonical index category $([n],x) \in \int_\C X$.  Form the family of pullback squares below, where the arrows with a dot represent cocones, and the cocone consisting of the $q_x : E_x \ra E$  is determined by taking pullbacks along $p_E$, and is therefore also a colimit. 
-\begin{equation}\label{diagram:U7}
-\xymatrix@=3em{
-E_x \ar[d]_{p_{E_x}} \ar[r]_{\cdot}^{q_x} \ar@/^2.0pc/[rr]^{q_{E_x}} \pbcorner & E \ar[d]_{p_{E}} \ar@{..>}[r]^{q_E} & \VV\ar[d]^{p}  \\
-\I^n \ar@/_2.0pc/[rr]_{\chi_{E_x}}  \ar[r]^{\cdot}_x & X \ar@{..>}[r]_{\chi_E} & \V
-}
+Given a natural transformation $Y\to X$, the classifying map $\tilde{Y} : X\to \V$ is of course not in general unique. Nonetheless, we can  use the construction of $\VV\to\V$ as the nerve of the discrete fibration classifier $\op\SSet\to\op\Set$, for which classifying functors $\bbC \to \op\Set$ are unique up to natural isomorphism, to infer the following proposition, which will be required below (cf.~\cite{Shu:15,GSS}).
+
+\begin{proposition}[Realignment for families]\label{prop:realignment}
+Given a monomorphism $c : C\cof X$ and a family $Y\to X$, let $y_c : C \to \V$ classify the pullback $c^*Y\to C$.  Then there is a classifying map $y: X \to \V$ for $Y\to X$ with $y\circ c = y_c$.
+%
+\begin{equation}\label{diagram:presheafrealignment}
+\begin{tikzcd}
+c^*Y \ar[dd] \ar[rd] \ar[rr] && \VV \ar[dd] \\
+& Y \ar[dd] \ar[ru, dotted] & \\
+C  \ar[rd, tail,swap, "c"] \ar[rr, near start, "y_c"] && \V  \\
+& X \ar[ru, dotted, swap, "y"] &
+\end{tikzcd}
 \end{equation}
-The maps $\chi_{E_x}$  and $q_{E_x}$ are determined by lemma \ref{charforfamovercube}, since the families $p_{E_x}$ are small if $p_E: E \ra X$ is.  Thus we can define the indicated maps $\chi_E$ and $q_E$ from the colimits as those uniquely determined by the equations:
-\begin{align}\label{eqns:U}
-\chi_E \circ x &= \chi_{E_x}\\
-q_E \circ q_{x} &= q_{E_x}
-\end{align}
-The square on the right is a pullback because the outer squares are all pullbacks,  the family of left-hand squares are pullbacks, and the family of maps $x : \I^n \ra X$ covers $X$.
+\end{proposition}
+%
+\begin{proof}
+Transposing the realignment problem \eqref{diagram:presheafrealignment} for presheaves across the adjunction $\int\dashv \nu$ results in the following realignment problem for discrete fibrations.
+\begin{equation}\label{diagram:presheafrealignment2}
+\begin{tikzcd}
+\elem  c^*Y \ar[dd] \ar[rd] \ar[rr] && \op{\dot{\Set}}  \ar[dd] \\
+&\elem  Y \ar[dd] \ar[ru, dotted] & \\
+\elem  C  \ar[rd, tail,swap, "{\elem  c}"] \ar[rr, near start, "\widetilde{y_c}"] && \op{{\Set}}   \\
+& \elem  X \ar[ru, dotted, swap, "\tilde{y}"] &
+\end{tikzcd}
+\end{equation}
+The category of elements functor $\int $ is easily seen to preserve pullbacks, hence monos; thus let us consider the general case of a functor  $C : \bbC \mono \D$ which is monic in $\Cat$, a pullback of discrete fibrations as on the left below, and a presheaf $E : \bbC \to  \op{{\Set}}$ with $\elem E \cong \mathbb{E}$ over $\bbC$. 
+\begin{equation}\label{diagram:presheafrealignment3}
+\begin{tikzcd}
+\mathbb{E} \ar[dd] \ar[rd] \ar[rr] && \op{\dot{\Set}}  \ar[dd] \\
+& \mathbb{F}  \ar[dd] \ar[ru, dotted] & \\
+\bbC  \ar[rd, tail,swap, "{C}"] \ar[rr, near start, "E"] && \op{{\Set}}   \\
+& \D \ar[ru, dotted, swap, "F"] &
+\end{tikzcd}
+\end{equation}
+We seek $F : \D \to  \op{{\Set}}$ with $\elem F \cong \mathbb{F}$ over $\D$ and $F\circ C = E$.  Let $F_0 : \D \to  \op{\Set}$ with $\elem F_0 \cong \mathbb{F}$ over $\D$, which exists since $\mathbb{F}\to\D$ is a discrete fibration.  Since $F_0\circ C$ and $E$ both classify $\mathbb{E}$, there is a natural iso $e : F_0\circ C \cong E$.
+Consider the following diagram
+\begin{equation}\label{diagram:presheafrealignment4}
+\begin{tikzcd}
+\bbC \ar[dd, tail, swap, "{C}"]  \ar[rr, "e"] && {\op{(\Set^{\cong})}}  \ar[dd,"{p_1}"] \ar[r,swap,"{p_2}"] &  {\op{\Set}} \\
+&&&\\
+\D  \ar[rr,swap, "F_0"]  \ar[rruu, dotted, swap, "f"] && \op{\Set} &  \\
+\end{tikzcd}
+\end{equation}
+where $\Set^{\cong}$ is the category of isos in $\Set$, with $p_1, p_2$ the (opposites of the) domain and codomain projections.  There is a well-known weak factorization system on $\Cat$ (part of the ``canonical model structure'') with injective-on-objects functors on the left and isofibrations on the right.  Thus there is a diagonal filler $f$ as indicated.  The functor $F := p_2\circ f : \D \to \op{\Set}$ is then  the one we seek.
 \end{proof}
 
-\begin{remark} 
-Note that the classification operation $$\chi : \cSet_\kappa/X \ra \cSet(X, \V)$$ again has the evident ``pullback of $p : \VV\ra\V$'' operation 
-$$E : \cSet(X, \V) \ra \cSet_\kappa/X $$ as a left (quasi-)inverse $
-E \cong E_{\chi_E}$, which is (pseudo-)natural in $X$. 
-But there is no corresponding uniqueness of classifying maps, relating $A : X\ra \V$ and $\chi_{E_A} : X\ra\V$.  (This is what is provided, in a suitable sense, by the \emph{univalence} of the universe $\UU\ra\U$ of fibrations, to be established in section \ref{sec:EEP}.)
-\end{remark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Small maps.}
+ 
+Of course, as defined in \eqref{eq:universedef}, the classifier $\VV\to\V$ cannot be a map in $\widehat{\bbC}$, for reasons of size; we now address this.  
+Let $\alpha$ be a cardinal number, and call the sets strictly smaller than it $\alpha$-\emph{small}.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
+Call a presheaf $X : \op{\bbC} \to \Set$ $\alpha$-small if all of its values are $\alpha$-small sets, and thus if, and only if, it factors through $\Set_\alpha\hook\Set$. Call a map $f:Y\to X$ of presheaves $\alpha$-small if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\bbC$ and $x\in Xc$). The latter condition is of course equivalent to saying that, in the pullback square over the element $x:\y{c} \to X$, 
+\begin{equation}\label{eq:smallmap}\textstyle
+\begin{tikzcd}
+	 Y_x \ar[d] \pbmark \ar[r] & Y \ar[d, "f"] \\  
+	\y{c} \ar[r,swap,"x"] &  X,
+ \end{tikzcd}
+ \end{equation}
+the presheaf $Y_x$ is $\alpha$-small.
+
+% Consider $\Set_\alpha^{\C^{\mathrm{op}}}$, the category of $\alpha$-small set valued presheaves on $\C$.  
+% and similarly for the small pointed sets $\SSet_\alpha\hook\SSet$
+
+Now let us restrict the specification \eqref{eq:universedef} of $\VV\to\V$ to the $\alpha$-small sets:
+\begin{align}\label{eq:universedefalpha}\textstyle
+\VV_\alpha\, &:=\, \nu \dot{\Set^{\mathsf{op}}_\alpha}\\  
+\V_\alpha\, &:=\, \nu \Set^{\mathsf{op}}_\alpha. \notag
+ \end{align}
+Then the evident forgetful map $\VV_\alpha\to\V_\alpha$ \emph{is} a map in the category $\widehat{\bbC}$ of presheaves, and it is in fact $\alpha$-small. Moreover, it has the following basic property, which is just a restriction of the basic property of $\VV\to\V$ stated in Proposition \ref{prop:Vclassifies}.
+
+ \begin{proposition}\label{prop:familyclassifier}
+The map $\VV_\alpha\to\V_\alpha$ classifies $\alpha$-small maps $f:Y\to X$ in $\widehat{\bbC}$, in the sense that there is always a pullback square,
+\begin{equation}\label{eq:classifyuniversefamilyalpha}\textstyle
+\begin{tikzcd}
+	 Y \ar[d] \pbmark \ar[r] & \VV_\alpha \ar[d] \\  
+	X \ar[r,swap, "\tilde{Y}"] &  \V_\alpha.
+ \end{tikzcd}
+ \end{equation}
+The classifying map $\tilde{Y} : X\to \V_\alpha$ is determined by the adjunction $\int \dashv \nu$ as (the factorization of) the transpose of the classifiyng map of the discrete fibration $\elem X\to\elem Y$. 
+\end{proposition}
+
+\begin{proof} If $Y\to X$ is $\alpha$-small, its classifying map $\tilde{Y} : X\to\V$ factors through $\V_\alpha \hook \V$, as indicated below, 
+\begin{equation}\label{eq:classifyuniversetype2}\textstyle
+\begin{tikzcd}
+	 Y \ar[d] \ar[rr, bend left] \ar[r] & \nu\op{\dot{\Set_\alpha}} \ar[d] \ar[r,hook] & \nu\op{\dot{\Set}} \ar[d]\\  
+	X \ar[rr, bend right, swap,"\tilde{Y}"] \ar[r] &  \nu\op{\Set_\alpha} \ar[r,hook] &  \nu\op{\Set},
+ \end{tikzcd}
+ \end{equation}
+%
+in virtue of the following adjoint transposition,
+\begin{equation}\label{eq:adjointtranspose}\textstyle
+\begin{tikzcd}
+	 \elem Y \ar[d] \ar[rr, bend left] \ar[r] & \op{\dot{\Set_\alpha}} \ar[d] \ar[r,hook] & \op{\dot{\Set}} \ar[d]\\  
+	 \elem X \ar[rr, bend right, ] \ar[r]  &  \op{\Set_\alpha} \ar[r,hook]  &  \op{\Set}.
+ \end{tikzcd}
+  \end{equation}
+Note that the square on the right is evidently a pullback, and so the one on the left is, too, because the outer rectangle is the classifying pulback of the discrete fibration $\elem Y \to \elem X$, as stated.  Thus the left square in \eqref{eq:classifyuniversetype2} is also a pullback.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\paragraph{Examples of universal families $\VV_\alpha \too \V_\alpha$.}
+
+\begin{enumerate}
+%
+\item Let $\alpha = \kappa$ a strongly inaccessible cadinal, so that $\mathsf{ob}({\Set_\kappa})$ is a Grothendieck universe.  Then the Hofmann-Streicher universe of Definition \ref{def:HSuniverse} is recovered as the $\kappa$-small map classifier
+\begin{equation*}
+E\, \cong\, \VV_\kappa \too \V_\kappa\, \cong\, U
+\end{equation*}
+ in the sense of Proposition \ref{prop:familyclassifier}.  Indeed, for $c\in\bbC$, we have 
+ \begin{align}
+  \V_{\kappa}{c}\ &=\ \nu(\Set^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\bbC/_c}\,,\, \Set^{\mathsf{op}}_\kappa \big)\  =\ \mathsf{ob}(\widehat{\bbC/_c})\ =\ U{c} \,.
+   \end{align} 
+For $\VV_{\kappa}$ we then have,
+   \begin{align}\label{eq:veedotc}
+   \VV_{\kappa}{c}\ =\ \nu(\SSet^{\mathsf{op}}_\kappa)(c)\ &=\ \Cat\big( {\bbC/_c}\,,\, \SSet^{\mathsf{op}}_\kappa \big) \notag \\ 
+   &\cong\ {\textstyle \coprod_{A\in\V_{\kappa}{c}}\Cat_{{\bbC/_c}}\big( {\bbC/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}
+   \end{align}
+   where the $A$-summand in \eqref{eq:veedotc} is defined by taking sections of the  pullback indicated below.
+   \begin{equation}\label{eq:pbforindexing}\textstyle
+\begin{tikzcd}
+	A^*\Set^{\mathsf{op}}_\kappa \ar[d] \ar[r] \pbmark & \SSet^{\mathsf{op}}_\kappa \ar[d]\\  
+	\bbC/_c \ar[r,swap,"A"] \ar[u, bend left, dotted] \ar[ur, dotted] &  \Set^{\mathsf{op}}_\kappa
+ \end{tikzcd}
+ \end{equation}
+ But $A^*\Set^{\mathsf{op}}_\kappa\ \cong\ {\textstyle \int_{\bbC/_c}\!A}$ over $\bbC/_c\,$, and sections of this discrete fibration in $\Cat$ correspond uniquely to natural maps $1\to A$ in $\widehat{{\bbC/_c}}$.  Since $1$  is representable in $\widehat{{\bbC/_c}}$ we can continue \eqref{eq:veedotc} by
+  \begin{align*}
+   \VV_{\kappa}{c}\ &\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}}\Cat_{{\bbC/_c}}\big( {\bbC/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}\\
+   	&\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} \widehat{{\bbC/_c}}(1, A)}\\
+	&\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} A(1_c) } \\
+	& =\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} {\mathsf{E}l}(\langle c, A\rangle)}\\
+	& =\  E c\,.
+   \end{align*}
+ 
+% The second line is in virtue of the iso,
+%  \begin{align}
+%  \V_{\kappa}{c}\ &=\ \nu(\Set^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\C/_c}\,,\, \Set^{\mathsf{op}}_\kappa \big)\  =\ U{c} \,\notag\\ 
+%   \VV_{\kappa}{c}\ &=\ \nu(\SSet^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\C/_c}\,,\, \SSet^{\mathsf{op}}_\kappa \big)
+%   = \textstyle{ \coprod_{A\in U{c}} }A(1_c) = \textstyle\coprod_{A\in U{c}}{\mathsf{E}l}(\langle c, A\rangle) \,.
+% \end{align}
+
+\item By functoriality of the nerve $\nu : \Cat \to \widehat{\bbC}$, a sequence of Grothendieck universes $$\Set_\alpha \subseteq \Set_{\beta} \subseteq ...$$ in $\Set$ gives rise to a (cumulative) sequence of type-theoretic universes $$\V_\alpha \mono {\V_\beta} \mono ...$$ in $\widehat{\bbC}$. More precisely, there is a sequence of  cartesian squares,
+\begin{equation}\label{eq:Vhierarchy}\textstyle
+\begin{tikzcd}
+	 \VV_\alpha \ar[d] \ar[r,tail] \pbmark & {\VV_\beta} \ar[d] \ar[r,tail] \pbmark & \dots \\  
+	 \V_\alpha  \ar[r, tail]  &  {\V_\beta} \ar[r,tail]  & \dots\,,
+ \end{tikzcd}
+  \end{equation}
+in the image of $\nu : \Cat\too\widehat\bbC$, classifying small maps in $\widehat\bbC$ of increasing size, in the sense of Proposition \ref{prop:familyclassifier}.
+
+\item Let $\alpha = 2$ so that $1\to 2$ is the subobject classifier of $\Set$, and 
+$$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$ is then a classifier in $\Cat$ for \emph{sieves}, i.e.\ full subcategories $\mathbb{S}\hook\A$ closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$.  The nerve $\VV_{2}  \to \V_{2}$ is then the usual subobject classifier $1\to\Omega$ of $\widehat\bbC$,
+\[
+1 = \nu \mathbbm{1} = \VV_{2} \too  \V_{2} = \nu \mathbbm{2} = \Omega  \,.
+\]
+
+%\item Let $i : \mathbbm{2} \hook \Set_\kappa$ and $ p : \Set_\kappa \to \mathbbm{2} $ be the embedding-retraction pair with $i : \mathbbm{2} \hook \Set_\kappa$ the inclusion of the full subcategory on the sets $ \{0, 1\}$ and $p : \Set_\kappa \to \mathbbm{2}$ the retraction that takes $0 = \emptyset$ to itself, and everything else (i.e.\ the non-empty sets) to $1 = \{\emptyset\}$. There is a retraction (of arrows) in $\Cat$,
+%%
+%\begin{equation}\label{eq:Setretraction}\textstyle
+%\begin{tikzcd}
+%	 \mathbbm{1} \ar[d]  \ar[r,hook] \pbmark & \SSet_\kappa \ar[d] \ar[r] &\mathbbm{1} \ar[d] \\  
+%	 \mathbbm{2}   \ar[r,hook,swap, "i"]  &  \Set_\kappa \ar[r, swap, two heads, "p"]  & \mathbbm{2} 
+% \end{tikzcd}
+%  \end{equation}
+%  where the left square is a pullback.  
+%    
+%By the functoriality of (\,$\op{-}$ and) $\nu : \Cat \to \widehat{\C}$ we then have a retract diagram in $\widehat\C$, again with a pullback on the left, 
+%\begin{equation}\label{eq:Vretraction}\textstyle
+%\begin{tikzcd}
+%	 1 \ar[d]  \ar[r,hook] \pbmark & \VV_\kappa \ar[d] \ar[r] &1\ar[d] \\  
+%	 \Omega   \ar[r,hook,swap, "\{-\}"]  &  \V_\kappa  \ar[r, swap, two heads, "{[-]}"]  &  \Omega 
+% \end{tikzcd}
+%  \end{equation}
+%  where for any $\phi : X\to \Omega$ the subobject $\{\phi\}\mono X$ is classified as a small map by the composite $\{\phi\} : X\to \V_\kappa$\,, and for any small map $A\to X$, the image $[A] \mono X$ is classified as a subobject by the composite $[\alpha] : X\to \V_\kappa \to \Omega$\,, where $\alpha : X\to \V_\kappa$ classifies $A\to X$.  The idempotent composite $$|\!|\!-\!|\!| = \{[-]\} : \V_\kappa  \too \V_\kappa $$ is the \emph{propositional truncation modality} in the natural model of type theory given by $\VV_\kappa\to \V_\kappa$ (see \cite{AGH}).
+\end{enumerate}
+
+%%%%%%%%%%%%%%%% end of H-S universes notes %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\paragraph{Classifying families.}
+%\ednote{revise from here - or sooner!}
+%
+%Let $\kappa$ be an inaccessible cardinal number.  Let $\Set_\kappa$ be the category of sets of size strictly less than $\kappa$, called \emph{small},  and let $\cSet_\kappa = \Set_\kappa^{\C^{\mathrm{op}}}$ be the category of small set valued presheaves on the cube category $\C$.  By a \emph{small fibration} we mean a fibration in this category of small cubical sets, which we identify with the evident subcategory, $\cSet_\kappa \subseteq \cSet$.  Finally, let $\dot{\Set}_\kappa$ be the category of small pointed sets, i.e.\ the coslice category $1/\Set_\kappa$.  There is an evident forgetful functor  $U:\dot{\Set}_\kappa \ra {\Set}_\kappa$.
+%% which induces another one $U^{\C^{op}} : \dot{\Set}_\kappa^{\C^{op}} \ra {\Set}_\kappa^{\C^{op}}$ from small pointed presheaves to small presheaves.
+%
+%\begin{definition}
+%The ($\kappa$-)\emph{universe} $p : \VV \ra \V$ in $\cSet$ is defined:
+%\begin{enumerate}
+%
+%\item $\V_n = \{ A: \C/[n] \ra \Set^{op}_\kappa\ \}$, the \emph{set} of small presheaves on $\C/[n]$.  
+%
+%The action of a map $h : [m] \ra [n]$ in  $\C$  is given by precomposition with postcomposition: from  $h : [m] \ra [n]$ we have  $\C/h : \C/[m] \ra \C/[n]$, which we precompose with any $A: \C/[n]\ra \Set_\kappa^{op} $ to get $A.h = A\circ \C/h$,
+%\begin{equation}\label{diagram:U1}
+%\xymatrix{
+%[n] & \C/[n] \ar[r]^{A} & \Set_\kappa^{op} \\
+%[m] \ar[u]^{h} & \C/[m] \ar[u]^{\C/h}  \ar[ru]_{A.h} &
+%}
+%\end{equation}
+%
+%\item $\VV_n = \{ a: \C/[n] \ra \dot{\Set}^{op}_\kappa\ \}$, the \emph{set} of small pointed presheaves on $\C/[n]$, with the corresponding action.
+%
+%\item For $a \in \VV_n$, let $p_n (a) = U(a) \in \V_n$, where $U : \dot{\Set_\kappa} \ra {\Set_\kappa}$.
+%\end{enumerate}
+%\end{definition}
+%Functoriality of $\V$ and $\VV$ and naturality of $p: \VV\ra\V$ are immediate. 
+%
+%\begin{lemma}
+%For each $A : \I^n \ra \V$ there is a canonical choice of a small family $p_A : E_A\ra \I^n$ and a map $q_A: E_A \ra\VV$ making a pullback square as follows.
+%\begin{equation}\label{diagram:U2}
+%\xymatrix{
+%E_A \ar[d]_{p_A} \ar[r]^{q_A}  \pbcorner& \VV\ar[d]^{p}  \\
+%\I^n \ar[r]_{A} & \V
+%}
+%\end{equation}
+%\end{lemma}
+%%
+%\begin{proof}
+%Since $\I^n \cong y[n]$ is representable, there is a distinguished associated presheaf $A : (\C/[n])^{op} \ra \Set_\kappa$. Define $p_A : E_A \ra \I^n$ by
+%\[
+%(E_A)_k = \coprod_{h\in \C(k,n)} A(h) \qquad \ni (h, a)\,
+%\]
+%with first projection $(p_A)_k(h,a) = h$. Note that $(E_A)_k$ is small.
+%Then let $q_A:E_A \ra\VV$ be defined on $(h,a): \I^k \ra E_A$ by 
+%\[
+%(q_A)\circ(h, a) = a \in Ah
+%\]
+%as illustrated below.
+%\begin{equation}\label{diagram:U3}
+%\xymatrix@=5em{
+%& E_A \ar[d]^>>>>>>{p_A} \ar@{..>}[r]^{q_A} & \VV\ar[d]^{p}  \\
+%\I^k \ar[r]_{h} \ar[ru]^{(h,a)}\ar[rru]_>>>>>>>>>>>{a} & \I^n \ar[r]_{A} & \V
+%}
+%\end{equation}
+%The proof that the square is a pullback is left to the reader.
+%\end{proof}
+%
+%\begin{lemma}\label{charforfamovercube}
+%For each small family $p_E : E \ra \I^n$ there is a canonical map $\chi_E : \I^n \ra \V$ and a map $q_E:E \ra\VV$ making a pullback square as follows.
+%\begin{equation}\label{diagram:U2}
+%\xymatrix{
+%E \ar[d]_{p_E} \ar[r]^{q_E}  \pbcorner& \VV\ar[d]^{p}  \\
+%\I^n \ar[r]_{\chi_E} & \V
+%}
+%\end{equation}
+%\end{lemma}
+%%
+%\begin{proof}
+%It suffices to give a small set $(\chi_E)_k(h)$ for each $h :[k] \ra [n]$ in a way that is functorial in $h \in \C/[n]$ and natural in $[k]$.  Thus let
+%\[
+%(\chi_E)_k(h) := \Gamma(h, E)\ = \ \{ e : \I^k \ra E \ |\ p_E\circ e = h \}.
+%\]
+%\[
+%\xymatrix{& E \ar[d]^{p_E} \\ \I^k \ar@{..>}[ru]^{e}\ar[r]_h & \I^n } 
+%\]
+%which is small if each $E_k$ is.  
+%
+%To define $q_E:E \ra\VV$,  take any $e : \I^k \ra E$ and first compose with $p_E$ and observe that $e \in  \Gamma(p_Ee, E)$.  Thus the assignment gives a map $\dot{e} : \I^k \ra \VV$ making the solid arrows in the following commute.
+%\begin{equation}\label{diagram:U4}
+%\xymatrix@=5em{
+%&E \ar[d]^>>>>>>>{p_E} \ar@{..>}[r]^{q_E} & \VV\ar[d]^{p}  \\
+%\I^k \ar[r]_{p_Ee} \ar[ru]^{e}\ar[rru]_>>>>>>>>>>>{\dot{e}} & \I^n \ar[r]_{E} & \V
+%}
+%\end{equation}
+%Since the assignment of $\dot{e}$ to $e$ is natural in $[k]$, we get the required map $q_E : E\ra \VV$.
+%The proof that the square is a pullback is again left to the reader.
+%\end{proof}
+%
+%\begin{corollary}
+%Given a small family $p_E : E \ra \I^n$ there is a unique isomorphism $E \cong E_{\chi_E}$ over $\I^n$ making a commutative diagram as follows.
+%
+%\begin{equation}\label{diagram:U5}
+%\xymatrix@=5em{
+%E \ar[rd]_{p_E} \ar@/^2.0pc/[rr]^{q_E} \ar[r]^{\cong}  & E_{\chi_E} \ar[d]^{p_{\chi_E}} \ar[r]_{q_{\chi_E}} & \VV \ar[d]^{p}  \\
+% &\I^n \ar[r]_{\chi_E} & \V
+%}
+%\end{equation}
+%\end{corollary}
+%%
+%
+%\begin{proposition}\label{prop:familyclassifier}
+%For any cubical set $X$ and any small family $p_E : E \ra X$ there are canonical maps $\chi_E : X \ra \V$ and $q_E : E \ra\VV$ making a pullback square as follows.
+%\begin{equation}\label{diagram:U6}
+%\xymatrix{
+%E \ar[d]_{p_E} \ar[r]^{q_E}  \pbcorner & \VV\ar[d]^{p}  \\
+%X \ar[r]_{\chi_E} & \V
+%}
+%\end{equation}
+%Moreover, $\chi_E$ and $q_E$ are uniquely determined by the equations \eqref{eqns:U} below.
+%\end{proposition}
+%
+%\begin{proof}
+%Write $X = \varinjlim_{x} \I^n$ as a colimit of a cocone of maps $ x : \I^n \ra X$ from representables, over the canonical index category $([n],x) \in \int_\C X$.  Form the family of pullback squares below, where the arrows with a dot represent cocones, and the cocone consisting of the $q_x : E_x \ra E$  is determined by taking pullbacks along $p_E$, and is therefore also a colimit. 
+%\begin{equation}\label{diagram:U7}
+%\xymatrix@=3em{
+%E_x \ar[d]_{p_{E_x}} \ar[r]_{\cdot}^{q_x} \ar@/^2.0pc/[rr]^{q_{E_x}} \pbcorner & E \ar[d]_{p_{E}} \ar@{..>}[r]^{q_E} & \VV\ar[d]^{p}  \\
+%\I^n \ar@/_2.0pc/[rr]_{\chi_{E_x}}  \ar[r]^{\cdot}_x & X \ar@{..>}[r]_{\chi_E} & \V
+%}
+%\end{equation}
+%The maps $\chi_{E_x}$  and $q_{E_x}$ are determined by lemma \ref{charforfamovercube}, since the families $p_{E_x}$ are small if $p_E: E \ra X$ is.  Thus we can define the indicated maps $\chi_E$ and $q_E$ from the colimits as those uniquely determined by the equations:
+%\begin{align}\label{eqns:U}
+%\chi_E \circ x &= \chi_{E_x}\\
+%q_E \circ q_{x} &= q_{E_x}
+%\end{align}
+%The square on the right is a pullback because the outer squares are all pullbacks,  the family of left-hand squares are pullbacks, and the family of maps $x : \I^n \ra X$ covers $X$.
+%\end{proof}
+%
+%\begin{remark} 
+%Note that the classification operation $$\chi : \cSet_\kappa/X \ra \cSet(X, \V)$$ again has the evident ``pullback of $p : \VV\ra\V$'' operation 
+%$$E : \cSet(X, \V) \ra \cSet_\kappa/X $$ as a left (quasi-)inverse $
+%E \cong E_{\chi_E}$, which is (pseudo-)natural in $X$. 
+%But there is no corresponding uniqueness of classifying maps, relating $A : X\ra \V$ and $\chi_{E_A} : X\ra\V$.  (This is what is provided, in a suitable sense, by the \emph{univalence} of the universe $\UU\ra\U$ of fibrations, to be established in section \ref{sec:EEP}.)
+%\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classifying trivial fibrations}
 
-Recall from section \ref{sec:cofibrations} that (uniform) trivial fibration structures on a map $A\ra X$ correspond bijectively to relative +-algebra structures over $X$ (definition \ref{def:+alg}).  A relative $+$-algebra structure on $A \ra X$ is an algebra structure for the pointed endofunctor $+_X : \cSet/X \ra \cSet/X$, where
+Recall from section \ref{sec:cofibrations} that (uniform) trivial fibration structures on a map $A\ra X$ correspond bijectively to relative +-algebra structures over $X$ (definition \ref{def:+alg}).  A relative $+$-algebra structure on $A \ra X$ is an algebra structure for the pointed endofunctor $+_X : \cSet/X \ra \cSet/X$, where recall from \eqref{eq:partialmapclassifier}, 
 \[
-A^+ = \sum_{\varphi:\Phi}A^{\varphi}\quad\text{over $X$}.
+A^+ = \sum_{\varphi:\Phi}A^{[\varphi]}\quad\text{over $X$}.
 \]
 A +-algebra structure is then a retract $\alpha : A^+\ra A$ over $X$ of the canonical map $\eta_A : A\ra A^+$,
-\[
+\begin{equation}\label{eq:Aplus}
 \xymatrix{
 A\ar[rd] \ar[r]^{\eta_A} \ar@/^6ex/ [rr]^= & A^+ \ar[r]^{\alpha} \ar[d]& \ar[ld]A \\
 & X. &
 }
-\]
-In more detail, let us write $A\ra X$ as a family $\sum_{x:X}A_x \ra X$ over $X$. Since the +-functor acts fiberwise, the $A^+$ in the diagram above is then the indexing projection
+\end{equation}
+In more detail, let us write $A\ra X$ as a family $(A_x)_{x\in X}$, so that $A=\sum_{x:X}A_x \ra X$. Since the +-functor acts fiberwise, the object $A^+$ in \eqref{eq:Aplus} is then the indexing projection
 \[
 \sum_{x:X}A^+_x \ra X.
 \]
-Working in the slice  $\cSet/X$, we make the (relative) exponentials (internal Hom's) $[A^+, A]$ and $[A, A]$ with the ``precomposition by $\eta_A$'' map $[\eta_A, A]$, which fit into the following pullback diagram 
-\[
+Working in the slice  $\cSet/X$, the (relative) exponentials (internal Hom's) $[A^+, A]$ and $[A, A]$ and the ``precomposition by $\eta_A$'' map $[\eta_A, A]$,  fit into the following pullback diagram 
+\begin{equation}\label{diag:plualgstru}
 \xymatrix{
 +\mathsf{Alg}(A)\ar[d] \ar[r] \pbcorner & [A^+, A] \ar[d]^{[\eta_A, A]}\\
 1 \ar[r]_{'{id_A}'} & [A, A].
 }
-\]
-The constructed object $+\mathsf{Alg}(A) \ra X$ over $X$ is the \emph{object of +-algebra structures on $A\ra X$}, in the sense that sections $X \ra +\mathsf{Alg}(A)$ correspond isomorphically to +-algebra structures on $A\ra X$. Moreover, $+\mathsf{Alg}(A) \ra X$ is stable under pullback in the sense that for any $f:Y\ra X$, we have two pullback squares,
+\end{equation}
+The constructed object $+\mathsf{Alg}(A) \ra X$ over $X$ is then the \emph{object of +-algebra structures on $A\ra X$}, in the sense that sections $X \ra +\mathsf{Alg}(A)$ correspond uniquely to +-algebra structures on $A\ra X$. Moreover, $+\mathsf{Alg}(A) \ra X$ is stable under pullback, in the sense that for any $f:Y\ra X$, we have two pullback squares,
 \begin{equation}\label{diagram:pbplus}
 \xymatrix{
 f^*A \ar[d] \ar[r]  & A \ar[d]\\
@@ -2432,9 +2854,9 @@ Y \ar[r]_{f} &X\\
 +\mathsf{Alg}(f^*A)\ar[u] \ar[r] & +\mathsf{Alg}(A)\ar[u].
 }
 \end{equation}
-because the +-functor, exponentials and pullbacks occurring in the construction of $+\mathsf{Alg}(A) \ra X$ are themselves all stable.  
+because the +-functor, exponentials and pullbacks occurring in the construction of $+\mathsf{Alg}(A) \ra X$ are themselves all stable. 
 
-It follows from proposition \ref{prop:familyclassifier} that if $A\ra X$ is small, then $+\mathsf{Alg}(A) \ra X$ is itself a pullback of the analogous object $+\mathsf{Alg}(\VV) \ra \V$ constructed from the universal small family $\VV\ra\V$,
+It then follows from Proposition \ref{prop:familyclassifier} that, if $A\ra X$ is small, then $+\mathsf{Alg}(A) \ra X$ is itself a pullback of the analogous object $+\mathsf{Alg}(\VV) \ra \V$ constructed from the universal small family $\VV\ra\V$, so there are two pullback squares:
 \begin{equation}\label{diagram:tfib1}
 \xymatrix{
 A \ar[d] \ar[r]  & \VV \ar[d]\\
@@ -2454,7 +2876,7 @@ X \ar[r] & \TFib
 \end{proposition}
 
 \begin{proof}
-We can take $\TFib = +\mathsf{Alg}(\VV) $, which comes with its projection $+\mathsf{Alg}(\VV) \ra \V$ as in diagram \eqref{diagram:tfib1}.  Now define $p_t:\TTFib\ra\TFib$ by pulling back the universal small family,
+We can take $$\TFib := +\mathsf{Alg}(\VV),$$ which comes with its projection $+\mathsf{Alg}(\VV) \ra \V$ as in diagram \eqref{diagram:tfib1}.  Now define $p_t:\TTFib\ra\TFib$ by pulling back the universal small family,
 \[
 \xymatrix{
 \TTFib \ar[d]_{p_t} \ar[r]  \pbcorner & \VV\ar[d]^p\\
@@ -2478,7 +2900,7 @@ Consider the following diagram, in which all the squares (including the distorte
 &X \ar[rrr]_{\chi_A} \ar@{.>}@/^1pc/[lu]^\alpha \ar@{.>}[rru]_{\alpha'} &&& \V.
 }
 \end{equation}
-A trivial fibration structure $\alpha$ on $A\ra X$ is a section the object of +-algebra structures on $A$, occurring in the diagram as $\TFib(A)$, the pullback of $\TFib$.  Such sections correspond uniquely to factorizations $\alpha'$ of $\chi_A$ as indicated, which in turn induce pullback squares of the required kind \eqref{diagram:classifytf}.
+A trivial fibration structure $\alpha$ on $A\ra X$ is a section the object of $+$-algebra structures on $A$, occurring in the diagram as $$\TFib(A) := +\mathsf{Alg}(A),$$ the pullback of $\TFib = +\mathsf{Alg}(\VV)$ along the classifying map $\chi_A : X \to \V$ for the small family $A\to X$.  Such sections correspond uniquely to factorizations $\alpha'$ of $\chi_A$ as indicated, which in turn induce pullback squares of the required kind \eqref{diagram:classifytf}.
 
 Note that the map $p_t : \TTFib\ra\TFib$ has a canonical trivial fibration structure. Indeed, consider the following diagram, in which both squares are pullbacks.
 \begin{equation}\label{diagram:fibisfib}
@@ -2494,16 +2916,31 @@ $\TFib(\VV)$ is the object of trivial fibration structures on $\VV\ra\V$, and it
 \]
 \end{proof}
 
+We record the following notation and corresponding fact from the foregoing proof for future reference:
+
+\begin{lemma}\label{lemma:TFibstable}
+The classifying type $\TFib(A) := +\mathsf{Alg}(A) \to X$ for trivial fibration structures on a map $A\to X$  is stable under pullback, in the sense that for any $f:Y\ra X$, we have two pullback squares,
+\begin{equation}\label{diagram:TFibstable}
+\xymatrix{
+f^*A \ar[d] \ar[r]  & A \ar[d]\\
+Y \ar[r]_{f} &X\\
+\TFib(f^*A)\ar[u] \ar[r] & \TFib(A)\ar[u].
+}
+\end{equation}
+\end{lemma}
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classifying fibrations}
 
-In order to classify fibrations $A\ra X$, we shall proceed as for trivial fibrations by constructing an object $\Fib(A)\ra X$ of fibration structures on $A\ra X$ which, moreover, is stable under pullback.  We then apply the construction to the universal small family $\VV\ra\V$ to get a universal small fibration.  
+In order to classify fibrations $A\fib X$, we proceed as for trivial fibrations by constructing an object $\Fib(A)\ra X$ of fibration structures on a map $A\ra X$ which, moreover, is stable under pullback.  We then apply the construction to the universal small family $\VV\ra\V$ to obtain a universal small fibration.  
 
 The construction of $\Fib(A)\ra X$ is a bit more involved than that of $\TFib(A)\ra X$.  Recall from section \ref{sec:unbiasedfibration} the characterization of (uniform, unbiased) fibration structures on a map $p_A : A\ra X$ in terms of +-algebra structures:  
 \begin{enumerate}
-\item First, pass to $\cSet/\I$ where there is a generic point $\delta : 1 \ra \I$,
+\item First, pull the map $p_A : A\ra X$ back  to $\cSet/_\I$ by applying the functor $\I\times (-) : \cSet \to \cSet/_\I$.  We continue to write $p_A : A\ra X$ the resulting map over $\I$. 
 
-\item Form the pullback-hom $\delta\Rightarrow p_A : A^\I \ra X^\I \times_X A$ as indicated in the following diagram.
+\item Form the pullback-hom $\delta\Rightarrow p_A : A^\I \ra X^\I \times_X A$ of $p_A$ with the generic point $\delta : \I \to \I \times \I$ over $\I$, as indicated in the following diagram.
 \begin{equation}\label{diagram:fibU1}
 \xymatrix{
 A^\I \ar@/_4ex/ [rdd]_{(p_A)^\I} \ar[rd]^{\delta\, \Rightarrow p_A} \ar@/^4ex/ [rrd]^{A^\delta} && \\
@@ -2512,10 +2949,9 @@ A^\I \ar@/_4ex/ [rdd]_{(p_A)^\I} \ar[rd]^{\delta\, \Rightarrow p_A} \ar@/^4ex/ [
 }
 \end{equation}
 
-\item A fibration structure on $p_A : A\ra X$ is then a relative +-algebra structure on $\delta\Rightarrow p_A$ in the slice category over the codomain. 
+\item A fibration structure on $p_A : A\ra X$ is then a relative +-algebra structure on the map $\delta\Rightarrow p_A$ in the slice category over the codomain $X^\I \times_X A$ (and that in the slice over $\I$). 
 
-We next construct an object $\Fib(A)\ra X$ classifying such structures.
-For convenience, let us relabel the objects and arrows in the previous diagram as follows:
+In order to construct the object $\Fib(A)\ra X$ classifying such structures, let us first relabel the objects and arrows in diagram \eqref{diagram:fibU1} as follows:
 \begin{align*}
 p &:= p_A\\
 \epsilon &:= X^\delta : X^\I \ra X \\
@@ -2532,7 +2968,7 @@ A^\I \ar[rd]_{\epsilon^A} && \\
 }
 \end{equation}
 
-\item A +-algebra structure on $\epsilon^A$ is a retract $\alpha$ over $A_\epsilon$ of the unit $\eta$ as indicated below, where $D$ is the domain of the map $(\epsilon^A)^+$:
+\item A +-algebra structure on $\epsilon^A$ is a retract $\alpha$ over $A_\epsilon$ of the unit $\eta$ as indicated below, where $D$ is the domain of the map $(\epsilon^A)^+$,
 \begin{equation}\label{diagram:fibU3}
 \xymatrix{
 A^\I \ar[rd]_{\epsilon^A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[d]^{(\epsilon^A)^+} & \\
@@ -2541,7 +2977,7 @@ A^\I \ar[rd]_{\epsilon^A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[d]^{(\ep
 }
 \end{equation}
 
-\item Thus, as in the previous section, there is an object $+\mathsf{Alg}(\epsilon^A)$ over  $A_\epsilon$ of +-algebra structures on $\epsilon^A$, the sections of which correspond uniquely to +-algebra structures on $\epsilon^A$ (and thus fibration structures on $A$).
+\item As in the construction \eqref{diag:plualgstru}, there is an object $+\mathsf{Alg}(\epsilon^A)$ over  $A_\epsilon$ of +-algebra structures on $\epsilon^A$, the sections of which correspond uniquely to +-algebra structures on $\epsilon^A$ (and thus fibration structures on $A$).
 \begin{equation}\label{diagram:fibU4}
 \xymatrix{
 &A^\I \ar[d]_{\epsilon^A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[ld]^<<<<<{(\epsilon^A)^+}  \\
@@ -2550,7 +2986,7 @@ A^\I \ar[rd]_{\epsilon^A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[d]^{(\ep
 }
 \end{equation}
 
-\item Sections of $+\mathsf{Alg}(\epsilon^A)\ra A_\epsilon$ correspond to sections of its push-forward along $p_\epsilon$, which we shall call $F_A$: 
+\item Sections of $+\mathsf{Alg}(\epsilon^A)\ra A_\epsilon$ then correspond to sections of its push-forward along $p_\epsilon$, which we shall call $F_A$: 
 \[
 F_A := (p_\epsilon)_*(+\mathsf{Alg}(\epsilon^A))\,.
 \]
@@ -2563,18 +2999,20 @@ F_A \ar[r] & X^\I \ar[r]_{\epsilon} &  X
 }
 \end{equation}
 
-\item We might now think of taking another pushforward of $F_A \ra X^\I$ along $\epsilon : X^\I\ra X$ to get the object $\Fib(A) \ra X$ that we seek, but unfortunately, this would not be stable under pullback along arbitrary maps $Y\ra X$, because $\epsilon : X^\I\ra X$ is not stable in this way.  Instead we will use the \emph{root} functor, i.e.\ the ``amazing right adjoint'' to the pathspace  (see \cite{A:cubicalnotes}). $$(-)^\I \dashv (-)_\I$$
+\item One might now think of taking another pushforward of $F_A \ra X^\I$ along $\epsilon : X^\I\ra X$ to get the object $\Fib(A) \ra X$ that we seek, but unfortunately, this would not be stable under pullback along arbitrary maps $Y\ra X$, because $\epsilon : X^\I\ra X$ is not stable in that way.  Instead we use the \emph{root} functor of Proposition \eqref{prop:Itiny}, i.e.\ the right adjoint of the pathspace, $(-)^\I \dashv (-)_\I$.
 
-Let $f : F_A \ra X^\I$ be the map indicated  in \eqref{diagram:fibU5}, and let $\eta_X : X \ra (X^\I)_\I$ be the unit of the root adjunction.  Then define $\Fib(A)\ra X$ as the following pullback.
+Let $f : F_A \ra X^\I$ be the map indicated in \eqref{diagram:fibU5}, and $\eta_X : X \ra (X^\I)_\I$ the unit of the root adjunction.  Then define $\Fib(A)\ra X$ by 
+$$ \Fib(A) :=  \eta^*{f_\I}$$
+ as indicated in the following pullback diagram.
 \begin{equation}\label{diagram:fibU6}
 \xymatrix{
- \Fib(A) \ar[d] \ar[r] \pbcorner & (F_A)_\I \ar[d]^{f_\I}\\
- X \ar[r]_{\eta} &  (X^\I)_\I
+  \Fib(A)  \ar[d] \ar[r] \pbcorner & (F_A)_\I \ar[d]^{f_\I}\\
+  X \ar[r]_{\eta} &  (X^\I)_\I
 }
 \end{equation}
-By adjointness, sections of $\Fib(A)\ra X$ correspond uniquely to sections of  $f : F_A \ra X^\I$.
+By adjointness, sections of $\Fib(A)\ra X$ then correspond bijectively to sections of  $f : F_A \ra X^\I$.
 
-\item\label{item:laststep} Finally, we are still working in the slice $\cSet/\I$ and need to get back to $\cSet$ by applying the functor $\I_*: \cSet/\I \ra \cSet$.  Call the map $\Fib(A)\ra X$ constructed over $\I$ in the last step $\Fib(A)_i \ra \I^{*}X$ and apply $\I_*$ to get,
+\item\label{item:laststep} Finally, recall that we are still working in the slice $\cSet/\I$ and need to get back to $\cSet$ by applying the functor $\I_*: \cSet/\I \ra \cSet$.  Call the map $\Fib(A)\ra X$ constructed over $\I$ in the last step $\Fib(A)_i \ra \I^{*}X$, and apply $\I_*$ to get,
 \[
 \I_*(\Fib(A)_i) = \Pi_{i:\I}\Fib(A)_i \ra X^\I
 \]
@@ -2585,15 +3023,22 @@ in $\cSet$.  We then define the desired map $\Fib(A)\ra X$ as the pullback along
  X \ar[r]_{\rho} &  X^\I
 }
 \end{equation}
-It follows directly from the adjunction $\I^*\dashv \I_*$ that sections of $\Fib(A)\ra X$ correspond bijectively to sections of $\Fib(A)_i \ra \I^{*}X$ over $\I$.
+It then follows directly from the adjunction $\I^*\dashv \I_*$ that sections of $\Fib(A)\ra X$ correspond bijectively to sections of $\Fib(A)_i \ra \I^{*}X$ over~$\I$.
 \end{enumerate}
 
+Now for the universal family $\VV\to\V$, let $\Fib = \Fib(\VV)$, which comes with its projection $\Fib(\VV) \ra \V$, and define the universal small fibration $\FFib\fib\Fib$ by pulling back the universal small family,
+\begin{equation}\label{diagram:universalfib}
+\xymatrix{
+\FFib \ar[d] \ar[r]  \pbcorner & \VV\ar[d]^p\\
+\Fib \ar[r] & \V.
+}
+\end{equation}
 
 \begin{proposition}\label{prop:UniversalFib}
-The map $$\FFib\ra\Fib$$ just constructed is a \emph{universal small fibration}.    Every small fibration $A \ra X$ is a pullback of $\FFib\ra\Fib$ along a canonically determined classifying map $X\ra \Fib$.
+The map $$\FFib\ra\Fib$$ just constructed is a \emph{universal small fibration}: every small fibration $A \fib X$ is a pullback of $\FFib \fib \Fib$ along a canonically determined classifying map $X\ra \Fib$.
 \begin{equation}\label{diagram:classifyfib}
 \xymatrix{
-A \ar[d] \ar[r]  \pbcorner & \FFib\ar[d]\\
+A \ar@{>>}[d] \ar[r]  \pbcorner & \FFib \ar@{>>}[d] \\
 X \ar[r] & \Fib
 }
 \end{equation}
@@ -2601,7 +3046,7 @@ X \ar[r] & \Fib
 
 \begin{proof}
 First, we need to show that the construction of $\Fib(A)\ra X$ as the object of fibration structures on a map $A\ra X$ is stable under pullback along all maps $f : Y\ra X$.
-The relevant parts of the construction diagram \eqref{diagram:fibU8} are repeated below,
+The relevant parts of the construction diagram \eqref{diagram:fibU5} are repeated below,
 \begin{equation}\label{diagram:fibU8}
 \xymatrix{
 &A^\I \ar[d]_{\epsilon^A} & \\
@@ -2618,14 +3063,14 @@ Now consider the following in which the front face of the central cube is a pull
  &\Fib(B) \ar[r] & Y \ar[r]_f & X &\Fib(A) \ar[l] &
  }
 \end{equation}
-On the left side we will repeat the construction with $B \ra Y$ in place of $A\ra X$.  
+On the left side we repeat the construction with $B \ra Y$ in place of $A\ra X$.  
 The left face is thus a pullback, whence the back (dotted) face is a pullback.  The two-story square in back is the image of the front square under the right adjoint $(-)^\I$ and is therefore a  pullback, therefore the top rectangle in the back is a pullback. 
 It follows that $+\mathsf{Alg}(\epsilon^B)$ is a pullback of $+\mathsf{Alg}(\epsilon^A)$ along the upper dotted arrow, as in diagram \eqref{diagram:pbplus}, and so the pushforward $F_B$ is a pullback of the corresponding $F_A$, along the lower dotted arrow (which is $f^\I$), by the Beck-Chevalley condition.  Thus we have shown
 \begin{equation}\label{eq:pbFB}
 F_B \cong (f^\I)^*F_A.
 \end{equation}
 
-It remains to show that $\Fib(B)$ is a pullback of $\Fib(A)$ along $f:Y\ra X$, and now it is good that we did not take these to be pushforwards of $F_B$ and $F_A$, because the floor of the cube is not a pullback, and so the Beck-Chavalley condition would not apply.  Instead, consider the following diagram.
+It remains to show that $\Fib(B)$ is a pullback of $\Fib(A)$ along $f:Y\ra X$, and now it is good that we did not take these to be pushforwards of $F_B$ and $F_A$, because the floor of the cube need not be a pullback, and so the Beck-Chavalley condition would not apply.  Instead, consider the following diagram.
 \begin{equation}\label{diagram:fibU10}
 \xymatrix{
 & \Fib(B) \ar[ld] \ar[dd]  \ar[r] & \Fib(A) \ar[dd] \ar[rd] & \\
@@ -2634,16 +3079,9 @@ It remains to show that $\Fib(B)$ is a pullback of $\Fib(A)$ along $f:Y\ra X$, a
 (Y^\I)_\I \ar[rrr]_{(f^\I)_\I} &&& (X^\I)_\I 
  }
 \end{equation}
-The sides of the cube are pullbacks by the construction of $\Fib(A)$ and $\Fib(B)$. The front face is the root of the pullback \eqref{eq:pbFB} and is thus also a pullback, since the root is a right adjoint. The base commutes by naturality of the unit, and so the back face is also a pullback as required.  Finally, the base change along $\I_* : \cSet/\I \ra\cSet$ in step \ref{item:laststep} above clearly also preserves the pullback.
+The sides of the cube are pullbacks by the construction of $\Fib(A)$ and $\Fib(B)$. The front face is the root of the pullback \eqref{eq:pbFB} and is thus also a pullback, since the root is a right adjoint. The base commutes by naturality of the unit, and so the back face is also a pullback, as required.  Finally, the base change along $\I_* : \cSet/\I \ra\cSet$ in step \ref{item:laststep} above clearly also preserves the pullback.
 
-Now we can take $\Fib = \Fib(\VV)$, which comes with its projection $\Fib(\VV) \ra \V$, and define the universal small fibration $\FFib\ra\Fib$ by pulling back the universal small family,
-\[
-\xymatrix{
-\FFib \ar[d] \ar[r]  \pbcorner & \VV\ar[d]^p\\
-\Fib \ar[r] & \V.
-}
-\]
-The remainder of the proof is just as for proposition \ref{prop:classTFib}.  
+Thus we can indeed use $\Fib := \Fib(\VV)$ to define the universal small fibration $\FFib\ra\Fib$ as in \eqref{diagram:universalfib}, and the proof can conclude just as that for proposition~\ref{prop:classTFib}.  
 \end{proof}
 
 %\begin{lemma}\label{lemma:Fibfib}
@@ -2665,8 +3103,158 @@ The remainder of the proof is just as for proposition \ref{prop:classTFib}.
 %\end{proof}
 
 \begin{definition}\label{def:U}
-Write $\UU \ra \U$ for the universal small fibration $\FFib\ra\Fib$ constructed in proposition~\ref{prop:UniversalFib}.
+Write $\UU \fib \U$ for the universal small fibration $\FFib\fib\Fib$ just constructed in proposition~\ref{prop:UniversalFib}.
 \end{definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Realignment for fibration structure}\label{sec:realignment}
+
+The realignment for families of Proposition \ref{prop:realignment} will need to be extended to (structured) fibrations. Our approach makes use of the notion of a \emph{weak proposition}.  Informally, a map $P\to X$ may be said to be a weak proposition if it is ``conditionally contractible'', in the sense that it is contractible if it has a section (recall that a proposition may be defined as a fibration that is ``contractible if inhabited'').  More formally, we have the following.
+
+\begin{definition}
+A map $P\to X$ is said to be a \emph{weak proposition} if the projection $P\times_X P\to P$ is a trivial fibration.
+\begin{equation}\label{diagram:weakprop}
+\begin{tikzcd}
+P^2 \ar[d,two heads,swap,"{\sim}"] \ar[r]  \pbmark & P \ar[d] \\
+P \ar[r] &  X.
+\end{tikzcd}
+\end{equation}
+Note that if either projection is a trivial fibration, then both are.
+\end{definition}
+
+As an object over the base, a weak proposition is thus one that ``thinks it is contractible''.  The key fact needed for realignment is the following.
+
+\begin{lemma}\label{lemma:Fibweakprop} For any $Y\to X$, the classifying type $\TFib(Y) \to X$ is a weak proposition.  Moreover, the same is true for $\Fib(Y)\to X$ if the cofibrations are closed under exponentiation by the interval $\I$.
+%, in the sense that $c:A \cof B$ implies
+%\[
+%c^\I:A^\I \cof B^\I\,.
+%\]
+\end{lemma}
+%
+%\noindent Note that the condition on cofibrations holds for the locally decidable monos.
+%
+\begin{proof}
+Let $Y\to X$ and consider the following diagram, in which we have written $Y' = \TFib(Y)\times_X Y$ and $\TFib(Y)^2 = \TFib(Y)\times_X \TFib(Y)$.
+%
+\begin{equation}\label{diagram:TFibweakprop}
+\begin{tikzcd}
+Y' \ar[dd]  \ar[rr] \pbmark && Y \ar[dd]  \\
+& \TFib(Y)^2 \ar[ld] \ar[rr]  \pbmark && \TFib(Y) \ar[ld] \\
+\TFib(Y) \ar[rr] && X
+\end{tikzcd}
+\end{equation}
+Since $\TFib$ is stable under pullback (by Lemma \ref{lemma:TFibstable}), we have $\TFib(Y)^2 \cong \TFib(Y')$, and since $\TFib(Y)^2$ has a canonical section, $Y' \to \TFib(Y)$ is therefore a trivial fibration.  Inspecting the definition of $\TFib(A) = +\mathsf{Alg}(A)$ in \eqref{diag:plualgstru}, we see that if a map $A\to X$ is a trivial fibration, then so is $\TFib(A)\to X$ (since $A\to A^+$ is always a cofibration). Thus $\TFib(Y)^2 \cong \TFib(Y') \to\TFib(Y)$ is also a trivial fibration.
+
+For $\Fib(Y)\to X$, we use the foregoing to infer that $\TFib(Y^I) \to X^I\times_X Y$ is a weak proposition, and so therefore is its pushforward $p_*\TFib(Y^\I)\to X^\I$ along the first projection $p:X^I\times_X Y \to X^\I$, since pushforward clearly preserve weak propositions.  Applying the root $(-)_\I$ preserves trivial fibrations, by the assumption that its left adjoint $(-)^\I$ preserves cofibrations, so as a right adjoint, it also preserves weak propositions. Therefore $(p_*\TFib(Y^\I))_\I \to (X^\I)_\I$ is a weak proposition, but then so is its pullback along the unit $X\to (X^\I)_\I$, which is $\Fib(Y)\to X$.
+\end{proof}
+
+In light of Lemma \ref{lemma:Fibweakprop} we assume a final axiom on cofibrations:
+ 
+\begin{enumerate}
+\item[(C8)] The map $c^\I:A^\I \to B^\I$ is a cofibration if $c:A \to B$ is a cofibration.
+\end{enumerate}
+
+Now by Proposition \ref{prop:UniversalFib} we have a universal (small) fibration $\UU \fib \U$, with $\U = \mathsf{Fib}(\VV)$, where $\VV \to \V$ is the universal (small) family.  Type theoretically, we therefore have
+\[
+\U = \Sigma_{E:\V}\Fib(E)\,,
+\] 
+with canonical projection
+\[
+\U = \Sigma_{E:\V}\Fib(E) \to \V\,,
+\] 
+so that a fibration $E \fib X$ is a pair $\langle E, e \rangle$, consisting of the underlying family $E\to X$, equipped with a fibration structure $e :\Fib(E)$.
+%\begin{proposition}\label{prop:classifyFib}
+%There is a \emph{universal small fibration}  $\UU\fib\U$.  Every small fibration $E \fib X$ is a pullback of $\UU\fib\U$ along a classifying map $X\to \U$.
+%\begin{equation}\label{diagram:classifyfib}
+%\begin{tikzcd}
+%E \ar[d, two heads] \ar[r]  \pbmark & \UU\ar[d, two heads]\\
+%X \ar[r] & \U
+%\end{tikzcd}
+%\end{equation}
+%\end{proposition}
+%
+%\begin{proof}
+%Take $\U = \Fib(\VV) \to \V$, as above, and define $\UU\fib\U$ by pulling back the universal small family.
+%\[
+%\begin{tikzcd}
+%\UU \ar[d,two heads] \ar[r]  \pbmark & \VV \ar[d]\\
+%\U \ar[r] & \V
+%\end{tikzcd}
+%\]
+%Consider the following diagram in which all squares are pullbacks, the outer one classifying the family $E\to X$ and the lower one from the stability of $\Fib$.
+%%
+%\begin{equation}\label{diagram:classifyfib2}
+%\begin{tikzcd}
+%& E \ar[ddd] \ar[rrr]   \ar[rrd, dotted] &&& \VV \ar[ddd]\\
+%& && \UU \ar[d] \ar[ru]  &\\
+%\Fib(E) \ar[rd] \ar[rrr]  &&& \U \ar[rd] &\\
+%&X \ar[rrr] \ar[lu, bend left, dotted] \ar[rru, dotted,swap, "e"] &&& \V
+%\end{tikzcd}
+%\end{equation}
+%A fibration structure on $E\to X$ corresponds to a factorization $e$ as indicated, which in turn determines a pullback square of the required form.  Note that  $\UU\to\U$ has a canonical fibration structure,
+%%. Indeed, consider the following diagram, in which both squares are pullbacks.
+%%\begin{equation}\label{diagram:fibisfib}
+%%\xymatrix{
+%%\TTFib \ar[d]_{p_t} \ar[r]  & \VV \ar[d]\\
+%%\TFib \ar[r] & \V\\
+%%\TFib(\TTFib) \ar[u] \ar[r] & \TFib(\VV)\ar[u].
+%%}
+%%\end{equation}
+%%$\TFib(\VV)$ is the object of trivial fibration structures on $\VV\ra\V$, and its pullback $\TFib(\TTFib)$ is therefore the object of trivial fibration structures on $p_t : \TTFib\ra\TFib$.  Thus we seek a section of $\TFib(\TTFib) \ra \TFib$.  But recall that $\TFib = \TFib(\VV)$ by definition, so the lower pullback square is the pullback of $\TFib(\VV)\ra \V$ against itself, which does indeed have a distinguished section, 
+%namely the diagonal
+%\[
+%\U \to \Fib(\UU) \cong \U\times_\V \U.
+%\]
+%\end{proof}
+%
+\noindent Lemma \ref{lemma:Fibweakprop}  then allows us to establish the following, which was first isolated in \cite{Shu:UAERP}  (as condition (2'), also see \cite{Shu:15}). It will be needed in the sequel to correct the fibration structure on certain maps.
+
+\begin{lemma}[Realignment for fibrations]\label{lemma:realignmentforfibrations}
+Given a fibration $F\fib X$ and a cofibration $c : C\cof X$, let $f_c : C \to \U$ classify the pullback $c^*F\fib C$.  Then there is a classifying map $f: X \to \U$ for $F$ with $f\circ c = f_c$.
+%
+\begin{equation}\label{diagram:fibrationrealignment}
+\begin{tikzcd}
+c^*F \ar[dd, two heads] \ar[rd] \ar[rr] && \UU \ar[dd, two heads] \\
+& F \ar[dd, two heads] \ar[ru, dotted] & \\
+C  \ar[rd, tail,swap, "c"] \ar[rr, near start, "f_c"] && \U  \\
+& X \ar[ru, dotted, swap, "f"] &
+\end{tikzcd}
+\end{equation}
+\end{lemma}
+%
+\begin{proof}
+First, let $|f_{c}|: C\to \V$ be the composite of $f_c: C\to \U$ with the canonical projection $\U\to \V$, thus classifying the underlying family $c^*F \to C$.  Next, let $f_0 : X\to \V$ classify the underlying family $F\to X$.  We may assume that $f_0\circ c = |f_{c}|$ by realignment for families, Proposition \ref{prop:realignment}.
+%
+\begin{equation}\label{diagram:fibrationrealignment2}
+\begin{tikzcd}
+c^*F \ar[dd, two heads] \ar[rd] \ar[rr] && \UU \ar[dd, two heads] \ar[r] & \VV \ar[dd] \\
+& F \ar[dd, two heads] \ar[rru, dotted] & &\\
+C  \ar[rd, tail,swap, "c"] \ar[rr, near start, "f_c"] && \U \ar[r] & \V \\
+& X \ar[rru, dotted, swap, "f_0"] &
+\end{tikzcd}
+\end{equation}
+%
+Since $F\fib X$ is a fibration, there is a lift $f_1 : X \to \U$ of $f_0$ classifying the fibration structure.
+We thus have the following commutative diagram in the base of \eqref{diagram:fibrationrealignment2}.
+%
+\begin{equation}\label{diagram:realignmentproof}
+\begin{tikzcd}
+C  \ar[d, tail,swap, "c"] \ar[r,swap, "{f_c}"] \ar[rr, bend left, "{|f_{c}|}"] & \U \ar[r] & \V \ar[d, equals]  \\
+X \ar[r, "f_1"]  \ar[rr,swap,bend right, "f_0"] & \U \ar[r]  & \V
+\end{tikzcd}
+\end{equation}
+%
+Now pull $\U\to \V$ back against itself and rearrange the previous data to give (the solid part of) the following, which also commutes.
+\begin{equation}\label{diagram:realignmentproof2}
+\begin{tikzcd}
+C \ar[d, tail, swap, "{c}"] \ar[rr, swap, "{\langle f_{1}c, f_c \rangle}"]  \ar[rrr, bend left, "{f_{c}}"] 
+	&& \U\times_\V \U \ar[r, swap, "{\pi_2}"] \ar[d, two heads, swap, "{\pi_1}"] \pbmark & \U \ar[d]  \\
+X \ar[rr,swap, "{f_1}"] \ar[rru, dotted, swap, "{f_2}"]  \ar[rrr,swap, bend right, "{f_0}"] && \U \ar[r]  & \V
+\end{tikzcd}
+\end{equation}
+Since $\U=\Fib(\VV)\to\V$ is a weak proposition by Lemma \ref{lemma:Fibweakprop} and (C8), the projection $\pi_1: \U\times_\V \U \fib \U$ is a trivial fibration, so there is a diagonal filler $f_2 : X\to \U\times_\V \U$ as indicated.  Taking $f := \pi_2\circ f_2 : X\to \U\times_\V \U \to \U$ gives another classifying map for the fibration structure on $F\to X$, for which $f\circ c =  f_c$ as required.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The equivalence extension property}\label{sec:EEP}
@@ -2847,17 +3435,15 @@ To finish the proof as planned, $p_1 : B^\I \ra B$ is a trivial fibration becaus
 Note that $p : A \ra C$ is small if $q : B\ra C$ is small.
 \end{remark}
 
-\ednote{
-Expected to use alignment here.  Also expected to need closure of cofibrations under $\Pi_\I$.
-}
+%\ednote{
+%Expected to use alignment here.  Also expected to need closure of cofibrations under $\Pi_\I$.
+%}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The fibration extension property}\label{sec:FEP}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In the presence of a universal fibration $\UU\ra\U$, as was constructed in section \ref{sec:U}, the fibration extension property (Definition \ref{def:fibextreplace})  is closely related to the statement that the base object $\U$ is fibrant.  For Kan simplicial sets, Voevodsky proved the latter directly using minimal fibrations \cite{VVuniverse}.  Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as stated in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. In \cite{CCHM}, Coquand uses the equivalence extension property to prove that $\U$ is fibrant, without assuming 3-for-2 for weak equivalences, by a neat argument using a reduction of general box-filling to a condition called ``Kan-composition''.   We shall prove that $\U$ is fibrant using the equivalence extension property via a different argument than that in \cite{CCHM}, avoiding the reduction of filling to composition, which we therefore do not require.
-
-
+In the presence of a universal fibration $\UU\fib\U$, as was constructed in section \ref{sec:U}, the fibration extension property (Definition \ref{def:fibextreplace})  is closely related to the statement that the base object $\U$ is fibrant.  For Kan simplicial sets, Voevodsky proved the latter directly using minimal fibrations \cite{VVuniverse}.  Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as stated in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. In \cite{CCHM}, Coquand uses the equivalence extension property to prove that $\U$ is fibrant, without assuming 3-for-2 for weak equivalences, by a neat argument using a reduction of general box-filling to a condition called ``Kan-composition''.   We shall prove that $\U$ is fibrant using the equivalence extension property via a different argument than that in \cite{CCHM}, avoiding the reduction of filling to composition, which we therefore do not require.
 
 %We give a formulation of this argument in an appendix \ref{App:Comp}.
 %
@@ -2896,16 +3482,7 @@ In the presence of a universal fibration $\UU\ra\U$, as was constructed in secti
 %\end{proof}
 %
 
-Returning to the relation between the fibration extension property and the condition that the base object $\U$ is fibrant, it is easily seen that the latter implies the former.  Indeed, let $t : X\cof X'$ be a trivial cofibration and $Y \fib X$ a fibration.  To extend $Y$ along $t$, take a classifying map $y : X \ra \U$, so that $Y \cong y^*\UU$ over $X$. If $\U$ is fibrant then we can extend $y$ along $t : X\cof X'$ to get $y' : X' \ra \U$ with $y = y'\circ t$.  The pullback $Y' = (y')^*\UU \fib X'$ is then a (small) fibration such that $t^*Y' \cong t^*(y')^*\UU\cong y^*\UU \cong Y$ over $X$.  Thus for the record.
-
-\begin{proposition}\label{prop:UfibtoFEP}
-If the base object $\,\U$ of the universal fibration $\UU\ra\U$ is fibrant, then the fibration weak factorization system has the fibration extension property.
-\end{proposition}
-
-Conversely, we merely note that the FEP clearly implies the fibrancy of $\U$, given the following ``alignment'' lemma, which will also be required below (cf.(2') of~\cite{Shu:UAERP}).
-
-\begin{lemma}\label{lem:alignment}
-Given a fibration $Y\onto X$ with classifying map $y : X \ra \U$, a cofibration $t : X\cof X'$, and a (small) fibration $Y'\onto X'$ with $Y \cong t^*Y'$ over $X$, there is a classifying map $y' : X' \ra \U$ for $Y'$ with $y'\circ t = y$.
+Returning to the relation between the fibration extension property and the condition that the base object $\U$ is fibrant, it is easily seen that the latter implies the former.  Indeed, let $t : X\cof X'$ be a trivial cofibration and $Y \fib X$ a fibration.  To extend $Y$ along $t$, take a classifying map $y : X \ra \U$, so that $Y \cong y^*\UU$ over $X$. If $\U$ is fibrant then we can extend $y$ along $t : X\cof X'$ to get $y' : X' \ra \U$ with $y = y'\circ t$.  The pullback $Y' = (y')^*\UU \fib X'$ is then a (small) fibration such that $t^*Y' \cong t^*(y')^*\UU\cong y^*\UU \cong Y$ over $X$.  
 \[
 \xymatrix{
 Y \ar@{->>}[dd] \ar[rd] \ar[rr] && \UU \ar@{->>}[dd] \\
@@ -2914,14 +3491,24 @@ X  \ar@{>->}[rd]_t \ar[rr]_<<<<<<<<{y}  && \U  \\
 & X' \ar@{..>}[ru]_{y'} &
 }
 \]
-\end{lemma}
-\begin{proof}
-This is routine using Yoneda and assuming that cofibrations $A \mono B$ have \emph{complemented} monos as components $A[n] \mono B[n]$.\footnote{This of course holds if the base category $\Set$ is classical; otherwise, one needs to take this as a further axiom on $\CC$.}  In more detail, since $Y'\onto X'$ is small, there is a classifying map $z : X' \ra \U$,  perhaps not commuting with $t$. Nonetheless, we can use $z$ to define the desired $y' : X' \ra \U$ objectwise as follows: Take any map from a representable $x' : \I^n \ra X'$ and consider whether it factors through $t$, say as $x' = t\circ x$ for some (necessarily unique) $x: \I^n \ra X$.  If $x'$ does factor, set  $y'\circ x' = y\circ x$; if not, set $y'\circ x' = z\circ x'$.  This specification is clearly natural in $I^n$, so it defines $y': X'\ra\U$, and the specification ensures that $y'\circ t = y$, and that the pullback of $\UU$ along $y'$ is the same as that along $z$, namely $Y'\fib X'$.
-\end{proof}
+Thus for the record, we have:
+
+\begin{proposition}\label{prop:UfibtoFEP}
+If the base object $\,\U$ of the universal fibration $\UU\fib\U$ is fibrant, then the fibration weak factorization system has the fibration extension property.
+\end{proposition}
+
+Conversely, the FEP also implies the fibrancy of $\U$, given the Realignment Lemma \ref{lemma:realignmentforfibrations}.
 
 \begin{corollary}
-The fibration extension property implies that the base $\U$ of the universal fibration is a fibrant object.
+The fibration extension property implies that the base $\U$ of the universal fibration $\UU\fib\U$ is fibrant: given any $y : X \ra \U$ and trivial cofibration $t : X\cof X'$, there is a map $y' : X' \ra \U$  with $y'\circ t = y$.
 \end{corollary}
+
+\begin{proof}
+Take the pullback of $\UU\fib\U$ along $y : X \ra \U$ to get a (small) a fibration $Y\fib X$, which extends along the (trivial) cofibration $t : X\cof X'$ by the FEP,  to a (small) fibration $Y'\onto X'$ with $Y \cong t^*Y'$ over $X$.  By realignment there is a classifying map $y' : X' \ra \U$ for $Y'$ with $y'\circ t = y$.
+%
+%
+%This is routine using Yoneda and assuming that cofibrations $A \mono B$ have \emph{complemented} monos as components $A[n] \mono B[n]$.\footnote{This of course holds if the base category $\Set$ is classical; otherwise, one needs to take this as a further axiom on $\CC$.}  In more detail, since $Y'\onto X'$ is small, there is a classifying map $z : X' \ra \U$,  perhaps not commuting with $t$. Nonetheless, we can use $z$ to define the desired $y' : X' \ra \U$ objectwise as follows: Take any map from a representable $x' : \I^n \ra X'$ and consider whether it factors through $t$, say as $x' = t\circ x$ for some (necessarily unique) $x: \I^n \ra X$.  If $x'$ does factor, set  $y'\circ x' = y\circ x$; if not, set $y'\circ x' = z\circ x'$.  This specification is clearly natural in $I^n$, so it defines $y': X'\ra\U$, and the specification ensures that $y'\circ t = y$, and that the pullback of $\UU$ along $y'$ is the same as that along $z$, namely $Y'\fib X'$.
+\end{proof}
 
 Now we use the equivalence extension property to show that $\U$ is fibrant.
 \begin{proposition}
@@ -3019,27 +3606,49 @@ Use the fact that any two diagonal fillers are homotopic to get a homotopy equiv
 
 Applying proposition \ref{prop:UfibtoFEP} therefore yields the following.
 
-\begin{corollary}
+\begin{corollary}\label{cor:FEP}
 The fibration weak factorization system has the fibration extension property (definition \ref{def:fibextreplace}). 
 \end{corollary}
 
 By Theorem \ref{theorem:QMSmodFEP}, finally, we have the following.
 
 \begin{theorem}\label{theorem:QMS}
-There is a Quillen model structure $(\CC,\WW,\FF)$ on the category of cubical sets, where:
+There is a Quillen model structure $(\CC,\WW,\FF)$ on the category of cubical sets $\cSet$, where:
 \begin{enumerate}
-\item the cofibrations $\CC$ are any class of monomorphisms satisfying axioms (C0)-(C6),
+\item the cofibrations $\CC$ are any class of maps satisfying (C0)-(C8) (equivalently, the simplified axioms in the Appendix \ref{appendix:Cofibrations}),
 \item the fibrations $\FF$ are the maps $f : Y\ra X$ for which the canonical map 
 \[
 (f^\I \times \I, \mathrm{eval}_Y) : Y^\I \times \I\ra (X^\I \times \I)\times_X Y
 \]
 lifts on the right against $\CC$.
+\item the weak equivalences $\WW$ are the maps $w : X\ra Y$  for which internal precomposition $K^w : K^Y \to K^X$ is bijective on connected components for every fibrant object $K$.
 \end{enumerate}
 \end{theorem}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Appendix: Axioms for cofibrations}\label{appendix:Cofibrations}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The axioms for the \emph{cofibrations} $c : A \mono B$ in cartesian cubical sets, may be restated as follows.
+\begin{enumerate}
+%\item[(C0)] The map $0\to C$ is always a cofibration.
+\item[(C1)] All isomorphisms are cofibrations.
+\item[(C2)] The composite of two cofibrations is a cofibration.
+\item[(C3)] Any pullback of a cofibration is a cofibration.
+\item[(C4)] There is a terminal object of the form $t:1\mono \Phi$ in the category of cofibrations and cartesian squares.
+\item[(C5)] The diagonal map $\delta : \I\ra\I\times\I$ is a cofibration.
+\item[(C6)] The join of two cofibrant subobjects is a cofibration.
+\end{enumerate}
+
+\begin{proposition}
+The locally decidable subobjects satisfy the axioms.
+\end{proposition}
+\begin{proof}
+
+\end{proof}
 %
 \bibliographystyle{alpha}
-\bibliography{references}
+\bibliography{../references}
 %
 
 %%
@@ -3661,7 +4270,7 @@ where $i_! : \widehat\C \ra\widehat\D$ is the left adjoint of precomposition alo
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix: Logical specification of filling}\label{appendix:logicalspec}
+\section*{Appendix 3: Logical specification of filling}\label{appendix:logicalspec}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -3979,3 +4588,21 @@ B_0 &  \ar[lu]  \ar@/_8ex/ [dd] G \ar[d]^{q'} & \\
 %
 
 \end{document}
+
+%Some notes from dictation:
+%Intro: constructive, soa, frobenius, sattler, coquand, CAS, Lawvere, tiny cubes, hott, univalence, axiomatics, joyal
+%
+%Foundations 
+%Least test category, but not the test qms, cite accrs, classifies intervals and therefore universal 
+%Rather: initial among cubical qmc’s
+%Universe
+%Tiny interval implies certain combinatorial and algebraic constructions can be given strictly for example the type of vibration structures is strictly from Torio which allows us to construct the five ration in all universe this permits strict interpretation of the syntax of type theory.
+%Another novelty is the use of so-called classifying types. Which are exploited in the Kripke Joyal forcing semantics of a GH.
+%The construction of the universe using the nerve a junction replaces previous accounts by one which is entirely find a Terry algebraic. This can be used to avoid certain arguments involving present ability and infinite call limits such as the vibrancy of the universe in the proof of the vibration extension property. Compare hear the use of the fibrant universe or rather universe of vibrations in order to demonstrate the fiber and see if the universe with the treatment in Sattler involving consideration of infinite call limits.
+%Play. Homotopytypetheory presented possible interpretation of take her into home to be Siri this work culminates that development with the construction home it will be out of take theory centered on univalent
+%Refer to the conjecture about intentional type theory and infinity topazes and show that this construction cements that conception or something
+%Refer to the paper on the cubicle model of how much op tape theory from way back when I was one of the earliest treatments using Cartesian cubes to get intentional identity types with definitional interpretations of the Ja Rule and the computational
+%Saint Carlo for the use of the generic point but also theory and the paper with the alphabet of authors.
+%It’s hardly surprising that there should be a strong connection between the construction of models of homotopytypetheory with univalence and ship: categories especially given Shermans paper what is perhaps surprising is that the construction of such models apparently exhausts the resources of the current model structure in the sense that a model four model oh univalent how much of the tech theory suffices to construct a call model structure this idea goes back to Gambino in Garner who showed Fontana construct a certain kind of weak factorization system in the syntax of intentional type Siri this later send it by Lumsdaine using iron higher injunctive type in order to add a second week factorization system and finally in a somewhat different vein Christian Sattler who showed how to use univalent‘s in the form of what we now call the equivalence extension property in order to verify the axioms for a full call model structure. This can probably be understood as a sort of completeness theorem for homotopytypetheory with respect to Covid model categories, in the style of the usual categorical logic approach to such theorems building
+%Building generic models out of the theory directly. Such a construction would require a more formal development then that pursuit here.
+%Use the universe to replace the small object argument in order to give the vibration we factorization system that should do it
