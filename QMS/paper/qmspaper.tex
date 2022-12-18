@@ -4,7 +4,7 @@
 %
 % New start as qmspaper in 5.2022
 %
-%\documentclass[12pt]{amsart}
+%\documentclass[10pt]{amsart}
 \documentclass[12pt]{article}
 
 %\usepackage{ebgaramond}
@@ -164,19 +164,31 @@ Add an abstract.
 \section*{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Lawvere, Grothendieck, Kan, Serre, 
- 
+%Lawvere, Grothendieck, Kan, Serre, 
+%
+%VV, Coquand, A2016, Sattler, O-P, HoTT2019, 
+%
+%Filling and composition, varieties of cubes, options for cofibrations, endpoints vs. generic point, related work.
+%
+% cite LOPS universe
+% cite Gambino-Sattler
+%
+%AWFS and structured fibrations, classifying types, universe, tiny interval.
+%
+%Constructive except for SOA, fibrant replacement w/o quotients, pathspace factorization vs. Id types.
+%
+%Sec. 1-2 of cubical.tex.
+%
 
-
-Filling and composition, varieties of cubes, options for cofibrations, endpoints vs. generic point, related work.
-
-AWFS and structured fibrations, classifying types, universe, tiny interval.
-
-Constructive except for SOA, fibrant replacement w/o quotients, pathspace factorization vs. Id types.
-
-Ch. 1-2 of cubical.tex.
-
-
+%Contributions: 
+%- full diagrammatic proofs of the entire qms, not using TT.
+%- diagrammatic treatment of unbiased fibrations
+%- filling rather than composition
+%- elementary diagrammatic proof of Frobenius
+%- elementary diagrammatic proofs of EEP, FEP (w/o connections)
+%- entirely constructive
+%- axiomatic cofibrations
+%- 
 
 
 %To do:
@@ -201,7 +213,7 @@ Ch. 1-2 of cubical.tex.
 \section{Cartesian cubical sets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-There are now many treatments of cubical sets in the literature, inclusing \cite{Grandis, Grandis, Jardine, Jardine, Bezem, OrtonPitts, Coquand, Cisinski}.  Our construction is intended to work in \emph{all} of these, insofar as the axioms in Definition \ref{axioms} below are satisfied.   
+There are now many treatments of cubical sets in the literature, including \cite{Grandis, Grandis, Jardine, Jardine, Bezem, OrtonPitts, Coquand, Cisinski}.  Our construction is intended to work in \emph{all} of these, insofar as the axioms in Definition \ref{axioms} below are satisfied.   
 For the sake of concreteness, however, we shall consider what may be called the \emph{cartesian} cube category $\C$, defined as the free finite product category on an interval $\delta_0, \delta_1 : 1\rightrightarrows \I$.
 %As a Lawvere algebraic theory with two constant symbols $\T = \{0, 1\}$, the category $\square$ is dual to the full subcategory of finitely-generated, free $\T$-algebras $\mathsf{Alg}(\T)_{\mathrm{fg}}$.  In this case, the $\T$-algebras are simply \emph{bipointed sets} $(A, a_0, a_1)$, and the free ones are the \emph{strictly} bipointed sets $a_0\neq a_1$.  Thus $\mathsf{Alg}(\T)_{\mathrm{fg}}$ consists of the finite, strictly bipointed sets and all bipointed maps between them.  We will use the following presentation.
 
@@ -1046,7 +1058,7 @@ j(u^*c,zu,x(u\times \I)', y(u\times \I)) = j(c,z,x,y)\circ (u\times \I).
 \begin{definition}\label{def:unbiasedfibstructure} A \emph{(uniform, unbiased) fibration structure} on a map $$f: Y\ra X$$ is a choice of fillers $j(c,z,x,y)$ as in \eqref{diagram:basicunbiasedfillers} satisfying \eqref{eq:uniformunbiasedfillers} for all $u : \I^m\ra\I^n$.
 \end{definition}
 
-In these terms, we have following analogue of corollary \ref{cor:uniformfibstructequiv}.
+In these terms, we have the following analogue of corollary \ref{cor:uniformfibstructequiv}.
 
 \begin{proposition}\label{prop:equivfibstruc} For any object $X$ in \cSet\ the following are equivalent:
 \begin{enumerate}
@@ -2349,14 +2361,14 @@ A few comments are required:
 %
 \begin{itemize}
 %
-\item In contrast to \cite{HS:1997}, in \eqref{eq:universeob}  we take the underlying \emph{set of objects} of the functor category $\widehat{\bbC/_c}=[\op{\bbC/_c}, \Set]$.
+\item In contrast to \cite{HS:1997}, in \eqref{eq:universeob}  we take the underlying set of objects of the functor category $\widehat{\bbC/_c}=[\op{\bbC/_c}, \Set]$.
 %\psh{\bbC/_c}$.
 
-\item Following \cite{HS:1997}, \eqref{eq:universeel} adopts the ``categories with families'' point of view in specifying a presheaf on the category of elements $\int_{\bbC}U$, rather than an arrow $E\to U$ in $\widehat{\bbC}$, using the equivalence
+\item As in \cite{HS:1997}, \eqref{eq:universeel} adopts the ``categories with families'' point of view in describing an arrow $E\to U$ in $\widehat{\bbC}$ equivalently as a presheaf on the category of elements $\int_{\bbC}U$, using 
 \begin{equation}\label{eq:elements}\textstyle
-\widehat{\int_{\bbC}U}\ \simeq\ \widehat{\bbC}/_U\,.
+\widehat{\bbC}/_U\ \simeq\  \widehat{\int_{\bbC}U}\,
 \end{equation}
-This equivalence is mediated by setting
+where
 \[
 E(c)\ =\ {\textstyle \coprod_{A\in U(c)}{\mathsf{E}l}(c, A)}.
 \]
@@ -2366,7 +2378,7 @@ The argument $(c, A) \in \int_{\bbC}U$ in \eqref{eq:universeel} thus consists of
 %
 \end{itemize}
 
-The presheaf $U$, which is not small, is then regarded as the Grothendieck universe $u$ ``lifted'' from $\Set$ to $[\op{\bbC}, \Set]$ \cite{Streicher:lifting}.  We first analyse this specification of $(U, {\mathsf{E}l})$ from a different perspective, in order to establish its basic property as a classifier for small families in $\widehat\bbC$. 
+The presheaf $U$, which is not small, is then regarded as the Grothendieck universe $u$ ``lifted'' from $\Set$ to $[\op{\bbC}, \Set]$.  We first analyse this specification of $(U, {\mathsf{E}l})$ from a different perspective, in order to establish its basic property as a classifier for small families in $\widehat\bbC$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{A realization-nerve adjunction.}
@@ -2461,7 +2473,7 @@ The image of $*\in 1c$ along the bottom is the forgetful functor $U_c : \bbC/_c\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{A universal family.}
 
-For the terminal presheaf $1\in\widehat{\bbC}$ we have $\elem{1} \cong\bbC$, so for every $X\in\widehat{\bbC}$ there is a canonical projection  $\elem X \ra\bbC$, which is a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
+For the terminal presheaf $1\in\widehat{\bbC}$ we have an iso $\elem{1} \cong\bbC$, so for every $X\in\widehat{\bbC}$ there is a canonical projection  $\elem X \ra\bbC$, which is a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
 Ignoring size issues temporarily, recall that discrete fibrations in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets (cf.~\cite{W:2007}).  For every presheaf $X\in\widehat{\bbC}$, we therefore have a pullback diagram in $\Cat$,
 \begin{equation}\label{eq:classifyuniversecat}\textstyle
 \begin{tikzcd}
@@ -2510,7 +2522,7 @@ The nerve $\VV\to\V$  of the classifier for discrete fibrations $\op\SSet\to\op\
 The classifying map $\tilde{Y} : X\to \V$ is determined by the adjunction $\int \dashv \nu$ as the transpose of the classifying map of the discrete fibration $\elem Y\to\elem X$.  
 \end{proposition}
 
-Given a natural transformation $Y\to X$, the classifying map $\tilde{Y} : X\to \V$ is of course not in general unique. Nonetheless, we can  use the construction of $\VV\to\V$ as the nerve of the discrete fibration classifier $\op\SSet\to\op\Set$, for which classifying functors $\bbC \to \op\Set$ are unique up to natural isomorphism, to infer the following proposition, which will be required below (cf.~\cite{Shu:15,GSS}).
+Given a natural transformation $Y\to X$, the classifying map $\tilde{Y} : X\to \V$ is of course not in general unique. Nonetheless, we can  use the construction of $\VV\to\V$ as the nerve of the discrete fibration classifier $\op\SSet\to\op\Set$, for which classifying functors $\bbC \to \op\Set$ are unique up to natural isomorphism, to infer the following proposition, which will be required below (cf.~\cite{Shu:15,GSS:22}).
 
 \begin{proposition}[Realignment for families]\label{prop:realignment}
 Given a monomorphism $c : C\cof X$ and a family $Y\to X$, let $y_c : C \to \V$ classify the pullback $c^*Y\to C$.  Then there is a classifying map $y: X \to \V$ for $Y\to X$ with $y\circ c = y_c$.
@@ -2932,7 +2944,7 @@ Y \ar[r]_{f} &X\\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Classifying fibrations}
+\subsection{Classifying fibrations}\label{sec:universalfibration}
 
 In order to classify fibrations $A\fib X$, we proceed as for trivial fibrations by constructing an object $\Fib(A)\ra X$ of fibration structures on a map $A\ra X$ which, moreover, is stable under pullback.  We then apply the construction to the universal small family $\VV\ra\V$ to obtain a universal small fibration.  
 
@@ -3132,7 +3144,6 @@ As an object over the base, a weak proposition is thus one that ``thinks it is c
 %\]
 \end{lemma}
 %
-%\noindent Note that the condition on cofibrations holds for the locally decidable monos.
 %
 \begin{proof}
 Let $Y\to X$ and consider the following diagram, in which we have written $Y' = \TFib(Y)\times_X Y$ and $\TFib(Y)^2 = \TFib(Y)\times_X \TFib(Y)$.
@@ -3260,7 +3271,7 @@ Since $\U=\Fib(\VV)\to\V$ is a weak proposition by Lemma \ref{lemma:Fibweakprop}
 \section{The equivalence extension property}\label{sec:EEP}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The equivalence extension property (EEP) is closely related to the \emph{univalence} of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:U} (see \cite{Shu2015}).  We shall use it in section \ref{sec:FEP} to show that the base object $\U$ is fibrant, which implies the fibration extension property.  Our proof of the EEP is a reformulation of a type-theoretic argument due to Coquand \cite{CCHM}, which in turn is a modification of the original argument of Voevodsky \cite{KLV}.  See \cite{sattler} for another reformulation.
+The equivalence extension property (EEP) is closely related to the \emph{univalence} of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:universalfibration} (see \cite{Shu2015}).  We shall use it in section \ref{sec:FEP} to show that the base object $\U$ is fibrant, which implies the fibration extension property.  Our proof of the EEP is a reformulation of a type-theoretic argument due to Coquand \cite{CCHM}, which in turn is a modification of the original argument of Voevodsky \cite{KLV}.  See \cite{sattler} for another reformulation.
 %Of course, we must avoid the use of the general 3-for-2 condition for weak equivalences.  
 
 We first recall some basic facts and make some simple observations. For any map $f :X\ra Y$, recall the \emph{pathspace factorization} $f = t\circ s$ indicated below.
@@ -3286,7 +3297,7 @@ P_f  \ar[dd]^{p_f} \ar[rr]^{p_0^*f} \ar@{.>}@/_1.5pc/[rrrr]_<<<<<<<<<<<<<<<t \pb
 X \ar[rr]_f  &&  Y &
 }
 \end{equation}
-Here $p_0, p_1$ are the evaluations $Y^{\delta_{0}}, Y^{\delta_{1}}$ at the endpoints $\delta_0, \delta_1 : 1\ra\I$, and let $r:= Y^!$ for $! : \I\ra 1$. Note that $p_0r = p_1r = 1_Y$.  Then let  $p_f := f^*p_0 : P_f \ra Y$, the pullback of $p_0$ along $f$, and $s:= f^*r : X\ra P_f$ (over $X$).  Finally, let $t:= p_1\circ p_0^*f : P_f \ra Y$ be the indicated horizontal composite. 
+Here $p_0, p_1$ are the evaluations $Y^{\delta_{0}}, Y^{\delta_{1}}$ at the endpoints $\delta_0, \delta_1 : 1\ra\I$, and let $r:= Y^!$ for $! : \I\ra 1$, so that $p_0r = p_1r = 1_Y$.  Then let  $p_f := f^*p_0 : P_f \ra Y$, the pullback of $p_0$ along $f$, and $s:= f^*r : X\ra P_f$ (over $X$).  Finally, let $t:= p_1\circ p_0^*f : P_f \ra Y$ be the indicated horizontal composite. 
 
 We make the following well-known observations.
 \begin{enumerate}
@@ -3328,10 +3339,10 @@ By lemma \ref{lemma:Leibniz}, for any map $a : A \to Z$ we have the equivalence 
 \[
 a \pitchfork c\!\Rightarrow\!p  \quad\text{iff}\quad a\!\otimes\!c \pitchfork p.
 \]
-But since $c : C\mono B$ is a cofibration, $a\otimes c$ is also a cofibration if $a : A \mono Z$ is one by axiom (C6), which says that cofibrations are closed under pushout-products.  So $a\otimes c \pitchfork p$ indeed holds, since $p$ is a trivial fibration.
+But since $c : C\mono B$ is a cofibration, $a\otimes c$ is also a cofibration if $a : A \mono Z$ is one, by axiom (C6), which says that cofibrations are closed under pushout-products.  So $a\otimes c \pitchfork p$ indeed holds, since $p$ is a trivial fibration.
 \end{proof}
 
-\begin{proposition}[EEP]
+\begin{proposition}[EEP]\label{prop:EEP}
 Weak equivalences extended along cofibrations in the following sense: given a cofibration $c:C' \mono C$ and fibrations $A'\onto C'$ and $B\onto C$, and a weak equivalence $w':A' \simeq c^*B$ over $C'$,
 \begin{equation}\label{diag:EEP}
 \xymatrix{
@@ -3340,7 +3351,7 @@ A' \ar@{->>}[dd] \ar[rd]_{\sim}^{w'} \ar@{..>}[rr] && A \ar@{..>>}[dd] \ar@{..>}
 C' \ar@{>->}[rr]_c && C
 }
 \end{equation}
-there is a fibration $A\onto C$ and a weak equivalence $w: A \simeq B$ over $C$ that pulls back along $c:C' \mono C$ to $w'$, so that $c^*w = w'$.
+there is a fibration $A\onto C$ and a weak equivalence $w: A \simeq B$ over $C$ that pulls back along $c:C' \mono C$ to $w'$, so $c^*w = w'$.
 
 \end{proposition}
 %
@@ -3355,10 +3366,10 @@ A' \ar@{->>}[dddd] \ar[rrdd]_{\sim}^{w'} \ar@{>->}[rrrr] && && A \ar[dddd]_>>>>>
 C' \ar@{>->}[rrrr]_c &&&& C &&
 }
 \end{equation}
-Let us write $p':= c^*p : A' \ra C'$ and $B' := c^*B$ and $q':= c^*q$.
+Let us rename $p':= c^*p : A' \ra C'$ and $B' := c^*B$ and $q':= c^*q$.
 Now let $w=t\circ s$ be the pathspace factorization \eqref{diag:pathspace factorization} of $w$, as a map over $C$.  Since $q:B \ra C$ is a fibration, by the foregoing remarks on pathspace factorizations, we know that $s : A\ra P_w$ has a retraction $p_w : P_w \ra A$ which is a trivial fibration.  The retraction $p_w$ is a map over $C$.  
 
-The pathspace factorization $w=t\circ s : A \ra P_w \ra B$ is stable under pullback along $c$, providing a pathspace factorization $w'=t'\circ s' : A' \ra P_{w'} \ra B'$ over $C'$.  Since both $p'$ and $q'$ are fibrations, the retract $p_{w'}: P_{w'} \ra A'$ is a trivial fibration, and now $t' : P_{w'} \ra B'$ is a fibration.
+The pathspace factorization $w=t\circ s : A \ra P_w \ra B$ is stable under pullback along $c$, providing a pathspace factorization $w'=t'\circ s' : A' \ra P_{w'} \ra B'$ over $C'$.  Since both $p'$ and $q'$ are fibrations, the retraction $p_{w'}: P_{w'} \ra A'$ is a trivial fibration, and now $t' : P_{w'} \ra B'$ is a fibration.
 \begin{equation}\label{diag:EEPfactored2}
 \xymatrix@=1.5em{
 A' \ar@{->>}[dddd]_{p'} \ar[rrdd]_{\sim}^{w'}  \ar[rr]^{s'} && \ar@{.>>}@/_1.5pc/[ll]_{p_{w'}} P_{w'} 
@@ -3371,7 +3382,7 @@ C' &&
 \end{equation}
 Thus the composite $q'\circ t' : P_{w'} \ra B' \ra C'$ is a fibration and therefore, by the retraction over $C'$ with the trivial fibration $p_{w'}$, we have that $s' : A' \ra P_{w'}$ is a weak equivalence, by 3-for-2 for weak equivalences between fibrations.  For the same reason, $t'$ is then a weak equivalence, and therefore a trivial fibration.
 
-Since $t' = c^*t = b^*t$ is a trivial fibration, its pushforward $b_*b^*t$ along $b$ is also one.  Moreover, $b_*b^*t : b_*b^*P_w \ra B$ admits a unit $\eta : P_w \ra  b_*b^*P_w$ (over~$B$).  
+Since $t' = c^*t = b^*t$ is a trivial fibration, its pushforward $b_*b^*t$ along $b$ is also one by by Corollary \ref{cor:plusalgsection}.  Moreover, $b_*b^*t : b_*b^*P_w \ra B$ admits a unit $\eta : P_w \ra  b_*b^*P_w$ (over~$B$).  
 \begin{equation}\label{diag:EEPfactored3}
 \xymatrix@=1.5em{
 A' \ar@{->>}[dddd] \ar[rrdd]_{\sim}^{w'} \ar@{>->}[rrrr] && && A \ar[dddd]_>>>>>>>>>>>>p \ar[rrdd]^{w} \ar[rr]^s && \ar@{.>}@/_1.5pc/[ll]_{p_w} P_w \ar[dd]^t \ar[rr]^-\eta && b_*b^*P_w \ar[lldd]^{b_*b^*t}\\
@@ -3398,7 +3409,7 @@ A' \ar@{>->}[rrr]_>>>>>>>a  \ar[rrd]_{w'}
 && B'\ar@{>->}[rrr]_b &&& B
 }
 \end{equation}
-The right hand face is a pullback by definition, and the remainder results from pulling the right face back along $b$. Thus all faces are pullbacks.  The base is also a pushforward, $b_*w'=w$, again by definition.  Thus the top is also a pushforward, $\overline{b}_*((p'_0)^*w')=p_0^*w$. Indeed, since the front face is a pullback, the Beck-Chevalley condition applies and we have $\overline{b}_*(p'_0)^*(w') = p_0^*\,b_*(w') = p_0^*w$.
+The right hand face is a pullback by definition, and the remainder results from pulling the right face back along $b$, by the stability of the pathspace factorization \eqref{diag:pathspace factorization3}. Thus all faces are pullbacks.  The base is also a pushforward, $b_*w'=w$, again by definition.  Thus the top face is also a pushforward, $\overline{b}_*((p'_0)^*w')=p_0^*w$. Indeed, since the front face is a pullback, the Beck-Chevalley condition applies, and so we have $\overline{b}_*(p'_0)^*(w') = p_0^*\,b_*(w') = p_0^*w$.
 
 Now consider the following, in which the top square remains the same as in \eqref{diag:ppcube}, but $p_0$ has been relaced by $p_1 : B^\I \ra B$, so the composite at right is by definition $t = p_1\circ p_0^*w$.
 \begin{equation}\label{diag:twounits}
@@ -3443,7 +3454,7 @@ Note that $p : A \ra C$ is small if $q : B\ra C$ is small.
 \section{The fibration extension property}\label{sec:FEP}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In the presence of a universal fibration $\UU\fib\U$, as was constructed in section \ref{sec:U}, the fibration extension property (Definition \ref{def:fibextreplace})  is closely related to the statement that the base object $\U$ is fibrant.  For Kan simplicial sets, Voevodsky proved the latter directly using minimal fibrations \cite{VVuniverse}.  Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as stated in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. In \cite{CCHM}, Coquand uses the equivalence extension property to prove that $\U$ is fibrant, without assuming 3-for-2 for weak equivalences, by a neat argument using a reduction of general box-filling to a condition called ``Kan-composition''.   We shall prove that $\U$ is fibrant using the equivalence extension property via a different argument than that in \cite{CCHM}, avoiding the reduction of filling to composition, which we therefore do not require.
+In the presence of a universal fibration $\UU\fib\U$, as given by Proposition \ref{prop:UniversalFib}, the fibration extension property (Definition \ref{def:fibextreplace})  is closely related to the statement that the base object $\U$ is fibrant.  For Kan simplicial sets, Voevodsky proved the latter directly using minimal fibrations \cite{VVuniverse}.  Shulman \cite{Shulmanuniverse} gives a proof from univalence (in the form of the equivalence extension property as stated in section \ref{sec:EEP}) in a more general setting, but it uses the 3-for-2 property for weak equivalences, which is what we are trying to prove. In \cite{CCHM}, Coquand uses the equivalence extension property to prove that $\U$ is fibrant, without assuming 3-for-2 for weak equivalences, by a neat argument using a reduction of general box-filling to a condition called ``Kan-composition''.   We shall prove that $\U$ is fibrant using the equivalence extension property via a different argument than that in \cite{CCHM}, avoiding the reduction of filling to composition, which we therefore do not require.
 
 %We give a formulation of this argument in an appendix \ref{App:Comp}.
 %
@@ -3497,7 +3508,7 @@ Thus for the record, we have:
 If the base object $\,\U$ of the universal fibration $\UU\fib\U$ is fibrant, then the fibration weak factorization system has the fibration extension property.
 \end{proposition}
 
-Conversely, the FEP also implies the fibrancy of $\U$, given the Realignment Lemma \ref{lemma:realignmentforfibrations}.
+Conversely, given the Realignment Lemma \ref{lemma:realignmentforfibrations}, the FEP also implies the fibrancy of $\U$:
 
 \begin{corollary}
 The fibration extension property implies that the base $\U$ of the universal fibration $\UU\fib\U$ is fibrant: given any $y : X \ra \U$ and trivial cofibration $t : X\cof X'$, there is a map $y' : X' \ra \U$  with $y'\circ t = y$.
@@ -3510,84 +3521,169 @@ Take the pullback of $\UU\fib\U$ along $y : X \ra \U$ to get a (small) a fibrati
 %This is routine using Yoneda and assuming that cofibrations $A \mono B$ have \emph{complemented} monos as components $A[n] \mono B[n]$.\footnote{This of course holds if the base category $\Set$ is classical; otherwise, one needs to take this as a further axiom on $\CC$.}  In more detail, since $Y'\onto X'$ is small, there is a classifying map $z : X' \ra \U$,  perhaps not commuting with $t$. Nonetheless, we can use $z$ to define the desired $y' : X' \ra \U$ objectwise as follows: Take any map from a representable $x' : \I^n \ra X'$ and consider whether it factors through $t$, say as $x' = t\circ x$ for some (necessarily unique) $x: \I^n \ra X$.  If $x'$ does factor, set  $y'\circ x' = y\circ x$; if not, set $y'\circ x' = z\circ x'$.  This specification is clearly natural in $I^n$, so it defines $y': X'\ra\U$, and the specification ensures that $y'\circ t = y$, and that the pullback of $\UU$ along $y'$ is the same as that along $z$, namely $Y'\fib X'$.
 \end{proof}
 
-Now we use the equivalence extension property to show that $\U$ is fibrant.
-\begin{proposition}
-The base $\,\U$ of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:U} is a fibrant object.
-\end{proposition}
+Now let us use the EEP, Proposition \ref{prop:EEP}, to show that $\U$ is fibrant. We shall need the following two lemmas.
+
+\begin{lemma}\label{lemma:Uintheslice}
+The base change $\I^*:\cSet\to\cSet/\I$ takes the universal fibration $\UU\to\U$ in $\cSet$  to a universal fibration in the slice category $\cSet/\I$.
+\end{lemma}
 
 \begin{proof}
-We need to solve the following filling problem for an arbitrary cofibration $c:C \cof Z$, thus showing that $\,\U^{\delta_0} : \U^\I \ra\, \U$ is a trivial fibration (for, say, the point $\delta_0 :1\ra \I $).\ednote{say something about using $\delta_0$}
+\ednote{fill in}
+\end{proof}
+
+\begin{proposition}
+The base object $\U$ of the universal fibration $\UU\fib\U$ in $\cSet$ constructed in section \ref{sec:U} is fibrant.
+\end{proposition}
+
+%\begin{proof}
+%We need to solve the following filling problem for an arbitrary cofibration $c:C \cof Z$, thus showing that $\,\U^{\delta_0} : \U^\I \ra\, \U$ is a trivial fibration (for, say, the point $\delta_0 :1\ra \I $).
+%\begin{equation}\label{diag:Ufib1}
+%\xymatrix@=3em{
+%C \ar@{>->}[d]_c \ar[r]^{\tilde{a}} & \U^\I \ar[d]^{\U^{\delta_0}} \\
+%Z  \ar@{..>}[ru] \ar[r]_{b}  & \U  \\
+%}
+%\end{equation}
+%Transposing $\tilde{a}$ to $a : C\times \I \ra \U$ and taking pullbacks of $\UU\fib \U$ along $a$ and $b$ to get  corresponding fibrations $A\fib C\times \I$ and $B\fib Z$, we have the following equivalent condition.  Letting $$C_0 : C\cong C\times1 \ra C\times \I$$ be the evident inclusion of the $0$-end of the cylinder, let $A_0 = (C_0)^*A \fib C$ be the ``slice of $A$ over $C_0$''.  We then have $c^*B \cong A_0$ over $C$ by the outer square of \eqref{diag:Ufib1}.
+%\[
+%\xymatrix@=1em{
+%&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  A \ar@{->>}[dd] \\
+%&& && \\
+%&& \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd] C\times\I \\
+%B \ar@{->>}[dd] &&&& \\
+%&&&& \\
+%Z \ar[rrr]_{Z_0} &&& Z\times\I &
+%}
+%\]
+%The diagonal filler in \eqref{diag:Ufib1} corresponds, again by transposition and pullback of $\UU\fib\U$, to a fibration $D\fib Z\times \I$ with $(c\times \I)^*D \cong A$ over $C\times \I$
+% and $(Z_0)^*D \cong B$ over $Z$, as indicated below.
+%\[
+%\xymatrix@=1em{
+%&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] \\
+%&& && \\
+%&& \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd]^{c\times\I} C\times\I \\
+%B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] & \\
+%&&&& \\
+%Z \ar[rrr]_{Z_0} &&& Z\times\I &
+%}
+%\]
+%We construct $D\fib Z\times \I$ by the equivalence extension property as follows.  Apply the functor $(-)\times\I$ to the left (pullback) face of the above cube to get the following with a new pullback square on the right, with the indicated fibrations.
+%\begin{equation}\label{diag:Ufib2}
+%\begin{gathered}
+%\xymatrix@=1em{
+%&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] &&  \ar@{->>}[lldd] A_0\times\I \ar[lddd]  \\
+%&& && &&\\
+%&& \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd]^{c\times\I} C\times\I && \\
+%B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] && \ar@{->>}[lldd] B\times\I &\\
+%&&&& &&\\
+%Z \ar[rrr]_{Z_0} &&& Z\times\I &&&
+%}
+%\end{gathered}
+%\end{equation}
+%We claim there is a weak equivalence $e:A \simeq A_0\times \I$ over $C\times \I$, from which follow  by the EEP:
+%
+%\begin{enumerate}
+%\item[(i)] a fibration $D\fib Z\times \I$ with $(c\times\I)^*D \cong A$ over $C\times\I$, and 
+%\item[(ii)] a weak equivalence $f:D\simeq B\times\I$ over $Z\times \I$ with $(c\times\I)^*f \cong e$ over $C\times\I$. 
+%\end{enumerate}
+%It then remains only to show that $B\cong (Z_0)^*D$ over $Z$.
+%
+%To get $e$, consider the following square, in which the top map is $A_0\times \delta_0$ (after $A_0\cong A_0\times 1$) and the others are those from the previous diagram.
+%\begin{equation}\label{diag:Ufibn}
+%\xymatrix{
+%A_0 \ar@{>->}[d] \ar@{>->}[r] & A_0\times\I \ar@{>>}[d] \\
+%A  \ar@{>>}[r] &  C\times\I 
+%}
+%\end{equation}
+%The square is easily seen to commute, and the maps with $A_0$ as domain are trivial cofibrations by Frobenius (proposition \ref{prop:Frobenius}), because each is the pullback of a trivial cofibration along a fibration.
+%Applying a simple lemma (given below as \ref{lem:simple}) gives the required weak equivalence $e:A \simeq A_0\times \I$ over $C\times \I$.  
+%
+%To see that $B\cong (Z_0)^*D$ over $Z$, recall from the proof of the EEP that the map $f:B\cong (Z_0)^*D$ is the pushforward of  $e:A \simeq A_0\times \I$ along the cofibration $d_0\times\I :A_0\times\I \cof B\times\I$, calling the evident map $d_0:A_0\cof B$ in \eqref{diag:Ufib2}.  That is, by construction $f = (d_0\times\I)_*\,e$.  We can apply the Beck-Chevalley condition for the pushforward using the pullback square on the left below.
+%\begin{equation}
+%\xymatrix{
+%A_0 \ar@{>->}[d] \ar@{>->}[r] \pbcorner & A_0\times\I \ar@{>>}[d] & \ar[l]_-e A\\
+%B  \ar@{>->}[r]  &  B\times\I  & \ar[l]^-f D
+%}
+%\end{equation}
+%The pullback of $e$ along the top of the square is the identity on $A_0$, as can be seen by pulling back $e$ as a map over $C\times \I$ along $C_0 :  C\ra C\times\I$.
+%Thus the same is true (up to isomorophism) for the pullback of $f$ along the bottom.
+%
+%An application of the Realignment Lemma \ref{lemma:realignmentforfibrations} along the trivial cofibration $c\otimes \delta_0$ completes the proof.
+%\end{proof}
+
+
+\begin{proof}
+Moving $\U$ to the slice category $\cSet/\I$ by  (silently) applying the base change $\I^*:\cSet\to\cSet/\I$, we need to solve the following filling problem there, for $\delta : 1 \to \I$ the generic point and  $c:C \cof Z$ an arbitrary cofibration (over $\I$),
 \begin{equation}\label{diag:Ufib1}
 \xymatrix@=3em{
-C \ar@{>->}[d]_c \ar[r]^{\tilde{a}} & \U^\I \ar[d]^{\U^{\delta_0}} \\
+C \ar@{>->}[d]_c \ar[r]^{\tilde{a}} & \U^\I \ar[d]^{\U^{\delta}} \\
 Z  \ar@{..>}[ru] \ar[r]_{b}  & \U  \\
 }
 \end{equation}
-Transposing $\tilde{a}$ to $a : C\times \I \ra \U$ and taking pullbacks of $\UU\fib \U$ along $a$ and $b$ to get  corresponding fibrations $A\fib C\times \I$ and $B\fib Z$, we have the following equivalent condition.  Letting $$C_0 : C\cong C\times1 \ra C\times \I$$ be the evident inclusion of the $0$-end of the cylinder, let $A_0 = (C_0)^*A \fib C$ be the ``slice of $A$ over $C_0$''.  We then have $c^*B \cong A_0$ over $C$ by the outer square of \eqref{diag:Ufib1}.
+This shows that the map $\,\delta \Rightarrow \U = \U^{\delta} : \U^\I \too\, \U$ over $\I$ is a trivial fibration in $\cSet/\I$, and so $\U$ is fibrant in $\cSet$, by Definition \ref{def:unbiasedfibration}.  The remainder of the proof occurs in the Cartesian cubical presheaf category $\cSet/\I$, for which we have all the same results of sections 1 through \ref{sec:EEP} as for $\cSet$.  In particular, by Lemma \ref{lemma:Uintheslice} there is a universal fibration $\UU\to\U$ resulting from the base change.  
+
+Transposing $\tilde{a}$ to $a : C\times \I \ra \U$ and taking pullbacks of $\UU\fib \U$ along $a$ and $b$ to get  corresponding fibrations $A\fib C\times \I$ and $B\fib Z$, we have the following equivalent condition.  Letting $$C_\delta : C\cong C\times1 \ra C\times \I$$ be the evident inclusion of the ``$\delta$-section'' of the cylinder, let $A_\delta = (C_\delta)^*A \fib C$ be the ``section of $A$ over $C_\delta$''.  We then have $c^*B \cong A_\delta$ over $C$ by the outer square of \eqref{diag:Ufib1}.
 \[
 \xymatrix@=1em{
-&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  A \ar@{->>}[dd] \\
+&& \ar[llddd] A_\delta \ar@{->>}[dd] \ar[rr]  &&  A \ar@{->>}[dd] \\
 && && \\
-&& \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd] C\times\I \\
+&& \ar[llddd]^c C \ar[rr]_{C_\delta}  &&  \ar[lddd] C\times\I \\
 B \ar@{->>}[dd] &&&& \\
 &&&& \\
-Z \ar[rrr]_{Z_0} &&& Z\times\I &
+Z \ar[rrr]_{Z_\delta} &&& Z\times\I &
 }
 \]
-The diagonal filler in \eqref{diag:Ufib1} corresponds, again by transposition and pullback of $\UU\fib\U$, to a fibration $D\fib Z\times \I$ with $(c\times \I)^*D \cong A$ over $C\times \I$
- and $(Z_0)^*D \cong B$ over $Z$, as indicated below.
-\[
+The diagonal filler sought in \eqref{diag:Ufib1} corresponds, again by transposition and pullback of $\UU\fib\U$, to a fibration $D\fib Z\times \I$ with $(c\times \I)^*D \cong A$ over $C\times \I$ and $(Z_\delta)^*D \cong B$ over $Z$, as indicated below.
+\begin{equation}\label{diag:Ufib1.5}
 \xymatrix@=1em{
-&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] \\
+&& \ar[llddd] A_\delta \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] \\
 && && \\
-&& \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd]^{c\times\I} C\times\I \\
+&& \ar[llddd]^c C \ar[rr]_{C_\delta}  &&  \ar[lddd]^{c\times\I} C\times\I \\
 B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] & \\
 &&&& \\
-Z \ar[rrr]_{Z_0} &&& Z\times\I &
+Z \ar[rrr]_{Z_\delta} &&& Z\times\I &
 }
-\]
-We construct $D\fib Z\times \I$ by the equivalence extension property as follows.  Apply the functor $(-)\times\I$ to the left (pullback) face of the above cube to get the following with a new pullback square on the right, with the indicated fibrations.
+\end{equation}
+We can construct such a $D\fib Z\times \I$ using the equivalence extension property, as follows.  First apply the functor $(-)\times\I$ to the left (pullback) face of the cube in \eqref{diag:Ufib1.5} to get the following, with a new pullback square on the right, involving the indicated fibrations.
 \begin{equation}\label{diag:Ufib2}
 \begin{gathered}
 \xymatrix@=1em{
-&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] &&  \ar@{->>}[lldd] A_0\times\I \ar[lddd]  \\
+&& \ar[llddd] A_\delta \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] &&  \ar@{->>}[lldd] A_\delta\times\I \ar[lddd]  \\
 && && &&\\
-&& \ar[llddd]^c C \ar[rr]_{C_0}  &&  \ar[lddd]^{c\times\I} C\times\I && \\
+&& \ar[llddd]^c C \ar[rr]_{C_\delta}  &&  \ar[lddd]^{c\times\I} C\times\I && \\
 B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] && \ar@{->>}[lldd] B\times\I &\\
 &&&& &&\\
-Z \ar[rrr]_{Z_0} &&& Z\times\I &&&
+Z \ar[rrr]_{Z_\delta} &&& Z\times\I &&&
 }
 \end{gathered}
 \end{equation}
-We claim there is a weak equivalence $e:A \simeq A_0\times \I$ over $C\times \I$, from which follow  by the EEP:
-
+We next \emph{claim} that  there is a weak equivalence $e:A \simeq A_\delta\times \I$ over $C\times \I$, from which follow  by the EEP:
 \begin{enumerate}
 \item[(i)] a fibration $D\fib Z\times \I$ with $(c\times\I)^*D \cong A$ over $C\times\I$, and 
 \item[(ii)] a weak equivalence $f:D\simeq B\times\I$ over $Z\times \I$ with $(c\times\I)^*f \cong e$ over $C\times\I$. 
 \end{enumerate}
-It then remains only to show that $B\cong (Z_0)^*D$ over $Z$.
+It then remains only to show that $B\cong (Z_\delta)^*D$ over $Z$ to complete the proof.
 
-To get $e$, consider the following square, in which the top map is $A_0\times \delta_0$ (after $A_0\cong A_0\times 1$) and the others are those from the previous diagram.
+To obtain $e$, consider the following square, in which the top map is $A_\delta\times \delta$ (after $A_\delta\cong A_\delta\times 1$) and the others are those from  diagram \eqref{diag:Ufib2}.
 \begin{equation}\label{diag:Ufibn}
 \xymatrix{
-A_0 \ar@{>->}[d] \ar@{>->}[r] & A_0\times\I \ar@{>>}[d] \\
+A_\delta \ar@{>->}[d] \ar@{>->}[r] & A_\delta\times\I \ar@{>>}[d] \\
 A  \ar@{>>}[r] &  C\times\I 
 }
 \end{equation}
-The square is easily seen to commute, and the maps with $A_0$ as domain are trivial cofibrations by Frobenius (proposition \ref{prop:Frobenius}), because each is the pullback of a trivial cofibration along a fibration.
-Applying a simple lemma (given below as \ref{lem:simple}) gives the required weak equivalence $e:A \simeq A_0\times \I$ over $C\times \I$.  
+The square is easily seen to commute, and the maps with $A_\delta$ as domain are trivial cofibrations by Frobenius (Proposition \ref{prop:Frobenius}), because each is the pullback of a trivial cofibration along a fibration.
+A simple lemma (given below as Lemma \ref{lem:simple}) provides the claimed weak equivalence $e:A \simeq A_\delta\times \I$ over $C\times \I$.  
 
-To see that $B\cong (Z_0)^*D$ over $Z$, recall from the proof of the EEP that the map $f:B\cong (Z_0)^*D$ is the pushforward of  $e:A \simeq A_0\times \I$ along the cofibration $d_0\times\I :A_0\times\I \cof B\times\I$, calling the evident map $d_0:A_0\cof B$ in \eqref{diag:Ufib2}.  That is, by construction $f = (d_0\times\I)_*\,e$.  We can apply the Beck-Chevalley condition for the pushforward using the pullback square on the left below.
+To see that $B\cong (Z_\delta)^*D$ over $Z$, recall from the proof of the EEP that the map $f:B\cong (Z_\delta)^*D$ is the pushforward of  $e:A \simeq A_\delta\times \I$ along the cofibration $b_\delta\times\I :A_\delta\times\I \cof B\times\I$, where we have named the evident map in \eqref{diag:Ufib2} $b_\delta:A_\delta\cof B$ .  That is, by construction $f = (b_\delta\times\I)_*\,e$.  We can then apply the Beck-Chevalley condition for the pushforward using the pullback square on the left below.
 \begin{equation}
 \xymatrix{
-A_0 \ar@{>->}[d] \ar@{>->}[r] \pbcorner & A_0\times\I \ar@{>>}[d] & \ar[l]_-e A\\
+A_\delta \ar@{>->}[d] \ar@{>->}[r] \pbcorner & A_\delta\times\I \ar@{>>}[d] & \ar[l]_-e A\\
 B  \ar@{>->}[r]  &  B\times\I  & \ar[l]^-f D
 }
 \end{equation}
-The pullback of $e$ along the top of the square is the identity on $A_0$, as can be seen by pulling back $e$ as a map over $C\times \I$ along $C_0 :  C\ra C\times\I$.
+The pullback of $e$ along the top of the square is the identity on $A_\delta$, as can be seen by pulling back $e$ as a map over $C\times \I$ along $C_\delta :  C\ra C\times\I$.
 Thus the same is true (up to isomorophism) for the pullback of $f$ along the bottom.
 
-An application of the alignment lemma \ref{lem:alignment} along the trivial cofibration $c\otimes \delta_0$ completes the proof.
+An application of the Realignment Lemma \ref{lemma:realignmentforfibrations} along the trivial cofibration $c\otimes \delta$ completes the proof.
 \end{proof}
 
 \begin{lemma}\label{lem:simple}
@@ -3604,7 +3700,7 @@ Then there is a weak equivalence $e : B \simeq C$ over $D$ (and under $A$).
 Use the fact that any two diagonal fillers are homotopic to get a homotopy equivalence $e : B \simeq C$ filling the square.
 \end{proof}
 
-Applying proposition \ref{prop:UfibtoFEP} therefore yields the following.
+Applying proposition \ref{prop:UfibtoFEP} now yields the following.
 
 \begin{corollary}\label{cor:FEP}
 The fibration weak factorization system has the fibration extension property (definition \ref{def:fibextreplace}). 
@@ -3615,13 +3711,14 @@ By Theorem \ref{theorem:QMSmodFEP}, finally, we have the following.
 \begin{theorem}\label{theorem:QMS}
 There is a Quillen model structure $(\CC,\WW,\FF)$ on the category of cubical sets $\cSet$, where:
 \begin{enumerate}
-\item the cofibrations $\CC$ are any class of maps satisfying (C0)-(C8) (equivalently, the simplified axioms in the Appendix \ref{appendix:Cofibrations}),
+\item the cofibrations $\CC$ are any class of maps satisfying (C0)-(C8) (equivalently, the simplified axioms in the Appendix% \ref{appendix:Cofibrations}
+),
 \item the fibrations $\FF$ are the maps $f : Y\ra X$ for which the canonical map 
 \[
 (f^\I \times \I, \mathrm{eval}_Y) : Y^\I \times \I\ra (X^\I \times \I)\times_X Y
 \]
 lifts on the right against $\CC$.
-\item the weak equivalences $\WW$ are the maps $w : X\ra Y$  for which internal precomposition $K^w : K^Y \to K^X$ is bijective on connected components for every fibrant object $K$.
+\item the weak equivalences $\WW$ are the maps $w : X\ra Y$  for which the internal precomposition $K^w : K^Y \to K^X$ is bijective on connected components for every fibrant object $K$.
 \end{enumerate}
 \end{theorem}
 
@@ -3629,9 +3726,8 @@ lifts on the right against $\CC$.
 \section*{Appendix: Axioms for cofibrations}\label{appendix:Cofibrations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The axioms for the \emph{cofibrations} $c : A \mono B$ in cartesian cubical sets, may be restated as follows.
+The axioms (C0)--(C8) for the \emph{cofibrations} $c : A \mono B$ in cartesian cubical sets, may be restated equivalently as follows.
 \begin{enumerate}
-%\item[(C0)] The map $0\to C$ is always a cofibration.
 \item[(C1)] All isomorphisms are cofibrations.
 \item[(C2)] The composite of two cofibrations is a cofibration.
 \item[(C3)] Any pullback of a cofibration is a cofibration.
@@ -3640,11 +3736,12 @@ The axioms for the \emph{cofibrations} $c : A \mono B$ in cartesian cubical sets
 \item[(C6)] The join of two cofibrant subobjects is a cofibration.
 \end{enumerate}
 
+For example, we have the following.
 \begin{proposition}
 The locally decidable subobjects satisfy the axioms.
 \end{proposition}
 \begin{proof}
-
+\ednote{fill in}
 \end{proof}
 %
 \bibliographystyle{alpha}
