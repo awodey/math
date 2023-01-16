@@ -22,7 +22,15 @@
 %\usepackage{fullpage}
 \usepackage[colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,
      		filecolor=blue,urlcolor=blue]{hyperref}
+
+%editorial
 \newcommand{\ednote}[1]{[\textit{\color{red}{#1}}]} % editorial note
+\newcommand{\opcit}{\emph{op.cit.}}
+\newcommand{\ie}{\emph{i.e.}}
+\newcommand{\eg}{\emph{e.g.}}
+\newcommand{\ibid}{\emph{ibid.}}
+\newcommand{\vis}{\emph{vis.}}
+
 
 % categories
 \newcommand{\A}{\ensuremath{\mathbb{A}}}
@@ -37,7 +45,7 @@
 \newcommand{\WW}{\ensuremath{\mathcal{W}}}
 \newcommand{\FF}{\ensuremath{\mathcal{F}}}
 \newcommand{\BB}{\ensuremath{\mathcal{B}}}
-%\newcommand{\EE}{\ensuremath{\mathcal{E}}}
+\newcommand{\EE}{\ensuremath{\mathcal{E}}}
 \newcommand{\psh}[1]{\ensuremath{\mathsf{Set}^{#1^{\mathrm{op}}}}}
 \newcommand{\Set}{\ensuremath{\mathsf{Set}}}
 \newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
@@ -51,6 +59,7 @@
 \newcommand{\plusalg}[1]{\ensuremath{^+\!\mathsf{Alg}{(#1)}}}
 \newcommand{\plusalgx}{\ensuremath{^+\!\mathsf{Alg}}}
 \newcommand{\op}[1]{\ensuremath{{#1}^{\mathrm{op}}}}
+\newcommand{\eval}{\ensuremath{\mathsf{eval}}}% evaluation
 
 % arrows
 \newcommand{\hook}{\ensuremath{\hookrightarrow}}
@@ -67,8 +76,8 @@
 \newcommand{\boxcat}{\ensuremath{\boxempty}}
 \newcommand{\I}{\ensuremath{\mathrm{I}}}
 \newcommand{\II}{\ensuremath{\mathbb{I}}}
-\renewcommand{\H}{\ensuremath{\mathbb{H}}}
-\newcommand{\HH}{\ensuremath{\mathcal{H}}}
+\renewcommand{\H}{\ensuremath{\Box}}
+\newcommand{\HH}{\ensuremath{\cSet}}
 \newcommand{\del}{\ensuremath{\partial}}
 
 % type theory
@@ -179,6 +188,25 @@ Add an abstract.
 %
 %Sec. 1-2 of cubical.tex.
 %
+% pathspace is dimension shift, so fibrant if the base is fibrant.
+% higher cells are paths between lower cells - agrees with HoTT reading of Id-types
+% also gives a good notion of higher groupoid
+% 
+% most previous work intended for models of HoTT
+% my statement from HoTT 2019 talk that a model of HoTT is a QMC (of a certain kind)
+% reverse the construction of a QMC from a model of HoTT ("completeness")
+% Coquand et al. developed cubical models (and cubical TTs)
+% Sattler first showed the connection between fibrant U and a QMS
+% Harper et al. related ideas, from a very different perspective
+% cubical models: BCH, CCHM, unpublished note on Cartesian,
+% Grothendieck, Lawvere, Joyal, my CMU lectures, 
+% Paris discussions, Pitts, my paper on cubical AWFS, 
+% Stockholm lectures, Newton, Oslo, IHES,  
+% G&S, G&H, 
+% ACCRS, AAFS, AFH,
+
+
+
 
 %Contributions: 
 %- full diagrammatic proofs of the entire qms, not using TT.
@@ -249,23 +277,325 @@ It clearly suffices to prove the claim for $n=1$.   For any cubical set $X$, the
 X^\I(n) \cong \hom(\I^n, X^\I)\ \cong\  \hom(\I^{n+1}, X)\cong\ X(n+1).
 \end{split}
 \]
-Thus $X^\I$ is given by precomposition with the ``successor'' functor $\C\to\C$ with $[n] \mapsto [n+1]$. Precomposition always has a right adjoint, which in this case we write as $$X^\I\dashv X_\I $$ and calculate to be:
-\begin{align*}\textstyle
+Thus $X^\I$ is given by precomposition with the ``successor'' functor $\C\to\C$ with $[n] \mapsto [n+1]$. Precomposition always has a right adjoint, which in this case we write as $$X^\I\dashv X_\I $$ and call the $\I$-\emph{root}.  We can calculate the values of the $\I$-root to be,
+\begin{align*}
 X_\I(n) &\cong \hom(\I^n, X_\I) \\
 &\cong \hom((\I^n)^\I, X) \\
 &\cong \hom((\I^\I)^n, X) \\
 &\cong \hom((\I+1)^n, X) \\
-&\cong \hom\big(\sum_{k=0}^{n} \binom{n}{k}\I^{k}, X\big) \\
-&\cong \prod_{k=0}^{n} X(k)^{\binom{n}{k}} ,
+&\cong\textstyle \hom\big(\sum_{k=0}^{n} \binom{n}{k}\I^{k}, X\big) \\
+&\cong \textstyle \prod_{k=0}^{n} X(k)^{\binom{n}{k}} ,
 \end{align*}
-using the fact that $\I^\I \cong (\I+1)$ as in \cite{Fiore}.
+using the fact that $\I^\I \cong (\I+1)$, much as in \cite{Fiore}.
 \end{proof}
 
-\begin{remark}
-size of the homsets in cartesian vs. other cubes.
-fullness of the cubical nerve functor from Cat.
-other stuff from old notes.
-\end{remark}
+The exponential object  $X^\I$ will be called the \emph{pathobject} of $X$, and plays a special role. As we have just seen, it classifies ``paths'' in $X$, i.e. maps $p:\I \to X$, corresponding to $1$-cubes $p\in X_1$ between the endpoints ($0$-cubes) $p_0, p_1\in X_0$. More generally, higher cubes $c\in X_{n+1}$ correspond to maps $c : \I^{n+1}\cong \I^n\times \I \to X$, which can be regarded as paths between the $n$-cubes $c_0, c_1 : \I^n \to X$, respectively $c_0, c_1 \in X_n$.  
+
+We conclude this section with two facts that will be useful later on concerning the base change functors, 
+\[
+f_!\dashv f^* \dashv f_* : \cSet/_X \too \cSet/_Y,
+\]
+associated to a map $f : X\to Y$  in $\cSet$.
+
+\begin{lemma}\label{lemma:tinyslicedI}
+The pulled-back interval $\I^*\I = \I\times\I\to \I$ in $\cSet/_\I$ is also tiny.
+\end{lemma}
+\begin{proof}
+Since the interval $\I = \y[1]$ is representable, the slice category $\cSet/_\I$ is also a category of presheaves, namely over the sliced cube category $\C/_{[1]}$\,,
+\[
+\cSet/_\I \ =\ {\psh{\C}}\!/_{\y[1]} \ \cong\ \psh{ (\C/_{[1]}) }\, =\ \widehat{\C/_{[1]}} \,.
+\]
+However, since $\C$ does not have all finite limits, the sliced index category does not have all finite products, and so we cannot simply repeat the proof from Proposition \ref{prop:Itiny}.  But as in that proof, we do have a ``successor'' functor 
+\[
+s_{[1]} : \C/_{[1]} \to \C/_{[1]}\,,
+\]
+resulting from the ``predecessor'' natural transformation $s \Rightarrow 1_\C$ given by the  projection $\I\times X \to X$. Evaluating $s$ at each object $f : [n] \to [1]$ in  $\C/_{[1]}$, we obtain a commutative diagram:
+\begin{equation}\label{diag:snatural}
+\begin{tikzcd}
+s[n]  \ar[d,swap, "{sf}"] \ar[r, "{\cong}" ] & {[1]}\!\times\! {[n]}  \ar[r, "p_n"] & {[n]} \ar[d, "f"] \\  
+s[1]  \ar[r, swap, "{\cong}" ] & {[1]}\!\times\! {[1]}  \ar[r, swap, "p_1"] & {[1]}
+ \end{tikzcd}
+ \end{equation}
+We can then set $s_{[1]}(f) = p_1\circ sf = f\circ p_n$. As in the foregoing proof, we can then calculate the values of the adjoints on presheaves, associated to $s_{[1]}$,
+ \[
+ {s_{[1]}}_! \dashv {s_{[1]}}^* : \widehat{\C/_{[1]}} \too \widehat{\C/_{[1]}} \]
+  to be, successively,
+ \begin{align*}
+ {s_{[1]}}_! (X) &= \I^*\I \times X\,, \\
+  {s_{[1]}}^* (X) &= X^{\I^*\I} \,.
+ \end{align*}
+The first equation follows from the observation that the diagram \eqref{diag:snatural} is a pullback, and so the object $s_{[1]}(f)  : s[n]\to [1]$ of $\widehat{\C/_{[1]}}$ given by the evident composite is just $\I^*\I \times f $, and the diagram itself represents the counit map $(\I^*\I \times f) \to f$ over $\I$.
+ The second line then follows by adjointness, as does the fact that we have a further right adjoint, namely, the ${\I^*\I}$-\emph{root}:
+ \begin{equation*}
+ {s_{[1]}}_* (X) =: X_{\I^*\I} \,.
+ \end{equation*}
+\end{proof}
+
+\begin{lemma}\label{lemma:pathspacepushforward}
+The pushforward functor along any map $f : X\to Y$ preserves pathspaces; for any object $A \to X$ over $X$, the pathobject of the pushforward $f_*A$ is (canonically isomorphic to) the pushforward of the pathobject,
+\[
+(f_*A)^\I \cong f_*(A^\I)\,
+\]
+over $Y$.
+\end{lemma}
+\begin{proof}
+This true for any constant family $X^*C = X\times C \to X$ with $C$ in place of $\I$, as the reader can easily verify, using the Beck-Chevalley condition.
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Cubical sets as a classifying topos}\label{subsec:classtopos}
+
+(This subsection collects some basic facts about cubical sets that are not needed in the remainder of the lectures.)  
+
+The objects of the Cartesian cube category $\Box$ may be taken concretely to be finite sets of the form $$[n] = \{\bot, x_1, ..., x_n, \top\},$$ and the arrows $f : [n] \to [m]$ to be all bipointed maps $[m]\to [n]$ (note the direction).  These maps are evidently just $m$-tuples of elements from the set $[n]$, which are easily shown to be composites of faces, degeneracies, permutations, and diagonals. 
+
+The category of \emph{(Cartesian) cubical sets} is the presheaf topos
+\[
+\cSet =  \psh{\Box}.
+\]
+It is of course generated by the representable presheaves $\I^n := \yon[n],$ called the \emph{$n$-cubes}.  The $0$-cube is $\I^0 = \yon[0] =1$; the $1$-cube is $\I = \yon[1]$; and $\I^n \times \I^m \cong \I^{n+m}$ in virtue of preservation of products by the Yoneda embedding $\yon : \op{\Box} \hook\cSet$.  For a cubical set $X: \op{\Box} \to \Set$ we write $X_n = X[n]$ and call this the \emph{set of $n$-cubes in $X$}, for which we have the usual Yoneda correspondence,
+\[
+\{c \in X_n \} \ \cong\ \{c : \I^n \to X\}.
+\]
+In particular, $\I^n_m = \cSet([m],[n])$ is the set of $m$-cubes in the $n$-cube.\footnote{Note that the cardinality of $\I^n_m$ is therefore just $(m+2)^n$, in comparison to the \emph{Dedekind} cubes, for which \eg\ $\cSet([1],[n])$ the $n^{th}$ \emph{Dedekind number}, the number of elements in the free distributive lattice on $n$ generators, which in general is  a number so large that it is unknown for values of $n>7$.} 
+
+\begin{proposition}
+The category $\cSet$ of Cartesian cubical sets is the classifying topos for \emph{strictly bipointed objects}: objects $A$ with points $a_0, a_1 : 1\to A$ the equalizer of which is $0\to 1$.
+\end{proposition}
+
+\begin{proof}
+Consider the covariant presentation $\cSet = \Set^\B$ where $\B$ is the category of finite, strictly bipointed sets and bipointed maps.  We can extend $\B\hook\B_=$ by freely adjoining coequalizers, making $\B_=$ the free finite \emph{colimit} category on a co-bipointed object. An concrete presentation of $\B_=$ is the finite bipointed sets, including those with $\bot=\top$.  Let us write $(n)$ for the bipointed set $\{x_1, ..., x_n, \bot=\top\}$, with $n$ (non-constant) elements and a further element $\bot=\top$.  There is an evident coequalizer $[1]\rightrightarrows [n]\to(n)$, which just identifies the distinguished points, and every coqualizer has either the form $[m]\rightrightarrows [n]\to [k]$ or $[m]\rightrightarrows [n]\to(k)$, for a suitable choice of $k$.  Note that there are no maps of the form $(m)\to [n]$, and that every map $[m]\to (n)$ factors uniquely as $[m]\to (m)\to (n)$ with  $[m]\to(m)$ the canonical coequalizer of $\bot$ and $\top$.  The category $\B_=$ can therefore be decomposed into two ``levels'', the upper one of which is essentially $\B$, the lower one consisting of just the objects $(n)$ and thus essentially the finite \emph{pointed} sets, and for each $n$, there is the canonical coequalizer $[n]\to(n)$ going from the upper level to the lower one.
+\[
+\xymatrix{
+\dots \ar[r] & [m] \ar@{->>}[d] \ar[r] & [n] \ar@{->>}[d] \ar[r] & \dots \\
+\dots \ar[r] & (m) \ar[r] & (n) \ar[r] & \dots
+}
+\]
+Write $u : \B\to\B_=$ for the upper inclusion, which is the classifying functor of generic co-bipointed object in $\B_=$ (which is strict).  
+
+Now consider the induced geometric morphism:
+\[
+\xymatrix{
+\Set^\B \ar@<-2ex>[rr]_{u_!} \ar@<2ex>[rr]^{u_*} && \ar[ll]|-{\,u^*} \Set^{\B_=}  & u_! \dashv u^* \dashv u_*
+}
+\]
+Since $u^*$ is the restriction along $u$, the right adjoint $u_*$ must be ``prolongation by $1$'',
+\begin{align*}
+u_*(P)[n] &= P[n],\\
+u_*(P)(n) &= \{*\},
+\end{align*}
+with the obvious maps,
+\[
+\xymatrix{
+\dots \ar[r] & P[m] \ar@{->>}[d] \ar[r] & P[n] \ar@{->>}[d] \ar[r] & \dots \\
+\dots \ar[r] & \{*\} \ar[r] & \{*\} \ar[r] & \dots
+}
+\]
+as is easily seen by considering maps in $\Set^{\B_=}$ of the form
+\[
+\xymatrix{
+ Q[n] \ar[d]_{\cdot} \ar[r] & P[n] \ar@{->>}[d]^{\cdot} \\
+ Q(n) \ar[r]^{} & \{*\} .
+}
+\]
+Since $u_* : \Set^{\B} \to \Set^{\B_=}$ is evidently full and faithful, it is the inclusion part of a sheaf subtopos $\mathsf{sh}(\B^\mathsf{op}_=, j) \hook \Set^{\B_=}$ for a suitable Grothendieck topology $j$ on $\B^\mathsf{op}_=$.  We claim that $j$ is the closed complement topology of the subobject $[\bot=\top] \rightarrowtail 1$ represented by the coequalizer $[0]\to (0)$.  Indeed, in $\Set^{\B_=}$ we have the representable functors:
+\begin{align*}
+\I &= y[1],\\
+1 &= y[0],\\
+[\bot=\top] &= y(0)
+\end{align*}
+fitting into an equalizer $[\bot=\top] \to 1 \rightrightarrows \I$, which is the image under Yoneda of the canonical coequalizer $[1] \rightrightarrows [0]\to (0)$ in $\B_=$.  The closed complement topology for $[\bot=\top] \mono 1$ is generated by the single cover $0\to [\bot=\top]$, which can be described logically as 
+forcing the sequent $(\bot=\top \vdash \bot)$ to hold.  Recall from \cite{JohnstoneTT}, Proposition 3.53, the following simple characterization of the sheaves for a closed topology generated by an object $U\mono 1$: an object $X$ is a sheaf iff $X\times U \cong U$. In the present case, it therefore suffices to show that for any $P:\B_= \to \Set$ we have:
+\[
+P\times [\bot=\top] \cong [\bot=\top] \quad\text{iff}\quad P(n) = 1\ \text{for all $n$}.
+\]
+For any object $b\in \B_=$, consider the map
+\[
+\hom(yb, P\times [0=1] ) \cong \hom(yb, P) \times \hom(yb, [\bot=\top]) \to \hom(yb, [\bot=\top]) .
+\]
+If $b = [k]$, then $\hom(yb, [\bot=\top]) \cong \hom_{\B_=}((0), [k]) \cong 0$, and so we always have an iso
+\[
+\begin{split}
+\hom(yb, P\times [\bot=\top] ) \cong \hom(yb, P) \times \hom(yb, [\bot=\top])\\
+ \cong \hom(yb, P) \times 0 \cong 0.
+ \end{split}
+\]
+If $b = (k)$, then $\hom(y(k), [\bot=\top]) \cong \hom_{\B_=}((0), (k)) \cong 1$, and we have an iso
+\[
+\begin{split}
+\hom(y(k), P\times [\bot=\top] ) \cong \hom(y(k), P) \times \hom(y(k), [\bot=\top]) \\
+\cong \hom(y(k), P) \times 1 \cong \hom(y(k), P) \cong P(k).
+\end{split}
+\]
+Thus we will have an iso $P\times [\bot=\top] \cong [\bot=\top] $ iff $P(k) \cong 1$.
+
+Thus the presheaf topos $\Set^\B$ is the closed complement of the open subtopos $$\Set^{\B_=}/_{[\bot=\top]}\ \hook\ \Set^{\B_=}$$ given by forcing the proposition $\bot \neq \top$.  Since $\Set^{\B_=}$ is clearly the classifying topos for \emph{arbitrary} bipointed objects $\bot, \top : 1\to B$, the subtopos $\Set^\B$ indeed classifies \emph{strictly} bipointed objects, as claimed.
+\end{proof}
+
+
+\begin{corollary}
+The geometric realization functor to topological spaces 
+$$R: \cSet \to \mathsf{Top}$$
+preserves cartesian products, $R(X\times Y) \cong R(X)\times R(Y)$.\footnote{This fact and the next one are to be contrasted with the case of monoidal cubical sets, \eg\ as studied by \cite{Jardine,Dougherty}}
+\end{corollary}
+
+\begin{proof}
+This can of course be shown directly, but it follows immediately by composing the inverse image of the classifying geometric morphism $\mathsf{sSets} \to \cSet$ of the $1$-simplex $\Delta^1$ with the standard geometric realization $\mathsf{sSets} \to \mathsf{Top}$, each of which preserves finite products.
+\end{proof}
+
+\begin{definition}
+Let $\Box \to\  \Cat$ be the unique product-preserving functor taking the interval $[1]$ to the one arrow  category $\bbtwo = (0\leq1)$.  This functor then takes $[n]$ to $\bbtwo^n$, the $n$-fold product in $\Cat$, and maps $[m] \to [n]$  to the corresponding monotone functions of the posets $\bbtwo^n$.  The  \emph{cubical nerve} functor $$N : \Cat \to \cSet$$ is then defined by:
+\[
+N(\bbC)_n = \Cat(\bbtwo^n, \bbC).
+\]
+Thus $N(\bbC)_0$  is the set of objects of \bbC; $N(\bbC)_1$ is the set of arrows; $N(\bbC)_2$ consists of all commutative squares; $N(\bbC)_3$ all commutative cubes, etc. 
+\end{definition}
+
+\begin{proposition}
+The nerve functor $N : \Cat \to \cSet$ is full and faithful.
+\end{proposition}
+\begin{proof}
+Given categories $\bbC$ and $\D$ and functors $F, G : \bbC\to\D$, suppose $F(f) \neq G(f)$ for some $f : A\to B$ in $\bbC$.  Take $f^{\sharp} : \bbtwo \to \bbC$ with image~$f$.  Then $N(F)_1(f^\sharp) = F(f) \neq G(f) = N(G)_1(f^\sharp)$, and so $N(F) \neq N(G) : N(\bbC)\to N(\D)$.  So $N$ is faithful.
+
+For fullness, let $\varphi : N(\bbC) \to N(\D)$ be a natural transformation, and define a proposed functor $F : \bbC\to \D$ by  
+\begin{align*}
+F_0 = \varphi_0 &: \bbC_0 = N(\bbC)_0 \to N(\D)_0 = \D_0\\
+F_1 = \varphi_1 &: \bbC_1 = N(\bbC)_1 \to N(\D)_1 = \D_1.
+ \end{align*}
+We just need to show that $F$ preserves identity arrows and composition.
+Consider the following diagram.
+\[
+\xymatrix{
+\Cat(\bbtwo^1, \bbC) = N(\bbC)_1 \ar[r]^{F_1} & N(\D)_1 = \Cat(\bbtwo^1, \D) \\
+\Cat(\bbtwo^0, \bbC) = N(\bbC)_0 \ar[u]^{!^*} \ar[r]_{F_0} & N(\D)_0 = \Cat(\bbtwo^0, \D) \ar[u]_{!^*}.
+}
+\]
+Here $!^* : \Cat(\bbtwo^0, \bbC) \to \Cat(\bbtwo, \bbC) $ is precomposition with $! : \bbtwo = \bbtwo^1 \rightarrow \bbtwo^0 = \mathbbm{1}$, so the diagram commutes.  But since $! : \bbtwo \rightarrow \mathbbm{1}$ is a functor, $$\bbC_0 = \Cat(\mathbbm{1}, \bbC)  \stackrel{!^*}{\to}  \Cat(\bbtwo, \bbC) = \bbC_1$$ takes objects in $\bbC$ to their identity arrows.  Thus $F$ preserves identity arrows.  Similarly, for composition, consider 
+\[
+\xymatrix{
+\Cat(\bbtwo^2, \bbC) = N(\bbC)_2 \ar[d]_{d^*} \ar[r]^{\varphi_2} & N(\D)_2 = \Cat(\bbtwo^2, \D) \ar[d]^{d^*} \\
+\Cat(\bbtwo, \bbC) = N(\bbC)_1  \ar[r]_{F_1} & N(\D)_1 = \Cat(\bbtwo, \D).
+}
+\]
+where $\varphi_2 : N(\bbC)_2 \to N(\D)_2$ is the action of $\varphi$ on commutative squares of arrows, and $d^* : \Cat(\bbtwo^2, \bbC) \to \Cat(\bbtwo, \bbC)$ is precomposition with the diagonal map $d : \bbtwo \rightarrow \bbtwo^2 = \bbtwo\times\bbtwo$, so the diagram commutes.  For any composable pair of arrows $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ in $\bbC$ there is a commutative square 
+\[
+\xymatrix{
+A \ar[r]^{f} \ar[d]_{f} & B \ar[d]^{g} \\
+B  \ar[r]_{g} & C,
+}
+\]
+and the effect of $d^* : \Cat(\bbtwo^2, \bbC) \to \Cat(\bbtwo, \bbC)$ on this square is exactly $g\circ f: A\to C$, and similarly for $d^* : \Cat(\bbtwo^2, \D) \to \Cat(\bbtwo, \D)$.  Thus the commutativity of the above diagram implies that $F$ preserves composition.
+Since clearly $N(F) = \varphi$, we indeed have that $N$ is also full.
+\end{proof}
+
+\begin{proposition}\label{prop:pathobject}
+For any cubical set $X$, the exponential $X^\I$ is calculated as the ``shift by one dimension'', 
+\[
+X^\I(n) \cong X(n+1)\,.
+\]
+\end{proposition}
+
+\begin{proof}
+\[
+\begin{split}
+X^\I(n) \cong \hom(y[n], X^\I) \cong \hom(\I^n, X^\I)\ \cong\ \hom(\I^n\times \I, X)\\
+\cong\ \hom(\I^{n+1}, X)\cong\ \hom(y[n+1], X)\ \cong\ X(n+1).
+\end{split}
+\]
+\end{proof}
+
+\begin{corollary}\label{cor:rightadjpath}
+The functor $X \mapsto X^\I$ has a \emph{right} adjoint.
+\end{corollary}
+\begin{proof}
+The functor $X \mapsto X^\I$ is given by precomposition with the ``successor'' functor $S : \H\to\H$ with $S[n] = [n+1]$.  Thus $X^\I([n]) = X(S[n]) = (S^*(X))([n])$.  Precomposition always has a right adjoint $S^* \dashv S_*$, which can be calculated as:
+\[
+S_*(X)(n) \cong \hom(y[n], S_*X) \cong \hom(S^*(y[n]), X)\ \cong \hom(\H(S(-), [n]), X).
+\]
+\end{proof}
+
+We need the following fact in order to calculate the right adjoint further.
+
+\begin{lemma}\label{lemma:binomial}
+In $\HH$, we have $\I^\I\ \cong\ \I+1$.
+\end{lemma}
+\begin{proof}
+For any $[n] \in \H$ we have:
+\[
+(\I^\I)(n) \cong \I(n+1) \cong \Hom(\I^{(n+1)},\I)\cong \H([n+1],[1])\cong \B([1], [n+1])\cong n+3.
+\]
+On the other hand,
+\[
+(\I+1)(n) \cong \I(n) + 1(n) \cong \Hom(\I^n, \I) + 1 \cong \B([1],[n]) +1 \cong (n+2) +1.
+\]
+The isomorphism is natural in $n$.
+\end{proof}
+%
+We mention that a similar fact holds for the generic object in the object classifier topos, and in the Schanuel topos, and is used in the theory of ``abstract higher-order syntax'' \cite{Pitts,Fiore}.
+
+
+\begin{definition}
+Let us write
+\[
+X_\I = S_*(X)
+\]
+for the right adjoint of the path object functor $X^\I = S^*X$.
+\end{definition}
+
+\begin{corollary}
+We have the following calculation for the right adjoint $X_\I$:
+\begin{align*}
+X_\I(n) &\cong \hom(\I^n, X_\I) \\
+&\cong \hom((\I^n)^\I, X) \\
+&\cong \hom((\I^\I)^n, X) \\
+&\cong \hom((\I+1)^n, X) \\
+&\cong \hom(\I^n + C^n_{n-1}\I^{n-1} + \dots + C^n_{1}\I+1, X) \\
+&\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0),
+\end{align*}
+where $C^n_{k} = \binom{n}{k}$ is the usual binomial coefficient.
+\end{corollary}
+
+\begin{corollary}
+There is a natural transformation $X_\I \to X$, given by the first projection from $X_\I(n)\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0)$.
+\end{corollary}
+
+Finally, we observe that that the path object functor $X^\I$ itself, as a left adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{ATOM} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
+
+\paragraph{Example.} (P.~Aczel)
+The cubical set $P$ of polynomials (over the integers, say), is defined by:
+\[
+P_n = \{ p(x_1, ...,  x_n)\ |\  \text{polynomials in at most}\  x_1, ..., x_n \}
+\]
+with the evident maps $P_m \to P_n$ for each function $[m] \to [n]$.
+
+This is a ring object in the category of cubical sets, and the interval $\I\ = y[1]$ embeds into $P$.
+The same is true for any algebraic theory $\T$ with two constants, such as boolean algebras: there is a cubical $\T$-algebra $A$ and a monic $\I \mono A$.
+
+Let $\C[\I] = \H$ be the cube category, classifying intervals, and $\C[\T]$ the classifying category for $\T$-algebras.  There is an interval $J$ in $\C_\T$  consisting of the generic $\T$-algebra and its two constants.  This $J$ has a classifying functor $J : \C_\I \to \C_\T$, inducing functors on presheaves
+\[
+J_! \dashv J^* \dashv J_* : \psh{\C_\I} \to \psh{\C_\T}
+\]
+as usual, where $J_! \circ \y_{\C_\I} =\ \y_{\C_\T} \circ J$,  with $\y$ the respective Yoneda embeddings.
+
+We can calculate:
+\begin{equation}
+\begin{split}
+J^* J_! ( \I )( [n] ) &= J^* J_! ( Y[1] )( [n] )\\
+ &= J^* Y( J[1] )( [n] ) = Y( J[1] )( J[n] ) \\
+ &= \C_\T( J[n] , J[1] ) = \T\mathrm{-Alg}( J[1] , J[n] ) \\
+ &= \T\mathrm{-Alg}( F(1) , F(n) ) = | F(n) |,
+\end{split}
+\end{equation}
+where $F(n)$ is the free $\T$-algebra on $n$ generators.  So in the case of polynomials we indeed have 
+$$P = J^* J_! ( \I ).$$
+The unit of the adjunction $\I \to J^* J_! ( \I )$ is faithful, since $J$ itself is faithful and therefore the left adjoint $J_!$ is faithful.
+$P$ is a ring in $\psh{\C_\I}$ since $J_!(\I)$ is a ring in $\psh{\C_\T}$ and $J^*$ is left exact.
+
+A closely related example is the cubical set of ``boolean polynomials",
+\[
+B_n = \{ \varphi(p_1, ...,  p_n)\ |\ \text{propositional formulas in at most $p_1, ...,  p_n$} \}
+\]
+which is the free boolean algeba $2^{2^n}$.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The cofibration weak factorization system}\label{sec:cofibrations}
@@ -441,7 +771,7 @@ Consider a generating sub\emph{set} of cofibrations consisting of those with rep
 \[
 \mathcal{C}\, \pitchfork\,X.
 \]
-\item $X$ admits a \emph{uniform filling structure:} 
+\item\label{smalluniformfilling} $X$ admits a \emph{uniform filling structure:} 
 for each basic cofibration $c : C \mono \I^{n}$ and map $x : C\ra X$ there is given an extension $j(c,x)$,
 \begin{equation}\label{diagram:uniformbasic}
 \xymatrix{
@@ -535,6 +865,34 @@ $$\alpha(yu) =  j\big( (yu)^*\eta, y'u' \big) = j(y^*\eta, y')\circ u = \alpha(y
 and the only possible extension $j(1_X, x)$ for the span $(1_{\I^n}, x)$ is  $x$ itself.
  \end{proof}
  
+ \begin{remark}\label{remark:largeuniformfilling}
+ Observe that the uniformilty condition (\ref{smalluniformfilling}) can be extended to the \emph{class of all} cofibrations, in the form:
+ 
+ \begin{enumerate}
+ \item[4.]\label{largeuniformfilling} $X$ admits a \emph{(large) uniform filling structure:} 
+for each cofibration $c : C \mono Z$ and map $x : C\ra X$ there is given an extension $j(c,x)$,
+\begin{equation}\label{diagram:largeuniformbasic}
+\xymatrix{
+C \ar@{>->}[d]_{c} \ar[r]^{x} & X, \\
+Z\ar@{.>}[ru]_{j(c,x)} &
+}
+\end{equation}
+and the choice is \emph{uniform in $Z$} in the following sense:
+Given any map $u :Y \ra Z$, the pullback $u^*c : u^*C\mono Y$, which is again a cofibration, fits into a commutative diagram of the form
+\begin{equation}\label{diagram:largeuniformbasic2}
+\xymatrix{
+u^*C \ar@{>->}[d]_{u^*c} \ar[rr]^{c^*u} \pbcorner &&  C \ar@{>->}[d]_{c} \ar[r]^{x} & X. \\
+Y \ar[rr]_{u} && z \ar@{.>}[ru]_{j(c,x)} &
+}
+\end{equation}
+For the pair $(u^*c,\, x\circ c^*u)$ in \eqref{diagram:largeuniformbasic2}, the chosen extension $j(u^*c,x\circ c^*u): \I^m \ra X$, is required to be equal to  $j(c,x)\circ u$,
+\begin{equation}\label{eq:largeuniformfillers}
+j(u^*c,x\circ c^*u) = j(c,x) \circ u.
+\end{equation}
+\end{enumerate}
+Indeed, the proof that (1) implies (2) and (3) works just as well to infer (4), which in turn implies (2) and (3) as special cases.
+\end{remark}
+
 The relative version of the foregoing is entirely analogous, since the $+$-functor is fibered over $\cSet$ in the sense of diagram \eqref{diag:+fibered}.  We can therefore omit the entirely analogous proof of the following.
  
  \begin{proposition}\label{prop:uniformstructequivrelative} For any map $f : Y\ra X$ in \cSet\ the following are equivalent:
@@ -544,7 +902,7 @@ The relative version of the foregoing is entirely analogous, since the $+$-funct
 \[
 \mathcal{C}\, \pitchfork\,f.
 \]
-\item $f:Y\ra  X$ admits a \emph{uniform filling structure}: 
+\item $f:Y\ra  X$ admits a (small) \emph{uniform filling structure}: 
 for each basic cofibration $c : C \mono \I^{n}$ and maps $x : C\ra X$ and $y : \I^n\ra Y$ making the square below commute, there is given a diagonal filler $j(c,x,y)$,
 \begin{equation}\label{diagram:coffillers}
 \xymatrix{
@@ -572,16 +930,16 @@ We next collect some basic facts about trivial fibrations: they have sections, t
 \begin{enumerate}
 \item 
 Every trivial fibration $A\ra X$ has a section $s : X\ra A$.
-\item If $f:Y\ra X$ is a trivial fibration and $g:Z\ra Y$ is a trivial fibration, then  $f\circ g:Z\ra X$ is a trivial fibration.
-\item If $f:Y\ra X$ is a trivial fibration and $f':Y'\ra X'$ is a retract of $f$ in the arrow category, then $f'$ is a trivial fibration.
-\item For any map $f:Y\ra X$ and any trivial fibration $A\ra X$,  the pullback $f^*A \ra Y$ is a trivial fibration.  
+\item If $a:A\ra X$ is a trivial fibration and $b:B\ra A$ is a trivial fibration, then  $a\circ b:B\ra X$ is a trivial fibration.
+\item If $a:A\ra X$ is a trivial fibration and $a':A'\ra X'$ is a retract of $a$ in the arrow category, then $a'$ is a trivial fibration.
+\item For any map $f:X\ra Y$ and any trivial fibration $B\ra Y$,  the pullback $f^*B \ra X$ is a trivial fibration.  
 %\begin{equation}\label{diagram:pluspushforward1}
 %\xymatrix{
 %f^*A \ar[d]  \ar[rr] \pbcorner & & A \ar[d]  \\
 %Y \ar[rr]_f && X
 %}
 %\end{equation}
-\item For any map $f:Y\ra X$ and any trivial fibration $A\ra Y$,  the pushforward $f_*A \ra X$ is a trivial fibration.  
+\item For any map $f:X\ra Y$ and any trivial fibration $A\ra X$,  the pushforward $f_*A \ra Y$ is a trivial fibration.  
 %More generally, if $B\ra Y$ is any map and $g:A\ra B$ is a $+$-algebra over $B$, then the pushforward $f_*g: f_*A \ra f_*B$ is a $+$-algebra   over $f_*B$. 
 %\begin{equation}\label{diagram:pluspushforward2}
 %\xymatrix{
@@ -594,6 +952,37 @@ Every trivial fibration $A\ra X$ has a section $s : X\ra A$.
 \begin{proof}
 (1) holds because all objects are cofibrant by (C0). (5) is a consequence of (C3), stability of cofibrations under pullback, by a standard argument using the adjunction $f^* \dashv f_*$.  The rest hold for the right maps in any weak factorization system.
 \end{proof}
+
+\begin{remark}\label{trivfibpushforward}
+The structured notion of trivial fibration, \emph{vis}.\ relative +-algebra, can also be shown algebraically (i.e.\ not using Proposition \ref{prop:uniformstructequivrelative}) to be preserved by pullback, pushforward, composition, and to be closed under retracts. We do just the case of pushforward as an example.   
+Thus consider the following situation with $A\to X$ a +-algebra with structure $\alpha$, as indicated.
+\begin{equation}\label{diagram:pushforwardplusalgebras}
+\xymatrix{
+A \ar[rd]_{\eta_A} \ar[dd]  && f_*A \ar[rd]_{\eta_{f_*A}} \ar[dd] & \\
+& A^+ \ar[ld] \ar@/_3ex/ [ul]_\alpha && (f_*A)^+ \ar[ld]  \ar@{.>}@/_3ex/ [ul]_\beta \\
+X \ar[rr]_{f} && Y &,
+}
+\end{equation}
+A +-algebra structure for $f_*A \to Y$ would be a retract $\beta : (f_*A)^+ \to f_*A$ of $\eta_{f_*A} : f_*A \to (f_*A)^+$ over $Y$, which corresponds under $f^*\dashv f_*$ to a map $\tilde\beta : f^*((f_*A)^+) \to A$ over $X$ with $$\tilde\beta \circ f^*\eta_{f_*A} = \epsilon_A$$
+as indicated below.
+\begin{equation}\label{diagram:pushforwardplusalgebras2}
+\xymatrix{
+f^*f_*A \ar[rrdd]_{\epsilon_A} \ar[rr]_{f^*\eta_{f_*A}} 
+	&&  f^*((f_*A)^+)  \ar@{.>}[dd]_{\tilde\beta} \\
+&&\\
+&& A \ar[r]_{\eta_A} & \ar@/_3ex/ [l]_\alpha A^+ .
+}
+\end{equation}
+But since pullback $f^*$ commutes with $+$, there is a canonical iso $c : f^*((f_*A)^+)  \cong (f^*f_*A)^+$ with $ c\circ f^*\eta_{f_*A} = \eta_{f^*f_*A} $. So we can set $\tilde\beta := \alpha\circ(\epsilon_A)^+\circ c$.
+\begin{equation}\label{diagram:pushforwardplusalgebras3}
+\xymatrix{
+f^*f_*A \ar[rrdd]_{\epsilon_A} \ar[rr]_{f^*\eta_{f_*A}}  \ar@/^4ex/ [rrr]^{\eta_{f^*f_*A}} 
+	&&  f^*((f_*A)^+)  \ar@{.>}[dd]_{\tilde\beta} \ar[r]^{\sim}_{c}  & (f^*f_*A)^+  \ar[dd]^{(\epsilon_A)^+} \\
+&&&\\
+&& A \ar[r]_{\eta_{A}} & \ar@/_3ex/ [l]_\alpha A^+ 
+}
+\end{equation}
+\end{remark}
 
 %It suffices to find a filler for the following diagram.
 %\begin{equation}\label{diagram:plussection}
@@ -688,7 +1077,7 @@ Every trivial fibration $A\ra X$ has a section $s : X\ra A$.
 \section{The fibration weak factorization system}\label{FWFS}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We now specify a second weak factorization system, with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the \emph{fibrations}. For comparison, we first recall the ``biased'' trivial-cofibration/fibration weak factorization system from \cite{GS}, which makes use of \emph{connections}, $$\vee,\wedge : \I\times\I \too \I,$$ on the cubes, which we do not assume (in \cite{AGH} it is shown that the fibrations of \cite{GS} agree with those specified in the ``logical style'' of \cite{CCHM,OP}).  
+We now specify a second weak factorization system, with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the \emph{fibrations}.  As explained in the introduciton, we first recall what we call a ``biased'' version of the trivial-cofibration/fibration weak factorization system from \cite{GS}, before giving the unbiased one to be used in our model structure.   A proof of a model structure based on the biased version is given in \cite{Sattler}, and makes use  of \emph{connections}, $$\vee,\wedge : \I\times\I \too \I,$$ on the cubes, which we do not assume (in \cite{AGH} it is shown that the fibrations of \cite{GS} agree with those specified in the ``logical style'' of \cite{CCHM,OP}).  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Partial box filling (biased version)}\label{sec:biasedfibration}
@@ -923,24 +1312,40 @@ In topological spaces, for instance, rather than requiring lifts $j_\epsilon$ fo
 
 The unbiased notion of a fibration is now as follows.
 
-\begin{definition}[Fibration]\label{def:unbiasedfibration}
-Let $\delta : \I\ra\I\times\I$ be the diagonal map.
-\begin{enumerate}
-\item\label{item:fibrant} An object $X$ is \emph{fibrant} if the map 
-\[
-(\delta\Rightarrow\! X) = \langle\mathsf{eval}, p_2\rangle : X^\I \times \I \ra X\times \I
-\]
-is a trivial fibration. 
-\item\label{item:fibration} A map $f : Y\ra X$ is an \emph{fibration} if the map 
-\[
-(\delta\Rightarrow\! f) = \langle f^\I\times \I, \langle \mathsf{eval},p_2 \rangle\rangle: Y^\I\times \I \ra (X^\I \times \I)\times_{(X\times \I)} (Y\times\I)
-\]
-is a trivial fibration.
-\end{enumerate}
-\end{definition}
+%\begin{definition}[Fibration]\label{def:unbiasedfibration}
+%Let $\delta : \I\ra\I\times\I$ be the diagonal map.
+%\begin{enumerate}
+%\item\label{item:fibrant} An object $X$ is \emph{fibrant} if the map 
+%\[
+%(\delta\Rightarrow\! X) = \langle\mathsf{eval}, p_2\rangle : X^\I \times \I \ra X\times \I
+%\]
+%is a trivial fibration. 
+%\item\label{item:fibration} A map $f : Y\ra X$ is an \emph{fibration} if the map 
+%\[
+%(\delta\Rightarrow\! f) = \langle f^\I\times \I, \langle \mathsf{eval},p_2 \rangle\rangle: Y^\I\times \I \ra (X^\I \times \I)\times_{(X\times \I)} (Y\times\I)
+%\]
+%is a trivial fibration.
+%\end{enumerate}
+%\end{definition}
 
-Condition \eqref{item:fibrant} above, which is of course a special case of \eqref{item:fibration}, says that evaluation at the generic point $\delta : 1\ra \I$, i.e.\ the map $X^\delta: X^\I \ra X$ constructed in the slice category $\cSet/\I$, is a trivial fibration.  
-Condition \eqref{item:fibration} says that the pullback-hom of the generic point $\delta : 1\ra \I$ with $\I^*f$, constructed in the slice category $\cSet/\I$, is a trivial fibration.  The latter can be reformulated as follows.
+%\begin{definition}[Fibration]\label{def:unbiasedfibration}
+%Let $\delta : \I\ra\I\times\I$ be the diagonal map.
+%\begin{enumerate}
+%\item\label{item:fibrant} An object $X$ is \emph{fibrant} if the map 
+%\[
+%(\delta\Rightarrow\! X) = \langle\mathsf{eval}, p_2\rangle : X^\I \times \I \ra X\times \I
+%\]
+%is a trivial fibration. 
+%\item\label{item:fibration} A map $f : Y\ra X$ is an \emph{fibration} if the map 
+%\[
+%(\delta\Rightarrow\! f) = \langle f^\I\times \I, \langle \mathsf{eval},p_2 \rangle\rangle: Y^\I\times \I \ra (X^\I \times \I)\times_{(X\times \I)} (Y\times\I)
+%\]
+%is a trivial fibration.
+%\end{enumerate}
+%\end{definition}
+%
+Condition \eqref{item:fibrant} above, which is of course a special case of \eqref{item:fibration}, says that evaluation at the generic point $\delta : 1\ra \I$, i.e.\ the map $X^\delta: X^\I \ra X$ constructed in the slice category $\cSet/_\I$, is a trivial fibration.  
+Condition \eqref{item:fibration} says that the pullback-hom of the generic point $\delta : 1\ra \I$ with $\I^*f$, constructed in the slice category $\cSet/_\I$, is a trivial fibration.  Thus a map $f: Y\to X$ is an \emph{unbiased} fibration just if its base change $I^*f$  is a $\delta$-\emph{biased} fibration in the slice category $\cSet/_\I$.  The latter condition can also be reformulated as follows.
 
 \begin{proposition}
 A map $f : Y\ra X$ is a fibration if and only if the canonical map $c$ to the pullback, in the following diagram in $\cSet$, is a trivial fibration.
@@ -1241,7 +1646,7 @@ We can use a standard argument (the ``algebraic small objects argument'', cf.~\c
 %Finally, we need to show the uniformity condition on the resulting fillers $j = j(\beta,x)$.  For this to work, we must modify the colimit construction \eqref{def:fibrepl} by interleaving certain coequalizers, in order to identify fillers added at different stages.  For details, see \cite{Garner, Awodey}.
 %\end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop:fibrationwfs}
 There is a weak factorization system on the category \cSet\ in which the right maps are the fibrations and the left maps are the trivial cofibrations, both as specified in definition \ref{def:FibWFSclasses}.
 \end{proposition}
 
@@ -1978,37 +2383,93 @@ The proof of the fibration extension property will occupy the second half of the
 \section{The Frobenius condition}\label{sec:Frobenius}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this section, we show that the fibration WFS from section \ref{FWFS} has the \emph{Frobenius property}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  The Frobenius property is also needed in the proof of the equivalence extension property in the next section.  A proof of Frobenius in a related setting of cubical sets with connections can be found in \cite{GS}; however the type theoretic approach of \cite{OP,CCHM} can be applied without connections and is also more direct.  This approach proves the dual fact that the \emph{pushforward} operation, which is right adjoint to pullback, and which always exists in a topos, when applied along any \emph{fibration} $f : Y\onto X$ preserves fibrations.  This fact corresponds to the type-theoretic $\Pi$-formation rule.  
+In this section, we show that the (unbiased) fibration weak factorization system from section \ref{FWFS} satisfies what has been called the \emph{Frobenius condition}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  In our setting, it then follows that the entire model structure is stable under such a base change.  The Frobenius condition will be used in the proof of the equivalence extension property in Section \ref{sec:EEP}.  
 
-Recall from Definition \ref{def:unbiasedfibration} that a map $f:A\ra X$ is a fibration just if, when pulled back to the slice category $\cSet/\I$ where there is a generic point $\delta : 1 \ra \I$, the map $\delta \Rightarrow f$ admits a +-algebra structure, and so is a trivial fibration. The definition of $\delta \Rightarrow f$ is recalled below.
+A proof of Frobenius in the related setting of cubical sets \emph{with connections} was given in \cite{GS} using conventional, functorial methods (which we shall call \emph{algebraic}).  By contrast, the type theoretic approach of \cite{CCHM} provides a proof that is much more direct, and can also be modified to work without connections (as in \cite{AXYZ}).  That approach proves the dual fact that the \emph{pushforward} operation, which is right adjoint to pullback and always exists in a topos, preserves fibrations when applied along a fibration.  This corresponds to the type-theoretic $\Pi$-formation rule, and the proof given in \opcit\ is entirely in type theory.  It employs a reduction of box filling (in all dimensions) to an apparently weaker condition of \emph{Kan composition} (in all dimensions), which merely ``puts a lid on" the open box, rather than filling it.  This aspect of the type theoretic proof can also be described algebraically, but is not used in the algebraic proof given here, and so it will not be discussed further (see \cite{LOPS} for an algebraic description of Kan composition with connections, and \cite{A:composition,filling,Frobenius,etc} for the same without connections).
+
+This section applies the method of \emph{generalization} explained in the introduction, which procedes by first establishing a structure or proposition in the generic biased setting, and then transferring it to the unbiased setting by pullback along the base change $\cSet\to\cSet/_\I$.  In order to emphasize this method, we give the second step first, in the form of a conditional statement.
+
+\begin{proposition}\label{prop:biasedFrobimpliesunbiasedFrob}
+Suppose the $\delta$-biased fibration weak factorization system on $\cSet/_\I$ satisfies the Frobenius condition. Then the unbiased fibration weak factorization system on $\cSet$ also satisfies the Frobenius condition.
+\end{proposition}
+
+\begin{proof}
+This follows directly from the fact that the pullback functor $\I^* : \cSet \to \cSet/_\I$ preserves the locally cartesian closed structure, and also creates fibrations.  In detail, let unbiased fibrations $B \fib A$ and $A \fib X$ in $\cSet$ be given, and we wish to find $C\fib X$ and $e : A\times_X C \to B$ over $A$, universal in the way recalled in the diagram below.
+\begin{equation}\label{diagram:biasedFrobenius2unbiasedFrobenius}
+\begin{tikzcd}
+%\widehat{\bbC}/_X  \ar[d,swap,"{{X_!}}"] \ar[r, "{\sim}"] 
+%	& \widehat{\textstyle \int_{\bbC}X} \ar[d,swap,"{{(p_X)_!}}"] \ar[r, "{\sim}"] 
+%		& \mathsf{dFib}/_{\int_{\bbC}X} \ar[d,"p_X\circ(-)"]  \\
+% \widehat{\bbC}  \ar[r,swap, "{\sim}"]   & \widehat{\bbC}  \ar[r,swap, "{\sim}"] 
+%	&  \mathsf{dFib}/_{\bbC}.
+A \times_X C \ar[d, dotted, "e"] \ar[r, dotted] & C \ar[dd, two heads, dotted]\\
+B \ar[d, two heads] &   \\
+A \ar[r, two heads]  & X 
+\end{tikzcd}
+\end{equation}
+%
+Take the pushforward $C := A_*B \to X$, and its associated map $e : A\times_X C \to B$, in the locally cartesian closed category $\cSet$.  Since fibrations are stable under (all) pullbacks, %(and since the subcategory of fibrations over a fixed base is by definition full in the slice category), 
+it then suffices to show that $C\to X$ is a fibration.  
+
+By definition, $C\to X$ is an unbiased fibration in $\cSet$ just in case the base change $\I^*C \to \I^*X$ is a $\delta$-biased fibration in the slice category $\cSet/_\I$.  Since the pullback functor $\I^* : \cSet \to \cSet/_\I$ preserves all lcc structure, over $\I^*X$ we have an iso,
+\[
+\I^*C = \I^*(A_*B) \cong (\I^*A)_*\I^*B\,,
+\]
+where the pushforward $(\I^*A)_*\I^*B$ is taken in the topos $\cSet/_\I$.  But $\I^*B \to \I^*A$ and $\I^*A \to \I^*X$ are $\delta$-biased fibrations in $\cSet/_\I$ because $B \to A$ and $A \to X$ were assumed to be unbiased fibrations in $\cSet$.  Since we are assuming the Frobenius condition for $\delta$-biased fibrations in $\cSet/_\I$, the pushforward $\I^*C \cong (\I^*A)_*\I^*B \to \I^*X$ is also a $\delta$-biased fibration, as required.
+\end{proof}
+  
+%%%%%%%%%%%%%%%%%
+\paragraph{Frobenius for biased fibrations.}
+
+The results proved in this section will be applied to the slice category $\cSet/_\I$ and the generic point $\delta : 1 \ra \II = \I^*\I$, but nothing in their proofs depends on this particular case, and so we shall write simply $\delta : 1\to \I$ for a chosen pointed object in an arbitrary topos $\EE$.  (Indeed, in this section $\EE$ may even be taken to be just a locally cartesian closed category with a representable class of cofibrations.)
+
+Recall from Definition \ref{def:unbiasedfibration} that a map $f:A\ra X$  is a $\delta$-biased fibration just if the map $\delta \Rightarrow f$ admits a relative +-algebra structure, and is therefore a trivial fibration.  The definition of the pullback-hom $\delta \Rightarrow f$ is recalled below.
 \begin{equation}\label{diagram:frobenius1}
 \xymatrix{
 A^\I \ar@/_3ex/ [rdd]_{f^\I} \ar[rd]^{\delta\Rightarrow{f}} \ar@/^3ex/ [rrd]^{A^{\delta}}  && \\
 & X^\I \times_{X} A \ar[d] \ar[r] & A \ar[d]^{f} \\
-& X^\I \ar[r]_{X^{\delta}} &  X.
+& X^\I \ar[r]_{X^{\delta}} &  X
 }
 \end{equation}
 Let us write this condition schematically as follows:
 \begin{equation}\label{diagram:frobenius1}
 \xymatrix{
 A^\I \ar[r]|| \ar[r]  & A_\epsilon\ar[d] \pbcorner \ar[r] & A \ar[d]^f \\
-& X^\I \ar[r]_{\epsilon} &  X,
+& X^\I \ar[r]_{\epsilon} &  X
 }
 \end{equation}
 where $\epsilon = X^{\delta}$, $A_\epsilon = X^\I \times_{X} A$, and the struck-through arrow indicates that it admits a +-algebra structure.
 
 \begin{lemma}\label{lemma:fibrationspullback}
-Let  $g : Y\ra X$ be any map and $f:A \ra X$ a fibration, then the pullback $g^*f : g^*A \ra Y$ is also a fibration.
+Let  $A \ra X$ be a $\delta$-biased fibration and $t: Y\ra X$ any map, then the pullback $t^*A \ra Y$ is also a $\delta$-biased  fibration.
 \end{lemma}
 \begin{proof}
-This is clear, since fibrations are the right class of a weak factorization system, but note that the algebraic structure indicated in  \eqref{diagram:frobenius1} is also stable under pullback, since the $+$-algebras are pullback stable.
+This is of course clear, since $\delta$-biased fibrations are the right class of a weak factorization system by Proposition \ref{prop:biasedfibrationwfs}, but it is still instructive to see how the structure indicated in \eqref{diagram:frobenius1} is itself stable under pullback.  Indeed, consider the following commutative diagram, in which the front face of the cube is the pullback in question, and the right and left sides are the respective versions of the construction in \eqref{diagram:frobenius1}.
+%
+\begin{equation}\label{diagram:fibrationspullback}
+\xymatrix{
+ (t^*A)^\I \ar[rr] \ar[d] && A^\I \ar[d] & \\
+  (t^*A)_\epsilon \ar[dd] \ar[rd] \ar@{.>}[rr] && A_\epsilon \ar[dd] \ar[rd] & \\
+  & t^*A \ar[rr] \ar[dd]  && A \ar[dd]  \\
+Y^\I \ar[rd]_\epsilon \ar[rr] & &  X^\I \ar[rd]_\epsilon & \\
+ & Y \ar[rr]_t && X 
+ }
+\end{equation}
+%
+The rear square of solid arrows is the image of the front face under the pathobject functor and is therefore also a pullback. The base commutes by the naturality of the maps $\epsilon$, as does a corresponding top square involving further such $\epsilon$'s not shown.  Note that these naturality squares need not be pullbacks, but the vertical squares on the sides are, by construction.  It follows that there is a dotted arrow as shown, making the resulting lower rear square commute.  That lower square is then also a pullback, since the other vertical faces of the resulting cube are pullbacks, and thus finally, the upper rear square is also a pullback.  
+
+Now if $A\to X$ is a $\delta$-biased fibration, then $A^\I \to A_\epsilon$ is a trivial fibration, and then so is its pullback $(t^*A)^\I \to (t^*A)_\epsilon$ since relative $+$-algebras are stable under pullback.  Therefore the pullback $t^*A\to Y$ is also a $\delta$-biased fibration.
 \end{proof}
 
+\begin{remark}
+In this way we can show algebraically that the pullback of a $\delta$-biased fibration is again one by pulling back the structure that makes it so.  In Section \ref{sec:universalfibration}, the pullback stability of the fibration structure will be used in the construction of a universal fibration via a closely related argument.
+\end{remark}
+
 \begin{lemma}\label{lemma:fibrationscompose}
-Let  $\alpha : A \ra X$ and $\beta: B\ra A$ be fibrations, then the composite $\alpha\circ\beta : B \ra X$ is also a fibration.
+Let  $\alpha : A \ra X$ and $\beta: B\ra A$ be $\delta$-biased fibrations, then the composite $\alpha\circ\beta : B \ra X$ is also a $\delta$-biased fibration.
 \end{lemma}
 \begin{proof}
-Again for maps in the right class of a weak factorization system this is immediate.  But let us see how the \emph{fibration structures} also compose.  We have the following diagram for the fibration structures on $B\ra A$ and $A\ra X$ (with obvious notation).
+Again for maps in the right class of a weak factorization system this is immediate.  But let us see how the fibration structures also compose.  We have the following diagram for the fibration structures on $B\ra A$ and $A\ra X$ (with obvious notation).
 \begin{equation}\label{diagram:fibcomposition1}
 %\xymatrix{
 %B^\I \ar[r]|+  & B_{\epsilon_A} \ar[r]  \ar[d] \pbcorner & B'  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
@@ -2022,16 +2483,21 @@ B^\I \ar[r]|| \ar[r]  & B_{\epsilon_A} \ar[rr]  \ar[d] \pbcorner & & B \ar[d]\\
 && X^\I \ar[r]_{\epsilon_X} &  X,
 }
 \end{equation}
-Pulling back $B\ra A$ in two steps we therefore obtain the interpolant $B_{\epsilon_X} $,
+Pulling back $B\ra A$ in two steps we therefore obtain the intermediate map $B_{\epsilon_X} \to A_{\epsilon_X}$  indicated in the following diagram. 
 \begin{equation}\label{diagram:fibcomposition2}
 \xymatrix{
 B^\I \ar[r]|| \ar[r]   & B_{\epsilon_A} \ar[r]  \ar[d] \pbcorner & B_{\epsilon_X}  \ar[d] \pbcorner \ar[r] & B \ar[d]\\
 &A^\I \ar[r]|| \ar[r]  & A_{\epsilon_X} \ar[d] \pbcorner \ar[r] & A \ar[d]\\
-&& X^\I \ar[r]_{\epsilon_X} &  X,
+&& X^\I \ar[r]_{\epsilon_X} &  X
 }
 \end{equation}
-Now use the fact that trivial fibrations are closed under pullback along all maps, and under composition, to infer that the indicated composite map $B^\I \ra B_{\epsilon_X} $ is also a trivial fibration, as required.
+Now use the fact that a trivial fibration structure (\ie\ a +-algebra structure) has a canonical pull-back along any map, and that two such structures have a canonical composition (cf.\ Remark \ref{trivfibcomp}), to obtain a trivial fibration structure for the indicated composite map $B^\I \ra B_{\epsilon_X}$, which is then a fibration structure for the composite $B\to A\to X$.
 \end{proof}
+
+%\begin{remark}
+%In terms of semantics of (dependent) type theory, we have just shown that the +-algebras form a category of display maps, or \emph{clan} (see \cite{J}): a family of maps that are closed under isos and composition and stable under pullbacks along all maps.   The following adds closure under pushforwards, giving a ``$\Pi$-clan''.  Note that the subcategory consisting of all such maps between those objects $A$ for which $A\to 1$ is also a +-algebra is then locally cartesian closed.
+%\end{remark}
+
 
 %\begin{lemma}\label{lemma:pluspushforward}
 %+-algebras push forward.
@@ -2040,73 +2506,64 @@ Now use the fact that trivial fibrations are closed under pullback along all map
 %This is Corollary \ref{cor:plusalgpushforward}. 
 %\end{proof}
 
-\begin{proposition}[Frobenius]\label{prop:Frobenius}
-Let $\alpha : A \ra X$ and $\beta: B\ra A$  be fibrations, then the pushforward $\alpha_*\beta : \Pi_AB \ra X$ is also a fibration.
+\begin{proposition}[Biased Frobenius]\label{prop:Frobenius}
+If $\alpha : A \ra X$ and $\beta: B\ra A$  are $\delta$-biased fibrations, then the pushforward $\alpha_*\beta : \Pi_AB \ra X$ is also a $\delta$-biased fibration.
 \end{proposition}
 
 \begin{proof}
-Given the fibrations $\alpha : A \ra X$ and $\beta: B\ra A$, let $p : A^\I \ra A_\epsilon$ and $q : B^\I \ra p^*B_\epsilon$ be the associated +-algebras, so that we have the following situation, with all squares pullbacks.
+Given the ($\delta$-biased) fibrations $\alpha : A \ra X$ and $\beta: B\ra A$, let $a : A^\I \ra A_\epsilon$ and $b : B^\I \ra a^*B_\epsilon$ be the associated trivial fibrations, so that we have the situation of diagram \eqref{diagram:fibcomposition2}, with all three squares pullbacks.
 \begin{equation}\label{diagram:frobenius1.5}
 \xymatrix{
-B^\I \ar[r]|| \ar[r]_{q}   & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]\\
-&A^\I \ar[r]|| \ar[r]_{p}  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]\\
-&& X^\I \ar[r]_{\epsilon} &  X,
+B^\I \ar[r]|| \ar[r]^{b} \ar[rd]_{\beta^\I}  & a^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]^\beta \\
+&A^\I \ar[r]|| \ar[r]^{a} \ar[rd]_{\alpha^\I}  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]^\alpha \\
+&& X^\I \ar[r]_{\epsilon} &  X.
 }
 \end{equation}
-Adding (some composites and) the relevant pushforward underneath, we have
+Taking the pushforward of the righthand vertical column, 
+\[
+\gamma:= \alpha_*\beta : \Pi_A{B} \to X\,,
+\]
+and placing it underneath, along with the corresponding construction from \eqref{diagram:frobenius1}, we then have the following commutative diagram.
  \begin{equation}\label{diagram:frobenius2}
 \xymatrix{
-B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d] \\
-& A^\I \ar[r]|| \ar[r]_{p} \ar[rd]  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d] \\
+B^\I \ar[r]|| \ar[r]^{b} \ar[rd]_{\beta^\I}  & a^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]^\beta \\
+& A^\I \ar[r]|| \ar[r]^{a} \ar[rd]_{\alpha^\I}  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]^\alpha \\
 && X^\I \ar[r]_{\epsilon} &  X \\
-& (\Pi_AB)^\I  \ar[r]_r  \ar[ru] & (\Pi_AB)_\epsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]
+& (\Pi_AB)^\I  \ar[r]_c  \ar[ru]^{\gamma^\I} & (\Pi_AB)_\epsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]_\gamma 
 }
 \end{equation}
-and we wish to show that the indicated  map $r : (\Pi_AB)^\I \ra (\Pi_AB)_\epsilon$
-% \begin{equation}\label{eq:frobenius}
-%r : (\Pi_AB)^\I \ra (\Pi_AB)_\epsilon
-%\end{equation}
- admits a +-algebra structure. We will do so by showing that it is a retract of a known +-algebra.
-%Adding some labels for reference, 
-% \begin{equation}\label{diagram:frobenius3}
-%\xymatrix{
-%B^\I \ar[r]|+^{\delta\Rightarrow\alpha\beta}  & B_\epsilon  \ar[d]_{\beta_\epsilon} \pbcorner \ar[r]  & B \ar[d]^\beta\\
-%& A_\epsilon \ar[d]_{\alpha_\epsilon} \pbcorner \ar[r] & A \ar[d]^\alpha\\
-%& X^\I \ar[r]_{\epsilon} &  X,\\
-%(\Pi_AB)^\I  \ar[r]_{\delta\Rightarrow\alpha_*\beta}   & (\Pi_AB)_\epsilon  \ar[u]^{(\alpha_*\beta)_\epsilon} \ar[r]  & \Pi_AB \ar[u]_{\alpha_*\beta}\\
-%}
-%\end{equation}
+We wish to show that the indicated  map $c : (\Pi_AB)^\I \ra (\Pi_AB)_\epsilon$
+admits a +-algebra structure. This we will do by showing that it is a retract of a known +-algebra.
+Namely, we can apply the pushforward along the map $\alpha^\I:A^\I \ra X^\I$ to the +-algebra $b : B^\I \ra a^*B_\epsilon$ regarded as an arrow over $A^\I$.  We obtain an arrow over $X^\I$ of the form
+\begin{equation}\label{plusalgretract}
+\Pi_{A^\I}\,b :  \Pi_{A^\I}\,B^\I \too \Pi_{A^\I}\,a^*B_\epsilon 
+\end{equation}
+which is indeed a +-algebra, since these are preserved under pushing forward, by Remark \ref{trivfibpushforward}.
 
-Indeed, let us apply the pushforward, along the indicated canonical map $\alpha^\I:A^\I \ra X^\I$, to the +-algebra $q : B^\I \ra p^*B_\epsilon$, regarded as an arrow over $A^\I$.  We obtain an arrow over $X^\I$ of the form
+Next, observe that by the Beck-Chevalley condition for the central pullback, for the codomain of $c$ we have an isomorphism
 \[
-\Pi_{A^\I}\,q :  \Pi_{A^\I}\,B^\I \ra \Pi_{A^\I}\,p^*B_\epsilon
+(\Pi_AB )_\epsilon\ \cong\ \Pi_{A_\epsilon} B_\epsilon \qquad \text{over $X^\I$.}
 \]
-which is a +-algebra, because these are preserved by pushforward, according to Lemma \ref{cor:plusalgpushforward}.
-
-Now observe that by the Beck-Chevalley condition, we have an isomorphism 
+And since $\Pi_{A^\I} \cong \Pi_{A_\epsilon} \circ a_*$, for the codomain of our $+$-algebra $\Pi_{A^\I}\,b$ from \eqref{plusalgretract} we also have
 \[
-(\Pi_AB )_\epsilon \cong \Pi_{A_\epsilon} B_\epsilon \,.
+ \Pi_{A^\I}\,a^*B_\epsilon\ \cong\ \Pi_{A_\epsilon} a_*a^* B_\epsilon \,.
 \]
-Moreover, since $\Pi_{A^\I} \cong \Pi_{A_\epsilon} \circ p_*$, we have
-\[
- \Pi_{A^\I}\,p^*B_\epsilon \cong \Pi_{A_\epsilon} p_*p^* B_\epsilon \,.
-\]
-Thus the image of the unit $\eta : B_\epsilon \ra p_*p^* B_\epsilon$ under $\Pi_{A_\epsilon}$ is a map 
-$s = \Pi_{A_\epsilon}\eta$ over $X^\I$ of the form:
+Thus the image of the unit $\eta : B_\epsilon \ra a_*a^* B_\epsilon$ under $\Pi_{A_\epsilon}$ provides a map 
+$\sigma := \Pi_{A_\epsilon}\eta$ over $X^\I$ of the form:
 \begin{equation}\label{diagram:frobenius3}
 \xymatrix{
 & X^\I  \\
- (\Pi_AB)^\I  \ar[r]_r   \ar[ru] & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]^{s}\\
- \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,q} & \Pi_{A_\epsilon} p_*p^* B_\epsilon
+ (\Pi_AB)^\I  \ar[r]_c   \ar[ru] & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]^{\sigma}\\
+ \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,b} & \Pi_{A_\epsilon} a_*a^* B_\epsilon
 }
 \end{equation}
-Our objective is now to fill in the further arrows $\varphi, \psi,\vartheta$ indicated below in order to exhibit $r$ as a retract of $\Pi_{A^\I}\,q$ in the arrow category over $X^\I$.
+Our goal is now to determine further arrows $\varphi, \psi,\tau$ as indicated below, exhibiting $c$ as a retract of $\Pi_{A^\I}\,b$ in the arrow category over $X^\I$.
 \begin{equation}\label{diagram:frobenius4}
 \xymatrix{
 & X^\I  \\
- (\Pi_AB)^\I  \ar[r]_r  \ar[ru] \ar@{..>}[d]_\varphi & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]^{s}\\
- \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,q} \ar@{..>}[d]_\psi & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar@{..>}[d]^\vartheta\\
-  (\Pi_AB)^\I  \ar[r]_r  & \Pi_{A_\epsilon}B_\epsilon
+ (\Pi_AB)^\I  \ar[r]_c  \ar[ru] \ar@{..>}[d]_\varphi & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]^{\sigma}\\
+ \Pi_{A^\I}B^\I \ar[r]_-{\Pi_{A^\I}\,b} \ar@{..>}[d]_\psi & \Pi_{A_\epsilon} a_*a^* B_\epsilon \ar@{..>}[d]^\tau\\
+  (\Pi_AB)^\I  \ar[r]_c  & \Pi_{A_\epsilon}B_\epsilon
 }
 \end{equation}
 
@@ -2129,17 +2586,17 @@ Our objective is now to fill in the further arrows $\varphi, \psi,\vartheta$ ind
 Consider the following diagram, which is based on \eqref{diagram:frobenius2}.
 \begin{equation}\label{diagram:frobenius7}
 \xymatrix{
-B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d] & \\
-& A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]&  \ar[d]  \ar[l] \ar@{..>}[lu]_{c}\Pi_AB\times_{X} A\\
- (\Pi_AB \times_{X} A)^\I \ar@{..>}[uu]^{c^\I} \ar[ru] \ar[rd] && X^\I \ar[r]_{\epsilon} &  X &   \Pi_AB \ar[l]\\
+B^\I \ar[r]|| \ar[r]_{b} \ar[rd]_{\beta^\I}  & a^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]^\beta & \\
+& A^\I \ar[r]|| \ar[r]_{a}  \ar[rd]_{\alpha^\I}  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]^\alpha &  \ar[d] \ar[l] \ar@{..>}[lu]_{e}\Pi_AB\times_{X} A\\
+ (\Pi_AB \times_{X} A)^\I \ar@{..>}[uu]^{e^\I} \ar[ru] \ar[rd] && X^\I \ar[r]_{\epsilon} &  X &   \Pi_AB \ar[l]\\
 & (\Pi_AB)^\I \ar[ru] \ar@{..>}[r]_\varphi  & \Pi_{A^\I}B^\I   \ar[u] & &
 }
 \end{equation}
-The map $c$ is the counit at $B\ra A$ of the pullback-pushforward adjunction along $A\ra X$. The right-hand side of the diagram, including $c$ and the associated pullback square, reappear on the left under the functor $(-)^\I$, which preserves the pullback. Thus we can take $\varphi$ to be the transpose of $c^\I$ under the pullback-pushforward adjunction along $A^I\ra X^\I$,
+The map $e$ is the counit at $\beta: B\ra A$ of the pullback-pushforward adjunction along $\alpha: A\ra X$. The right-hand side of the diagram, including $e$ and the associated pullback square, reappears (mirrored) on the left under the functor $(-)^\I$, which preserves the pullback. Thus we can take $\varphi$ to be the transpose of $e^\I$ under the pullback-pushforward adjunction along $\alpha^\I: A^I\ra X^\I$,
 \[
-\varphi = \widetilde{c^\I}.
+\varphi\, :=\, \widetilde{e^\I}\,.
 \]
-A diagram chase involving the pullback-pushforward adjunction along $A_\epsilon\ra X^\I$ shows that the upper square in \eqref{diagram:frobenius4} commutes.
+An easy diagram chase involving the pullback-pushforward adjunction along $A_\epsilon\ra X^\I$ shows that the upper square in \eqref{diagram:frobenius4} then commutes.
 
 %Any map $i$ induces a unique map $ii$ by exponential transposition, which in turn determines a unique map $iii$ by the universal property of $\Pi_AB$.  We now apply $(-)^\I$ to the two righthand columns and interpolate the result on the left, using the unit $Z \ra (Z\times \I)^\I$.
 %\begin{equation*}\label{diagram:frobenius8}
@@ -2159,181 +2616,206 @@ A diagram chase involving the pullback-pushforward adjunction along $A_\epsilon\
 %
 \smallskip
 
-\noindent $\bullet$ For $\vartheta$: referring to the diagram \eqref{diagram:frobenius2}, since $p : A^\I \ra A_\epsilon$ is a trivial fibration, it has a section $o :  A_\epsilon \ra A^\I$ by lemma \ref{cor:plusalgsection}.  Pulling  $p^*B_\epsilon \ra A^\I$ back along $o$ results in an iso over~$A_\epsilon$,
+\noindent $\bullet$ For $\tau$: referring to the diagram \eqref{diagram:frobenius2}, since $a : A^\I \ra A_\epsilon$ is a trivial fibration, it has a section $o :  A_\epsilon \ra A^\I$ by lemma \ref{cor:plusalgsection}.  Pulling  $a^*B_\epsilon \ra A^\I$ back along $o$ results in an iso,
 \[
-o^*p^* B_\epsilon \cong B_\epsilon \,,
+o^*a^* B_\epsilon \cong B_\epsilon\quad\text{over $A_\epsilon$}
 \]
-and so by the adjunction $o^*\!\dashv o_*$ there is a map over $A^\I$,
+and so by the adjunction $o^*\!\dashv o_*$ there is an associated map,
 \[
-p^* B_\epsilon \ra o_* B_\epsilon \,,
+a^* B_\epsilon \ra o_* B_\epsilon\quad\text{over $A^\I$}
 \]
-to which we can apply $p_*$ to obtain a map,
+to which we can apply $a_*$ to obtain a map,
 \[
-\rho : p_*p^* B_\epsilon \ra p_*o_*B_\epsilon \cong B_\epsilon\,\quad \text{over $A_\epsilon$.}
+t : a_*a^* B_\epsilon \ra a_*o_*B_\epsilon \cong B_\epsilon\quad \text{over $A_\epsilon$\,.}
 \]
-This is a retraction of the unit $\eta : B_\epsilon \ra p_*p^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ therefore gives the desired retraction $$\vartheta = \Pi_{A_\epsilon}\rho :  \Pi_{A_\epsilon}p_*p^* B_\epsilon \ra \Pi_{A_\epsilon}B_\epsilon$$ of $s$.
+This map $t$ is evidently a retraction of the unit $\eta : B_\epsilon \ra a_*a^* B_\epsilon$ over $A_\epsilon$.  Applying the functor $ \Pi_{A_\epsilon}$ therefore gives the desired retraction  of $\sigma$, 
+\[
+\tau\, :=\, \Pi_{A_\epsilon}t :  \Pi_{A_\epsilon}a_*a^* B_\epsilon \ra \Pi_{A_\epsilon}B_\epsilon\,.
+\]
 
 \medskip
 \noindent $\bullet$ For $\psi$, we require a map 
 \[
 \psi:\Pi_{A^\I}B^\I \ra (\Pi_AB)^\I \qquad \text{over $X^\I$.}
 \]
-Consider the following diagram resulting from combining \eqref{diagram:frobenius2} and \eqref{diagram:frobenius4}, and in which all solid arrows are those already introduced. The dotted arrow labelled $\alpha$ is the evident composite.
+Consider the following diagram resulting from combining \eqref{diagram:frobenius2} and \eqref{diagram:frobenius4}, in which all solid arrows are those already introduced. The dotted arrow labelled $p$ is the evident composite.
 \begin{equation}\label{diagram:frobenius8}
 \xymatrix{
 & X^\I \ar[r]^\epsilon & X \\
  (\Pi_AB)^\I  \ar[r]  \ar[ru] \ar[d] & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d] \ar[r] & \Pi_{A}B \ar[u]\ar[dd]^= \\
- \Pi_{A^\I}B^\I \ar[r] \ar@{..>}[rrd]^>>>>>>>>>>>\alpha & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar[d] & \\
+ \Pi_{A^\I}B^\I \ar[r] \ar@{..>}[rrd]^>>>>>>>>>>>{p} & \Pi_{A_\epsilon} a_*a^* B_\epsilon \ar[d] & \\
   (\Pi_AB)^\I  \ar[r]  & \Pi_{A_\epsilon}B_\epsilon \ar[r] & \Pi_{A}B 
 }
 \end{equation}
-Now recall that we are working in the slice category over $\I$, and the objects  $\Pi_{A^\I}B^\I $, $\Pi_{A}B$, and $(\Pi_AB)^\I $ are in the image of the base change $\I^*$, and so are actually  of the form $\I^*\Pi_{A^\I}B^\I $, $\I^*\Pi_{A}B$, and $\I^*((\Pi_AB)^\I) $.  Indeed, the latter is 
+%
+The lower horizontal composite is the evaluation of the pathobject $(\Pi_AB)^\I$ at the point $\delta : 1 \to \I$, 
 \[
-\I^*((\Pi_AB)^\I) = \I^*\I_*\I^*\Pi_AB\,.
+\epsilon_{\Pi_AB} = (\Pi_AB)^\delta : (\Pi_AB)^\I \too (\Pi_AB)^1 \cong \Pi_AB\,.
+\] 
+This is constructed from the (cartesian closed) evaluation,
+\[
+\eval : \I \times (\Pi_AB)^\I \too \Pi_AB
 \]
-Since the lower horizontal map is the counit $\varepsilon$ of the base change $\I^* \dashv \I_*$, the map $\alpha$ factors as $\varepsilon\circ\I^*\tilde{\alpha}$, where $\tilde{\alpha}$ is the adjoint transpose of $\alpha$, as shown in the following.
+which is the counit of $\I\times(-) \dashv (-)^\I$, as the composite shown below.
+\begin{equation}\label{diagram:biasedfrobenius}
+\xymatrix{
+(\Pi_AB)^\I \ar[d]_{\cong} \ar[rr]^{\epsilon_{\Pi_AB}} && \Pi_AB  \\
+1\times (\Pi_AB)^\I \ar[rr]_{\delta\times{(\Pi_AB)^\I}} && \ar[u]_{\eval}  \I \times (\Pi_AB)^\I 
+}
+\end{equation}
+%
+Let us analyse this evaluation at $\delta$ further, in terms of the \emph{locally} cartesian closed structure associated to the base changes along the section $\delta : 1\to \I$  and retraction $\I \to 1$ in~$\EE$.
+Since $\mathsf{id}  \cong \delta^*\I^* : \EE \to \EE/_\I \to \EE$, the map $\epsilon_{\Pi_AB}$ can be rewritten as follows.
+\begin{equation}\label{diagram:biasedfrobenius2}
+\xymatrix{
+(\Pi_AB)^\I \ar[d]_{\cong} \ar[rr]^{\epsilon_{\Pi_AB}} && \Pi_AB  \ar[d]^{\cong} \\
+\delta^*\I^*((\Pi_AB)^\I )  \ar[d]_{\cong}  \ar[rr]^{\delta^*\I^*\epsilon_{\Pi_AB}}  &&  \delta^*\I^*\Pi_AB  \ar[d]^{=} \\
+\delta^*\I^*\I_*\I^*\Pi_AB \ar[rr]  \ar[rr]_{\delta^*\varepsilon}  & &  \delta^*\I^*\Pi_AB 
+}
+\end{equation}
+where the map $\delta^*\varepsilon$ across the bottom is the counit of the adjunction $\I^*\dashv\I_*$, taken at $\I^*\Pi_AB$, and then pulled back along $\delta : 1\to\I$.  
+%By a triangle law, it is a retraction of $\delta^*$ applied to the associated unit at $\I^*\Pi_AB$,
+%\begin{equation}\label{diagram:biasedfrobenius3}
+%\xymatrix{
+%(\Pi_AB)^\I \ar[d]_{\cong} &&& \ar[lll]_{\eta_{\Pi_AB}} \Pi_AB  \ar[d]^{\cong} \\
+%\delta^*\I^*\I_*\I^*\Pi_AB  &&& \ar[lll]^{\delta^*\I^*\eta_{\Pi_AB}}    \delta^*\I^*\Pi_AB\,.
+%}
+%\end{equation}
+Before taking the pullback, we therefore have the following iso over $\I$ between that counit $\varepsilon_{\I^*}$ and the image under $\I^*$ of the previously considered evaluation $\epsilon : (\Pi_AB)^\I \to \Pi_AB$ from \eqref{diagram:biasedfrobenius}.
+\begin{equation}\label{diagram:biasedfrobenius3}
+\xymatrix{
+\I^*((\Pi_AB)^\I) \ar[d]_{\cong}  \ar[rrr]^{\\I^*\epsilon} &&& \I^*\Pi_AB  \ar[d]^{=} \\
+\I^*\I_*\I^*\Pi_AB   \ar[rrr]_{\varepsilon_{\I^*}}  &&&  \I^*\Pi_AB\,.
+}
+\end{equation}
+%
+%The objects  $\Pi_{A^\I}B^\I$ and $(\Pi_AB)^\I $ can be rewritten as
+%\begin{align*}
+%(\Pi_AB)^\I  &\cong \I_*\I^*\Pi_AB 	&\cong  \I_*\Pi_{(\I^*A)}\I^*B   \\
+% \Pi_{A^\I}B^\I & 	\cong \Pi_{(\I_*\I^*A)}\I_*\I^*B   &\cong \Pi_{\I_*\I^*(A)}\I_*\I^*(B)
+%\end{align*}
+%Indeed, since for the point  $\delta : 1 \to \I$, we have $\delta^*\I^* \cong \i$, the latter is 
+%\[
+%(\Pi_AB)^\I \cong \I_*\I^*\Pi_AB \cong \delta^*\I^*(\I_*\I^*(\Pi_AB)) \cong  \,.
+%\]
+Now let us apply $\I^*$ to  \eqref{diagram:frobenius8} to get the map $\I^*p$ in the diagram below, which therefore factors (up to \eqref{diagram:biasedfrobenius3}) through the counit $\varepsilon_{\I^*}$ as $\varepsilon_{\I^*}\circ\I^*(\widetilde{\I^*p})$, where $\widetilde{\I^*p}$ is the adjoint transpose of $\I^*p$, as shown.
+%
+\begin{equation}\label{diagram:biasedfrobenius4}
+\xymatrix{
+\I^*\Pi_{A^\I}B^\I \ar[d]_{\I^*(\widetilde{\I^*p})} \ar[r] \ar@{..>}[rrd]^>>>>>>>>>>>{\I^*p} & \I^*\Pi_{A_\epsilon} a_*a^* B_\epsilon \ar[d] & \\
+  \I^*\I_*\I^*\Pi_AB  \ar[r] \ar@/_4ex/ [rr]_{\varepsilon_{\I^*}} & \I^*\Pi_{A_\epsilon}B_\epsilon \ar[r] & \I^*\Pi_{A}B 
+}
+\end{equation}
+%
+We can therefore set $$\psi\, := \, \widetilde{\I^*p}\,,$$
+and we obtain $\epsilon\circ \psi = p$, from which it follows that the square in \eqref{diagram:biasedfrobenius4} commutes by the definition of $\Pi_{A_\epsilon}B_\epsilon$ as a pullback. The same square without $\I^*$ then also commutes by applying the retraction $\delta^*$.  
+
+We have now defined all the maps indicated below, the squares involving $\varphi$ and $\psi$ commute, and the  composite of $\sigma$ and $\tau$  is the identity.
 \begin{equation}\label{diagram:frobenius9}
 \xymatrix{
-\I^*\Pi_{A^\I}B^\I \ar[d]_{\I^*\tilde{\alpha}} \ar[r] \ar@{..>}[rrd]^>>>>>>>>>>>\alpha & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar[d] & \\
-  \I^*\I_*\I^*\Pi_AB  \ar[r] \ar@/_4ex/ [rr]_\varepsilon & \Pi_{A_\epsilon}B_\epsilon \ar[r] & \I^*\Pi_{A}B 
-}
-\end{equation}
-We set $\psi = \I^*\tilde{\alpha}$, making the square commute.  
-
-We  have now defined all the maps below, the squares involving $\varphi$ and $\psi$ commute, and the  composite of $\vartheta$ and $s$  is the identity.
-\begin{equation}\label{diagram:frobenius8}
-\xymatrix{
 & X^\I \ar[r] & X \\
- (\Pi_AB)^\I  \ar[r]  \ar[ru] \ar[d]_{\varphi} & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]^s \ar[r] & \Pi_{A}B \ar[u]\ar[dd]^= \\
- \Pi_{A^\I}B^\I \ar[r] \ar[d]_{\psi} & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar[d]^\vartheta & \\
-  (\Pi_AB)^\I  \ar[r] \ar@/_4ex/ [rr]_\varepsilon & \Pi_{A_\epsilon}B_\epsilon \ar[r] & \Pi_{A}B 
+ (\Pi_AB)^\I  \ar[r]  \ar[ru] \ar[d]_{\varphi} 
+ 	& \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]^\sigma \ar[r] & \Pi_{A}B \ar[u]\ar[dd]^= \\
+ \Pi_{A^\I}B^\I \ar[r] \ar[d]_{\psi} \ar@{..>}[rrd]^>>>>>>>>>>>{p} 
+ 	& \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar[d]^\tau & \\
+  (\Pi_AB)^\I  \ar[r] \ar@/_4ex/ [rr]_\epsilon & \Pi_{A_\epsilon}B_\epsilon \ar[r] & \Pi_{A}B 
 }
 \end{equation}
+%
+To see that $\psi\circ\varphi = 1$, an easy chase through the diagram \eqref{diagram:frobenius9} shows that
+\[
+\epsilon\circ \psi\circ\varphi = p \circ \varphi = \epsilon\,.
+\]
+Thus by applying $\I^*$ and using \eqref{diagram:biasedfrobenius3} we have $
+\varepsilon_{\I^*} \circ \I^*(\psi \circ\varphi) = \varepsilon_{\I^*}$, 
+and so $\psi \circ\varphi = \widetilde{\varepsilon_{\I^*}} = 1$.
 
-To see that $\psi\circ\varphi = 1$, observe that each map is in the image of $\I^*$, say:
-\begin{align*}
-\varphi &= \I^*f\\
-\psi &= \I^*g\,,
-\end{align*}
-where  $g = \tilde{\alpha}$.
+ %%say,
+%%\begin{align*}
+%%\I^*\varphi &=: f\\
+%%\I^*\psi &=: g\,,
+%%\end{align*}
+%%where  $g = \widetilde{\I^*p}$.
+%%%
+%Recall that for any map $h : X \ra \I_*Y$, the unit $\varepsilon$ satisfies, 
+%\[
+%\varepsilon \circ \I^*(h) = \tilde{h}\,.
+%\]
+%Therefore
+%\begin{align*}
+%\varepsilon\circ \I^*\psi \circ \I^*\varphi  &= \varepsilon \circ \I^*(\psi \circ \varphi) \\
+%&= \widetilde{(\psi \circ \varphi)}  
+%\end{align*}
+%
+%%\begin{align*}
+%%\varepsilon\circ\psi\circ\varphi &= \varepsilon\circ\I^*g\circ\I^*f\\
+%%&= \varepsilon\circ\I^*(g\circ f)\\
+%%&= \widetilde{(g\circ f)}.
+%%\end{align*}
+%On the other hand, an easy diagram chase on \eqref{diagram:frobenius9} shows that 
+%\[
+%\varepsilon\circ\psi\circ\varphi = \varepsilon.
+%\]
+%Therefore $g\circ f = \tilde{\varepsilon} = 1$, and so $\psi\circ\varphi = \I^*g\circ\I^*f = \I^*(g\circ f) = 1$.
+%
+
+%Now observe that the objects  $\Pi_{A^\I}B^\I $, $\Pi_{A}B$, and $(\Pi_AB)^\I $ are in the image of the base change $\I^*$, and so are actually  of the form $\I^*\Pi_{A^\I}B^\I $, $\I^*\Pi_{A}B$, and $\I^*((\Pi_AB)^\I) $.  Indeed, the latter is 
+%\[
+%\I^*((\Pi_AB)^\I) = \I^*\I_*\I^*\Pi_AB\,.
+%\]
+%Since the lower horizontal map is the counit $\varepsilon$ of the base change $\I^* \dashv \I_*$, the map $p$ factors as $\varepsilon\circ\I^*\tilde{p}$, where $\tilde{p}$ is the adjoint transpose of $p$, as shown in the following.
 %\begin{equation}\label{diagram:frobenius9}
 %\xymatrix{
-%& X^\I \ar[r]^\epsilon & X \\
-% (\Pi_AB)^\I  \ar[r]  \ar[ru] \ar[d] & \Pi_{A_\epsilon}B  \ar[u] \ar[d] \ar[r] & \Pi_{A}B \ar[u]\ar[dd]^= \\
-% \Pi_{A^\I}B^\I \ar[d]_{\I^*\tilde{\alpha}} \ar[r] \ar@{..>}[rrd]^>>>>>>>>>>>\alpha & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar[d] & \\
+%\I^*\Pi_{A^\I}B^\I \ar[d]_{\I^*\tilde{p}} \ar[r] \ar@{..>}[rrd]^>>>>>>>>>>>{p} & \Pi_{A_\epsilon} a_*a^* B_\epsilon \ar[d] & \\
+%  \I^*\I_*\I^*\Pi_AB  \ar[r] \ar@/_4ex/ [rr]_\varepsilon & \Pi_{A_\epsilon}B_\epsilon \ar[r] & \I^*\Pi_{A}B 
+%}
+%\end{equation}
+%We can therefore set $\psi\, := \, \I^*\tilde{p}$, making the square commute.  
+%
+%We have now defined all the maps below, the squares involving $\varphi$ and $\psi$ commute, and the  composite of $\tau$ and $\sigma$  is the identity.
+%\begin{equation}\label{diagram:frobenius8}
+%\xymatrix{
+%& X^\I \ar[r] & X \\
+% (\Pi_AB)^\I  \ar[r]  \ar[ru] \ar[d]_{\varphi} & \Pi_{A_\epsilon}B_\epsilon  \ar[u] \ar[d]^\sigma \ar[r] & \Pi_{A}B \ar[u]\ar[dd]^= \\
+% \Pi_{A^\I}B^\I \ar[r] \ar[d]_{\psi} & \Pi_{A_\epsilon} p_*p^* B_\epsilon \ar[d]^\tau & \\
 %  (\Pi_AB)^\I  \ar[r] \ar@/_4ex/ [rr]_\varepsilon & \Pi_{A_\epsilon}B_\epsilon \ar[r] & \Pi_{A}B 
 %}
 %\end{equation}
-Recall that  in general the unit $\varepsilon$ satisfies, 
-\[
-\varepsilon\circ \I^*(h) = \tilde{h}
-\]
-for any map $h : X \ra \I_*Y$.  Thus
-\begin{align*}
-\varepsilon\circ\psi\circ\varphi &= \varepsilon\circ\I^*g\circ\I^*f\\
-&= \varepsilon\circ\I^*(g\circ f)\\
-&= \widetilde{(g\circ f)}.
-\end{align*}
-On the other hand, a diagram chase on \eqref{diagram:frobenius8} shows that 
-\[
-\varepsilon\circ\psi\circ\varphi = \varepsilon.
-\]
-Therefore $g\circ f = \tilde{\varepsilon} = 1$, so $\psi\circ\varphi = \I^*g\circ\I^*f = \I^*(g\circ f) = \I^*1 = 1$.
-
 %
-%Using the adjunction $\I^*\!\dashv \I_*$ and the fact that $(\Pi_AB)^\I  \cong \I_*\I^*(\Pi_AB)$ and $X^\I \cong \I_*\I^*X$, it suffices to give a map  
-%\[
-%\I^*(\Pi_{A^\I}B^\I) \ra \I^*(\Pi_AB) \qquad \text{over $\I^*X$}
-%\]
-%where $\I^*(\Pi_{A^\I}\,B^\I)$ is over $\I^*X$ by composition with the counit
-%\[
-%\varepsilon: \I^*(X^\I)\cong \I^*\I_*\I^*X \ra \I^*X
-%\]
-%as indicated in
-%\begin{equation}\label{diagram:frobenius5}
-%\xymatrix{
-%\I^*(\Pi_{A^\I}B^\I) \ar[r] \ar[d] &  \I^*(\Pi_AB)  \ar[d] \\
-%\I^*(X^\I) \ar[r]_\varepsilon & \I^*X\,.
-%}
-%\end{equation}
-%Thus, pulling back to $\I^*(X^\I)$ and dropping the $\I^*$ everywhere for readability (which we may do since $\I^*$ preserves all the operations involved), it suffices to give
-%\begin{equation}\label{eq:needforpsi}
-%\Pi_{A^\I}B^\I \ra \varepsilon^*(\Pi_AB) \qquad \text{over $X^\I$}
-%\end{equation}
-%in the slice over $\I$, where $\varepsilon : X^\I \ra X$ is evaluation at the (new) generic point $\delta_2: 1\ra \I$.  Since we were \emph{already} working over $\I$,  by slicing over $\I$ again we are now in the slice category over $\I\times\I$.  In particular, there are now two different ``generic points'' $\delta_1, \delta_2 : 1 \ra \I$ (as was the case in the treatment of composition in section \ref{sec:composition}).
+%To see that $\psi\circ\varphi = 1$, observe that each map is in the image of $\I^*$, say:
+%\begin{align*}
+%\varphi &= \I^*f\\
+%\psi &= \I^*g\,,
+%\end{align*}
+%where  $g = \tilde{p}$.
 %
-%We are thus in a situation analogous to that of diagram \ref{diagram:frobenius2},  
-%\begin{equation}\label{diagram:frobenius6}
-%\xymatrix{
-%B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\varepsilon \ar[r]  \ar[d]  & B_{\varepsilon}  \ar[d]   \ar[r] & B \ar[d] \\
-%& A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\varepsilon} \ar[d]   \ar[r] & A \ar[d] \\
-%&& X^\I \ar[r]_{\varepsilon} &  X \\
-%& \Pi_{A^\I}B^\I \ar[ru] \ar@{..>}[r]_\psi  & (\Pi_AB)_\varepsilon  \ar[u] \ar[r] & \Pi_AB \ar[u]
-%}
-%\end{equation}
-%except that here the map $\varepsilon: X^\I \ra X$ is evaluation at the new generic point $\delta_2: 1\ra \I$, and similarly, \emph{mutatis mutandis}, for the indicated maps $p_2$ and $q_2$.  
-%Observe, however, that on the subobject $\Delta = \I \mono \I\times\I$ the two points $\delta, \delta'$ agree, and so, therefore, do their respective evaluations $$\Delta^*\epsilon = \Delta^*\varepsilon: \Delta^*X^\I \ra \Delta^*X\,.$$
-%It follows that $p$ and $q$ are also +-algebras. 
-%
-%We can now reason as we did for $\vartheta$, using a section $o :  A_\varepsilon \ra A^\I$ of the trivial fibration $p : A^\I \ra A_\varepsilon$. Referring to diagram \eqref{diagram:frobenius4}, we have
+%Recall that for any map $h : X \ra \I_*Y$, the unit $\varepsilon$ satisfies, 
 %\[
-%o^*q : o^*B^\I \ra o^*p^* B_\varepsilon \cong B_\varepsilon  \qquad \text{over $A_\varepsilon$}
+%\varepsilon\circ \I^*(h) = \tilde{h}\,.
 %\]
-%and so by $o^*\dashv o_*$ there is a map, 
+%Therefore
+%\begin{align*}
+%\varepsilon\circ\psi\circ\varphi &= \varepsilon\circ\I^*g\circ\I^*f\\
+%&= \varepsilon\circ\I^*(g\circ f)\\
+%&= \widetilde{(g\circ f)}.
+%\end{align*}
+%On the other hand, an easy diagram chase on \eqref{diagram:frobenius8} shows that 
 %\[
-%B^\I \ra o_*B_\varepsilon  \qquad \text{over $A^\I$}
+%\varepsilon\circ\psi\circ\varphi = \varepsilon.
 %\]
-%applying $p_*$ we obtain,
-%\[
-%p_*B^\I \ra p_*o_*B_\varepsilon \cong B_\varepsilon  \qquad \text{over $A_\varepsilon$}
-%\]
-%from which, by applying $\Pi_{A_\varepsilon}$, we obtain,
-%\[
-%\Pi_{A^\I}B^\I \cong \Pi_{A_\varepsilon} p_*B^\I \ra \Pi_{A_\varepsilon}B_\varepsilon  \cong \varepsilon^*(\Pi_{A}B)   \qquad \text{over $X^\I$}
-%\]
-%as required in \eqref{eq:needforpsi}.
-%
-%\medskip
-%\noindent $\bullet$ For $\varphi$, we require a map 
-%\[
-%\varphi : (\Pi_AB)^\I \ra \Pi_{A^\I}B^\I \qquad \text{over $X^\I$.}
-%\]
-%To that end, we take an arbitrary $Z \ra X^\I$ and associate to any map 
-%\[
-%Z \ra (\Pi_AB)^\I \qquad \text{over $X^\I$}
-%\]
-%another map 
-%\[
-%Z \ra \Pi_{A^\I}B^\I \qquad \text{over $X^\I$}
-%\]
-%in a way that is natural in the object $Z \ra X^\I$.  
-%
-%Indeed, consider the following diagram, which extends \eqref{diagram:frobenius2}.
-%\begin{equation}\label{diagram:frobenius7}
-%\xymatrix{
-%B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
-%& A^\I \ar[r]|| \ar[r]_{p}  \ar[rd]  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]& \ar[d] \ar[l] \ar@{..>}[lu]_{iii}A\times_X (Z\times \I) \\
-%Z \ar[rr] \ar@{..>}[rd]_-{i} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
-%& (\Pi_AB)^\I \ar[ru] \ar@{..>}[r]_\varphi  & \Pi_{A^\I}B^\I   \ar[u] \ar[r] & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]
-%}
-%\end{equation}
-%Any map $i$ induces a unique map $ii$ by exponential transposition, which in turn determines a unique map $iii$ by the universal property of $\Pi_AB$.  We now apply $(-)^\I$ to the two righthand columns and interpolate the result on the left, using the unit $Z \ra (Z\times \I)^\I$.
-%\begin{equation*}\label{diagram:frobenius8}
-%\xymatrix{
-%B^\I \ar[r]|| \ar[r]_{q} \ar[rd]  & p^*B_\epsilon \ar[rr]  \ar[d]  && B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]& \\
-%(A\times_X (Z\times \I))^\I \ar[r] \ar[rd] \ar@{..>}[u]^{iv} & A^\I \ar[rr]|| \ar[rr]_{p}  \ar[rrd]  && A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]
-%	& \ar[d] \ar[l] \ar@{..>}[lu]_{iii} A\times_X (Z\times \I) \\
-%Z \ar[r] \ar@{..>}[rd]_-{i} & (Z\times \I)^\I \ar[rr] \ar[d] \ar@{..>}[rrd]^<<<<<<<{v} && X^\I \ar[r]_{\epsilon} &  X & \ar[l] \ar@{..>}[d]^{ii} Z\times \I\\
-%& (\Pi_AB)^\I \ar[rru] \ar@{..>}[rr]_\varphi  && \Pi_{A^\I}B^\I   \ar[u] \ar[r]  & \Pi_{A_\epsilon}B_\epsilon  \ar[lu] \ar[r] & \Pi_AB \ar[lu]
-%}
-%\end{equation*}
-%We therefore have the map $iv = (iii)^\I$, and since $(-)^\I$ preserves pullbacks, the domain of $iv$ is
-%\[
-%(A\times_X (Z\times \I))^\I \cong A^\I\times_{X^\I} (Z\times \I)^\I\,.
-%\]  
-%Thus by the universal property of $\Pi_{A^\I}B^\I$ there is an associated map $v$, which, when precomposed with the unit $Z \ra (Z\times \I)^\I$ gives the desired map $Z \ra \Pi_{A^\I}B^\I$.
+%Therefore $g\circ f = \tilde{\varepsilon} = 1$, and so $\psi\circ\varphi = \I^*g\circ\I^*f = \I^*(g\circ f) = 1$.
 %
 \end{proof}
+
+From Proposition \ref{prop:biasedFrobimpliesunbiasedFrob} we therefore have:
+
+\begin{corollary}[Unbiased Frobenius]\label{cor:unbiasedFrobenius}
+The unbiased fibration weak factorization system on $\cSet$ satisfies the Frobenius condition.
+\end{corollary}
+
+\begin{remark}\label{remark:unbiasedFrobeniusgeneralizes}
+We note in passing that the proof just given for the $\delta$-biased case of Frobenius, Proposition \ref{prop:Frobenius}, made no use of the fact that $\delta : 1\to\I$ is generic, nor even that we were working in the slice category over $\I$.  Indeed the same algebraic argument works for $p$-biased fibrations for any point $p : 1\to\I$ of any object $\I$ in any topos $\EE$.
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{A universal fibration}\label{sec:U}
@@ -2341,7 +2823,7 @@ Therefore $g\circ f = \tilde{\varepsilon} = 1$, so $\psi\circ\varphi = \I^*g\cir
 
 In this section we construct a \emph{universal small fibration} $\dot{\U}\ra \U$.  
 It will then be shown  in Section \ref{sec:FEP} that the base object $\U$ is fibrant, using the equivalence extension property to be proved in Section \ref{sec:EEP}.   
-Our construction of $\dot{\U}\ra \U$ makes use of a new analysis of the well-known Hofmann-Streicher universe in a category $\widehat{\bbC} = [\op{\bbC}, \Set]$ of presheaves on a small category~$\bbC$, which was used in \cite{HS:1997} to interpret dependent type theory (but occurs already in \cite{SGA4}). See \cite{awodey:HSuniverse} for further details. 
+Our construction of $\dot{\U}\ra \U$ makes use, first of all, of a new description of the well-known Hofmann-Streicher universe in a category $\widehat{\bbC} = [\op{\bbC}, \Set]$ of presheaves on a small category~$\bbC$, which was used in \cite{HS:1997} to interpret dependent type theory. See \cite{awodey:HSuniverse} for further details. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classifying families}\label{sec:U}
@@ -2671,11 +3153,36 @@ For $\VV_{\kappa}$ we then have,
   \end{equation}
 in the image of $\nu : \Cat\too\widehat\bbC$, classifying small maps in $\widehat\bbC$ of increasing size, in the sense of Proposition \ref{prop:familyclassifier}.
 
-\item Let $\alpha = 2$ so that $1\to 2$ is the subobject classifier of $\Set$, and 
+\item\label{universeexample:sliceuniverse} Let $\alpha = 2$ so that $1\to 2$ is the subobject classifier of $\Set$, and 
 $$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$ is then a classifier in $\Cat$ for \emph{sieves}, i.e.\ full subcategories $\mathbb{S}\hook\A$ closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$.  The nerve $\VV_{2}  \to \V_{2}$ is then the usual subobject classifier $1\to\Omega$ of $\widehat\bbC$,
 \[
 1 = \nu \mathbbm{1} = \VV_{2} \too  \V_{2} = \nu \mathbbm{2} = \Omega  \,.
 \]
+
+\item For any $X\in \widehat{\bbC}$, we have an equivalence 
+\[
+\widehat{\bbC}/_X\ %\simeq\ \widehat{\bbC/_X}\ 
+\simeq\ \widehat{\textstyle \int_{\bbC}X}\ \simeq\ \mathsf{dFib}/_{\int_{\bbC}X}
+\]
+where, generally, $\mathsf{dFib}/_{\mathbb{D}}$ is the category of discrete fibrations over a category $\mathbb{D}$.
+This equivalence commutes with composition along discrete fibrations, in the sense that the forgetful functor $${X_!}: \widehat{\bbC}/_X \to \widehat{\bbC}$$ given by composition along $X \to 1$ agrees (up to canonical isomorphism) with the base change $(p_X)_! \dashv (p_X)^*$ of presheaves along the projection  ${\textstyle  p_X : \int_{\bbC}X \to  \bbC}$, and with composition along the discrete fibration $p_X$, as indicated in:
+\begin{equation}\label{diagram:sliceuniversepullsback}
+\begin{tikzcd}
+\widehat{\bbC}/_X  \ar[d,swap,"{{X_!}}"] \ar[r, "{\sim}"] 
+	& \widehat{\textstyle \int_{\bbC}X} \ar[d,swap,"{{(p_X)_!}}"] \ar[r, "{\sim}"] 
+		& \mathsf{dFib}/_{\int_{\bbC}X} \ar[d,"p_X\circ(-)"]  \\
+ \widehat{\bbC}  \ar[r,swap, "{\sim}"]   & \widehat{\bbC}  \ar[r,swap, "{\sim}"] 
+	&  \mathsf{dFib}/_{\bbC}.
+\end{tikzcd}
+\end{equation}
+
+It follows that the pullback functor $X^* : \widehat{\bbC} \to \widehat{\bbC}/_X$ commutes with the corresponding right adjoints (one of which is the nerve), and therefore preserves the respective universes, 
+\[\textstyle
+ X^* \V_{\bbC} \ 
+   \cong\ (p_X)^* \nu_{\bbC}(\Set^{\mathsf{op}}) \ 
+   \cong\  \nu_{\int_{\bbC}X}(\Set^{\mathsf{op}}) \ 
+   \cong\  \V_{ \int_{\bbC}X} \,.
+ \]
 
 %\item Let $i : \mathbbm{2} \hook \Set_\kappa$ and $ p : \Set_\kappa \to \mathbbm{2} $ be the embedding-retraction pair with $i : \mathbbm{2} \hook \Set_\kappa$ the inclusion of the full subcategory on the sets $ \{0, 1\}$ and $p : \Set_\kappa \to \mathbbm{2}$ the retraction that takes $0 = \emptyset$ to itself, and everything else (i.e.\ the non-empty sets) to $1 = \{\emptyset\}$. There is a retraction (of arrows) in $\Cat$,
 %%
@@ -2836,7 +3343,7 @@ $$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classifying trivial fibrations}
 
-Recall from section \ref{sec:cofibrations} that (uniform) trivial fibration structures on a map $A\ra X$ correspond bijectively to relative +-algebra structures over $X$ (definition \ref{def:+alg}).  A relative $+$-algebra structure on $A \ra X$ is an algebra structure for the pointed endofunctor $+_X : \cSet/X \ra \cSet/X$, where recall from \eqref{eq:partialmapclassifier}, 
+Returning now to the presheaf category $\cSet = \psh{\Box}$ of cubical sets, recall from section \ref{sec:cofibrations} that (uniform) trivial fibration structures on a map $A\ra X$ correspond bijectively to relative +-algebra structures over $X$ (definition \ref{def:+alg}).  A relative $+$-algebra structure on $A \ra X$ is an algebra structure for the pointed endofunctor $+_X : \cSet/X \ra \cSet/X$, where recall from \eqref{eq:partialmapclassifier}, 
 \[
 A^+ = \sum_{\varphi:\Phi}A^{[\varphi]}\quad\text{over $X$}.
 \]
@@ -2868,7 +3375,7 @@ Y \ar[r]_{f} &X\\
 \end{equation}
 because the +-functor, exponentials and pullbacks occurring in the construction of $+\mathsf{Alg}(A) \ra X$ are themselves all stable. 
 
-It then follows from Proposition \ref{prop:familyclassifier} that, if $A\ra X$ is small, then $+\mathsf{Alg}(A) \ra X$ is itself a pullback of the analogous object $+\mathsf{Alg}(\VV) \ra \V$ constructed from the universal small family $\VV\ra\V$, so there are two pullback squares:
+It then follows from Proposition \ref{prop:familyclassifier} that, if $A\ra X$ is small, then $+\mathsf{Alg}(A) \ra X$ is itself a pullback of the analogous object $+\mathsf{Alg}(\VV) \ra \V$ constructed from the universal small family $\VV\ra\V$ of Proposition \ref{prop:familyclassifier}, so there are two pullback squares:
 \begin{equation}\label{diagram:tfib1}
 \xymatrix{
 A \ar[d] \ar[r]  & \VV \ar[d]\\
@@ -2946,11 +3453,11 @@ Y \ar[r]_{f} &X\\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classifying fibrations}\label{sec:universalfibration}
 
-In order to classify fibrations $A\fib X$, we proceed as for trivial fibrations by constructing an object $\Fib(A)\ra X$ of fibration structures on a map $A\ra X$ which, moreover, is stable under pullback.  We then apply the construction to the universal small family $\VV\ra\V$ to obtain a universal small fibration.  
+In order to classify fibrations $A\fib X$, we shall proceed as for trivial fibrations by constructing an object $\Fib(A)\ra X$ of fibration structures on a map $A\ra X$ which, moreover, is stable under pullback.  We then apply the construction to the universal small family $\VV\ra\V$ of Proposition \ref{prop:familyclassifier} to obtain a universal small fibration.  
 
-The construction of $\Fib(A)\ra X$ is a bit more involved than that of $\TFib(A)\ra X$.  Recall from section \ref{sec:unbiasedfibration} the characterization of (uniform, unbiased) fibration structures on a map $p_A : A\ra X$ in terms of +-algebra structures:  
+The construction of $\Fib(A)\ra X$ is a bit more involved than that of $\TFib(A)\ra X$.  Recall from section \ref{sec:unbiasedfibration} the characterization of (uniform, unbiased) fibration structures on a map $p_A : A\ra X$ in terms of +-algebra structures on $\delta\Rightarrow p_A$:  
 \begin{enumerate}
-\item First, pull the map $p_A : A\ra X$ back  to $\cSet/_\I$ by applying the functor $\I\times (-) : \cSet \to \cSet/_\I$.  We continue to write $p_A : A\ra X$ the resulting map over $\I$. 
+\item First, pull the map $p_A : A\ra X$ back  to $\cSet/_\I$ by applying the functor $\I\times (-) : \cSet \to \cSet/_\I$.  We may continue to write $p_A : A\ra X$ for the resulting map over $\I$. 
 
 \item Form the pullback-hom $\delta\Rightarrow p_A : A^\I \ra X^\I \times_X A$ of $p_A$ with the generic point $\delta : \I \to \I \times \I$ over $\I$, as indicated in the following diagram.
 \begin{equation}\label{diagram:fibU1}
@@ -2961,7 +3468,7 @@ A^\I \ar@/_4ex/ [rdd]_{(p_A)^\I} \ar[rd]^{\delta\, \Rightarrow p_A} \ar@/^4ex/ [
 }
 \end{equation}
 
-\item A fibration structure on $p_A : A\ra X$ is then a relative +-algebra structure on the map $\delta\Rightarrow p_A$ in the slice category over the codomain $X^\I \times_X A$ (and that in the slice over $\I$). 
+\item A fibration structure on $p_A : A\ra X$ is then a relative +-algebra structure on the map $\delta\Rightarrow p_A$ in the slice category over the codomain $X^\I \times_X A$ (formed in the slice over $\I$). 
 
 In order to construct the object $\Fib(A)\ra X$ classifying such structures, let us first relabel the objects and arrows in diagram \eqref{diagram:fibU1} as follows:
 \begin{align*}
@@ -2969,49 +3476,49 @@ p &:= p_A\\
 \epsilon &:= X^\delta : X^\I \ra X \\
 A_\epsilon &:= X^\I \times_X A\\
 %\epsilon_A &:= A^\delta\\
-\epsilon^A &:= \delta\Rightarrow p_A
+\epsilon_A &:= \delta\Rightarrow p_A
 \end{align*}
 so that (the working part of) our diagram becomes:
 \begin{equation}\label{diagram:fibU2}
 \xymatrix@=2em{
-A^\I \ar[rd]_{\epsilon^A} && \\
+A^\I \ar[rd]_{\epsilon_A} && \\
 & A_\epsilon\ar[d]_{p_\epsilon} \ar[r] \pbcorner & A \ar[d]^{p} \\
 & X^\I \ar[r]_{\epsilon} &  X 
 }
 \end{equation}
 
-\item A +-algebra structure on $\epsilon^A$ is a retract $\alpha$ over $A_\epsilon$ of the unit $\eta$ as indicated below, where $D$ is the domain of the map $(\epsilon^A)^+$,
+\item A +-algebra structure on $\epsilon_A$ is a retract $\alpha$ over $A_\epsilon$ of the unit $\eta$ as indicated below, where $D$ is the domain of the map $(\epsilon_A)^+$,
 \begin{equation}\label{diagram:fibU3}
 \xymatrix{
-A^\I \ar[rd]_{\epsilon^A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[d]^{(\epsilon^A)^+} & \\
+A^\I \ar[rd]_{\epsilon_A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[d]^{(\epsilon_A)^+} & \\
 & A_\epsilon\ar[d]_{p_\epsilon} \ar[r] \pbcorner & A \ar[d]^{p} \\
 & X^\I \ar[r]_{\epsilon} &  X 
 }
 \end{equation}
 
-\item As in the construction \eqref{diag:plualgstru}, there is an object $+\mathsf{Alg}(\epsilon^A)$ over  $A_\epsilon$ of +-algebra structures on $\epsilon^A$, the sections of which correspond uniquely to +-algebra structures on $\epsilon^A$ (and thus fibration structures on $A$).
+\item As in the construction \eqref{diag:plualgstru}, there is an object $+\mathsf{Alg}(\epsilon_A)$ over  $A_\epsilon$ of +-algebra structures on $\epsilon_A$, the sections of which correspond uniquely to +-algebra structures on $\epsilon_A$ (and thus fibration structures on $A$).
 \begin{equation}\label{diagram:fibU4}
 \xymatrix{
-&A^\I \ar[d]_{\epsilon^A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[ld]^<<<<<{(\epsilon^A)^+}  \\
-+\mathsf{Alg}(\epsilon^A) \ar[r] & A_\epsilon\ar[d]_{p_\epsilon} \ar[r] \pbcorner & A \ar[d]^{p} \\
+&A^\I \ar[d]_{\epsilon_A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[ld]^<<<<<{(\epsilon_A)^+}  \\
++\mathsf{Alg}(\epsilon_A) \ar[r] & A_\epsilon\ar[d]_{p_\epsilon} \ar[r] \pbcorner & A \ar[d]^{p} \\
 & X^\I \ar[r]_{\epsilon} &  X 
 }
 \end{equation}
 
-\item Sections of $+\mathsf{Alg}(\epsilon^A)\ra A_\epsilon$ then correspond to sections of its push-forward along $p_\epsilon$, which we shall call $F_A$: 
+\item Sections of $+\mathsf{Alg}(\epsilon_A)\ra A_\epsilon$ then correspond to sections of its push-forward along $p_\epsilon$, which we shall call $F_A$: 
 \[
-F_A := (p_\epsilon)_*(+\mathsf{Alg}(\epsilon^A))\,.
+F_A := (p_\epsilon)_*(+\mathsf{Alg}(\epsilon_A))\,.
 \]
 
 \begin{equation}\label{diagram:fibU5}
 \xymatrix{
-&A^\I \ar[d]_{\epsilon^A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[ld]^<<<<<{(\epsilon^A)^+}  \\
-+\mathsf{Alg}(\epsilon^A) \ar[r] & A_\epsilon\ar[d]_{p_\epsilon} \ar[r] \pbcorner & A \ar[d]^{p} \\
+&A^\I \ar[d]_{\epsilon_A} \ar[r]_\eta & \ar@{.>}@/_1pc/[l]_\alpha D \ar[ld]^<<<<<{(\epsilon_A)^+}  \\
++\mathsf{Alg}(\epsilon_A) \ar[r] & A_\epsilon\ar[d]_{p_\epsilon} \ar[r] \pbcorner & A \ar[d]^{p} \\
 F_A \ar[r] & X^\I \ar[r]_{\epsilon} &  X 
 }
 \end{equation}
 
-\item One might now think of taking another pushforward of $F_A \ra X^\I$ along $\epsilon : X^\I\ra X$ to get the object $\Fib(A) \ra X$ that we seek, but unfortunately, this would not be stable under pullback along arbitrary maps $Y\ra X$, because $\epsilon : X^\I\ra X$ is not stable in that way.  Instead we use the \emph{root} functor of Proposition \eqref{prop:Itiny}, i.e.\ the right adjoint of the pathspace, $(-)^\I \dashv (-)_\I$.
+\item One might now think of taking another pushforward of $F_A \ra X^\I$ along $\epsilon : X^\I\ra X$ to get the object $\Fib(A) \ra X$ that we seek, but unfortunately, this would not be stable under pullback along arbitrary maps $Y\ra X$, because $\epsilon : X^\I\ra X$ is not stable in that way.  Instead we use the \emph{root} functor of Proposition \eqref{prop:Itiny}, i.e.\ the right adjoint of the pathspace, $(-)^\I \dashv (-)_\I$. (Recall that the interval $\I$ in the slice $\cSet/_\I$, namely $\I^*\I = \I\times\I\to\I$, is still tiny, by Lemma \ref{lemma:tinyslicedI}.)
 
 Let $f : F_A \ra X^\I$ be the map indicated in \eqref{diagram:fibU5}, and $\eta_X : X \ra (X^\I)_\I$ the unit of the root adjunction.  Then define $\Fib(A)\ra X$ by 
 $$ \Fib(A) :=  \eta^*{f_\I}$$
@@ -3024,21 +3531,21 @@ $$ \Fib(A) :=  \eta^*{f_\I}$$
 \end{equation}
 By adjointness, sections of $\Fib(A)\ra X$ then correspond bijectively to sections of  $f : F_A \ra X^\I$.
 
-\item\label{item:laststep} Finally, recall that we are still working in the slice $\cSet/\I$ and need to get back to $\cSet$ by applying the functor $\I_*: \cSet/\I \ra \cSet$.  Call the map $\Fib(A)\ra X$ constructed over $\I$ in the last step $\Fib(A)_i \ra \I^{*}X$, and apply $\I_*$ to get,
+\item\label{item:laststep} Finally, recall that we are still working in the slice $\cSet/_\I$ and need to get back to $\cSet$, which we will do by applying the pushforward $\I_*: \cSet/_\I \ra \cSet$.  Let us rename the map $\Fib(A)\ra X$ constructed over $\I$ in the last step to $\Fib_i(A) \ra \I^{*}X$, and then apply $\I_*$ to get the map,
 \[
-\I_*(\Fib(A)_i) = \Pi_{i:\I}\Fib(A)_i \ra X^\I
+\I_*(\Fib_i(A)) = \Pi_{i:\I}\Fib_i(A) \ra X^\I
 \]
-in $\cSet$.  We then define the desired map $\Fib(A)\ra X$ as the pullback along the unit $\rho : X \ra X^\I$ of  $\I^*\dashv \I_*$, as indicated below.
+in $\cSet$.  Finally, we define the desired map $\Fib(A)\ra X$ as the pullback along the unit $\rho : X \ra X^\I$ of  $\I^*\dashv \I_*$, as indicated below.
 \begin{equation}\label{diagram:fibU7}
 \xymatrix{
- \Fib(A) \ar[d] \ar[r] \pbcorner & \ar[d] \Pi_{i:\I}\Fib(A)_i \\
+ \Fib(A) \ar[d] \ar[r] \pbcorner & \ar[d] \Pi_{i:\I}\Fib_i(A) \\
  X \ar[r]_{\rho} &  X^\I
 }
 \end{equation}
-It then follows directly from the adjunction $\I^*\dashv \I_*$ that sections of $\Fib(A)\ra X$ correspond bijectively to sections of $\Fib(A)_i \ra \I^{*}X$ over~$\I$.
+It then follows directly from the adjunction $\I^*\dashv \I_*$ that sections of $\Fib(A)\ra X$ correspond bijectively to sections of $\Fib_i (A)\ra \I^{*}X$ over~$\I$.
 \end{enumerate}
 
-Now for the universal family $\VV\to\V$, let $\Fib = \Fib(\VV)$, which comes with its projection $\Fib(\VV) \ra \V$, and define the universal small fibration $\FFib\fib\Fib$ by pulling back the universal small family,
+Now apply the foregoing construction to the universal family $\VV\to\V$ to get $\Fib(\VV) \ra \V$, and define the universal small fibration by setting $\Fib : =\Fib(\VV)$ and $\FFib\fib\Fib$ by pulling back the universal family,
 \begin{equation}\label{diagram:universalfib}
 \xymatrix{
 \FFib \ar[d] \ar[r]  \pbcorner & \VV\ar[d]^p\\
@@ -3057,44 +3564,73 @@ X \ar[r] & \Fib
 \end{proposition}
 
 \begin{proof}
-First, we need to show that the construction of $\Fib(A)\ra X$ as the object of fibration structures on a map $A\ra X$ is stable under pullback along all maps $f : Y\ra X$.
-The relevant parts of the construction diagram \eqref{diagram:fibU5} are repeated below,
+First, we show that the construction of $\Fib(A)\ra X$ as the classifying type of fibration structures on a map $A\ra X$ is stable under pullback along all maps $f : Y\ra X$.
+To that end, the relevant parts of the construction
+%diagram \eqref{diagram:fibU5} 
+given in steps (1)-(7) are recalled schematically below.
 \begin{equation}\label{diagram:fibU8}
 \xymatrix{
-&A^\I \ar[d]_{\epsilon^A} & \\
-+\mathsf{Alg}(\epsilon^A) \ar[r] & A_\epsilon\ar[d]_{p_\epsilon} \ar[r] \pbcorner & A \ar[d]^{p} \\
-F_A \ar[r] & X^\I \ar[r]_{\epsilon} &  X 
+&A^\I \ar[d]_{\epsilon_A} & &\\
++\mathsf{Alg}(\epsilon_A) \ar[r] & A_\epsilon\ar[d]_{p_\epsilon} \ar[r] \pbcorner & A \ar[d]^{p} &\\
+F_A \ar[r] & X^\I \ar[r]_{\epsilon} &  X & \ar[l] \Fib_i(A)
 }
 \end{equation}
-Now consider the following in which the front face of the central cube is a pullback.
+
+Now consider the following diagram, in which the right hand side consists  of the data from  \eqref{diagram:fibU8}, and the front, central square is a pullback.
 \begin{equation}\label{diagram:fibU9}
 \xymatrix{
- & B^\I \ar[rrr] \ar[d]_{\epsilon^B} &&& A^\I \ar[d]^{\epsilon^A} &\\
- +\mathsf{Alg}(\epsilon^B) \ar[r] & B_\epsilon \ar[d] \ar[rd] \ar@{.>}[rrr] &&& A_\epsilon \ar[d] \ar[ld] &  +\mathsf{Alg}(\epsilon^A) \ar[l] \\
+ & B^\I \ar[rrr] \ar[d]_{\epsilon_B} &&& A^\I \ar[d]^{\epsilon_A} &\\
+ +\mathsf{Alg}(\epsilon_B) \ar[r] & B_\epsilon \ar[d] \ar[rd] \ar@{.>}[rrr] &&& A_\epsilon \ar[d] \ar[ld] &  +\mathsf{Alg}(\epsilon_A) \ar[l] \\
  F_B  \ar[r] & Y^\I \ar[rd] \ar@{.>}@/_.75pc/[rrr] & B \ar[r] \ar[d] & A \ar[d] &  X^\I \ar[ld]  & \ar[l] F_A \\
- &\Fib(B) \ar[r] & Y \ar[r]_f & X &\Fib(A) \ar[l] &
+ &\Fib_i(B) \ar[r] & Y \ar[r]_f & X &\Fib_i(A) \ar[l] &
  }
 \end{equation}
-On the left side we repeat the construction with $B \ra Y$ in place of $A\ra X$.  
-The left face is thus a pullback, whence the back (dotted) face is a pullback.  The two-story square in back is the image of the front square under the right adjoint $(-)^\I$ and is therefore a  pullback, therefore the top rectangle in the back is a pullback. 
-It follows that $+\mathsf{Alg}(\epsilon^B)$ is a pullback of $+\mathsf{Alg}(\epsilon^A)$ along the upper dotted arrow, as in diagram \eqref{diagram:pbplus}, and so the pushforward $F_B$ is a pullback of the corresponding $F_A$, along the lower dotted arrow (which is $f^\I$), by the Beck-Chevalley condition.  Thus we have shown
+As in the proof of Lemma \ref{lemma:fibrationspullback}, on the left side we repeat the construction with $B \ra Y$ in place of $A\ra X$.  The left face of the indicated cube is then also a pullback, whence the back (dotted) face is a pullback, since the two-story square in back is the image of the front square under the right adjoint $(-)^\I$. Finally, the top rectangle in the back is therefore a pullback.
+ 
+It follows that $+\mathsf{Alg}(\epsilon_B)$ is a pullback of $+\mathsf{Alg}(\epsilon_A)$ along the upper dotted arrow, as in diagram \eqref{diagram:pbplus}, and so the pushforward $F_B$ is a pullback of the corresponding $F_A$, along the lower dotted arrow (which is $f^\I$), by the Beck-Chevalley condition for the dotted pullback square.  Let us record this for later reference:
 \begin{equation}\label{eq:pbFB}
 F_B \cong (f^\I)^*F_A.
 \end{equation}
 
-It remains to show that $\Fib(B)$ is a pullback of $\Fib(A)$ along $f:Y\ra X$, and now it is good that we did not take these to be pushforwards of $F_B$ and $F_A$, because the floor of the cube need not be a pullback, and so the Beck-Chavalley condition would not apply.  Instead, consider the following diagram.
+It remains to show that $\Fib_i(B)$ is a pullback of $\Fib_i(A)$ along $f:Y\ra X$, and now it is good that we did not take these to be pushforwards of $F_B$ and $F_A$, because the floor of the cube need not be a pullback, and so the Beck-Chavalley condition would not apply.  Instead, consider the following diagram.
 \begin{equation}\label{diagram:fibU10}
 \xymatrix{
-& \Fib(B) \ar[ld] \ar[dd]  \ar[r] & \Fib(A) \ar[dd] \ar[rd] & \\
+& \Fib_i(B) \ar[ld] \ar[dd]  \ar[r] & \Fib_i(A) \ar[dd] \ar[rd] & \\
 (F_B)_\I \ar[dd] \ar[rrr] &&& (F_A)_\I \ar[dd] \\
 & Y \ar[ld]_\eta \ar[r]_f & X \ar[rd]^\eta &\\
 (Y^\I)_\I \ar[rrr]_{(f^\I)_\I} &&& (X^\I)_\I 
  }
 \end{equation}
-The sides of the cube are pullbacks by the construction of $\Fib(A)$ and $\Fib(B)$. The front face is the root of the pullback \eqref{eq:pbFB} and is thus also a pullback, since the root is a right adjoint. The base commutes by naturality of the unit, and so the back face is also a pullback, as required.  Finally, the base change along $\I_* : \cSet/\I \ra\cSet$ in step \ref{item:laststep} above clearly also preserves the pullback.
+The sides of the cube are pullbacks by the construction of $\Fib_i(A)$ and $\Fib_i(B)$. The front face is the root of the pullback \eqref{eq:pbFB} and is thus also a pullback, since the root is a right adjoint. The base commutes by naturality of the unit of the adjunction, and so the back face is also a pullback, as required.  
 
-Thus we can indeed use $\Fib := \Fib(\VV)$ to define the universal small fibration $\FFib\ra\Fib$ as in \eqref{diagram:universalfib}, and the proof can conclude just as that for proposition~\ref{prop:classTFib}.  
+Finally, the base change along $\I_* : \cSet/_\I \ra\cSet$ in step \ref{item:laststep} above clearly also preserves the pullback.
+
+Thus we can indeed use $\Fib := \Fib(\VV)$ to define the universal small fibration $\FFib\ra\Fib$ as in \eqref{diagram:universalfib}, and the proof can conclude just as in that for proposition~\ref{prop:classTFib}.  
 \end{proof}
+
+
+%\begin{definition}\label{def:U}
+%Write $\UU \fib \U$ for the universal small fibration $\FFib\fib\Fib$ of \eqref{diagram:universalfib}, as shown by Proposition~\ref{prop:UniversalFib}.
+%\end{definition}
+
+\begin{remark}\label{sliceuniversalfibrations}
+Recall from Example \ref{universeexample:sliceuniverse} of Section \ref{sec:U} that the universe in the slice category $\cSet/_\I$ is the pullback of the universe $\V$ from $\cSet$ along the base change $\I^* : \cSet \to \cSet/_\I$.  Thus in Step \ref{item:laststep} above we are first building the classifying type $$\Fib_i(\I^*\VV) \to \I^*\V$$ for $\II$-fibration structures on the universal family in $\cSet/_\I$, and then taking a pushforward $\I_*: \cSet/_\I \to \cSet$ to obtain the classifier for fibrations as the pullback along the unit:
+\begin{equation}\label{diagram:fibUuniversal}
+\xymatrix{
+ \Fib(\VV) \ar[d] \ar[r] \pbcorner & \ar[d] \Pi_{i:\I}\Fib_i(\I^*\VV) \\
+ \V \ar[r]_{\rho} &  \V^\I
+}
+\end{equation}
+We remark for later reference that this classifying type $\Fib = \Fib(\VV) \to \V$ for fibration structures can also be constructed as the pushforward of the classifier $\Fib_i(\I^*\VV) \to \I^*\V$ for $\II$-fibration structures, along the projection $q : \I^*\V =  \I\times \V \to \V$ indicated below.
+\begin{equation}\label{diagram:fibUuniversal2}
+\xymatrix{
+ \Fib_i(\I^*\VV) \ar[d] &  \Fib(\VV) \ar[d] \ar[r] \pbcorner & \ar[d] \Pi_{i:\I}\Fib_i(\VV) \\
+ \I^*\V \ar[r]_q \ar[d] \pbcorner & \V \ar[r]_{\rho} \ar[d] &  \V^\I\\
+ \I \ar[r] & 1
+}
+\end{equation}
+\end{remark}
+
 
 %\begin{lemma}\label{lemma:Fibfib}
 %The map $\FFib\ra\Fib$ just constructed has a canonical fibration structure.
@@ -3113,10 +3649,6 @@ Thus we can indeed use $\Fib := \Fib(\VV)$ to define the universal small fibrati
 %\Delta : \Fib(\VV) \ra \Fib(\VV)\times_\V\Fib(\VV).
 %\]
 %\end{proof}
-
-\begin{definition}\label{def:U}
-Write $\UU \fib \U$ for the universal small fibration $\FFib\fib\Fib$ just constructed in proposition~\ref{prop:UniversalFib}.
-\end{definition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -3160,7 +3692,7 @@ Since $\TFib$ is stable under pullback (by Lemma \ref{lemma:TFibstable}), we hav
 For $\Fib(Y)\to X$, we use the foregoing to infer that $\TFib(Y^I) \to X^I\times_X Y$ is a weak proposition, and so therefore is its pushforward $p_*\TFib(Y^\I)\to X^\I$ along the first projection $p:X^I\times_X Y \to X^\I$, since pushforward clearly preserve weak propositions.  Applying the root $(-)_\I$ preserves trivial fibrations, by the assumption that its left adjoint $(-)^\I$ preserves cofibrations, so as a right adjoint, it also preserves weak propositions. Therefore $(p_*\TFib(Y^\I))_\I \to (X^\I)_\I$ is a weak proposition, but then so is its pullback along the unit $X\to (X^\I)_\I$, which is $\Fib(Y)\to X$.
 \end{proof}
 
-In light of Lemma \ref{lemma:Fibweakprop} we assume a final axiom on cofibrations:
+In light of Lemma \ref{lemma:Fibweakprop} we assume as a final axiom on cofibrations:
  
 \begin{enumerate}
 \item[(C8)] The map $c^\I:A^\I \to B^\I$ is a cofibration if $c:A \to B$ is a cofibration.
@@ -3521,15 +4053,40 @@ Take the pullback of $\UU\fib\U$ along $y : X \ra \U$ to get a (small) a fibrati
 %This is routine using Yoneda and assuming that cofibrations $A \mono B$ have \emph{complemented} monos as components $A[n] \mono B[n]$.\footnote{This of course holds if the base category $\Set$ is classical; otherwise, one needs to take this as a further axiom on $\CC$.}  In more detail, since $Y'\onto X'$ is small, there is a classifying map $z : X' \ra \U$,  perhaps not commuting with $t$. Nonetheless, we can use $z$ to define the desired $y' : X' \ra \U$ objectwise as follows: Take any map from a representable $x' : \I^n \ra X'$ and consider whether it factors through $t$, say as $x' = t\circ x$ for some (necessarily unique) $x: \I^n \ra X$.  If $x'$ does factor, set  $y'\circ x' = y\circ x$; if not, set $y'\circ x' = z\circ x'$.  This specification is clearly natural in $I^n$, so it defines $y': X'\ra\U$, and the specification ensures that $y'\circ t = y$, and that the pullback of $\UU$ along $y'$ is the same as that along $z$, namely $Y'\fib X'$.
 \end{proof}
 
-Now let us use the EEP, Proposition \ref{prop:EEP}, to show that $\U$ is fibrant. We shall need the following two lemmas.
+We shall now show that $\U$ is indeed fibrant in the following two steps: 
+\begin{enumerate}
+\item We will show that, in the slice category $\cSet/_\I$, the total space of the classifying type $$\Fib_i(\I^*\VV) \to \I^*\V$$ for $\II$-fibration structures on the universal family $\I^*\VV \to \I^*\V$ from Remark \ref{sliceuniversalfibrations} is a fibrant object. This uses the equivalence extension property, Proposition \ref{prop:EEP}, applied with respect to $\II$-fibrations in the slice category $\cSet/_\I$, \ednote{as justified by ...}  
 
-\begin{lemma}\label{lemma:Uintheslice}
-The base change $\I^*:\cSet\to\cSet/\I$ takes the universal fibration $\UU\to\U$ in $\cSet$  to a universal fibration in the slice category $\cSet/\I$.
-\end{lemma}
+\item We will show that the total space of the pushforward of $\Fib_i(\I^*\VV) \to \I^*\V$ along the projection $q : \I\times\V\to\V$ in \eqref{diagram:fibUuniversal2} is a fibrant object in $\cSet$.  This is a general argument not depending on the specific objects involved.
+\end{enumerate}
 
-\begin{proof}
-\ednote{fill in}
-\end{proof}
+First, the reader may find it illuminating to reconsider the construction of the universal small fibration $\UU \fib \U$ in more type theoretic terms.  It was determined in Remark \ref{sliceuniversalfibrations} to be $\FFib\fib\Fib = \Fib(\VV)$, for the universal family $\VV \to \V$, with $\FFib$ the pullback of $\VV \to \V$ along the canonical projection $\Fib(\VV)\to\V$. Type theoretically, we have $\VV = \Sigma_{A:\V}A$, and then:
+\[
+\UU\ =\ \Sigma_{A:\V}\Fib(A)\times A\ \too\ \Sigma_{A:\V}\Fib(A)\ =\ \U \,.
+\]
+We show that $\I^*\UU\fib\I^*\U$ is a universal fibration in $\cSet/_\I$ in two steps:
+\begin{enumerate}
+\item $\I^*\VV\to\I^*\V$ is a universal small family in $\cSet/_\I$.  This follows immediately from the fact that both of the adjoint functors 
+\[
+\Sigma_\I \dashv \I^* : \cSet \to \cSet/_\I
+\]
+preserve pullbacks.  Indeed, a small family $A\to X \stackrel{\xi}{\to} \I$ indexed over $\I$, is classified by $\langle \xi,a \rangle : X \to \I^*\V = \I\times\V$ over $\I$, where $a : X \to \V$ classifies $A\to X$ in $\cSet$.
+\[
+\xymatrix{
+A \ar[d] \ar[rr] 	\pbcorner && \I\times\VV \ar[d] \ar[rr] \pbcorner 	&& \VV \ar[d] \\
+X  \ar[rrd]_\xi \ar[rr]^{\langle \xi,a \rangle}  && \I\times\V \ar[d] \ar[rr] \pbcorner&& \V \ar[d]  \\
+			&& \I \ar[rr] &&  1
+}
+\]
+\item By definition a map $A\to X$ in $\cSet$ is a fibration just if its base change $\I^*A \to \I^*X$ is one in $\cSet/_\I$  (with respect to $\delta : 1 \to \I^*\I$).  Moreover, the classifying type for fibration structures $\Fib(A) \to X$ is then constructed by pushing the classifying type $\Fib_\I(\I^*A) \to \I^*X$ forward along the projection  $\I^*X = \I\times X\to X$,
+\[
+\Fib(A) = \Pi_\I \Fib_\I(\I^*A)\to X\,.
+\]
+We therefore have 
+\[
+\U = \Fib(\VV) = \Pi_\I \Fib_\I(\I^*\VV).
+\]
+\end{enumerate}
 
 \begin{proposition}
 The base object $\U$ of the universal fibration $\UU\fib\U$ in $\cSet$ constructed in section \ref{sec:U} is fibrant.
@@ -3723,26 +4280,34 @@ lifts on the right against $\CC$.
 \end{theorem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix: Axioms for cofibrations}\label{appendix:Cofibrations}
+\section*{Appendix: Axioms for Cartesian cofibrations}\label{appendix:Cofibrations}
+% perhaps add axioms for the interval as well?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The axioms (C0)--(C8) for the \emph{cofibrations} $c : A \mono B$ in cartesian cubical sets, may be restated equivalently as follows.
+A system of maps satisfying the axioms (C0)-(C8) above for the cofibrations in a cartesian cubical model category will be called \emph{cartesian cofibrations}. The axioms for cartesian cofibrations can be reformulated equivalently as follows.
 \begin{enumerate}
+\item[(C0)] All cofibrations are monomorphisms.
 \item[(C1)] All isomorphisms are cofibrations.
 \item[(C2)] The composite of two cofibrations is a cofibration.
 \item[(C3)] Any pullback of a cofibration is a cofibration.
-\item[(C4)] There is a terminal object of the form $t:1\mono \Phi$ in the category of cofibrations and cartesian squares.
-\item[(C5)] The diagonal map $\delta : \I\ra\I\times\I$ is a cofibration.
-\item[(C6)] The join of two cofibrant subobjects is a cofibration.
+\item[(C4)] The category of cofibrations and cartesian squares has a terminal object.
+\item[(C5)] The join of two cofibrant subobjects is a cofibration.
+\item[(C6)] The diagonal map $\delta : \I\ra\I\times\I$ is a cofibration.
+\item[(C7)] If $c:A \to B$ is a cofibration, then so is $c^\I:A^\I \to B^\I$.
 \end{enumerate}
 
-For example, we have the following.
+We have the following non-trivial example.
 \begin{proposition}
-The locally decidable subobjects satisfy the axioms.
+The locally decidable subobjects in any topos satisfy the axioms for cartesian cofibrations.
 \end{proposition}
 \begin{proof}
-\ednote{fill in}
+\ednote{fill in ...}
 \end{proof}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Appendix B: Semantics of HoTT}\label{appendix:HoTT}
+% perhaps add axioms for the interval as well?
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 \bibliographystyle{alpha}
 \bibliography{../references}
