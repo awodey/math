@@ -1,6 +1,6 @@
 %%
 % On H-S universes
-% April 2022
+% April 2022, Update December 2022
 %%
 %\documentclass[12pt]{amsart}
 \documentclass[11pt]{article}
@@ -207,7 +207,7 @@ We have another look at the construction by Hofmann and Streicher of a universe 
 %\section*{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\noindent Let $\widehat{\C} = \psh{\C}$ be the category of presheaves on a small category~$\C$.
+\noindent Let $\widehat{\C} = \psh{\C}$ be the category of presheaves on the small category~$\C$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{1. The Hofmann-Streicher universe}\label{sec:U}
@@ -223,23 +223,27 @@ with $U\in\widehat{\C}$ and $\textstyle{\mathsf{E}l} \in \widehat{\int_\C U}$ as
 	%E(I)\ &=\ {\textstyle \coprod_{A\in U(I)}{\mathsf{E}l}(\langle I, A\rangle)}\\
  	{\mathsf{E}l}(I, A)\ &=\ A(id_I) \label{eq:universeel}
  \end{align}
-with an evident associated action on morphisms, which need not concern us for the moment.  A few comments are required: 
+with an evident associated action on morphisms.  A few comments are required: 
 %
 \begin{enumerate}
 %
-\item  In \eqref{eq:universeob}, we have taken the \emph{underlying set of objects} of the category $\widehat{\C/_I}=\psh{\C/_I}$ (in contrast to the specification in \cite{HS:1997}).
+\item  In \eqref{eq:universeob}, we have taken the underlying set of objects of the category $\widehat{\C/_I}=\psh{\C/_I}$ (in contrast to the specification in \cite{HS:1997}).
 % 
-\item In \eqref{eq:universeel}, and throughout, the authors steadfastly adopt a ``categories with families'' point of view in describing a morphism $E \ra U$ in $\widehat{\C}$ instead as an object in
-\begin{equation}\label{eq:elements}\textstyle
-\widehat{\int_{\C}U}\ \simeq\ \widehat{\C}/_U\,,
+\item In \eqref{eq:universeel}, and throughout, the authors steadfastly adopt a ``categories with families'' point of view in describing a morphism 
+\begin{equation}\label{eq:universe}
+E \too U
 \end{equation}
-that is, as a presheaf on the \emph{category of elements} $\int_{\C}U$, rather than specifying an arrow $E\to U$ in $\widehat{\C}$ with,
+in $\widehat{\C}$ equivalently as an object in
+\begin{equation}\label{eq:elements}\textstyle
+ \widehat{\C}/_U\ \simeq\ \widehat{\int_{\C}U}\,,
+\end{equation}
+that is, as a presheaf on the \emph{category of elements} $\int_{\C}U$, where:
 \[
-E(I)\ =\ {\textstyle \coprod_{A\in U(I)}{\mathsf{E}l}(I, A)}
+E(I)\ =\ {\textstyle \coprod_{A\in U(I)}{\mathsf{E}l}(I, A)}\,.
 \]
 Thus the argument $(I, A) \in \int_{\C}U$ in \eqref{eq:universeel} consists of an object $I\in\C$ and an element $A\in U(I)$.
 %
-\item In order to account for size issues, the authors assume a Grothendieck universe $\U$ in $\Set$, the elements of which are called \emph{small}.  The category $\C$ is then assumed to be small, as are the values of the presheaves (unless otherwise stated).  
+\item In order to account for size issues, the authors assume a Grothendieck universe $\U$ in $\Set$, the elements of which are called \emph{small}.  The category $\C$ is then assumed to be small, as are the values of the presheaves, unless otherwise stated.  
 %
 \end{enumerate}
 
@@ -249,7 +253,7 @@ We will analyse the construction of $(U, {\mathsf{E}l})$  from a slightly differ
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{2. An unused adjunction}
 
-For a presheaf $X$ on $\C$, recall that the category of elements is the comma category,
+For any presheaf $X$ on $\C$, recall that the category of elements is the comma category,
 \[\textstyle
 \int_\C X\ =\ \yon_\C/_X\,,
 \] 
@@ -295,7 +299,7 @@ For arbitrary presheaves $X$, one uses the presentation of $X$ as a colimit of r
 \]
 \end{proof}
 
-When $\C$ is fixed, as here, we may omit the subscript from the notation $\yon_\C$ and  $\int_\C$ and $\nu_\C$.  The unit and counit maps of the adjunction $\int \dashv \nu$, vis.\
+When $\C$ is fixed, as here, we may omit the subscript from the notation $\yon_\C$ and  $\int_\C$ and $\nu_\C$.  The unit and counit maps of the adjunction $\int \dashv \nu$,
 \begin{align*}\textstyle
 \eta :&\ \textstyle  X \too \nu{\elem{X}}\,, \\
 \epsilon :&\ \textstyle  \elem\nu\A \too \A\,,
@@ -319,7 +323,7 @@ For any $f : Y\to X$, the naturality square below is a pullback.
 \end{lemma}
 
 \begin{proof}
-It suffices to prove it for the case $f : X\ra 1$.  Thus consider the square 
+It suffices to prove this for the case $f : X\ra 1$.  Thus consider the square 
 \begin{equation}\label{eq:naturalityobject}\textstyle
 \begin{tikzcd}
 	 X \ar[d] \ar[r, "{\eta_X}"] & \nu{\int\!{X}} \ar[d]\\  
@@ -339,7 +343,7 @@ The image of $*\in 1c$ along the bottom is the forgetful functor $U_c : \C/_c\to
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{3. Classifying families}
 
-For the terminal presheaf $1\in\widehat{\C}$, we have $\elem{1} \cong\C$, so for every $X\in\widehat{\C}$ there is a canonical projection  $\elem X \ra\C$, which is easily seen to be a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
+For the terminal presheaf $1\in\widehat{\C}$, we have an iso $\elem{1} \cong\C$. So for every $X\in\widehat{\C}$ there is a canonical projection  $\elem X \ra\C$, which is easily seen to be a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
 Ignoring size issues for the moment, recall that discrete fibrations in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets (cf.~\cite{W:2007}).  For every presheaf $X\in\widehat{\C}$, we therefore have a pullback diagram in $\Cat$,
 \begin{equation}\label{eq:classifyuniversecat}\textstyle
 \begin{tikzcd}
@@ -369,7 +373,7 @@ The square \eqref{eq:classifyuniversetype} is a pullback in $\widehat{\C}$. More
 Apply the right adjoint $\nu$ to the pullback square \eqref{eq:classifyuniversecat} and paste the naturality square \eqref{eq:naturality} from Lemma \ref{lemma:natpb} on the left, to obtain the transposed square \eqref{eq:classifyuniversefamily} as a pasting of two pullbacks.
 \end{proof}
 
-Let us write $\VV \to \V$ for the vertical map on the right in \eqref{eq:classifyuniversefamily},  that is, let
+Let us write $\VV \to \V$ for the vertical map on the right in \eqref{eq:classifyuniversefamily};  that is, let
 \begin{align}\label{eq:universedef}\textstyle
 \VV\, &=\, \nu\op{\dot{\Set}}\\  
 \V\, &=\, \nu\op{\Set}.\notag
@@ -388,7 +392,7 @@ The nerve $\VV\to\V$  of the classifier for discrete fibrations $\op\SSet\to\op\
 The classifying map $\tilde{Y} : X\to \V$ is determined by the adjunction $\int \dashv \nu$ as the transpose of the classifying map of the discrete fibration $\elem Y\to\elem X$.  
 \end{proposition}
 
-For a given natural transformation $Y\to X$, the classifying map $\tilde{Y} : X\to \V$ is not in general unique. Nonetheless, we can make use of the construction of $\VV\to\V$ as the nerve of the discrete fibration classifier $\op\SSet\to\op\Set$, for which classifying functors $\C \to \op\Set$ are unique up to natural isomorphism, to infer the following proposition, which plays a role in \cite{Shu:15,GSS} and elsewhere.
+The classifying map $\tilde{Y} : X\to \V$ of a given a natural transformation $Y\to X$ is, of course, not in general unique. Nonetheless, we can make use of the construction of $\VV\to\V$ as the nerve of the discrete fibration classifier $\op\SSet\to\op\Set$, for which classifying functors $\C \to \op\Set$ are unique up to natural isomorphism, to infer the following proposition, which plays a role in \cite{Shu:15,GSS:22} and elsewhere.
 
 \begin{proposition}[Realignment]\label{prop:realignment}
 Given a monomorphism $c : C\cof X$ and a family $Y\to X$, let $y_c : C \to \V$ classify the pullback $c^*Y\to C$.  Then there is a classifying map $y: X \to \V$ for $Y\to X$ with $y\circ c = y_c$.
@@ -428,7 +432,7 @@ Consider the following diagram
 \begin{tikzcd}
 \C \ar[dd, tail, swap, "{C}"]  \ar[rr, "e"] && {\op{(\Set^{\cong})}}  \ar[dd,"{p_1}"] \ar[r,swap,"{p_2}"] &  {\op{\Set}} \\
 &&&\\
-\D  \ar[rr,swap, "F_0"]  \ar[rruu, dotted, swap, "f"] && \op{\Set} &  \\
+\D  \ar[rr,swap, "F_0"]  \ar[rruu, dotted, swap, "f"] && \op{\Set} & 
 \end{tikzcd}
 \end{equation}
 where $\Set^{\cong}$ is the category of isos in $\Set$, with $p_1, p_2$ the (opposites of the) domain and codomain projections.  There is a well-known weak factorization system on $\Cat$ (part of the ``canonical model structure'') with injective-on-objects functors on the left and isofibrations on the right.  Thus there is a diagonal filler $f$ as indicated.  The functor $F := p_2 f : \D \to \op{\Set}$ is then  the one we seek.
@@ -571,7 +575,7 @@ By the functoriality of (\,$\op{-}$ and) $\nu : \Cat \to \widehat{\C}$ we then h
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Acknowledgement}
 
-Thanks to Mathieu Anel and Emily Riehl for discussions, and to Evan Cavallo, Ivan Di Liberti, and Taichi Uemura for help with the references.
+Thanks to Mathieu Anel and Emily Riehl for discussions, and to Evan Cavallo, Ivan Di Liberti, and Taichi Uemura for help with the references. This material is based upon work supported by the Air Force Office of Scientific Research under award number FA9550-21-1-0009.
 
 \bibliographystyle{alpha}
 \bibliography{../references}
