@@ -1348,10 +1348,10 @@ Condition \eqref{item:fibrant} above, which is of course a special case of \eqre
 Condition \eqref{item:fibration} says that the pullback-hom of the generic point $\delta : 1\ra \I$ with $\I^*f$, constructed in the slice category $\cSet/_\I$, is a trivial fibration.  Thus a map $f: Y\to X$ is an \emph{unbiased} fibration just if its base change $I^*f$  is a $\delta$-\emph{biased} fibration in the slice category $\cSet/_\I$.  The latter condition can also be reformulated as follows.
 
 \begin{proposition}
-A map $f : Y\ra X$ is a fibration if and only if the canonical map $c$ to the pullback, in the following diagram in $\cSet$, is a trivial fibration.
+A map $f : Y\ra X$ is a fibration if and only if the canonical map $u$ to the pullback, in the following diagram in $\cSet$, is a trivial fibration.
 \begin{equation}\label{diagram:unbiasedfibrationeval}
 \xymatrix{
-Y^\I\times \I \ar@/^4ex/ [rrrd]^{\mathsf{eval}} \ar@/_4ex/ [rdd]_{f^\I\times \I} \ar@{..>}[rd]_{c}  && \\
+Y^\I\times \I \ar@/^4ex/ [rrrd]^{\mathsf{eval}} \ar@/_4ex/ [rdd]_{f^\I\times \I} \ar@{..>}[rd]_{u}  && \\
 & Y_\mathsf{eval} \pbcorner  \ar[d] \ar[rr] && Y \ar[d]^f \\
 & X^\I \times \I \ar[rr]_{\mathsf{eval}} && X.
 }
@@ -1369,7 +1369,7 @@ with the evident maps. The left hand square is therefore a pullback, so we indee
 \[
 Y_\mathsf{eval}\ =\ (X^\I \times \I)\times_{(X\times \I)} (Y\times\I)
 \]
-and $c = (\delta\Rightarrow\! f)$.
+and $u = (\delta\Rightarrow\! f)$.
 \end{proof}
 
 Now we can run the proof of Proposition \ref{prop:algequivfill} backwards in order to determine a class of generating trivial cofibrations for the unbiased case. Consider pairs of maps $c : C\mono Z$ and $z:Z\ra\I$, where the former is a cofibration and the latter is regarded as an ``$\I$-indexing'', so that
@@ -1421,6 +1421,25 @@ Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X.
 \begin{proof}
 Suppose that for all $c : C\mono Z$ and $z:Z\ra\I$, we have $(c\otimes_z\delta) \pitchfork f$ in $\cSet$. Pulling $f$ back over $\I$, this is equivalent to the condition $c\otimes\delta \pitchfork \I^*f$ in $\cSet/\I$, for all cofibrations $c : C\mono Z$ over $\I$, which is equivalent to $c\pitchfork(\delta\Rightarrow \I^*f)$ in $\cSet/\I$ for all cofibrations $c : C\mono Z$.  But this in turn means that $\delta\Rightarrow\I^*f$ is a trivial fibration, which by definition means that $f$ is a fibration.
 \end{proof}
+
+The following sanity check will be needed later.
+\begin{corollary}\label{cor:fibpathtriv}
+Let $F\fib X$ be an unbiased fibration. Then the canonical endpoint projections $F^{\delta_\epsilon}: F^\I \to F$ over $X$ are trivial fibrations, for $\epsilon = 0,1$, where the (relative) pathobject $F^\I \to X$ is the exponential over $X$ of $F\to X$ by the pullback $X^*\I = \I \times X \to X$ of $\I$. 
+%
+\begin{equation}\label{diagram:unbiasedfibration}
+\xymatrix{
+F^\I \ar[rd] \ar[r]^{F^{\delta_\epsilon}} & F \ar@{>>}[d] & F^\I \ar[rd] \ar[r]^{F^{\delta}} & \I\times F \ar@{>>}[d] & F \ar@{>>}[d]  \\
+& X \ar[d] \ar[rr]^{X^*\delta_\epsilon} \pbcorner && \I\times X \ar[d]  \ar[r] \pbcorner & X \ar[d]  \\
+& 1 \ar[rr]_{\delta_\epsilon} &&  \I \ar[r] & 1 
+}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Pull $F\fib X$ back along $\I\to 1$ to obtain the fibration $\I^*F\fib \I^*X$ over $\I$.  we have $c \pitchfork F^{\delta_\epsilon}$ (over $X$). But since $F^{\delta_\epsilon} = (X^*\delta_\epsilon\!\Rightarrow\! F)$, this is equivalent to $c \otimes X^*\delta_\epsilon \pitchfork F$ (over $X$).
+\end{proof}
+
+
 
 \paragraph{Unbiased fibration structure.}\label{sec:unbiasedfibration}
 
@@ -3597,18 +3616,18 @@ It remains to show that $\Fib(B)$ is a pullback of $\Fib(A)$ along $f:Y\ra X$, a
 The sides of the cube are pullbacks by the construction of $\Fib(A)$ and $\Fib(B)$. The front face is the root of the pullback \eqref{eq:pbFB} and is thus also a pullback, since the root is a right adjoint. The base commutes by naturality of the unit of the adjunction, and so the back face is also a pullback, as required.  
 \end{proof}
 
-
-
-Now let us apply the foregoing construction of $\Fib(A)$  to the universal family $\VV\to\V$ to get $\Fib(\VV) \ra \V$, and define the universal small ($\delta$-biased) fibration in $\cSet/_\I$ by setting $\Fib : =\Fib(\VV)$ and $\FFib\fib\Fib$ by pulling back the universal family,
+Now let us apply the foregoing construction of $\Fib(A)$ to the universal family $\VV\to\V$ to get $\Fib(\VV) \ra \V$, and define the universal small ($\delta$-biased) fibration in $\cSet/_\I$ by setting $\Fib : =\Fib(\VV)$ and $\FFib\fib\Fib$ by pulling back the universal family,
 \begin{equation}\label{diagram:universalfib}
 \xymatrix{
 \FFib \ar[d] \ar[r]  \pbcorner & \VV\ar[d]^p\\
 \Fib \ar[r] & \V.
 }
 \end{equation}
+%
+The proof of the following then proceeds just as that given for $\TTFib \to \TFib$ in Proposition \ref{prop:classTFib}.
 
 \begin{proposition}\label{prop:UniversalFib}
-The map $$\FFib\ra\Fib$$ just constructed is a \emph{universal small $\delta$-biased fibration}: every small $\delta$-biased fibration $A \fib X$ is a pullback of $\FFib \fib \Fib$ along a canonically determined classifying map $X\ra \Fib$.
+The map $\FFib\ra\Fib$ constructed in \eqref{diagram:universalfib} is a \emph{universal small $\delta$-biased fibration} in $\cSet/_\I$: every small $\delta$-biased fibration $A \fib X$ is a pullback of $\FFib \fib \Fib$ along a canonically determined classifying map $X\ra \Fib$.
 \begin{equation}\label{diagram:classifyfib}
 \xymatrix{
 A \ar@{>>}[d] \ar[r]  \pbcorner & \FFib \ar@{>>}[d] \\
@@ -3637,8 +3656,22 @@ It then follows directly from the adjunction $\I^*\dashv \I_*$ that sections of 
 For any map $A\ra X$ in $\cSet$, the map $\Fib(A)\ra X$ in \eqref{diagram:fibU7} is a \emph{classifying type for unbiased fibration structures}: sections of $\Fib(A)\ra X$ correspond bijectively to unbiased fibration structures on $A\ra X$, and the construction is stable under pullback in the expected sense.
 \end{lemma}
 
-\begin{proof} Since both of the right adjoints $\I^* \dashv \I_* : \cSet/_\I \ra\cSet$ preserve pullbacks, this follows easily from Lemma \ref{lemma:classtypebiasedfibstruct}.
+\begin{proof} Since both of the adjoints in $\I^* \dashv \I_* : \cSet/_\I \ra\cSet$ preserve pullbacks, this follows easily from the fact that the classifying types $\Fib_i$ are stable under pullback by Lemma \ref{lemma:classtypebiasedfibstruct}.
 \end{proof}
+
+%The construction just applied can be formulated in greater generality:
+%%
+%\begin{proposition}\label{prop:transferclassifier}
+%Let $f^*\dashv f_* : \FF \to \EE$ be a geometric morphism, and 
+%\begin{equation}\label{diagram:classifyfib}
+%\xymatrix{
+%A \ar@{>>}[d] \ar[r]  \pbcorner & \FFib \ar@{>>}[d] \\
+%X \ar[r] & \Fib
+%}
+%\end{equation}
+%\end{proposition}
+%
+
 
 Finally, we can again take $\Fib := \Fib(\VV)$ to now obtain a universal small \emph{unbiased} fibration $\FFib\ra\Fib$ in $\cSet$, as in \eqref{diagram:universalfib}, and the proof can conclude just as in Proposition~\ref{prop:classTFib}.  
 
@@ -3657,14 +3690,14 @@ X \ar[r] & \Fib
 %\end{definition}
 
 \begin{remark}\label{sliceuniversalfibrations}
-Recall from Proposition \ref{prop:familyclassifierforslices} that the universe in the slice category $\cSet/_\I$ is the pullback of the universe $\V$ from $\cSet$ along the base change $\I^* : \cSet \to \cSet/_\I$.  Thus in the construction just given of the classifier $\FFib\ra\Fib$ for unbiased fibrations in $\cSet$  we are first building the classifying type $$\Fib_i(\I^*\VV) \to \I^*\V$$ for $\delta$-biased fibration structures on the universal family in $\cSet/_\I$, and then taking a pushforward $\I_*: \cSet/_\I \to \cSet$ to obtain the classifier for unbiased fibrations as the pullback along the unit:
+Recall from Proposition \ref{prop:familyclassifierforslices} that the universe in the slice category $\cSet/_\I$ is the pullback of the universe $\V$ from $\cSet$ along the base change $\I^* : \cSet \to \cSet/_\I$.  Thus in the construction just given of the classifier $\FFib\ra\Fib$ for unbiased fibrations in $\cSet$  we are first building the classifying type $$\Fib_i(\I^*\VV) \to \I^*\V$$ for $\delta$-biased fibration structures on the universal family in $\cSet/_\I$, and then taking a pushforward $\I_*: \cSet/_\I \to \cSet$ to obtain the (base of the) classifier for unbiased fibrations as the pullback along the unit:
 \begin{equation}\label{diagram:fibUuniversal}
 \xymatrix{
  \Fib(\VV) \ar[d] \ar[r] \pbcorner & \ar[d] \Pi_{i:\I}\Fib_i(\I^*\VV) \\
  \V \ar[r]_{\rho} &  \V^\I
 }
 \end{equation}
-We remark for later reference that this classifying type $\Fib = \Fib(\VV) \to \V$ for unbiased fibration structures can also be constructed as the pushforward of the classifier $\Fib_i(\I^*\VV) \to \I^*\V$ for $\delta$-biased fibration structures, along the projection $q : \I^*\V =  \I\times \V \to \V$ indicated below.
+We remark for later reference that this classifying type $\Fib = \Fib(\VV) \to \V$ for unbiased fibration structures can therefore be constructed as the pushforward of the classifier $\Fib_i(\I^*\VV) \to \I^*\V$ for $\delta$-biased fibration structures along the projection $q : \I^*\V =  \I\times \V \to \V$ indicated below.
 \begin{equation}\label{diagram:fibUuniversal2}
 \xymatrix{
  \Fib_i(\I^*\VV) \ar[d] &  \Fib(\VV) \ar[d] \ar[r] \pbcorner & \ar[d] \Pi_{i:\I}\Fib_i(\VV) \\
@@ -3672,6 +3705,10 @@ We remark for later reference that this classifying type $\Fib = \Fib(\VV) \to \
  \I \ar[r] & 1
 }
 \end{equation}
+We record this fact as:
+\begin{corollary}\label{cor:Fibaspushforwardalongq}
+$\Fib = \Sigma_{\V}\,q_* \Fib_i(\I^*\VV).$
+\end{corollary}
 \end{remark}
 
 
@@ -3712,7 +3749,7 @@ Note that if either projection is a trivial fibration, then both are.
 
 As an object over the base, a weak proposition is thus one that ``thinks it is contractible''.  The key fact needed for realignment is the following.
 
-\begin{lemma}\label{lemma:Fibweakprop} For any $Y\to X$, the classifying type $\TFib(Y) \to X$ is a weak proposition.  Moreover, the same is true for $\Fib(Y)\to X$ if the cofibrations are closed under exponentiation by the interval $\I$.
+\begin{lemma}\label{lemma:Fibweakprop} For any $A\to X$, the classifying type $\TFib(A) \to X$ is a weak proposition.  Moreover, the same is true for $\Fib(A)\to X$ (both the biased and unbiased versions) if the cofibrations are closed under exponentiation by the interval $\I$.
 %, in the sense that $c:A \cof B$ implies
 %\[
 %c^\I:A^\I \cof B^\I\,.
@@ -3721,80 +3758,37 @@ As an object over the base, a weak proposition is thus one that ``thinks it is c
 %
 %
 \begin{proof}
-Let $Y\to X$ and consider the following diagram, in which we have written $Y' = \TFib(Y)\times_X Y$ and $\TFib(Y)^2 = \TFib(Y)\times_X \TFib(Y)$.
+Let $A\to X$ and consider the following diagram, in which we have written $A' = \TFib(A)\times_X A$ and $\TFib(A)^2 = \TFib(A)\times_X \TFib(A)$.
 %
 \begin{equation}\label{diagram:TFibweakprop}
 \begin{tikzcd}
-Y' \ar[dd]  \ar[rr] \pbmark && Y \ar[dd]  \\
-& \TFib(Y)^2 \ar[ld] \ar[rr]  \pbmark && \TFib(Y) \ar[ld] \\
-\TFib(Y) \ar[rr] && X
+A' \ar[dd]  \ar[rr] \pbmark && A \ar[dd]  \\
+& \TFib(A)^2 \ar[ld] \ar[rr]  \pbmark && \TFib(A) \ar[ld] \\
+\TFib(A) \ar[rr] && X
 \end{tikzcd}
 \end{equation}
-Since $\TFib$ is stable under pullback (by Lemma \ref{lemma:TFibstable}), we have $\TFib(Y)^2 \cong \TFib(Y')$, and since $\TFib(Y)^2$ has a canonical section, $Y' \to \TFib(Y)$ is therefore a trivial fibration.  Inspecting the definition of $\TFib(A) = +\mathsf{Alg}(A)$ in \eqref{diag:plualgstru}, we see that if a map $A\to X$ is a trivial fibration, then so is $\TFib(A)\to X$ (since $A\to A^+$ is always a cofibration). Thus $\TFib(Y)^2 \cong \TFib(Y') \to\TFib(Y)$ is also a trivial fibration.
+Since $\TFib$ is stable under pullback (by Lemma \ref{lemma:TFibstable}), we have $\TFib(A)^2 \cong \TFib(A')$, and since $\TFib(A)^2$ has a canonical section, $A' \to \TFib(A)$ is therefore a trivial fibration.  Inspecting the definition of $\TFib(A) = +\mathsf{Alg}(A)$ in \eqref{diag:plualgstru}, we see that if a map $A\to X$ is a trivial fibration, then so is $\TFib(A)\to X$ (since $\eta : A\to A^+$ is always a cofibration). Thus $\TFib(A)^2 \cong \TFib(A') \to\TFib(A)$ is also a trivial fibration.
 
-For $\Fib(Y)\to X$, we use the foregoing to infer that $\TFib(Y^I) \to X^I\times_X Y$ is a weak proposition, and so therefore is its pushforward $p_*\TFib(Y^\I)\to X^\I$ along the first projection $p:X^I\times_X Y \to X^\I$, since pushforward clearly preserve weak propositions.  Applying the root $(-)_\I$ preserves trivial fibrations, by the assumption that its left adjoint $(-)^\I$ preserves cofibrations, so as a right adjoint, it also preserves weak propositions. Therefore $(p_*\TFib(Y^\I))_\I \to (X^\I)_\I$ is a weak proposition, but then so is its pullback along the unit $X\to (X^\I)_\I$, which is $\Fib(Y)\to X$.
+For $\Fib(A)\to X$, with reference to the construction \eqref{diagram:fibU8} we use the foregoing to infer that $\TFib(\epsilon_A) \to A_\epsilon$ is a weak proposition, and so therefore is its pushforward $F_A = (p_\epsilon)_*\TFib(\epsilon_A)\to X^\I$ along the projection $p_\epsilon : A_\epsilon = X^I\times_X A \to X^\I$, since pushforward clearly preserves weak propositions.  Applying the root $(-)_\I$ preserves trivial fibrations, by the assumption that its left adjoint $(-)^\I$ preserves cofibrations, and so, as a right adjoint, it also preserves weak propositions. Therefore $(F_A)_\I \to (X^\I)_\I$ is a weak proposition, but then so is its pullback along the unit $X\to (X^\I)_\I$, which is $\Fib_i(A)\to X$, the classifier for $\delta$-biased fibration structures.  The same reasoning shows that $\Fib(A) = \rho^*\Pi_{i:\I}\Fib_i(\I^*A)$ (as in \eqref{diagram:fibU7}) is also a weak proposition.
 \end{proof}
 
-In light of Lemma \ref{lemma:Fibweakprop} we assume as a final axiom on cofibrations:
+In light of Lemma \ref{lemma:Fibweakprop} we shall assume as a final axiom on cofibrations:
  
 \begin{enumerate}
-\item[(C8)] The map $c^\I:A^\I \to B^\I$ is a cofibration if $c:A \to B$ is a cofibration.
+\item[(C8)] The pathobject functor preserves cofibrations: thus $c:A \cof B$ implies $c^\I:A^\I \cof B^\I$.
 \end{enumerate}
 
-Now by Proposition \ref{prop:UniversalFib} we have a universal (small) fibration $\UU \fib \U$, with $\U = \mathsf{Fib}(\VV)$, where $\VV \to \V$ is the universal (small) family.  Type theoretically, we therefore have
+Now, by Propositions \ref{prop:UniversalFib} and \ref{prop:UniversalunbiasedFib} we have universal small $\delta$-biased and unbiased fibrations, the former in $\cSet/_\I$, the latter in $\cSet$.  The following remarks apply to both, which we refer to neutrally as $\UU \fib \U$.  The base object $\U$ is (the domain of) the classifying type $\mathsf{Fib}(\VV) \to \V$, where $\VV \to \V$ is the universal small family.  Type theoretically, this object can be written as
 \[
 \U = \Sigma_{E:\V}\Fib(E)\,,
 \] 
-with canonical projection
+which comes with the canonical projection
 \[
-\U = \Sigma_{E:\V}\Fib(E) \to \V\,,
+\U = \Sigma_{E:\V}\Fib(E) \too \V\,.
 \] 
-so that a fibration $E \fib X$ is a pair $\langle E, e \rangle$, consisting of the underlying family $E\to X$, equipped with a fibration structure $e :\Fib(E)$.
-%\begin{proposition}\label{prop:classifyFib}
-%There is a \emph{universal small fibration}  $\UU\fib\U$.  Every small fibration $E \fib X$ is a pullback of $\UU\fib\U$ along a classifying map $X\to \U$.
-%\begin{equation}\label{diagram:classifyfib}
-%\begin{tikzcd}
-%E \ar[d, two heads] \ar[r]  \pbmark & \UU\ar[d, two heads]\\
-%X \ar[r] & \U
-%\end{tikzcd}
-%\end{equation}
-%\end{proposition}
+In these terms, a fibration $E \fib X$ is a pair $\langle E, e \rangle$, consisting of the underlying family $E\to X$, equipped with a fibration structure $e :\Fib(E)$.
 %
-%\begin{proof}
-%Take $\U = \Fib(\VV) \to \V$, as above, and define $\UU\fib\U$ by pulling back the universal small family.
-%\[
-%\begin{tikzcd}
-%\UU \ar[d,two heads] \ar[r]  \pbmark & \VV \ar[d]\\
-%\U \ar[r] & \V
-%\end{tikzcd}
-%\]
-%Consider the following diagram in which all squares are pullbacks, the outer one classifying the family $E\to X$ and the lower one from the stability of $\Fib$.
-%%
-%\begin{equation}\label{diagram:classifyfib2}
-%\begin{tikzcd}
-%& E \ar[ddd] \ar[rrr]   \ar[rrd, dotted] &&& \VV \ar[ddd]\\
-%& && \UU \ar[d] \ar[ru]  &\\
-%\Fib(E) \ar[rd] \ar[rrr]  &&& \U \ar[rd] &\\
-%&X \ar[rrr] \ar[lu, bend left, dotted] \ar[rru, dotted,swap, "e"] &&& \V
-%\end{tikzcd}
-%\end{equation}
-%A fibration structure on $E\to X$ corresponds to a factorization $e$ as indicated, which in turn determines a pullback square of the required form.  Note that  $\UU\to\U$ has a canonical fibration structure,
-%%. Indeed, consider the following diagram, in which both squares are pullbacks.
-%%\begin{equation}\label{diagram:fibisfib}
-%%\xymatrix{
-%%\TTFib \ar[d]_{p_t} \ar[r]  & \VV \ar[d]\\
-%%\TFib \ar[r] & \V\\
-%%\TFib(\TTFib) \ar[u] \ar[r] & \TFib(\VV)\ar[u].
-%%}
-%%\end{equation}
-%%$\TFib(\VV)$ is the object of trivial fibration structures on $\VV\ra\V$, and its pullback $\TFib(\TTFib)$ is therefore the object of trivial fibration structures on $p_t : \TTFib\ra\TFib$.  Thus we seek a section of $\TFib(\TTFib) \ra \TFib$.  But recall that $\TFib = \TFib(\VV)$ by definition, so the lower pullback square is the pullback of $\TFib(\VV)\ra \V$ against itself, which does indeed have a distinguished section, 
-%namely the diagonal
-%\[
-%\U \to \Fib(\UU) \cong \U\times_\V \U.
-%\]
-%\end{proof}
-%
-\noindent Lemma \ref{lemma:Fibweakprop}  then allows us to establish the following, which was first isolated in \cite{Shu:UAERP}  (as condition (2'), also see \cite{Shu:15}). It will be needed in the sequel to correct the fibration structure on certain maps.
+\noindent Lemma \ref{lemma:Fibweakprop}  then allows us to establish the following, which was first isolated in \cite{Shu:UAERP}  (as condition (2'), also see \cite{Shu:15}). It holds for both biased and unbiased fibrations, and will be used in the sequel to ``correct'' the fibration structure on certain maps.
 
 \begin{lemma}[Realignment for fibrations]\label{lemma:realignmentforfibrations}
 Given a fibration $F\fib X$ and a cofibration $c : C\cof X$, let $f_c : C \to \U$ classify the pullback $c^*F\fib C$.  Then there is a classifying map $f: X \to \U$ for $F$ with $f\circ c = f_c$.
@@ -3846,8 +3840,9 @@ Since $\U=\Fib(\VV)\to\V$ is a weak proposition by Lemma \ref{lemma:Fibweakprop}
 \section{The equivalence extension property}\label{sec:EEP}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The equivalence extension property (EEP) is closely related to the \emph{univalence} of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:universalfibration} (see \cite{Shu2015}).  We shall use it in section \ref{sec:FEP} to show that the base object $\U$ is fibrant, which implies the fibration extension property.  Our proof of the EEP is a reformulation of a type-theoretic argument due to Coquand \cite{CCHM}, which in turn is a modification of the original argument of Voevodsky \cite{KLV}.  See \cite{sattler} for another reformulation.
-%Of course, we must avoid the use of the general 3-for-2 condition for weak equivalences.  
+The equivalence extension property (EEP) is closely related to the \emph{univalence} of the universal fibration $\UU\ra\U$ constructed in section \ref{sec:universalfibration} (see \cite{Shu2015}).  We shall use it in section \ref{sec:FEP} to show that the base object $\U$ of the universal fibration $\UU\fib\U$ is fibrant, which implies the fibration extension property.  The proof of the EEP given here is a reformulation of a type-theoretic argument due to Coquand \cite{CCHM}, which in turn is a modification of the original argument of Voevodsky \cite{KLV}.  See \cite{sattler} for another reformulation.  
+
+Throughout this section we shall consider only the case of $\delta$-biased fibrations in $\cSet/_\I$. The EEP for this case will suffice to establish the model structures for both this case and for the unbiased fibrations in $\cSet$.  (The EEP for unbiased fibrations will then be shown by a different argument in Proposition \ref{prop:EECunbiased}).  Thus for the remained of this section, ``fibration'' always means $\delta$-biased fibration in $\EE=\cSet/_\I$, and  $\delta : 1 \to\I \in \EE$ is the diagonal $\I \to \I\times\I$ as a map over $\I$ in $\cSet$.
 
 We first recall some basic facts and make some simple observations. For any map $f :X\ra Y$, recall the \emph{pathspace factorization} $f = t\circ s$ indicated below.
 %\begin{equation}\label{diag:pathspace factorization}
@@ -3874,13 +3869,13 @@ X \ar[rr]_f  &&  Y &
 \end{equation}
 Here $p_0, p_1$ are the evaluations $Y^{\delta_{0}}, Y^{\delta_{1}}$ at the endpoints $\delta_0, \delta_1 : 1\ra\I$, and let $r:= Y^!$ for $! : \I\ra 1$, so that $p_0r = p_1r = 1_Y$.  Then let  $p_f := f^*p_0 : P_f \ra Y$, the pullback of $p_0$ along $f$, and $s:= f^*r : X\ra P_f$ (over $X$).  Finally, let $t:= p_1\circ p_0^*f : P_f \ra Y$ be the indicated horizontal composite. 
 
-We make the following well-known observations.
+We make the following observations, which are well-known in general, but still need to be checked in this special case.
 \begin{enumerate}
-\item If $f:X\ra Y$ is over a base $Z$, then the factorization $t\circ s:X\ra P_f \ra Y$ is stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*P_f = P_{g^*f} : g^*X \ra g^* Y$, and similarly for $g^*s$ and $g^*t$.  Note that in this case we form the pathspace $Y^\I$ as an exponential in the slice category over $Z$.
+\item If $f:X\ra Y$ is a map over a base $Z$, we instead use the relative pathobject $Y^\I \to Z$, where the exponential is taken in the slice over $Z$, and the interval used is the result of pulling $\delta_0, \delta_1 : 1\ra\I$ back along $Z\to 1$. The factorization $t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^\I) \cong g^*(Y)^\I$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
 
 \item The retraction $p_0\circ r = 1_Y$ pulls back along $f$ to a retraction $p_f \circ s =1_X$.
 
-\item If $Y$ is fibrant (either as an object, or over a base $Y\ra Z$), then $p_0 : Y^\I \ra Y$ is a trivial fibration (as is $p_1$).  In that case, its pullback $p_f : P_f \ra X$ is also a trivial fibration.
+\item If $Y$ is a fibrant object, then $p_0 , p_1 : Y^\I \ra Y$ are both trivial fibrations, because ... \ednote{fix this} . If $f:X\ra Y$ is over a base $Z$ then ... \ednote{fix this too}  In that case, its pullback $p_f : P_f \ra X$ is also a trivial fibration. 
 
 \item If $X$ and $Y$ are both fibrant, then $t= p_1\circ p_0^*f : P_f \ra Y$ is a fibration.  This can be seen by factoring the maps $p_0, p_1 :Y^\I \rightrightarrows  Y$ through the product projections as $\pi_0\circ p, \pi_1\circ p : Y^\I \ra Y\times Y \rightrightarrows Y$, with $p = (p_0, p_1)$, and then interpolating the pullback along the map $(f,1_X) : X\times Y\ra Y\times Y$ into \eqref{diag:pathspace factorization} as indicated below.
 \begin{equation}\label{diag:pathspace factorization2}
@@ -3969,7 +3964,7 @@ C' \ar@{>->}[rrrr]_c &&&& C &&&&
 \end{equation}
 We now \emph{claim} that $\eta : P_w \ra  b_*b^*P_w$ is a trivial fibration.  Given that,  the composite $t = b_*b^*t \circ \eta$ is also a trivial fibration, whence $q\circ t : P_w \ra C$ is a fibration, and so its retract $p:A\ra C$ is a fibration.  Moreover, since $s$ is a section of the trivial fibration $p_w: P_w\ra A$ between fibrations, as before it is also a weak equivalence. Thus $w=t\circ s$ is a weak equivalence, and we are finished. 
 
-To prove the remaining claim that $\eta : P_w \ra  b_*b^*P_w$ is a trivial fibration, we shall use lemma \ref{lemma:etaTF}.  But it does not apply directly since $t : P_w \ra B$ is not yet known to be a trivial fibration.  Instead, we show that $\eta$ is a pullback of the corresponding unit at the trivial fibration $p_1 : B^\I \ra B$.
+To prove the remaining claim that $\eta : P_w \ra  b_*b^*P_w$ is a trivial fibration, we shall use lemma \ref{lemma:etaTF}.  It does not apply directly, however, since $t : P_w \ra B$ is not yet known to be a trivial fibration.  Instead, we show that $\eta$ is a pullback of the corresponding unit at the trivial fibration $p_1 : B^\I \ra B$.
 
 Consider the following cube (viewed with $b:B'\ra B$ at the front).
 \begin{equation}\label{diag:ppcube}
@@ -4263,7 +4258,7 @@ We next \emph{claim} that  there is a weak equivalence $e:A \simeq A_\delta\time
 \end{enumerate}
 It then remains only to show that $B\cong (Z_\delta)^*D$ over $Z$ to complete the proof.
 
-To obtain $e$, consider the following square, in which the top map is $A_\delta\times \delta$ (after $A_\delta\cong A_\delta\times 1$) and the others are those from  diagram \eqref{diag:Ufib2}.
+To obtain $e$, consider the following square, in which the top map is $A_\delta\cong A_\delta\times 1$ followed by $A_\delta\times \delta$ and the others are those from  diagram \eqref{diag:Ufib2}.
 \begin{equation}\label{diag:Ufibn}
 \xymatrix{
 A_\delta \ar@{>->}[d] \ar@{>->}[r] & A_\delta\times\I \ar@{>>}[d] \\
