@@ -1,3 +1,4 @@
+
 %%
 % Model structure on the cartesian cubes
 % Begun March 2018
@@ -1419,24 +1420,29 @@ Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X.
 \end{proposition}
 
 \begin{proof}
-Suppose that for all $c : C\mono Z$ and $z:Z\ra\I$, we have $(c\otimes_z\delta) \pitchfork f$ in $\cSet$. Pulling $f$ back over $\I$, this is equivalent to the condition $c\otimes\delta \pitchfork \I^*f$ in $\cSet/\I$, for all cofibrations $c : C\mono Z$ over $\I$, which is equivalent to $c\pitchfork(\delta\Rightarrow \I^*f)$ in $\cSet/\I$ for all cofibrations $c : C\mono Z$.  But this in turn means that $\delta\Rightarrow\I^*f$ is a trivial fibration, which by definition means that $f$ is a fibration.
+Suppose that for all $c : C\mono Z$ and $z:Z\ra\I$, we have $(c\otimes_z\delta) \pitchfork f$ in $\cSet$. Pulling $f$ back over $\I$, this is equivalent to the condition $c\otimes\delta \pitchfork \I^*f$ in $\cSet/\I$, for all cofibrations $c : C\mono Z$ over $\I$, which is equivalent to $c\pitchfork(\delta\Rightarrow \I^*f)$ in $\cSet/_\I$ for all cofibrations $c : C\mono Z$.  But this in turn means that $\delta\Rightarrow\I^*f$ is a trivial fibration, which by definition means that $f$ is a fibration.
 \end{proof}
 
 The following sanity check will be needed later.
-\begin{corollary}\label{cor:fibpathtriv}
-Let $F\fib X$ be an unbiased fibration. Then the canonical endpoint projections $F^{\delta_\epsilon}: F^\I \to F$ over $X$ are trivial fibrations, for $\epsilon = 0,1$, where the (relative) pathobject $F^\I \to X$ is the exponential over $X$ of $F\to X$ by the pullback $X^*\I = \I \times X \to X$ of $\I$. 
+\begin{proposition}\label{prop:sanitycheck}
+Let $f:F\fib X$ be an unbiased fibration in $\cSet$, so that by definition $\delta \Rightarrow f : F^\II \to X^\II \times_X F$ is a trivial fibration in $\cSet/_\I$ (recall that in this case we do not indicate the base-change $\I^* : \cSet \to \cSet/_\I$).  Then for the endpoints $\delta_0, \delta_1 : 1 \to \I$, the associated pullback-homs
+\[
+\delta_\epsilon \Rightarrow f : F^\I \to X^\I \times_X F \qquad(\epsilon = 0,1)
+\]
+ are also trivial fibrations. 
+%
+\end{proposition}
+
+\begin{proof}
+We do the case $X=1$, the general one being entirely analogous. Thus we have an unbiased fibrant object $F$ in $\cSet$, with a trivial fibration $F^\delta : F^\II \to F$ in $\cSet/_\I$, and we wish to show that each $F^{\delta_\epsilon} : F^\I \to F$ in $\cSet$ is one, too.   Pulling back $\delta : 1\to \II$ along the base change $\delta_\epsilon : 1\to \I$ takes it to $\delta_\epsilon : 1\to \I$ itself, by the universal property of the generic point $\delta : 1\to \II$.  So the trivial fibration $F^\delta : F^\II \to F$ is taken to $\delta_\epsilon^*F^\delta = F^{\delta_\epsilon}$, and pullbacks preserve trivial fibrations. 
 %
 \begin{equation}\label{diagram:unbiasedfibration}
 \xymatrix{
-F^\I \ar[rd] \ar[r]^{F^{\delta_\epsilon}} & F \ar@{>>}[d] & F^\I \ar[rd] \ar[r]^{F^{\delta}} & \I\times F \ar@{>>}[d] & F \ar@{>>}[d]  \\
-& X \ar[d] \ar[rr]^{X^*\delta_\epsilon} \pbcorner && \I\times X \ar[d]  \ar[r] \pbcorner & X \ar[d]  \\
-& 1 \ar[rr]_{\delta_\epsilon} &&  \I \ar[r] & 1 
+F^\I \ar[d]_{F^{\delta_\epsilon}} \ar[rr]  & & (\I^* F)^{\II} \ar[d]^{F^{\delta}} &  \\
+ F \ar[d] \ar[rr] \pbcorner && \I^*F \ar[d]  \ar[r] \pbcorner & F \ar[d]  \\
+ 1 \ar[rr]_{\delta_\epsilon} &&  \I \ar[r] & 1 
 }
 \end{equation}
-\end{corollary}
-
-\begin{proof}
-Pull $F\fib X$ back along $\I\to 1$ to obtain the fibration $\I^*F\fib \I^*X$ over $\I$.  we have $c \pitchfork F^{\delta_\epsilon}$ (over $X$). But since $F^{\delta_\epsilon} = (X^*\delta_\epsilon\!\Rightarrow\! F)$, this is equivalent to $c \otimes X^*\delta_\epsilon \pitchfork F$ (over $X$).
 \end{proof}
 
 
@@ -3842,7 +3848,7 @@ Since $\U=\Fib(\VV)\to\V$ is a weak proposition by Lemma \ref{lemma:Fibweakprop}
 
 The equivalence extension property (EEP) is closely related to the \emph{univalence} of the universal fibration $\UU\fib\U$ constructed in section \ref{sec:universalfibration} (see \cite{Shu2015}).  We shall use it in section \ref{sec:FEP} to show that the base object $\U$ is fibrant, which implies the fibration extension property.  The proof of the EEP given here is a reformulation of a type-theoretic argument due to Coquand \cite{CCHM}, which in turn is a modification of the original argument of Voevodsky \cite{KLV}.  See \cite{sattler} for another reformulation.  
 
-Throughout this section we shall consider only the case of $\delta$-biased fibrations in $\cSet/_\I$. The EEP for this case will suffice to establish the model structures for both this case and for the unbiased fibrations in $\cSet$.  (The EEP for unbiased fibrations will then be shown by a different argument, in Proposition \ref{prop:EECunbiased}).  Thus for the remaineder of this section, ``fibration'' always means $\delta$-biased fibration in $\cSet/_\I$, and  $\delta : 1 \to\I$ is the diagonal $\I \to \I\times\I$ as a map over $\I$ in $\cSet$.
+Throughout this section we shall consider only the case of $\delta$-biased fibrations in $\cSet/_\I$. The EEP for this case will suffice to establish the model structures for both this case and for that of unbiased fibrations in $\cSet$.  (The EEP for unbiased fibrations will then be shown by a different argument, in Proposition \ref{prop:EECunbiased}).  Thus for the remainder of this section, ``fibration'' always means $\delta$-biased fibration in $\cSet/_\I$, where  $\delta : 1 \to\II$ is the generic point of $\II = \I^*\I$, \ie\ $\II$ refers to the (first) projection $\I\times\I\to \I$ as an object in $\cSet/_\I$, and $\delta : 1 \to\II$ is then the diagonal $\I \to \I\times\I$, regarded as a map in $\cSet/_\I$.
 
 We first recall some basic facts and make some simple observations. For any map $f :X\ra Y$ in $\cSet/_\I$, recall the \emph{pathspace factorization} $f = t\circ s$ indicated below.
 %\begin{equation}\label{diag:pathspace factorization}
@@ -3862,20 +3868,22 @@ We first recall some basic facts and make some simple observations. For any map 
 \begin{equation}\label{diag:pathspace factorization}
 \xymatrix{
 X \ar@/_1.5pc/[ddd]_= \ar[d]^s \ar[rr]^f \pbcorner && Y \ar[d]_r \ar[rrd]^=\\
-P_f  \ar[dd]^{p_f} \ar[rr]^{p_0^*f} \ar@{.>}@/_1.5pc/[rrrr]_<<<<<<<<<<<<<<<t \pbcorner && Y^\I \ar[dd]_{p_0} \ar[rr]^-{p_1} && Y \\
+P_f  \ar[dd]^{p_f} \ar[rr]^{p_0^*f} \ar@{.>}@/_1.5pc/[rrrr]_<<<<<<<<<<<<<<<t \pbcorner && Y^\II \ar[dd]_{p_0} \ar[rr]^-{p_1} && Y \\
 \\
 X \ar[rr]_f  &&  Y &
 }
 \end{equation}
-Here $p_0, p_1$ are the evaluations $Y^{\delta_{0}}, Y^{\delta_{1}}$ at the endpoints $\delta_0, \delta_1 : 1\ra\I$, and let $r:= Y^!$ for $! : \I\ra 1$, so that $p_0r = p_1r = 1_Y$.  Then let  $p_f := f^*p_0 : P_f \ra Y$, the pullback of $p_0$ along $f$, and $s:= f^*r : X\ra P_f$ (over $X$).  Finally, let $t:= p_1\circ p_0^*f : P_f \ra Y$ be the indicated horizontal composite. 
+Here $p_0, p_1$ are the evaluations $Y^{\delta_{0}}, Y^{\delta_{1}}$ at the endpoints $\delta_0, \delta_1 : 1\ra\II$, and let $r:= Y^!$ for $! : \II\ra 1$, so that $p_0r = p_1r = 1_Y$.  Then let  $p_f := f^*p_0 : P_f \ra Y$, the pullback of $p_0$ along $f$, and $s:= f^*r : X\ra P_f$ (over $X$).  Finally, let $t:= p_1\circ p_0^*f : P_f \ra Y$ be the indicated horizontal composite. 
 
-We make the following observations, which are well-known in general, but still need to be checked in this special case.
+We make the following observations, which are well-known in general, but still need to be checked in this particular case.
 \begin{enumerate}
-\item If $f:X\ra Y$ is a map over a base $Z$, we instead use the relative pathobject $Y^\I \to Z$, where the exponential is taken in the slice over $Z$, and the interval used is the result of pulling $\delta_0, \delta_1 : 1\ra\I$ back along $Z\to 1$. The factorization $t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^\I) \cong g^*(Y)^\I$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
+\item If $f:X\ra Y$ is a map over a base $Z$ in $\cSet/\I$, we instead use the relative pathobject $Y^\II \to Z$, where the exponential is taken in the slice over $Z$, and the interval in the exponent is the result of pulling the interval $\delta_0, \delta_1 : 1\ra\II$ from $\cSet/\I$ back along $Z\to 1$. The factorization $t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^\I) \cong g^*(Y)^\I$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
 
 \item The retraction $p_0\circ r = 1_Y$ pulls back along $f$ to a retraction $p_f \circ s =1_X$.
 
-\item If $Y$ is a fibrant object, then $p_0 , p_1 : Y^\I \ra Y$ are both trivial fibrations, because ... \ednote{fix this} . If $f:X\ra Y$ is over a base $Z$ then ... \ednote{fix this too}  In that case, its pullback $p_f : P_f \ra X$ is also a trivial fibration. 
+\item If $Y$ is a fibrant object, then $p_0 , p_1 : Y^\I \ra Y$ are both trivial fibrations by Proposition \ref{prop:sanitycheck}, 
+
+because ... \ednote{fix this} . If $f:X\ra Y$ is over a base $Z$ then ... \ednote{fix this too}  In that case, its pullback $p_f : P_f \ra X$ is also a trivial fibration. 
 
 \item If $X$ and $Y$ are both fibrant, then $t= p_1\circ p_0^*f : P_f \ra Y$ is a fibration.  This can be seen by factoring the maps $p_0, p_1 :Y^\I \rightrightarrows  Y$ through the product projections as $\pi_0\circ p, \pi_1\circ p : Y^\I \ra Y\times Y \rightrightarrows Y$, with $p = (p_0, p_1)$, and then interpolating the pullback along the map $(f,1_X) : X\times Y\ra Y\times Y$ into \eqref{diag:pathspace factorization} as indicated below.
 \begin{equation}\label{diag:pathspace factorization2}
