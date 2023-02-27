@@ -4295,7 +4295,7 @@ Z \ar@/_4ex/ [rrrd]_{b} \ar[rr]_{\mathsf{Gph}(z)} &&  Z\times\I  \ar@{.>}[rd]_{d
 \end{equation}
 for which $\langle \tilde{d} , z\rangle : Z \to \U^\I\times\I$ is the indicated diagonal filler in \eqref{diag:Ufib1}.
 
-Note that the (valid) condition $b\circ c = a\circ \mathsf{Gph}(zc)$ turns this into the equivalent problem of extending the copair $[b,a]$ along the  (trivial cofibration) pushout-product $c\, \otimes_z \delta$ from \eqref{diagram:unbiasedpushoutproduct}, which we recall below for the reader's convenience.
+Note that the (valid) condition $b\circ c = a\circ \mathsf{Gph}(zc)$ turns this into the equivalent problem of extending the copair $[b,a]$ along the  (trivial cofibration) pushout-product ${c}\otimes_z\!{\delta}$ from \eqref{diagram:unbiasedpushoutproduct}, recalled below for the reader's convenience.
 %
 \begin{equation}\label{diagram:unbiasedpushoutproduct5}
 \xymatrix{
@@ -4336,12 +4336,12 @@ Now take pullbacks of $\UU\fib \U$ along $a$ and $b$ to get fibrations $A\fib C\
 \[
 C_\delta := \mathsf{Gph}(zc) : C  \ra C\times \I
 \]
-for the ``$\delta$-section'' of the cylinder over $C$, and let $A_\delta = (C_\delta)^*A \fib C$ be the ``section of $A$ over $C_\delta$''.  We then have $c^*B \cong A_\delta$ over $C$ by the outer square of \eqref{diag:Ufib1}.
+for the ``$\delta$-slice'' of the cylinder over $C$, and let $A_\delta = (C_\delta)^*A \fib C$ be the corresponding ``slice of $A$ over $C_\delta$''.  We then have $c^*B \cong A_\delta$ over $C$ by the outer square of \eqref{diag:Ufib1}.
 \[
 \xymatrix@=1em{
-&& \ar[llddd] A_\delta \ar@{->>}[dd] \ar[rr]  &&  A \ar@{->>}[dd] \\
+&& \ar[llddd] A_\delta \ar@{->>}[dd] \ar[rr]  \pbcorner &&  A \ar@{->>}[dd] \\
 && && \\
-&& \ar[llddd]^c C \ar[rr]_{C_\delta}  &&  \ar[lddd] C\times\I \\
+&& \ar[llddd]^c C \ar[rr]_{C_\delta}  &&  \ar[lddd]^{c\times \I} C\times\I \\
 B \ar@{->>}[dd] &&&& \\
 &&&& \\
 Z \ar[rrr]_{Z_\delta} &&& Z\times\I &
@@ -4358,7 +4358,7 @@ B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] & \\
 Z \ar[rrr]_{Z_\delta} &&& Z\times\I &
 }
 \end{equation}
-We can construct such a $D\fib Z\times \I$ using the equivalence extension property, as follows.  First apply the functor $(-)\times\I$ to the left (pullback) face of the cube in \eqref{diag:Ufib1.5} to get the following, with a new pullback square on the right, involving the indicated fibrations.
+We shall construct such a $D\fib Z\times \I$ using the equivalence extension property, Proposition \ref{prop:EEP}, as follows.  First apply the functor $(-)\times\I$ to the left (pullback) face of the cube in \eqref{diag:Ufib1.5} to get the following, with a new pullback square on the right, involving the indicated fibrations.
 \begin{equation}\label{diag:Ufib2}
 \begin{gathered}
 \xymatrix@=1em{
@@ -4371,7 +4371,7 @@ Z \ar[rrr]_{Z_\delta} &&& Z\times\I &&&
 }
 \end{gathered}
 \end{equation}
-We next \emph{claim} that  there is a weak equivalence $e:A \simeq A_\delta\times \I$ over $C\times \I$, from which follow  by the EEP:
+We now \emph{claim} that  there is a weak equivalence $e:A \simeq A_\delta\times \I$ over $C\times \I$, from which then follow by the EEP:
 \begin{enumerate}
 \item[(i)] a fibration $D\fib Z\times \I$ with $(c\times\I)^*D \cong A$ over $C\times\I$, and 
 \item[(ii)] a weak equivalence $f:D\simeq B\times\I$ over $Z\times \I$ with $(c\times\I)^*f \cong e$ over $C\times\I$. 
@@ -4414,6 +4414,10 @@ Then there is a weak equivalence $e : B \simeq C$ over $D$ (and under $A$).
 \begin{proof}
 Use the fact that any two diagonal fillers are homotopic to get a homotopy equivalence $e : B \simeq C$ filling the square.
 \end{proof}
+
+\begin{remark}
+The foregoing proof also works, \emph{mutatis mutandis}, for the case of \emph{biased} fibrations, as in \cite{CCHM}.
+\end{remark}
 
 Applying proposition \ref{prop:UfibtoFEP} now yields the following.
 
