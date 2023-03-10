@@ -1023,7 +1023,7 @@ We next collect some basic facts about trivial fibrations: they have sections, t
 
 \begin{corollary}\label{cor:plusalgprops} 
 \begin{enumerate}
-\item Every trivial fibration $A\ra X$ has a section $s : X\ra A$, which is a cofibration.\ednote{add this!}
+\item Every trivial fibration $A\ra X$ has a section $s : X\ra A$.
 \item If $a:A\ra X$ is a trivial fibration and $b:B\ra A$ is a trivial fibration, then  $a\circ b:B\ra X$ is a trivial fibration.
 \item If $a:A\ra X$ is a trivial fibration and $a':A'\ra X'$ is a retract of $a$ in the arrow category, then $a'$ is a trivial fibration.
 \item For any map $f:X\ra Y$ and any trivial fibration $B\ra Y$,  the pullback $f^*B \ra X$ is a trivial fibration.  
@@ -1201,11 +1201,12 @@ Z\times 1 \ar@/_4ex/ [rrd]_{Z\times \delta_\epsilon} \ar[r] &  Z +_C (C\times\I)
 In order to ensure that such maps are indeed cofibrations, we assume two further axioms in addition to (C1)--(C4) from Definition \ref{def:cofibration}:
 \begin{enumerate}\label{cofibration_axioms}
 \item[(C5)] The endpoint inclusions $\delta_\epsilon : 1 \ra \I$ are cofibrations, for $\epsilon = 0,1$.
-\item[(C6)] The cofibrations are closed under pushout-products ${-}\otimes{-}$ in the arrow category.  
+\item[(C6)] Cofibrations are closed under joins $A\vee B \mono C$ of subobjects $A, B \mono C$ of any object $C$.
 \end{enumerate}
-
-Note that if we assume that $\delta_0$ and $\delta_1$ are disjoint (as they are in most categories of cubical sets), then by (C5) (and (C3), stability under pullback) we have that $0 \ra 1$ is a cofibration, so that, again by (C3), $0\ra A$ is a cofibration, for all objects $A$, so that (C0) is no longer required.  In place of (C6), we could require the cofibrations to be closed under the join operation $A\vee B$ in the lattice of subobjects of any object (as is done in \cite{CCHM,OP}).
-\medskip
+%
+\begin{remark}\label{rem:somecofibs}
+Note that since $\delta_0: 1\to\I$ and $\delta_1:1\to\I$ are disjoint, by (C5) and stability under pullbacks we have that $0 \ra 1$ is a cofibration, so by stability again $0\ra A$ is always a cofibration.  Thus (C0) is no longer required.  From (C6) it follows that cofibrations are closed under pushout-products ${a}\otimes{b}$ in the arrow category.  It also then follows from (C5) that the boundary $\del : 1+1 \to \I$ is a cofibration.
+\end{remark}
 
 \paragraph{Fibrations (biased version).}
 Now let 
@@ -1836,7 +1837,7 @@ Hereafter, unless otherwise stated, all fibrations in $\cSet$ are assumed to be 
 \section{The weak equivalences}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Our approach to proving that the classes $\CC$ of cofibrations from Section \ref{sec:cofibrations} and $\FF$ of fibrations from Section \ref{sec:fibrations} determine a model structure will be to first build a \emph{premodel structure} in the sense of \cite{Barton}, and then turn to the question of the 3-for-2 property for the weak equivalences.
+Our approach to proving that the classes $\CC$ and $\FF$ of cofibrations and fibrations, from Sections \ref{sec:cofibrations} and \ref{sec:fibrations}, determine a model structure will be to first build a \emph{premodel structure} in the sense of \cite{Barton}, and then turn to the question of the 3-for-2 property for the resulting weak equivalences.
 
 \begin{definition}[Weak equivalence]
 A map $f: X\ra Y$ in \cSet\ is a \emph{weak equivalence} if it can be factored as $f  = g\circ h$,
@@ -1846,15 +1847,15 @@ X \ar[rd]_{f} \ar[r]^h & W\ar[d]^g\\
 & Y
 }
 \end{equation*}
-with $h: X\ra W$ a trivial cofibration and $g: W\ra Y$ a trivial fibration. Let 
+with $h \pitchfork \FF$ and $\CC\pitchfork g$.  Accordingly, let 
 \begin{align*}
 \mathcal{W} &= \TFib\circ\TCof \\
-	&= \{f: X\ra Y |\ f = g\circ h\ \text{for $g\in\mathsf{TFib}$ and $h\in\mathsf{TCof}$} \}
+	&= \{f: X\ra Y\, |\ f = g\circ h\ \text{for some $g\in\mathsf{TFib}$ and $h\in\mathsf{TCof}$} \}
 \end{align*}
  be the class of weak equivalences.
 \end{definition}
 
-Observe first that every trivial fibration $f\in\TFib = \mathcal{C}^\pitchfork$ is indeed a fibration, because the generating trivial cofibrations $c\otimes_i\delta$ are cofibrations.  Moreover, every trivial fibration $f : X\to Y$ is also a weak equivalence $f = f\circ 1_X$, since the identity map $1_X$ is, well, trivially a trivial cofibration $\TCof =\, ^{\pitchfork}\mathcal{F}$. Thus we have
+Observe first that every trivial fibration $f\in\TFib = \mathcal{C}^\pitchfork$ is indeed a fibration, because the generating trivial cofibrations $c\otimes_i\delta$ are cofibrations.  Moreover, every trivial fibration $f : X\to Y$ is also a weak equivalence $f = f\circ 1_X$, since the identity map $1_X$ is (trivially) a trivial cofibration $\TCof =\, ^{\pitchfork}\mathcal{F}$. Thus we have
 \[
 \mathsf{TFib} \subseteq (\mathcal{F} \cap \mathcal{W}).
 \]
@@ -1921,7 +1922,7 @@ and therefore two interlocking weak factorization systems:
 %\end{corollary}
 
 It now ``only'' remains to show that the weak equivalences $\WW$ satisfy the 3-for-2 axiom in order to finish the proof that $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ is a model structure.  Perhaps surprisingly, this requires a considerable amount of work, which will occupy the rest of these lectures!
-We shall follow roughly the approach of \cite{Joyal}.  We expect the weak equivalences between fibrant objects to be exactly the \emph{homotopy equivalences} (Definition \ref{def:homotopyequivalence}), which can be seen directly to satisfy 3-for-2.   So we reduce to this case, using the fact that $K^X$ is fibrant whenever $K$ is.  It suffices, namely, to show that weak equivalences $w : X\to Y$ induce homotopy equivalences $K^w : K^Y \simeq K^X$ for fibrant $K$, and that any map with this property is a weak equivalence.   Such maps are termed \emph{weak homotopy equivalences}  (Definition \ref{def:WHE}), and our task is therefore reduced to showing that a map is a weak equivalence if and only if it is a weak homotopy equivalence.
+We begin by following roughly the approach of \cite{Joyal}, as follows. We expect the weak equivalences between fibrant objects to be exactly the \emph{homotopy equivalences} (Definition \ref{def:homotopyequivalence}), which can be seen directly to satisfy 3-for-2.   So we reduce to this case, using the fact that $K^X$ is fibrant whenever $K$ is.  It should suffice, namely, to show that weak equivalences $w : X\to Y$ induce homotopy equivalences $K^w : K^Y \simeq K^X$ for fibrant $K$, and that any map with this property is a weak equivalence.   Such maps are termed \emph{weak homotopy equivalences}  (Definition \ref{def:WHE}), and our task is therefore reduced to showing that a map is a weak equivalence if and only if it is a weak homotopy equivalence.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Weak homotopy equivalence.}
@@ -2036,28 +2037,23 @@ Any trivial cofibration $c : A \mono B$ is a weak homotopy equivalence.
 \end{lemma}
 
 \begin{proof}
-Applying Lemma \ref{lem:WHEunwound}, condition (1) is immediate, and (2) results from the fact that $K^\I \fib K\times K$ is a fibration when $K$ is fibrant, since $\del : 1+1 \cof \I$ is a cofibration.
-
-\ednote{show that $\del : 1+1 \cof \I$ is a cofibration!}
-
+Applying Lemma \ref{lem:WHEunwound}, condition (1) is immediate, and (2) results from the fact that $K^\I \fib K\times K$ is a fibration when $K$ is fibrant, since $\del : 1+1 \cof \I$ is a cofibration (by Remark \ref{rem:somecofibs}).
 \end{proof}
 
 \begin{lemma}\label{lemma:FibWEtoWHE}
 Any trivial fibration $p : Y \onto X$  is a weak homotopy equivalence.
 \end{lemma}
 \begin{proof}
-By Corollary \ref{cor:plusalgprops}, the trivial fibration $p : Y \onto X$ has a section $s: X\mono Y$. 
-
-\ednote{show that sections are cofibrations!}
-
-Moreover, there is a homotopy $\vartheta : sf \sim 1_Y$, resulting from the lifting problem
+By Corollary \ref{cor:plusalgprops}, the trivial fibration $p : Y \onto X$ has a section $s: X\to Y$. 
+Consider the following lifting problem:
 \begin{equation*}%\label{diagram:extensionforX}
 \xymatrix{
-Y+Y \ar@{>->}[d]_{[\iota_0, \iota_1]} \ar[r]^-{[sf, 1]}  & Y\ar@{>>}[d]^{f} \\
-\I\times Y \ar[r]_{f\pi_2} & X.
+Y+Y \ar@{>->}[d]_{[\iota_0, \iota_1]} \ar[r]^-{[sp, 1]}  & Y\ar@{>>}[d]^{p} \\
+\I\times Y \ar[r]_{p\pi_2} & X
 }
 \end{equation*}
-Thus $f$ is a homotopy equivalence, and therefore a weak homotopy equivalence by Lemma \ref{lemma:HEisWHE}.
+A diagonal filler is then a homotopy $\vartheta : sp \sim 1_Y$. 
+Thus $p$ is a homotopy equivalence, and therefore a weak homotopy equivalence by Lemma \ref{lemma:HEisWHE}.
 \end{proof}
 
 \begin{corollary}
@@ -2232,11 +2228,12 @@ $i$ and $p$ are weak homotopy equivalence, whence so is $f$.  Conversely, let $f
 Our results can now be summarized as follows.
 
 \begin{theorem}\label{theorem:QMSmodFEP}
-Assume the fibration weak factorization system of Definition \ref{def:FibWFSclasses} satisfies the fibration extension property of Definition \ref{def:fibextreplace} (as will be shown in Corollary \ref{cor:FEP}). 
+Assume the fibration weak factorization system of Definition \ref{def:FibWFSclasses} satisfies the fibration extension property of Definition \ref{def:fibextreplace} (as will be shown  in Corollary \ref{cor:FEP} to obtain). 
 Then the weak equivalences $\WW$ have the 3-for-2 property, and so by Proposition \ref{prop:FWC}, the classes $(\CC,\WW,\FF)$ form a Quillen model structure on the category $\cSet$ of cubical sets.
 Moreover, the weak equivalences can be characterized as those maps $f: X\ra Y$ for which $K^f : K^Y \to K^X$ is bijective on connected components whenever $K$ is fibrant.
 \end{theorem}
 
+\ednote{consider stating a more general result, like the following}
 %Since lemmas n-m hold in greater generality, we can reformulate this result as follows:
 %
 %\begin{theorem}\label{theorem:QuasiMS isMSmodFEP}
@@ -4038,15 +4035,20 @@ X \ar[rr]_f  &&  Y &
 }
 \end{equation}
 Here $p_0, p_1$ are the evaluations $Y^{\delta_{0}}, Y^{\delta_{1}}$ at the endpoints $\delta_0, \delta_1 : 1\ra\I$, and let $r:= Y^!$ for $! : \I\ra 1$, so that $p_0r = p_1r = 1_Y$.  Then let  $p_f := f^*p_0 : P_f \ra Y$, the pullback of $p_0$ along $f$, and $s:= f^*r : X\ra P_f$ (over $X$).  Finally, let $t:= p_1\circ p_0^*f : P_f \ra Y$ be the indicated horizontal composite. 
-The following facts are well-known in general, but still need to be checked in this particular case.
+The following facts are well-known in general model categories, but need to be checked again in this case, where we do not yet have a full model structure.
+
 \begin{enumerate}
-\item If $f:X\ra Y$ is a map over a base $Z$ in $\cSet$, we instead use the relative pathobject $Y^\I \to Z$, where the exponential is taken in the slice over $Z$, and the interval in the exponent is the result of pulling the interval $\delta_0, \delta_1 : 1\ra\I$ from $\cSet$ back along $Z\to 1$. The factorization $t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^\I) \cong g^*(Y)^\I$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
+\item If $f:X\ra Y$ is a map over a base $Z$ in $\cSet$, we can instead use the relative pathobject $Y^\I \to Z$, where the exponential is taken in the slice over $Z$, and the interval object occurring in the exponent is the result of pulling $\I$ from $\cSet$ back along $Z\to 1$.  The pathspace factorization of \eqref{diag:pathspace factorization} can then be constructed in just the same way as before, using the pulled back interval $1\rightrightarrows \I$ in $\cSet/_Z$, and the factorization $t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^\I) \cong g^*(Y)^\I$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
 
 \item The retraction $p_0\circ r = 1_Y$ pulls back along $f$ to a retraction $p_f \circ s =1_X$.
 
-\item If $Y$ is a fibrant object, then $p_0 , p_1 : Y^\I \ra Y$ are both trivial fibrations by Proposition \ref{prop:sanitycheck}.  If $f:X\ra Y$ is over a base $Z$ and $Y$ is fibrant over $Z$, then the maps $p_0 , p_1 : Y^\I \ra Y$ over $Z$ are also trivial fibrations, again by Proposition \ref{prop:sanitycheck}\ednote{add a proof}.  In that case, the pullback $p_f : P_f \ra X$ (which is also a map over $Z$) is also a trivial fibration. 
+\item If $Y$ is a fibrant object, then $p_0 , p_1 : Y^\I \ra Y$ are both trivial fibrations by Proposition \ref{prop:sanitycheck}.  If $f:X\ra Y$ is over a base $Z$ and $Y$ is fibrant over $Z$, then the maps $p_0 , p_1 : Y^\I \ra Y$ over $Z$ are also trivial fibrations, again by Proposition \ref{prop:sanitycheck}, but now applied to the fibration $p_Y : Y\fib Z$.  (Indeed, as the reader can easily check: the exponential of $p_Y : Y\fib Z$, taken in $\cSet/_Z$, by a \emph{constant} map $Z^*\delta_\epsilon : Z^*1\to Z^*\I$, which we continue to write as $\delta_\epsilon : 1\to \I$, is a map $Y^{\delta_\epsilon} : Y^\I \to Y$ over $Z$; when tested against an arbitrary cofibration $c : A \to C$ over $Z$ via $z : C\to Z$ the map $Y^{\delta_\epsilon}$ transposes to a filling problem over $Z$ of the form $(c \otimes_z \delta_\epsilon) \pitchfork Y$, where the pushout-product $c \otimes_z \delta_\epsilon : D \to C \times_Z \I$  over $Z$ is easily seen to be equal to the (non-relative) pushout-product $c \otimes \delta_\epsilon : D \to C \times \I$, \emph{because $\delta_\epsilon : 1 \to \I$  is constant over $Z$}.  Since $c \otimes \delta_\epsilon \pitchfork p_Y$, it follows that $(c \otimes_z \delta_\epsilon) \pitchfork Y$ over $Z$, and so $Y^{\delta_\epsilon} : Y^\I \to Y$ over $Z$ is indeed a trivial fibration.)
 
-\item If $X$ and $Y$ are both fibrant (over any base $Z\in \cSet$), then $t= p_1\circ p_0^*f : P_f \ra Y$ is a fibration.  This can be seen by factoring the maps $p_0, p_1 :Y^\I \rightrightarrows  Y$ through the product projections as $\pi_0\circ p, \pi_1\circ p : Y^\I \ra Y\times Y \rightrightarrows Y$, with $p = (p_0, p_1)$, and then interpolating the pullback along the map $(f,1_X) : X\times Y\ra Y\times Y$ into \eqref{diag:pathspace factorization} as indicated below.
+\item If $X$ and $Y$ are both fibrant (over any base $Z\in \cSet$), then $t= p_1\circ p_0^*f : P_f \ra Y$ is a fibration.  This can be seen by factoring the maps $p_0, p_1 :Y^\I \rightrightarrows  Y$ through the product projections as
+\[
+\pi_0\circ p,\ \pi_1\circ p : Y^\I \ra Y\times Y \rightrightarrows Y
+\]
+where $p = (p_0, p_1)$, and then interpolating the pullback $(f,1_Y) : X\times Y\ra Y\times Y$ into \eqref{diag:pathspace factorization} as indicated below.
 \begin{equation}\label{diag:pathspace factorization2}
 \xymatrix{
 & X \ar[d]^s \ar[rr]^f \pbcorner && Y \ar[d]_r \\
@@ -4055,16 +4057,20 @@ Y & \ar[l]^-{\pi'_1} X\times Y\ar[d]_-{\pi'_0} \ar[rr]_{(f,1_Y)} \pbcorner  &&  
 & X \ar[rr]_f  &&  Y &
 }
 \end{equation}
-The second factor $t = p_1\circ p_0^*f : P_f \ra Y$ now appears also as $\pi_1\circ(f,1_Y)\circ f^*p$, which is the pullback $f^*p: P_f \ra X\times Y$ followed by the second projection $\pi'_1 : X\times Y \ra Y$ (which is not a pullback). But if $Y$ is fibrant, then $p : Y^\I \ra Y\times Y$ is a fibration, and then so is $f^*p$. And if $X$ is fibrant, then the projection $\pi'_1:X\times Y \ra Y$ is a fibration. Thus in this case, $t = \pi'_1\circ f^*p : P_f \ra Y$ is a fibration, as claimed.
+The second factor $t = p_1\circ p_0^*f : P_f \ra Y$ now appears also as $\pi_1\circ(f,1_Y)\circ f^*p$, which is equal to the pullback $f^*p: P_f \ra X\times Y$ followed by the second projection $\pi'_1 : X\times Y \ra Y$ (which is not a pullback). But if $Y$ is fibrant, then $p : Y^\I \ra Y\times Y$ is a fibration, again by Proposition \ref{prop:sanitycheck} applied to the fibration $p_Y : Y\fib Z$ (by the same argument as for (3), but with the cofibration $\del : 1+1 \cof \I$ in place of the trivial cofibration $\delta_\epsilon : 1 \to \I$).  Therefore the pullback  $f^*p$ is also a fibration.  And if $X$ is fibrant, then the second projection $\pi'_1:X\times Y \ra Y$ is a fibration. Thus in this case, $t = \pi'_1\circ f^*p : P_f \ra Y$ is a fibration, as claimed.
+\end{enumerate}
 
-\item Summarizing (1)-(4), for any map $f : X\ra Y$ (over any base $Z\in \cSet$), we have a stable factorization $f = t\circ s : X\ra P_f \ra Y$, in which $s$ has a retraction $p_f$, which is a trivial fibration when $Y$ is fibrant, and $t$ is a fibration when both $X$ and $Y$ are fibrant.  \begin{equation}\label{diag:pathspace factorization3}
+Summarizing (1)-(4), we have shown the following.
+
+\begin{lemma}\label{lemma:stablepathspacefactorization} For any map $f : X\ra Y$ (possibly over a base $Z\in \cSet$), there is a stable factorization $f = t\circ s : X\ra P_f \ra Y$ (over $Z$), in which $s$ is a section of a trivial fibration $p_f$ if $Y$ is fibrant, and $t$ is a fibration if both $X$ and $Y$ are fibrant.
+\begin{equation}\label{diag:pathspace factorization3}
 \xymatrix{
 X \ar[r]^s \ar[rd]_f & \ar@{.>}@/_1.5pc/[l]_{p_f} P_f \ar[d]^t \\
 & Y
 }
 \end{equation}
-Note that the retraction $p_f : P_f \ra X$ is not over $Y$.
-\end{enumerate}
+Note that the retraction $p_f : P_f \ra X$ is (over $Z$ but) not over $Y$.
+\end{lemma}
 
 The following simple fact concerning just the cofibration weak factorization system will also be needed.
 
