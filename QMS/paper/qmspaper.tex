@@ -1201,7 +1201,7 @@ Z\times 1 \ar@/_4ex/ [rrd]_{Z\times \delta_\epsilon} \ar[r] &  Z +_C (C\times\I)
 In order to ensure that such maps are indeed cofibrations, we assume two further axioms in addition to (C1)--(C4) from Definition \ref{def:cofibration}:
 \begin{enumerate}\label{cofibration_axioms}
 \item[(C5)] The endpoint inclusions $\delta_\epsilon : 1 \ra \I$ are cofibrations, for $\epsilon = 0,1$.
-\item[(C6)] Cofibrations are closed under joins $A\vee B \mono C$ of subobjects $A, B \mono C$ of any object $C$.
+\item[(C6)] The cofibrations are closed under joins $A\vee B \mono C$ of subobjects $A, B \mono C$ of any object $C$.
 \end{enumerate}
 %
 \begin{remark}\label{rem:somecofibs}
@@ -1837,7 +1837,7 @@ Hereafter, unless otherwise stated, all fibrations in $\cSet$ are assumed to be 
 \section{The weak equivalences}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Our approach to proving that the classes $\CC$ and $\FF$ of cofibrations and fibrations, from Sections \ref{sec:cofibrations} and \ref{sec:fibrations}, determine a model structure will be to first build a \emph{premodel structure} in the sense of \cite{Barton}, and then turn to the question of the 3-for-2 property for the resulting weak equivalences.
+Our approach to proving that the classes $\CC$ and $\FF$ of cofibrations and fibrations, from Sections \ref{sec:cofibrations} and \ref{sec:fibrations}, determine a model structure will be to first identify a \emph{premodel structure} in the sense of \cite{Barton}, and then turn to the question of the 3-for-2 property for the resulting weak equivalences.
 
 \begin{definition}[Weak equivalence]
 A map $f: X\ra Y$ in \cSet\ is a \emph{weak equivalence} if it can be factored as $f  = g\circ h$,
@@ -1921,8 +1921,7 @@ and therefore two interlocking weak factorization systems:
 %\end{enumerate}
 %\end{corollary}
 
-It now ``only'' remains to show that the weak equivalences $\WW$ satisfy the 3-for-2 axiom in order to finish the proof that $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ is a model structure.  Perhaps surprisingly, this requires a considerable amount of work, which will occupy the rest of these lectures!
-We begin by following roughly the approach of \cite{Joyal}, as follows. We expect the weak equivalences between fibrant objects to be exactly the \emph{homotopy equivalences} (Definition \ref{def:homotopyequivalence}), which can be seen directly to satisfy 3-for-2.   So we reduce to this case, using the fact that $K^X$ is fibrant whenever $K$ is.  It should suffice, namely, to show that weak equivalences $w : X\to Y$ induce homotopy equivalences $K^w : K^Y \simeq K^X$ for fibrant $K$, and that any map with this property is a weak equivalence.   Such maps are termed \emph{weak homotopy equivalences}  (Definition \ref{def:WHE}), and our task is therefore reduced to showing that a map is a weak equivalence if and only if it is a weak homotopy equivalence.
+It now ``only'' remains to show that the weak equivalences $\WW$ satisfy the 3-for-2 axiom, in order to verify that $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ is a model structure.  Perhaps surprisingly, this will occupy the remainder of these lectures!  We shall follow roughly the approach of \cite{Joyal}: the weak equivalences between fibrant objects are expected to be the usual \emph{homotopy equivalences}, which evidently  satisfy 3-for-2.   So we reduce to this case using the fact that $K^X$ is fibrant whenever $K$ is.  It should suffice, namely, to show that the weak equivalences $w : X\to Y$ are those maps which induce homotopy equivalences $K^w : K^Y \simeq K^X$ for fibrant $K$.   Such maps are termed \emph{weak homotopy equivalences}  (Definition \ref{def:WHE}), and our task will be therefore to show that a map is a weak equivalence if and only if it is a weak homotopy equivalence.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Weak homotopy equivalence.}
@@ -1946,6 +1945,8 @@ where $\iota_0, \iota_1$  are the canonical inclusions into the ends of the cyli
 \iota_\epsilon : X \cong 1\times X \ar[rr]^-{\delta_\epsilon\times X} && \I\times X\,,} \qquad \epsilon = 0,1 .
 \]
 \end{definition}
+
+Note that each of the inclusions $\iota_\epsilon : X \cof  \I\times X$ is a cofibration, as is their join $X + X \cof  \I\times X$, by Remark \ref{rem:somecofibs}.  
 
 \begin{proposition}\label{prop:homotopyintofibequivrel}
 The relation of homotopy $f \sim g$ between maps $f, g: X\rightrightarrows Y$ is preserved by pre- and post-composition. If $Y$ is fibrant, then $f \sim g$ is an equivalence relation.
@@ -2000,16 +2001,18 @@ Let $f: X\ra Y$ be a homotopy equivalence.  Then $K^f : K^Y \ra K^X$ is also a h
 \end{proof}
 
 \begin{lemma}\label{lemma:WHE342}
-The weak homotopy equivalences $f : X\ra Y$ satisfy the 3-for-2 condition. 
+The weak homotopy equivalences satisfy the 3-for-2 condition. 
 \end{lemma}
 \begin{proof}
 This follows by applying the $\Set$-valued functors $\pi_0K^{(-)}$, for all fibrant objects $K$, and the corresponding fact about bijections of sets.
 \end{proof}
 
-In virtue of Lemma \ref{lemma:WHE342} it suffices to show that a map is a weak equivalence if and only if it is a weak homotopy equivalence.   This will be shown by splitting into four cases: a cofibration/fibration is a weak equivalence if/only if it is a weak homotopy equivalence.  The following will be useful thereby.
+In virtue of Lemma \ref{lemma:WHE342} it will suffice to show that a map is a weak equivalence if and only if it is a weak homotopy equivalence.   
+%This will be shown by splitting into cases: a cofibration/fibration is a weak equivalence if and only if it is a weak homotopy equivalence.  
+The following will be useful thereby.
 
 \begin{lemma}\label{lem:WHEunwound}
-A map $f : X\ra Y$ is a \emph{weak homotopy equivalence} iff it satisfies the following two conditions.
+A map $f : X\ra Y$ is a \emph{weak homotopy equivalence} if and only if it satisfies the following two conditions.
 \begin{enumerate}
 \item For every fibrant object $K$ and every map $x : X \ra K$ there is a map $y:Y\ra K$ such that $y\circ f \sim x$,
 \[
@@ -2032,80 +2035,84 @@ Y \ar@{..>}[ru] \ar[r]_-{\langle y,y'\rangle} & K\times K.
 Condition (1) says exactly that the internal precomposition map $K^f : K^Y \ra K^X$ is surjective under connected components $\pi_0$, while (2) says just that it is injective under $\pi_0$.
 \end{proof}
 
-\begin{lemma}\label{lemma:CofWEtoWHE}
-Any trivial cofibration $c : A \mono B$ is a weak homotopy equivalence.
+
+\begin{lemma}\label{lem:WEimpliesWHE}
+\begin{enumerate}
+\item Any trivial fibration is a homotopy equivalence.
+\item Any weak equivalence is a weak homotopy equivalence.
+\end{enumerate}
 \end{lemma}
 
 \begin{proof}
-Applying Lemma \ref{lem:WHEunwound}, condition (1) is immediate, and (2) results from the fact that $K^\I \fib K\times K$ is a fibration when $K$ is fibrant, since $\del : 1+1 \cof \I$ is a cofibration (by Remark \ref{rem:somecofibs}).
-\end{proof}
-
-\begin{lemma}\label{lemma:FibWEtoWHE}
-Any trivial fibration $p : Y \onto X$  is a weak homotopy equivalence.
-\end{lemma}
-\begin{proof}
-By Corollary \ref{cor:plusalgprops}, the trivial fibration $p : Y \onto X$ has a section $s: X\to Y$. 
+For (1), any trivial fibration $f : X \onto Y$ has a section $s: Y\to X$ by Corollary \ref{cor:plusalgprops}.
 Consider the following lifting problem:
 \begin{equation*}%\label{diagram:extensionforX}
 \xymatrix{
-Y+Y \ar@{>->}[d]_{[\iota_0, \iota_1]} \ar[r]^-{[sp, 1]}  & Y\ar@{>>}[d]^{p} \\
-\I\times Y \ar[r]_{p\pi_2} & X
+X+X \ar@{>->}[d]_{[\iota_0, \iota_1]} \ar[r]^-{[sf, 1]}  & X\ar@{>>}[d]^{f} \\
+\I\times X \ar[r]_{f\pi_2} & Y
 }
 \end{equation*}
-A diagonal filler is then a homotopy $\vartheta : sp \sim 1_Y$. 
-Thus $p$ is a homotopy equivalence, and therefore a weak homotopy equivalence by Lemma \ref{lemma:HEisWHE}.
+Since the map on the left is a cofibration, a diagonal filler provides a homotopy $\vartheta : sf \sim 1_X$. 
+Thus $f$ is a homotopy equivalence. 
+
+For (2), by (1) and Lemma \ref{lemma:HEisWHE}, a trivial fibration is also a weak homotopy equivalence. So it suffices to consider the trivial cofibrations, since weak homotopy equivalences are closed under composition, by Lemma \ref{lemma:WHE342}.   Thus let $f : X \mono Y$ be a trivial cofibration, and apply Lemma \ref{lem:WHEunwound}: condition (1) is immediate, and (2) follows because $K^\I \fib K\times K$ is a fibration when $K$ is fibrant, since $\del : 1+1 \cof \I$ is a cofibration (by Remark \ref{rem:somecofibs}).
+
+%
 \end{proof}
 
-\begin{corollary}
-Any weak equivalence $e : X \simeq Y$ is a weak homotopy equivalence, since $e$ factors into a trivial cofibration followed by a trivial fibration, each of which is a weak homotopy equivalence, and these are closed under composition by Lemma \ref{lemma:WHE342}. 
-\end{corollary}
+To show the converse of Lemma \ref{lem:WEimpliesWHE}(2), that a weak homotopy equivalence is a weak equivalence, we first consider maps $f : X\to K$ with a fibrant codomain $K$, and we split into the cases of a fibration and a cofibration.  
 
 \begin{lemma}\label{FibHETFib}
-If $K$ is fibrant, then any fibration $f : Y \onto K$ that is a homotopy equivalence is a weak equivalence.
+If $K$ is fibrant, then any fibration $f : X \onto K$ that is a homotopy equivalence is a weak equivalence.
 \end{lemma}
 \begin{proof}
 This is a standard argument, which we just sketch.  It suffices to show that any diagram of the form
 \begin{equation}\label{diagram:FHEisWE}
 \xymatrix{
-C \ar@{>->}[d]_{c} \ar[r]^y & Y \ar@{>>}[d]^{f} \\
+C \ar@{>->}[d]_{c} \ar[r]^x & X \ar@{>>}[d]^{f} \\
 K\ar[r]_{=} & K,
 }
 \end{equation}
 with  $c : C \mono X$  a cofibration, has a diagonal filler, for then $f$ is a trivial fibration.  
-Since $f$ is a homotopy equivalence, it has a quasi-inverse $s:X\ra Y$ with $\vartheta : fs\sim 1_K$, which we claim can be corrected to a section $s' : K\ra Y$. 
+Since $f$ is a homotopy equivalence, it has a quasi-inverse $s:K\ra X$ with $\vartheta : fs\sim 1_K$, which we claim can be corrected to a section $s' : K\ra X$. 
 Indeed, consider 
 \begin{equation*}%\label{diagram:extensionforX}
 \xymatrix{
-K \ar@{>->}[d]_{\iota_0} \ar[r]^{s}  & Y\ar@{>>}[d]^{f} \\
+K \ar@{>->}[d]_{\iota_0} \ar[r]^{s}  & X\ar@{>>}[d]^{f} \\
 K\times \I \ar[r]_{\vartheta} \ar@{..>}[ru]^{\vartheta'}& K\\
 K \ar@{>->}[u]_{\iota_1} \ar[ru]_=&
 }
 \end{equation*}
 where $\vartheta' $ results from $\iota_0 \pitchfork f$. Let $s' = \vartheta' \iota_1$, so that $\vartheta' : s\sim s'$ and $fs' = 1_K$.
 
-Thus we can assume that $s = s' : K\ra Y$ is a section, which fills the diagram \eqref{diagram:FHEisWE} up to a homotopy in the upper triangle.
+Thus we can assume that $s = s' : K\ra X$ is a section, which fills the diagram \eqref{diagram:FHEisWE} up to a homotopy in the upper triangle.
 \begin{equation*}%\label{diagram:extensionforX}
 \xymatrix{
-C \ar@{>->}[d]_{c} \ar[r]^y & Y \ar@{>>}[d]^{f} \\
+C \ar@{>->}[d]_{c} \ar[r]^x & X \ar@{>>}[d]^{f} \\
 K\ar[r]_{=} \ar[ru]_{s}^{\sim} & K
 }
 \end{equation*}
-Now we can correct $s: K\ra Y$ to a homotopic $t : K\ra Y$ over $f$ by using the homotopy $\varphi : sc\sim y$  to get a map $\varphi : C\ra Y^\I$ over $f$.  Since $f$ is a fibration, the projections $p_0, p_1:Y^\I \ra Y$ over $f$ are trivial fibrations, and so there is a lift $\varphi': K\ra Y^\I$ for which $t:= p_1\varphi'$ has $tc= y$ and $ft=1_K$, and so is a filler for \eqref{diagram:FHEisWE}.
+Now we can correct $s: K\ra X$ to a homotopic $t : K\ra X$ over $f$ by using the homotopy $\varphi : sc\sim x$  to get a map $\varphi : C\ra X^\I$ over $f$.  Since $f$ is a fibration, the projections $p_0, p_1:X^\I \ra X$ over $f$ are trivial fibrations, and so there is a lift $\varphi': K\ra X^\I$ for which $t:= p_1\varphi'$ has $tc= x$ and $ft=1_K$, and so is a filler for \eqref{diagram:FHEisWE}.
 \end{proof}
 
 \begin{lemma}\label{FibWHEfibCodTFib}
-If $K$ is fibrant, then any fibration $f : Y \onto K$ that is a weak homotopy equivalence is a weak  equivalence.
+If $K$ is fibrant, then any fibration $f : X \onto K$ that is a weak homotopy equivalence is a weak equivalence.
 \end{lemma}
 \begin{proof}
-Since $K$ is fibrant, so is $Y$, and since $f$ is a weak homotopy equivalence, by lemma \ref{lem:WHEunwound}(1) there is then a map $s : K\ra Y$ and a homotopy $\theta: sf \sim 1_Y$.  Postcomposing with $f$ gives a homotopy $f\vartheta: fsf \sim f$, forming the outer commutative square in
+Since $K$ is fibrant, so is $X$, and since $f$ is a weak homotopy equivalence, by lemma \ref{lem:WHEunwound}(1) there is then a map $s : K\ra X$ and a homotopy $\theta: sf \sim 1_X$.  Postcomposing with $f$ gives a homotopy $f\vartheta: fsf \sim f$, forming the outer commutative square in
 \[
 \xymatrix{
-Y \ar[d]_{f} \ar[r]^{f\vartheta}  & K^\I \ar[d] \\
+X \ar[d]_{f} \ar[r]^{f\vartheta}  & K^\I \ar[d] \\
 K \ar@{..>}[ru]_{\varphi} \ar[r]_-{\langle fs, 1_K\rangle} & K\times K.
 }
 \]
 By lemma \ref{lem:WHEunwound}(2) there is a diagonal filler $\varphi : fs\sim 1_K$, and so $f$ is a homotopy equivalence. Now apply lemma \ref{FibHETFib}.
 \end{proof}
+
+We record the following intermediate step toward our goal.
+
+\begin{corollary} For maps  between fibrant objects, all three concepts coincide: weak equivalences, weak homotopy equivalences, and homotopy equivalences.
+\end{corollary}
 
 \begin{lemma}\label{CofWHEfibCodTCof}
 If $K$ is fibrant, then any cofibration $c : A \mono K$ that is a weak homotopy equivalence is a weak equivalence.
@@ -2115,8 +2122,10 @@ Let $c : A \mono K$ be a cofibration weak homotopy equivalence and factor it int
 $c$ and $i$ are weak homotopy equivalence, and therefore so is $p$ by 3-for-2 for weak homotopy equivalences.   Since $K$ is fibrant, $p$ is a trivial fibration by lemma \ref{FibWHEfibCodTFib}, and thus $c$ is a weak equivalence.  
 \end{proof}
 
-\begin{lemma}[\cite{Cisinski:??}, x.n.m]\label{lemma:CofWHEiffFibLift}
-A cofibration $ c : A \mono B$ weak homotopy equivalence lifts against all fibrations $f : Y\onto K$ with fibrant codomain.
+It now follows that a weak homotopy equivalence $f : X \to K$ with a fibrant codomain is a weak equivalence. To eliminate the condition on the codomain we shall use the following lemma due to \cite{Cisinski}.
+
+\begin{lemma}\label{lemma:CofWHEiffFibLift}
+A cofibration $ c : A \mono B$ weak homotopy equivalence lifts against  any fibration $f : Y\onto K$ with fibrant codomain.
 \end{lemma}
 %
 \begin{proof}
@@ -2159,7 +2168,7 @@ Since $\eta$ is a trivial cofibration, it is a weak homotopy equivalence. So the
 %%
 %This proposition is a consequence of several stronger ones, e.g.\ the equivalence extension property of \cite{Sattler:equivalence extension property}. It is easily seen to be equivalent to the following special case.
 
-To complete the proof that a cofibration weak homotopy equivalence is a weak equivalence, we shall use the following \emph{fibration extension property}, the proof of which is deferred to section \ref{sec:FEP}.
+To complete the proof that a weak homotopy equivalence is a weak equivalence, we make use of the following \emph{fibration extension property}, the proof of which is deferred to section \ref{sec:FEP}.
 
 \begin{definition}[Fibration extension property]\label{def:fibextreplace}
 For any fibration $ f : Y \onto X$ and trivial cofibration $\eta: X\ra X'$,
@@ -2202,45 +2211,56 @@ B \ar[r]_{b} \ar@{..>}[ru]^{j} \ar@{..>}[rru]_>>>>{j'} &  X  \ar[r]_\eta &  X'.
 Thus $yjc = j'c = ya$.  But as a trivial cofibration, $\eta$ is monic, and as a pullback of $\eta$, $y$ is also monic. So $jc=a$.
 \end{proof}
 
-Combining the previous two lemmas \ref{lemma:CofWHEiffFibLift} and \ref{lemma:CofWEiffFibLift} we now have the following.
-
 \begin{corollary}\label{cor:CofWHEtoWE}
-Assuming the fibration extension property,  a cofibration $c : A \mono B$ weak homotopy equivalence is a weak equivalence.
+Assuming the fibration extension property,  
+\begin{enumerate}
+\item a cofibration $c : A \mono B$ weak homotopy equivalence is a weak equivalence,
+\item a fibration $ f : Y \onto X$ weak homotopy equivalence is a weak equivalence.
+\end{enumerate}
 \end{corollary}
 
-The following is not required, but we state it anyway for the record:
-
-\begin{lemma}\label{lemma:FibWHEtoWE}
-Assuming the fibration extension property, a fibration $ f : Y \onto X$ weak homotopy equivalence is a weak equivalence.
-\end{lemma}
 \begin{proof}
-Factor $ f : Y \onto X$ into a cofibration $i : Y\mono Z$ followed by a trivial fibration $p: Z\onto X$.  Then $f$ is a trivial fibration if $i\pitchfork f$, for then $f$ is a retract of $p$.  Since $p$ is a trivial fibration, it is a weak homotopy equivalence by lemma \ref{lemma:FibWEtoWHE}.  Since $f$ is also a weak homotopy equivalence, so is $i$ by 3-for-2.  Thus $i$ is a trivial cofibration by corollary \ref{cor:CofWHEtoWE}. Since $f$ is a fibration, $i\pitchfork f$ as required.
+(1) follows immediately by combining the previous lemmas \ref{lemma:CofWHEiffFibLift} and \ref{lemma:CofWEiffFibLift}.
+
+For (2), factor $ f : Y \onto X$ into a cofibration $i : Y\mono Z$ followed by a trivial fibration $p: Z\onto X$.  Then $f$ is itself a trivial fibration if $i\pitchfork f$, for then it is a retract of $p$.  Since $p$ is a trivial fibration, it is a weak homotopy equivalence by Lemma \ref{lem:WEimpliesWHE}.  Since $f$ is also a weak homotopy equivalence, so is $i$ by Lemma \ref{lemma:WHE342}.  Thus $i$ is a trivial cofibration by (1). Since $f$ is a fibration, $i\pitchfork f$ as required.
 \end{proof}
+
+
+%The following is not required, but we state it anyway for the record:
+%
+%\begin{lemma}\label{lemma:FibWHEtoWE}
+%Assuming the fibration extension property, a fibration $ f : Y \onto X$ weak homotopy equivalence is a weak equivalence.
+%\end{lemma}
+%\begin{proof}
+%Factor $ f : Y \onto X$ into a cofibration $i : Y\mono Z$ followed by a trivial fibration $p: Z\onto X$.  Then $f$ is a trivial fibration if $i\pitchfork f$, for then $f$ is a retract of $p$.  Since $p$ is a trivial fibration, it is a weak homotopy equivalence by lemma \ref{lemma:FibWEtoWHE}.  Since $f$ is also a weak homotopy equivalence, so is $i$ by 3-for-2.  Thus $i$ is a trivial cofibration by corollary \ref{cor:CofWHEtoWE}. Since $f$ is a fibration, $i\pitchfork f$ as required.
+%\end{proof}
+
+We have now shown:
 
 \begin{proposition}\label{prop:WHEiffWE}
-Assuming the fibration extension property, a map $ f : X \to Y$ is a weak homotopy equivalence if and only if it is a weak equivalence.  The weak equivalences $\mathcal{W}$ then satisfy the 3-for-2 condition.
+Assuming the fibration extension property, a map $ f : X \to Y$ is a weak homotopy equivalence if and only if it is a weak equivalence.  The weak equivalences $\mathcal{W}$ therefore satisfy the 3-for-2 condition.
 \end{proposition}
-\begin{proof}
-Let $ f : X \onto Y$ be a weak equivalence and factor it into a trivial cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\onto Y$.  Then both 
-$i$ and $p$ are weak homotopy equivalence, whence so is $f$.  Conversely, let $f$ be a weak homotopy equivalence and factor it into a cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\onto Y$. Since  $p$ is then a weak homotopy equivalence, as is $f$, it follows that $i$ is as well.  Thus $i$ is also a weak equivalence, by lemma \ref{cor:CofWHEtoWE}, hence a trivial cofibration. So $f$ is a weak equivalence.
-\end{proof}
+%\begin{proof}
+%Let $ f : X \onto Y$ be a weak equivalence and factor it into a trivial cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\onto Y$.  Then both 
+%$i$ and $p$ are weak homotopy equivalence, whence so is $f$.  Conversely, let $f$ be a weak homotopy equivalence and factor it into a cofibration $i : X\mono Z$ followed by a trivial fibration $p: Z\onto Y$. Since  $p$ is then a weak homotopy equivalence, as is $f$, it follows that $i$ is as well.  Thus $i$ is also a weak equivalence, by lemma \ref{cor:CofWHEtoWE}, hence a trivial cofibration. So $f$ is a weak equivalence.
+%\end{proof}
 
-Our results can now be summarized as follows.
+Our results can be summarized as follows.
 
 \begin{theorem}\label{theorem:QMSmodFEP}
-Assume the fibration weak factorization system of Definition \ref{def:FibWFSclasses} satisfies the fibration extension property of Definition \ref{def:fibextreplace} (as will be shown  in Corollary \ref{cor:FEP} to obtain). 
-Then the weak equivalences $\WW$ have the 3-for-2 property, and so by Proposition \ref{prop:FWC}, the classes $(\CC,\WW,\FF)$ form a Quillen model structure on the category $\cSet$ of cubical sets.
-Moreover, the weak equivalences can be characterized as those maps $f: X\ra Y$ for which $K^f : K^Y \to K^X$ is bijective on connected components whenever $K$ is fibrant.
+Assume the fibration weak factorization system of Definition \ref{def:FibWFSclasses} satisfies the fibration extension property of Definition \ref{def:fibextreplace} (as will be shown  in Corollary \ref{cor:FEP}). 
+Then the weak equivalences $\WW$ have the 3-for-2 property, and so by Proposition \ref{prop:FWC}, the classes $(\CC,\WW,\FF)$ form a Quillen model structure.
+The weak equivalences $\WW$  are the \emph{weak homotopy equivalences}: those maps $f: X\ra Y$ for which $K^f : K^Y \to K^X$ is bijective on connected components whenever $K$ is fibrant.
 \end{theorem}
 
-\ednote{consider stating a more general result, like the following}
+%\ednote{consider stating a more general result, like the following}
 %Since lemmas n-m hold in greater generality, we can reformulate this result as follows:
 %
 %\begin{theorem}\label{theorem:QuasiMS isMSmodFEP}
 %Let $(\CC, \WW, \FF)$ be a Barton quasi-model structure \cite{Barton} (on a presheaf category).   If the $(\CC\cap\WW, \FF)$ weak factorization system satisfies the fibration extension property of Definition \ref{def:fibextreplace}.  Then $(\CC, \WW, \FF)$ is a Quillen model structure.
 %\end{theorem}
 
-The proof of the fibration extension property will occupy the second half of these lectures, concluding in Section  \ref{sec:FEP}.  It uses the equivalence extension property (Section \ref{sec:EEP}), a universal fibration (Section \ref{sec:U}), and the Frobenius condition (Section \ref{sec:Frobenius}), to which we now turn.
+The proof of the fibration extension property will be given in Section \ref{sec:FEP}.  It uses the equivalence extension property (Section \ref{sec:EEP}), a universal fibration (Section \ref{sec:U}), and the Frobenius condition (Section \ref{sec:Frobenius}), to which we now turn.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2550,11 +2570,11 @@ The proof of the fibration extension property will occupy the second half of the
 \section{The Frobenius condition}\label{sec:Frobenius}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this section, we show that the (unbiased) fibration weak factorization system from section \ref{FWFS} satisfies what has been called the \emph{Frobenius condition}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  In our setting, it then follows that the entire model structure is stable under such a base change.  The Frobenius condition will be used in the proof of the equivalence extension property in Section \ref{sec:EEP}.  
+In this section, we show that the (unbiased) fibration weak factorization system from Section \ref{sec:fibrations} satisfies what has been called the \emph{Frobenius condition}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  In the present setting, it then follows that the entire model structure is stable under such a base change.  The Frobenius condition will be used in the proof of the equivalence extension property in Section \ref{sec:EEP}.  
 
-An ``algebraic'' proof of Frobenius in the related setting of cubical sets \emph{with connections} was given in \cite{GS} using conventional, functorial methods.  By contrast, the type theoretic approach of \cite{CCHM} provides a proof that is much more direct, and can also be modified to work without connections (as in \cite{AXYZ}).  That approach proves the dual fact that the \emph{pushforward} operation, which is right adjoint to pullback and always exists in a topos, preserves fibrations when applied along a fibration.  This corresponds to the type-theoretic $\Pi$-formation rule, and the proof given in \opcit\ is entirely in type theory.  It also employs a reduction of box filling (in all dimensions) to an apparently weaker condition of \emph{Kan composition} (in all dimensions), which merely ``puts a lid on" the open box, rather than filling it.  This aspect of the type theoretic proof can also be described algebraically, but is not used in the proof given here, and will therefore not be discussed further (see \cite{LOPS} for an algebraic description of Kan composition with connections, and \cite{A:composition,filling,Frobenius,etc} for the same without connections).
+An proof of Frobenius in the related setting of cubical sets \emph{with connections} was given in \cite{GS} using conventional, functorial methods.  By contrast, the type theoretic approach of \cite{CCHM} provides a proof that is much more direct, and can also be modified to work without connections (as in \cite{AXYZ}).  That approach proves the dual fact that the \emph{pushforward} operation, which is right adjoint to pullback and always exists in a topos, preserves fibrations when applied along a fibration.  This corresponds to the type-theoretic $\Pi$-formation rule, and the proof given in \opcit\ is entirely in type theory.  It also employs a reduction of box filling (in all dimensions) to an apparently weaker condition of \emph{Kan composition} (in all dimensions), which merely ``puts a lid on" the open box, rather than filling it.  This aspect of the type theoretic proof can also be described functorially, but is not used in the proof given here, and will therefore not be discussed further (see \cite{LOPS} for a description of Kan composition with connections, and \cite{A:composition,filling,Frobenius,etc} for the same without connections).
 
-This section applies the same strategy as that used in defining the unbiased fibrations, namely we first establish something in the \emph{biased but generic} setting, and then transfer it to the unbiased setting by pulling back along the base change $\cSet\to\cSet/_\I$.  In order to emphasize this approach, we give the second step first, in the form of a conditional statement.
+Our proof takes the approach that was used to determine the unbiased fibrations, namely we first establish the result in the \emph{biased but generic} setting, and then transfer it to the unbiased setting by pulling back along the base change $\cSet\to\cSet/_\I$. We first give the second step as a conditional statement.
 
 \begin{proposition}\label{prop:biasedFrobimpliesunbiasedFrob}
 Suppose the $\delta$-biased fibrations in $\cSet/_\I$ satisfy the Frobenius condition. Then the unbiased fibrations in $\cSet$ also satisfy the Frobenius condition.
@@ -2588,7 +2608,7 @@ where the pushforward $(\I^*A)_*\I^*B$ is taken in the topos $\cSet/_\I$.  But $
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \paragraph{Frobenius for biased fibrations.}
 
-The results proved in this section will be applied to the slice category $\cSet/_\I$ and the generic point $\delta : 1 \ra \I = \I^*\I$, but nothing depends on this particular case, and so we shall write simply $\delta : 1\to \I$ for a chosen pointed object in an arbitrary topos $\EE$.  (Indeed, in this section $\EE$ may even be taken to be just a locally cartesian closed category with a representable class of cofibrations.)
+The results proved in this section will be applied to the slice category $\cSet/_\I$ and the generic point $\delta : 1 \ra \I = \I^*\I$, but nothing depends on this particular case, and so we shall write simply $\delta : 1\to \I$ for a chosen pointed object in an arbitrary topos $\EE$.  (Indeed, in this section $\EE$ may even be just a locally cartesian closed category with a class of cofibrations in the sense of Appendix A.)
 
 Recall from Definition \ref{def:unbiasedfibration} that a map $f:A\ra X$  is a $\delta$-biased fibration just if the map $\delta \Rightarrow f$ admits a relative +-algebra structure, and is therefore a trivial fibration.  The definition of the pullback-hom $\pbh{\delta}{f}$ is recalled below.
 \begin{equation}\label{diagram:frobenius1}
