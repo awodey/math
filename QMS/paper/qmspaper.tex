@@ -6,14 +6,14 @@
 % New start as qmspaper in 5.2022
 %
 %\documentclass[12pt]{article}
-\documentclass[11pt]{amsart}
+\documentclass[12pt]{amsart}
 %\documentclass[12pt,article,oneside]{memoir}
 
 %\usepackage{ebgaramond}
 %\usepackage{euscript}
 
 %\usepackage{tgpagella} % text only
-\usepackage{mathpazo}  % math & text
+%\usepackage{mathpazo}  % math & text
 
 \usepackage{amsmath}
 \usepackage{amssymb,latexsym}
@@ -177,12 +177,15 @@
 
 \title{Cartesian cubical model categories}
 \author{Steve Awodey}
-\maketitle
+\date{DRAFT: \today}
+%\maketitle
 
 \begin{abstract}
 \noindent The category of Cartesian cubical sets is introduced and endowed with a Quillen model structure, 
 using ideas coming from recent constructions of cubical models of univalent type theory.
 \end{abstract}
+
+\maketitle
 
 \setcounter{tocdepth}{1}
 \tableofcontents
@@ -192,9 +195,9 @@ using ideas coming from recent constructions of cubical models of univalent type
 %\addcontentsline{toc}{section}{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Recent years have seen renewed interest in the cubical approach to abstract homotopy theory.  This contrasts with the more familiar and widespread simplicial approach, using which many sophisticated and powerful tools have been developed, such as simplicial model categories \cite{DwyerKan:1980sl}, quasi-categories \cite{Joyal:2008tq}, and higher toposes \cite{Lurie:2009ht}.  Of course, some early work like the original papers of D.\ Kan \cite{DK50,DK51} employed cubical sets, and some researchers such as R.\ Brown \cite{Brown} and R.\ Jardine \cite{Jardine} have developed such methods further in a more modern style, but they are swimming against the tide.  
+Recent years have seen renewed interest in the cubical approach to abstract homotopy theory.  This contrasts with the more familiar and widespread simplicial approach, using which many sophisticated and powerful tools have been developed, such as simplicial model categories \cite{DwyerKan:1980sl}, quasi-categories \cite{Joyal:2008tq}, and higher toposes \cite{Lurie:2009ht}.  Of course, some early work like the original papers of D.\ Kan \cite{Kan:55,Kan:56} employed cubical sets, and some researchers such as R.\ Brown \cite{BROWN2018459} and R.\ Jardine \cite{Jardine:cubical} have developed such methods further in a more modern style, but they are swimming against the tide.  
 
-The current interest in the cubical approach comes from outside of mathematics, or at least from its boundary, through connections with the  formal system of \emph{type theory} for the purpose of computerized proof checking \cite{AC:IASlarge-scale}.  Unlike previous cubical models of homotopy theory, however, the cubes being used for this purpose are generally assumed to be \emph{closed under finite products}; we call such cube categories \emph{Cartesian}.  This is a natural enough assumption to make for cubes, but one that has somehow escaped serious consideration---but for two exceptions: in A.~Grothendieck's famous letter to D.~Quillen, and the accompanying 600 page manuscript \emph{Pursuing stacks} \cite{}, such cubical sets make an appearance as \emph{test categories}, which are models of homotopy types in a particular way.  In fact, the Cartesian cubes studied here are \emph{strict} test categories in the terminology of \opcit, meaning that the geometric realization functor preserves finite products (\cite{BM:varieties}).  The more familiar category of ``monoidal'' cubical sets used since Kan, although not Cartesian, is also a strict test category provided one includes \emph{connections} \cite{malt}, but this version has been largely abandoned for other reasons \cite{Brown}.  The second source for Cartesian cubical sets was F.W.~Lawvere, who proposed them as a model for homotopy theory in lectures, and in public and private correspondence, but never (to my knowledge) published anything on the subject.   Among their advantages, he stressed the tinyness of the 1-cube, or ``interval'' $\I$, which indeed plays a role in the current theory---although perhaps not the one envisioned by him.
+The current interest in the cubical approach comes from outside of mathematics, or at least from its boundary, through connections with the  formal system of \emph{type theory} for the purpose of computerized proof checking \cite{AwodeyCoquand:2013}.  Unlike previous cubical models of homotopy theory, however, the cubes being used for this purpose are generally assumed to be \emph{closed under finite products}; we call such cube categories \emph{Cartesian}.  This is a natural enough assumption to make for cubes, but one that has somehow escaped serious consideration---but for two exceptions: in A.~Grothendieck's famous letter to D.~Quillen, and the accompanying 600 page manuscript \emph{Pursuing stacks} \cite{G:1983}, such cubical sets make an appearance as \emph{test categories}, which are models of homotopy types in a particular way.  In fact, the Cartesian cubes studied here are \emph{strict} test categories in the terminology of \opcit, meaning that the geometric realization functor preserves finite products (\cite{BuchholtzMoorehouse}).  The more familiar category of ``monoidal'' cubical sets used since Kan is also a strict test category provided one includes \emph{connections} \cite{Maltsiniotis:2009}, but this is not Cartesian.  The second source for Cartesian cubical sets was F.W.~Lawvere, who proposed them as a model for homotopy theory in lectures, and in public and private correspondence, but never (to my knowledge) published anything on the subject.   Among their advantages, he stressed the tinyness of the 1-cube, or ``interval'' $\I$, which indeed plays a role in the current theory---although perhaps not the one envisioned by him.
 
 We can define \emph{the} Cartesian cube category $\Box$ to be the Lawvere theory of bipointed objects, the opposite of which is therefore the category of finite, strictly bipointed sets $\B = \op\Box$.  Thus $\Box$ is the free finite product category with a bipointed object $[0]\rightrightarrows [1]$.  Our homotopy theory will be based on the category of \emph{Cartesian cubical sets}, which is the category of presheaves on $\Box$,
 \[
@@ -216,40 +219,40 @@ We call such an object in a topos an \emph{interval}, and in a sense to be made 
 
 For the purpose of homotopy theory, namely, this interval provides a good cylinder $X + X \cof \I\times X$ for every object $X$, as well as a good path object $X^\I \fib X\times X$ for every \emph{fibrant} object $X$.  The notion of fibrancy here is determined by the interval $\I$ in terms of \emph{paths} $\I\to X$, and is a generalization of the \emph{path-lifting} condition from classical homotopy theory, suitably modified for this setting. We formulate it using the now-standard notion of a Quillen model structure:
 
-\begin{definition}[cf.\cite{Q}]\label{def:qmsviaJT}
+\begin{definition}[cf.\cite{Quillen:1967ha}]\label{def:qmsviaJT}
 A \emph{Quillen model structure} on a (bicomplete) category $\EE$ consists of three classes of maps $\CC, \WW, \FF$ satisfying the conditions:\begin{enumerate}
 \item $(\CC, \WW\cap\FF)$ and $(\CC\cap\WW, \FF)$ are weak factorization systems,
 \item $\WW$ has the 3-for-2 property: if any two sides of the triangle $e = f\circ g$ are in $\WW$, so is the third.
 \end{enumerate}
 \end{definition}
 
-For the interval $1\rightrightarrows \I$, we have the mono $\del:1+1\cof \I$ as one of two basic cofibrations $\CC$ giving rise to all the others, in a certain sense.  The other basic one is the diagonal $\delta : \I\cof\I\times\I$, which is a special cofibration that, together with $\del$, also determines both $\FF$ and $\WW$, just from the conditions (1) and (2) in the definition (which we have restated in a form due to \cite{JT}).  Condition (1) has recently been termed a \emph{premodel structure} by R.\ Barton \cite{Barton}, and its verification in our setting is fairly routine, occupying less than the first half of the paper.   Condition (2) is where all the work is, and where our treatment is most likely to be of interest to the expert. We shall summarize those aspects below, but for those readers let us say now  that the model structure is not the one determined by the method of Cisinski \cite{cisinski-asterisque}, nor is it Reedy \cite{Reedy}, although the Cartesian cube category $\Box$ is generalized Reedy in the sense of \cite{M}.  Having identified $\Box$ as a strict test category, why not simply use standard tools to determine the test model structure making it equivalent to the standard homotopy theory of spaces?  Because \emph{we are mainly interested in how the model structure relates to the interpretation of type theory}.  Our final result could no doubt be arrived at more directly with the help of more sophisticated tools from the theory of model categories (although not by this author!).   But like helicoptering to the top of a mountain, the view might be just as good, but something would be lost along the way.  Our goal is not merely to arrive at the ``theorem'' that there is such and such a model structure on such and such a category, but to investigate the relationship between the ingredients of a model structure and certain features of type theory, in order to better understand the somewhat mysterious connection between the two.
+For the interval $1\rightrightarrows \I$, we have the mono $\del:1+1\cof \I$ as one of two basic cofibrations $\CC$ giving rise to all the others, in a certain sense.  The other basic one is the diagonal $\delta : \I\cof\I\times\I$, which is a special cofibration that, together with $\del$, also determines both $\FF$ and $\WW$, just from the conditions (1) and (2) in the definition (which we have restated in a form due to \cite{JT:intro}).  Condition (1) has recently been termed a \emph{premodel structure} by R.\ Barton \cite{Barton}, and its verification in our setting is fairly routine, occupying less than the first half of the paper.   Condition (2) is where all the work is, and where our treatment is most likely to be of interest to the expert. We shall summarize those aspects below, but for those readers let us say now  that the model structure is not the one determined by the method of Cisinski \cite{cisinski-asterisque}, nor is it Reedy \cite{Reedy:1974ht}, although the Cartesian cube category $\Box$ is generalized Reedy in the sense of \cite{BergerMoerdijk:2008rc}.  Having identified $\Box$ as a strict test category, why not simply use standard tools to determine the test model structure making it equivalent to the standard homotopy theory of spaces?  Because \emph{we are mainly interested in how the model structure relates to the interpretation of type theory}.  Our final result could no doubt be arrived at more directly with the help of more sophisticated tools from the theory of model categories (although not by this author!).   But like helicoptering to the top of a mountain, the view might be just as good, but something would be lost along the way.  Our goal is not merely to arrive at the ``theorem'' that there is such and such a model structure on such and such a category, but to investigate the relationship between the ingredients of a model structure and certain features of type theory, in order to better understand the somewhat mysterious connection between the two.
 
 %\emph{A propos} homotopy type theory, we beg the reader's indulgence for a digression not required for the understanding of the paper but quite relevant to its motivation.  The first homotopical models of intensional Martin-L\"of type theory were constructed by the author and his student M.\ Warren \cite{AW}, using Quillen model categories at the suggestion of I.\ Moerdijk.  This was an abstraction and generalization of the only known model of that system, namely the category of groupoids \cite{HS}.  The new homotopical interpretation was focused on the important but little-understood \emph{identity types}, for which the homotopical setting was essential.    At around the same time, V.~Voevodsky independently gave an interpretation of a different fragment of type theory in Kan fibrations of simplicial sets, without making explicit use of the model structure.  After some interaction, Voevodsky discovered his \emph{univalence axiom} and proved it consistent by building a model in Kan simplicial sets.  This construction made use of the model structure only implicitly, and was again specialized to the particular category of Kan simplicial sets.  In fact, Voevodsky himself at first conjectured that univalence held only in this particular model category, and was apparently surprised when M.~Shulman showed it to be stable under certain presheaf constructions \cite{Shu1}. In a \emph{tour de force}, Shulman eventually showed it to interpret into all model categories of a kind general enough to present \emph{all} Grothendieck $\infty$-toposes \cite{Shulman}.
 %
 %These results make heavy use of the machinery of simplicial homotopy theory, which unchanged is not valid in constructive mathematics, and therefore of little use in designing or implementing computer systems based on type theory.  One specific problem was the disruption by the univalence axiom of the normalization algorithm which forms the basis of type theoretic computation. Voevodsky called attention to this issue with a ``homotopy canonicity'' conjecture, which stated (roughly) that the system with the univalence axiom admitted an interpretation into the system without it, in a way that would be sufficient to restore effective computation.  This was finally verified a decade later in a somewhat different form by T.~Coquand and collaborators \cite{BCH,CCHM}.  One key insight that apparently led to their success was the ``change of shape'' from simplicial to cubical sets.\footnote{Whether this alone is essential is a matter of debate; arguably, it was rather the algebraic aspect underlying the ``uniform Kan filling'' condition that really made the break-through possible.  Whether the cubical shape is essential to \emph{that} will perhaps be determined by recent work on a constructive, algebraic simplicial approach by \cite{Henry-Gambino}.}  
 %Some aspects of Coquand's work were undoubtedly informed by homotopy theory, but much of it was driven by type-theoretic considerations: normalization, canonicity, constructivity, etc.   
-%Subsequent work on computational models of univalent type theory (such as \cite{OP,Harper}) also used some ideas from basic homotopy theory (and some of the jargon), but without bothering to verify the model category axioms.  Of course, this research had a very different goal in sight, namely the provision of a constructive interpretation of the system of type theory that would assist in implementing it in a computer proof system.  Once that was accomplished \cite{cubical,redTT}, there was no need to determine whether a Quillen model structure was actually lurking in the background.  It simply remained a mystery that the ingredients required for a model of univalent type theory seemed to align with the basic concepts of abstract homotopy theory.  
+%Subsequent work on computational models of univalent type theory (such as \cite{orton-pitts,Harper}) also used some ideas from basic homotopy theory (and some of the jargon), but without bothering to verify the model category axioms.  Of course, this research had a very different goal in sight, namely the provision of a constructive interpretation of the system of type theory that would assist in implementing it in a computer proof system.  Once that was accomplished \cite{cubical,redTT}, there was no need to determine whether a Quillen model structure was actually lurking in the background.  It simply remained a mystery that the ingredients required for a model of univalent type theory seemed to align with the basic concepts of abstract homotopy theory.  
 
 
-The first models of homotopy type theory used the standard Kan-Quillen model structure on simplicial sets \cite{AW,KL}. Much subsequent work has also relied on classical methods, including M.~Shulman's \emph{tour de force} result that  every Grothendieck $\infty$-topos admits a model of HoTT with a univalent universe \cite{Shulman}. There is, however, a mismatch between such models of the univalence axiom and the design and implementation of computer systems based on type theory.  Taken as an axiom, univalence disrupts the normalization algorithm which forms the basis of type theoretic computation. Voevodsky recognized this, and conjectured (roughly) that the system with the univalence axiom admitted an interpretation into the system without it, in a way that would restore effective computation.  This was finally verified a decade later, in a somewhat different form, by T.~Coquand and collaborators \cite{BCH,CCHM}.  One key insight that apparently led to their success was the ``change of shape'' from simplicial to cubical sets.\footnote{Whether this alone is essential is a matter of debate; arguably, it was rather the algebraic aspect underlying the ``uniform Kan filling'' condition that really made the break-through possible.  Whether the cubical shape is essential to \emph{that} will perhaps be determined by recent work on a constructive, algebraic simplicial approach by \cite{Henry-Gambino}.}  
+The first models of homotopy type theory used the standard Kan-Quillen model structure on simplicial sets \cite{awodey-warren:homotopy-idtype,KLV:21}. Much subsequent work has also relied on classical methods, including M.~Shulman's \emph{tour de force} result that  every Grothendieck $\infty$-topos admits a model of HoTT with a univalent universe \cite{shulman2019infty1toposes}. There is, however, a mismatch between such models of the univalence axiom and the design and implementation of computer systems based on type theory.  Taken as an axiom, univalence disrupts the normalization algorithm which forms the basis of type theoretic computation. Voevodsky recognized this, and conjectured (roughly) that the system with the univalence axiom admitted an interpretation into the system without it, in a way that would restore effective computation.  This was finally verified a decade later, in a somewhat different form, by T.~Coquand and collaborators \cite{BCH,CCHM:2018ctt}.  One key insight that apparently led to their success was the ``change of shape'' from simplicial to cubical sets.\footnote{Whether this alone is essential is a matter of debate; arguably, it was rather the algebraic aspect underlying the ``uniform Kan filling'' condition that really made the break-through possible.  Whether the cubical shape is essential to \emph{that} will perhaps be determined by recent work on a constructive, algebraic simplicial approach by \cite{gambino-henry}.}  
 Some aspects of Coquand's work were undoubtedly informed by homotopy theory, but much of it was driven by type-theoretic considerations: normalization, canonicity, constructivity, etc.   
-Subsequent work on computational models of univalent type theory (such as \cite{OP,Harper}) also used intuitions from basic homotopy theory (and some of the jargon), but without bothering to verify the model category axioms.  Of course, this research had a very different goal, namely the provision of a constructive interpretation of the system of univalent type theory that would facilitate its implementation in a computer proof system.  Once that was accomplished \cite{cubical,redTT}, there was no need to determine whether a Quillen model structure was actually lurking in the background.  It remained a mystery that the ingredients required for a model of univalent type theory seemed to align with the basic concepts of abstract homotopy theory.  
+Subsequent work on computational models of univalent type theory (such as \cite{orton-pitts,LOPS18,ABCHFL}) also used intuitions from basic homotopy theory (and some of the jargon), but without bothering to verify the model category axioms.  Of course, this research had a very different goal, namely the provision of a constructive interpretation of the system of univalent type theory that would facilitate its implementation in a computer proof system.  Once that was accomplished \cite{CCHM:2018ctt}, there was no need to determine whether a Quillen model structure was actually lurking in the background.  It remained a mystery that the ingredients required for a model of univalent type theory seemed to align with the basic concepts of abstract homotopy theory.  
 
-It was C.~Sattler who first recognized that a model of full univalent type theory contains everything required to determine a Quillen model structure. An earlier result in this direction had been given by \cite{GG}, who showed that the basic system of type theory with identity types not only interpreted into a weak factorization system (as had been shown by \cite{AW}), but that it actually \emph{required} such a structure for its sound interpretation---essentially by constructing a weak factorization system from the system of type theory itself (P.~LeFanu Lumsdaine subsequently used higher inductive types to construct a second weak factorization system in homotopy type theory \cite{PLcofibraitons}, thus making another step toward a full model structure).  The relationship between the full system of univalent type theory and a full Quillen model structure is somewhat more subtle---and part of the present investigation---but the mystery of \emph{why} the tools of model category theory seemed to work so well for constructing models of univalent type theory is at least partially resolved by the insight that the type theory is apparently describing the same kind structure as do certain model categories; namely, higher toposes.\footnote{Logicians, who have always been puzzled by homotopy theorists' apparently backwards use of the term ``model'', can finally answer the question of what it is that is modeled by a Quillen model category: it is type theory.}  
+It was C.~Sattler who first recognized that a model of full univalent type theory contains everything required to determine a Quillen model structure \cite{Sattler:2017ee}. An earlier result in this direction had been given by \cite{gambino-garner:idtypewfs}, who showed that the basic system of type theory with identity types not only interpreted into a weak factorization system (as had been shown by \cite{awodey-warren:homotopy-idtype}), but that it actually \emph{required} such a structure for its sound interpretation---essentially by constructing a weak factorization system from the system of type theory itself (P.~LeFanu Lumsdaine subsequently used higher inductive types to construct a second weak factorization system in homotopy type theory \cite{Lumsdaine:HITCofibrations}, thus making another step toward a full model structure).  The relationship between the full system of univalent type theory and a full Quillen model structure is somewhat more subtle---and part of the present investigation---but the mystery of \emph{why} the tools of model category theory seemed to work so well for constructing models of univalent type theory is at least partially resolved by the insight that the type theory is apparently describing the same kind structure as do certain model categories; namely, higher toposes.\footnote{Logicians, who have always been puzzled by homotopy theorists' apparently backwards use of the term ``model'', can finally answer the question of what it is that is modeled by a Quillen model category: it is type theory.}  
 So while there was no reason to expect \emph{a priori} that the work on computer proof systems and computational implementations of type theory would have any relevance to homotopy theory, the methods developed for those purposes have now acquired such relevance nonetheless. 
 
-These new methods include various species of cubical sets with different combinatorial and homotopical properties \cite{BMcubes}, some still unknown, as well as various composition, filling, and uniformity conditions with as yet unclear relationships to homotopical algebra \cite{OP,CCHM,BCH,Harper,MC}. It is worth noting, for those not familiar with both, that translating between the language of type theory and that of model categories is by no means routine, nor is the converse anything like typesetting a commutative diagram in LaTeX.  (Indeed, the limits of such translation are a matter of current investigation, with the question of how to handle the coherences arising in higher category theory at the very forefront of current research.) 
+These new methods include various species of cubical sets with different combinatorial and homotopical properties \cite{BuchholtzMoorehouse}, some still unknown, as well as various composition, filling, and uniformity conditions with as yet unclear relationships to homotopical algebra \cite{orton-pitts,CCHM:2018ctt,BCH,ABCHFL,CMS:2020}. It is worth noting, for those not familiar with both, that translating between the language of type theory and that of model categories is by no means routine, nor is the converse anything like typesetting a commutative diagram in LaTeX.  (Indeed, the limits of such translation are a matter of current investigation, with the question of how to handle the coherences arising in higher category theory at the very forefront of current research.) 
 
-The particular category of Cartesian cubes considered here has been studied by the author, in lectures and papers, since 2013 \cite{A2013,A2016,Stockholm,HoTT2019}, with various different box-filling conditions.  The condition explored in the present work, which we call \emph{unbiased partial box-filling}, was apparently considered early on by Coquand \cite{unpublished} but abandoned in favor of a monoidal one in \cite{BCH}, and later modified to one depending on the presence of connections in \cite{CCHM}.  The unbiased approach was resurrected and studied intensely in type theory by R.~Harper and his students \cite{BL,CA}, culminating in \cite{ABC}.   These type theoretic constructions are presented in terms of model categories here for the first time, doing for the system of Cartesian cubical type theory roughly what Gambino and Sattler \cite{GS,S} did for the system in \cite{CCHM}.%\footnote{The analogy is not perfect, since in this case the model category was being developed in parallel with the cubical type theory, rather than after the fact.}
+The particular category of Cartesian cubes considered here has been studied by the author, in lectures and papers, since 2013 \cite{Awodey:cubical-model,awodey19cmu}, with various different box-filling conditions.  The condition explored in the present work, which we call \emph{unbiased partial box-filling}, was apparently considered early on by Coquand \cite{Coq:cartesian} but abandoned in favor of a monoidal one in \cite{BCH}, and later modified to one depending on the presence of connections in \cite{CCHM:2018ctt}.  The unbiased approach was resurrected and studied intensely in type theory by R.~Harper and his students \cite{BL:2014,Angiuli:2019}, culminating in \cite{ABCHFL}.   These type theoretic constructions are presented in terms of model categories here for the first time, doing for the system of Cartesian cubical type theory roughly what Gambino and Sattler \cite{GS,Sattler:2017ee} did for the system in \cite{CCHM:2018ctt}.%\footnote{The analogy is not perfect, since in this case the model category was developed in parallel with the cubical type theory, rather than after the fact.}
 
 Specifically, we eventually show that the category of Cartesian cubical sets admits a Quillen model structure $\CC, \WW, \FF$ with the unbiased fibrations as the class $\FF$ and the cofibrations $\CC$ axiomatized to allow for variations, including additional structure on the basic cube category $\Box$ and adjustments in the filling conditions.  Since our proofs are given in elementary diagrammatic form, they will also hold in other categories of Cartesian cubical sets, including those with connections, reversals, etc.  Indeed, part of our motivation is to apply the results obtained here, \emph{mutatis mutandis}, in two other settings: realizability, and equivariant filling.  The former (underway in \cite{AAFS}) imposes a strict condition of constructivity, about which we will say a bit more shortly.   The latter (underway in \cite{ACCRS}) is based on an unpublished result due to Sattler showing that an additional equivariance condition on the unbiased fibrations suffices to turn this model structure into the test model structure already mentioned.  
 
-The possibility of an entirely constructive verification of the Quillen model category axioms is a consequence of the constructive interpretation of univalent type theory labored over by Coquand and his collaborators, and it has applications for the homotopy theory of presheaves and sheaves that stand to be explored further.   The important uniformity condition on the Kan filling operations is closely related to E.~Riehl's \emph{algebraic model structures} \cite{R} and gives rise to a notion of structured fibration that admits classification, in the sense of classifying spaces, by means of what we here call \emph{classifying types}.   These classifiers are used to construct universal objects of various kinds: families, cofibrations, (trivial) fibrations, and ultimately a universal fibration $\UU\fib\U$, which acts like an object classifier in higher topos theory, but with a stricter universal property.  Our work shows that having such classifying types can be useful, \eg\ when ``changing the base'' from one slice category $\EE/_X$ to another $\EE/_Y$ along a map $f : Y\to X$, or along a more general geometric morphism $f^*\dashv f_* : \FF \to \EE$.
+The possibility of an entirely constructive verification of the Quillen model category axioms is a consequence of the constructive interpretation of univalent type theory labored over by Coquand and his collaborators, and it has applications for the homotopy theory of presheaves and sheaves that stand to be explored further.   The important uniformity condition on the Kan filling operations is closely related to E.~Riehl's \emph{algebraic model structures} \cite{riehl-algebraic-model} and gives rise to a notion of structured fibration that admits classification, in the sense of classifying spaces, by means of what we here call \emph{classifying types}.   These classifiers are used to construct universal objects of various kinds: families, cofibrations, (trivial) fibrations, and ultimately a universal fibration $\UU\fib\U$, which acts like an object classifier in higher topos theory, but with a stricter universal property.  Our work shows that having such classifying types can be useful, \eg\ when ``changing the base'' from one slice category $\EE/_X$ to another $\EE/_Y$ along a map $f : Y\to X$, or along a more general geometric morphism $f^*\dashv f_* : \FF \to \EE$.
 
-Another application of the constructivity of the model structure is the computation of homotopy invariants as a result of a constructive proof.  This was only a theoretical possibility until quite recently, when a breakthrough by A.~Ljungstr\"om finally allowed the computer system Cubical Agda (developed on the basis of the results of Coquand and others just mentioned) to compute the value of $k\in \Z$ from a proof in homotopy type theory that $\pi_4(S^3)\cong \Z/_{k\Z}$ \cite{M}.  Realizability models of type theory based on constructively proven model structures should also have applications in computational homotopy theory.
+Another application of the constructivity of the model structure is the computation of homotopy invariants as a result of a constructive proof.  This was only a theoretical possibility until quite recently, when a breakthrough by A.~Ljungstr\"om finally allowed the computer system Cubical Agda (developed on the basis of the results of Coquand and others just mentioned) to compute the value of $k\in \Z$ from a proof in homotopy type theory that $\pi_4(S^3)\cong \Z/_{k\Z}$ \cite{AxelLj:2022}.  Realizability models of type theory based on constructively proven model structures should also have applications in computational homotopy theory.
 
-One way to verify that our model structure is entirely constructive would be to formalize the proofs below in a proof assistant such as Agda.  While this could be of interest for the practice of translating model category proofs into type theory, in principle one would learn very little that is not already known, since the model structure given here is in a certain sense ``reverse-engineered'' from a model of type theory that has already been fully formalized and verified (namely, that in \cite{ABC}).  To be sure, our definitions and proofs do not follow those in \ibid\ in the way that a proper formalization would, but the model of type theory underlying them will be plainly visible to the experts---since the Quillen model category defined here was already found lurking, as it were, behind that model of univalent type theory.
+One way to verify that our model structure is entirely constructive would be to formalize the proofs below in a proof assistant such as Agda.  While this could be of interest for the practice of translating model category proofs into type theory, in principle one would learn very little that is not already known, since the model structure given here is in a certain sense ``reverse-engineered'' from a model of type theory that has already been fully formalized and verified (namely, that in \cite{ABCHFL}).  To be sure, our definitions and proofs do not follow those in \ibid\ in the way that a proper formalization would, but the model of type theory underlying them will be plainly visible to the experts---since the Quillen model category defined here was already found lurking, as it were, behind that model of univalent type theory.
 
 Let us now make this more explicit as we outline the contents of the paper (references to the literature occur at the corresponding points of the main text).
 After defining the Cartesian cubical sets and establishing some basic facts about them in Section 1, in Section 2 we specify the \emph{cofibrations} axiomatically, as a class of monomorphisms classified by a universal one $t:1 \cof \Phi$.  This permits using the associated polynomial endofunctor $P_t : \cSet\to \cSet$ (which is shown to be a monad by the axioms for cofibrations), to give an algebraic weak factorization system with the cofibrations as the left maps and the (retracts of) $P_t$-algebras as the maps on the right, which we define to be the \emph{trivial fibrations}.  Since the monad is fibered, the factorization system is stable under change of base, which we use to derive the familiar diagonal filling characterization of the trivial fibrations in algebraic form, and relate this to the uniform filling condition from type theory.  The polynomial monad $P_t : \cSet\to \cSet$ is related to the type theoretic partiality- or lifting-monad, and generalizes the partial map classifier from the early days of topos theory.
@@ -265,34 +268,32 @@ Z\times \I^*\I \ar@{.>}[ru] \ar[r] & \I^*X
 %
 The two weak factorization systems of cofibrations and trivial fibrations, and trivial cofibrations and fibrations, are assembled formally into a Barton premodel structure in Section 4, where the \emph{weak equivalences} are determined and related to \emph{weak homotopy equivalences}:  maps that induce isomorphisms by precomposition in the homotopy category.  The 3-for-2 axiom is reduced to a condition called the \emph{fibration extension property}, the proof of which is deferred.  This concludes Part 1, and attention shifts to establishing the fibration extension property.
 
-Part 2, consisting of sections 5-8, is essentially a 60 page proof of a lemma.  It seems entirely likely that a more direct proof could be given, dispatching the entire second part of the paper. Even in that event, however, the work done in Part 2 would remain worthwhile, for this is where an implicit construction of a model of (homotopy) type theory occurs: The Frobenius property in Section 5 establishes the interpretation of $\Pi$-types of fibrations along fibrations, and thus the right properness of the model structure, by an entirely new diagrammatic argument derived from one originally given in type theory.   In section 6 we construct the already mentioned classifying types  for fibration structure and use them to give a new proof of the existence of a universal fibration $\UU\fib\U$.  This is where the tinyness of the interval $\I$ plays an unexpected role, and a related axiom on the cofibrations is discovered.
+Part 2, consisting of sections 5-8, is essentially a 60 page proof of a lemma.  It seems entirely likely that a more direct proof could be given, dispatching the entire second part of the paper. Even in that event, however, the work done in Part 2 would remain worthwhile, for this is where an implicit construction of a model of (homotopy) type theory occurs: The Frobenius property in Section 5 establishes the interpretation of $\Pi$-types of fibrations along fibrations, and thus the right properness of the model structure, by an entirely new diagrammatic argument derived from one originally given in type theory.   In section 6 we construct the classifying types  for fibration structure and use them to give a new construction of a universal fibration $\UU\fib\U$.  This is where the tinyness of the interval $\I$ plays an unexpected role, and a related axiom on the cofibrations is discovered.
 
-Sections 7 and 8 are perhaps the most novel from the point of view of homotopy theory, and the ones most closely related to the implicit model of type theory in the background.  In section 7 an extension condition is established which is closely related to the univalence of the universal fibration $\UU\fib\U$, and in section 8 that result is used to finally establish the fibration extension property, which is seen to be equivalent to the statement that the base object $\U$ is fibrant.  In sum, then, the missing 3-for-2 property of the premodel structure from Part 1 is proven in Part 2 by constructing a fibrant, univalent universe of fibrant objects.
+Sections 7 and 8 make implicit use of the model of type theory in the background, and contribute new diagrammatic proofs of two fundamental facts about it.  In section 7 an equivalence extension property is established which is closely related to the univalence of the universal fibration $\UU\fib\U$, and in section 8 that property is used to finally establish the fibration extension property, which is seen to be equivalent to the statement that the base object $\U$ is fibrant.  In sum, then, the missing 3-for-2 property of the premodel structure from Part 1 is proven in Part 2 by constructing a fibrant, univalent universe of fibrant objects.
 
-One thing that we learn from the exercise is that one can get quite far in constructing a model of type theory in a \emph{premodel} category,   without assuming a fibrant universe, its univalence, or even the presence of a universe at all!  Conversely, our results suggest that the presence of a fibrant, univalent universe in such homotopical semantics in a premodel structure is not just necessary for a full model of univalent type theory, but actually suffices for a full Quillen model structure. In this sense, a model of HoTT is \emph{equivalent} to Quillen model structure of a certain kind---namely, one that presents a higher topos.
+One thing that we learn from the exercise is that one can get quite far in constructing a model of type theory in a \emph{premodel} category,   without assuming a fibrant universe, its univalence, or even the presence of a universe at all!  Conversely, our results suggest that the presence of a fibrant, univalent universe in such homotopical semantics in a premodel structure is not just necessary for a full model of univalent type theory, but actually suffices for a full Quillen model structure. In this sense, a model of HoTT is \emph{equivalent} to a Quillen model structure of a certain kind---namely, one that presents a higher topos.
 
 % Cite somewhere
 % cite LOPS universe
 % cite G-H
 
 \subsection*{Acknowledgements.}
-
-Foremost, I am indebted to Thierry Coquand for his insightful papers and lectures, and for numerous conversations at the IHES Paris, online during the COVID-19 pandemic, at the Oslo CAS, the Newton Institute in Cambridge, the Poincare Institute in Paris, and of course the IAS in Princeton.  In many of the same places, Andr\'e Joyal provided sage and patient advice.   
-I have learned a great deal from my past and present CMU colleagues Mathieu Anel, Marc Bezem, Ulrik Buchholtz, Jonas Frey, Bas Spitters, Andrew Swan, and the late Pieter Hofstra; I am especially grateful for their patience through many revisions and delays.  Many other people have given good advice over the long period of these investigations, including Bjorn Dundas, Peter Dybjer, Marcelo Fiore, Nicola Gambino, Richard Garner, Dan Licata, Peter LeFanu Lumsdaine, Per Martin-L\"of, Andy Pitts, Emily Riehl, Christian Sattler, Mike Shulman, Benno van den Berg, and undoubtedly others that I am forgetting.
-I am also grateful to the computational higher type theory group around Bob Harper at CMU, including his students Carlo Angiuli, Evan Cavallo, Favonia, and Jon Sterling, for challenging me to clarify my thoughts.  
-For research stays during which some of this work was conducted, I thank in particular the Oslo Centre for Advanced Studies and the Institut des Hautes \'Etudes Scientifiques.
-
-This material is based upon work supported by the Air Force Office of Scientific Research under awards number FA9550-21-1-0009, FA9550-20-1-0305 and FA9550-15-1-0053, and the Army Research Office award number W911NF-21-1-0121 P00002.
-
-Finally, I must acknowledge my enormous debt to the late Vladimir Voevodsky, whose profound contributions advanced the subject far beyond my original expectations. Despite all, I dedicate this work to his memory.
-
+%
+%Foremost, I am indebted to Thierry Coquand for sharing his ideas in conversations at the IHES Paris, online during the COVID-19 pandemic, at the Oslo CAS, and on several other occasions going back to the IAS in Princeton.  In many of the same places, Andr\'e Joyal has provided sage and patient advice, as well as illuminating lectures and, of course, inspiring writings.   Discussions with Emily Riehl and the writings of Mike Shulman have also been extremely helpful.  I have learned much from my past and present CMU colleagues Mathieu Anel, Marc Bezem, Ulrik Buchholtz, Jonas Frey, Bas Spitters, Andrew Swan, and the late Pieter Hofstra; I am especially grateful for their patience through many revisions and delays.  Many other people have given good advice over the long period of these investigations, including Bjorn Dundas, Peter Dybjer, Marcelo Fiore, Richard Garner, Dan Licata, Peter LeFanu Lumsdaine, Per Martin-L\"of, Andy Pitts, Christian Sattler, Benno van den Berg, and undoubtedly others that I am forgetting.
+%I am also grateful to the computational higher type theory group around Bob Harper at CMU, including his students Carlo Angiuli, Evan Cavallo, Favonia, and Jon Sterling, for challenging me to clarify my thoughts.  
+%For research stays during which some of this work was conducted, I thank in particular the Oslo Centre for Advanced Studies and the Institut des Hautes \'Etudes Scientifiques.
+%
+%This material is based upon work supported by the Air Force Office of Scientific Research under awards number FA9550-21-1-0009, FA9550-20-1-0305 and FA9550-15-1-0053, and the Army Research Office award number W911NF-21-1-0121 P00002.
+%
+%Finally, I must acknowledge my enormous debt to the late Vladimir Voevodsky, whose profound contributions advanced the subject far beyond my original expectations. Despite all, I dedicate this work to his memory.
+%
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Cartesian cubical sets}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-There are now many treatments of cubical sets $\Set^{\op{\Box}}$ in the literature, including \cite{Grandis, Grandis, Jardine, Jardine, Bezem, OrtonPitts, Coquand, Cisinski}.  Our model structure is intended to work in any of these, insofar as they are  \emph{cartesian}, in the sense that the indexing cubes $[n]\in\Box$ are closed under finite products $[m]\times[n] = [m+n]$.   
-Rather than working axiomatically, however, we shall work in the initial such model, which we call simply the \emph{Cartesian cube category} $\C$, defined as the free finite product category on an interval $\delta_0, \delta_1 : 1\rightrightarrows \I$.
+There are many different categories of cubes $\Box$ that could be taken as a site for homotopy theory \cite{Grandis:2003,BuchholtzMoorehouse}, and indeed several different ones have recently been explored in connection with cubical systems of (homotopy) type theory, including \cite{BCH,orton-pitts, CCHM:2018ctt,ABCHFL,CMS:2020}, to name a few.  The model structure developed here is intended to work with any of these, insofar as they are  \emph{cartesian}, in the sense that the indexing cubes $[n]\in\Box$ are closed under finite products $[m]\times[n] = [m+n]$.   Rather than working axiomatically, though, we shall work in the initial such category, which we call \emph{the Cartesian cube category} $\C$, defined as the free finite product category on an interval $\delta_0, \delta_1 : 1\rightrightarrows \I$.
 %As a Lawvere algebraic theory with two constant symbols $\T = \{0, 1\}$, the category $\square$ is dual to the full subcategory of finitely-generated, free $\T$-algebras $\mathsf{Alg}(\T)_{\mathrm{fg}}$.  In this case, the $\T$-algebras are simply \emph{bipointed sets} $(A, a_0, a_1)$, and the free ones are the \emph{strictly} bipointed sets $a_0\neq a_1$.  Thus $\mathsf{Alg}(\T)_{\mathrm{fg}}$ consists of the finite, strictly bipointed sets and all bipointed maps between them.  We will use the following presentation.
 
 \begin{definition}
@@ -306,7 +307,7 @@ are arbitrary bipointed maps $f' : [n]\ra [m]$ (note the variance!).  Thus $\B =
 As a Lawvere theory, the arrows $f : [m] \ra [n]$ in $\C$ may also be regarded as $n$-tuples of elements from the set $\{0, x_1, ..., x_m, 1\}$.   These can be generated under composition by faces, degeneracies, permutations, and diagonals (see \cite{parker:thesis} for further details).
 
 \begin{definition}\label{def:cSet}
-The category \cSet\ of \emph{(Cartesian) cubical sets} is the category of presheaves on the (Cartesian) cube category $\C$,
+The category \cSet\ of \emph{Cartesian cubical sets} is the category of presheaves on the Cartesian cube category $\C$,
 \[
 \mathsf{cSet}\ =\ \psh{\C}.
 \]
@@ -318,7 +319,7 @@ Note that the representables $\I^n$ are also closed under finite products, $\I^m
 \begin{proposition}[Lawvere]\label{prop:Itiny}
 The $n$-cubes $\I^n$ are \emph{tiny}, in the sense that the endofunctor $X\mapsto X^{\I^n}$ is a left adjoint.
 \end{proposition}
-\noindent (See \cite{Lawvere} on such ``amazing right adjoints''.)
+\noindent (See \cite{Lawvere:2004} on such ``amazing right adjoints''.)
 
 \begin{proof}
 It clearly suffices to prove the claim for $n=1$.   For any cubical set $X$, the exponential $X^\I$ is a ``shift by one dimension'', 
@@ -613,7 +614,7 @@ This is true for any constant family $X^*C = X\times C \to X$ with $C$ in place 
 %
 %Finally, we observe that that the path object functor $X^\I$ itself, as a left adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{ATOM} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
 %
-%\paragraph{Example.} (P.~Aczel)
+%\subsection*{Example.} (P.~Aczel)
 %The cubical set $P$ of polynomials (over the integers, say), is defined by:
 %\[
 %P_n = \{ p(x_1, ...,  x_n)\ |\  \text{polynomials in at most}\  x_1, ..., x_n \}
@@ -672,13 +673,13 @@ Further axioms for cofibrations will be added later as needed: two in Section \r
 \end{definition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{The cofibrant partial map classifier.}
-Consider the polynomial endofunctor $P_t : \cSet\to \cSet$ determined by the cofibration classifier $t : 1 \mono \Phi$ (see  \cite{GK}).  We will write the value of this functor at an object $X$ as 
+\subsection*{The cofibrant partial map classifier.}
+Consider the polynomial endofunctor $P_t : \cSet\to \cSet$ determined by the cofibration classifier $t : 1 \mono \Phi$ (see  \cite{gambino-kock}).  We will write the value of this functor at an object $X$ as 
 \begin{equation}\label{eq:partialmapclassifier}
 X^+\ :=\ \Phi_!\,t_*(X)\ =\ \sum_{\varphi: \Phi}X^{[\varphi]}\,.
 \end{equation}
 
-The reader familiar with type theory will recognize the similarity to the ``partiality'' or ``lifting''  monad \cite{something}.  When all monos are cofibrations, so that $\Phi = \Omega$, the object $X^+$ agrees with the partial map classifier $\widetilde{X}$ from topos theory \cite{JohnstoneTT}.  We may therefore regard $X^+$ as the object of \emph{cofibrant partial elements} of $X$, as we now explain.
+The reader familiar with type theory will recognize the similarity to the ``partiality'' or ``lifting''  monad \cite{Moggi:91}.  When all monos are cofibrations, so that $\Phi = \Omega$, the object $X^+$ agrees with the partial map classifier $\widetilde{X}$ from topos theory \cite{JohnstoneTT}.  We may therefore regard $X^+$ as the object of \emph{cofibrant partial elements} of $X$, as we now explain.
 
 Since $t: 1\cof \Phi$ is monic, $t^*t_*\cong 1$, so $X^+$ fits into the  pullback square
 \begin{equation}\label{diagram:etadef}
@@ -705,17 +706,17 @@ The map $\chi : Z\ra X^+$ is said to \emph{classify} the partial map $$(c,x): Z\
 \end{proposition}
 
 \begin{proof}
-The map $\eta : X\mono X^+$ is a cofibration since it is a pullback of the universal cofibration $t : 1\cof \Phi$. Observe that $(\eta, 1_X) : X^+\leftarrowtail X\ra X$ is therefore a cofibrant partial map into $X$.  The second statement is just the universal property of $X^+$ as a polynomial (see \cite{AN}, prop.~7). 
+The map $\eta : X\mono X^+$ is a cofibration since it is a pullback of the universal cofibration $t : 1\cof \Phi$. Observe that $(\eta, 1_X) : X^+\leftarrowtail X\ra X$ is therefore a cofibrant partial map into $X$.  The second statement is just the universal property of $X^+$ as a polynomial (see \cite{A:natural}, prop.~7). 
 \end{proof}
 
-%\paragraph{The +-monad.}
+%\subsection*{The +-monad.}
 
 \begin{proposition}\label{prop:plusmonad}
 The pointed endofunctor  $\eta_X : X\mono X^+$ has a natural multiplication $\mu_X : X^{++} \ra X^+$ making it a monad.
 \end{proposition}
 
 \begin{proof}
-Since the cofibrations are closed under composition, the monad structure on $X^+$ follows as in \cite{AN}, proposition XY.  Explicitly, $\mu_X$ is determined by proposition \ref{prop:cofparclass} as the unique map making the following a pullback diagram.
+Since the cofibrations are closed under composition, the monad structure on $X^+$ follows as in \cite{A:natural}, proposition XY.  Explicitly, $\mu_X$ is determined by proposition \ref{prop:cofparclass} as the unique map making the following a pullback diagram.
 \[
 \xymatrix{
 X \ar@{>->}[d]_{\eta_X} \ar[r]^= & X \ar@{>->}[dd]^{\eta}\\
@@ -726,7 +727,7 @@ X^{++} \ar@{.>}[r]_\mu & X^+
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{Relative partial map classifier.}
+\subsection*{Relative partial map classifier.}
 
 For any object $X\in\cSet$ the pullback functor $$X^* : \cSet \ra \cSet/_X\,,$$ taking any $A$ to (say) the first projection $X\times A \ra X$, not only preserves the subobject classifier $\Omega$, but also the cofibration classifier $\Phi \hook \Omega$, where a map in $\cSet/_X$ is defined to be a cofibration if it is one in \cSet\ (under the forgetful functor $\cSet/_X \to \cSet$). Thus in $\cSet/_X$ we can define the \emph{(relative) cofibration classifier} to be the map
 \[
@@ -752,9 +753,9 @@ A \emph{relative $+$-algebra} in \cSet\ is a map $A \ra X$, together with an alg
 \end{definition}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{The cofibration weak factorization system.}
+\subsection*{The cofibration weak factorization system.}
 
-The following proposition generalizes one in \cite{BurkeGarner}.
+The following proposition generalizes one in \cite{bourke-garner-I}.
 \begin{proposition}
 There is an (algebraic) weak factoriation system on \cSet\ with the cofibrations as the left class, and as the right class, the maps underlying relative $+$-algebras.  Thus a right map is one $p : A\ra X$ for which there is a retract $\alpha : A'\ra A$ over $X$ of the canonical map $\eta : A\ra A'$,
 \[
@@ -801,7 +802,7 @@ C \ar@{.>}[r]_{\varphi} & A^+. \ar@/_4ex/ [u]_\alpha
 \]
 We can set $d := \alpha\circ \varphi : C \ra A$ to obtain the required diagonal filler, since $dc = \alpha\varphi{c} = \alpha\eta{a} = a$, because $\alpha$ is a retract of $\eta$.
 
-The closure of the cofibrations under retracts follows from their classification by a universal object $t : 1 \cof \Phi$, and the closure of the right maps under retracts follows from their being the algebras for a pointed endofunctor underlying a monad (cf.~\cite{RV}).  Algebraicity of this weak factorization system is immediate, since $+$ is a monad.
+The closure of the cofibrations under retracts follows from their classification by a universal object $t : 1 \cof \Phi$, and the closure of the right maps under retracts follows from their being the algebras for a pointed endofunctor underlying a monad (cf.~\cite{Riehl}).  Algebraicity of this weak factorization system is immediate, since $+$ is a monad.
 \end{proof}
 
 Summarizing, we have an algebraic weak factorization system $(\mathcal{C}, \mathcal{C}^\pitchfork)$ on the category \cSet\ of cubical sets, where:
@@ -815,12 +816,12 @@ We shall call this the \emph{cofibration weak factorization system}. The right m
 \]
 and called \emph{trivial fibrations}.
 
-The cofibration algebraic weak factorization system is a generalization of the one defined in \cite{BurkeGarner} and mentioned in \cite{GambinoSattler}.
+The cofibration algebraic weak factorization system is a generalization of the one defined in \cite{bourke-garner-I} and mentioned in \cite{GambinoSattler:2017fc}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{Uniform filling structure.}
+\subsection*{Uniform filling structure.}
 
-It will be useful to relate relative $+$-algebra structure with the more familiar diagonal filling condition of cofibrantly generated weak factorization systems, and specifically the special ones occuring in \cite{CCHM} under the name \emph{uniform filling structure} (this notion is also closely related to that of an \emph{algebraic weak factorization system}, \cf\ \cite{Garner,Riehl}).
+It will be useful to relate relative $+$-algebra structure with the more familiar diagonal filling condition of cofibrantly generated weak factorization systems, and specifically the special ones occuring in \cite{CCHM:2018ctt} under the name \emph{uniform filling structure} (this notion is also closely related to that of an \emph{algebraic weak factorization system}, \cf\ \cite{garner:small-object-argument,riehl-algebraic-model}).
 
 Consider a generating sub\emph{set} of cofibrations consisting of those with representable codomain $c : C \mono \I^n$, and call these the \emph{basic cofibrations}.
 \begin{equation}\label{eq:basiccof}
@@ -878,7 +879,7 @@ Then set
 j = \alpha\circ\chi(c,x) : Z\ra X
 \end{equation}
 to get a filler,
-\begin{equation}\label{diagram:defphi}
+\begin{equation}\label{diagram:defphi2}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[rr]^{x} && X \ar[d]^{\eta} \\
 Z\ar@{.>}[rru]_{j} \ar[rr]_{\chi(c,x)} && X^+  \ar@/_4ex/ [u]_\alpha
@@ -981,7 +982,7 @@ u^*C \ar@{>->}[d]_{u^*c} \ar[rr]^{c^*u} \pbcorner &&  C \ar@{>->}[d]_{c} \ar[rr]
 }
 \end{equation}
 For the evident triple $(u^*c,\, x\circ c^*u, y\circ u)$ in \eqref{diagram:coffillers2} the chosen diagonal filler $$j(u^*c,x\circ c^*u,y\circ u): \I^m \ra X$$ is equal to  $j(c,x,y)\circ u$,
-\begin{equation}\label{eq:uniformfillers}
+\begin{equation}\label{eq:uniformfillers1}
 j(u^*c, x\circ c^*u,y\circ u) = j(c,x,y)\circ u.
 \end{equation}
 \end{enumerate}
@@ -1140,10 +1141,10 @@ f^*f_*A \ar[rrdd]_{\epsilon_A} \ar[rr]_{f^*\eta_{f_*A}}  \ar@/^4ex/ [rrr]^{\eta_
 \section{The fibration weak factorization system}\label{sec:fibrations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We now specify a second weak factorization system, with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the \emph{fibrations}.  As explained in the introduction, we first recall from \cite{GS} what we shall call the ``biased'' notion of fibration, before giving the ``unbiased'' one appropriate to the more general setting.   The biased version makes use of \emph{connections}, $$\vee,\wedge : \I\times\I \too \I,$$ on the cubes, which are also used in \cite{Sattler} to determine a model structure with such fibrations.  In \cite{AGH} it is shown that the fibrations of \opcit\ agree with those specified in the ``logical style'' of \cite{CCHM,OP}.    Note that we do \emph{not} assume connections in the category $\Box$ of Cartesian cubical sets.
+We now specify a second weak factorization system, with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the \emph{fibrations}.  As explained in the introduction, we first recall from \cite{GS} what we shall call the ``biased'' notion of fibration, before giving the ``unbiased'' one appropriate to the more general setting.   The biased version makes use of \emph{connections}, $$\vee,\wedge : \I\times\I \too \I,$$ on the cubes, which are also used in \cite{Sattler:2017ee} to determine a model structure with such fibrations.  In \cite{AGH} it is shown that the fibrations of \opcit\ agree with those specified in the ``logical style'' of \cite{CCHM:2018ctt,orton-pitts}.    Note that we do \emph{not} assume connections in the category $\Box$ of Cartesian cubical sets.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Partial box filling (biased version)}\label{sec:biasedfibration}
+\subsection*{Partial box filling (biased version)}\label{sec:biasedfibration}
 
 The \emph{generating biased trivial cofibrations} are all maps of the form
 \begin{equation}\label{eq:genclassTCof}
@@ -1177,7 +1178,7 @@ In order to ensure that such maps are indeed cofibrations, we assume two further
 Note that since $\delta_0: 1\to\I$ and $\delta_1:1\to\I$ are disjoint, by (C5) and stability under pullbacks we have that $0 \ra 1$ is a cofibration, so by stability again $0\ra A$ is always a cofibration.  Thus (C0) is no longer required.  From (C6) it follows that cofibrations are closed under pushout-products ${a}\otimes{b}$ in the arrow category.  It also then follows from (C5) that the boundary $\del : 1+1 \to \I$ is a cofibration.
 \end{remark}
 
-\paragraph{Fibrations (biased version).}
+\subsection*{Fibrations (biased version).}
 Now let 
 \[
 \mathcal{C}\otimes \delta_\epsilon\ =\ \{ c \otimes \delta_\epsilon : D \mono Z \times \I\ |\ c \in\mathcal{C},\ \epsilon = 0,1 \}
@@ -1196,7 +1197,7 @@ Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X
 \end{equation}
 with a generating biased trivial cofibration on the left, there is a diagonal filler $j$ as indicated. %This condition can be seen as a generalized homotopy lifting property.
 
-To relate this notion of fibration to the cofibration weak factorization system, fix any map $u : A \ra B$, and recall (\eg\ from \cite{JT,R}) that the pushout-product with $u$ is a functor on the arrow category 
+To relate this notion of fibration to the cofibration weak factorization system, fix any map $u : A \ra B$, and recall (\eg\ from \cite{JT:notes,Riehl}) that the pushout-product with $u$ is a functor on the arrow category 
 \[
 (-)\!\otimes u : \cSet^\mathbbm{2} \ra\cSet^\mathbbm{2}\,.
 \]
@@ -1213,7 +1214,7 @@ Y^B \ar@/_4ex/[rdd]_{f^B} \ar@{.>}[rd]^{u\, \Rightarrow f} \ar@/^4ex/ [rrd]^{Y^u
 }
 \end{equation}
 
-The $\otimes\dashv\ \Rightarrow$ adjunction on the arrow category has the following useful relation to weak factorization systems (cf.~\cite{GS,Riehl,JT}), where, as usual, for any maps $a : A \ra B$ and $f : X\ra Y$ we write 
+The $\otimes\dashv\ \Rightarrow$ adjunction on the arrow category has the following useful relation to weak factorization systems (cf.~\cite{GS,Riehl,JT:notes}), where, as usual, for any maps $a : A \ra B$ and $f : X\ra Y$ we write 
 \[
 a\, \pitchfork\, f 
 \]
@@ -1281,7 +1282,7 @@ An object $X$ is fibrant if and only if both of the endpoint  projections $X^\I 
 %But this is just to say that the maps $\delta_\epsilon\Rightarrow{f}$ are in the right class of the cofibrations, which is equivalent to their being $+$-algebras, as claimed.
 %\end{proof}
 
-\paragraph{Fibration structure (biased version).}
+\subsection*{Fibration structure (biased version).}
 The $\otimes\dashv\ \Rightarrow$ adjunction determines the fibrations in terms of the trivial fibrations, which in turn can be determined by \emph{uniform} lifting against a \emph{small category} consisting of basic cofibrations and pullback squares between them, by proposition \ref{prop:uniformstructequivrelative}.  The fibrations are similarly determined by \emph{uniform} lifting against the \emph{small category} of basic, biased trivial cofibrations, consisting of all those $c \otimes \delta_\epsilon$ in $\mathcal{C}\otimes \delta_\epsilon$ where $c : C \mono \I^n$ is a \emph{basic} cofibration, \ie\ one with representable codomain.  
 Thus the set of \emph{basic biased trivial cofibrations} is
 \begin{equation}\label{eq:basicTCof}
@@ -1312,12 +1313,12 @@ for each basic biased trivial cofibration $c \otimes \delta_\epsilon : B = (\I^n
 }
 \end{equation}
 by applying the functor $(-)\otimes\,\delta_\epsilon$ to the pullback square relating $u^*c$ to $c$.  For the outer rectangle in \eqref{diagram:directedfillers2} there is then a chosen diagonal filler $$j_\epsilon(u^*c,x\circ(u\times\I)', y\circ(u\times\I)): \I^m\times\I\ra X\,,$$ and for this map we require that
-\begin{equation}\label{eq:uniformfillers}
+\begin{equation}\label{eq:uniformfillers2}
 j_\epsilon(u^*c,x\circ (u\times\I)', y\circ(u\times\I)) = j_\epsilon(c,x,y)\circ(u\times \I).
 \end{equation}
-This can be seen to be a reformulation of the logical specification given in \cite{CCHM} (see \cite{AGH}).
+This can be seen to be a reformulation of the logical specification given in \cite{CCHM:2018ctt} (see \cite{AGH}).
 
-\begin{definition}\label{def:uniform} A \emph{uniform, biased fibration structure} on a map $f: Y\ra X$ is a choice of fillers $j_\epsilon(c,x,y)$ as in \eqref{diagram:directedfillers} satisfying \eqref{eq:uniformfillers} for all maps $u : \I^m\ra\I^n$.
+\begin{definition}\label{def:uniform} A \emph{uniform, biased fibration structure} on a map $f: Y\ra X$ is a choice of fillers $j_\epsilon(c,x,y)$ as in \eqref{diagram:directedfillers} satisfying \eqref{eq:uniformfillers2} for all maps $u : \I^m\ra\I^n$.
 \end{definition}
 
 %Essentially the same argument as that given for Proposition \ref{prop:algequivfill} also yields the following sharper formulation in terms of fibration structure.
@@ -1349,15 +1350,14 @@ B' \ar@{>->}[d]_{u^*c \otimes \delta_\epsilon} \ar[rr]^{(u\times\I)'} \pbcorner 
 }
 \end{equation}
 For the pair $(u^*c \otimes \delta_\epsilon,\, x\circ (u\times\I)')$ in \eqref{diagram:directedfillers3} the chosen extension $$j(u^*c \otimes \delta_\epsilon,x\circ (u\times\I)'): \I^m\times\I \ra X$$ is equal to  $j(c,x)\circ (u\times\I)$,
-\begin{equation}\label{eq:uniformfillers2}
+\begin{equation}\label{eq:uniformfillers3}
 j(u^*c \otimes \delta_\epsilon,x\circ(u\times\I)') = j(c,x) (u\times\I).
 \end{equation}
 \end{enumerate}
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Partial box filling (unbiased version)}\label{subsec:unbiasedfibration}
-
+\subsection*{Partial box filling (unbiased version)}\label{subsec:unbiasedfibration}
 
 Rather than building a weak factorization system based on the foregoing notion of biased fibration (as is done in \cite{GS}), we shall first eliminate the ``bias'' with respect to the endpoints $\delta_\epsilon : 1 \ra \I$, for $\epsilon = 0,1$.  This will have the effect of adding more trivial cofibrations, and thus more weak equivalences, to our model structure. Consider first the simple path-lifting condition for a map $f : Y \to X$, which is a special case of \eqref{diagram:biasedfillers} with $c =\, ! : 0\mono 1$, so that $!\otimes\delta_\epsilon = \delta_\epsilon$.
 \begin{equation*}
@@ -1442,7 +1442,7 @@ and $u = (\delta\Rightarrow\! f)$.
 As a special case, we have:
 \begin{corollary}\label{cor:unbiasedfibrant}
 An object $X$ is unbiased fibrant if and only if the canonical map $u$ to the pullback, in the following diagram in $\cSet$, is a trivial fibration.
-\begin{equation}\label{diagram:unbiasedfibrationeval}
+\begin{equation}\label{diagram:unbiasedfibrationeval3}
 \xymatrix{
 X^\I\times \I \ar@/^3ex/ [rrrd]^{\mathsf{eval}} \ar@/_3ex/ [rdd]_{p_2} \ar@{..>}[rd]_{u}  && \\
 & \I\times X \pbcorner  \ar[d] \ar[rr] && X \ar[d] \\
@@ -1537,7 +1537,7 @@ Pulling back $\delta : 1\to \II$ in $\cSet/_\I$ along the base change $\delta_\e
 (\delta_\epsilon^*\I^*F)^{\delta_\epsilon^*\delta} =  F^{\delta_\epsilon} : F^\I \too F\,,
 \]
 as shown in the following.
-\begin{equation}\label{diagram:unbiasedfibration}
+\begin{equation}\label{diagram:unbiasedfibration1}
 \xymatrix{
 F^\I \ar[d]_{F^{\delta_\epsilon}} \ar[rr] \pbcorner && (\I^* F)^{\II} \ar[d]^{(\I^*F)^{\delta}} &  \\
  F \ar[d] \ar[rr] \pbcorner && \I^*F \ar[d]  \ar[r] \pbcorner & F \ar[d]  \\
@@ -1547,7 +1547,7 @@ F^\I \ar[d]_{F^{\delta_\epsilon}} \ar[rr] \pbcorner && (\I^* F)^{\II} \ar[d]^{(\
 And pullback preserves trivial fibrations. 
 \end{proof}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{Unbiased fibration structure.}\label{sec:unbiasedfibration}
+\subsection*{Unbiased fibration structure.}\label{sec:unbiasedfibration}
 
 As in the biased case, the fibrations can be determined by \emph{uniform} right-lifting against a  \emph{small category} of unbiased trivial cofibrations, now consisting of all those $c \otimes_i \delta$ in $\mathcal{C}\otimes \delta$ for which $c : C \mono \I^n$ is basic, \ie\ has representable codomain.  Call these maps the \emph{basic unbiased trivial cofibrations}, and let 
 \begin{equation}\label{eq:basicunbiasedTCof}
@@ -1583,7 +1583,7 @@ $$j(u^*c,iu,x(u\times \I)', y(u\times \I)): \I^m\times\I\ra X,$$ and for this ma
 \begin{equation}\label{eq:uniformunbiasedfillers}
 j(u^*c,iu,x(u\times \I)', y(u\times \I)) = j(c,i,x,y)\circ (u\times \I).
 \end{equation}
-%This is a reformulation of the logical specification given in \cite{CCHM} (see the appendix).
+%This is a reformulation of the logical specification given in \cite{CCHM:2018ctt} (see the appendix).
 
 \begin{definition}\label{def:unbiasedfibstructure} A \emph{uniform, unbiased fibration structure} on a map $$f: Y\ra X$$ is a choice of fillers $j(c,i,x,y)$ as in \eqref{diagram:basicunbiasedfillers} satisfying \eqref{eq:uniformunbiasedfillers} for all $u : \I^m\ra\I^n$.
 \end{definition}
@@ -1629,7 +1629,7 @@ Fibration structures on a map $f : Y\ra X$ correspond uniquely to relative $+$-a
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Factorization}\label{subsec:FWFS}
+\subsection*{Factorization}\label{subsec:FWFS}
 
 \begin{definition}\label{def:FibWFSclasses}
 Summarizing the foregoing definitions, we have the following classes of maps:
@@ -1698,7 +1698,7 @@ with $i: X\mono X'$ an unbiased trivial cofibration and $p: X'\onto Y$ an unbias
 \end{lemma}
 %
 \begin{proof}
-We can use a standard argument (the ``algebraic small objects argument'', cf.~\cite{Garner}), which can be further simplified using the fact that the codomains of the basic trivial cofibrations $c\, \otimes_i \,\delta : B \mono \I^{n+1}$ are not just representable, but \emph{tiny} in the sense of Proposition \ref{prop:Itiny}, and the domains are not merely ``small'', but \emph{finitely presented}.  The reader is referred to \cite{A:cubical} for details in a similar case.
+We can use a standard argument (the ``algebraic small objects argument'', cf.~\cite{garner:small-object-argument,riehl-algebraic-model}), which can be further simplified using the fact that the codomains of the basic trivial cofibrations $c\, \otimes_i \,\delta : B \mono \I^{n+1}$ are not just representable, but \emph{tiny} in the sense of Proposition \ref{prop:Itiny}, and the domains are not merely ``small'', but \emph{finitely presented}.  The reader is referred to \cite{Awodey:cubical-model} for details in a similar case.
 \end{proof}
 %
 %Thus let $X$ be any object, and we wish to find a fibrant object $X'$ and a trivial cofibration $h : X\mono X'$.
@@ -1778,7 +1778,7 @@ We can use a standard argument (the ``algebraic small objects argument'', cf.~\c
 %\end{proof}
 
 \begin{remark}\label{remak:constructive}
-The proof in \ibid\ actually produces a stronger result than we need, namely an \emph{algebraic} weak factorization system.  This follows from the small generating \emph{category} $\mathcal{C}\otimes\delta$  of basic unbiased trivial cofibrations (and pullback squares of the form on the left in \eqref{diagram:basicunbiasedfillersuniformity}).  The relationship between this stronger condition and the \emph{classifying types} used in Section \ref{sec:U} is studied in \cite{Swan}, which also gives an even more ``constructive'' proof of the factorization Lemma \ref{lemma:factorization}, not requiring quotients, exactness, or impredicativity \cite{Swan:Wtypes}.  With this modification, the present approach can also be used in a \emph{quasi}topos, as occurs in \eg\ realizability and sheaves.
+The proof in \ibid\ actually produces a stronger result than we need, namely an \emph{algebraic} weak factorization system.  This follows from the small generating \emph{category} $\mathcal{C}\otimes\delta$  of basic unbiased trivial cofibrations (and pullback squares of the form on the left in \eqref{diagram:basicunbiasedfillersuniformity}).  The relationship between this stronger condition and the \emph{classifying types} used in Section \ref{sec:U} is studied in \cite{Swan:Wtypes}, which also gives an even more ``constructive'' proof of the factorization Lemma \ref{lemma:factorization}, not requiring quotients, exactness, or impredicativity.  With this modification, the present approach can also be used in a \emph{quasi}topos, as occurs in \eg\ realizability and sheaves.
 \end{remark}
 
 
@@ -1890,10 +1890,10 @@ and therefore two interlocking weak factorization systems:
 %\end{enumerate}
 %\end{corollary}
 
-It now ``only'' remains to show that the weak equivalences $\WW$ satisfy the 3-for-2 axiom, in order to verify that $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ is a model structure.  Perhaps surprisingly, this will occupy the remainder of these lectures!  We shall follow roughly the approach of \cite{Joyal}: the weak equivalences between fibrant objects are expected to be the usual \emph{homotopy equivalences}, which evidently  satisfy 3-for-2.   So we reduce to this case using the fact that $K^X$ is fibrant whenever $K$ is.  It should suffice, namely, to show that the weak equivalences $w : X\to Y$ are those maps which induce homotopy equivalences $K^w : K^Y \simeq K^X$ for fibrant $K$.   Such maps are termed \emph{weak homotopy equivalences}  (Definition \ref{def:WHE}), and our task will be therefore to show that a map is a weak equivalence if and only if it is a weak homotopy equivalence.
+It now ``only'' remains to show that the weak equivalences $\WW$ satisfy the 3-for-2 axiom, in order to verify that $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ is a model structure.  Perhaps surprisingly, this will occupy the remainder of these lectures!  We shall follow roughly the approach of \cite{JT:notes}: the weak equivalences between fibrant objects are expected to be the usual \emph{homotopy equivalences}, which evidently  satisfy 3-for-2.   So we reduce to this case using the fact that $K^X$ is fibrant whenever $K$ is.  It should suffice, namely, to show that the weak equivalences $w : X\to Y$ are those maps which induce homotopy equivalences $K^w : K^Y \simeq K^X$ for fibrant $K$.   Such maps are termed \emph{weak homotopy equivalences}  (Definition \ref{def:WHE}), and our task will be therefore to show that a map is a weak equivalence if and only if it is a weak homotopy equivalence.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{Weak homotopy equivalence.}
+\subsection*{Weak homotopy equivalence.}
 
 
 \begin{definition}\label{homotopy}
@@ -2171,7 +2171,7 @@ B \ar[r]_{b} &  X  \ar[r]_\eta &  X'.
 }
 \end{equation}
 By assumption, there is a lift $j' : B\ra Y'$ with $f' j' = \eta b$ and $j'c = yb$.  Therefore, since $f$ is a pullback, there is a map $j : B\ra Y$ with $fj = b$ and $y j = j'$.  
-\begin{equation}\label{diagram:CofWHEiffFibLift2}
+\begin{equation}\label{diagram:CofWHEiffFibLift3}
 \xymatrix{
 A \ar@{>->}[d]_{c} \ar[r]^-{a}  & Y \ar@{>>}[d]_<<<<{f} {\pbcorner} \ar[r]^{y} & Y' \ar@{>>}[d]^{f'} \\
 B \ar[r]_{b} \ar@{..>}[ru]^{j} \ar@{..>}[rru]_>>>>{j'} &  X  \ar[r]_\eta &  X'.
@@ -2237,7 +2237,7 @@ The proof of the fibration extension property will be given in Section \ref{sec:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section{Composition}\label{sec:composition}
 %
-%A novelty of the type-theoretic notion of fibration is the method (due to Coquand and first introduced in \cite{CCHM}) of reducing the (type-theoretically specified) notion of \emph{fibration structure} to the apparently weaker notion of a \emph{composition structure}.  Composition structure is more easily shown to be preserved by the type-forming operations like $\Sigma$ and $\Pi$, when these concepts are formulated in type theory, as is done in \cite{CCHM}, or in the internal lanuage of the ambient presheaf topos, as in \cite{OP}.  This is due to the fact that one can then efficiently calculate using the rules of type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under $\Pi$-types.  The approach taken here is a reformulation into diagrammatic language of those type-theoretic calculations.
+%A novelty of the type-theoretic notion of fibration is the method (due to Coquand and first introduced in \cite{CCHM}) of reducing the (type-theoretically specified) notion of \emph{fibration structure} to the apparently weaker notion of a \emph{composition structure}.  Composition structure is more easily shown to be preserved by the type-forming operations like $\Sigma$ and $\Pi$, when these concepts are formulated in type theory, as is done in \cite{CCHM}, or in the internal lanuage of the ambient presheaf topos, as in \cite{orton-pitts}.  This is due to the fact that one can then efficiently calculate using the rules of type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under $\Pi$-types.  The approach taken here is a reformulation into diagrammatic language of those type-theoretic calculations.
 %
 %\subsection{Composition for an object}
 %
@@ -2539,9 +2539,9 @@ The proof of the fibration extension property will be given in Section \ref{sec:
 \section{The Frobenius condition}\label{sec:Frobenius}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In this section, we show that the (unbiased) fibration weak factorization system from Section \ref{sec:fibrations} satisfies what has been called the \emph{Frobenius condition}: the left maps are stable under pullback along the right maps (see \cite{vdBG}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  In the present setting, it then follows that the entire model structure is stable under such a base change.  The Frobenius condition will be used in the proof of the equivalence extension property in Section \ref{sec:EEP}.  
+In this section, we show that the (unbiased) fibration weak factorization system from Section \ref{sec:fibrations} satisfies what has been called the \emph{Frobenius condition}: the left maps are stable under pullback along the right maps (see \cite{van-den-berg-garner}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  In the present setting, it then follows that the entire model structure is stable under such a base change.  The Frobenius condition will be used in the proof of the equivalence extension property in Section \ref{sec:EEP}.  
 
-An proof of Frobenius in the related setting of cubical sets \emph{with connections} was given in \cite{GS} using conventional, functorial methods.  By contrast, the type theoretic approach of \cite{CCHM} provides a proof that is much more direct, and can also be modified to work without connections (as in \cite{AXYZ}).  That approach proves the dual fact that the \emph{pushforward} operation, which is right adjoint to pullback and always exists in a topos, preserves fibrations when applied along a fibration.  This corresponds to the type-theoretic $\Pi$-formation rule, and the proof given in \opcit\ is entirely in type theory.  It also employs a reduction of box filling (in all dimensions) to an apparently weaker condition of \emph{Kan composition} (in all dimensions), which merely ``puts a lid on" the open box, rather than filling it.  This aspect of the type theoretic proof can also be described functorially, but is not used in the proof given here, and will therefore not be discussed further (see \cite{LOPS} for a description of Kan composition with connections, and \cite{A:composition,filling,Frobenius,etc} for the same without connections).
+An proof of Frobenius in the related setting of cubical sets \emph{with connections} was given in \cite{GS} using conventional, functorial methods.  By contrast, the type theoretic approach of \cite{CCHM:2018ctt} provides a proof that is much more direct, and can also be modified to work without connections (as in \cite{ABCHFL}).  That approach proves the dual fact that the \emph{pushforward} operation, which is right adjoint to pullback and always exists in a topos, preserves fibrations when applied along a fibration.  This corresponds to the type-theoretic $\Pi$-formation rule, and the proof given in \opcit\ is entirely in type theory.  It also employs a reduction of box filling (in all dimensions) to an apparently weaker condition of \emph{Kan composition} (in all dimensions), which merely ``puts a lid on" the open box, rather than filling it.  This aspect of the type theoretic proof can also be described functorially, but is not used in the proof given here, and will therefore not be discussed further (see \cite{LOPS18} for a description of Kan composition with connections, and \cite{A:composiiton} for the same without connections).
 
 Our proof takes the approach that was used to determine the unbiased fibrations, namely we first establish the result in the \emph{biased but generic} setting, and then transfer it to the unbiased setting by pulling back along the base change $\cSet\to\cSet/_\I$. We first give the second step as a conditional statement.
 
@@ -2575,7 +2575,7 @@ where the pushforward $(\I^*A)_*\I^*B$ is taken in the topos $\cSet/_\I$.  But $
 \end{proof}
   
 %%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{Frobenius for biased fibrations.}
+\subsection*{Frobenius for biased fibrations.}
 
 The results proved in this section will be applied to the slice category $\cSet/_\I$ and the generic point $\delta : 1 \ra \I = \I^*\I$, but nothing depends on this particular case, and so we shall write simply $\delta : 1\to \I$ for a chosen pointed object in an arbitrary topos $\EE$.  (Indeed, in this section $\EE$ may even be just a locally cartesian closed category with a class of cofibrations in the sense of Appendix A.)
 
@@ -2588,7 +2588,7 @@ A^\I \ar@/_3ex/ [rdd]_{f^\I} \ar@{.>}[rd]^{\delta\Rightarrow{f}} \ar@/^3ex/ [rrd
 }
 \end{equation}
 Let us write this condition schematically as follows:
-\begin{equation}\label{diagram:frobenius1}
+\begin{equation}\label{diagram:frobenius2}
 \xymatrix{
 A^\I \ar[r]|| \ar[r]  & A_\epsilon\ar[d] \pbcorner \ar[r] & A \ar[d]^f \\
 & X^\I \ar[r]_{\epsilon} &  X
@@ -2680,7 +2680,7 @@ Taking the pushforward of the righthand vertical column give a map,
 \gamma:= \alpha_*\beta : \Pi_A{B} \to X\,,
 \]
 and placing it underneath, along with the corresponding construction from \eqref{diagram:frobenius1}, we then have the following commutative diagram.
- \begin{equation}\label{diagram:frobenius2}
+ \begin{equation}\label{diagram:frobenius2.5}
 \xymatrix{
 B^\I \ar[r]|| \ar[r]^{b} \ar[rd]_{\beta^\I}  & a^*B_\epsilon \ar[r]  \ar[d]  & B_{\epsilon}  \ar[d]   \ar[r] & B \ar[d]^\beta \\
 & A^\I \ar[r]|| \ar[r]^{a} \ar[rd]_{\alpha^\I}  & A_{\epsilon} \ar[d]   \ar[r] & A \ar[d]^\alpha \\
@@ -2982,7 +2982,7 @@ We shall construct a \emph{universal small fibration} $\dot{\U}\ra \U$, which is
 Our construction of $\dot{\U}\ra \U$ makes use, first of all, of a new description of the well-known Hofmann-Streicher universe in a category $\widehat{\bbC} = [\op{\bbC}, \Set]$ of presheaves on a small category~$\bbC$, which was used in \cite{HS:1997} to interpret dependent type theory. See \cite{awodey:HSuniverse} for further details. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Classifying families}\label{sec:Ufam}
+\subsection*{Classifying families}\label{sec:Ufam}
 
 \begin{definition}[\cite{HS:1997}]\label{def:HSuniverse}
 Let $\bbC$ be a small category.  A (type-theoretic) \emph{universe}  $(U, {\mathsf{E}l})$  consists of 
@@ -3019,7 +3019,7 @@ The argument $(c, A) \in \int_{\bbC}U$ in \eqref{eq:universeel} thus consists of
 The presheaf $U$, which is not small, is then regarded as the Grothendieck universe $u$ ``lifted'' from $\Set$ to $[\op{\bbC}, \Set]$.  We first analyse this specification of $(U, {\mathsf{E}l})$ from a different perspective, in order to establish its basic property as a classifier for small families in $\widehat\bbC$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{A realization-nerve adjunction.}
+\subsubsection*{A realization-nerve adjunction.}
 
 For a presheaf $X$ on $\bbC$, recall that the category of elements is the comma category,
 \[\textstyle
@@ -3109,7 +3109,7 @@ The image of $*\in 1c$ along the bottom is the forgetful functor $U_c : \bbC/_c\
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{A universal family.}
+\subsubsection*{A universal family.}
 
 For the terminal presheaf $1\in\widehat{\bbC}$ we have an iso $\elem{1} \cong\bbC$, so for every $X\in\widehat{\bbC}$ there is a canonical projection  $\elem X \ra\bbC$, which is a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
 Ignoring size issues temporarily, recall that discrete fibrations in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets (cf.~\cite{W:2007}).  For every presheaf $X\in\widehat{\bbC}$, we therefore have a pullback diagram in $\Cat$,
@@ -3207,7 +3207,7 @@ where $\Set^{\cong}$ is the category of isos in $\Set$, with $p_1, p_2$ the (opp
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{Small maps.}
+\subsubsection*{Small maps.}
  
 Of course, as defined in \eqref{eq:universedef}, the classifier $\VV\to\V$ cannot be a map in $\widehat{\bbC}$, for reasons of size; we now address this.  
 Let $\alpha$ be a cardinal number, and call the sets strictly smaller than it $\alpha$-\emph{small}.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
@@ -3260,7 +3260,7 @@ Note that the square on the right is evidently a pullback, and so the one on the
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{Examples of universal families $\VV_\alpha \too \V_\alpha$.}\label{examples:universalfamilies}
+\subsubsection*{Examples of universal families $\VV_\alpha \too \V_\alpha$.}\label{examples:universalfamilies}
 
 \begin{enumerate}
 %
@@ -3373,7 +3373,7 @@ $\alpha$-small maps in $\widehat{\bbC}/_X$
 
 %%%%%%%%%%%%%%%% end of H-S universes notes %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\paragraph{Classifying families.}
+%\subsection*{Classifying families.}
 %\ednote{revise from here - or sooner!}
 %
 %Let $\kappa$ be an inaccessible cardinal number.  Let $\Set_\kappa$ be the category of sets of size strictly less than $\kappa$, called \emph{small},  and let $\cSet_\kappa = \Set_\kappa^{\C^{\mathrm{op}}}$ be the category of small set valued presheaves on the cube category $\C$.  By a \emph{small fibration} we mean a fibration in this category of small cubical sets, which we identify with the evident subcategory, $\cSet_\kappa \subseteq \cSet$.  Finally, let $\dot{\Set}_\kappa$ be the category of small pointed sets, i.e.\ the coslice category $1/\Set_\kappa$.  There is an evident forgetful functor  $U:\dot{\Set}_\kappa \ra {\Set}_\kappa$.
@@ -3508,7 +3508,7 @@ $\alpha$-small maps in $\widehat{\bbC}/_X$
 %\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Classifying trivial fibrations}
+\subsection*{Classifying trivial fibrations}
 
 Returning now to the presheaf category $\cSet = \psh{\Box}$ of cubical sets, recall from section \ref{sec:cofibrations} that (uniform) trivial fibration structures on a map $A\ra X$ correspond bijectively to relative +-algebra structures over $X$ (definition \ref{def:+alg}).  A relative $+$-algebra structure on $A \ra X$ is an algebra structure for the pointed endofunctor $+_X : \cSet/X \ra \cSet/X$, where recall from \eqref{eq:partialmapclassifier}, 
 \[
@@ -3623,14 +3623,15 @@ The base change of the universal small trivial fibration  $$\TTFib\ra\TFib$$ in 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Classifying fibrations}\label{sec:universalfibration}
+\subsection*{Classifying fibrations}\label{sec:universalfibration}
 
-In order to classify fibrations $A\fib X$, we shall proceed as for trivial fibrations by constructing, for any map $A\ra X$, an object $\Fib(A)\to X$ of fibration structures which, moreover, is stable under pullback.  We then apply the construction to the universal small family $\VV\ra\V$ of Proposition \ref{prop:familyclassifier} to obtain a universal small fibration.    Here we will of course need to distinguish between biased and unbiased fibrations.  In Proposition \ref{Fibclassbiased}, we first construct a stable classifying type $\Fib(A)\ra X$ for $\delta$-biased fibration structures on any map $A\to X$ in $\cSet/_\I$ where $\delta$ is the generic point.    In Proposition \ref{Fibclassunbiased} we then transfer the construction along the base change $\I^* : \cSet \to \cSet/_\I$ to obtain a classifier $\Fib(A)\ra X$ for unbiased fibration structures on any $A\to X$ in~$\cSet$.
+In order to classify fibrations $A\fib X$, we shall proceed as for trivial fibrations by constructing, for any map $A\ra X$, an object $\Fib(A)\to X$ of fibration structures which, moreover, is stable under pullback.  We then apply the construction to the universal small family $\VV\ra\V$ of Proposition \ref{prop:familyclassifier} to obtain a universal small fibration.    Here we will of course need to distinguish between biased and unbiased fibrations.  In Lemma \ref{lemma:classtypebiasedfibstruct}, we first construct a stable classifying type $\Fib(A)\ra X$ for $\delta$-biased fibration structures on any map $A\to X$ in $\cSet/_\I$ where $\delta$ is the generic point.    In Lemma \ref{lemma:classtypeunbiasedfibstruct}
+we then transfer the construction along the base change $\I^* : \cSet \to \cSet/_\I$ to obtain a classifier $\Fib(A)\ra X$ for unbiased fibration structures on any $A\to X$ in~$\cSet$.
 
 The construction of $\Fib(A)\ra X$ for biased fibration structures with respect to a point $\delta : 1\to \I$ is already a bit more involved than was that of $\TFib(A)\ra X$.  In particular, it requires the codomain $\I$ of $\delta$ to be \emph{tiny}, which is indeed the case for the generic point $\delta : 1 \to  \I^*\I$ in $\cSet/_\I$ by Lemma~\ref{lemma:tinyslicedI}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{The classifying type of biased fibration structures.}
+\subsubsection*{The classifying type of biased fibration structures.}
 
 A classifying type $\Fib(A)\ra X$ of (uniform, $\delta$-biased) fibration structures on a map $p: A\ra X$, 
 as defined in Section \ref{sec:biasedfibration}, can be constructed as follows.
@@ -3784,7 +3785,7 @@ Proposition \ref{prop:UniversalFib} made no use of the fact that we were working
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\paragraph{The classifying type of unbiased fibration structures.}\label{par:classifyunbiasedfib} 
+\subsubsection*{The classifying type of unbiased fibration structures.}\label{par:classifyunbiasedfib} 
 
 In order to classify \emph{unbiased} fibration structures on maps $A\to X$ in $\cSet$, we first apply the pullback $\I^*: \cSet \ra \cSet/_\I$ and take the classifier $\Fib(\I^*A)\ra \I^*X$ for $\delta$-biased fibration structures, then apply the pushforward $\I_*: \cSet/_\I \ra \cSet$ and pull the result   $\I_*\Fib(\I^*A)\ra \I_*\I^*X$ back along the unit  $X \to \I_*\I^*X$.  
 
@@ -3799,7 +3800,7 @@ in $\cSet$.  Then, as just said, we define the desired map $\Fib(A)\ra X$ as the
  X \ar[r]_{\rho} &  X^\I
 }
 \end{equation}
-It now immediately from the adjunction $\I^*\dashv \I_*$ that sections of $\Fib(A)\ra X$ correspond bijectively to sections of $\Fib_i (\I^*A)\ra \I^{*}X$ over~$\I$, and thus to \emph{unbiased} fibration structures on $A\to X$.
+It now follows immediately from the adjunction $\I^*\dashv \I_*$ that sections of $\Fib(A)\ra X$ correspond bijectively to sections of $\Fib_i (\I^*A)\ra \I^{*}X$ over~$\I$, and thus to \emph{unbiased} fibration structures on $A\to X$.
 
 \begin{lemma}\label{lemma:classtypeunbiasedfibstruct}
 For any map $A\ra X$ in $\cSet$, the map $\Fib(A)\ra X$ in \eqref{diagram:fibU7} is a \emph{classifying type for unbiased fibration structures}: sections of $\Fib(A)\ra X$ correspond bijectively to unbiased fibration structures on $A\ra X$, and the construction is stable under pullback in the expected sense (as in Lemma \ref{lemma:classtypebiasedfibstruct}).
@@ -3826,7 +3827,7 @@ Finally, we can again take $\Fib := \Fib(\VV)$ to now obtain a universal small \
 
 \begin{proposition}\label{prop:UniversalunbiasedFib}
 The map $\FFib\ra\Fib$ just constructed is a \emph{universal small unbiased fibration} in $\cSet$: every small unbiased fibration $A \fib X$ is a pullback of $\FFib \fib \Fib$ along a canonically determined classifying map $X\ra \Fib$.
-\begin{equation}\label{diagram:classifyfib}
+\begin{equation}\label{diagram:classifyfib2}
 \xymatrix{
 A \ar@{>>}[d] \ar[r]  \pbcorner & \FFib \ar@{>>}[d] \\
 X \ar[r] & \Fib
@@ -3888,7 +3889,7 @@ It was defined to be $\FFib\fib\Fib = \Fib(\VV)$, for the universal family $\VV 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Realignment for fibration structure}\label{sec:realignment}
+\subsection*{Realignment for fibration structure}\label{sec:realignment}
 
 The realignment for families of Proposition \ref{prop:realignment} will need to be extended to (structured) fibrations. Our approach makes use of the notion of a \emph{weak proposition}.  Informally, a map $P\to X$ may be said to be a weak proposition if it is ``conditionally contractible'', in the sense that it is contractible if it has a section (recall that a proposition may be defined as a fibration that is ``contractible if inhabited'').  More formally, we have the following.
 
@@ -3944,7 +3945,7 @@ which comes with the canonical projection
 \] 
 In these terms, a fibration $E \fib X$ is a pair $\langle E, e \rangle$, consisting of the underlying family $E\to X$, equipped with a fibration structure $e :\Fib(E)$.
 %
-\noindent Lemma \ref{lemma:Fibweakprop}  then allows us to establish the following, which was first isolated in \cite{Shu:UAERP}  (as condition (2'), also see \cite{Shu:15}). It holds for both biased and unbiased fibrations, and will be used in the sequel to ``correct'' the fibration structure on certain maps.
+\noindent Lemma \ref{lemma:Fibweakprop}  then allows us to establish the following, which was first isolated in \cite{Shu:15}  (as condition (2'), also see \cite{GSS:22}). It holds for both biased and unbiased fibrations, and will be used in the sequel to ``correct'' the fibration structure on certain maps.
 
 \begin{lemma}[Realignment for fibrations]\label{lemma:realignmentforfibrations}
 Given a fibration $F\fib X$ and a cofibration $c : C\cof X$, let $f_c : C \to \U$ classify the pullback $c^*F\fib C$.  Then there is a classifying map $f: X \to \U$ for $F$ with $f\circ c = f_c$.
@@ -3996,7 +3997,7 @@ Since $\U=\Fib(\VV)\to\V$ is a weak proposition by Lemma \ref{lemma:Fibweakprop}
 \section{The equivalence extension property}\label{sec:EEP}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-The equivalence extension property is closely related to the \emph{univalence} of the universal fibration $\UU\fib\U$ constructed in section \ref{sec:universalfibration} (see \cite{Shu2015}).  It will be used in section \ref{sec:FEP} to show that the base object $\U$ is fibrant.  The proof of the equivalence extension property given here is a reformulation of a type-theoretic argument due to Coquand \cite{CCHM}, which in turn is a modification of the original argument of Voevodsky \cite{KLV}.  See \cite{sattler} for another reformulation.  
+The equivalence extension property is closely related to the \emph{univalence} of the universal fibration $\UU\fib\U$ constructed in section \ref{sec:universalfibration} (see \cite{Shu:15}).  It will be used in section \ref{sec:FEP} to show that the base object $\U$ is fibrant.  The proof of the equivalence extension property given here is a reformulation of a type-theoretic argument due to Coquand \cite{CCHM:2018ctt}, which in turn is a modification of the original argument of Voevodsky \cite{KLV:21}.  See \cite{Sattler:2017ee} for another reformulation.  
 
 In this section we are interested mainly in \emph{unbiased} fibrations in $\cSet$. 
 Thus for the remainder of this section ``fibration'' unqualified will always mean ``unbiased fibration in $\cSet$''.  
@@ -4188,7 +4189,7 @@ Note that $p : A \ra C$ is small if $q : B\ra C$ is small.
 \section{The fibration extension property}\label{sec:FEP}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Given a universal fibration $\UU\fib\U$, such as $\FFib\fib\Fib$ of Proposition \ref{prop:UniversalunbiasedFib}, the fibration extension property (Definition \ref{def:fibextreplace}) is closely related to the statement that the base object $\U$ is fibrant.  For Kan simplicial sets, Voevodsky proved the latter directly, using the theory of minimal fibrations \cite{VVuniverse}.   In a more general (but still simplicial) setting, Shulman \cite{Shulmanuniverse} gives a proof using univalence, in the form of the equivalence extension property of Section \ref{sec:EEP}, but that proof also uses the 3-for-2 property for weak equivalences, which we do not yet have. For cubical sets, Coquand \cite{CCHM} uses the equivalence extension property to prove that $\U$ is fibrant without assuming 3-for-2 for weak equivalences, via a neat type theoretic argument reducing box-filling to an operation of \emph{Kan-composition}.   We shall prove that $\U$ is fibrant using the equivalence extension property, also without assuming 3-for-2 for weak equivalences, but via a different argument than that in \cite{CCHM}, one not using (type theory or)  Kan composition.
+Given a universal fibration $\UU\fib\U$, such as $\FFib\fib\Fib$ of Proposition \ref{prop:UniversalunbiasedFib}, the fibration extension property (Definition \ref{def:fibextreplace}) is closely related to the statement that the base object $\U$ is fibrant.  For Kan simplicial sets, Voevodsky proved the latter directly, using the theory of minimal fibrations \cite{KLV:21}.   In a more general (but still simplicial) setting, Shulman \cite{Shu:15} gives a proof using univalence, in the form of the equivalence extension property of Section \ref{sec:EEP}, but that proof also uses the 3-for-2 property for weak equivalences, which we do not yet have. For cubical sets, Coquand \cite{CCHM:2018ctt} uses the equivalence extension property to prove that $\U$ is fibrant without assuming 3-for-2 for weak equivalences, via a neat type theoretic argument reducing box-filling to an operation of \emph{Kan-composition}.   We shall prove that $\U$ is fibrant using the equivalence extension property, also without assuming 3-for-2 for weak equivalences, but via a different argument than that in \cite{CCHM:2018ctt}, one not using (type theory or)  Kan composition.
 
 %We give a formulation of this argument in an appendix \ref{App:Comp}.
 %
@@ -4548,7 +4549,7 @@ Use the fact that any two diagonal fillers are homotopic to get a homotopy equiv
 \end{proof}
 
 \begin{remark}
-The foregoing proof also works, \emph{mutatis mutandis}, for the case of \emph{biased} fibrations, as in the setting of \cite{CCHM}.
+The foregoing proof also works, \emph{mutatis mutandis}, for the case of \emph{biased} fibrations, as in the setting of \cite{CCHM:2018ctt}.
 \end{remark}
 
 Applying proposition \ref{prop:UfibtoFEP} now yields the following.
@@ -4587,7 +4588,7 @@ is a trivial fibration.  From this, it follows that the canonical transport map
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Appendix A: Axioms for cartesian cofibrations}\label{appendix:Cofibrations}
-\addcontentsline{toc}{section}{A\quad  Axioms for cartesian cofibrations}
+\addcontentsline{toc}{section}{A\quad Axioms for cartesian cofibrations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A system of maps satisfying the axioms (C0)-(C8) above for the cofibrations in a cartesian cubical model category may be called \emph{cartesian cofibrations}. The axioms can be restated equivalently as follows.
@@ -4615,7 +4616,7 @@ We generalize \eqref{eq:SOCnerve} from the case of $\mathbbm{2}\in\Set$ to an ar
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Appendix B: Cartesian cubical sets classifies intervals}\label{appendix:classtopos}
-\addcontentsline{toc}{section}{B\quad Cartesian cubical sets classifies intervals}
+\addcontentsline{toc}{section}{B\quad  Cartesian cubical sets classifies intervals}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection*{Cubical sets as a classifying topos}\label{subsec:classtopos}
 
@@ -4628,7 +4629,7 @@ It is generated by the representable presheaves $\I^n = \yon[n],$ called the \em
 \[
 \{c \in X_n \} \ \cong\ \{c : \I^n \to X\}.
 \]
-In particular, $\I^n_m = \cSet([m],[n])$ is the set of $m$-cubes in the $n$-cube.\footnote{Note that the cardinality of $\I^n_m$ is therefore just $(m+2)^n$, in comparison to the \emph{Dedekind} cubes, for which \eg\ $\cSet([1],[n])$ the $n^{th}$ \emph{Dedekind number}, the number of elements in the free distributive lattice on $n$ generators, which in general is  a number so large that it is not known, even for values of $n>7$.} 
+In particular, $\I^n_m = \cSet([m],[n])$ is the set of $m$-cubes in the $n$-cube.\footnote{Note that the cardinality of $\I^n_m$ is therefore just $(m+2)^n$, in comparison to the \emph{Dedekind} cubes, for which \eg\ $\cSet([1],[n])$ the $n^{th}$ \emph{Dedekind number}, the number of elements in the free distributive lattice on $n$ generators, which in general is a number so large that it is not known even for values of $n>8$.} 
 
 \begin{proposition}
 The category $\cSet$ of Cartesian cubical sets is the classifying topos for \emph{intervals}: objects $\mathcal{I}$ with points $i,j:1\rightrightarrows \mathcal{I}$ the pullback of which is $0$:
@@ -4713,7 +4714,7 @@ Thus the presheaf topos $\Set^\B$ is the closed complement of the open subtopos 
 \begin{corollary}
 The geometric realization functor to topological spaces 
 $$R: \cSet \to \mathsf{Top}$$
-preserves cartesian products, $R(X\times Y) \cong R(X)\times R(Y)$.\footnote{This fact and the next one Proposition \ref{prop:nervefull} are to be contrasted with the case of monoidal cubical sets, \eg\ as studied by \cite{Jardine,Dougherty}}
+preserves cartesian products, $R(X\times Y) \cong R(X)\times R(Y)$.\footnote{This fact and the next one Proposition \ref{prop:nervefull} are to be contrasted with the case of monoidal cubical sets, \eg\ as studied by \cite{Jardine:cubical}}
 \end{corollary}
 
 \begin{proof}
@@ -4810,7 +4811,7 @@ On the other hand,
 The isomorphism is natural in $n$.
 \end{proof}
 %
-We mention that a similar fact holds for the generic object in the object classifier topos, and in the Schanuel topos, and is used in the theory of ``abstract higher-order syntax'' \cite{Pitts,Fiore}.
+We mention that a similar fact holds for the generic object in the object classifier topos, and in the Schanuel topos, and is used in the theory of ``abstract higher-order syntax'' \cite{FiorePlotkinTuri:1999}.
 
 
 \begin{definition}
@@ -4831,16 +4832,16 @@ X_\I(n) &\cong \hom(\I^n, X_\I) \\
 &\cong \hom(\I^n + C^n_{n-1}\I^{n-1} + \dots + C^n_{1}\I+1, X) \\
 &\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0),
 \end{align*}
-where $C^n_{k} = \binom{n}{k}$ is the usual binomial coefficient.
+where $C^n_{k}$ is the usual binomial coefficient $\binom{n}{k}$.
 \end{corollary}
 
 \begin{corollary}
 There is a natural transformation $X_\I \to X$, given by the first projection from $X_\I(n)\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0)$.
 \end{corollary}
 
-Finally, we observe that that the path object functor $X^\I$ itself, as a left adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{ATOM} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
+Finally, we observe that that the path object functor $X^\I$ itself, as a left adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{Lawvere:2004} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
 
-\paragraph{Example.} (P.~Aczel)
+\subsubsection*{Example.} (P.~Aczel)
 The cubical set $P$ of polynomials (over the integers, say), is defined by:
 \[
 P_n = \{ p(x_1, ...,  x_n)\ |\  \text{polynomials in at most}\  x_1, ..., x_n \}
@@ -4878,7 +4879,7 @@ $P$ is a ring in $\psh{\C_\I}$ since $J_!(\I)$ is a ring in $\psh{\C_\T}$ and $J
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{alpha}
-\bibliography{../references, ../AGHbibliography, ../ACCRSbibliography,}
+\bibliography{../references}
 %\addcontentsline{toc}{section}{References}
 %
 %%
@@ -4893,9 +4894,9 @@ $P$ is a ring in $\psh{\C_\I}$ since $J_!(\I)$ is a ring in $\psh{\C_\T}$ and $J
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Composition without connections}\label{sec:composition}
 
-A novelty of the type-theoretic notion of fibration is the method (due to Coquand and first introduced in \cite{CCHM}) of reducing the (type-theoretically specified) notion of \emph{fibration structure} to the apparently weaker notion of a \emph{composition structure}.  Composition structure is more easily shown to be preserved by the type-forming operations like $\Sigma$ and $\Pi$, when these concepts are formulated in type theory, as is done in \cite{CCHM}, or in the internal lanuage of the ambient presheaf topos, as in \cite{OP}.  This is due to the fact that one can then efficiently calculate using the rules of type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under $\Pi$-types.  The approach taken here is a reformulation into diagrammatic language of those type-theoretic calculations.
+A novelty of the type-theoretic notion of fibration is the method (due to Coquand and first introduced in \cite{CCHM:2018ctt}) of reducing the (type-theoretically specified) notion of \emph{fibration structure} to the apparently weaker notion of a \emph{composition structure}.  Composition structure is more easily shown to be preserved by the type-forming operations like $\Sigma$ and $\Pi$, when these concepts are formulated in type theory, as is done in \cite{CCHM:2018ctt}, or in the internal lanuage of the ambient presheaf topos, as in \cite{orton-pitts}.  This is due to the fact that one can then efficiently calculate using the rules of type theory (and even in a proof assistant), making it possible to prove e.g.\  that the fibrations are closed under $\Pi$-types.  The approach taken here is a reformulation into diagrammatic language of those type-theoretic calculations.
 
-\subsubsection*{Composition for an object}
+\subsection*{Composition for an object}
 
 Let $p : 1 \ra \I$ be any point of the interval (e.g.\ $\delta_0$), and $\epsilon_p := X^p : X^\I \ra X$ the corresponding ``evaluation at $p$'' map.  Given another point $q : 1 \ra \I$, there is an evident factorization 
 \[
@@ -4917,7 +4918,7 @@ Z \ar[r] \ar@{..>}[ru]^{k} & X,
 }
 \end{equation}
 
-If $X$ is fibrant in the \emph{biased} sense of section \ref{sec:biasedfibration}, then $X$ clearly has composition from $\delta_0$ to $\delta_1$ (and back), since the outer rectangle then has a diagonal filler (as does the corresponding one with $\pi_2$ for $\pi_1$).   In the case where the category of cubes is assumed to have connections, one can also show the converse, that having composition implies diagonal filling for all such squares \eqref{diagram:composition1}; logical proofs of this fact can be found in \cite{CCHM,OP}, and a diagrammatic proof is given in Appendix 1.
+If $X$ is fibrant in the \emph{biased} sense of section \ref{sec:biasedfibration}, then $X$ clearly has composition from $\delta_0$ to $\delta_1$ (and back), since the outer rectangle then has a diagonal filler (as does the corresponding one with $\pi_2$ for $\pi_1$).   In the case where the category of cubes is assumed to have connections, one can also show the converse, that having composition implies diagonal filling for all such squares \eqref{diagram:composition1}; logical proofs of this fact can be found in \cite{CCHM:2018ctt,OP}, and a diagrammatic proof is given in Appendix 1.
 
 If $X$ is fibrant in the \emph{unbiased} sense of section \ref{sec:unbiasedfibration}, with the generic point $\delta : 1\ra \I$ over $\I$, then $X$  will have composition over $\I$ from $\delta$ to either of $\delta_0, \delta_1$, for the same reason as before: the map $(\delta\!\Rightarrow\!X) = X^\delta : X^\I \ra X$ is a trivial fibration over $\I$, by the definition of fibrancy. In order to arrive at a property equivalent to unbiased filling, we shall use a generic form of composition from $\delta$ to a second generic point $\delta'$.  This is obtained by pulling back along the (say, second) projection $\pi : \I\times\I \ra \I$ to work in $\cSet/(\I\times\I)$, where in addition to $\delta, \delta_0, \delta_1$ we now also have a point $\delta' : 1 \ra \I$, given by the additional diagonal map over $\I\times \I$,
 \begin{equation}\label{diagram:deltaprime}
@@ -5119,7 +5120,7 @@ as required.
 %XXXXX Need to add the side condition on the composition when the two points are the same.
 %We then let $\gamma := X^R$ to complete the proof.
 
-\subsubsection*{Composition for a map}
+\subsection*{Composition for a map}
 We next generalize the notion of compostion for an object $X$ to composition for a map $f : Y\ra X$.  First consider biased fibrations in the sense of section \ref{sec:biasedfibration}; recall from Corollary \ref{cor:fibstrequivplustr} that a (biased) fibration structure on a map $f :Y\ra X$ is the same thing as a pair of $+$-algebra structures on the maps
 \[
 (\delta_\epsilon\Rightarrow\!{f}) : Y^\I \ra X^\I \times_{X} Y
@@ -5519,7 +5520,7 @@ Y^\I \ar@/_4ex/ [rdd] \ar[rd]^{\delta\Rightarrow{f}} \ar@/^4ex/ [rrd] && \\
 }
 \end{equation}
 
-In order to compare with \cite{OP}, let us switch to informal type-theoretic notation and write $Y=\sum_{x:X}A(x)$ for a type-valued map $A : X\ra \U$.  Let $\mathsf{eval}_0 = X^\delta : X^\I\ra X$, so that the above pullback becomes
+In order to compare with \cite{orton-pitts}, let us switch to informal type-theoretic notation and write $Y=\sum_{x:X}A(x)$ for a type-valued map $A : X\ra \U$.  Let $\mathsf{eval}_0 = X^\delta : X^\I\ra X$, so that the above pullback becomes
 \begin{equation*}\label{diagram:pullbackhom3}
 \xymatrix{
  {\sum_{p:X^\I}}A(p0) \ar[d] \ar[r] \pbcorner & {\sum_{x:X}}A(x) \ar[d] \\
@@ -5553,13 +5554,13 @@ Since being a $+$-algebra (a trivial fibration) is a fiberwise property, we have
 The map $f : Y\ra X$ is a fibration iff for all $p: X^\I$, the map ${\prod_{i:\I}}A(pi) \ra A(p0)$ just constructed (and its counterpart for $\epsilon = 1$) is a $+$-algebra.
 \end{proposition}
 
-The (internal) condition that ${\prod_{i:\I}}A(pi) \ra A(p0)$ is a $+$-algebra for all $p: X^\I$ is shown in Appendix 1 to be equivalent to the type-theoretic definition of \emph{fibration structure} on a type family $A: X\ra \U$ given in \cite{OP}.  That this notion of fibration structure is closed under the formation of $\Pi$-types can be shown directly, much as in \cite{OP}, and was formally verified (in the setting without connections, but with unbiased fibrations) by \cite{Zesen}.
+The (internal) condition that ${\prod_{i:\I}}A(pi) \ra A(p0)$ is a $+$-algebra for all $p: X^\I$ is shown in Appendix 1 to be equivalent to the type-theoretic definition of \emph{fibration structure} on a type family $A: X\ra \U$ given in \cite{orton-pitts}.  That this notion of fibration structure is closed under the formation of $\Pi$-types can be shown directly, much as in \cite{orton-pitts}, and was formally verified (in the setting without connections, but with unbiased fibrations) by \cite{Zesen}.
 
 %%%%%%%%
 XXXXXXXXXXX stitch together this gap XXXXXXXXXXXX
 %%%%%%%%
 
-To make the connection to the logical style of presentation used in \cite{CCHM,OP}, suppose we want to describe a (uniform) filling structure on an arbitrary $f : X\ra Y$ with respect to all generating trivial cofibrations $m \otimes \delta_\epsilon : \I^n +_M (M\times\I) \ra \I^{n+1}$,
+To make the connection to the logical style of presentation used in \cite{CCHM:2018ctt,OP}, suppose we want to describe a (uniform) filling structure on an arbitrary $f : X\ra Y$ with respect to all generating trivial cofibrations $m \otimes \delta_\epsilon : \I^n +_M (M\times\I) \ra \I^{n+1}$,
 \begin{equation}\label{diagram:llpforf}
 \xymatrix{
 \I^n +_M (M\times\I) \ar[d]_{m \otimes \delta_\epsilon} \ar[r] & X \ar[d]^f \\
@@ -5575,7 +5576,7 @@ By pulling back along $c$, it suffices to consider  the case $Y=\I^{n}\times \I$
 \end{equation}
 where the cofibration $[\varphi] \mono 1$ is classified by $\varphi : 1\rightarrow \Phi$.
 
-Using a universe $\Set$ in the internal language of $\widehat\C$, we can regard the family $X\ra \I$ internally as a map $P : \I\rightarrow\Set$ (switching notation from $X$ to $P$ to agree with \cite{OP}).  Thus we arrive at the following local specification, expressed logically in the internal language of $\widehat\C$, of the object of ``($0$-directed) lifting structures'' $L^0(P)$ on a family $P: \I\rightarrow\Set$\,:
+Using a universe $\Set$ in the internal language of $\widehat\C$, we can regard the family $X\ra \I$ internally as a map $P : \I\rightarrow\Set$ (switching notation from $X$ to $P$ to agree with \cite{orton-pitts}).  Thus we arrive at the following local specification, expressed logically in the internal language of $\widehat\C$, of the object of ``($0$-directed) lifting structures'' $L^0(P)$ on a family $P: \I\rightarrow\Set$\,:
 %
 \begin{equation}\label{eqn:pplift}
 L^0(P)\ =\ \prod_{\varphi:\Phi}\, \prod_{s: \prod_{i:I}(Pi)^\varphi}\, \prod_{a_0:P0}\ a_0 |_\varphi = s0\ 
