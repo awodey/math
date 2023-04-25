@@ -1901,10 +1901,9 @@ and therefore two interlocking weak factorization systems:
 It now ``only'' remains to show that the weak equivalences $\WW$ satisfy the 3-for-2 axiom from Definition \ref{def:qmsviaJT} in order to verify that $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ is a model structure.  Perhaps surprisingly, this will occupy the remainder of these lectures!  We shall follow roughly the approach of \cite{JT:notes}: the weak equivalences between fibrant objects are shown to be the usual \emph{homotopy equivalences}, which evidently  satisfy 3-for-2.   So we reduce to this case using the fact that $K^X$ is fibrant whenever $K$ is.  It suffices, namely, to show that the weak equivalences are those maps $w : X\to Y$  that induce homotopy equivalences $K^w : K^Y \simeq K^X$ for fibrant $K$.   Such maps are termed \emph{weak homotopy equivalences}  (Definition \ref{def:WHE}), and our task will therefore be to show that a map is a weak equivalence if and only if it is a weak homotopy equivalence.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Weak homotopy equivalence.}
+\subsection*{Homotopy equivalence.}
 
-
-\begin{definition}\label{homotopy}
+\begin{definition}[Homotopy]\label{homotopy}
 A \emph{homotopy} $\vartheta : f \sim g$ between maps $f, g: X\rightrightarrows Y$  is a map,
 \[
 \vartheta : \I\times{X} \too Y,
@@ -1956,7 +1955,7 @@ f \ar[u]^{\rho} \ar[r]_\vartheta & g \ar[u]_\varphi
 \end{proof}
 
 We then have the usual definition of homotopy equivalence: 
-\begin{definition}\label{def:homotopyequivalence} 
+\begin{definition}[Homotopy equivalence]\label{def:homotopyequivalence} 
 A \emph{homotopy equivalence} is a map $f : X\to Y$ together with a map $g: Y\ra X$ and homotopies $\vartheta : 1_X \sim g\circ f$ and $\varphi : 1_Y\sim f\circ g$.  We call $g$ a \emph{quasi-inverse} of $f$.
 \end{definition}
 %
@@ -1966,7 +1965,26 @@ Since these maps clearly compose and come with quasi-inverses, the following is 
 The  homotopy equivalences satisfy the 3-for-2 condition. 
 \end{lemma}
 
-For the comparison with the weak equivalences we need the following.
+\begin{lemma}\label{lem:TFibisHE}
+A fibration that is a weak equivalence is a homotopy equivalence.
+\end{lemma}
+\begin{proof}
+Any trivial fibration $f : X \onto Y$ has a section $s: Y\to X$ by Corollary \ref{cor:plusalgprops}.
+Consider the following lifting problem:
+\begin{equation*}%\label{diagram:extensionforX}
+\xymatrix{
+X+X \ar@{>->}[d]_{[\iota_0, \iota_1]} \ar[r]^-{[sf, 1]}  & X\ar@{>>}[d]^{f} \\
+\I\times X \ar[r]_{f\pi_2} & Y
+}
+\end{equation*}
+Since the map on the left is a cofibration, a diagonal filler provides a homotopy $\vartheta : sf \sim 1_X$. 
+Thus $f$ is a homotopy equivalence. 
+\end{proof}
+
+For the further comparison of the weak equivalences with the homotopy equivalences we need the following.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Weak homotopy equivalence.}
 
 \begin{definition}[Connected components]
 The functor $$\pi_0 : \cSet\ra\Set$$ is defined on a cubical set $X$ as the coequalizer $$X_1\rightrightarrows X_0\ra \pi_0X,$$ where the two parallel arrows are the maps $X_{\delta_0}, X_{\delta_1} : X_1 \rightrightarrows X_0$ for the endpoints $\delta_0, \delta_1 : 1 \rightrightarrows \I$.   If $K$ is fibrant, then by the foregoing Proposition \ref{prop:homotopyintofibequivrel}, for any $X$ we have  $$\pi_0(K^X) = \hom(X,K)/\!\!\sim\,.$$  That is, $\pi_0(K^X)$ is the set  $[X, K]$ of homotopy equivalence classes of maps $X\ra K$.
@@ -2022,32 +2040,15 @@ Y \ar@{..>}[ru] \ar[r]_-{\langle y,y'\rangle} & K\times K.
 Condition (1) says exactly that the internal precomposition map $K^f : K^Y \ra K^X$ is surjective under connected components $\pi_0$, while (2) says just that it is injective under $\pi_0$.
 \end{proof}
 
-
 \begin{lemma}\label{lem:WEimpliesWHE}
-\begin{enumerate}
-\item Any trivial fibration is a homotopy equivalence.
-\item Any weak equivalence is a weak homotopy equivalence.
-\end{enumerate}
+Any weak equivalence is a weak homotopy equivalence.
 \end{lemma}
 
 \begin{proof}
-For (1), any trivial fibration $f : X \onto Y$ has a section $s: Y\to X$ by Corollary \ref{cor:plusalgprops}.
-Consider the following lifting problem:
-\begin{equation*}%\label{diagram:extensionforX}
-\xymatrix{
-X+X \ar@{>->}[d]_{[\iota_0, \iota_1]} \ar[r]^-{[sf, 1]}  & X\ar@{>>}[d]^{f} \\
-\I\times X \ar[r]_{f\pi_2} & Y
-}
-\end{equation*}
-Since the map on the left is a cofibration, a diagonal filler provides a homotopy $\vartheta : sf \sim 1_X$. 
-Thus $f$ is a homotopy equivalence. 
-
-For (2), by (1) and Lemma \ref{lemma:HEisWHE}, a trivial fibration is also a weak homotopy equivalence. So it suffices to consider the trivial cofibrations, since weak homotopy equivalences are closed under composition, by Lemma \ref{lemma:WHE342}.   Thus let $f : X \mono Y$ be a trivial cofibration, and apply Lemma \ref{lem:WHEunwound}: condition (1) is immediate, and (2) follows because $K^\I \fib K\times K$ is a fibration when $K$ is fibrant, since $\del : 1+1 \cof \I$ is a cofibration (by Remark \ref{rem:somecofibs}).
-%
+By Lemma \ref{lem:TFibisHE} and Lemma \ref{lemma:HEisWHE}, a trivial fibration is also a weak homotopy equivalence. So it suffices to consider the trivial cofibrations, since weak homotopy equivalences are closed under composition, by Lemma \ref{lemma:WHE342}.   Thus let $f : X \mono Y$ be a trivial cofibration, and apply Lemma \ref{lem:WHEunwound}: condition (1) is immediate, and (2) follows because $K^\I \fib K\times K$ is a fibration when $K$ is fibrant, since $\del : 1+1 \cof \I$ is a cofibration (by Remark \ref{rem:somecofibs}).
 \end{proof}
 
-Our goal is to show the converse of Lemma \ref{lem:WEimpliesWHE}(2), that a weak homotopy equivalence is a weak equivalence. 
-We shall first restrict attention to maps $f : X\to K$ with a fibrant codomain $K$.  By factoring such maps, we can split into the cases of a fibration and a cofibration.  
+Our goal is now to show the converse of Lemma \ref{lem:WEimpliesWHE}(2), that a weak homotopy equivalence is a weak equivalence. We shall first restrict attention to maps $f : X\to K$ with a fibrant codomain $K$.  By factoring such maps, we can split into the cases of a fibration and a cofibration.  
 
 \begin{lemma}\label{FibHETFib}
 If $K$ is fibrant, then any fibration $f : X \onto K$ that is a homotopy equivalence is a weak equivalence.
@@ -4127,9 +4128,9 @@ The specification in Definition \ref{def:slicepremodelstructure} determines a pr
 The reader is warned that when $Z = \I$ there is a possibility of confusion with the $\delta$-biased fibrations in $\cSet/_\I$, which do not in general agree with the $\I$-sliced (unbiased) fibrations.  
 
 In order to verify the axioms (C1)-(C8) for cofibrations, let $Z^*1 \rightrightarrows Z^*\I$ in $\cSet/_Z$ be the result of pulling the interval $1 \rightrightarrows \I$ back along $Z\to 1$, to obtain a bipointed object in $\cSet/_Z$ that we shall write as,
-\[
+\begin{equation}\label{eq:relativeinterval}
 \delta_0, \delta_1 : 1_Z \rightrightarrows \I_Z\,.
-\]
+\end{equation}
 Observe that $1_Z + 1_Z \cong Z^*1 + Z^*1 \cof Z^*\I$ since the pullback functor  $Z^* : \cSet\to \cSet/_Z$ preserves (co)limits and cofibrations.   
 
 \begin{proposition}
@@ -4138,9 +4139,9 @@ Taking $\delta_0, \delta_1 : 1_Z \rightrightarrows \I_Z$ as an interval, the axi
 
 \begin{proof}(sketch)
 The (relative) cofibration classifier in $\cSet/_Z$ is the pullback $Z^*t : Z^*1 \cof Z^*\Phi$, which we shall write as
-\[
+\begin{equation}\label{eq:relativecofclassifier}
 t_Z : 1_Z \cof \Phi_Z\,.
-\]  
+\end{equation}
 For axiom (C8), observe that for a map $c : A \to B$ in $\cSet/_Z$, the exponential $c^{\I_Z} : A^{\I_Z}  \to A^{\I_Z} $ in $\cSet/_Z$ fits into a unit pullback square of the form \eqref{eq:unitgraphpullback},
 \begin{equation}\label{eq:unitgraphpullback2}
 \begin{tikzcd}
@@ -4186,7 +4187,7 @@ which is indeed a trivial cofibration.
 (2) follows from (1) and lemma \ref{lem:slicepremodellifting2}, together with the usual adjunction between $\otimes_Z$ and $\Rightarrow_Z$.
 \end{proof}
 
-In order to apply the results on weak equivalences from section \ref{sec:weq} in arbitrary slice categories $\cSet/_Z$ we require analogues of Lemmas \ref{lem:slicepremodellifting1} and  \ref{lem:slicepremodellifting2} for the notions of homotopy equivalence and weak homotopy equivalence (as far as possible in a premodel structure, see Remark \ref{remark:relativepremodelneeds342}).  We first use the relative interval $\delta_0, \delta_1 : 1_Z \rightrightarrows \I_Z$ to define homotopy between maps over $Z$ in the expected way, namely:
+In order to apply the results on weak equivalences from section \ref{sec:weq} in arbitrary slice categories $\cSet/_Z$ we shall also require  the notions of homotopy equivalence over $Z$ and weak homotopy equivalence over $Z$.  We first use the relative interval $\delta_0, \delta_1 : 1_Z \rightrightarrows \I_Z$ \eqref{eq:relativeinterval} to define homotopy between maps over $Z$ in the expected way, namely:
 
 \begin{definition}\label{homotopyinaslice}
 For any object $Z$ and maps $f, g: X\rightrightarrows Y$ in $\cSet/_Z$, a \emph{homotopy over $Z$}, written 
@@ -4322,19 +4323,26 @@ Thus $(\pi_0)_Z((Z^*K)^X) \cong (\pi_0)(K^{Z_!X})$, and the same is true with $Y
 \end{proof}
 
 \begin{proposition}\label{prop:weqisheoverZ}
-For any object $Z$ and fibrations $X\fib Z$ and $Y\fib Z$, a map $f : X\to Y$ over $Z$ is a weak equivalence over $Z$ if and only if it is a  homotopy equivalence over Z.
+For any object $Z$ and fibrations $X\fib Z$ and $Y\fib Z$, the following conditions are equivalent for any map $f : X\to Y$ over $Z$.
+\begin{enumerate}
+\item $f : X\to Y$ is a weak equivalence over $Z$,
+\item $f : X\to Y$ is a homotopy equivalence over $Z$, 
+\item $f : X\to Y$ is a weak homotopy equivalence over $Z$, 
+ \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-Let $f : X\to Y$ be a weak equivalence and factor it $f = tf\circ tc$ with a trivial cofibration $tc : X \cof F$ followed by a trivial fibration $tf : F \fib Y$, both of which are then also over $Z$.  
+Let $f : X\to Y$ be a weak equivalence.  Factor $f = tf\circ tc$ with a trivial cofibration $tc : X \cof F$ followed by a trivial fibration $tf : F \fib Y$, both of which are then also over $Z$.  
 \[\begin{tikzcd}
 	& F  \ar[dd, two heads]  \ar[dr, two heads, "tf"]  &  \\  
 X  \ar[ur, tail, "tc"]  \ar[dr, two heads, swap, "p"] \ar[rr, pos=0.3, "f"] & & Y \ar[dl, two heads, "q" ]   \\
  & Z & 
  \end{tikzcd}\]
-The proof of Proposition \ref{prop:CofbetweenFibWEWHEHE} $(1\!\Rightarrow\!2)$ now applies over $Z$, \emph{mutatis mutandis},  to show that $tc : X\cof F$ is a homotopy equivalence over $Z$. Similarly, the proof of Lemma \ref{lem:WEimpliesWHE}(1) also works over $Z$ to show that $tf: F\fib Y$ is a homotopy equivalence over $Z$. Thus $f = tf\circ tc$ is a homotopy equivalence over $Z$.
+The proof of Proposition \ref{prop:CofbetweenFibWEWHEHE} $(1\!\Rightarrow\!2)$ now applies over $Z$, \emph{mutatis mutandis},  to show that $tc : X\cof F$ is a homotopy equivalence over $Z$. Similarly, the proof of Lemma \ref{lem:TFibisHE} also works over $Z$ to show that $tf: F\fib Y$ is a homotopy equivalence over $Z$. Thus $f = tf\circ tc$ is a homotopy equivalence over $Z$.
 
-Conversely, if $f : X\to Y$ is a homotopy equivalence over $Z$, then start by factoring it $f = tf\circ c$ with a cofibration $c : X \cof F$ followed by a trivial fibration $tf : F \fib Y$, both of which are also over $Z$.  As in the previous part, $tf : F \fib Y$ is a homotopy equivalence over $Z$, so by 3-for-2 for homotopy equivalences over $Z$, Lemma \ref{lemma:HE342sliced}, $c : X \cof F$ is also a homotopy equivalence over $Z$. By the remainder of Proposition \ref{prop:CofbetweenFibWEWHEHE}, again over $Z$, it follows that $c : X \cof F$ is a weak equivalence over $Z$.
+Any homotopy equivalence over $Z$ is clearly a weak homotopy equivalence over $Z$, by the same proof as for Lemma \ref{lemma:HEisWHE} (using the fact that $X\fib Z$ and $Y\fib Z$ in order to form the required exponentials).
+
+If $f : X\to Y$ is a weak homotopy equivalence, then factor it as $f = tf\circ c$ with a cofibration $c : X \cof F$ followed by a trivial fibration $tf : F \fib Y$, both of which are also over $Z$.   We thus just need to show that $c : X \cof F$ is a trivial cofibration.  As in the first step, $tf : F \fib Y$ is a homotopy equivalence over $Z$, whence a weak homotopy equivalence by the second step, and so by 3-for-2 for weak homotopy equivalences over $Z$, Lemma \ref{lemma:HE342sliced}, $c : X \cof F$ is also a weak homotopy equivalence over $Z$.  Now, as in the proof of Proposition \ref{prop:CofbetweenFibWEWHEHE}, factor $c = f\circ tc$ as a trivial cofibration $tc : X \cof C$ followed by a fibration $f : C \fib F$, both over $Z$.   By steps 1 and 2, $tc : X \cof C$ is then a weak homotopy equivalence over $Z$. By 3-for-2 for weak homotopy equivalences, Lemma \ref{lemma:HE342sliced}, $f : C \fib F$ is also a weak homotopy equivalence over $Z$.  It remains to show that the fibration $f : C \fib F$ is a weak equivalence.  This follows by repeating the reasoning for Lemma \ref{lemma:FibWHEfibCodTFib}, and the results leading up to it, over $Z$.
 \end{proof}
 
 By Lemma \ref{lemma:HE342sliced} we now have:
@@ -4346,18 +4354,56 @@ For any object $Z$, the weak equivalences between fibrations into $Z$ satisfy th
 \subsection*{The sliced model structure.}
 
 \begin{remark}\label{remark:relativepremodelneeds342}
-Our immediate goal has been to show Corollary \ref{cor:342weqfiboverZ}, which will be used to establish the equivalence extension property.  The following proposition, which assumes the still-missing 3-for-2 condition for weak equivalences, will emphatically \emph{not} be used in the sequel, but is included here simply to complete the study of the relative (pre)model structure.
+Our immediate goal has been to show Corollary \ref{cor:342weqfiboverZ}, which will be used to establish the equivalence extension property.  Proposition \ref{prop:slicedheweequiv} below, which assumes the fibration extension property, will emphatically \emph{not} be used in the sequel, but is included here simply to complete the study of the relative (pre)model structure.
 \end{remark}
 
-\begin{proposition}\label{prop:slicedheweequiv}
-Let $Z$ be any object in $\cSet$ and $X \fib Z$ and $Y \fib Z$ fibrations, and let $f : X\to Y$ be a map over $Z$, and consider the following conditions.
+\begin{lemma}\label{lemma:heovertohe}
+Let $f : X\to Y$ be any map over $Z$. 
+%We again write $Z_! : \cSet/_Z \to \cSet$ for the forgetful functor.  
+\begin{enumerate}
+\item If $f : X\to Y$ is homotopy equivalence over $Z$, then $Z_!f : Z_! X \to Z_! Y$ is a homotopy equivalence.
+\item If $X\fib Z$ and $Y\fib Z$ are fibrations and $f : X\to Y$ is weak homotopy equivalence over $Z$, then $Z_!f : Z_! X \to Z_! Y$ is a weak homotopy equivalence.
+\end{enumerate}
+\end{lemma}
+%
+\begin{proof}
+(1) is immediate from the fact that $Z_!$ preserves homotopies, Lemma \ref{lem:homotopyinthesliceishomotopy}.
+For (2), let $f : X\to Y$ be a weak homotopy equivalence over $Z$ between fibrations $X\fib Z$ and $Y\fib Z$, and let $K$ be any fibrant object in $\cSet$.  
+Consider the internal precomposition map, 
+\[
+K^{Z_!f} : K^{Z_! Y} \to K^{Z_! X}\,,
+\]
+which we would like to show is a bijection under $\pi_0 : \cSet \to \Set$.
+Since $K\fib1$ is a fibration, so is its pullback $Z^*K \fib Z$.  Therefore, since $f : X\to Y$ is weak homotopy equivalence over $Z$, 
+the precomposition map over $Z$,
+\[
+(Z^*K)^f : (Z^*K)^Y \to (Z^*K)^X\,,
+\]
+is bijective on connected components, 
+\[
+(\pi_0)_Z\big((Z^*K)^f\big) : (\pi_0)_Z\big((Z^*K)^Y\big) \cong (\pi_0)_Z\big((Z^*K)^X\big)\,.
+\]
+But now observe that in the coequalizer \eqref{eq:coeqpi0} that defines $(\pi_0)_Z\big((Z^*K)^X\big)$, we have 
+\[\begin{split}
+\Hom_Z(1_Z , (Z^*K)^X) \cong  \Hom_Z(X, (Z^*K))\\
+ \cong \Hom(Z_!X, K)  \cong \Hom(1, K^{Z_!X})\,,
+\end{split}\]
+and similarly 
+\[\begin{split}
+\Hom_Z(\I_Z , (Z^*K)^X) \cong  \Hom_Z(Z^*\I \times X, Z^*K) \\
+ \cong \Hom_Z(\I \times Z_! X, K) \cong \Hom(\I, K^{Z_!X})\,.
+\end{split}\]
+Thus $(\pi_0)_Z((Z^*K)^X) \cong (\pi_0)(K^{Z_!X})$, and the same is true with $Y$ in place of $X$.   So  $K^{Z_!f} : K^{Z_!Y} \to K^{Z_!X}$ is also bijective on connected components.
+\end{proof}
+
+Now let $Z$ be any object in $\cSet$ and $X \fib Z$ and $Y \fib Z$ fibrations, and let $f : X\to Y$ be a map over $Z$, and consider the following conditions.
 %
 \begin{enumerate}
-\item $f : X\to Y$ over $Z$ is a weak equivalence over $Z$. 
+\item $f : X\to Y$  is a weak equivalence over $Z$. 
 %
-\item $f : X\to Y$ over $Z$ is a weak homotopy equivalence over $Z$. 
+\item $f : X\to Y$   is a weak homotopy equivalence over $Z$. 
 %
-\item $f : X\to Y$ over $Z$ is a homotopy equivalence over $Z$. 
+\item $f : X\to Y$   is a homotopy equivalence over $Z$. 
 %
 \item $Z_!f : Z_!X\to Z_!Y$ is a weak equivalence. 
 %
@@ -4366,26 +4412,13 @@ Let $Z$ be any object in $\cSet$ and $X \fib Z$ and $Y \fib Z$ fibrations, and l
 \item $Z_!f : Z_!X\to Z_!Y$ is a weak homotopy equivalence in $\cSet$. 
 %
 \end{enumerate}
-We have already shown the following implications:
-\[
-1\Leftrightarrow 2 \Rightarrow 3 \Rightarrow 4
-\]
+In Proposition \ref{prop:weqisheoverZ}  we showed the implications $1\Leftrightarrow 2 \Leftrightarrow 3$.
+We also have $1\Leftrightarrow 4$ by definition, and $4\Rightarrow 6$ and $5 \Rightarrow 6$ by Lemmas \ref{lemma:HEisWHE} and Lemmas \ref{lem:WEimpliesWHE}.  Moreover, by Lemma \ref{lemma:heovertohe} we have $2\Rightarrow 5$ and $3\Rightarrow 6$.  
+
+In sum, all 6 conditions will be equivalent once we have $6\Rightarrow 4$ from Proposition \ref{prop:WHEiffWE} and the fibration extension property.
+\begin{proposition}\label{prop:slicedheweequiv}
+Assuming the fibration extension property, all 6 conditions above are equivalent.
 \end{proposition} 
-
-\ednote{fix this}
-
-\begin{proof}
-
-\ref{prop:weqisheoverZ}
-
-$1\Rightarrow 2$ was Lemma \ref{lemma:FibWHEfibCodTFib}.
-
-$2\Rightarrow 3$ was Lemma \ref{lemma:heovertohe}(1).
-
-$3\Rightarrow 4$: was Lemma \ref{lemma:HEisWHE}.
-
-\end{proof}
-
 
 \subsection*{Pathobject factorizations.}
 
