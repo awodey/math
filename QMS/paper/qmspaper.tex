@@ -245,7 +245,8 @@ A version of this ``homotopy canonicity conjecture'' was finally verified a deca
 Some aspects of Coquand's work were undoubtedly informed by homotopy theory, but much of it was driven by type-theoretic considerations: normalization, canonicity, constructivity, etc.   
 Subsequent work on computational systems of univalent type theory (such as \cite{orton-pitts,LOPS18,ABCHFL}) also used intuitions from basic homotopy theory (and some of the jargon), but without bothering to verify the model category axioms.  Of course, this research had a very different aim, namely the provision of a constructive system of type theory with univalence, which would facilitate its implementation in a computer proof system.  Once that was accomplished, there was no need to determine whether a Quillen model structure was also lurking in the background; it simply remained a mystery that the ingredients required for a computational system of univalent type theory seemed to align with the basic concepts of abstract homotopy theory.  
 
-It was C.~Sattler who first recognized that a computational implementation of univalent type theory contains everything required to determine a Quillen model structure \cite{Sattler:2017ee}. An earlier result in this direction had been given by \cite{gambino-garner:idtypewfs}, who showed that the basic system of type theory with identity types not only interpreted into a weak factorization system (as had been shown by \cite{awodey-warren:homotopy-idtype}), but that it actually \emph{required} such a structure for its sound interpretation---essentially by constructing a weak factorization system from the system of type theory itself (P.~LeFanu Lumsdaine subsequently used higher inductive types to construct a second weak factorization system within homotopy type theory \cite{Lumsdaine:HITCofibrations}, making another step toward a full model structure).  The relationship between the full system of univalent type theory and a full Quillen model structure is somewhat more subtle---and part of the present investigation---but the mystery of \emph{why} the tools of model category theory seemed to work so well for constructing systems of univalent type theory is at least partially resolved by the insight that the type theory is apparently describing the same  kind of structure as do certain model categories; namely, that of a higher topos.\footnote{Logicians, who have always been puzzled by homotopy theorists' apparently backwards use of the term ``model'', can finally answer the question of what it is that is modeled by a Quillen model category: it is type theory.}  
+It was C.~Sattler who first recognized that a computational implementation of univalent type theory contains everything required to determine a Quillen model structure \cite{Sattler:2017ee}. An earlier result in this direction had been given by \cite{gambino-garner:idtypewfs}, who showed that the basic system of type theory with identity types not only interpreted into a weak factorization system (as had been shown by \cite{awodey-warren:homotopy-idtype}), but that it actually \emph{required} such a structure for its sound interpretation---essentially by constructing a weak factorization system from the system of type theory itself (P.~LeFanu Lumsdaine subsequently used higher inductive types to construct a second weak factorization system within homotopy type theory \cite{Lumsdaine:HITCofibrations}, making another step toward a full model structure).  The relationship between the full system of univalent type theory and a full Quillen model structure is somewhat more subtle---and part of the present investigation---but the mystery of \emph{why} the tools of model category theory seemed to work so well for constructing systems of univalent type theory is at least partially resolved by the insight that the type theory is apparently describing the same  kind of structure as do certain model categories; namely, that of a higher topos. 
+%\footnote{Logicians, who have always been puzzled by homotopy theorists' apparently backwards use of the term ``model'', can finally answer the question of what it is that is modeled by a Quillen model category: it is type theory.}  
 So while there was no reason to expect \emph{a priori} that the work on computer proof systems 
 %and computational implementations of type theory 
 would have any relevance to homotopy theory, the methods developed for those purposes have now acquired such relevance nonetheless. 
@@ -4074,7 +4075,7 @@ Z_! : \cSet/_Z \to \cSet\,.
 \]
 In more detail:
 \begin{definition}\label{def:slicepremodelstructure}
- A map $f : X \to Y$ over $Z$ is a \emph{(trivial) cofibration or (trivial) fibration} over $Z$ just if it is one in $\cSet$ after forgetting the $Z$-indexing via  $Z_!:\cSet/_Z \to \cSet$. This will be called the \emph{sliced premodel structure} on $\cSet/_Z$.  Accordingly, a map $f : X \to Y$ over $Z$ will be called a \emph{weak equivalence} over $Z$ just if it factors over $Z$ as a trivial fibration over $Z$ after a trivial cofibration over $Z$, which therefore holds just if it is a weak equivalence in $\cSet$ after forgetting the $Z$-indexing.
+ A map $f : X \to Y$ over $Z$ is a \emph{(trivial) cofibration or (trivial) fibration} over $Z$ just if it is one in $\cSet$ after forgetting the $Z$-indexing via  $Z_!:\cSet/_Z \to \cSet$. This will be called the (\emph{relative} or) \emph{sliced premodel structure} on $\cSet/_Z$.  Accordingly, a map $f : X \to Y$ over $Z$ will be called a \emph{weak equivalence} over $Z$ just if it factors over $Z$ as a trivial fibration over $Z$ after a trivial cofibration over $Z$, which therefore holds just if it is a weak equivalence in $\cSet$ after forgetting the $Z$-indexing.
 \end{definition}
 
 That the specification in Definition \ref{def:slicepremodelstructure} does determine a premodel structure is a consequence of Proposition \ref{prop:FWC}, and the well-known fact that (pre)model structures are stable under slicing in this way \cite{Hirschhorn:2003mc}.   In more detail:
@@ -4401,9 +4402,9 @@ Now let $Z$ be any object in $\cSet$ and $X \fib Z$ and $Y \fib Z$ fibrations, a
 \begin{enumerate}
 \item $f : X\to Y$  is a weak equivalence over $Z$. 
 %
-\item $f : X\to Y$   is a weak homotopy equivalence over $Z$. 
+\item $f : X\to Y$   is a  homotopy equivalence over $Z$. 
 %
-\item $f : X\to Y$   is a homotopy equivalence over $Z$. 
+\item $f : X\to Y$   is a weak homotopy equivalence over $Z$. 
 %
 \item $Z_!f : Z_!X\to Z_!Y$ is a weak equivalence. 
 %
@@ -4413,9 +4414,10 @@ Now let $Z$ be any object in $\cSet$ and $X \fib Z$ and $Y \fib Z$ fibrations, a
 %
 \end{enumerate}
 In Proposition \ref{prop:weqisheoverZ}  we showed the implications $1\Leftrightarrow 2 \Leftrightarrow 3$.
-We also have $1\Leftrightarrow 4$ by definition, and $4\Rightarrow 6$ and $5 \Rightarrow 6$ by Lemmas \ref{lemma:HEisWHE} and Lemmas \ref{lem:WEimpliesWHE}.  Moreover, by Lemma \ref{lemma:heovertohe} we have $2\Rightarrow 5$ and $3\Rightarrow 6$.  
+We also have $1\Leftrightarrow 4$ by definition, and $4\Rightarrow 6$ and $5 \Rightarrow 6$ by Lemmas \ref{lem:WEimpliesWHE} and \ref{lemma:HEisWHE}.  Moreover, by Lemma \ref{lemma:heovertohe} we have $2\Rightarrow 5$ and $3\Rightarrow 6$.  
 
-In sum, all 6 conditions will be equivalent once we have $6\Rightarrow 4$ from Proposition \ref{prop:WHEiffWE} and the fibration extension property.
+In sum, all 6 conditions will be equivalent once we have $6\Rightarrow 4$ from Proposition \ref{prop:WHEiffWE} and the fibration extension property. We record this fact in the following, before returning to our goal of proving the equivalence extension property.
+
 \begin{proposition}\label{prop:slicedheweequiv}
 Assuming the fibration extension property, all 6 conditions above are equivalent.
 \end{proposition} 
@@ -4494,7 +4496,8 @@ in which
 Note that the retraction $p_f : P_f \ra X$ of $s$ is not over $Y$.
 \end{lemma}
 
-Next, if $f:X\ra Y$ is a map over any base object $Z$ in $\cSet$, we can use the same factorization $f = t\circ s$ to get a factorization in the slice category $\cSet/_Z$,  
+Next, if $f:X\ra Y$ is a map over any base object $Z$ in $\cSet$, we can use the same factorization $f = t\circ s$ to get a factorization in the slice category over $Z$,
+%  
 \begin{equation}\label{diag:pathobjectoverabase}
 \xymatrix{
 &  P_f  \ar[rd]^t & \\
@@ -4502,9 +4505,10 @@ X \ar[rr]^f \ar[rd]_{p_X} \ar[ru]^{s} && Y \ar[ld]^{p_Y} \\
 & Z
 }
 \end{equation}
+%
 with $p_Y \circ t : P_f \to Z$; however, the maps $s, t$ will no longer have the properties stated in Lemma \ref{lemma:pathspace_factorization}, because \eg\ $p_0: Y^\I \to Y$ need not be a trivial fibration, even when $p_Y : Y\to Z$ is a fibration, since the object $Y$ need not be fibrant if the base $Z$ is not fibrant.
 
-To remedy this, we instead build a \emph{fiberwise pathobject factorization} by using the relative pathobject $Y^{\I_Z} \to Z$, where the indicated exponential is taken in the slice over $Z$, and the interval object $\I_Z$ occurring in the exponent is the result of pulling the interval $\I$ back from $\cSet$ along $Z\to 1$, \ie\ the projection $Z\times \I \to Z$.  The pathspace factorization is then constructed as in \eqref{diag:pathspace_factorization}, but in the slice $\cSet/_Z$, using the pulled back interval $1_Z\rightrightarrows \I_Z$. Moreover, the resulting factorization $f=t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^{\I_Z}) \cong g^*(Y)^{\I_{Z'}}$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
+To remedy this, we instead build a \emph{fiberwise pathobject factorization} by using the relative pathobject $Y^{\I_Z} \to Z$, where the indicated exponential is taken in the slice over $Z$, and the interval object $\I_Z$ occurring in the exponent is the relative one from \eqref{eq:relativeinterval}, \ie\ the result of pulling the interval $\I$ back from $\cSet$ along $Z\to 1$.  The pathspace factorization is then constructed as in \eqref{diag:pathspace_factorization}, but now in the slice $\cSet/_Z$, using the pulled back interval $1_Z\rightrightarrows \I_Z$. Moreover, the resulting factorization $f=t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^{\I_Z}) \cong g^*(Y)^{\I_{Z'}}$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
 
 
 In more detail, let us review the foregoing steps in the relative case, with reference to the following diagram.
@@ -4581,7 +4585,11 @@ Note that the retraction $p_f : P_f \ra X$ of $s$ is not over $Y$.
 The following fact concerning just the cofibration weak factorization system will also be needed.
 
 \begin{lemma}\label{lemma:etaTF}
-Let $p: E \onto B$ be a trivial fibration and $c : C\mono B$ a cofibration.  Then the unit $\eta:E \ra c_*c^*E$ over $B$ of the base change $c^*\dashv c_* : \cSet/_C \to \cSet/_B$ along $c$ is also a trivial fibration.
+Let $p: E \onto B$ be a trivial fibration and $c : C\mono B$ a cofibration.  Then the unit $\eta:E \ra c_*c^*E$ over $B$ of the base change along $c$,
+\[
+c^*\dashv c_* : \cSet/_C \too \cSet/_B
+\]
+is also a trivial fibration.
 \end{lemma}
 
 \begin{proof}
@@ -4599,7 +4607,7 @@ We use the fact that in $\cSet/_B$ we have $B^c : B^{1_B} \cong 1_B \cong B^C$ a
 \]
 which is indeed $\eta : E \ra c_*c^*E = E^C$.
 
-Now for any cofibration $A \stackrel{a}{\cof} X\to B$ over $B$, by Lemma \ref{lemma:Leibniz} we have an equivalence of diagonal filling conditions $\cSet/_B$,
+Now for any cofibration $A \stackrel{a}{\cof} X\to B$ over $B$, by Lemma \ref{lemma:Leibniz} we have an equivalence of diagonal filling conditions in $\cSet/_B$,
 \[
 a \pitchfork (c\!\Rightarrow_B\!p)  \quad\text{iff}\quad (a\!\otimes_B\!c) \pitchfork p.
 \]
