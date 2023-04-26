@@ -4952,11 +4952,15 @@ Z \ar@/_4ex/ [rrrd]_{b} \ar[rr]_{\gph{i}} &&  Z\times\I  \ar@{.>}[rd]_{d} \\
 &&& \U
 }
 \end{equation}
-in which we recall from \eqref{eq:graphdef} the graph notation $\gph{i} = \gph{1_Z, i} : Z \to Z\times \I$.
+in which we recall from \eqref{eq:graphdef} the notation $\gph{i} = \gph{1_Z, i} : Z \to Z\times \I$ for the graph of a map $i : Z\to \I$.
 Given a map $d$ as shown in \eqref{diagram:unbiasedpushoutproduct4}, we can obtain the indicated diagonal filler in \eqref{diag:Ufib1} as  $\langle \tilde{d} , i\rangle : Z \to \U^\I\times\I$.
 
- As a sanity check, note that $b\circ c = a\circ \langle ic\rangle$ turns the problem \eqref{diagram:unbiasedpushoutproduct4} into that of extending the copair $[b,a]$ along the unique map $$Z +_C (C\times \I)\too Z\times \I\,,$$ which is exactly the
-(trivial cofibration) pushout-product $c\otimes_i\delta$ from \eqref{diagram:unbiasedpushoutproduct}, recalled below for the reader's convenience.%
+As a sanity check, note that $b\circ c = a\circ \langle ic\rangle$ turns the problem \eqref{diagram:unbiasedpushoutproduct4} into that of extending the copair $[b,a]$ along the unique map
+\[
+Z +_C (C\times \I)\too Z\times \I\,,
+\]
+which is exactly the (trivial cofibration) pushout-product $c\otimes_i\delta$ from \eqref{diagram:unbiasedpushoutproduct}, recalled below for the reader's convenience.
+
 \begin{equation}\label{diagram:unbiasedpushoutproduct5}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[r]^{\gph{ic}} & C\times \I \ar[d] \ar@/^4ex/ [rdd]^{c\times\I}\\
@@ -4964,6 +4968,7 @@ Z \ar@/_4ex/ [rrd]_{\gph{i}} \ar[r] &  Z +_C (C\times\I) \ar@{.>}[rd]_{c\, \otim
 && Z\times\I
 }
 \end{equation}
+
 %whereby, recall, we wrote:
 %\begin{align*}
 %\gph{z} &:= \langle 1_Z, z\rangle : Z\too Z\times\I\,,\\
@@ -4998,7 +5003,9 @@ Z \ar@/_4ex/ [rrd]_{\gph{i}} \ar[r] &  Z +_C (C\times\I) \ar@{.>}[rd]_{c\, \otim
 %%%%%%%%%%%%%%%%%
 
 Returning to \eqref{diagram:unbiasedpushoutproduct4}, take pullbacks of $\UU\fib \U$ along $a$ and $b$ to get fibrations $p_a : A\fib C\times \I$ and $p_b : B\fib Z$ respectively, and let 
-$$p_c :=  \gph{ic}^*p_a : A_c \too C$$
+\[
+p_c :=  \gph{ic}^*p_a : A_c \too C
+\]
 be the corresponding ``fiber of $A$ over the graph of $ic$''.  We then have $c^*B \cong A_c$ over $C$ by the commutativity of the outer square of \eqref{diag:Ufib1}.
 \[
 \xymatrix@=1em{
@@ -5011,7 +5018,7 @@ Z \ar[rrr]_{\gph{i}} &&& Z\times\I &
 }
 \]
 
-The diagonal filler sought in \eqref{diag:Ufib1} corresponds, again by transposition and pullback of $\UU\fib\U$, to a fibration $p_d : D\fib Z\times \I$ with $\langle i\rangle^*D \cong B$ over $Z$ and $(c\times \I)^*D \cong A$ over $C\times \I$, as indicated below.
+The diagonal filler sought in \eqref{diag:Ufib1} now corresponds, again by transposition and pullback of $\UU\fib\U$, to a fibration $p_d : D\fib Z\times \I$ with $\langle i\rangle^*D \cong B$ over $Z$ and $(c\times \I)^*D \cong A$ over $C\times \I$, as indicated below.
 \begin{equation}\label{diag:Ufib1.5}
 \xymatrix@=1em{
 && \ar[llddd] A_c \ar@{->>}[dd]^{p_c} \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd]^{p_a} \\
@@ -5083,7 +5090,7 @@ Use the fact that any two diagonal fillers are homotopic to get a homotopy equiv
 \end{proof}
 
 \begin{remark}
-The foregoing proof also works, \emph{mutatis mutandis}, for the case of \emph{biased} fibrations, as in the setting of \cite{CCHM:2018ctt}.
+The foregoing proof of Proposition \ref{prop:Ufibrant}, the fibrancy of the universe $\U$, also works, \emph{mutatis mutandis}, for the universe of \emph{biased} fibrations, as used in the setting of \cite{CCHM:2018ctt}.
 \end{remark}
 
 Applying proposition \ref{prop:UfibtoFEP} now yields the following.
@@ -5118,7 +5125,7 @@ is a trivial fibration.  From this, it follows that the canonical transport map
 \begin{equation}\label{eq:UA}
 * : \U^\I \too \Sigma_{A,B}\mathsf{Eq}(A,B)
 \end{equation}
- is an equivalence over the base $\U$ via $p_2: \U^\I \to \U$, which is also a trivial fibration, because $\U$ is fibrant (by Proposition \ref{prop:Ufibrant}).  In type theory, the pathobject $\U^\I$ of course interprets the identity type $A=B$, so the equivalence \eqref{eq:UA} can be expressed as $$(A=B)\simeq(A\simeq B)\,.$$\end{remark}
+ is an equivalence over the base $\U$ via $p_2: \U^\I \to \U$, which is a trivial fibration because $\U$ is fibrant by Proposition \ref{prop:Ufibrant}.  In type theory, the pathobject $\U^\I$ of course interprets the identity type $A=B$, so the equivalence \eqref{eq:UA} can be expressed as $$(A=B)\simeq(A\simeq B)\,.$$\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Appendix A: Axioms for cartesian cofibrations}\label{appendix:Cofibrations}
@@ -5140,7 +5147,7 @@ A system of maps satisfying the axioms (C0)-(C8) above for the cofibrations in a
 
 %We have the following example.
 \begin{proposition}
- In any topos, the locally decidable subobjects satisfy the axioms for cartesian cofibrations.
+ The locally decidable subobjects in any presheaf topos satisfy the axioms for cartesian cofibrations.
 \end{proposition}
 \begin{proof}
 
@@ -5358,31 +5365,30 @@ for the right adjoint of the path object functor $X^\I = S^*X$.
 
 \begin{corollary}
 We have the following calculation for the right adjoint $X_\I$:
-\begin{align*}
+\begin{align*}\textstyle
 X_\I(n) &\cong \hom(\I^n, X_\I) \\
 &\cong \hom((\I^n)^\I, X) \\
 &\cong \hom((\I^\I)^n, X) \\
 &\cong \hom((\I+1)^n, X) \\
-&\cong \hom(\I^n + C^n_{n-1}\I^{n-1} + \dots + C^n_{1}\I+1, X) \\
-&\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0),
+&\cong \hom(\I^n +  {\textstyle{n\choose n-1}}\I^{n-1} + \dots + {\textstyle{n\choose 1}}\I+1, X) \\
+&\cong X_n \times X_{n-1}^{\binom{n}{n-1}} \times \dots \times X_1^{\binom{n}{1}}\times X_0,
 \end{align*}
-where $C^n_{k}$ is the usual binomial coefficient $\binom{n}{k}$.
 \end{corollary}
 
 \begin{corollary}
-There is a natural transformation $X_\I \to X$, given by the first projection from $X_\I(n)\cong X(n) \times X(n-1)^{C^n_{n-1}} \times \dots \times X(1)^{C^n_{1}}\times X(0)$.
+There is a natural transformation $X_\I \to X$, given by the first projection $X_n \times \dots \times X_0 \too X_n$.
 \end{corollary}
 
-Finally, we observe that that the path object functor $X^\I$ itself, as a left adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{Lawvere:2004} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
+Finally, we observe that that the path object functor $X\mapsto X^\I$ itself, as a \emph{left} adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{Lawvere:2004} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
 
-\subsubsection*{Example.} (P.~Aczel)
-The cubical set $P$ of polynomials (over the integers, say), is defined by:
+\subsubsection*{Example.} (P.~Aczel)\ednote{fix}
+The cubical set $P$ of polynomials (say, over the integers), is defined by:
 \[
 P_n = \{ p(x_1, ...,  x_n)\ |\  \text{polynomials in at most}\  x_1, ..., x_n \}
 \]
 with the evident maps $P_m \to P_n$ for each function $[m] \to [n]$.
 
-This is a ring object in the category of cubical sets, and the interval $\I\ = y[1]$ embeds into $P$.
+This is a ring object in the category of cubical sets, and the interval $\I\ = \y[1]$ embeds into $P$.
 The same is true for any algebraic theory $\T$ with two constants, such as boolean algebras: there is a cubical $\T$-algebra $A$ and a monic $\I \mono A$.
 
 Let $\C[\I] = \H$ be the cube category, classifying intervals, and $\C[\T]$ the classifying category for $\T$-algebras.  There is an interval $J$ in $\C_\T$  consisting of the generic $\T$-algebra and its two constants.  This $J$ has a classifying functor $J : \C_\I \to \C_\T$, inducing functors on presheaves
