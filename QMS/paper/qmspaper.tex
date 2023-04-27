@@ -43,6 +43,7 @@
 \newcommand{\A}{\ensuremath{\mathbb{A}}}
 \newcommand{\bbtwo}{\ensuremath{\mathbbm{2}}}
 \newcommand{\C}{\ensuremath{\boxempty}}
+\newcommand{\catC}{\ensuremath{\mathbb{C}}}
 \newcommand{\N}{\ensuremath{\mathbb{N}}}
 \newcommand{\D}{\ensuremath{\mathbb{D}}}
 \newcommand{\B}{\ensuremath{\mathbb{B}}}
@@ -59,6 +60,7 @@
 \newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
 \newcommand{\covpsh}[1]{\ensuremath{\mathsf{Set}^{#1}}}
 \newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
+\newcommand{\cEE}{\ensuremath{\mathsf{c}\mathcal{E}}}
 %\newcommand{\pbcornertransp}[1][dr]{\save*!/#1+1000pc/#1:(5000,5000)@^{|-}\restore}
 \newcommand{\y}{\ensuremath{\mathsf{y}}} % Yoneda embedding
 \newcommand{\yon}{\ensuremath{\mathsf{y}}} % Yoneda embedding
@@ -66,6 +68,8 @@
 \newcommand{\plusalgx}{\ensuremath{^+\!\mathsf{Alg}}}
 \newcommand{\op}[1]{\ensuremath{{#1}^{\mathrm{op}}}}
 \newcommand{\eval}{\ensuremath{\mathsf{eval}}}% evaluation
+\newcommand{\dom}{\ensuremath{\mathsf{dom}}}% evaluation
+\newcommand{\cod}{\ensuremath{\mathsf{cod}}}% evaluation
 \newcommand{\proj}{\ensuremath{\mathsf{p}}}% projection
 %\newcommand{\proj1}{\ensuremath{\mathsf{p}_1}}% 1st projection
 %\newcommand{\proj2}{\ensuremath{\mathsf{p}_2}}% 2nd projection
@@ -93,6 +97,7 @@
 % cubical sets
 \newcommand{\boxcat}{\ensuremath{\boxempty}}
 \newcommand{\I}{\ensuremath{\mathrm{I}}}
+\newcommand{\J}{\ensuremath{\mathrm{J}}}
 \newcommand{\II}{\ensuremath{\mathbb{I}}}
 \renewcommand{\H}{\ensuremath{\Box}}
 \newcommand{\HH}{\ensuremath{\cSet}}
@@ -159,6 +164,7 @@
 \usepackage{pdfpages}
 \usepackage{tikz-cd}
 \newcommand{\pbmark}{\ar[dr, phantom, "\lrcorner" very near start, shift right=.5ex]}	% pullback mark
+\newcommand{\pbmarkleft}{\ar[dl, phantom, "\llcorner" very near start, shift right=.5ex]}	% pullback mark left arrow
 \newcommand{\pbbmark}{\ar[drr, phantom, "\lrcorner" very near start, shift right=.5ex]}	% pullback mark
 
 % xypic
@@ -178,7 +184,7 @@
 
 \title{Cartesian cubical model categories}
 \author{Steve Awodey}
-\date{DRAFT: \today}
+\date{\today}
 %\maketitle
 
 \begin{abstract}
@@ -200,7 +206,7 @@ Recent years have seen renewed interest in the cubical approach to abstract homo
 
 The current interest in the cubical approach arises from connections with the  formal system of \emph{type theory} for the purpose of computerized proof checking \cite{AwodeyCoquand:2013}.  Unlike previous cubical models of homotopy theory, however, the cubes being used for this purpose are generally assumed to be closed under finite products; we call such cube categories \emph{Cartesian}.  This is a natural enough assumption to make for cubes, but one that has somehow escaped serious consideration---but for two notable exceptions: in A.~Grothendieck's famous letter to D.~Quillen, and the accompanying 600 page manuscript \emph{Pursuing stacks} \cite{G:1983}, such cubical sets make an appearance as \emph{test categories}, which model the homotopy category of spaces in a particular way.  In fact, the Cartesian cubes studied here are \emph{strict} test categories in the terminology of \opcit, meaning that the geometric realization functor preserves finite products (\cite{BuchholtzMoorehouse}).  The more familiar category of ``monoidal'' cubical sets used since Kan is also a strict test category provided one includes \emph{connections} \cite{Maltsiniotis:2009}, but this is not necessarily Cartesian.  The second source for Cartesian cubical sets is F.W.~Lawvere, who proposed them as a model for homotopy theory in lectures, and in public and private correspondence, but never (to my knowledge) published anything on the subject.   Among their advantages, he stressed the tinyness of the 1-cube, or ``interval'' $\I$, which indeed plays a role in the current theory---although perhaps not the one envisioned by him.
 
-We can define \emph{the} Cartesian cube category $\Box$ to be the Lawvere theory of bipointed objects, the opposite of which is therefore the category of finite, strictly bipointed sets $\B = \op\Box$.  Thus $\Box$ is the free finite product category with a bipointed object $[0]\rightrightarrows [1]$.  Our homotopy theory will be based on the category of \emph{Cartesian cubical sets}, which is the category of presheaves on $\Box$,
+We can define \emph{the} Cartesian cube category $\Box$ to be the Lawvere algebraic theory of bipointed objects, the opposite of which is therefore the category of finite, strictly bipointed sets $\B = \op\Box$.  Thus $\Box$ is the free finite product category with a bipointed object $[0]\rightrightarrows [1]$.  Our homotopy theory will be based on the category of \emph{Cartesian cubical sets}, which is the category of presheaves on $\Box$,
 \[
 \cSet = \psh{\Box}
 \]
@@ -299,7 +305,7 @@ This material is based upon work supported by the Air Force Office of Scientific
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Cartesian cubical sets}
+\section{Cartesian cubical sets}\label{sec:cSet}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 There are many different categories of cubes $\Box$ that could be taken as a site for homotopy theory \cite{Grandis:2003,BuchholtzMoorehouse}, and indeed several different ones have recently been explored in connection with cubical systems of (homotopy) type theory, including \cite{BCH,orton-pitts, CCHM:2018ctt,ABCHFL,CMS:2020}, to name a few.  The model structure developed here is intended to work with any of these, insofar as they are  \emph{cartesian}, in the sense that the indexing cubes $[n]\in\Box$ are closed under finite products $[m]\times[n] = [m+n]$.   Rather than working axiomatically, though, we shall work in the initial such category, which we call \emph{the Cartesian cube category} $\C$, defined as the free finite product category on an interval $\delta_0, \delta_1 : 1\rightrightarrows \I$.
@@ -5132,7 +5138,7 @@ is a trivial fibration.  From this, it follows that the canonical transport map
 %\addcontentsline{toc}{section}{A\quad Axioms for cartesian cofibrations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-A system of maps satisfying the axioms (C0)-(C8) above for the cofibrations in a cartesian cubical model category may be called \emph{cartesian cofibrations}. The axioms can be restated equivalently as follows.
+A system of maps satisfying the axioms (C0)-(C8) above for the cofibrations in a cartesian cubical model category will be called \emph{cartesian cofibrations}. The axioms may be restated equivalently as follows.
 \begin{enumerate}
 \item[(A0)] All cofibrations are monomorphisms.
 \item[(A1)] All isomorphisms are cofibrations.
@@ -5145,15 +5151,33 @@ A system of maps satisfying the axioms (C0)-(C8) above for the cofibrations in a
 %\item[(A7)] If $c:A \to B$ is a cofibration, then so is $c^\I:A^\I \to B^\I$.
 \end{enumerate}
 
-%We have the following example.
+\begin{example}
+Consider the cartesian cubical presheaves $\cEE = \EE^{\op{\C}}\!= \EE^{\B}$ in a topos $\EE$.
+For such (internal) discrete opfibrations $(A,\, \alpha)$,
+\[\begin{tikzcd}
+A  \ar[d] & \pbmarkleft \ar[l] \ar[d] \B_1 \times_{\B_0} A \ar[r,"\alpha"] & A \ar[d]  \\
+\B_0 & \ar[l, "\dom" ] \B_1 \ar[r,swap,"\cod"] & \B_0
+\end{tikzcd}\]
+over the (internal) category $\B = (\B_1\rightrightarrows\B_0)$ of finite bipointed sets, call a subpresheaf $c : (C,\gamma)\to (A,\alpha)$ \emph{locally complemented} if the underlying map $c:C\to A$ over $\B_0 = \N$ is a complemented subobject in $\EE/\N$, \ie\ $C+\neg{C} \cong A$ over $\N$.  Internally, this means that
+\begin{equation}\label{pointwisecomplemented}
+C_n + \neg(C_n) \cong A_n\qquad\text{for all $n\in\N$},
+\end{equation}
+which is a weaker condition than $(A,\alpha)+\neg (A,\alpha) \cong (B,\beta)$ as presheaves (unless $\EE=\Set$, in which case it is trivial).
 \begin{proposition}
- The locally decidable subobjects in any presheaf topos satisfy the axioms for cartesian cofibrations.
+ For any topos  $\EE$, the locally complemented subobjects in the category $\cEE$ of cubical $\EE$-objects satisfy the axioms for cartesian cofibrations.
 \end{proposition}
 \begin{proof}
-
-We generalize \eqref{eq:SOCnerve} from the case of $\mathbbm{2}\in\Set$ to an arbitrary base topos $\EE$ and consider the presheaf category $\EE^{\bbC}$ for a category $\bbC$ internal to $\EE$. \ednote{fill in!}
+Working internally in $\EE$, it suffices to verify the axioms constructively.  Axioms (A0)-(A3) and (A5) follow immediately by considering the forgetful functor $U : \cEE \to \EE/_\N$ which creates the monos, isos, composites, pullbacks, and joins in question. 
+The cofibration classifier in (A4) is given by applying the right adjoint $U \dashv R : \EE/_\N \to \cEE$ to the complemented subobject classifier $\N^*2$ of $\EE/_\N$.
+%, namely the projection $2\times\N \to \N$, where of course $2 = 1+1$ in $\EE$.  
+For (A6), we use the fact that the equality relation on $\N$ is decidable to infer that, for each $[n] = \{0, x_1, \dots, x_n, 1\}$, the finite set $\{i = j \,|\, 0\leq i,j \leq n+1\}$ is complemented in $\B([1],[n])\times \B([1],[n])$,  and so for the subpresheaf $\delta : \I \to \I\times\I$ we indeed have,
+\begin{equation}
+\delta_n + \neg(\delta_n) \cong \I_n\times \I_n \qquad\text{for all $n\in\N$}\,.
+\end{equation}
+Axiom (A6) follows from the fact that the pathobject $A^{\I}$ is a shift by one dimension, $(A^{\I})_{n} = A_{n+1}$.
 \end{proof}
 %
+\end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Appendix B: Cartesian cubical sets classifies intervals}\label{appendix:classtopos}
@@ -5161,18 +5185,22 @@ We generalize \eqref{eq:SOCnerve} from the case of $\mathbbm{2}\in\Set$ to an ar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection*{Cubical sets as a classifying topos}\label{subsec:classtopos}
 
-Recall that the objects of the Cartesian cube category $\Box$ may be taken concretely to be finite, strictly bipointed sets, written $$[n] = \{0, x_1, ..., x_n, 1\},$$ and the arrows $f : [n] \to [m]$ to be all bipointed maps $[m]\to [n]$ (note the direction). 
-The category of \emph{(Cartesian) cubical sets} is the presheaf topos
+Recall from Section \ref{sec:cSet} that the objects of the \emph{Cartesian cube category} $\Box$ may be taken concretely to be finite, strictly bipointed sets, written
+\[
+[n] = \{0, x_1, ..., x_n, 1\},
+\]
+ and the arrows $f : [n] \to [m]$ to be all bipointed maps $[m]\to [n]$ (note the direction). 
+The category of \emph{(Cartesian) cubical sets} is then the presheaf topos
 \[
 \cSet =  \psh{\Box}.
 \]
-It is generated by the representable presheaves $\I^n = \yon[n],$ called the \emph{$n$-cubes}.  The $0$-cube is $\I^0 = \yon[0] =1$; the $1$-cube is $\I = \yon[1]$; and $\I^n \times \I^m \cong \I^{n+m}$ in virtue of preservation of products by the Yoneda embedding $\yon : \op{\Box} \hook\cSet$.  For a cubical set $X: \op{\Box} \to \Set$ we write $X_n = X[n]$ and call this the \emph{set of $n$-cubes in $X$}, for which we have the usual Yoneda correspondence,
+It is generated by the \emph{$n$-cubes} $\I^n = \yon[n]$, with  $1 = \I^0$, $\I = \yon[1]$; and $\I^n \times \I^m \cong \I^{n+m}$ by preservation of products by the Yoneda embedding $\yon : \op{\Box} \hook\cSet$.  For a cubical set $X: \op{\Box} \to \Set$ we have the usual Yoneda correspondence for the set $X_n$ of  \emph{$n$-cubes in $X$},
 \[
 \{c \in X_n \} \ \cong\ \{c : \I^n \to X\}.
 \]
-In particular, $\I^n_m = \cSet([m],[n])$ is the set of $m$-cubes in the $n$-cube.\footnote{Note that the cardinality of $\I^n_m$ is therefore just $(m+2)^n$, in comparison to the \emph{Dedekind} cubes, for which \eg\ $\cSet([1],[n])$ the $n^{th}$ \emph{Dedekind number}, the number of elements in the free distributive lattice on $n$ generators, which in general is a number so large that it is not known even for values of $n>8$.} 
+In particular, $\I^n_m = \C([m],[n])$ is the set of $m$-cubes in the $n$-cube.\footnote{Note that the cardinality of $\I^n_m$ is therefore just $(m+2)^n$, in comparison to the \emph{Dedekind} cubes $\C_d$ used in \cite{CCHM:2018ctt,orton-pitts}, for which \eg\ $\C_d([n],[1])$ is the $n^{th}$ \emph{Dedekind number}, the number of elements in the free distributive lattice on $n$ generators, which is in general a number so large that it is unknown for values of $n>8$.} 
 
-\begin{proposition}
+\begin{proposition}\label{prop:csetclassifiesintervals}
 The category $\cSet$ of Cartesian cubical sets is the classifying topos for \emph{intervals}: objects $\mathcal{I}$ with points $i,j:1\rightrightarrows \mathcal{I}$ the pullback of which is $0$:
 \[
 \xymatrix{
@@ -5183,7 +5211,7 @@ The category $\cSet$ of Cartesian cubical sets is the classifying topos for \emp
 \end{proposition}
 
 \begin{proof}
-Consider the covariant presentation $\cSet = \Set^\B$ where $\B$ is the category of finite, strictly bipointed sets and bipointed maps.  We can extend $\B\hook\B_=$ by freely adjoining coequalizers, making $\B_=$ the free finite \emph{colimit} category on a co-bipointed object. An concrete presentation of $\B_=$ is the finite bipointed sets, including those with $0=1$.  Let us write $(n)$ for the bipointed set $\{x_1, ..., x_n, *\}$, with $n$ (non-constant) elements and a further element $0=*=1$.  There is an evident coequalizer $[1]\rightrightarrows [n]\to(n)$, which just identifies the distinguished points, and every coqualizer has either the form $[m]\rightrightarrows [n]\to [k]$ or $[m]\rightrightarrows [n]\to(k)$, for a suitable choice of $k$.  Note that there are no maps of the form $(m)\to [n]$, and that every map $[m]\to (n)$ factors uniquely as $[m]\to (m)\to (n)$ with  $[m]\to(m)$ the canonical coequalizer of $0$ and $1$.  The category $\B_=$ can therefore be decomposed into two ``levels'', the upper one of which is essentially $\B$, the lower one consisting of just the objects $(n)$ and thus essentially the finite \emph{pointed} sets, and for each $n$, there is the canonical coequalizer $[n]\to(n)$ going from the upper level to the lower one.
+Consider the covariant presentation $\cSet = \Set^\B$ where $\B$ is the category of finite, strictly bipointed sets and bipointed maps.  We can extend $\B\hook\B_=$ by freely adjoining coequalizers, making $\B_=$ the free finite \emph{colimit} category on a co-bipointed object. A concrete presentation of $\B_=$ is the finite bipointed sets, including those with $0=1$.  Let us write $(n)$ for the bipointed set $\{x_1, ..., x_n, *\}$, with $n$ (non-constant) elements and a further element $0=*=1$.  There is an evident coequalizer $[1]\rightrightarrows [n]\to(n)$, which (only) identifies the distinguished points, and every coqualizer in $\B_=$ has either the form $[m]\rightrightarrows [n]\to [k]$ or $[m]\rightrightarrows [n]\to(k)$, for a suitable choice of $k$.  Note that there are no maps of the form $(m)\to [n]$, and that every map $[m]\to (n)$ factors uniquely as $[m]\to (m)\to (n)$ with  $[m]\to(m)$ the canonical coequalizer of $0$ and $1$.  The category $\B_=$ can therefore be decomposed into two ``levels'', the upper one of which is essentially $\B$, and the lower one consisting of just the objects $(n)$, and thus essentially the finite \emph{pointed} sets, and for each $n$, there is the canonical coequalizer $[n]\to(n)$ going from the upper level to the lower one.
 \[
 \xymatrix{
 \dots \ar[r] & [m] \ar@{->>}[d] \ar[r] & [n] \ar@{->>}[d] \ar[r] & \dots \\
@@ -5224,7 +5252,7 @@ Since $u_* : \Set^{\B} \to \Set^{\B_=}$ is evidently full and faithful, it is th
 [0=1] &= y(0)
 \end{align*}
 fitting into an equalizer $[0=1] \to 1 \rightrightarrows \I$, which is the image under Yoneda of the canonical coequalizer $[1] \rightrightarrows [0]\to (0)$ in $\B_=$.  The closed complement topology for $[0=1] \mono 1$ is generated by the single cover $0\to [0=1]$, which can be described logically as 
-forcing the sequent $(0=1 \vdash 0)$ to hold.  Recall from \cite{JohnstoneTT}, Proposition 3.53, the following simple characterization of the sheaves for a closed topology generated by an object $U\mono 1$: an object $X$ is a sheaf iff $X\times U \cong U$. In the present case, it therefore suffices to show that for any $P:\B_= \to \Set$ we have:
+forcing the sequent $(0=1 \vdash \bot)$ to hold.  Recall from \cite{JohnstoneTT}, Proposition 3.53, the following simple characterization of the sheaves for a closed topology generated by an object $U\mono 1$: an object $X$ is a sheaf iff $X\times U \cong U$. In the present case, it therefore suffices to show that for any $P:\B_= \to \Set$ we have:
 \[
 P\times [0=1] \cong [0=1] \quad\text{iff}\quad P(n) = 1\ \text{for all $n$}.
 \]
@@ -5248,14 +5276,19 @@ If $b = (k)$, then $\hom(y(k), [0=1]) \cong \hom_{\B_=}((0), (k)) \cong 1$, and 
 \]
 Thus we will have an iso $P\times [0=1] \cong [0=1]$ iff $P(k) \cong 1$.
 
-Thus the presheaf topos $\Set^\B$ is the closed complement of the open subtopos $$\Set^{\B_=}/_{[0=1]}\ \hook\ \Set^{\B_=}$$ given by forcing the proposition $0 \neq 1$.  Since $\Set^{\B_=}$ is clearly the classifying topos for \emph{arbitrary} bipointed objects $b_0, b_1 : 1\to B$, the subtopos $\Set^\B$ then indeed classifies \emph{strictly} bipointed objects, \ie\ intervals, as claimed.
+Thus the presheaf topos $\Set^\B$ is indeed the closed complement of the open subtopos
+\[
+\Set^{\B_=}/_{[0=1]}\ \hook\ \Set^{\B_=}
+\]
+given by forcing the proposition $0 \neq 1$.  Since $\Set^{\B_=}$ is clearly the classifying topos for \emph{arbitrary} bipointed objects $b_0, b_1 : 1\to B$, the subtopos $\Set^\B$ then indeed classifies \emph{strictly} bipointed objects, \ie\ intervals, as claimed.
 \end{proof}
 
 
 \begin{corollary}
 The geometric realization functor to topological spaces 
 $$R: \cSet \to \mathsf{Top}$$
-preserves cartesian products, $R(X\times Y) \cong R(X)\times R(Y)$.\footnote{This fact and the next one Proposition \ref{prop:nervefull} are to be contrasted with the case of monoidal cubical sets, \eg\ as studied by \cite{Jardine:cubical}}
+preserves cartesian products, $R(X\times Y) \cong R(X)\times R(Y)$.
+%\footnote{This fact and the next one Proposition \ref{prop:nervefull} are to be contrasted with the case of monoidal cubical sets, \eg\ as studied by \cite{Jardine:cubical}}
 \end{corollary}
 
 \begin{proof}
@@ -5352,7 +5385,7 @@ On the other hand,
 The isomorphism is natural in $n$.
 \end{proof}
 %
-We mention that a similar fact holds for the generic object in the object classifier topos, and in the Schanuel topos, and is used in the theory of ``abstract higher-order syntax'' \cite{FiorePlotkinTuri:1999}.
+A similar fact holds for the generic object in the object classifying topos $\Set[X]=\Set^{\mathsf{Fin}}$, and in the Schanuel topos $\mathsf{Sh}(\mathsf{Aut}(\N))$ used in the theory of abstract higher-order syntax \cite{FiorePlotkinTuri:1999}.
 
 
 \begin{definition}
@@ -5360,62 +5393,72 @@ Let us write
 \[
 X_\I = S_*(X)
 \]
-for the right adjoint of the path object functor $X^\I = S^*X$.
+for the \emph{$\I$-th root of $X$}, the right adjoint of the pathobject functor $X^\I = S^*X$.
 \end{definition}
 
 \begin{corollary}
-We have the following calculation for the right adjoint $X_\I$:
+We have the following calculation for $X_\I$:
 \begin{align*}\textstyle
 X_\I(n) &\cong \hom(\I^n, X_\I) \\
 &\cong \hom((\I^n)^\I, X) \\
 &\cong \hom((\I^\I)^n, X) \\
 &\cong \hom((\I+1)^n, X) \\
 &\cong \hom(\I^n +  {\textstyle{n\choose n-1}}\I^{n-1} + \dots + {\textstyle{n\choose 1}}\I+1, X) \\
-&\cong X_n \times X_{n-1}^{\binom{n}{n-1}} \times \dots \times X_1^{\binom{n}{1}}\times X_0,
+&\cong X_n \times X_{n-1}^{\binom{n}{n-1}} \times \dots \times X_1^{\binom{n}{1}}\times X_0\,.
 \end{align*}
 \end{corollary}
 
 \begin{corollary}
-There is a natural transformation $X_\I \to X$, given by the first projection $X_n \times \dots \times X_0 \too X_n$.
+There is a natural transformation $X_\I \to X$, given for each $n$ by the first projection $X_n \times \dots \times X_0 \too X_n$.
 \end{corollary}
 
-Finally, we observe that that the path object functor $X\mapsto X^\I$ itself, as a \emph{left} adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{Lawvere:2004} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
+Finally, we observe that  the pathobject functor $X\mapsto X^\I$, as a \emph{left} adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{Lawvere:2004} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
 
-\subsubsection*{Example.} (P.~Aczel)\ednote{fix}
-The cubical set $P$ of polynomials (say, over the integers), is defined by:
+\subsubsection*{Example.} (P.~Aczel)
+The cubical set $P$ of polynomials (say, over $\Z$), is defined by:
 \[
 P_n = \{ p(x_1, ...,  x_n)\ |\  \text{polynomials in at most}\  x_1, ..., x_n \}
 \]
-with the evident maps $P_m \to P_n$ for each function $[m] \to [n]$.
-
-This is a ring object in the category of cubical sets, and the interval $\I\ = \y[1]$ embeds into $P$.
-The same is true for any algebraic theory $\T$ with two constants, such as boolean algebras: there is a cubical $\T$-algebra $A$ and a monic $\I \mono A$.
-
-Let $\C[\I] = \H$ be the cube category, classifying intervals, and $\C[\T]$ the classifying category for $\T$-algebras.  There is an interval $J$ in $\C_\T$  consisting of the generic $\T$-algebra and its two constants.  This $J$ has a classifying functor $J : \C_\I \to \C_\T$, inducing functors on presheaves
+with the substitution map $s^* : P_n \to P_m$ taking $p(x_1, ...,  x_n)$ to 
 \[
-J_! \dashv J^* \dashv J_* : \psh{\C_\I} \to \psh{\C_\T}
+ s^*p(x_1, ...,  x_n) = p\big(s(x_1),\dots, s(x_n)\big) \,,
 \]
-as usual, where $J_! \circ \y_{\C_\I} =\ \y_{\C_\T} \circ J$,  with $\y$ the respective Yoneda embeddings.
+for each bipointed map $s:[n] \to [m]$.
 
-We can calculate:
+This cubical set $P$ is a ring object in the category $\cSet$ of cubical sets, and the interval $\I = \y[1]$ embeds into $P$ via the componentwise maps
+\[
+\eta_n : \I_n \to P_n
+\]
+taking $v_i \in \B\big([1],[n]\big) \cong \{0, x_1, \dots, x_n, 1\} $ to either $0$,  $1$, or the variable $x_i \in P_n$.
+The same is true for any algebraic theory $\T$ with two constants, such as Boolean algebras: there is a distinguished cubical $\T$-algebra $A$, and a monic $\eta : \I \mono A$ in $\cSet$.
+
+Let $\Set[\I]=\cSet$ be the category of cubical sets, which classifies intervals by Proposition \ref{prop:csetclassifiesintervals}, and $\Set[\T,\mathsf{flat}]$ be the classifying topos for \emph{flat} $\T$-algebras, \ie\ the presheaves $\Set^{\op{\T}}$ on the Lawvere algebraic theory $\T$.  There is an interval $\J$ in $\T$  consisting of the generic $\T$-algebra and its two constants.  This bipointed object $1\rightrightarrows\J$ has a classifying functor $\J^\sharp : \C \to \T$, inducing adjoint functors on presheaves, 
+\[
+\J_! \dashv \J^* \dashv \J_* : \Set[\I] = \psh{\C} \too \psh{\T} = \Set[\T,\mathsf{flat}]\,,
+\]
+where $\J_! \circ \y_{\C} =\ \y_{\T} \circ \J^\sharp$,  with $\y$ the respective Yoneda embeddings.
+
+We can then calculate,
 \begin{equation}
 \begin{split}
-J^* J_! ( \I )( [n] ) &= J^* J_! ( Y[1] )( [n] )\\
- &= J^* Y( J[1] )( [n] ) = Y( J[1] )( J[n] ) \\
- &= \C_\T( J[n] , J[1] ) = \T\mathrm{-Alg}( J[1] , J[n] ) \\
- &= \T\mathrm{-Alg}( F(1) , F(n) ) = | F(n) |,
+\J^* \J_! ( \I )( [n] ) &= \J^* \J_! ( \y[1] )( [n] )\\
+ &= \J^* \y( \J^\sharp[1] )( [n] ) = \y( \J^\sharp[1] )( \J^\sharp[n] ) \\
+ &= \T( \J^\sharp[n] , \J^\sharp[1] ) = \T\mathsf{Alg}( \J^\sharp[1] , \J^\sharp[n] ) \\
+ &= \T\mathsf{Alg}( F(1) , F(n) ) = | F(n) |,
 \end{split}
 \end{equation}
 where $F(n)$ is the free $\T$-algebra on $n$ generators.  So in the case of polynomials we indeed have 
-$$P = J^* J_! ( \I ).$$
-The unit of the adjunction $\I \to J^* J_! ( \I )$ is faithful, since $J$ itself is faithful and therefore the left adjoint $J_!$ is faithful.
-$P$ is a ring in $\psh{\C_\I}$ since $J_!(\I)$ is a ring in $\psh{\C_\T}$ and $J^*$ is left exact.
-%
-%A closely related example is the cubical set of ``boolean polynomials",
-%\[
-%B_n = \{ \varphi(p_1, ...,  p_n)\ |\ \text{propositional formulas in at most $p_1, ...,  p_n$} \}
-%\]
-%which of course is the free boolean algeba $2^{2^n}$.  
+\[
+P = \J^* \J_! ( \I )\,,
+\]
+as the ``free ring on the interval $\I$'' in cubical sets $\cSet$.  The unit of the adjunction $\eta: \I \to \J^* \J_! ( \I ) \cong P$ is monic, since $\J^\sharp$ is faithful and therefore its left Kan extension $\J_!$ is faithful.   The cubical set of polynomials $P$ is a ring in $\Set[\I]$ since $\J_!(\I) \cong \y_\T\,\J^\sharp([1]) \cong \y_\T(\J)$ is a ring in $\psh{\T}=\Set[\T,\mathsf{flat}]$ and $J^*$ is left exact.  In fact, we thereby learn that $P$ is flat.
+
+A closely related example is the cubical set of ``Boolean polynomials",
+\begin{align*}
+B_n &= \{ \varphi(p_1, ...,  p_n)\ |\ \text{propositional formulas in $p_1, ...,  p_n$}\} \\
+ &\cong 2^{2^n}\,,
+\end{align*}
+which is thus a flat Boolean algebra in $\cSet$.  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{alpha}
