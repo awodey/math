@@ -60,6 +60,8 @@
 \newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
 \newcommand{\covpsh}[1]{\ensuremath{\mathsf{Set}^{#1}}}
 \newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
+\newcommand{\cSetZ}{\ensuremath{\mathsf{cSet}/_{\!Z}}}
+
 \newcommand{\cEE}{\ensuremath{\mathsf{c}\mathcal{E}}}
 %\newcommand{\pbcornertransp}[1][dr]{\save*!/#1+1000pc/#1:(5000,5000)@^{|-}\restore}
 \newcommand{\y}{\ensuremath{\mathsf{y}}} % Yoneda embedding
@@ -4075,44 +4077,44 @@ The equivalence extension property is closely related to the \emph{univalence} o
 
 \subsection*{The sliced premodel structure}
 
-We begin by recalling some basic facts and making some simple observations that are well-known in general model categories, but need to be checked again here, because we do not yet have a full model structure. The reader is reminded that the word ``fibration'' unqualified always refers to \emph{unbiased} fibrations as in Definition \ref{def:unbiasedfibration}.  First, for any object $Z \in\cSet$, the slice category $\cSet/_Z$ inherits the premodel structure of Proposition \ref{prop:FWC} from $\cSet$ via the forgetful functor 
+We begin by recalling some basic facts and making some simple observations that are well-known in general model categories, but need to be checked again here, because we do not yet have a full model structure. The reader is reminded that the word ``fibration'' unqualified always refers to \emph{unbiased} fibrations as in Definition \ref{def:unbiasedfibration}.  First, for any object $Z \in\cSet$, the slice category $\cSetZ$  inherits the premodel structure of Proposition \ref{prop:FWC} from $\cSet$ via the forgetful functor 
 \[
-Z_! : \cSet/_Z \to \cSet\,.
+Z_! : \cSetZ  \too \cSet\,.
 \]
 In more detail:
 \begin{definition}\label{def:slicepremodelstructure}
- A map $f : X \to Y$ over $Z$ is a \emph{(trivial) cofibration or (trivial) fibration} over $Z$ just if it is one in $\cSet$ after forgetting the $Z$-indexing via  $Z_!:\cSet/_Z \to \cSet$. This will be called the (\emph{relative} or) \emph{sliced premodel structure} on $\cSet/_Z$.  Accordingly, a map $f : X \to Y$ over $Z$ will be called a \emph{weak equivalence} over $Z$ just if it factors over $Z$ as a trivial fibration over $Z$ after a trivial cofibration over $Z$, which therefore holds just if it is a weak equivalence in $\cSet$ after forgetting the $Z$-indexing.
+ A map $f : X \to Y$ over $Z$ is a \emph{(trivial) cofibration or (trivial) fibration} over $Z$ just if it is one in $\cSet$ after forgetting the $Z$-indexing via  $Z_!:\cSetZ \to \cSet$. This will be called the (\emph{relative} or) \emph{sliced premodel structure} on $\cSetZ$.  Accordingly, a map $f : X \to Y$ over $Z$ will be called a \emph{weak equivalence} over $Z$ just if it factors over $Z$ as a trivial fibration over $Z$ after a trivial cofibration over $Z$, which therefore holds just if it is a weak equivalence in $\cSet$ after forgetting the $Z$-indexing.
 \end{definition}
 
-That the specification in Definition \ref{def:slicepremodelstructure} does determine a premodel structure is a consequence of Proposition \ref{prop:FWC}, and the well-known fact that (pre)model structures are stable under slicing in this way \cite{Hirschhorn:2003mc}.   In more detail:
+That the specification in Definition \ref{def:slicepremodelstructure} actually does determine a premodel structure is a consequence of Proposition \ref{prop:FWC}, and the well-known fact that (pre-)model structures are stable under slicing in this way \cite{Hirschhorn:2003mc}.   In more detail:
 
 \begin{lemma}\label{lem:slicepremodellifting1}
-A map $f : X \to Y$ over $Z$  is a fibration (respectively, a trivial fibration) over $Z$ if, and only if, it lifts on the right in the slice category $\cSet/_Z$ against all trivial cofibrations (respectively, cofibrations) over $Z$.
+A map $f : X \to Y$ over $Z$  is a fibration (respectively, a trivial fibration) over $Z$ if, and only if, it lifts on the right in the slice category $\cSetZ$ against all trivial cofibrations (respectively, cofibrations) over $Z$.
 \end{lemma}
 %
 \begin{proof}
-Let $X \stackrel{f}{\to} Y \stackrel{p_Y}{\too} Z$, regarded as a map in the slice category over $Z$, with $p_X = p_Y \circ f : X \to Z$.  Then by definition $f$ is a fibration in $\cSet/_Z$ just if $f : X\to Y$ is a fibration in the total category $\cSet$, which holds just if $f$ lifts on the right against all trivial cofibrations $t : A \cof B$ in $\cSet$.  But every lifting problem of the form $t\pitchfork f$ in $\cSet$,
+Let $X \stackrel{f}{\to} Y \stackrel{p_Y}{\too} Z$, regarded as a map in the slice category over $Z$, with $p_X = p_Y \circ f : X \to Z$.  Then by definition $f$ is a fibration in $\cSetZ$ just if $f : X\to Y$ is a fibration in the total category $\cSet$, which holds just if $f$ lifts on the right against all trivial cofibrations $t : A \cof B$ in $\cSet$.  But every lifting problem of the form $t\pitchfork f$ in $\cSet$,
 \[\begin{tikzcd}
 A \ar[d,swap,tail, "t"] \ar[r, "x" ] & X \ar[d, "f"] \\  
 B  \ar[r, swap, "y" ] \ar[ru, dotted] & Y  \ar[d, "{p_Y}"] \\
 & Z
  \end{tikzcd}\]
-gives rise to a corresponding one over $Z$, just by composing everything with $p_Y : Y \to Z$. Moreover, the evident resulting map $A\stackrel{t}{\cof} B \to Z$ is then a trivial cofibration over $Z$,  and every such lifting problem for $f$ over $Z$ arises in this way.  Finally, the diagonal fillers for the resulting lifting problem in $\cSet/_Z$ are exactly the diagonal fillers for the original one in $\cSet$. Thus the map $f$ over $Z$ is a fibration over $Z$ just in case it lifts on the right over $Z$ against all trivial cofibrations over $Z$, as claimed.  The case of trivial fibrations and cofibrations is exactly analogous.
+gives rise to a corresponding one over $Z$, just by composing everything with $p_Y : Y \to Z$. Moreover, the evident resulting map $A\stackrel{t}{\cof} B \to Z$ is then a trivial cofibration over $Z$,  and every such lifting problem for $f$ over $Z$ arises in this way.  Finally, the diagonal fillers for the resulting lifting problem in $\cSetZ$ are exactly the diagonal fillers for the original one in $\cSet$. Thus the map $f$ over $Z$ is a fibration over $Z$ just in case it lifts on the right over $Z$ against all trivial cofibrations over $Z$, as claimed.  The case of trivial fibrations and cofibrations is exactly analogous.
 \end{proof}
 
 \begin{lemma}\label{lem:slicepremodellifting2}
-A map $f : X \to Y$ over $Z$  is a cofibration (respectively, a trivial cofibration) over $Z$ if, and only if, it lifts on the left in the slice category $\cSet/_Z$ against all trivial fibrations (respectively, fibrations) over $Z$.
+A map $f : X \to Y$ over $Z$  is a cofibration (respectively, a trivial cofibration) over $Z$ if, and only if, it lifts on the left in the slice category $\cSetZ$ against all trivial fibrations (respectively, fibrations) over $Z$.
 \end{lemma}
 %
 \begin{proof}
-Let $X \stackrel{f}{\to} Y \stackrel{p_Y}{\too} Z$, regarded as a map in the slice category over $Z$, with $p_X = p_Y \circ f : X \to Z$.  Then by definition $f$ is a cofibration in $\cSet/_Z$ just if $Z_! f : Z_! X\to Z_! Y$ is a cofibration in the total category $\cSet$, which holds just if $Z_! f$ lifts on the left against all trivial fibrations $t : E \fib F$ in $\cSet$.  
+Let $X \stackrel{f}{\to} Y \stackrel{p_Y}{\too} Z$, regarded as a map in the slice category over $Z$, with $p_X = p_Y \circ f : X \to Z$.  Then by definition $f$ is a cofibration in $\cSetZ$ just if $Z_! f : Z_! X\to Z_! Y$ is a cofibration in the total category $\cSet$, which holds just if $Z_! f$ lifts on the left against all trivial fibrations $t : E \fib F$ in $\cSet$.  
 But every lifting problem of the form $Z_! f\pitchfork t$ in $\cSet$,
 \[\begin{tikzcd}
 X \ar[d,swap, "f"] \ar[r, "x" ] & E \ar[d, two heads, "t"] \\  
 Y  \ar[r, swap, "y" ] \ar[ru, dotted] \ar[d,swap, "{p_Y}"] & F  \\
 Z &
  \end{tikzcd}\]
-gives rise to a corresponding one over $Z$ of the form $f\pitchfork Z^*t$, by pulling $t$ back along $Z \to 1$. Moreover, since trivial fibrations are stable under pullback in $\cSet$, the pullback $Z^*t$ is a trivial fibration, and so $Z^*t$ is a trivial fibration over $Z$.  Thus $f$ is a cofibration in $\cSet/_Z$ if and only if $f\pitchfork Z^*t$ in $\cSet/_Z$ for all trivial fibrations $t : E\fib F$ in $\cSet$.  
+gives rise to a corresponding one over $Z$ of the form $f\pitchfork Z^*t$, by pulling $t$ back along $Z \to 1$. Moreover, since trivial fibrations are stable under pullback in $\cSet$, the pullback $Z^*t$ is a trivial fibration, and so $Z^*t$ is a trivial fibration over $Z$.  Thus $f$ is a cofibration in $\cSetZ$ if and only if $f\pitchfork Z^*t$ in $\cSetZ$ for all trivial fibrations $t : E\fib F$ in $\cSet$.  
 
 Now observe that for any map $A \stackrel{g}{\to} B \stackrel{p_B}{\too} Z$ over $Z$, with $p_A = p_B\circ g$, the following unit square is a pullback, as indicated below,
 \begin{equation}\label{eq:unitgraphpullback}
@@ -4122,34 +4124,34 @@ B  \ar[r, swap, "\eta_B" ]   \ar[d] & Z^*Z_!A   \ar[d] \ar[r, equals] & Z\times 
 Z  \ar[r, equals] & Z  \ar[r, equals] & Z,
  \end{tikzcd}
  \end{equation}
-because the graph $\eta_A = \pair{p_A, 1_Z} : A \to Z\times A$ is a pullback of $\Delta_A = \pair{1_Z, 1_Z} : Z \to Z\times Z$ along $1_Z \times p_A : Z\times A \to Z\times Z$, and similarly for $\eta_B$.  Thus in particular, every trivial fibration $A \stackrel{g}{\fib} B \stackrel{p_B}{\too} Z$ over $Z$ is a pullback over $Z$ of one of the form $Z^*g : Z^*A \fib Z^*B$ for a trivial fibration $g : A\fib B$ in $\cSet$.  Therefore $f$ is a cofibration in $\cSet/_Z$ if and only if $f\pitchfork g$ in $\cSet/_Z$ for all trivial fibrations $g : A\fib B$ in $\cSet/_Z$, as claimed. 
+because the graph $\eta_A = \pair{p_A, 1_Z} : A \to Z\times A$ is a pullback of $\Delta_A = \pair{1_Z, 1_Z} : Z \to Z\times Z$ along $1_Z \times p_A : Z\times A \to Z\times Z$, and similarly for $\eta_B$.  Thus in particular, every trivial fibration $A \stackrel{g}{\fib} B \stackrel{p_B}{\too} Z$ over $Z$ is a pullback over $Z$ of one of the form $Z^*g : Z^*A \fib Z^*B$ for a trivial fibration $g : A\fib B$ in $\cSet$.  Therefore $f$ is a cofibration in $\cSetZ$ if and only if $f\pitchfork g$ in $\cSetZ$ for all trivial fibrations $g : A\fib B$ in $\cSetZ$, as claimed. 
 The case of trivial cofibrations and fibrations is exactly analogous.
 \end{proof}
 
 Since factoring a map in the slice category is evidently given simply by factoring it after forgetting the indexing, we now have:
 
 \begin{proposition}\label{prop:slicepremodelstructure}
-The specification in Definition \ref{def:slicepremodelstructure} determines a premodel structure on $\cSet/_Z$ for any object $Z \in \cSet$.
+The specification in Definition \ref{def:slicepremodelstructure} determines a premodel structure on $\cSetZ$ for any object $Z \in \cSet$.
 \end{proposition}
 
 The reader is warned that when $Z = \I$ there is a possibility of confusion with the $\delta$-biased fibrations in $\cSet/_\I$, which do not in general agree with the $\I$-sliced (unbiased) fibrations.  
 
-In order to verify the axioms (C1)-(C8) for cofibrations, let $Z^*1 \rightrightarrows Z^*\I$ in $\cSet/_Z$ be the result of pulling the interval $1 \rightrightarrows \I$ back along $Z\to 1$, to obtain a bipointed object in $\cSet/_Z$ that we shall write as,
+In order to verify the axioms (C1)-(C8) for cofibrations, let $Z^*1 \rightrightarrows Z^*\I$ in $\cSetZ$ be the result of pulling the interval $1 \rightrightarrows \I$ back along $Z\to 1$, to obtain a bipointed object in $\cSetZ$ that we shall write as,
 \begin{equation}\label{eq:relativeinterval}
 \delta_0, \delta_1 : 1_Z \rightrightarrows \I_Z\,.
 \end{equation}
-Observe that $1_Z + 1_Z \cong Z^*1 + Z^*1 \cof Z^*\I$ since the pullback functor  $Z^* : \cSet\to \cSet/_Z$ preserves (co)limits and cofibrations.   
+Observe that $1_Z + 1_Z \cong Z^*1 + Z^*1 \cof Z^*\I$ since the pullback functor  $Z^* : \cSet\to \cSetZ$ preserves (co)limits and cofibrations.   
 
 \begin{proposition}
-Taking $\delta_0, \delta_1 : 1_Z \rightrightarrows \I_Z$ as an interval, the axioms  (C1)-(C8) for cofibrations are satisfied in $\cSet/_Z$ 
+Taking $\delta_0, \delta_1 : 1_Z \rightrightarrows \I_Z$ as an interval, the axioms  (C1)-(C8) for cofibrations are satisfied in $\cSetZ$ 
 \end{proposition}
 
 \begin{proof}(sketch)
-The (relative) cofibration classifier in $\cSet/_Z$ is the pullback $Z^*t : Z^*1 \cof Z^*\Phi$, which we shall write as
+The (relative) cofibration classifier in $\cSetZ$ is the pullback $Z^*t : Z^*1 \cof Z^*\Phi$, which we shall write as
 \begin{equation}\label{eq:relativecofclassifier}
 t_Z : 1_Z \cof \Phi_Z\,.
 \end{equation}
-For axiom (C8), observe that for a map $c : A \to B$ in $\cSet/_Z$, the exponential $c^{\I_Z} : A^{\I_Z}  \to A^{\I_Z} $ in $\cSet/_Z$ fits into a unit pullback square of the form \eqref{eq:unitgraphpullback},
+For axiom (C8), observe that for a map $c : A \to B$ in $\cSetZ$, the exponential $c^{\I_Z} : A^{\I_Z}  \to A^{\I_Z} $ in $\cSetZ$ fits into a unit pullback square of the form \eqref{eq:unitgraphpullback},
 \begin{equation}\label{eq:unitgraphpullback2}
 \begin{tikzcd}
 A^{\I_Z}  \ar[d,swap, "c^{\I_Z}"] \ar[r, "\eta_A" ] \pbmark & Z^*Z_!(A^{\I_Z})   \ar[d, "Z^*Z_!(c^{\I_Z})"] \ar[r, "\cong"] 
@@ -4160,19 +4162,16 @@ B^{\I_Z}   \ar[r, swap, "\eta_B" ]   & Z^*Z_!(B^{\I_Z})   \ar[r,swap, "\cong"] &
 So if $c$ is a cofibration, so is $c^{\I_Z}$.
 The other axioms are routine.
 \end{proof}
- 
-%\ednote{Joyal-Tierney calculus in the slice?  Fibrations are $\delta_Z$-biased trivial fibrations in the slice over $\I_Z$?}
-
 
 \begin{lemma}\label{lemma:JTslice}
-For any cubical set $Z$, we have the following relative versions of the pushout-product and pullback-hom conditions involving the interval in the slice category $\cSet/_Z$.
+For any cubical set $Z$, we have the following relative versions of the pushout-product and pullback-hom conditions involving the interval in the slice category $\cSetZ$.
 \begin{enumerate}
-\item If $c : A \cof B$ is a cofibration in $\cSet/_Z$, then the pushout-product formed in $\cSet/_Z$ with $\delta_0 : 1_Z \cof \I_Z$, written
+\item If $c : A \cof B$ is a cofibration in $\cSetZ$, then the pushout-product formed in $\cSetZ$ with $\delta_0 : 1_Z \cof \I_Z$, written
 \[
 c\otimes_Z \delta_0 : B +_{A} (A\times_Z \I_Z) \too B\times_Z \I_Z\,,
 \]
 is a trivial cofibration (and similarly for $\delta_1 : 1_Z\cof \I_Z$). 
-\item If $f : X \fib Y$ is a fibration in $\cSet/_Z$, then the pullback-hom formed in $\cSet/_Z$ with $\delta_0 : 1_Z \cof \I_Z$, written
+\item If $f : X \fib Y$ is a fibration in $\cSetZ$, then the pullback-hom formed in $\cSetZ$ with $\delta_0 : 1_Z \cof \I_Z$, written
 \[
 \delta_0\Rightarrow_Z f : X^{\I_Z} \too Y^{\I_Z}\times_Z X \,,
 \]
@@ -4185,7 +4184,7 @@ For (1),  the pushout-product $c \otimes_Z \delta_0 : D \to B \times_Z \I_Z$ ove
 \[
 B\times_Z \I_Z \cong B \times \I\,,
 \]  
-and similarly for $A$ (and pushouts in the slice are created by the forgetful functor $\cSet/_Z \to \cSet$).  Thus, briefly,
+and similarly for $A$ (and pushouts in the slice are created by the forgetful functor $\cSetZ \to \cSet$).  Thus, briefly,
 \[
 c \otimes_Z Z^*\delta_0 = c \otimes \delta_0 \,,
 \]
@@ -4194,10 +4193,10 @@ which is indeed a trivial cofibration.
 (2) follows from (1) and lemma \ref{lem:slicepremodellifting2}, together with the usual adjunction between $\otimes_Z$ and $\Rightarrow_Z$.
 \end{proof}
 
-In order to apply the results on weak equivalences from section \ref{sec:weq} in arbitrary slice categories $\cSet/_Z$ we shall also require  the notions of homotopy equivalence over $Z$ and weak homotopy equivalence over $Z$.  We first use the relative interval $\delta_0, \delta_1 : 1_Z \rightrightarrows \I_Z$ \eqref{eq:relativeinterval} to define homotopy between maps over $Z$ in the expected way, namely:
+In order to apply the results on weak equivalences from section \ref{sec:weq} in arbitrary slice categories $\cSetZ$ we shall also require  the notions of homotopy equivalence over $Z$ and weak homotopy equivalence over $Z$.  We first use the relative interval $\delta_0, \delta_1 : 1_Z \rightrightarrows \I_Z$ \eqref{eq:relativeinterval} to define homotopy between maps over $Z$ in the expected way, namely:
 
 \begin{definition}\label{homotopyinaslice}
-For any object $Z$ and maps $f, g: X\rightrightarrows Y$ in $\cSet/_Z$, a \emph{homotopy over $Z$}, written 
+For any object $Z$ and maps $f, g: X\rightrightarrows Y$ in $\cSetZ$, a \emph{homotopy over $Z$}, written 
 \[
 \vartheta : f \sim_Z g\,,
 \]
@@ -4220,7 +4219,7 @@ where, as usual, $\iota_0, \iota_1$ are the canonical inclusions into the ends o
 \end{definition}
 
 \begin{lemma}\label{lem:homotopyinthesliceishomotopy}
-For any object $Z$ and maps $f, g: X\rightrightarrows Y$ in $\cSet/_Z$, a homotopy over $Z$ determines a homotopy of the underlying maps by applying the functor $Z_! : \cSet/_Z \to \cSet$ that forgets the $Z$-indexing,
+For any object $Z$ and maps $f, g: X\rightrightarrows Y$ in $\cSetZ$, a homotopy over $Z$ determines a homotopy of the underlying maps by applying the functor $Z_! : \cSetZ \to \cSet$ that forgets the $Z$-indexing,
 \[
 \vartheta : f\sim_Z g \quad\ \mapsto\quad  Z_! \vartheta : Z_! f\sim Z_! g\,.
 \]
@@ -4243,7 +4242,7 @@ For any object $Z$, the relation of homotopy over $Z$ between maps $f, g: X\righ
 
 The proof is essentially the same as the corresponding one for homotopy over $1$, Proposition \ref{prop:homotopyintofibequivrel}, with the exception that both $X$ and $Y$ are required to be fibrant objects over $Z$, so that the exponential $Y^X$ over $Z$ is also a fibration $Y^Z  \fib Z$ (by Corollary \ref{cor:unbiasedPi}).
 
-Next we define a \emph{connected components} functor on the full subcategory $\Fib_Z \hook \cSet/_Z$ of fibrations over $Z$,
+Next we define a \emph{connected components} functor on the full subcategory $\Fib_Z \hook \cSetZ$ of fibrations over $Z$,
 \[
 (\pi_0)_Z : \Fib_Z \ra\Set\,,
 \]
@@ -4251,7 +4250,7 @@ by taking the global sections of a fibration $F\fib Z$, modulo the relation $\si
 \begin{equation}\label{eq:coeqpi0}
 \Hom_Z(\I_Z , F) \rightrightarrows \Hom_Z(1_Z , F) \to (\pi_0)_Z(F) \,,
 \end{equation}
-where the two maps are given by precomposition with the interval $1_Z \rightrightarrows \I_Z$ over $Z$, and the $\hom$-sets are those in $\cSet/_Z$.
+where the two maps are given by precomposition with the interval $1_Z \rightrightarrows \I_Z$ over $Z$, and the $\hom$-sets are those in $\cSetZ$.
 
 For fibrations $X\fib Z$ and $F\fib Z$ we then again have 
 \[
@@ -4284,50 +4283,11 @@ where the indicated exponentials are taken in the slice category.
 \end{definition} 
 
 The proof of the following is analogous to that of the corresponding facts for the case $Z=1$ (Lemmas \ref{lemma:HE342} and \ref{lemma:WHE342}).
-%
+
 \begin{lemma}\label{lemma:HE342sliced}
 The  homotopy equivalences over any object $Z$ satisfy the 3-for-2 condition, as do the weak homotopy equivalences over $Z$.
 \end{lemma}
-%
 
-\begin{lemma}\label{lemma:heovertohe}
-Let $f : X\to Y$ be any map over $Z$. 
-%We again write $Z_! : \cSet/_Z \to \cSet$ for the forgetful functor.  
-\begin{enumerate}
-\item If $f : X\to Y$ is homotopy equivalence over $Z$, then $Z_!f : Z_! X \to Z_! Y$ is a homotopy equivalence.
-\item If $X\fib Z$ and $Y\fib Z$ are fibrations and $f : X\to Y$ is weak homotopy equivalence over $Z$, then $Z_!f : Z_! X \to Z_! Y$ is a weak homotopy equivalence.
-\end{enumerate}
-\end{lemma}
-%
-\begin{proof}
-(1) is immediate from the fact that $Z_!$ preserves homotopies, Lemma \ref{lem:homotopyinthesliceishomotopy}.
-For (2), let $f : X\to Y$ be a weak homotopy equivalence over $Z$ between fibrations $X\fib Z$ and $Y\fib Z$, and let $K$ be any fibrant object in $\cSet$.  
-Consider the internal precomposition map, 
-\[
-K^{Z_!f} : K^{Z_! Y} \to K^{Z_! X}\,,
-\]
-which we would like to show is a bijection under $\pi_0 : \cSet \to \Set$.
-Since $K\fib1$ is a fibration, so is its pullback $Z^*K \fib Z$.  Therefore, since $f : X\to Y$ is weak homotopy equivalence over $Z$, 
-the precomposition map over $Z$,
-\[
-(Z^*K)^f : (Z^*K)^Y \to (Z^*K)^X\,,
-\]
-is bijective on connected components, 
-\[
-(\pi_0)_Z\big((Z^*K)^f\big) : (\pi_0)_Z\big((Z^*K)^Y\big) \cong (\pi_0)_Z\big((Z^*K)^X\big)\,.
-\]
-But now observe that in the coequalizer \eqref{eq:coeqpi0} that defines $(\pi_0)_Z\big((Z^*K)^X\big)$, we have 
-\[\begin{split}
-\Hom_Z(1_Z , (Z^*K)^X) \cong  \Hom_Z(X, (Z^*K))\\
- \cong \Hom(Z_!X, K)  \cong \Hom(1, K^{Z_!X})\,,
-\end{split}\]
-and similarly 
-\[\begin{split}
-\Hom_Z(\I_Z , (Z^*K)^X) \cong  \Hom_Z(Z^*\I \times X, Z^*K) \\
- \cong \Hom_Z(\I \times Z_! X, K) \cong \Hom(\I, K^{Z_!X})\,.
-\end{split}\]
-Thus $(\pi_0)_Z((Z^*K)^X) \cong (\pi_0)(K^{Z_!X})$, and the same is true with $Y$ in place of $X$.   So  $K^{Z_!f} : K^{Z_!Y} \to K^{Z_!X}$ is also bijective on connected components.
-\end{proof}
 
 \begin{proposition}\label{prop:weqisheoverZ}
 For any object $Z$ and fibrations $X\fib Z$ and $Y\fib Z$, the following conditions are equivalent for any map $f : X\to Y$ over $Z$.
@@ -4352,21 +4312,22 @@ Any homotopy equivalence over $Z$ is clearly a weak homotopy equivalence over $Z
 If $f : X\to Y$ is a weak homotopy equivalence, then factor it as $f = tf\circ c$ with a cofibration $c : X \cof F$ followed by a trivial fibration $tf : F \fib Y$, both of which are also over $Z$.   We thus just need to show that $c : X \cof F$ is a trivial cofibration.  As in the first step, $tf : F \fib Y$ is a homotopy equivalence over $Z$, whence a weak homotopy equivalence by the second step, and so by 3-for-2 for weak homotopy equivalences over $Z$, Lemma \ref{lemma:HE342sliced}, $c : X \cof F$ is also a weak homotopy equivalence over $Z$.  Now, as in the proof of Proposition \ref{prop:CofbetweenFibWEWHEHE}, factor $c = f\circ tc$ as a trivial cofibration $tc : X \cof C$ followed by a fibration $f : C \fib F$, both over $Z$.   By steps 1 and 2, $tc : X \cof C$ is then a weak homotopy equivalence over $Z$. By 3-for-2 for weak homotopy equivalences, Lemma \ref{lemma:HE342sliced}, $f : C \fib F$ is also a weak homotopy equivalence over $Z$.  It remains to show that the fibration $f : C \fib F$ is a weak equivalence.  This follows by repeating the reasoning for Lemma \ref{lemma:FibWHEfibCodTFib}, and the results leading up to it, over $Z$.
 \end{proof}
 
-By Lemma \ref{lemma:HE342sliced} we now have:
+Using Lemma \ref{lemma:HE342sliced} we now have:
 
 \begin{corollary}\label{cor:342weqfiboverZ}
 For any object $Z$, the weak equivalences between fibrations into $Z$ satisfy the 3-for-2 condition.
 \end{corollary}
 
-\subsection*{The sliced model structure.}
+%\subsection*{The sliced model structure.}
 
 \begin{remark}\label{remark:relativepremodelneeds342}
 Our immediate goal has been to show Corollary \ref{cor:342weqfiboverZ}, which will be used to establish the equivalence extension property.  Proposition \ref{prop:slicedheweequiv} below, which assumes the fibration extension property, will emphatically \emph{not} be used in the sequel, but is included here simply to complete the study of the relative (pre)model structure.
 \end{remark}
 
+
 \begin{lemma}\label{lemma:heovertohe}
 Let $f : X\to Y$ be any map over $Z$. 
-%We again write $Z_! : \cSet/_Z \to \cSet$ for the forgetful functor.  
+%We again write $Z_! : \cSetZ \to \cSet$ for the forgetful functor.  
 \begin{enumerate}
 \item If $f : X\to Y$ is homotopy equivalence over $Z$, then $Z_!f : Z_! X \to Z_! Y$ is a homotopy equivalence.
 \item If $X\fib Z$ and $Y\fib Z$ are fibrations and $f : X\to Y$ is weak homotopy equivalence over $Z$, then $Z_!f : Z_! X \to Z_! Y$ is a weak homotopy equivalence.
@@ -4403,7 +4364,8 @@ and similarly
 Thus $(\pi_0)_Z((Z^*K)^X) \cong (\pi_0)(K^{Z_!X})$, and the same is true with $Y$ in place of $X$.   So  $K^{Z_!f} : K^{Z_!Y} \to K^{Z_!X}$ is also bijective on connected components.
 \end{proof}
 
-Now let $Z$ be any object in $\cSet$ and $X \fib Z$ and $Y \fib Z$ fibrations, and let $f : X\to Y$ be a map over $Z$, and consider the following conditions.
+\begin{proposition}\label{prop:slicedheweequiv}
+Let $Z$ be any object in $\cSet$ and $X \fib Z$ and $Y \fib Z$ fibrations.  For any map $f : X\to Y$ over $Z$,  the following conditions are equivalent, \emph{assuming the fibration extension property, Corollary \ref{cor:FEP}}.
 %
 \begin{enumerate}
 \item $f : X\to Y$  is a weak equivalence over $Z$. 
@@ -4419,14 +4381,14 @@ Now let $Z$ be any object in $\cSet$ and $X \fib Z$ and $Y \fib Z$ fibrations, a
 \item $Z_!f : Z_!X\to Z_!Y$ is a weak homotopy equivalence in $\cSet$. 
 %
 \end{enumerate}
+\end{proposition} 
+
+\begin{proof}
 In Proposition \ref{prop:weqisheoverZ}  we showed the implications $1\Leftrightarrow 2 \Leftrightarrow 3$.
 We also have $1\Leftrightarrow 4$ by definition, and $4\Rightarrow 6$ and $5 \Rightarrow 6$ by Lemmas \ref{lem:WEimpliesWHE} and \ref{lemma:HEisWHE}.  Moreover, by Lemma \ref{lemma:heovertohe} we have $2\Rightarrow 5$ and $3\Rightarrow 6$.  
+Thus all 6 conditions will be equivalent once we have $6\Rightarrow 4$, which follows from Proposition \ref{prop:WHEiffWE} and the fibration extension property, Corollary \ref{cor:FEP}. 
+\end{proof}
 
-In sum, all 6 conditions will be equivalent once we have $6\Rightarrow 4$ from Proposition \ref{prop:WHEiffWE} and the fibration extension property. We record this fact in the following, before returning to our goal of proving the equivalence extension property.
-
-\begin{proposition}\label{prop:slicedheweequiv}
-Assuming the fibration extension property, all 6 conditions above are equivalent.
-\end{proposition} 
 
 \subsection*{Pathobject factorizations.}
 
@@ -4458,12 +4420,12 @@ Here $p_0, p_1$ are the evaluations $Y^{\delta_{0}}, Y^{\delta_{1}} : Y^\I \to Y
 We then have the following facts:
 %
 \begin{enumerate}
-%\item If $f:X\ra Y$ is a map over a base $Z$ in $\cSet$, we can instead use the relative pathobject $Y^\I \to Z$, where the exponential is taken in the slice over $Z$, and the interval object occurring in the exponent is the result of pulling $\I$ from $\cSet$ back along $Z\to 1$.  The pathspace factorization of \eqref{diag:pathspace factorization} can then be constructed in just the same way, using the pulled back interval $1\rightrightarrows \I$ in $\cSet/_Z$, and the factorization $t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^\I) \cong g^*(Y)^\I$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
+%\item If $f:X\ra Y$ is a map over a base $Z$ in $\cSet$, we can instead use the relative pathobject $Y^\I \to Z$, where the exponential is taken in the slice over $Z$, and the interval object occurring in the exponent is the result of pulling $\I$ from $\cSet$ back along $Z\to 1$.  The pathspace factorization of \eqref{diag:pathspace factorization} can then be constructed in just the same way, using the pulled back interval $1\rightrightarrows \I$ in $\cSetZ$, and the factorization $t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^\I) \cong g^*(Y)^\I$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
 %
-\item The retraction $p_0\circ r = 1_Y$ pulls back along $f$ to a retraction $p_f \circ s =1_X$.
+\item The retraction $p_0\circ r = 1_Y$ pulls back along $f$ to a retraction ${p_f}\circ{s}=1_X$.
 
 \item If $Y$ is a fibrant object, then $p_0 , p_1 : Y^\I \ra Y$ are both trivial fibrations, by Proposition \ref{prop:sanitycheck}.  
-%If $f:X\ra Y$ is over a base $Z$ and $Y$ is fibrant over $Z$, then the maps $p_0 , p_1 : Y^\I \ra Y$ over $Z$ are also trivial fibrations, again by Proposition \ref{prop:sanitycheck}, but now applied to the fibration $p_Y : Y\fib Z$.  (Indeed, as the reader can easily check: the exponential of $p_Y : Y\fib Z$, taken in $\cSet/_Z$, by a \emph{constant} map $Z^*\delta_\epsilon : Z^*1\to Z^*\I$, which we continue to write as $\delta_\epsilon : 1\to \I$, is a map $Y^{\delta_\epsilon} : Y^\I \to Y$ over $Z$; when tested against an arbitrary cofibration $c : A \to C$ over $Z$ via $z : C\to Z$ the map $Y^{\delta_\epsilon}$ transposes to a filling problem over $Z$ of the form $(c \otimes_z \delta_\epsilon) \pitchfork Y$, where the pushout-product $c \otimes_z \delta_\epsilon : D \to C \times_Z \I$  over $Z$ is easily seen to be equal to the (non-relative) pushout-product $c \otimes \delta_\epsilon : D \to C \times \I$, \emph{because $\delta_\epsilon : 1 \to \I$  is constant over $Z$}.  Since $c \otimes \delta_\epsilon \pitchfork p_Y$, it follows that $(c \otimes_z \delta_\epsilon) \pitchfork Y$ over $Z$, and so $Y^{\delta_\epsilon} : Y^\I \to Y$ over $Z$ is indeed a trivial fibration.)
+%If $f:X\ra Y$ is over a base $Z$ and $Y$ is fibrant over $Z$, then the maps $p_0 , p_1 : Y^\I \ra Y$ over $Z$ are also trivial fibrations, again by Proposition \ref{prop:sanitycheck}, but now applied to the fibration $p_Y : Y\fib Z$.  (Indeed, as the reader can easily check: the exponential of $p_Y : Y\fib Z$, taken in $\cSetZ$, by a \emph{constant} map $Z^*\delta_\epsilon : Z^*1\to Z^*\I$, which we continue to write as $\delta_\epsilon : 1\to \I$, is a map $Y^{\delta_\epsilon} : Y^\I \to Y$ over $Z$; when tested against an arbitrary cofibration $c : A \to C$ over $Z$ via $z : C\to Z$ the map $Y^{\delta_\epsilon}$ transposes to a filling problem over $Z$ of the form $(c \otimes_z \delta_\epsilon) \pitchfork Y$, where the pushout-product $c \otimes_z \delta_\epsilon : D \to C \times_Z \I$  over $Z$ is easily seen to be equal to the (non-relative) pushout-product $c \otimes \delta_\epsilon : D \to C \times \I$, \emph{because $\delta_\epsilon : 1 \to \I$  is constant over $Z$}.  Since $c \otimes \delta_\epsilon \pitchfork p_Y$, it follows that $(c \otimes_z \delta_\epsilon) \pitchfork Y$ over $Z$, and so $Y^{\delta_\epsilon} : Y^\I \to Y$ over $Z$ is indeed a trivial fibration.)
 
 \item If $X$ and $Y$ are both fibrant then $t= p_1\circ p_0^*f : P_f \ra Y$ is a fibration.  This can be seen by factoring the maps $p_0, p_1 :Y^\I \rightrightarrows  Y$ through the product projections as
 \[
@@ -4514,7 +4476,7 @@ X \ar[rr]^f \ar[rd]_{p_X} \ar[ru]^{s} && Y \ar[ld]^{p_Y} \\
 %
 with $p_Y \circ t : P_f \to Z$; however, the maps $s, t$ will no longer have the properties stated in Lemma \ref{lemma:pathspace_factorization}, because \eg\ $p_0: Y^\I \to Y$ need not be a trivial fibration, even when $p_Y : Y\to Z$ is a fibration, since the object $Y$ need not be fibrant if the base $Z$ is not fibrant.
 
-To remedy this, we instead build a \emph{fiberwise pathobject factorization} by using the relative pathobject $Y^{\I_Z} \to Z$, where the indicated exponential is taken in the slice over $Z$, and the interval object $\I_Z$ occurring in the exponent is the relative one from \eqref{eq:relativeinterval}, \ie\ the result of pulling the interval $\I$ back from $\cSet$ along $Z\to 1$.  The pathspace factorization is then constructed as in \eqref{diag:pathspace_factorization}, but now in the slice $\cSet/_Z$, using the pulled back interval $1_Z\rightrightarrows \I_Z$. Moreover, the resulting factorization $f=t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^{\I_Z}) \cong g^*(Y)^{\I_{Z'}}$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
+To remedy this, we can instead build a \emph{fiberwise pathobject factorization} by using the relative pathobject $Y^{\I_Z} \to Z$, where the indicated exponential is taken in the slice over $Z$, and the interval object $\I_Z$ occurring in the exponent is the relative one from \eqref{eq:relativeinterval}, \ie\ the result of pulling the interval $\I$ back from $\cSet$ along $Z\to 1$.  The pathspace factorization is then constructed as in \eqref{diag:pathspace_factorization}, but now in the slice $\cSetZ$, using the pulled back interval $1_Z\rightrightarrows \I_Z$. Moreover, the resulting factorization $f=t\circ s:X\ra P_f \ra Y$ is then stable under pullback along any map $g : Z' \ra Z$, in the sense that $g^*(Y^{\I_Z}) \cong g^*(Y)^{\I_{Z'}}$ and so $g^*P_f = P_{g^*f}$, where $g^*f : g^*X \ra g^* Y$, and similarly for the factors $g^*s$ and~$g^*t$.  
 
 
 In more detail, let us review the foregoing steps in the relative case, with reference to the following diagram.
@@ -4529,7 +4491,7 @@ X \ar[rd]_{p_X} \ar[rr]_f  && \ar[ld]^{p_Y} Y &\\
 \end{equation}
 \begin{enumerate}
 
-\item The exponential of $p_Y : Y\to Z$, taken in $\cSet/_Z$, by the \emph{constant} maps $Z^*\delta_\epsilon : Z^*1\to Z^*\I$, which we write as $\delta_\epsilon : 1_Z\to \I_Z$, are now maps $p_\epsilon := Y^{\delta_\epsilon} : Y^{\I_{Z}} \to Y$ over $Z$, for $\epsilon = 0,1$.  The retraction $p_0\circ r = 1_Y$ (with $r$ defined accordingly) is now also over $Z$, and it still pulls back along $f$ to a retraction $p_f \circ s =1_X$, also over $Z$.
+\item The exponential of $p_Y : Y\to Z$, taken in $\cSetZ$, by the \emph{constant} maps $Z^*\delta_\epsilon : Z^*1\to Z^*\I$, which we write as $\delta_\epsilon : 1_Z\to \I_Z$, are now maps $p_\epsilon := Y^{\delta_\epsilon} : Y^{\I_{Z}} \to Y$ over $Z$, for $\epsilon = 0,1$.  The retraction $p_0\circ r = 1_Y$ (with $r$ defined accordingly) is now also over $Z$, and it still pulls back along $f$ to a retraction $p_f \circ s =1_X$, also over $Z$.
 
 \item %If $Y$ is a fibrant object, then $p_0 , p_1 : Y^\I \ra Y$ are both trivial fibrations by Proposition \ref{prop:sanitycheck}.  
 If $p_Y : Y\fib Z$ is a fibration, then the maps $p_0 , p_1 : Y^{\I_Z} \ra Y$ over $Z$ are again trivial fibrations by Lemma \ref{lemma:JTslice}, since these are pullback-homs  over $Z$ of the form $\delta_\epsilon \Rightarrow_Z Y$. 
@@ -5101,7 +5063,7 @@ The foregoing proof of Proposition \ref{prop:Ufibrant}, the fibrancy of the univ
 
 Applying proposition \ref{prop:UfibtoFEP} now yields the following.
 
-\begin{corollary}\label{cor:FEP}
+\begin{corollary}[Fibration extension property]\label{cor:FEP}
 The fibration weak factorization system has the fibration extension property (definition \ref{def:fibextreplace}). 
 \end{corollary}
 
@@ -5158,7 +5120,7 @@ For such (internal) discrete opfibrations $(A,\, \alpha)$,
 A  \ar[d] & \pbmarkleft \ar[l] \ar[d] \B_1 \times_{\B_0} A \ar[r,"\alpha"] & A \ar[d]  \\
 \B_0 & \ar[l, "\dom" ] \B_1 \ar[r,swap,"\cod"] & \B_0
 \end{tikzcd}\]
-over the (internal) category $\B = (\B_1\rightrightarrows\B_0)$ of finite bipointed sets, call a subpresheaf $c : (C,\gamma)\to (A,\alpha)$ \emph{locally complemented} if the underlying map $c:C\to A$ over $\B_0 = \N$ is a complemented subobject in $\EE/\N$, \ie\ $C+\neg{C} \cong A$ over $\N$.  Internally, this means that
+over the (internal) category $\B = (\B_1\rightrightarrows\B_0)$ of finite bipointed sets, call a subpresheaf $c : (C,\gamma)\to (A,\alpha)$ \emph{locally complemented} if the underlying map $c:C\to A$ over $\B_0 = \N$ is a complemented subobject in $\EE/_{\!\N}$, \ie\ $C+\neg{C} \cong A$ over $\N$.  Internally, this means that
 \begin{equation}\label{pointwisecomplemented}
 C_n + \neg(C_n) \cong A_n\qquad\text{for all $n\in\N$},
 \end{equation}
@@ -5167,9 +5129,7 @@ which is a weaker condition than $(A,\alpha)+\neg (A,\alpha) \cong (B,\beta)$ as
  For any topos  $\EE$, the locally complemented subobjects in the category $\cEE$ of cubical $\EE$-objects satisfy the axioms for cartesian cofibrations.
 \end{proposition}
 \begin{proof}
-Working internally in $\EE$, it suffices to verify the axioms constructively.  Axioms (A0)-(A3) and (A5) follow immediately by considering the forgetful functor $U : \cEE \to \EE/_\N$ which creates the monos, isos, composites, pullbacks, and joins in question. 
-The cofibration classifier in (A4) is given by applying the right adjoint $U \dashv R : \EE/_\N \to \cEE$ to the complemented subobject classifier $\N^*2$ of $\EE/_\N$.
-%, namely the projection $2\times\N \to \N$, where of course $2 = 1+1$ in $\EE$.  
+Axioms (A0)-(A3) and (A5) follow from fact that they are satisfied by the complemented subobjects in $\EE/_{\!\N}$, and the forgetful functor $U : \cEE \to \EE/_{\!\N}$ creates the monos, isos, composites, pullbacks, and joins in question.  The cofibration classifier in (A4) is given by applying the right adjoint $U \dashv R : \EE/_\N \to \cEE$ to the complemented subobject classifier $\N^*2$ of $\EE/_{\!\N}$.
 For (A6), we use the fact that the equality relation on $\N$ is decidable to infer that, for each $[n] = \{0, x_1, \dots, x_n, 1\}$, the finite set $\{i = j \,|\, 0\leq i,j \leq n+1\}$ is complemented in $\B([1],[n])\times \B([1],[n])$,  and so for the subpresheaf $\delta : \I \to \I\times\I$ we indeed have,
 \begin{equation}
 \delta_n + \neg(\delta_n) \cong \I_n\times \I_n \qquad\text{for all $n\in\N$}\,.
@@ -5306,7 +5266,7 @@ Thus $N(\bbC)_0$  is the set of objects of \bbC; $N(\bbC)_1$ is the set of arrow
 \end{definition}
 
 \begin{proposition}\label{prop:nervefull}
-The nerve functor $N : \Cat \to \cSet$ is full and faithful.
+The cubical nerve functor $N : \Cat \to \cSet$ is full and faithful.
 \end{proposition}
 \begin{proof}
 Given categories $\bbC$ and $\D$ and functors $F, G : \bbC\to\D$, suppose $F(f) \neq G(f)$ for some $f : A\to B$ in $\bbC$.  Take $f^{\sharp} : \bbtwo \to \bbC$ with image~$f$.  Then $N(F)_1(f^\sharp) = F(f) \neq G(f) = N(G)_1(f^\sharp)$, and so $N(F) \neq N(G) : N(\bbC)\to N(\D)$.  So $N$ is faithful.
@@ -5414,8 +5374,8 @@ There is a natural transformation $X_\I \to X$, given for each $n$ by the first 
 
 Finally, we observe that  the pathobject functor $X\mapsto X^\I$, as a \emph{left} adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{Lawvere:2004} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
 
-\subsubsection*{Example.} (P.~Aczel)
-The cubical set $P$ of polynomials (say, over $\Z$), is defined by:
+\begin{example}[P.~Aczel]
+The cubical set $P$ of polynomials (say, over the integers), is defined by:
 \[
 P_n = \{ p(x_1, ...,  x_n)\ |\  \text{polynomials in at most}\  x_1, ..., x_n \}
 \]
@@ -5425,14 +5385,18 @@ with the substitution map $s^* : P_n \to P_m$ taking $p(x_1, ...,  x_n)$ to
 \]
 for each bipointed map $s:[n] \to [m]$.
 
-This cubical set $P$ is a ring object in the category $\cSet$ of cubical sets, and the interval $\I = \y[1]$ embeds into $P$ via the componentwise maps
+This cubical set $P$ is a ring object in the category $\cSet$ of cubical sets, and the interval $\I = \y[1]$ embeds into $P$ via the component maps
 \[
 \eta_n : \I_n \to P_n
 \]
 taking $v_i \in \B\big([1],[n]\big) \cong \{0, x_1, \dots, x_n, 1\} $ to either $0$,  $1$, or the variable $x_i \in P_n$.
-The same is true for any algebraic theory $\T$ with two constants, such as Boolean algebras: there is a distinguished cubical $\T$-algebra $A$, and a monic $\eta : \I \mono A$ in $\cSet$.
+The same is true for any algebraic theory $\T$ with two constants, such as Boolean algebras: there is a distinguished cubical $\T$-algebra $A$, and a map $\eta : \I \to A$ in $\cSet$.
 
-Let $\Set[\I]=\cSet$ be the category of cubical sets, which classifies intervals by Proposition \ref{prop:csetclassifiesintervals}, and $\Set[\T,\mathsf{flat}]$ be the classifying topos for \emph{flat} $\T$-algebras, \ie\ the presheaves $\Set^{\op{\T}}$ on the Lawvere algebraic theory $\T$.  There is an interval $\J$ in $\T$  consisting of the generic $\T$-algebra and its two constants.  This bipointed object $1\rightrightarrows\J$ has a classifying functor $\J^\sharp : \C \to \T$, inducing adjoint functors on presheaves, 
+Let $\Set[\I]=\cSet$ be the category of cubical sets, which classifies intervals by Proposition \ref{prop:csetclassifiesintervals}, and let
+\[
+\Set[\T,\mathsf{flat}]= \Set^{\op{\T}}
+\]
+ be the topos of presheaves on the Lawvere algebraic theory $\T$, which therefore classifies \emph{flat} $\T$-algebras.  There is an interval $\J$ in $\T$  consisting of the generic $\T$-algebra and its two constants.  This bipointed object $1\rightrightarrows\J$ has a classifying functor $\J^\sharp : \C \to \T$, inducing adjoint functors on presheaves, 
 \[
 \J_! \dashv \J^* \dashv \J_* : \Set[\I] = \psh{\C} \too \psh{\T} = \Set[\T,\mathsf{flat}]\,,
 \]
@@ -5447,11 +5411,12 @@ We can then calculate,
  &= \T\mathsf{Alg}( F(1) , F(n) ) = | F(n) |,
 \end{split}
 \end{equation}
-where $F(n)$ is the free $\T$-algebra on $n$ generators.  So in the case of polynomials we indeed have 
+where $F(n)$ is the free $\T$-algebra on $n$ generators.  So in the case of polynomials we have 
 \[
 P = \J^* \J_! ( \I )\,,
 \]
-as the ``free ring on the interval $\I$'' in cubical sets $\cSet$.  The unit of the adjunction $\eta: \I \to \J^* \J_! ( \I ) \cong P$ is monic, since $\J^\sharp$ is faithful and therefore its left Kan extension $\J_!$ is faithful.   The cubical set of polynomials $P$ is a ring in $\Set[\I]$ since $\J_!(\I) \cong \y_\T\,\J^\sharp([1]) \cong \y_\T(\J)$ is a ring in $\psh{\T}=\Set[\T,\mathsf{flat}]$ and $J^*$ is left exact.  In fact, we thereby learn that $P$ is flat.
+as the ``free ring on the interval $\I$'' in cubical sets $\cSet$.  The unit of the adjunction $\eta: \I \to \J^* \J_! ( \I ) \cong P$ is monic, since $\J^\sharp$ is faithful and therefore the left Kan extension $\J_!$ is faithful.   The cubical set of polynomials $P$ is a ring in $\Set[\I]$ since $\J_!(\I) \cong \y_\T\,\J^\sharp([1]) \cong \y_\T(\J)$ is a ring in $\Set[\T,\mathsf{flat}]$ and $J^*$ is left exact.  In fact, we thereby learn that $P$ is flat.
+\end{example}
 
 A closely related example is the cubical set of ``Boolean polynomials",
 \begin{align*}
