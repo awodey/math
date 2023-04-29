@@ -3933,7 +3933,7 @@ Since clearly $N(F) = \varphi$, we indeed have that $N$ is also full.
 The following is used to calculate the right adjoint $X_\I$ of the pathobject $X^\I$ (\cf~Proposition \ref{prop:Itiny}). A similar fact holds for the generic object in the object classifying topos $\Set[X]=\Set^{\mathsf{Fin}}$ and related categories used in the theory of abstract higher-order syntax \cite{FiorePlotkinTuri:1999}.
 
 \begin{lemma}\label{lemma:binomial}
-In $\cSet$, we have $\I^\I\ \cong\ \I+1$.
+For the representable functor $\I = \y[1]$ in $\cSet$, we have $\I^\I\ \cong\ \I+1$.
 \end{lemma}
 \begin{proof}
 For any $[n] \in \H$ we have:
@@ -3944,11 +3944,11 @@ On the other hand,
 \[
 (\I+1)(n) \cong \I(n) + 1(n) \cong \Hom(\I^n, \I) + 1 \cong \B([1],[n]) +1 \cong (n+2) +1.
 \]
-And the isomorphism is natural in $n$.
+The isomorphism is natural in $n$.
 \end{proof}
 
-\begin{corollary}
-We have the following calculation for the right adjoint $X_\I$ of the pathobject $X^\I$:
+\begin{corollary} For any cubical set $X$,
+%We have the following calculation for the right adjoint $X_\I$ of the pathobject $X^\I$:
 \begin{align*}\textstyle
 X_\I(n) &\cong \hom(\I^n, X_\I) \\
 &\cong \hom((\I^n)^\I, X) \\
