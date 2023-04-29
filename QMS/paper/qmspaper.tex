@@ -1798,7 +1798,7 @@ The proof of the fibration extension property will be given in Section \ref{sec:
 
 In this section, we show that the (unbiased) fibration weak factorization system from Section \ref{sec:fibrations} satisfies what has been called the \emph{Frobenius condition}: the left maps are stable under pullback along the right maps (see \cite{van-den-berg-garner}).  This will imply the \emph{right properness} of our model structure: the weak equivalences are preserved by pullback along fibrations.  In the present setting, it then follows that the entire model structure is stable under such a base change.  The Frobenius condition will be used in the proof of the equivalence extension property in Section \ref{sec:EEP}.  
 
-An proof of Frobenius in the related setting of cubical sets \emph{with connections} was given in \cite{GS} using conventional, functorial methods.  By contrast, the type theoretic approach of \cite{CCHM:2018ctt} provides a proof that is much more direct, and can also be modified to work without connections (as in \cite{ABCHFL}).  That approach proves the dual fact that the \emph{pushforward} operation, which is right adjoint to pullback and always exists in a topos, preserves fibrations when applied along a fibration.  This corresponds to the type-theoretic $\Pi$-formation rule, and the proof given in \opcit\ is entirely in type theory.  It also employs a reduction of box filling (in all dimensions) to an apparently weaker condition of \emph{Kan composition} (in all dimensions), which merely ``puts a lid on" the open box, rather than filling it.  This aspect of the type theoretic proof can also be described functorially, but is not used in the proof given here, and will therefore not be discussed further (see \cite{LOPS18} for a description of Kan composition with connections, and \cite{A:composiiton} for the same without connections).
+A proof of Frobenius in the related setting of cubical sets \emph{with connections} was given in \cite{GS} using conventional, functorial methods.  By contrast, the type theoretic approach of \cite{CCHM:2018ctt} provides a proof that is much more direct, and can also be modified to work without connections (as in \cite{ABCHFL}).  That approach proves the dual fact that the \emph{pushforward} operation, which is right adjoint to pullback and always exists in a topos, preserves fibrations when applied along a fibration.  This corresponds to the type-theoretic $\Pi$-formation rule, and the proof given in \opcit\ is entirely in type theory.  It also employs a reduction of box filling (in all dimensions) to an apparently weaker condition of \emph{Kan composition} (in all dimensions), which merely ``puts a lid on" the open box, rather than filling it.  This aspect of the type theoretic proof can also be described functorially, but is not used in the proof given here, and will therefore not be discussed further (see \cite{LOPS18} for a description of Kan composition with connections, and \cite{A:composiiton} for the same without connections).
 
 Our proof takes the approach that was used to determine the unbiased fibrations, namely we first establish the result in the \emph{biased but generic} setting, and then transfer it to the unbiased setting by pulling back along the base change $\cSet\to\cSet/_\I$. We first give the second step as a conditional statement.
 
@@ -1908,7 +1908,7 @@ B^\I \ar[r]|| \ar[r]^{b} \ar[rd]_{\beta^\I}  & a^*B_\epsilon \ar[r]  \ar[d]  & B
 && X^\I \ar[r]_{\epsilon} &  X.
 }
 \end{equation}
-Taking the pushforward of the righthand vertical column give a map, 
+Taking the pushforward of the righthand vertical column gives a map, 
 \[
 \gamma:= \alpha_*\beta : \Pi_A{B} \to X\,,
 \]
@@ -2149,7 +2149,7 @@ For a presheaf $X$ on $\bbC$, recall that the category of elements is the comma 
 \] 
 where $\yon_\bbC : \bbC \to \psh\bbC$ is the Yoneda embedding, which we sometimes supress and write simply $\bbC/_X$ for $\yon_\bbC/_X$. 
 
-\begin{proposition}[\cite{G:1983},\S{28}]
+\begin{proposition}[\cite{G:1983}, \S{28}]
 The category of elements functor 
 \[
 \textstyle \int_\bbC : \widehat\bbC \too \Cat
@@ -2434,9 +2434,9 @@ in the image of $\nu : \Cat\too\widehat\bbC$, classifying small maps in $\wideha
 
 \item\label{universeexample:sliceuniverse} Let $\alpha = 2$ so that $1\to 2$ is the subobject classifier of $\Set$, and 
 \[
-\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}
+{\mathbb{1}} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}
 \]
- is then a classifier in $\Cat$ for \emph{sieves}, i.e.\ full subcategories $\mathbb{S}\hook\A$ closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$.  The nerve $\VV_{2}  \to \V_{2}$ is then the usual subobject classifier $1\to\Omega$ of $\widehat\bbC$,
+is then a classifier in $\Cat$ for \emph{sieves}, i.e.\ full subcategories $\mathbb{S}\hook\A$ closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$.  The nerve $\VV_{2}  \to \V_{2}$ is then the usual subobject classifier $1\to\Omega$ of $\widehat\bbC$,
 %
 \begin{equation}\label{eq:SOCnerve}\textstyle
 \begin{tikzcd}
@@ -2448,7 +2448,7 @@ in the image of $\nu : \Cat\too\widehat\bbC$, classifying small maps in $\wideha
 \item For any $X\in \widehat{\bbC}$, we have an equivalence 
 \[
 \widehat{\bbC}/_X\ %\simeq\ \widehat{\bbC/_X}\ 
-\simeq\ \widehat{\textstyle \int_{\bbC}X}\ \simeq\ \mathsf{dFib}/_{\int_{\bbC}X}
+\simeq\ \widehat{\textstyle \int_{\bbC}X}\ \simeq\ \mathsf{dFib}/_{\!\int_{\bbC}X}
 \]
 where, generally, $\mathsf{dFib}/_{\mathbb{D}}$ is the category of discrete fibrations over a category $\mathbb{D}$.
 This equivalence commutes with composition along discrete fibrations, in the sense that the forgetful functor 
@@ -2460,9 +2460,9 @@ This equivalence commutes with composition along discrete fibrations, in the sen
 \begin{tikzcd}
 \widehat{\bbC}/_X  \ar[d,swap,"{{X_!}}"] \ar[r, "{\sim}"] 
 	& \widehat{\textstyle \int_{\bbC}X} \ar[d,swap,"{{(p_X)_!}}"] \ar[r, "{\sim}"] 
-		& \mathsf{dFib}/_{\int_{\bbC}X} \ar[d,"p_X\circ(-)"]  \\
+		& \mathsf{dFib}/_{\!\int_{\bbC}X} \ar[d,"p_X\circ(-)"]  \\
  \widehat{\bbC}  \ar[r,swap, "{\sim}"]   & \widehat{\bbC}  \ar[r,swap, "{\sim}"] 
-	&  \mathsf{dFib}/_{\bbC}.
+	&  \mathsf{dFib}/_{\!\bbC}.
 \end{tikzcd}
 \end{equation}
 
@@ -2476,16 +2476,16 @@ It follows that the pullback functor $X^* : \widehat{\bbC} \to \widehat{\bbC}/_X
 \end{enumerate}
 
  \begin{corollary}\label{prop:familyclassifierforslices}
-Let $\VV_\alpha\to\V_\alpha$ classify $\alpha$-small maps in $\widehat{\bbC}$, as in Proposition \ref{prop:familyclassifier}.  Then for any $X\in \bbC$, the pullback $X^*\VV_\alpha\to X^*\V_\alpha$ classifies 
-$\alpha$-small maps in $\widehat{\bbC}/_X$
+Let $\VV_\alpha\to\V_\alpha$ classify $\alpha$-small maps in $\widehat{\bbC}$, as in Proposition \ref{prop:familyclassifier}.  Then for any $X\in \widehat{\bbC}$, the pullback $X^*\VV_\alpha\to X^*\V_\alpha$ classifies 
+$\alpha$-small maps in $\widehat{\bbC}/_X$\,.
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Classifying trivial fibrations}
 
-Returning now to the presheaf category $\cSet = \psh{\Box}$ of cubical sets, recall from section \ref{sec:cofibrations} that (uniform) trivial fibration structures on a map $A\ra X$ correspond bijectively to relative +-algebra structures over $X$ (definition \ref{def:+alg}).  A relative $+$-algebra structure on $A \ra X$ is an algebra structure for the pointed endofunctor $+_X : \cSet/X \ra \cSet/X$, where recall from \eqref{eq:partialmapclassifier}, 
+Returning now to the presheaf category $\cSet = \psh{\Box}$ of cubical sets, recall from section \ref{sec:cofibrations} that (uniform) trivial fibration structures on a map $A\ra X$ correspond bijectively to relative +-algebra structures over $X$ (definition \ref{def:+alg}).  A relative $+$-algebra structure on $A \ra X$ is an algebra structure for the pointed polynomial endofunctor $+_X : \cSet/X \too \cSet/X$, where recall from \eqref{eq:partialmapclassifier}, 
 \[
-A^+ = \sum_{\varphi:\Phi}A^{[\varphi]}\quad\text{over $X$}.
+A^+ = \sum_{\varphi: \Phi} A^{[\varphi]}\quad\text{over $X$}.
 \]
 A +-algebra structure is then a retract $\alpha : A^+\ra A$ over $X$ of the canonical map $\eta_A : A\ra A^+$,
 \begin{equation}\label{eq:Aplus}
@@ -2502,7 +2502,7 @@ Working in the slice  $\cSet/X$, the (relative) exponentials (internal Hom's) $[
 \begin{equation}\label{diag:plualgstru}
 \xymatrix{
 +\mathsf{Alg}(A)\ar[d] \ar[r] \pbcorner & [A^+, A] \ar[d]^{[\eta_A, A]}\\
-1 \ar[r]_{'{id_A}'} & [A, A].
+1 \ar[r]_{'{\mathsf{id}_A}'} & [A, A].
 }
 \end{equation}
 The constructed object $+\mathsf{Alg}(A) \ra X$ over $X$ is then the \emph{object of +-algebra structures on $A\ra X$}, in the sense that sections $X \ra +\mathsf{Alg}(A)$ correspond uniquely to +-algebra structures on $A\ra X$. Moreover, $+\mathsf{Alg}(A) \ra X$ is stable under pullback, in the sense that for any $f:Y\ra X$, we have two pullback squares,
@@ -3722,10 +3722,10 @@ A system of maps satisfying the axioms (C0)-(C8) above for the cofibrations in a
 \item[(A1)] All isomorphisms are cofibrations.
 \item[(A2)] The composite of two cofibrations is a cofibration.
 \item[(A3)] Any pullback of a cofibration is a cofibration.
-\item[(A4)] The category of cofibrations and cartesian squares has a terminal object.
-\item[(A5)] The join of two cofibrant subobjects is a cofibration.
-\item[(A6)] The diagonal map $\I\ra\I\times\I$ is a cofibration.
-\item[(A7)] Cofibrations are preserved by the pathobject functor $(-)^\I$.
+\item[(A4)] The join of two cofibrant subobjects is a cofibration.
+\item[(A5)] The diagonal map $\I\ra\I\times\I$ is a cofibration.
+\item[(A6)] Cofibrations are preserved by the pathobject functor $(-)^\I$.
+\item[(A7)] The category of cofibrations and cartesian squares has a terminal object.
 \end{enumerate}
 
 \begin{example}
@@ -3744,12 +3744,13 @@ which is a weaker condition than $(A,\alpha)+\neg (A,\alpha) \cong (B,\beta)$ as
  For any topos  $\EE$, the locally complemented subobjects in the category $\cEE$ of cubical $\EE$-objects satisfy the axioms for cartesian cofibrations.
 \end{proposition}
 \begin{proof}
-Axioms (A0)-(A3) and (A5) follow from fact that they are satisfied by the complemented subobjects in $\EE/_{\!\N}$, and the forgetful functor $U : \cEE \to \EE/_{\!\N}$ creates the monos, isos, composites, pullbacks, and joins in question.  The cofibration classifier in (A4) is given by applying the right adjoint $U \dashv R : \EE/_\N \to \cEE$ to the complemented subobject classifier $\N^*2$ of $\EE/_{\!\N}$.
-For (A6), we use the fact that the equality relation on $\N$ is decidable to infer that, for each $[n] = \{0, x_1, \dots, x_n, 1\}$, the finite set $\{i = j \,|\, 0\leq i,j \leq n+1\}$ is complemented in $\B([1],[n])\times \B([1],[n])$,  and so for the subpresheaf $\delta : \I \to \I\times\I$ we indeed have,
+Axioms (A0)-(A4) follow from fact that they are satisfied by the complemented subobjects in $\EE/_{\!\N}$, and the forgetful functor $U : \cEE \to \EE/_{\!\N}$ creates the monos, isos, composites, pullbacks, and joins in question.  
+For (A5), we use the fact that the equality relation on $\N$ is decidable to infer that, for each $[n] = \{0, x_1, \dots, x_n, 1\}$, the finite set $\{i = j \,|\, 0\leq i,j \leq n+1\}$ is complemented in $\B([1],[n])\times \B([1],[n])$,  and so for the subpresheaf $\delta : \I \to \I\times\I$ we indeed have,
 \begin{equation}
 \delta_n + \neg(\delta_n) \cong \I_n\times \I_n \qquad\text{for all $n\in\N$}\,.
 \end{equation}
 Axiom (A6) follows from the fact that the pathobject $A^{\I}$ is a shift by one dimension, $(A^{\I})_{n} = A_{n+1}$.
+The cofibration classifier in (A7) is given by applying the right adjoint $U \dashv R : \EE/_\N \to \cEE$ to the complemented subobject classifier $\N^*2$ of $\EE/_{\!\N}$.
 \end{proof}
 %
 \end{example}
@@ -3772,7 +3773,7 @@ It is generated by the \emph{$n$-cubes} $\I^n = \yon[n]$, with  $1 = \I^0$, $\I 
 \[
 \{c \in X_n \} \ \cong\ \{c : \I^n \to X\}.
 \]
-In particular, $\I^n_m = \C([m],[n])$ is the set of $m$-cubes in the $n$-cube.\footnote{Note that the cardinality of $\I^n_m$ is therefore just $(m+2)^n$, in comparison to the \emph{Dedekind} cubes $\C_d$ used in \cite{CCHM:2018ctt,orton-pitts}, for which \eg\ $\C_d([n],[1])$ is the $n^{th}$ \emph{Dedekind number}, the number of elements in the free distributive lattice on $n$ generators, which is in general a number so large that it is unknown for values of $n>8$.} 
+In particular, $\I^n_m = \C([m],[n])$ is the set of $m$-cubes in the $n$-cube.\footnote{Note that the cardinality of $\I^n_m$ is therefore just $(m+2)^n$, in comparison to the \emph{Dedekind} cubes $\C_{\wedge,\vee}$ used in \cite{CCHM:2018ctt,orton-pitts}, for which \eg\ $\C_{\wedge,\vee}([n],[1])$ is the $n^{th}$ \emph{Dedekind number}, the number of elements in the free distributive lattice on $n$ generators, which is in general a number so large that it is unknown for values of $n>8$.} 
 
 \begin{proposition}\label{prop:csetclassifiesintervals}
 The category $\cSet$ of Cartesian cubical sets is the classifying topos for \emph{intervals}: objects $\mathcal{I}$ with points $i,j:1\rightrightarrows \mathcal{I}$ the pullback of which is $0$:
@@ -3792,7 +3793,7 @@ Consider the covariant presentation $\cSet = \Set^\B$ where $\B$ is the category
 \dots \ar[r] & (m) \ar[r] & (n) \ar[r] & \dots
 }
 \]
-Write $u : \B\to\B_=$ for the upper inclusion, which is the classifying functor of generic co-bipointed object in $\B_=$ (which is strict).  
+Write $u : \B\to\B_=$ for the upper inclusion, which is the classifying functor of generic co-bipointed object in $\B_=$.  
 
 Now consider the induced geometric morphism:
 \[
@@ -3819,7 +3820,7 @@ as is easily seen by considering maps in $\Set^{\B_=}$ of the form
  Q(n) \ar[r]^{} & \{*\} .
 }
 \]
-Since $u_* : \Set^{\B} \to \Set^{\B_=}$ is evidently full and faithful, it is the inclusion part of a sheaf subtopos $\mathsf{sh}(\B^\mathsf{op}_=, j) \hook \Set^{\B_=}$ for a suitable Grothendieck topology $j$ on $\B^\mathsf{op}_=$.  We claim that $j$ is the closed complement topology of the subobject $[\bot=\top] \rightarrowtail 1$ represented by the coequalizer $[0]\to (0)$.  Indeed, in $\Set^{\B_=}$ we have the representable functors:
+Since $u_* : \Set^{\B} \to \Set^{\B_=}$ is evidently full and faithful, it is the inclusion part of a sheaf subtopos $\mathsf{sh}(\B^\mathsf{op}_=, j) \hook \Set^{\B_=}$ for a suitable Grothendieck topology $j$ on $\B^\mathsf{op}_=$.  We claim that $j$ is the closed complement topology of the subobject $[0 = 1] \rightarrowtail 1$ represented by the coequalizer $[0]\to (0)$.  Indeed, in $\Set^{\B_=}$ we have the representable functors:
 \begin{align*}
 \I &= y[1],\\
 1 &= y[0],\\
@@ -3834,10 +3835,10 @@ For any object $b\in \B_=$, consider the map
 \[
 \hom(yb, P\times [0=1] ) \cong \hom(yb, P) \times \hom(yb, [0=1]) \to \hom(yb, [0=1]) .
 \]
-If $b = [k]$, then $\hom(yb, [\bot=\top]) \cong \hom_{\B_=}((0), [k]) \cong 0$, and so we always have an iso
+If $b = [k]$, then $\hom(yb, [0 = 1]) \cong \hom_{\B_=}((0), [k]) \cong 0$, and so we always have an iso
 \[
 \begin{split}
-\hom(yb, P\times [\bot=\top] ) \cong \hom(yb, P) \times \hom(yb, [0=1])\\
+\hom(yb, P\times [0 = 1] ) \cong \hom(yb, P) \times \hom(yb, [0=1])\\
  \cong \hom(yb, P) \times 0 \cong 0.
  \end{split}
 \]
@@ -3848,32 +3849,36 @@ If $b = (k)$, then $\hom(y(k), [0=1]) \cong \hom_{\B_=}((0), (k)) \cong 1$, and 
 \cong \hom(y(k), P) \times 1 \cong \hom(y(k), P) \cong P(k).
 \end{split}
 \]
-Thus we will have an iso $P\times [0=1] \cong [0=1]$ iff $P(k) \cong 1$.
+Thus either way we will have an iso $P\times [0=1] \cong [0=1]$ iff $P(k) \cong 1$.
 
-Thus the presheaf topos $\Set^\B$ is indeed the closed complement of the open subtopos
+The presheaf topos $\Set^\B$ is therefore the closed complement of the open subtopos
 \[
-\Set^{\B_=}\!/_{\![0=1]}\ \hook\ \Set^{\B_=}
+\Set^{\B_=}\!/_{\![0=1]}\ \hook\ \Set^{\B_=}\,,
 \]
-given by forcing the proposition $0 \neq 1$.  Since $\Set^{\B_=}$ is clearly the classifying topos for \emph{arbitrary} bipointed objects $b_0, b_1 : 1\to B$, the subtopos $\Set^\B$ then indeed classifies \emph{strictly} bipointed objects, \ie\ intervals, as claimed.
+given by forcing the proposition $0 \neq 1$.  Since $\Set^{\B_=}$ is clearly the classifying topos for \emph{arbitrary} bipointed objects, say $\Set[B, 0,1]$, the sheaf subtopos 
+\[
+ \Set[B, 0\neq 1]\ \simeq\ \Set^\B\ \hook\ \Set^{\B_=}\ \simeq\ \Set[B, 0,1]
+\]
+classifies \emph{strictly} bipointed objects, \ie\ intervals, as claimed.
 \end{proof}
-
+	
 
 \begin{corollary}
 The geometric realization functor to topological spaces 
 \[
 R: \cSet \to \mathsf{Top}
 \]
-preserves cartesian products, $R(X\times Y) \cong R(X)\times R(Y)$.
+preserves finite products, $R(X\times Y) \cong R(X)\times R(Y)$ and $R(1) \cong \{*\}$.
 \end{corollary}
 
 \begin{proof}
-This can of course be shown directly, but it follows immediately by composing the inverse image of the classifying geometric morphism $\mathsf{sSets} \to \cSet$ of the $1$-simplex $\Delta^1$ with the standard geometric realization $\mathsf{sSets} \to \mathsf{Top}$, each of which preserves finite products.
+This follows immediately by composing the inverse image of the classifying geometric morphism $\mathsf{sSets} \to \cSet$ of the $1$-simplex $\Delta^1$ with the standard geometric realization $\mathsf{sSets} \to \mathsf{Top}$, each of which preserves finite products.
 \end{proof}
 
 We conclude with a few general remarks about the category $\cSet$.
 
 \begin{definition}
-Let $\Box \to\  \Cat$ be the unique product-preserving functor taking the interval $[1]$ to the one arrow  category $\bbtwo = (0\leq1)$.  This functor then takes $[n]$ to $\bbtwo^n$, the $n$-fold product in $\Cat$, and maps $[m] \to [n]$  to the corresponding monotone functions of the posets $\bbtwo^n$.  The  \emph{cubical nerve} functor 
+Let $\Box \to\  \Cat$ be the unique product-preserving functor taking the interval $[1]$ to the one arrow  category $\bbtwo = (0\leq1)$.  This functor then takes $[n]$ to $\bbtwo^n$, the $n$-fold product in $\Cat$, and maps $[m] \to [n]$ in $\C$  to the corresponding monotone functions $\bbtwo^m \to \bbtwo^n$ of posets.\footnote{Thus factoring through the full subcategory $\C_{\wedge,\vee} \hook\Cat$ of \emph{Dedekind cubes}, mentioned above.}   The  \emph{cubical nerve} functor 
 \[
 N : \Cat \to \cSet
 \]
@@ -3925,38 +3930,10 @@ and the effect of $d^* : \Cat(\bbtwo^2, \bbC) \to \Cat(\bbtwo, \bbC)$ on this sq
 Since clearly $N(F) = \varphi$, we indeed have that $N$ is also full.
 \end{proof}
 
-Recall the following from Proposition \ref{prop:Itiny}.
-
-\begin{proposition}\label{prop:pathobject}
-For any cubical set $X$, the exponential $X^\I$ is calculated as the ``shift by one dimension'', 
-\[
-X^\I_{n} \cong X_{n+1}\,.
-\]
-The functor $X \mapsto X^\I$ therefore has a \emph{right} adjoint.
-\end{proposition}
-
-\begin{proof}
-Briefly:
-\[
-\begin{split}
-X^\I_{n} \cong \hom(y[n], X^\I) \cong \hom(\I^n, X^\I)\ \cong\ \hom(\I^n\times \I, X)\\
-\cong\ \hom(\I^{n+1}, X)\cong\ \hom(y[n+1], X)\ \cong\ X_{n+1}.
-\end{split}
-\]
-Therefore $X \mapsto X^\I$ is given by precomposition with the ``successor'' functor $S[n] = [n+1]$,
-\[
-X^\I([n]) = X(S[n]) = (S^*X)([n])\,.
-\]
-The right adjoint $S^* \dashv S_*$ is therefore calculated as:
-\[
-S_*(X)(n) \cong \hom(y[n], S_*X) \cong \hom(S^*(y[n]), X)\ \cong \hom(\H(S(-), [n]), X).
-\]
-\end{proof}
-
-We need the following fact in order to calculate the right adjoint further.
+The following is used to calculate the right adjoint $X_\I$ of the pathobject $X^\I$ (\cf~Proposition \ref{prop:Itiny}). A similar fact holds for the generic object in the object classifying topos $\Set[X]=\Set^{\mathsf{Fin}}$ and related categories used in the theory of abstract higher-order syntax \cite{FiorePlotkinTuri:1999}.
 
 \begin{lemma}\label{lemma:binomial}
-In $\HH$, we have $\I^\I\ \cong\ \I+1$.
+In $\cSet$, we have $\I^\I\ \cong\ \I+1$.
 \end{lemma}
 \begin{proof}
 For any $[n] \in \H$ we have:
@@ -3969,17 +3946,9 @@ On the other hand,
 \]
 And the isomorphism is natural in $n$.
 \end{proof}
-%
-A similar fact holds for the generic object in the object classifying topos $\Set[X]=\Set^{\mathsf{Fin}}$, and in the Schanuel topos $\mathsf{Sh}(\mathsf{Aut}(\N))$ used in the theory of abstract higher-order syntax \cite{FiorePlotkinTuri:1999}.
-
-Now let us write
-\[
-X_\I = S_*(X)
-\]
-for the \emph{$\I$-th root of $X$}, the right adjoint of the pathobject functor $X^\I = S^*X$.
 
 \begin{corollary}
-We have the following calculation for $X_\I$:
+We have the following calculation for the right adjoint $X_\I$ of the pathobject $X^\I$:
 \begin{align*}\textstyle
 X_\I(n) &\cong \hom(\I^n, X_\I) \\
 &\cong \hom((\I^n)^\I, X) \\
@@ -3988,14 +3957,15 @@ X_\I(n) &\cong \hom(\I^n, X_\I) \\
 &\cong \hom(\I^n +  {\textstyle{n\choose n-1}}\I^{n-1} + \dots + {\textstyle{n\choose 1}}\I+1, X) \\
 &\cong X_n \times X_{n-1}^{\binom{n}{n-1}} \times \dots \times X_1^{\binom{n}{1}}\times X_0\,.
 \end{align*}
+%\end{corollary}
+%
+%\begin{corollary}
+%Thus there is a natural transformation $X_\I \to X$, given for each $n$ by the first projection $X_n \times \dots \times X_0 \too X_n$.
 \end{corollary}
-
-\begin{corollary}
-There is a natural transformation $X_\I \to X$, given for each $n$ by the first projection $X_n \times \dots \times X_0 \too X_n$.
-\end{corollary}
-
-Finally, we observe that the pathobject functor $X\mapsto X^\I$, as a \emph{left} adjoint, preserves all \emph{co}limits.  This does not hold in general in type theory, but will be a special property of the cubical model.  (Cf. Lawvere \cite{Lawvere:2004} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
-
+%
+%It follows that as a \emph{left} adjoint the pathobject functor $X\mapsto X^\I$ preserves all \emph{co}limits.  This does not hold in general in type theory, but is a special property of the cubical model.  
+%(Cf. Lawvere \cite{Lawvere:2004} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
+%
 \begin{example}[P.~Aczel]
 The cubical set $P$ of polynomials (say, over the integers), is defined by:
 \[
@@ -4040,13 +4010,13 @@ P = \J^* \J_! ( \I )\,,
 as the ``free ring on the interval $\I$'' in cubical sets $\cSet$.  The unit of the adjunction $\eta: \I \to \J^* \J_! ( \I ) \cong P$ is monic, since $\J^\sharp$ is faithful and therefore the left Kan extension $\J_!$ is faithful.   The cubical set of polynomials $P$ is a ring in $\Set[\I]$ since $\J_!(\I) \cong \y_\T\,\J^\sharp([1]) \cong \y_\T(\J)$ is a ring in $\Set[\T,\mathsf{flat}]$ and $J^*$ is left exact.  In fact, we thereby learn that $P$ is flat.
 \end{example}
 
-A closely related example is the cubical set of ``Boolean polynomials",
-\begin{align*}
-B_n &= \{ \varphi(p_1, ...,  p_n)\ |\ \text{propositional formulas in $p_1, ...,  p_n$}\} \\
- &\cong 2^{2^n}\,,
-\end{align*}
-which is thus a flat Boolean algebra in $\cSet$.  
-
+%A closely related example is the cubical set of ``Boolean polynomials",
+%\begin{align*}
+%B_n &= \{ \varphi(p_1, ...,  p_n)\ |\ \text{propositional formulas in $p_1, ...,  p_n$}\} \\
+% &\cong 2^{2^n}\,,
+%\end{align*}
+%which is thus a flat Boolean algebra in $\cSet$.  
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{alpha}
 \bibliography{../references}
