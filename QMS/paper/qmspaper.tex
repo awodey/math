@@ -10,7 +10,11 @@
 %\usepackage{euscript}
 
 %\usepackage{tgpagella} % text only
-\usepackage{mathpazo}  % math & text
+%\usepackage{mathpazo}  % math & text
+\usepackage[sc]{mathpazo}
+%\linespread{1} % Palladio needs more leading (space between lines)
+\usepackage[T1]{fontenc}
+
 
 \usepackage{amsmath}
 \usepackage{amssymb,latexsym}
@@ -19,7 +23,7 @@
 \usepackage{bbm,stmaryrd}% for bb2
 \usepackage[all,cmtip]{xy}
 \input{diagxy}
-\CompileMatrices       
+%\CompileMatrices       
 \usepackage{url}
 %\usepackage{fullpage}
 \usepackage[colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,
@@ -297,7 +301,7 @@ This material is based upon work supported by the Air Force Office of Scientific
 \section{Cartesian cubical sets}\label{sec:cSet}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-There are many different categories of cubes $\Box$ that could be taken as a site for homotopy theory \cite{Grandis:2003,BuchholtzMoorehouse}, and indeed several different ones have recently been explored in connection with cubical systems of (homotopy) type theory, including \cite{BCH,orton-pitts, CCHM:2018ctt,ABCHFL,CMS:2020}, to name a few.  The model structure developed here is intended to work with any of these, insofar as they are  \emph{cartesian}, in the sense that the indexing cubes $[n]\in\Box$ are closed under finite products $[m]\times[n] = [m+n]$.   Rather than working axiomatically, though, we shall work in the initial such category, which we call \emph{the Cartesian cube category} $\C$, defined as the free finite product category on an interval $\delta_0, \delta_1 : 1\rightrightarrows \I$.
+There are many different categories of cubes $\Box$ that can be taken as a site for homotopy theory \cite{Grandis:2003,BuchholtzMoorehouse}, and indeed several different ones have recently been explored in connection with cubical systems of (homotopy) type theory, including \cite{BCH,orton-pitts, CCHM:2018ctt,ABCHFL,CMS:2020}, to name a few.  The model structure developed here is intended to work with any of these, insofar as they are  \emph{Cartesian}, in the sense that the indexing cubes $[n]\in\Box$ are closed under finite products $[m]\times[n] = [m+n]$.   Rather than working axiomatically, though, we shall work in the initial such category, which we call \emph{the Cartesian cube category} $\C$, defined as the free finite product category on an interval $\delta_0, \delta_1 : 1\rightrightarrows \I$.
 
 \begin{definition}
 The objects $[n]$ of the \emph{Cartesian cube category} $\C$, called $n$-cubes, are finite sets of the form 
@@ -341,21 +345,58 @@ Thus $X^\I$ is given by precomposition with the ``successor'' functor $\C\to\C$ 
 (-)^\I\dashv (-)_\I 
 \]
  and call $X_\I$ the $\I^{th}$-\emph{root} of $X$.
-
-See Appendix B below for a calculation of the root $X_\I$.
 \end{proof}
+
+The following is used to calculate the root $X_\I$. A similar fact holds for the generic object in the object classifying topos $\Set[X]=\Set^{\mathsf{Fin}}$ and related categories used in the theory of abstract higher-order syntax \cite{FiorePlotkinTuri:1999}.
+
+\begin{lemma}\label{lemma:binomial}
+For the representable functor $\I = \y[1]$ in $\cSet$, we have $\I^\I\ \cong\ \I+1$.
+\end{lemma}
+\begin{proof}
+For any $[n] \in \H$ we have:
+\[
+(\I^\I)(n) \cong \I(n+1) \cong \Hom(\I^{(n+1)},\I)\cong \H([n+1],[1])\cong \B([1], [n+1])\cong n+3.
+\]
+On the other hand,
+\[
+(\I+1)(n) \cong \I(n) + 1(n) \cong \Hom(\I^n, \I) + 1 \cong \B([1],[n]) +1 \cong (n+2) +1.
+\]
+The isomorphism is natural in $n$.
+\end{proof}
+
+\begin{corollary} For any cubical set $X$,
+\begin{align*}\textstyle
+X_\I(n) &\cong \hom(\I^n, X_\I) \\
+&\cong \hom((\I^n)^\I, X) \\
+&\cong \hom((\I^\I)^n, X) \\
+&\cong \hom((\I+1)^n, X) \\
+&\cong \hom(\I^n +  {\textstyle{n\choose n-1}}\I^{n-1} + \dots + {\textstyle{n\choose 1}}\I+1, X) \\
+&\cong X_n \times X_{n-1}^{\binom{n}{n-1}} \times \dots \times X_1^{\binom{n}{1}}\times X_0\,.
+\end{align*}
+\end{corollary}
 
 The exponential  $X^\I$ will be called the \emph{pathobject} of $X$, and plays a special role.  As we have just seen, it classifies ``paths'' in $X$; so the $0$-cubes $p \in (X^I)_0$ in the pathobject correspond to $1$-cubes $p\in X_1$, the ``endpoints'' of which $p_0, p_1\in X_0$ are given by composing with the evaluation maps 
 \[
 \epsilon_0, \epsilon_1 : X^\I \rightrightarrows X
 \]
 at the points $\delta_0, \delta_1 : 1\rightrightarrows \I$. More generally, higher cubes $c\in X_{n+1}$ correspond to maps $c : \I^{n+1}\to X$, which are thus paths between the $n$-cubes $c_0, c_1 : \I^n \to X$, corresponding to $c_0, c_1 \in X_n$.  
+Note that, as a left adjoint, the pathobject functor $X\mapsto X^\I$ preserves all \emph{co}limits.   
 
-We mention two facts that will be needed below, concerning the base change functors 
+We shall also need the following two facts concerning the interaction of cubes $\I^n$, pathobjects $X^\I$, and the base change functors associated to a map $f : X\to Y$  in $\cSet$, namely,
 \[
-f_!\dashv f^* \dashv f_* : \cSet/_X \too \cSet/_Y
+f_!\dashv f^* \dashv f_* : \cSet/_X \too \cSet/_Y\,.
 \]
-associated to a map $f : X\to Y$  in $\cSet$.
+
+\begin{lemma}\label{lemma:pathspacepushforward}
+The pushforward functor along any map $f : X\to Y$ preserves pathobjects; for any object $A \to X$ over $X$, the pathobject of the pushforward $f_*A$ is (canonically isomorphic over $Y$ to) the pushforward of the pathobject,
+\[
+(f_*A)^\I \cong f_*(A^\I)\,.
+\]
+\end{lemma}
+\begin{proof}
+This is true for any constant family $X^*C = X\times C \to X$ with $C$ in place of $\I$, as the reader can easily verify using the Beck-Chevalley condition.
+\end{proof}  
+
 
 \begin{lemma}\label{lemma:tinyslicedI}
 The pulled-back interval $\I^*\I = \I\times\I\to \I$ in $\cSet/_\I$ is also tiny.
@@ -390,17 +431,6 @@ The first equation follows from the observation that the diagram \eqref{diag:sna
  {s_{[1]}}_* (X) =: X_{\I^*\I} \,.
  \end{equation*}
 \end{proof}
-
-\begin{lemma}\label{lemma:pathspacepushforward}
-The pushforward functor along any map $f : X\to Y$ preserves pathobjects; for any object $A \to X$ over $X$, the pathobject of the pushforward $f_*A$ is (canonically isomorphic to) the pushforward of the pathobject,
-\[
-(f_*A)^\I \cong f_*(A^\I)\,
-\]
-over $Y$.
-\end{lemma}
-\begin{proof}
-This is true for any constant family $X^*C = X\times C \to X$ with $C$ in place of $\I$, as the reader can easily verify using the Beck-Chevalley condition.
-\end{proof}  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The cofibration weak factorization system}\label{sec:cofibrations}
@@ -457,7 +487,7 @@ Z \ar[r]_\chi & X^+
 \]
 The map $\chi : Z\ra X^+$ is said to \emph{classify} the partial map 
 \[
-c,x): Z\leftarrowtail C\ra X\,.
+(c,x): Z\leftarrowtail C\ra X\,.
 \]
 \end{enumerate}
 \end{proposition}
@@ -3712,7 +3742,7 @@ is a trivial fibration.  From this, it follows that the canonical transport map
  \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Appendix A: Axioms for cartesian cofibrations}\label{appendix:Cofibrations}
+\section*{Appendix A: Axioms for Cartesian cofibrations}\label{appendix:Cofibrations}
 %\addcontentsline{toc}{section}{A\quad Axioms for cartesian cofibrations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -3723,17 +3753,17 @@ A system of maps satisfying the axioms (C0)-(C8) above for the cofibrations in a
 \item[(A2)] The composite of two cofibrations is a cofibration.
 \item[(A3)] Any pullback of a cofibration is a cofibration.
 \item[(A4)] The join of two cofibrant subobjects is a cofibration.
-\item[(A5)] The diagonal map $\I\ra\I\times\I$ is a cofibration.
+\item[(A5)] The diagonal of the interval $\I\ra\I\times\I$ is a cofibration.
 \item[(A6)] Cofibrations are preserved by the pathobject functor $(-)^\I$.
-\item[(A7)] The category of cofibrations and cartesian squares has a terminal object.
+\item[(A7)] The category of cofibrations and Cartesian squares has a terminal object .
 \end{enumerate}
 
 \begin{example}
 Consider the cartesian cubical presheaves $\cEE = \EE^{\op{\C}}\!= \EE^{\B}$ in a topos $\EE$.
 For such (internal) discrete opfibrations $(A,\, \alpha)$,
 \[\begin{tikzcd}
-A  \ar[d] & \pbmarkleft \ar[l] \ar[d] \B_1 \times_{\B_0} A \ar[r,"\alpha"] & A \ar[d]  \\
-\B_0 & \ar[l, "\dom" ] \B_1 \ar[r,swap,"\cod"] & \B_0
+A  \ar[d] & \ar[l,swap,"\alpha"] \ar[d] \B_1 \times_{\B_0} A \ar[r] \pbmark  &  \ar[d] A \\
+\B_0 & \ar[l, "\cod" ] \B_1 \ar[r,swap,"\dom"] & \B_0
 \end{tikzcd}\]
 over the (internal) category $\B = (\B_1\rightrightarrows\B_0)$ of finite bipointed sets, call a subpresheaf $c : (C,\gamma)\to (A,\alpha)$ \emph{locally complemented} if the underlying map $c:C\to A$ over $\B_0 = \N$ is a complemented subobject in $\EE/_{\!\N}$, \ie\ $C+\neg{C} \cong A$ over $\N$.  Internally, this means that
 \begin{equation}\label{pointwisecomplemented}
@@ -3744,12 +3774,12 @@ which is a weaker condition than $(A,\alpha)+\neg (A,\alpha) \cong (B,\beta)$ as
  For any topos  $\EE$, the locally complemented subobjects in the category $\cEE$ of cubical $\EE$-objects satisfy the axioms for cartesian cofibrations.
 \end{proposition}
 \begin{proof}
-Axioms (A0)-(A4) follow from fact that they are satisfied by the complemented subobjects in $\EE/_{\!\N}$, and the forgetful functor $U : \cEE \to \EE/_{\!\N}$ creates the monos, isos, composites, pullbacks, and joins in question.  
+Axioms (A0)-(A4)  are satisfied by the complemented subobjects in $\EE/_{\!\N}$, and the forgetful functor $U : \cEE \to \EE/_{\!\N}$ creates the monos, isos, composites, pullbacks, and joins in question.  
 For (A5), we use the fact that the equality relation on $\N$ is decidable to infer that, for each $[n] = \{0, x_1, \dots, x_n, 1\}$, the finite set $\{i = j \,|\, 0\leq i,j \leq n+1\}$ is complemented in $\B([1],[n])\times \B([1],[n])$,  and so for the subpresheaf $\delta : \I \to \I\times\I$ we indeed have,
 \begin{equation}
 \delta_n + \neg(\delta_n) \cong \I_n\times \I_n \qquad\text{for all $n\in\N$}\,.
 \end{equation}
-Axiom (A6) follows from the fact that the pathobject $A^{\I}$ is a shift by one dimension, $(A^{\I})_{n} = A_{n+1}$.
+For (A6) we use the fact that the pathobject $A^{\I}$ is a shift by one dimension, together with $(A^{\I})_{n} = A_{n+1}$, together with \eqref{pointwisecomplemented}.
 The cofibration classifier in (A7) is given by applying the right adjoint $U \dashv R : \EE/_\N \to \cEE$ to the complemented subobject classifier $\N^*2$ of $\EE/_{\!\N}$.
 \end{proof}
 %
@@ -3827,7 +3857,7 @@ Since $u_* : \Set^{\B} \to \Set^{\B_=}$ is evidently full and faithful, it is th
 [0=1] &= y(0)
 \end{align*}
 fitting into an equalizer $[0=1] \to 1 \rightrightarrows \I$, which is the image under Yoneda of the canonical coequalizer $[1] \rightrightarrows [0]\to (0)$ in $\B_=$.  The closed complement topology for $[0=1] \mono 1$ is generated by the single cover $0\to [0=1]$, which can be described logically as 
-forcing the sequent $(0=1 \vdash \bot)$ to hold.  Recall from \cite{JohnstoneTT}, Proposition 3.53, the following simple characterization of the sheaves for a closed topology generated by an object $U\mono 1$: an object $X$ is a sheaf iff $X\times U \cong U$. In the present case, it therefore suffices to show that for any $P:\B_= \to \Set$ we have:
+forcing the sequent $(0=1 \vdash \bot)$ to hold.  Recall from \cite{JohnstoneTT}, Proposition 3.53, the following simple characterization of the sheaves for the closed complement topology of an object $U\mono 1$: an object $X$ is a sheaf iff $X\times U \cong U$. In the present case, it therefore suffices to show that for any $P:\B_= \to \Set$ we have:
 \[
 P\times [0=1] \cong [0=1] \quad\text{iff}\quad P(n) = 1\ \text{for all $n$}.
 \]
@@ -3872,13 +3902,57 @@ preserves finite products, $R(X\times Y) \cong R(X)\times R(Y)$ and $R(1) \cong 
 \end{corollary}
 
 \begin{proof}
-This follows immediately by composing the inverse image of the classifying geometric morphism $\mathsf{sSets} \to \cSet$ of the $1$-simplex $\Delta^1$ with the standard geometric realization $\mathsf{sSets} \to \mathsf{Top}$, each of which preserves finite products.
+Compose the inverse image of the classifying geometric morphism $\mathsf{sSets} \to \cSet$ of the $1$-simplex $\Delta^1$ with the standard geometric realization $\mathsf{sSets} \to \mathsf{Top}$, both of which preserve finite products.
 \end{proof}
 
-We conclude with a few general remarks about the category $\cSet$.
+%
+\begin{example}[P.~Aczel]
+The cubical set $P$ of polynomials (say, over the integers), is defined by:
+\[
+P_n = \{ p(x_1, ...,  x_n)\ |\  \text{polynomials in at most}\  x_1, ..., x_n \}
+\]
+with the substitution map $s^* : P_n \to P_m$ taking $p(x_1, ...,  x_n)$ to 
+\[
+ s^*p(x_1, ...,  x_n) = p\big(s(x_1),\dots, s(x_n)\big) \,,
+\]
+for each bipointed map $s:[n] \to [m]$.
+
+This cubical set $P$ underlies a ring object in $\cSet$, and the interval $\I = \y[1]$ embeds into it via the component maps
+\[
+\eta_n : \I_n \to P_n
+\]
+taking $v_i \in \C([n], [1])\cong \B\big([1],[n]\big) \cong \{0, x_1, \dots, x_n, 1\} $ to $0$, $1$, or the variable $x_i$, respectively, in $P_n$.
+The same is true for any algebraic theory $\T$ with two constants, 
+%making $F(1)\rightrightarrows F(0) \to 1$ a coequalizer, 
+such as Boolean algebras: there is a distinguished cubical $\T$-algebra $\mathcal{A}$, and a natural map $\eta : \I \to |\mathcal{A}|$ in $\cSet$.
+
+Indeed, let $\cSet = \Set[\mathcal{I}]$ as a classifying topos for intervals by Proposition \ref{prop:csetclassifiesintervals} with $\mathcal{I} = (1\rightrightarrows \I)$, and let
+\[
+\Set[\T,\mathsf{flat}]= \Set^{\op{\T}}
+\]
+ be the topos of presheaves on the Lawvere algebraic theory $\T$, which therefore classifies \emph{flat} $\T$-algebras.  There is a bipointed object $\mathcal{J} = (1\rightrightarrows \J)$ in $\T$, consisting of the generic $\T$-algebra and its two constants, which has a classifying functor $\J^\sharp : \C \to \T$, inducing adjoint functors on presheaves, 
+\[
+\J_! \dashv \J^* \dashv \J_* : \Set[\mathcal{I}] = \psh{\C} \too \psh{\T} = \Set[\T,\mathsf{flat}]\,,
+\]
+where $\J_! \circ \y_{\C} =\ \y_{\T} \circ \J^\sharp$,  with $\y$ the respective Yoneda embeddings.
+
+We can then calculate,
+\begin{equation}
+\begin{split}
+\J^* \J_! ( \I )( [n] ) &= \J^* \J_! ( \y[1] )( [n] )\\
+ &= \J^* \y( \J^\sharp[1] )( [n] ) = \y( \J^\sharp[1] )( \J^\sharp[n] ) \\
+ &= \T( \J^\sharp[n] , \J^\sharp[1] ) = \T\mathsf{Alg}( \J^\sharp[1] , \J^\sharp[n] ) \\
+ &= \T\mathsf{Alg}( F(1) , F(n) ) = | F(n) |,
+\end{split}
+\end{equation}
+where $|F(n)|$ is the underlying set of the free $\T$-algebra $F(n)$, the $n^{th}$ object of the Lawvere theory under its dual presentation $\op{\T}\hook \T\mathsf{Alg}$.  The unit of the $J_! \dashv J^*$ adjunction provides a natural map $\eta: \I \to \J^* \J_! ( \I )$. 
+%then has a natural retraction, given pointwise in the evident way  $| F(n) | \cong \J^* \J_! ( \I )_n \too \I_n \cong  \{0, x_1, \dots, x_n, 1\}$.
+
+The cubical set of polynomials $P = \J^* \J_! ( \I )$ is thus indeed a ring, with a map $\I \to P$, since $\J_!(\I) \cong \y_\T\,\J^\sharp([1]) \cong \y_\T(\J)$ is a ring in $\Set[\T,\mathsf{flat}]$ and $J^*$ is left exact.  In fact, we learn thereby  that $P$ is flat.
+\end{example}
 
 \begin{definition}
-Let $\Box \to\  \Cat$ be the unique product-preserving functor taking the interval $[1]$ to the one arrow  category $\bbtwo = (0\leq1)$.  This functor then takes $[n]$ to $\bbtwo^n$, the $n$-fold product in $\Cat$, and maps $[m] \to [n]$ in $\C$  to the corresponding monotone functions $\bbtwo^m \to \bbtwo^n$ of posets.\footnote{Thus factoring through the full subcategory $\C_{\wedge,\vee} \hook\Cat$ of \emph{Dedekind cubes}, mentioned above.}   The  \emph{cubical nerve} functor 
+Let $\Box \to \Cat$ be the unique product-preserving functor taking the interval $[1]$ to the one arrow  category $\bbtwo = (0\leq1)$.  This functor then takes $[n]$ to $\bbtwo^n$, the $n$-fold product in $\Cat$, and maps $[m] \to [n]$ to the corresponding monotone functions $\bbtwo^m \to \bbtwo^n$ of posets.\footnote{Thus factoring through the full subcategory $\C_{\wedge,\vee} \hook\Cat$ of \emph{Dedekind cubes}, mentioned above, which is the Lawvere algebraic theory of distributive lattices.}   The  \emph{cubical nerve} functor 
 \[
 N : \Cat \to \cSet
 \]
@@ -3890,7 +3964,7 @@ Thus $N(\bbC)_0$  is the set of objects of \bbC; $N(\bbC)_1$ is the set of arrow
 \end{definition}
 
 \begin{proposition}\label{prop:nervefull}
-The cubical nerve functor $N : \Cat \to \cSet$ is full and faithful.
+The cubical nerve $N : \Cat \to \cSet$ is full and faithful.
 \end{proposition}
 \begin{proof}
 Given categories $\bbC$ and $\D$ and functors $F, G : \bbC\to\D$, suppose $F(f) \neq G(f)$ for some $f : A\to B$ in $\bbC$.  Take $f^{\sharp} : \bbtwo \to \bbC$ with image~$f$.  Then $N(F)_1(f^\sharp) = F(f) \neq G(f) = N(G)_1(f^\sharp)$, and so $N(F) \neq N(G) : N(\bbC)\to N(\D)$.  So $N$ is faithful.
@@ -3919,7 +3993,7 @@ Here $!^* : \Cat(\bbtwo^0, \bbC) \to \Cat(\bbtwo, \bbC) $ is precomposition with
 \Cat(\bbtwo, \bbC) = N(\bbC)_1  \ar[r]_{F_1} & N(\D)_1 = \Cat(\bbtwo, \D).
 }
 \]
-where $\varphi_2 : N(\bbC)_2 \to N(\D)_2$ is the action of $\varphi$ on commutative squares of arrows, and $d^* : \Cat(\bbtwo^2, \bbC) \to \Cat(\bbtwo, \bbC)$ is precomposition with the diagonal map $d : \bbtwo \rightarrow \bbtwo^2 = \bbtwo\times\bbtwo$, so the diagram commutes.  For any composable pair of arrows $A \stackrel{f}{\to} B \stackrel{g}{\to} C$ in $\bbC$ there is a commutative square 
+where $\varphi_2 : N(\bbC)_2 \to N(\D)_2$ is the action of $\varphi$ on commutative squares of arrows, and $d^* : \Cat(\bbtwo^2, \bbC) \to \Cat(\bbtwo, \bbC)$ is precomposition with the diagonal map $d : \bbtwo \rightarrow \bbtwo^2 = \bbtwo\times\bbtwo$, so the diagram commutes.  For any composable $f: A \to B$ and $g:B\to C$ in $\bbC$ there is a commutative square 
 \[
 \xymatrix{
 A \ar[r]^{f} \ar[d]_{f} & B \ar[d]^{g} \\
@@ -3930,93 +4004,7 @@ and the effect of $d^* : \Cat(\bbtwo^2, \bbC) \to \Cat(\bbtwo, \bbC)$ on this sq
 Since clearly $N(F) = \varphi$, we indeed have that $N$ is also full.
 \end{proof}
 
-The following is used to calculate the right adjoint $X_\I$ of the pathobject $X^\I$ (\cf~Proposition \ref{prop:Itiny}). A similar fact holds for the generic object in the object classifying topos $\Set[X]=\Set^{\mathsf{Fin}}$ and related categories used in the theory of abstract higher-order syntax \cite{FiorePlotkinTuri:1999}.
 
-\begin{lemma}\label{lemma:binomial}
-For the representable functor $\I = \y[1]$ in $\cSet$, we have $\I^\I\ \cong\ \I+1$.
-\end{lemma}
-\begin{proof}
-For any $[n] \in \H$ we have:
-\[
-(\I^\I)(n) \cong \I(n+1) \cong \Hom(\I^{(n+1)},\I)\cong \H([n+1],[1])\cong \B([1], [n+1])\cong n+3.
-\]
-On the other hand,
-\[
-(\I+1)(n) \cong \I(n) + 1(n) \cong \Hom(\I^n, \I) + 1 \cong \B([1],[n]) +1 \cong (n+2) +1.
-\]
-The isomorphism is natural in $n$.
-\end{proof}
-
-\begin{corollary} For any cubical set $X$,
-%We have the following calculation for the right adjoint $X_\I$ of the pathobject $X^\I$:
-\begin{align*}\textstyle
-X_\I(n) &\cong \hom(\I^n, X_\I) \\
-&\cong \hom((\I^n)^\I, X) \\
-&\cong \hom((\I^\I)^n, X) \\
-&\cong \hom((\I+1)^n, X) \\
-&\cong \hom(\I^n +  {\textstyle{n\choose n-1}}\I^{n-1} + \dots + {\textstyle{n\choose 1}}\I+1, X) \\
-&\cong X_n \times X_{n-1}^{\binom{n}{n-1}} \times \dots \times X_1^{\binom{n}{1}}\times X_0\,.
-\end{align*}
-%\end{corollary}
-%
-%\begin{corollary}
-%Thus there is a natural transformation $X_\I \to X$, given for each $n$ by the first projection $X_n \times \dots \times X_0 \too X_n$.
-\end{corollary}
-%
-%It follows that as a \emph{left} adjoint the pathobject functor $X\mapsto X^\I$ preserves all \emph{co}limits.  This does not hold in general in type theory, but is a special property of the cubical model.  
-%(Cf. Lawvere \cite{Lawvere:2004} on the notion of ``tiny'' objects and the ``amazing right adjoint''.)  
-%
-\begin{example}[P.~Aczel]
-The cubical set $P$ of polynomials (say, over the integers), is defined by:
-\[
-P_n = \{ p(x_1, ...,  x_n)\ |\  \text{polynomials in at most}\  x_1, ..., x_n \}
-\]
-with the substitution map $s^* : P_n \to P_m$ taking $p(x_1, ...,  x_n)$ to 
-\[
- s^*p(x_1, ...,  x_n) = p\big(s(x_1),\dots, s(x_n)\big) \,,
-\]
-for each bipointed map $s:[n] \to [m]$.
-
-This cubical set $P$ is a ring object in the category $\cSet$ of cubical sets, and the interval $\I = \y[1]$ embeds into $P$ via the component maps
-\[
-\eta_n : \I_n \to P_n
-\]
-taking $v_i \in \B\big([1],[n]\big) \cong \{0, x_1, \dots, x_n, 1\} $ to either $0$,  $1$, or the variable $x_i \in P_n$.
-The same is true for any algebraic theory $\T$ with two constants, such as Boolean algebras: there is a distinguished cubical $\T$-algebra $A$, and a map $\eta : \I \to A$ in $\cSet$.
-
-Let $\Set[\I]=\cSet$ be the category of cubical sets, which classifies intervals by Proposition \ref{prop:csetclassifiesintervals}, and let
-\[
-\Set[\T,\mathsf{flat}]= \Set^{\op{\T}}
-\]
- be the topos of presheaves on the Lawvere algebraic theory $\T$, which therefore classifies \emph{flat} $\T$-algebras.  There is an interval $\J$ in $\T$  consisting of the generic $\T$-algebra and its two constants.  This bipointed object $1\rightrightarrows\J$ has a classifying functor $\J^\sharp : \C \to \T$, inducing adjoint functors on presheaves, 
-\[
-\J_! \dashv \J^* \dashv \J_* : \Set[\I] = \psh{\C} \too \psh{\T} = \Set[\T,\mathsf{flat}]\,,
-\]
-where $\J_! \circ \y_{\C} =\ \y_{\T} \circ \J^\sharp$,  with $\y$ the respective Yoneda embeddings.
-
-We can then calculate,
-\begin{equation}
-\begin{split}
-\J^* \J_! ( \I )( [n] ) &= \J^* \J_! ( \y[1] )( [n] )\\
- &= \J^* \y( \J^\sharp[1] )( [n] ) = \y( \J^\sharp[1] )( \J^\sharp[n] ) \\
- &= \T( \J^\sharp[n] , \J^\sharp[1] ) = \T\mathsf{Alg}( \J^\sharp[1] , \J^\sharp[n] ) \\
- &= \T\mathsf{Alg}( F(1) , F(n) ) = | F(n) |,
-\end{split}
-\end{equation}
-where $F(n)$ is the free $\T$-algebra on $n$ generators.  So in the case of polynomials we have 
-\[
-P = \J^* \J_! ( \I )\,,
-\]
-as the ``free ring on the interval $\I$'' in cubical sets $\cSet$.  The unit of the adjunction $\eta: \I \to \J^* \J_! ( \I ) \cong P$ is monic, since $\J^\sharp$ is faithful and therefore the left Kan extension $\J_!$ is faithful.   The cubical set of polynomials $P$ is a ring in $\Set[\I]$ since $\J_!(\I) \cong \y_\T\,\J^\sharp([1]) \cong \y_\T(\J)$ is a ring in $\Set[\T,\mathsf{flat}]$ and $J^*$ is left exact.  In fact, we thereby learn that $P$ is flat.
-\end{example}
-
-%A closely related example is the cubical set of ``Boolean polynomials",
-%\begin{align*}
-%B_n &= \{ \varphi(p_1, ...,  p_n)\ |\ \text{propositional formulas in $p_1, ...,  p_n$}\} \\
-% &\cong 2^{2^n}\,,
-%\end{align*}
-%which is thus a flat Boolean algebra in $\cSet$.  
-%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{alpha}
 \bibliography{../references}
