@@ -1,0 +1,1266 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CT 2023
+% July 2023
+% Steve Awodey
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% AMS-Latex %
+%\documentclass{beamer}
+\documentclass[handout]{beamer}
+\usepackage{color}
+\usetheme{default}
+\usepackage{etex} 
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\usepackage{bbm,stmaryrd}
+\usepackage{bussproofs}
+\usepackage{listings}
+\usepackage{relsize}
+\usepackage[all,color,matrix,cmtip]{xy}
+\xyoption{2cell}
+\xyoption{curve}
+\UseTwocells
+%\CompileMatrices      
+%\usepackage[all,cmtip]{xy}
+\input{diagxy}
+
+%\usepackage{tikz}
+%\usepackage{pdfpages}
+%\usepackage{tikz-cd}
+%\newcommand{\pbmark}{\ar[dr, phantom, "\lrcorner" very near start, shift right=.5ex]}	% pullback mark
+%\newcommand{\pbmarkleft}{\ar[dl, phantom, "\llcorner" very near start, shift right=.5ex]}	% pullback mark left arrow
+%\newcommand{\pbbmark}{\ar[drr, phantom, "\lrcorner" very near start, shift right=.5ex]}	% pullback mark
+
+% xypic
+%\newcommand{\pocorner}[1][dr]{\save*!/#1+1.2pc/#1:(1,-1)@^{|-}\restore}
+%\newcommand{\pbcorner}[1][dr]{\save*!/#1-1.2pc/#1:(-1,1)@^{|-}\restore}
+
+% tikz
+%\newcommand{\pbcorner}{\arrow[dr,phantom,"\lrcorner" very near start]} % changed to pbmark
+%\newcommand{\ppbcorner}{\arrow[drr,phantom,"\lrcorner" very near start]}
+%\newcommand{\pocorner}{\arrow[dr,phantom,"\ulcorner" very near end]} % changed to pomark
+%\newcommand{\ppocorner}{\arrow[dr,phantom,"\ulcorner" very near end]}
+
+\usepackage{color}  
+
+\newcommand{\T}{\ensuremath{\mathbb{T}}} 
+\newcommand{\Id}{\mathsf{Id}}
+\newcommand{\myemph}[1]{\textbf{#1}}    % Produces boldface text
+\newcommand{\arr}{\ensuremath{\rightarrow}} 
+\newcommand{\C}{\ensuremath{\mathbb{C}}} 
+\newcommand{\B}{\ensuremath{\mathbb{B}}} 
+\newcommand{\Set}{\ensuremath{\mathsf{Set}}} 
+\newcommand{\set}{\ensuremath{\mathsf{set}}} 
+\newcommand{\sset}{\ensuremath{\dot{\mathsf{set}}}} 
+\newcommand{\Cat}{\ensuremath{\mathsf{Cat}}} 
+\newcommand{\TAlg}{\ensuremath{\mathsf{TAlg}}} 
+\newcommand{\cSet}{\ensuremath{\mathsf{cSet}}} 
+\newcommand{\sSet}{\ensuremath{\mathsf{sSet}}} 
+\newcommand{\I}{\ensuremath{\mathbf{I}}} 
+\newcommand{\mc}[1]{\ensuremath{\mathcal{#1}}} 
+\newcommand{\msf}[1]{\ensuremath{\mathsf{#1}}} 
+\newcommand{\pbcorner}[1][dr]{\save*!/#1-1.2pc/#1:(-1,1)@^{|-}\restore}
+\newcommand{\ra}{\ensuremath{\rightarrow}} 
+\newcommand{\Ra}{\ensuremath{\Rightarrow}} 
+\newcommand{\op}[1]{\ensuremath{{#1}^{\mathsf{op}}}} 
+\newcommand{\yon}{\ensuremath{\mathsf{y}}} 
+\newcommand{\mono}{\rightarrowtail} 
+\renewcommand{\epi}{\twoheadrightarrow} 
+\newcommand{\too}{\longrightarrow} 
+
+
+%%%
+%%%  TYPE THEORETIC COMMANDS
+%%%
+
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\U}{\mathsf{U}}
+\newcommand{\UU}{\dot{\mathsf{U}}}
+\newcommand{\V}{\mathsf{V}}   
+\newcommand{\VV}{\dot{\mathsf{V}}}   
+\newcommand{\II}{\mathbb{I}}  
+\newcommand{\Sn}{\mathbb{S}}       
+\newcommand{\Z}{\mathbb{Z}}       
+\newcommand{\rec}{\mathsf{rec}}    
+\newcommand{\lloop}{\ell}    
+\newcommand{\base}{\mathsf{b}}   
+\newcommand{\cov}{\mathsf{cov}}   
+\newcommand{\suc}{\mathsf{succ}}   
+\newcommand{\ua}{\mathsf{ua}}    
+\newcommand{\type}{\mathsf{type}}  
+\newcommand{\prop}{\mathsf{Prop}}           
+\newcommand{\id}[1]{\mathtt{Id}_{#1}} 
+\newcommand{\judge}[3][]{#2\;\vdash_{#1}\;#3}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}% set the footnotes to symbols
+\renewcommand\footnoterule{}% remove the footnote rule
+
+%%
+%% THEOREM LIKE ENVIRONMENT SETTINGS
+%%
+
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{question}[theorem]{Question}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Cartesian cubical model categories
+}
+\author{
+Steve Awodey
+}
+\date{
+CT 2023
+}
+
+\maketitle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Abstract
+%The category of Cartesian cubical sets is introduced and endowed with a Quillen model structure, using ideas coming from recent constructions of cubical systems of univalent type theory.  
+%
+%Recently, there has been renewed interest in the cubical approach to homotopy theory. This is due to connections with the formal system of (homotopy) type theory, which is being used for the purpose of computerized proof checking \cite{AwodeyCoquand:2013}.  Unlike previous cubical models of homotopy theory such as  \cite{Jardine:cubical,Maltsiniotis:2009}, however, the cubes used for this purpose are generally assumed to be \emph{closed under finite products}; we call such cube categories \emph{Cartesian}.  Among the advantages of this model, as proposed by F.W.~Lawvere, is the tinyness of the geometric interval $\mathbb{I}$, which indeed plays a role in the current theory.
+%
+%We define the \emph{Cartesian cube category} $\Box$ to be the Lawvere theory of bipointed objects, the opposite of which is therefore the category of finite, strictly bipointed sets $\mathbb{B} = \Box^{\mathsf{op}}$.  Thus $\Box$ is the free finite product category with a bipointed object $[0]\rightrightarrows [1]$.  Our homotopy theory is based on the category of \emph{Cartesian cubical sets}, which is the category of presheaves on $\Box$,
+%\[
+%\mathsf{cSet} = \mathsf{Set}^{\Box^{\mathsf{op}}}\,,
+%\]
+%and thus consists of all \emph{covariant} functors $\mathbb{B}\to\mathsf{cSet}$.  Among these is an evident distinguished one, namely that which ``forgets the points''; it is represented by the generating $1$-cube $[1]$,
+%\[
+%\mathbb{I}  = \mathbb{B}([1], -) : \mathbb{B}  \to \mathsf{cSet} \,.
+%\]
+%
+%In cubical sets, the bipointed object $1\rightrightarrows\mathbb{I}$ turns out to have the (non-algebraic) property that its two points have a trivial intersection.  
+%\[
+%\xymatrix{
+%0 \ar[d] \ar[r] \pbcorner & 1 \ar[d]  \\
+%1 \ar[r] & \mathbb{I} 
+%}
+%\]
+%We call such an object in a topos an \emph{interval}, and this is the universal one.  
+%Other categories of Cartesian cubical sets will have a canonical comparison to this one, relating their respective homotopy theories.
+%
+%For the purpose of homotopy theory, this interval provides a good cylinder $X + X \rightarrowtail  \mathbb{I} \times X$ for every object $X$, as well as a good path object $X^\mathbb{I}  \twoheadrightarrow X\times X$ for every \emph{fibrant} object $X$.  
+%The notion of fibrancy here is given in terms of a Quillen model structure:
+%
+%\begin{theorem}
+%There is a Quillen model structure $(\mathcal{C},\mathcal{W},\mathcal{F})$ on $\mathsf{cSet}$, in which the cofibrations $\mathcal{C}$ are a subclass of monomorphisms determined axiomatically, the fibrations $\mathcal{F}$ are the maps $f :X\to Y$ for which the canonical map 
+%\[
+%(f^\mathbb{I}\times \mathbb{I}, \mathsf{eval}) : X^\mathbb{I} \times \mathbb{I} \to (Y^\mathbb{I}\times\mathbb{I})\times_Y X
+%\]
+%has the right-lifting property against all cofibrations, and the weak equivalences $\mathcal{W}$  are the maps $f: X\to Y$ for which $K^f : K^Y \to K^X$ is bijective on connected components whenever $K$ is fibrant.
+%\end{theorem}
+%
+%Although $\Box$ is a strict test category in the sense of \cite{G:1983}, this model structure is not the test one determined by the method of \cite{cisinski-asterisque}, nor is it Reedy \cite{Reedy:1974ht}, although $\Box$ is generalized Reedy in the sense of \cite{BergerMoerdijk:2008rc}.   Instead, it is based on a new construction derived from the interpretation of type theory and making use of the \emph{univalence axiom} of Voevodsky \cite{KLV:21}.   Our main goal is not merely to arrive at the above stated theorem, but to investigate the relationship between the model structure and certain features of the system of cubical type theory \cite{CCHM}, in which univalence is \emph{constructively valid}. The resulting Quillen model category provides a natural model for the system of \cite{HoTTBook}, but \emph{not} simply as a consequence of the powerful result of Shulman \cite{shulman2019infty1toposes}, which applies only to $\infty$-toposes presented by \emph{simplicial} model categories.  Thus our investigation also explores the possibility of a cubical presentation of a higher topos.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Background}
+
+\begin{itemize}
+\item[$\bullet$] There has recently been work on \myemph{cubical} homotopy theory. 
+\item[$\bullet$] It is related to \myemph{homotopy type theory} which is being used for computerized proof checking.
+\item[$\bullet$]  The cubes used for this are \myemph{closed under finite products}.  
+\item[$\bullet$] This model of homotopy was also proposed by Lawvere who stressed the \myemph{tinyness of the geometric interval $\mathbb{I}$}.
+\item[$\bullet$] The tinyness of $\mathbb{I}$ is also used in the current theory.
+\end{itemize}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Models of HoTT from QMC}
+%
+%Quillen model categories can be used to model Homotopy Type Theory.
+%
+%\begin{itemize}
+%\item Hofmann-Streicher groupoid model can be viewed \emph{post hoc}\\
+% in terms of a QMS on $\msf{Gpd}$.
+%
+%\item A-Warren: models in general WFS and QMC ($\msf{Id}$)
+%
+%\item Van den Berg-Garner: special WFS on $\msf{sSet}$ and $\msf{Spaces}$ ($\Pi$)
+%
+%\item Voevodsky: the Kan QMS on $\msf{sSet}$ ($\msf{U}$)
+%
+%\item Shulman: every $\infty$-topos models HoTT 
+%
+%\end{itemize}
+%\medskip
+%\pause
+%
+%At each step, a more specialized QMC led to ``better'' models,\\
+%with $\Id, \Sigma, \Pi$ and eventually univalent $\U$.  
+%\pause\smallskip
+%
+%Finally, Shulman showed just what was needed to build a model.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{QMC from models of HoTT}
+%
+%One can also \emph{reverse} the model construction, in a certain sense:\\
+%start from a model of HoTT and construct from it a QMC.
+%\pause\medskip
+%
+%We then have the following:
+%
+%\begin{conjecture}
+%The resulting QMC presents an $\infty$-topos.
+%\end{conjecture}
+%\medskip
+%
+%This reinforces the idea of HoTT as the \emph{internal language} of $\infty$-topoi, just as IHOL is the internal language of 1-topoi.
+%\[
+% {\text{HoTT}} / {\text{$\infty$-topos}}\quad \mathbf{::}\quad  {{\text{IHOL} / \text{topos}}}
+%\]
+%\pause
+%It also gives a strange new way of constructing a QMC,\\ 
+%using ideas from type theory  (today's main emphasis).
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Cartesian cubical sets}
+
+%\begin{definition} 
+The \myemph{Cartesian cube category} $\Box$ is the opposite of the category $\mathbb{B}$ of finite, strictly bipointed sets,
+\[
+\Box\, :=\, \mathbb{B}^{\mathsf{op}}\,.
+\]  
+%\end{definition}
+%
+Thus $\Box$ is the \myemph{Lawvere theory of bipointed objects}: the free finite product category with a bipointed object $[0]\rightrightarrows [1]$.  
+\pause
+\medskip
+
+The \myemph{Cartesian cubical sets} is the category of presheaves on $\Box$,
+\[
+\mathsf{cSet} = \mathsf{Set}^{\Box^{\mathsf{op}}}\,.
+\]
+Thus $\mathsf{cSet}$ consists of all \myemph{covariant} functors $\mathbb{B}\ra\mathsf{cSet}$.  
+%
+%The one that ``forgets the points'' is represented the $1$-cube $[1]$,
+%\[
+%\mathbb{I}  := \mathbb{B}([1], -) : \mathbb{B}  \to \mathsf{cSet} \,.
+%\]
+%It therefore generates the topos under colimits and finite products. 
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The tiny interval $\II$}
+
+The $1$-cube $[1]$ represents the cubical set that \myemph{forgets the points},
+\[
+\mathbb{I}  := \mathbb{B}([1], -) : \mathbb{B}  \longrightarrow \mathsf{cSet} \,.
+\]
+It \myemph{generates} $\cSet$ under finite products and colimits. 
+\medskip
+\pause
+
+The two points $1\rightrightarrows\mathbb{I}$ have a trivial intersection.  
+\[
+\xymatrix{
+0 \ar[d] \ar[r] \pbcorner & 1 \ar[d]  \\
+1 \ar[r] & \mathbb{I} 
+}
+\]
+This is the universal \myemph{interval} in a topos.  
+\medskip
+\pause
+%Other categories of Cartesian cubical sets will have a canonical comparison to this one, relating their respective homotopy theories.
+
+It provides a \myemph{good cylinder} $X + X \rightarrowtail  \mathbb{I} \times X$ for every object $X$, 
+and a \myemph{good path object} $X^\mathbb{I}  \twoheadrightarrow X\times X$ for every \myemph{fibrant} object $X$.  
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The main result}
+
+\begin{theorem}[A.~2023]
+There is a Quillen model structure $(\mathcal{C},\mathcal{W},\mathcal{F})$ on $\mathsf{cSet}$ where:
+\begin{itemize}
+\item[$\bullet$] the \myemph{cofibrations} $\mathcal{C}$ are an axiomatized class of monos, 
+\item[$\bullet$] the \myemph{fibrations} $\mathcal{F}$ are those $f :X\ra Y$ for which 
+\[
+(f^\mathbb{I}\times \mathbb{I}, \mathsf{eval}) : X^\mathbb{I} \times \mathbb{I} \to (Y^\mathbb{I}\times\mathbb{I})\times_Y X
+\]
+lifts on the right against all cofibrations,
+\item[$\bullet$] the \myemph{weak equivalences} $\mathcal{W}$  are those $f: X\ra Y$ for which $K^f : K^Y \to K^X$ is bijective under $\pi_0$ whenever $K$ is fibrant.
+\end{itemize}
+\end{theorem}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{The construction of $(\mathcal{C},\mathcal{W},\mathcal{F})$}
+
+The \myemph{proof} of the theorem
+%\begin{itemize}
+%\item[$\cdot$] Cartesian cubical sets $\cSet = \Set[X, 0,1]$
+%\item[$\cdot$] Cartesian cubical sets with \myemph{connections} $\Set[X, 0,1,\wedge,\vee]$
+%\item[$\cdot$] Symmetric cubical sets $\cSet^\Sigma$
+%\item[$\cdot$] Cubical presheaves $\cSet^\C$
+%\end{itemize}
+\begin{itemize}
+\item[$\bullet$] uses ideas from \myemph{type theory},
+\item[$\bullet$] including the \myemph{univalence axiom} of Voevodsky,
+\item[$\bullet$]  is \myemph{axiomatized} in terms of:
+	\begin{enumerate}
+	\item a classifier $\Phi \hookrightarrow \Omega$ for the cofibrations, 
+	\item a tiny interval $1\rightrightarrows\II$, 
+	\item a universal small map $\dot{\V}\ra\V$,
+	\end{enumerate}
+\item[$\bullet$]  applies in several different cases.
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Models of HoTT}
+%
+%The models of HoTT that we start with are formulated in IHOL\\
+%or \emph{extensional} type theory.  This is like a \emph{translation} of one logical system into another.  
+%These models can even be formalized.
+%
+%\pause\medskip
+%
+%We can also describe this kind of model construction semantically in an elementary topos.
+%
+%\begin{definition}[\emph{pace} Orton-Pitts]
+%A \emph{premodel of HoTT} in a topos $\EE$ consists of $(\II, \Phi, \V)$, where:
+%\begin{itemize}
+%\item $\II$ is an interval $1\rightrightarrows \II$ \\
+%(that is \emph{tiny} $(-)^\II \dashv (-)_\II$ and ...)
+%\item $\Phi$ is a representable class of monos $\Phi \hookrightarrow \Omega$\\
+%(that is a \emph{dominance} and ...)
+%\item $\VV \ra \V$ is a \emph{universal small map},\\
+%(that is closed under $\Sigma, \Pi$ and ...)
+%\end{itemize}
+%\end{definition}
+%\pause
+%
+%We will instead use this set-up to construct a QMS on $\EE$.
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{QMS from a premodel}
+%
+%The construction of a QMS $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ from a premodel  $(\II, \Phi, \V)$ has so far been done for the following cases of a topos $\EE$:
+%\medskip%\pause
+%
+%\emph{Cubical~sets} $\EE=\Set^{\C^{op}}$ for $\C$:
+%\begin{itemize}
+%\item Dedekind cubes (Sattler)
+%\item Cartesian cubes (A)
+%\item Cartesian cubes with equivariance (ACCRS)
+%\end{itemize}
+%%\pause
+%\medskip
+%
+%Other examples in progress include:
+%\begin{itemize}
+%\item cubical realizability (AAFS)
+%\item (higher) stacks (Coquand)
+%\item simplicial and cubical (pre)sheaves 
+%\item quasi-categories
+%\end{itemize}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{The premodel  $(\II, \Phi, \V)$ in $\EE$}
+%
+%For today, the \myemph{topos} $\EE$ will be the \emph{Dedekind cubical sets}
+%\[
+%\EE=\Set^{\C^{op}}
+%\] 
+%where $\C\hookrightarrow\mathsf{Cat}$ is the full subcategory on the finite powers of $\mathbbm{2}$. 
+%This fp-category $\C$ is the \emph{Lawvere theory} of distributive lattices.  
+%\bigskip\pause
+%
+%The \myemph{interval} $\II = \yon(\mathbbm{2})$ therefore has \emph{connections}, 
+%\[
+%\wedge, \vee : \II \times \II \to \II\,,
+%\]
+%in addition to the \emph{endpoints},
+%\[
+%\delta_0, \delta_1 : 1 \to \II\,.
+%\]
+%This is because $\II \times \II = \mathsf{y}(\mathbbm{2})\times \mathsf{y}(\mathbbm{2}) \cong \mathsf{y}(\mathbbm{2}\times\mathbbm{2})$ and $1 \cong \mathsf{y}(\mathbbm{1})$.
+%
+%\medskip
+%%\pause
+%
+%Moreover $\II$ is indeed \emph{tiny}, since $\C$ is closed under finite products.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{$(\mathcal{C},\mathcal{W},\mathcal{F})$ from $(\Phi, \II, \V)$}
+
+The model structure $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ is constructed in 3 steps:\medskip
+
+\begin{enumerate}
+\item $\Phi$ is used to determine a wfs $(\mathcal{C},\mathsf{TFib})$,
+\item $\II$ is used to determine a wfs $(\mathsf{TCof}, \mathcal{F})$ with $\mathsf{TFib}\subseteq\mathcal{F}$,
+\item $\V$ is used to show 3-for-2 for $\mathcal{W} := \mathsf{TFib}\circ\mathsf{TCof}$.
+\end{enumerate}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{The premodel  $(\II,\Phi, \V)$ in $\EE$}
+%
+%The subobject $\Phi\hookrightarrow\Omega$ is called the \myemph{cofibration classifier}.  Logically, it determines a modal operator $\msf{cof}:\Omega\ra\Omega$ on propositions.  It will determine which monos are cofibrations in\\
+%our model structure. The \emph{dominance} law
+%\[
+%\msf{cof}(p) \wedge (p\Ra \msf{cof}(q)) \Ra \msf{cof}(p\wedge q)
+%\]
+%will imply that these monos are closed under composition.
+%\medskip\pause
+% 
+%For today, we will take $\Phi = \Omega$ to be simply \emph{all} monos.
+%\medskip
+%%\pause
+%
+%For some applications other choices are better. For example, one can take those monos $m : A \mono B$ in $\Set^{\C^{op}}$ whose components $m_c : A(c) \mono B(c)$ are \emph{complemented subobjects} in $\Set$.  This condition is non-trivial if $\Set$ is not assumed to be boolean, as in realizability or constructive mathematics, or in a relative setting where e.g.\ $\Set = \msf{Sh}(X)$ (simplicial sheaves). 
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{The premodel  $(\II, \Phi, \V)$ in $\EE$}
+%
+%For $\VV \ra \V$ we take a (Hofmann-Streicher) \myemph{universe} determined by a large enough cardinal $\kappa$.
+%Thus let $\Set_\kappa \hookrightarrow\Set$ be the full subcategory of sets of size $<\kappa$, called \emph{small}.  Then let:
+%\begin{align*}
+%\V(c)  &= \{ S : \op{(\C/c)} \to \Set_\kappa \},\\
+%	&\quad\quad\text{the \emph{set} of small presheaves on $\C/c$} \\
+%\VV(c)  &= \{ \dot{S} : \op{(\C/c)} \to \dot{\Set}_\kappa \},\\
+%	&\quad\quad\text{the set of small \emph{pointed} presheaves on $\C/c$}.
+%\end{align*}
+%%
+%\pause
+%\vspace{-1em}
+%\begin{definition}
+%An object $A$ in $\EE$ is \emph{small} if its values $A(c)$ are small, for all $c\in\C$.\\
+%A map $A \ra X$ in $\EE$ is \emph{small} if its fibers $A_x = x^*A$ are small,\\
+% for all $x:\yon(c)\ra X$.
+%\end{definition}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{The premodel  $( \II, \Phi, \V)$ in $\EE$}
+%
+%\begin{proposition} For every small map $A \ra X$ there is a \emph{classifying map} $a:X\ra \V$ fitting into a pullback diagram of the form:
+%\[
+%\xymatrix{
+%A \ar[d]  \ar[r] \pbcorner &  {\VV} \ar[d]\\
+%X \ar[r]_a & \V
+%}
+%\]
+%\end{proposition}
+%\pause
+%
+%The universe $V$ is closed under $\Sigma$ and $\Pi$ because small maps are closed under the adjoints $\Sigma\dashv * \dashv \Pi$ to pullback along small maps.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{QMS on $\EE$ from $(\II, \Phi, \V)$}
+%
+%We make use of a \myemph{universal fibration} $\UU\epi\U$ as follows.
+%\medskip
+%
+%\begin{enumerate}
+%\item[(i)] $\UU\epi\U$ is constructed from a \myemph{universe} $\VV\ra\V$ and a \myemph{classifying type} of fibration structures, 
+%\item[(ii)] show that $\UU\epi\U$ is \myemph{univalent},
+%\item[(iii)] univalence implies that the base $\U$ is \myemph{fibrant},
+%\item[(iv)] fibrancy of $\U$ implies \myemph{3-for-2} for $\mathcal{W}$.
+%\end{enumerate}
+%\pause\medskip
+%
+%The idea of getting a QMS from univalence is due to Sattler.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{1. The cofibration wfs $(\mathcal{C},\mathsf{TFib})$}
+
+The \myemph{cofibrations} $\mathcal{C}$ are the monos $C' \mono C$ classified by $t : 1 \mono \Phi$.
+\[
+\xymatrix{
+C'\ar@{>->}[d] \ar[r] \pbcorner & 1 \ar@{>->}[d]_t \ar[r] \pbcorner & 1 \ar[d]^{\top}\\
+C \ar[r]  &\, \Phi\, \ar@{^(->}[r]  & \Omega 
+}
+\]
+
+The \myemph{trivial fibrations} $\mathsf{TFib}$ are the maps $T\epi X$  that lift against the cofibrations.
+ \[
+\mathcal{C}^{\pitchfork}
+ =: \mathsf{TFib}
+\]
+\[
+\xymatrix{
+ C' \ar@{>->}[d] \ar[r] & T  \ar@{->>}[d]\ar[d]\\
+ C \ar[r] \ar@{..>}[ru] & X
+}
+\]
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{1. The cofibration wfs $(\mathcal{C},\mathsf{TFib})$}
+
+
+\begin{proposition}
+$(\mathcal{C},\mathsf{TFib})$ is an algebraic weak factorization system.
+\end{proposition}
+
+\begin{proof}
+The classifier $t : 1 \mono \Phi$ determines a fibeblue polynomial monad
+\[
+P_t = \Phi_! t_* : \cSet \to \cSet
+\] 
+the algebras for which in $\cSet/_X$ are the trivial fibrations.
+\end{proof}
+
+%Such an $\alpha$ is then an \emph{algebraic structure} on $T\ra X$, and there is a \emph{classifying type} $\mathsf{TFib}(T) \ra X$ for such structures.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{2. The fibration wfs $(\mathsf{TCof}, \mathcal{F})$ }
+
+The \myemph{fibrations} $\mathcal{F}$ are defined in terms of the trivial fibrations by
+\[
+ (f : F\rightarrow X) \in \mathcal{F} \qquad\text{iff}\qquad (\delta\!\Rightarrow\!f) \in \mathsf{TFib}
+ \]
+where $\delta\!\Rightarrow\! f$ is the \myemph{gap map} with $\delta : 1\to\II$ in $\cSet/_\II$.
+\[
+\xymatrix{
+F^\II \ar[dd] \ar@{..>}[rd]|{\delta\Rightarrow f} \ar[rr] && F \ar@{=}[d] \\
+& \cdot \ar[d] \ar[r] \pbcorner & F \ar[d]^f \\
+X^\II \ar@{=}[r] & X^\II \ar[r]  & X 
+}
+\]
+%\[
+%\xymatrix{
+%F^\II \ar@/_3ex/ [rdd] \ar@{..>}[rd]|{\delta\Rightarrow f} \ar@/^3ex/[rrd] && \\
+%& \cdot \ar[d] \ar[r] \pbcorner & F \ar[d]^f \\
+%& X^\II \ar[r]  & X 
+%}
+%\]
+\pause
+
+The \myemph{trivial cofibrations} $\mathsf{TCof}$ are the maps that lift against  $\mathcal{F}$.
+\[
+\mathsf{TCof} :=\, ^{\pitchfork}\mathcal{F}
+\]
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3. The weak equivalences $\mc{W}$}
+
+%\begin{proposition}
+Let $\mathcal{W} :=  \mathsf{TFib}\circ\mathsf{TCof}$. 
+\medskip
+
+\begin{proposition}
+$(\mathcal{C}, \mathsf{TFib})$ and $(\mathsf{TCof}, \mathcal{F})$ form a Barton \myemph{premodel structure}.
+\begin{align*}
+\mathsf{TCof} &= \mathcal{W} \cap \mathcal{C}\\
+\mathsf{TFib} &= \mathcal{W} \cap \mathcal{F}
+\end{align*}
+\end{proposition}
+%
+\vspace{-1em}
+\begin{corollary}
+If $\mathcal{W}$ satisfies 3-for-2, then $(\mathcal{C}, \mathcal{W}, \mathcal{F})$ is a QMS. 
+\end{corollary}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3. The weak equivalences $\mc{W}$}
+
+We  use a \myemph{universal fibration} $\UU\epi\U$ to show 3-for-2 for $\mathcal{W}$.
+\medskip
+
+\begin{enumerate}
+\item[(i)] there is a \myemph{universal small map} $\VV\ra\V$ 
+\item[(ii)] $\U$ is the \myemph{classifying type} for fibration structures on $\VV\ra\V$
+\item[(iii)] $\UU\epi\U$ is \myemph{univalent}
+\item[(iv)] $\U$ is \myemph{fibrant}
+\item[(v)] fibrant $\U$ implies \myemph{3-for-2} for $\mathcal{W}$
+\end{enumerate}
+\pause\medskip
+
+The idea of getting a QMS \myemph{from} univalence is due to Sattler.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(i). The universal small map $\VV\rightarrow\V$}
+
+The \myemph{category of elements} functor $\int_\C$
+\[
+\xymatrix{
+\int_\C : \widehat\C \ar@/^2ex/ [rr] && \ar@/^2ex/[ll] \Cat : \nu_\C
+}
+\]
+always has a right adjoint  \myemph{nerve} functor $\nu_\C$.
+
+\begin{proposition}
+For any small map $Y\ra X$ in $\widehat{\C}$ there is a canonical pullback 
+\[\textstyle
+\xymatrix{
+	 Y \ar[d] \pbcorner \ar[r] & \nu_\C\,\op{\dot{\set}} \ar[d] \\  
+	X \ar[r] &  \nu_\C\,\op{\set}
+}
+ \]
+ since\ \ $\op\sset \too \op\set$ classifies small discrete fibrations in $\Cat$.
+ \end{proposition}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(i). The universal small map $\VV\rightarrow\V$}
+
+The \myemph{category of elements} functor $\int_\C$
+\[
+\xymatrix{
+\int_\C : \widehat\C \ar@/^2ex/ [rr] && \ar@/^2ex/[ll] \Cat : \nu_\C
+}
+\]
+always has a right adjoint  \myemph{nerve} functor $\nu_\C$.
+
+\begin{proposition}
+For any small map $Y\too X$ in $\widehat{\C}$ there is a canonical pullback 
+\[\textstyle
+\xymatrix{
+	 Y \ar[d] \pbcorner \ar[r] & \  \ar[d] \nu_\C\,\op{\dot{\set}} \ar@{=}[r] & {\color{blue}\VV} \ar@[blue][d]\\  
+	X \ar[r] & \nu_\C\,\op{\set} \ar@{=}[r] & {\color{blue}\V} 
+}
+ \]
+ since\ \ $\op\sset \ra \op\set$ classifies small discrete fibrations in $\Cat$.
+\end{proposition}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{3(ii). The universal fibration $\UU\epi\U$}
+%
+%
+%\begin{proposition} There is a small fibration $\UU\epi\U$ such that every small fibration $A \epi X$ has a \emph{classifying map} $a:X\ra \U$ fitting into a pullback
+%\[
+%\xymatrix{
+%A \ar@{->>}[d] \ar[r]  \pbcorner &  {\UU} \ar@{->>}[d]\\
+%X \ar[r]_a & \U
+%}
+%\]
+%\end{proposition}
+%\pause
+%
+%%The universe $V$ is closed under $\Sigma$ and $\Pi$ because small maps are closed under the adjoints $\Sigma\dashv * \dashv \Pi$ to pullback along small maps.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{QMS on $\EE$ from $(\II, \Phi, \V)$}
+%
+%We make use of the universal fibration $\UU\epi\U$ as follows.
+%\medskip
+%
+%\begin{enumerate}
+%\item[(i)] $\UU\epi\U$ is constructed from a \myemph{universe} $\VV\ra\V$ and a \myemph{classifying type} of fibration structures, 
+%\item[(ii)] show that $\UU\epi\U$ is \myemph{univalent},
+%\item[(iii)] univalence implies that the base $\U$ is \myemph{fibrant},
+%\item[(iv)] fibrancy of $\U$ implies \myemph{3-for-2} for $\mathcal{W}$.
+%\end{enumerate}
+%\pause\medskip
+%
+%The idea of getting a QMS from univalence is due to Sattler.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{3(ii). The universal fibration $\UU\epi\U$}
+%
+%\begin{definition}
+%A \emph{universal fibration} is a small fibration $\UU\epi\U$ such that every small fibration $A \epi X$ 
+%is a pullback of $\UU\epi\U$ along a \emph{classifying} map $X\ra \U$.
+%\[
+%\xymatrix{
+%A \ar@{->>}[d] \ar[r]  \pbcorner & \UU \ar@{->>}[d] \\
+%X \ar[r] & \U
+%}
+%\]
+%\end{definition}
+%\pause
+%
+%We will construct  a universal fibration using the classifying type for fibration structures. 
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(ii). The universal fibration $\UU\epi\U$}
+
+For any $A\ra X$ in $\cSet$ there is a \myemph{classifying type} $\mathsf{Fib}(A) \ra X$, the 
+sections of which correspond to fibration structures.
+\[
+\xymatrix{
+& A\ar@{->>}[d] \\
+\mathsf{Fib}(A) \ar[r] & X \ar@{..>} @/_4ex/ [l]
+}
+\]
+%\pause
+%
+%NB: $\mathsf{Fib}(A)\ra X$ is small when $A\ra X$ is small.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(ii). The universal fibration $\UU\epi\U$}
+
+The construction of $\mathsf{Fib}(A) \to X$ is stable under pullback.
+\[
+\xymatrix{
+& f^*\!A \ar[dd] \ar[rr] \pbcorner && A \ar[dd] & \\
+f^*\mathsf{Fib}(A) \ar[rd] \ar[rr] |<<<<<<<<<<<<<\hole  &&  \mathsf{Fib}(A) \ar[rd] \\
+& Y \ar[rr]_f && X &
+}
+\]
+
+\[
+f^*\mathsf{Fib}(A)\ \cong\ \mathsf{Fib}(f^*\!A)
+\]
+\medskip
+\pause
+
+This uses the \myemph{root} functor $(-)^\II \dashv (-)_\II$. 
+%This is where we use the fact that the interval $\II$ is \myemph{tiny}.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(ii). The universal fibration $\UU\epi\U$}
+
+Let $\U$ be the type of fibration structures on $\VV\ra\V$
+\[
+\xymatrix{
+& {\VV} \ar[d] \\
+{\color{blue}\U :=}\ \mathsf{Fib}(\VV) \ar[r] & \V
+}
+\]
+\pause
+then define $\UU\ra\U$ by pulling back.
+\[
+\xymatrix{
+{\color{blue}\UU} \ar@[blue][d] \ar@[blue][r]  \pbcorner & {\VV} \ar[d] \\
+{\color{blue}\U} \ar[r] & \V
+}
+\]
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(ii). The universal fibration $\UU\epi\U$}
+
+Since $\mathsf{Fib}(-)$ is stable, the lower square is a pullback. 
+\[
+\xymatrix{
+& \UU \ar[dd] \ar[rr] \pbcorner && \VV \ar[dd] & \\
+\mathsf{Fib}(\UU) \ar[rd] \ar[rr] |<<<<<<<<<<<\hole  &&  \mathsf{Fib}(\VV) \ar[rd] \\
+& \U \ar[rr] && \V &
+}
+\]
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(ii). The universal fibration $\UU\epi\U$}
+
+Since $\mathsf{Fib}(-)$ is stable the lower square is also a pullback. 
+\[
+\xymatrix{
+& \UU \ar[dd] \ar[rr] \pbcorner && \VV \ar[dd] & \\
+\mathsf{Fib}(\UU) \ar[rd] \ar[rr] |<<<<<<<<<<<\hole  &&  \mathsf{Fib}(\VV) \ar[rd] \\
+& \U \ar[rr] \ar@[blue]@{.>}@/^1pc/[lu]^{\color{blue}\Delta_U} && \V &
+}
+\]
+\pause
+But since $\U = \mathsf{Fib}(\VV)$ there is a section of $\mathsf{Fib}(\UU)$.
+\pause
+
+So $\UU\ra \U$ is a fibration.
+  
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(ii). The universal fibration $\UU\epi\U$}
+
+A fibration structure $\alpha$ on a small map $A\ra X$ determines a factorization $(a,\alpha)$ of its classifying map  $a : X\ra\V$. 
+\[
+\xymatrix{
+&A \ar@{->>}[ddd] \ar[rr]  && {\VV}\ar[ddd]\\
+&&&\\
+\mathsf{Fib}(A) \ar[rd] \ar[rr] |<<<<<<<<<<<\hole  && \mathsf{Fib}(\VV) \ar[rd] &\\
+&X \ar[rr]_a \ar@{.>}@/^1pc/[lu]^\alpha \ar@{.>}[ru]_>>>>>>>{(a,\alpha)} && \V
+}
+\]
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(ii). The universal fibration $\UU\epi\U$}
+
+A fibration structure $\alpha$ on a small map $A\ra X$ determines a factorization $(a,\alpha)$ of its classifying map $a:X\ra\V$, 
+\[
+\xymatrix{
+& {\color{blue}A} \ar@[blue]@{->>}[ddd] \ar[rr]  \ar@[blue]@{.>}[rd] && {\VV}\ar[ddd]\\
+& & {\color{blue}\UU} \ar@[blue]@{->>}[d] \ar[ru]  &\\
+\mathsf{Fib}(A) \ar[rd] \ar[rr] |<<<<<<<<<<<\hole  &&  {\color{blue}\mathsf{Fib}(\VV)}  \ar[rd] &\\
+& {\color{blue}X} \ar[rr]_a \ar@{.>}@/^1pc/[lu]^\alpha \ar@[blue]@{.>}[ru]_>>>>>>>{\color{blue}(a,\alpha)} && \V
+}
+\]
+which classifies $A\epi X$ \myemph{as a fibration} since $\mathsf{Fib}(\VV)  = \U$.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{3(ii). The universal fibration $\UU\epi\U$ in type theory}
+%
+%The type of fibration structures $\mathsf{Fib}(A)$ is an example of type-theoretic thinking.
+%\medskip\pause
+%
+%It can be constructed as the ``type of proofs that $A$ is a fibration''\\
+%using the \emph{propositions-as-types} idea
+%(as explained in Emily Riehl's Topos Colloquium).
+%\medskip\pause
+%
+%A fibration on $X$ is then a pair $(A, \alpha)$ consisting of a small family $A : X \ra \V$ together with a proof $\alpha : \mathsf{Fib}(A)$ that $A$ is a fibration. 
+%\medskip\pause
+%
+%The universal fibration $\UU \epi \U$ is therefore
+%\begin{align*}
+%{\U}\ &=\ {\displaystyle \sum_{A:\V}\mathsf{Fib}(A)} \,,\\
+%{\UU}\ &=\  {\displaystyle \sum_{(A, \alpha):\U} A}\,.
+%\end{align*}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{3(ii). The universal fibration $\UU\epi\U$ in type theory}
+%
+%\medskip
+%
+%Recall that the stability of $\mathsf{Fib}(A)$ under pullback requiblue
+%\[\tag{$*$}
+%f^*\mathsf{Fib}(A) = \mathsf{Fib}(f^*A)
+%\] 
+%for any $f : Y \ra X$.\pause\ Indeed, we have a map
+%\[
+%\mathsf{Fib} : \V \to \V\vspace{-1em}
+%\]
+%for which
+%\[
+%\mathsf{Fib}(A) = \mathsf{Fib}\circ A\,.
+%\]
+%\pause
+%So ($*$) is as simple as:
+%\begin{align*}
+%f^*\mathsf{Fib}(A) &= \mathsf{Fib}(A)\circ f \\
+%	&= (\mathsf{Fib}\circ A)\circ f \\
+%	&= \mathsf{Fib}\circ (A\circ f ) \\
+%	&= \mathsf{Fib}(A\circ f ) \\
+%	&= \mathsf{Fib}(f^*A) \,.
+%\end{align*}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(iii). $\UU\epi\U$ is univalent}
+
+The universal fibration $\UU\epi\U$ is \myemph{univalent} if the type
+$$\mathsf{Eq}_B\ =\ \Sigma_B\mathsf{Eq}(-, B) \to \U$$ 
+ of \myemph{based equivalences} is always a trivial fibration.
+\begin{equation}\tag{*}
+\xymatrix{
+C' \ar@{>->}[dd] \ar[rr] &&  \mathsf{Eq}_B \ar[dd]  \\
+\\
+C \ar@{..>}[rruu]_{A\, \simeq\, B} \ar[rr]_{A} && \U
+}
+\end{equation}
+\begin{remark}
+In HoTT this implies $(A = B) \simeq (A\simeq B)$.
+\end{remark}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{3(iii). $\UU\epi\U$ is univalent}
+Unwinding $(*)$ gives the \myemph{equivalence extension property}:\\
+weak equivalences extend along cofibrations $C' \mono C$.
+\[
+\xymatrix{
+A' \ar@{->>}[dd] \ar[rd]_{\sim}^{w'} \ar@[blue]@{..>}[rr] 
+	&& {\color{blue}A}  \ar@[blue]@{..>>}[dd] \ar@[blue]@{..>}[rd]_{\sim}^{\color{blue}w} \\
+& B' \ar@{->>}[ld] \ar[rr]  && B  \ar@{->>}[ld] \\
+C' \ar@{>->}[rr] && C
+}
+\]
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(iii). $\UU\epi\U$ is univalent}
+
+
+\begin{proposition}
+The universal  fibration $\UU\epi\U$ is univalent.
+\end{proposition}
+\bigskip
+\pause
+
+Voevodsky proved this \myemph{classically} for Kan fibrations in $\sSet$.
+\medskip
+
+Coquand gave a constructive proof in \myemph{type theory} for $\cSet$.
+\medskip
+
+We have generalized Coquand's proof to cartesian cubical sets.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(iv). $\U$ is fibrant}
+
+Univalence of $\UU\epi \U$ implies that $\U$ is fibrant.
+
+\begin{proposition}
+The universe $\U$ is fibrant.
+\end{proposition}
+\bigskip
+\pause
+
+Voevodsky proved this for Kan $\sSet$s using \myemph{minimal fibrations}.
+\medskip
+
+Shulman proved it using \myemph{3-for-2} for $\mc{W}$. 
+\medskip
+
+Coquand proved it from univalence without 3-for-2 using \myemph{Kan composition} for $\cSet$s in type theory.
+\medskip
+
+We give a general proof from univalence without using 3-for-2.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{3(iv). $\U$ is fibrant (proof sketch)}
+%
+%It suffices to show:
+%\begin{proposition}
+%The evaluation $\U^\II \to \U$ at the generic point is a trivial fibration.
+%\end{proposition}
+%\pause
+%
+%\begin{proof}\renewcommand{\qed}{}
+%We need to solve the following filling problem for any cofibration $c$.
+%\begin{equation*}\label{diag:Ufib1}
+%\xymatrix@=3em{
+%C \ar@{>->}[d]_c \ar[r]^{a} & \U^\II \ar[d]^{\U^{\delta}} \\
+%Z  \ar@{..>}[ru] \ar[r]_{b}  & \U  \\
+%}
+%\end{equation*}
+%\end{proof}
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{3(iv). $\U$ is fibrant (proof sketch)}
+%
+%Transposing by $\II$ and using the classifying property of $\U$ gives the following equivalent problem.  
+%\[
+%\xymatrix@=1em{
+%&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] \\
+%&& && \\
+%&& \ar@{>->}[llddd]^c C \ar[rr]_<<<<<<<<{C_0}  &&  \ar@{>->}[lddd]^{c\times\II} C\times\II \\
+%B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] & \\
+%&&&& \\
+%Z \ar[rrr]_{Z_0} &&& Z\times\II &
+%}
+%\]
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{3(iv). $\U$ is fibrant (proof sketch)}
+%
+%Apply the functor $(-)\times\II$ to the left face to get:
+%%
+%\begin{equation*}
+%\begin{gathered}
+%\xymatrix@=1em{
+%&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] &&  \ar@{->>}[lldd] A_0\times\II \ar[lddd]  \\
+%&& && &&\\
+%&& \ar@{>->}[llddd]^c C \ar[rr]_<<<<<<<<{C_0}  &&  \ar@{>->}[lddd] C\times\II && \\
+%B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] && \ar@{->>}[lldd] B\times\II &\\
+%&&&& &&\\
+%Z \ar[rrr]_{Z_0} &&& Z\times\II &&&
+%}
+%\end{gathered}
+%\end{equation*}
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{3(iv). $\U$ is fibrant (proof sketch)}
+%
+%Apply the functor $(-)\times\II$ to the left face to get:
+%\begin{equation*}
+%\begin{gethered}
+%\xymatrix@=1em{
+%&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] \ar@[blue][rr]^e_{\sim} &&  \ar@{->>}[lldd] A_0\times\II \ar[lddd]  \\
+%&& && &&\\
+%&& \ar[llddd]^c C \ar[rr]_<<<<<<<<{C_0}  &&  \ar[lddd] C\times\II && \\
+%B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] && \ar@{->>}[lldd] B\times\II &\\
+%&&&& &&\\
+%Z \ar[rrr]_{Z_0} &&& Z\times\II &&&
+%}
+%\end{gethered}
+%\end{equation*}
+%
+%There is a weak equivalence $e:A \xrightarrow{\sim} A_0\times \II$, to which we can apply the EEP.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{frame}{3(iv). $\U$ is fibrant (proof sketch)}
+%
+%Apply the functor $(-)\times\II$ to the left face to get:
+%\begin{equation*}
+%\begin{gethered}
+%\xymatrix@=1em{
+%&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@[blue][lddd] A \ar@{->>}[dd] \ar@[blue][rr]^e_{\sim} &&  \ar@{->>}[lldd] A_0\times\II \ar[lddd]  \\
+%&& && &&\\
+%&& \ar[llddd]^c C \ar[rr]_<<<<<<<<{C_0}  &&  \ar[lddd] C\times\II && \\
+%B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@[blue]@{->>}[dd] \ar@[blue][rr]_{\sim} && \ar@{->>}[lldd] B\times\II &\\
+%&&&& &&\\
+%Z \ar[rrr]_{Z_0} &&& Z\times\II &&&
+%}
+%\end{gethered}
+%\end{equation*}
+%
+%There is a weak equivalence $e:A \simeq A_0\times \II$, to which we can apply the EEP.
+%This produces the requiblue fibration $D\epi Z\times \II$. 
+%\qed
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(v). From fibrant $\U$ to 3-for-2}
+
+Finally, we can apply the following.
+
+\begin{proposition}[Sattler]
+$\mathcal{W}$ satisfies 3-for-2 if fibrations extend along trivial cofibrations.
+\[
+\xymatrix{
+A \ar@{->>}[d] \ar@{..>}[r] \pbcorner & A' \ar@{..>>}[d]\\
+X \ar@{>->}[r]_{\sim} & X'
+}
+\]
+\end{proposition}
+This is called the \myemph{fibration extension property}.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{3(v). From fibrant $\U$ to 3-for-2 for $\mathcal{W}$}
+
+\begin{lemma}
+Given a universal fibration $\UU\epi\U$ the FEP holds if $\U$ is fibrant.
+
+\[
+\xymatrix{
+A \ar@[blue][rrrd] \ar@{->>}[dd] \ar@[blue]@{..>}[rr] && {\color{blue}A'} \ar@[blue]@{..>}[rd] \ar@[blue]@{..>>}[dd] & \\
+&&&{\color{blue}\UU} \ar@[blue]@{->>}[dd]  \\
+X \ar@[blue][rrrd] \ar@{>->}[rr]^{\sim} && X' \ar@[blue]@{..>}[rd] & \\
+&&& {\color{blue}\U}
+}
+\]
+\end{lemma}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Discussion: The big picture}
+%
+%There are currently two very different ways to model HoTT:
+%\bigskip
+%
+%\textbf{Logical/Type-Theoretic/Syntactic:} In HOL or extensional DTT, axiomatize (what we called) a premodel. Translate the language of HoTT (intensional MLTT) into the resulting axiomatic theory.
+%\bigskip
+%
+%\textbf{Geometric/Homotopical/Semantic:} Use a special kind of QMC \\
+% (roughly, a \emph{type-theoretic model topos} \`a la Shulman) to interpret intensional MLTT, using a univalent universal fibration.
+%\bigskip\pause
+%
+%I did not explain how to actually carry out either of these interpretations. I just described the basic set-up for each.\\
+%  In each case, a lot more work is requiblue to actually give a\\
+%   sound interpretation, i.e.\  a \emph{model}.  
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Discussion: The big picture}
+%
+%
+%What I \emph{did} do in this talk was show how to turn a ``logical'' model into a ``geometric'' one.
+%\medskip\pause
+%
+%More precisely, we showed how to turn a \emph{presentation} of a logical model (described here as a premodel) into a \emph{presentation} of a geometric model (a QMS). 
+%\medskip\pause
+%
+%A missing final step in the comparison would now be something like the following.
+%
+%\begin{theorem}[-ish]
+%The resulting geometric model is ``equivalent'' to the logical one that we started from: the interpretation of HoTT into the QMS validates all the same judgements as the interpretation into the logical theory (maybe up to ...).
+%\end{theorem}
+%\medskip%\pause
+%
+%Something like this will almost certainly be true, once we get the definitions right.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%
+%\begin{frame}{Discussion: The big picture}
+%
+%This then begs the following:
+%
+%\begin{question}
+%Which geometric models admit such a logical presentation?
+%\end{question}
+%\medskip\pause
+%
+%Since the QMCs that we are using as geometric models describe $\infty$-topoi, we are in effect asking which $\infty$-topoi admit such a logical presentation.
+%\medskip\pause
+%
+%Moreover, a logical presentation can be described as a certain kind of structublue 1-topos, as we saw.  So we can also formulate the question entirely semantically: \emph{Which $\infty$-topoi can be presented in this way by a premodel in a 1-topos?}
+%\medskip\pause
+%
+%My own \emph{guess} would be that only a narrow range of all possible $\infty$-topoi admit such a description in terms of a structublue $1$-topos.
+%
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{References}
+
+\begin{enumerate}
+\item[$\cdot$] S.\ Awodey, Cartesian cubical model categories, 2023.
+\smallskip
+\item[$\cdot$] C.\ Cohen, et al., Cubical type theory: A constructive interpretation of the univalence axiom, 2016.
+\smallskip
+\item[$\cdot$] C.\ Kapulkin and P.\ LeFanu Lumsdaine, The simplicial model of univalent foundations (after Voevodsky), 2021.
+\smallskip
+\item[$\cdot$] C.\ Sattler, The equivalence extension property and model structures, 2017.
+\smallskip
+\item[$\cdot$] M.\ Shulman, All $(\infty,1)$-toposes have strict univalent universes, 2019.
+\end{enumerate}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Appendix: $\U$ is fibrant (sketch)}
+
+It suffices to show the following.
+\begin{proposition}
+Evaluation at the \myemph{generic point} $\U^\II \to \U$  is a trivial fibration.
+\end{proposition}
+\pause
+
+\begin{proof}\renewcommand{\qed}{}
+We need a diagonal filler for any cofibration $c$.
+\begin{equation*}\label{diag:Ufib1}
+\xymatrix@=3em{
+C' \ar@{>->}[d]_c \ar[r]^{a} & \U^\II \ar[d]^{\U^{\delta}} \\
+C  \ar@{..>}[ru] \ar[r]_{b}  & \U  \\
+}
+\end{equation*}
+\end{proof}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Appendix: $\U$ is fibrant (sketch)}
+
+Transposing by $\II$ and using the classifying property of $\U$ gives the following equivalent problem.  
+\[
+\xymatrix@=1em{
+&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] \\
+&& && \\
+&& \ar@{>->}[llddd]^c C' \ar[rr]_<<<<<<<<{C'_0}  &&  \ar@{>->}[lddd]^{c\times\II} C'\times\II \\
+B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] & \\
+&&&& \\
+C \ar[rrr]_{C_0} &&& C\times\II &
+}
+\]
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Appendix: $\U$ is fibrant (sketch)}
+
+Apply the functor $(-)\times\II$ to the left face to get:
+%
+\begin{equation*}
+\begin{gathered}
+\xymatrix@=1em{
+&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] &&  \ar@{->>}[lldd] A_0\times\II \ar[lddd]  \\
+&& && &&\\
+&& \ar@{>->}[llddd]^c C' \ar[rr]_<<<<<<<<{C'_0}  &&  \ar@{>->}[lddd] C'\times\II && \\
+B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] && \ar@{->>}[lldd] B\times\II &\\
+&&&& &&\\
+C \ar[rrr]_{C_0} &&& C\times\II &&&
+}
+\end{gathered}
+\end{equation*}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Appendix: $\U$ is fibrant (sketch)}
+
+Apply the functor $(-)\times\II$ to the left face to get:
+\begin{equation*}
+\begin{gathered}
+\xymatrix@=1em{
+&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@{..>}[lddd] A \ar@{->>}[dd] \ar@[blue][rr]^e_{\sim} &&  \ar@{->>}[lldd] A_0\times\II \ar[lddd]  \\
+&& && &&\\
+&& \ar@{>->}[llddd]^c C' \ar[rr]_<<<<<<<<{C'_0}  &&   \ar@{>->}[lddd] C'\times\II && \\
+B \ar@{->>}[dd] \ar@{..>}[rrr] &&& D \ar@{..>>}[dd] && \ar@{->>}[lldd] B\times\II &\\
+&&&& &&\\
+C \ar[rrr]_{C_0} &&& C\times\II &&&
+}
+\end{gathered}
+\end{equation*}
+
+There is a weak equivalence $e:A \xrightarrow{\sim} A_0\times \II$ to which we can apply the EEP.
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Appendix: $\U$ is fibrant (sketch)}
+
+Apply the functor $(-)\times\II$ to the left face to get:
+\begin{equation*}
+\begin{gathered}
+\xymatrix@=1em{
+&& \ar[llddd] A_0 \ar@{->>}[dd] \ar[rr]  &&  \ar@[blue][lddd] A \ar@{->>}[dd] \ar@[blue][rr]^e_{\sim} &&  \ar@{->>}[lldd] A_0\times\II \ar[lddd]  \\
+&& && &&\\
+&& \ar@{>->}[llddd]^c C' \ar[rr]_<<<<<<<<{C'_0}  &&  \ar@{>->}[lddd] C'\times\II && \\
+B \ar@{->>}[dd] \ar@{..>}[rrr] &&& {\color{blue}D} \ar@[blue]@{->>}[dd] \ar@[blue][rr]_{\color{blue}\sim} && \ar@{->>}[lldd] B\times\II &\\
+&&&& &&\\
+C\ar[rrr]_{C_0} &&& C\times\II &&&
+}
+\end{gathered}
+\end{equation*}
+
+There is a weak equivalence $e:A \simeq A_0\times \II$ to which we can apply the EEP.
+This produces the required fibration $D\epi Z\times \II$. 
+\qed
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
