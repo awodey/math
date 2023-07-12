@@ -343,8 +343,8 @@ Evaluating at $c\in\C$ and applying \eqref{eq:eta} then gives the following squa
 The image of $*\in 1c$ along the bottom is the forgetful functor $U_c : \C/_c\to \C$, and its fiber under the map on the right is therefore the set of functors $F : {\C/_c}\to {\C/_X}$ such that $U_X\circ F = U_c$, where $U_X : \C/_X\to \C$ is also a forgetful functor. But any such $F$ is easily seen to be uniquely of the form $\C/_{x}$ for $x = F(1_c) : \y{c} \to X$.
 \end{proof}
 
-\begin{remark} 
-Since $\int_\C 1\, \cong\, \C$ the functor  $\int_\C : \widehat\C \to \Cat$ can be factored through the slice category $\Cat/_\C$.
+\begin{remark}\label{remark:terminal}
+The category of elements of the terminal presheaf $1$ is $\C$ itself, $\elem{1} \cong\C$. So for every presheaf $X$ there is a canonical projection $\elem{X} \to\C$, and the functor  $\int_\C : \widehat\C \to \Cat$ thus factors through the slice category $\Cat/_\C$.
 \begin{equation}\label{eq:nerve2}\textstyle
 \begin{tikzcd}
 	 \widehat\C \ar[rr, "(\int_\C)/_1"] \ar[rrdd, swap, "\int_\C"] 
@@ -359,7 +359,7 @@ Since $\int_\C 1\, \cong\, \C$ the functor  $\int_\C : \widehat\C \to \Cat$ can 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{3. Classifying families}
 
-For the terminal presheaf $1\in\widehat{\C}$, we have an iso $\elem{1} \cong\C$. So for every $X\in\widehat{\C}$ there is a canonical projection  $\elem X \ra\C$, which is easily seen to be a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
+For every presheaf $X$ the canonical projection $\elem X \ra\C$ of Remark \ref{remark:terminal} is easily seen to be a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
 Ignoring size issues for the moment, recall that discrete fibrations in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets (cf.~\cite{W:2007}).  For every presheaf $X\in\widehat{\C}$, we therefore have a pullback diagram in $\Cat$,
 \begin{equation}\label{eq:classifyuniversecat}\textstyle
 \begin{tikzcd}
