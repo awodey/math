@@ -103,10 +103,13 @@
 % Universes
 \newcommand{\U}{\ensuremath{\mathcal{U}}}
 \newcommand{\UU}{\ensuremath{\,\dot{\mathcal{U}}}}
-\renewcommand{\t}{\ensuremath{\mathsf{t}}}
+%\renewcommand{\t}{\ensuremath{\mathsf{t}}}
+\renewcommand{\t}{\ensuremath{\mathrm{t}}}
 \newcommand{\tT}{\ensuremath{{\t}:\TT\to\T}}
-\newcommand{\T}{\ensuremath{\mathsf{T}}}
-\newcommand{\TT}{\ensuremath{\dot{\mathsf{T}}}}
+%\newcommand{\T}{\ensuremath{\mathsf{T}}}
+%\newcommand{\TT}{\ensuremath{\dot{\mathsf{T}}}}
+\newcommand{\T}{\ensuremath{\mathrm{T}}}
+\newcommand{\TT}{\ensuremath{\dot{\mathrm{T}}}}
 \newcommand{\V}{\ensuremath{\mathcal{V}}}
 \newcommand{\VV}{\ensuremath{\dot{\mathcal{V}}}}
 \newcommand{\SSet}{\ensuremath{\,\dot{\Set}}}
@@ -225,36 +228,44 @@
 %%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{1. Natural models of type theory}\label{sec:NaturalModels}
+\section{Natural models of type theory}\label{sec:NaturalModels}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \noindent We write $\widehat{\C} = \psh{\C}$ for the category of presheaves on a small category~$\C$.
 %\begin{enumerate}
 %
 %\item  
-In \eqref{A:NM}, a \emph{natural model} of type theory is defined to be a representable natural tranformation $\t: \TT\to \T$ of presheaves on a small category $\C$.  Theorem XX shows that such a map is equivalent to the notion of a \emph{category with families} in the sense of \cite{Dybjer}. A natural model $\tT$ may be said to model the type-constructors $ \mathsf{1}, \Sigma, \Pi$ if there are pullback squares in $\C$ of the following form,
+In \eqref{A:NM}, a \emph{natural model} of type theory is defined to be a representable natural tranformation $\t: \TT\to \T$ of presheaves on a small category $\C$.  Theorem XX shows that such a map is equivalent to the notion of a \emph{category with families} in the sense of \cite{Dybjer}. 
+
+A natural model $\tT$ will be said to \emph{model} the type-constructors $ \mathsf{1}, \Sigma, \Pi$ if there are pullback squares in $\C$ of the following form,
 \begin{equation}\label{diag:naturalmodelPiSigma1}
 \begin{tikzcd}
 	1 \ar[r,"*"] \ar[d,swap,"!"] \pbcorner &  \TT \ar[d, "\t"]\\  
 	1 \ar[r, swap,"\mathsf{1}"] & \T
  \end{tikzcd} \qquad \qquad 
  \begin{tikzcd}
-	\TT^2  \ar[r,"\sigma"] \ar[d,swap,"\t^2"] \pbcorner &  \TT \ar[d, "\t"]\\  
-	\T^2 \ar[r,swap, "\Sigma"] & \T
+	\TT_2  \ar[r,"\sigma"] \ar[d,swap,"\t\cdot\t"] \pbcorner &  \TT \ar[d, "\t"]\\  
+	\T_2 \ar[r,swap, "\Sigma"] & \T
 	 \end{tikzcd} \qquad \qquad 
 	 \begin{tikzcd}
-	\TT'  \ar[r,"\lambda"] \ar[d,swap,"\t' "] \pbcorner &  \TT \ar[d, "\t"]\\  
-	\T' \ar[r,swap, "\Pi"] & \T
+	 \alg{P}_\t(\TT) \ar[r,"\lambda"] \ar[d,swap,"\alg{P}_\t(\t)"] \pbcorner &  \TT \ar[d, "\t"]\\  
+	\alg{P}_\t(\T) \ar[r,swap, "\Pi"] & \T
  \end{tikzcd} 
  \end{equation}
 %
-Whereby:
+where
 \begin{enumerate}
-\item $\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \hat{C}\to\hat{C}$ is the polynomial endofunctor of $\tT$.
-\item $t' : \TT'\to\T'$ is $\alg{P}_\t(\t) : \alg{P}_\t(\TT)\to \alg{P}_\t(\T)$.
-\item $\t^2 =\t\cdot\t$ is determined by $\alg{P}_{\t^2} = \alg{P}_{\t} \circ \alg{P}_{\t}$.
+\item $\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \hat{\C}\to\hat{\C}$ is the polynomial endofunctor determined uniquely by $\tT$ (its \emph{signature}, cf.\ \cite{GambinoKoch}), 
+\item $\t\cdot\t : \dot{\T}_2 \to \T_2$ is defined by $\alg{P}_{\t\cdot\t} =  \alg{P}_{\t} \circ \alg{P}_{\t}$.
 \end{enumerate}
-We recall the specification of these maps below.  The terminology is justified by the following two results. 
+The terminology is justified by the following result, also from \cite{A:NM}.
+
+%
+\begin{theorem}\label{thm:nmcwf}
+Let $\tT$ be a natural model. The associated category with families satisfies the usual rules for the type-constructors $\mathsf{1}, \Sigma, \Pi$ just if $\tT$ models them, in the sense of the diagrams \eqref{diag:naturalmodelPiSigma1}.
+\end{theorem}
+
+\subsection{Display maps and clans}
 
 \ednote{define $\DD_\t$ and show that it is a display map category with ... }
 \medskip
@@ -276,7 +287,7 @@ Let $\tT$ be a natural model of type theory.  Then
 \subsection*{2. Martin-L\"of algebras}\label{sec:MLalgebras}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Now let $\EE$ be a locally cartesian closed category and $\tT$ any map in~$\EE$. As in the representable case, $\t$ gives rise to a polynomial endofunctor $\alg{P}_\t : \EE\to\EE$, in terms of which we can define the following abstraction of the previous notion of a  natural model.
+Now let $\EE$ be a locally cartesian closed category and $\tT$ any map in~$\EE$. As in the representable case, $\t$ gives rise to a polynomial endofunctor $\alg{P}_\t : \EE\to\EE$, in terms of which we define the following abstraction of the notion of a  natural model.
 
 \begin{definition}\label{def:MLalg}
 A \emph{Martin-L\"of algebra} in $\EE$ is a map $\tT$ equipped with structure maps $(*, 1, \sigma, \Sigma, \lambda, \Pi)$ making pullback squares 
@@ -296,6 +307,27 @@ A \emph{Martin-L\"of algebra} in $\EE$ is a map $\tT$ equipped with structure ma
  \end{equation}
  where the maps $\t^2$ and $\t'$ are defined in terms of the polynomial endofunctor $$\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \EE\too\EE$$ as in the foregoing section.
 \end{definition}
+
+In place of representability, we may require that $\tT$ be $\emph{tiny}$.
+
+\begin{definition}
+ A map $f : A \to B$ in a locally cartesian closed category $\EE$ is \emph{tiny} if it is so as an object in $\EE/_B$, in the sense that  exponentiation by $f$  has a right adjoint $(-)^f \dashv (-)_f$. 
+\end{definition}
+
+\begin{lemma}
+A map $f : A \to B$ is tiny just if the \emph{pushforward} $f_* : \EE/_A \to \EE/_B$ has a right adjoint,
+\[
+f_* \dashv f^! : \EE/_B \too \EE/_A\,.
+\]
+\end{lemma}
+
+\begin{proposition}
+Any representable natural transformation $f : A\to B$ between presheaves on a small category $\C$ is a tiny map in $\hat\C$.
+\end{proposition}
+
+\begin{proof}
+ See \cite{A:NM}. Briefly, ...
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{alpha}

@@ -54,6 +54,7 @@
 \newcommand{\plusalg}[1]{\ensuremath{^+\!\mathsf{Alg}{(#1)}}}
 \newcommand{\plusalgx}{\ensuremath{^+\!\mathsf{Alg}}}
 
+\newcommand{\El}{\ensuremath{\mathcal{E}l}}% H-S universe
 
 % arrows
 \newcommand{\hook}{\ensuremath{\hookrightarrow}}
@@ -200,7 +201,7 @@
 \medskip
 
 \begin{abstract}
-We have another look at the construction by Hofmann and Streicher of a universe $(U,{\mathsf{E}l})$ for the interpretation of Martin-L\"of type theory in a presheaf category $\psh{\C}$.  It turns out that $(U,{\mathsf{E}l})$ can be described as the \emph{categorical nerve} of the classifier $\dot{\Set}^{\mathsf{op}} \to \op{\Set}$ for discrete fibrations in $\Cat$, where the nerve functor is right adjoint to the so-called ``Grothendieck construction'' taking a presheaf $P : \op{\C}\to\Set$ to its category of elements $\int_\C P$.  We also consider change of base for such universes, as well as universes of structured families, such as fibrations.
+We have another look at the construction by Hofmann and Streicher of a universe $(U,\El)$ for the interpretation of Martin-L\"of type theory in a presheaf category $\psh{\C}$.  It turns out that $(U,\El)$ can be described as the \emph{categorical nerve} of the classifier $\dot{\Set}^{\mathsf{op}} \to \op{\Set}$ for discrete fibrations in $\Cat$, where the nerve functor is right adjoint to the so-called ``Grothendieck construction'' taking a presheaf $P : \op{\C}\to\Set$ to its category of elements $\int_\C P$.  We also consider change of base for such universes, as well as universes of structured families, such as fibrations.
 \end{abstract}
 
 %\setcounter{tocdepth}{1}
@@ -216,15 +217,15 @@ We have another look at the construction by Hofmann and Streicher of a universe 
 \subsection*{1. The Hofmann-Streicher universe}\label{sec:U}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-In \cite{HS:1997} the authors define a (type-theoretic) \emph{universe}  $(U, {\mathsf{E}l})$ 
+In \cite{HS:1997} the authors define a (type-theoretic) \emph{universe}  $(U, {\mathcal{E}l})$ 
 %\begin{equation}\label{eq:universe}
 %E \too U
 %\end{equation}
-with $U\in\widehat{\C}$ and $\textstyle{\mathsf{E}l} \in \widehat{\int_\C U}$ as follows. For $I\in\C$, set
+with $U\in\widehat{\C}$ and $\textstyle\El \in \widehat{\int_\C U}$ as follows. For $I\in\C$, set
  \begin{align}
 	U(I)\ &=\ \Cat\big(\op{\C/_I}, \Set\big) \label{eq:universeob}\\ 
-	%E(I)\ &=\ {\textstyle \coprod_{A\in U(I)}{\mathsf{E}l}(\langle I, A\rangle)}\\
- 	{\mathsf{E}l}(I, A)\ &=\ A(id_I) \label{eq:universeel}
+	%E(I)\ &=\ {\textstyle \coprod_{A\in U(I)}\El(\langle I, A\rangle)}\\
+ 	\El(I, A)\ &=\ A(id_I) \label{eq:universeel}
  \end{align}
 with an evident associated action on morphisms.  A few comments are required: 
 %
@@ -242,7 +243,7 @@ in $\widehat{\C}$ equivalently as an object in
 \end{equation}
 that is, as a presheaf on the \emph{category of elements} $\int_{\C}U$, where:
 \[
-E(I)\ =\ {\textstyle \coprod_{A\in U(I)}{\mathsf{E}l}(I, A)}\,.
+E(I)\ =\ {\textstyle \coprod_{A\in U(I)}\El(I, A)}\,.
 \]
 Thus the argument $(I, A) \in \int_{\C}U$ in \eqref{eq:universeel} consists of an object $I\in\C$ and an element $A\in U(I)$.
 %
@@ -251,7 +252,7 @@ Thus the argument $(I, A) \in \int_{\C}U$ in \eqref{eq:universeel} consists of a
 \end{enumerate}
 
 The presheaf $U$, which is not small, is regarded as the Grothendieck universe $\U$ ``lifted'' from $\Set$ to $\psh{\C}$.
-We will analyse the construction of $(U, {\mathsf{E}l})$  from a slightly different perspective in order to arrive at its basic property as a classifier for small families in $\widehat\C$. 
+We will analyse the construction of $(U, \El)$  from a slightly different perspective in order to arrive at its basic property as a classifier for small families in $\widehat\C$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{2. An unused adjunction}
@@ -261,7 +262,7 @@ For any presheaf $X$ on $\C$, recall that the category of elements is the comma 
 \int_\C X\ =\ \yon_\C/_X\,,
 \] 
 where $\yon_\C : \C \to \psh\C$ is the Yoneda embedding, which we may supress and write simply $\C/_X$. 
-While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe $(U, {\mathsf{E}l})$ at the point \eqref{eq:elements}, the authors seem to have missed a trick  which would have simplified things:\footnote{C.\ Sattler has said that he also knew of this description of the base object $U$ of the Hofmann-Streicher universe $(U, {\mathsf{E}l})$; presumably, others do as well.}
+While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe $(U, \El)$ at the point \eqref{eq:elements}, the authors seem to have missed a trick  which would have simplified things:\footnote{C.\ Sattler has said that he also knew of this description of the base object $U$ of the Hofmann-Streicher universe $(U, \El)$; presumably, others do as well.}
 
 \begin{proposition}[\cite{G:1983},\S{28}]
 The category of elements functor $\int_\C : \widehat\C \too \Cat$ has a right adjoint, which we denote
@@ -540,7 +541,7 @@ For $\VV_{\kappa}$ we then have,
    \VV_{\kappa}{c}\ &\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}}\Cat_{{\C/_c}}\big( {\C/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}\\
    	&\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} \widehat{{\C/_c}}(1, A)}\\
 	&\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} A(1_c) } \\
-	& =\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} {\mathsf{E}l}(\langle c, A\rangle)}\\
+	& =\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} \El(\langle c, A\rangle)}\\
 	& =\  E c\,.
    \end{align*}
  
