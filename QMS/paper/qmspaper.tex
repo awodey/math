@@ -59,6 +59,7 @@
 \newcommand{\Set}{\ensuremath{\mathsf{Set}}}
 \newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
 \newcommand{\covpsh}[1]{\ensuremath{\mathsf{Set}^{#1}}}
+\newcommand{\rep}[1]{\ensuremath{\y\mathsf{#1}}}
 \newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
 \newcommand{\cSetZ}{\ensuremath{\mathsf{cSet}/_{\!Z}}}
 
@@ -437,8 +438,11 @@ The first equation follows from the observation that the diagram \eqref{diag:sna
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{The cofibration weak factorization system}\label{sec:cofibrations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% reformulate this section for an arbitrary (presheaf) topos.
+%
 
-To build a model structure on the presheaf category of cubical sets, one can simply take as the cofibrations \emph{all} of the monomorphisms in $\cSet$; but for some purposes, it is convenient to know what is actually required of them (see \eg\ Appendix A). Thus, to begin, the following axioms are assumed.
+To build a model structure on the presheaf category of cubical sets, one can simply take as the cofibrations \emph{all} of the monomorphisms in $\cSet$; but for some purposes, it is convenient to know what is actually required of them (see \eg\ Appendix A).  As nothing in this section depends on the specific nature of the topos of cubical sets, we formulate the results for an arbitrary elementary topos $\EE$.  Thus, to begin, the following axioms are assumed.
  
 \begin{definition}[Cofibrations]\label{def:cofibration}
 The \emph{cofibrations} are a class $\mathcal{C}$ of monomorphisms satisfying the following conditions:
@@ -460,7 +464,7 @@ Further axioms for cofibrations will be added later as needed: two early in Sect
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{The cofibrant partial map classifier.}
-Consider the polynomial endofunctor $P_t : \cSet\to \cSet$ determined by the cofibration classifier $t : 1 \mono \Phi$ (see  \cite{gambino-kock}).  We will write the value of this functor at an object $X$ as 
+Consider the polynomial endofunctor $P_t : \EE\to \EE$ determined by the cofibration classifier $t : 1 \mono \Phi$ (see  \cite{gambino-kock}).  We will write the value of this functor at an object $X$ as 
 \begin{equation}\label{eq:partialmapclassifier}
 X^+\ :=\ \Phi_!\,t_*(X)\ =\ \sum_{\varphi: \Phi}X^{[\varphi]}\,.
 \end{equation}
@@ -518,37 +522,37 @@ X^{++} \ar@{.>}[r]_\mu & X^+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Relative partial map classifier.}
 
-For any object $X\in\cSet$ the pullback functor 
+For any object $X\in\EE$ the pullback functor 
 \[
-X^* : \cSet \ra \cSet/_X\,,
+X^* : \EE \ra \EE/_X\,,
 \]
-taking any $A$ to the (say) first projection $X\times A \ra X$, not only preserves the subobject classifier $\Omega$, but also the cofibration classifier $\Phi \hook \Omega$, where a map in $\cSet/_X$ is defined to be a cofibration if it is one in \cSet\ (under the forgetful functor $\cSet/_X \to \cSet$). Thus in $\cSet/_X$ we can define the \emph{(relative) cofibration classifier} to be the map
+taking any $A$ to the (say) first projection $X\times A \ra X$, not only preserves the subobject classifier $\Omega$, but also the cofibration classifier $\Phi \hook \Omega$, where a map in $\EE/_X$ is defined to be a cofibration if it is one in \EE\ (under the forgetful functor $\EE/_X \to \EE$). Thus in $\EE/_X$ we can define the \emph{(relative) cofibration classifier} to be the map
 \[
 X^*t : X^*1 \too X^*\Phi	\quad\text{over $X$}\,,
 \]
 which we may also write $t_X : 1_X \ra \Phi_X$.  Like $t : 1\ra \Phi$, this map determines a polynomial endofunctor  
 \[
-+_X : \cSet/_X \ra \cSet/_X\,,
++_X : \EE/_X \ra \EE/_X\,,
 \]
- which commutes (up to natural isomorphism) with $+ : \cSet \ra \cSet$ and $X^* : \cSet \ra \cSet/_X$ in the expected way, namely:
+ which commutes (up to natural isomorphism) with $+ : \EE \ra \EE$ and $X^* : \EE \ra \EE/_X$ in the expected way, namely:
 \begin{equation}\label{diag:+fibered}
 \xymatrix{
-\cSet/_X \ar[r]^{+_X}& \cSet/_X \\
-\cSet \ar[u]^{X^*} \ar[r]_+ & \ar[u]_{X^*}\cSet 
+\EE/_X \ar[r]^{+_X}& \EE/_X \\
+\EE \ar[u]^{X^*} \ar[r]_+ & \ar[u]_{X^*}\EE 
 }
 \end{equation}
 The endofunctor $+_X$ is also pointed $\eta_Y : Y \ra Y^+$ and has a natural monad multiplication $\mu_Y : Y^{++} \ra Y^+$, for any $Y\ra X$, for the same reason that $+$ has this structure.  Summarizing, we may say:
 
 \begin{proposition}\label{prop:fiberedpolymonad}
-The polynomial monad $+ : \cSet \ra \cSet$ of \emph{cofibrant partial elements} is indexed (or fibered) over \cSet.
+The polynomial monad $+ : \EE \ra \EE$ of \emph{cofibrant partial elements} is indexed (or fibered) over \EE.
 \end{proposition}
 
 \begin{definition}\label{def:+alg}
-A \emph{$+$-algebra} in \cSet\ is an algebra for the pointed endofunctor $+ : \cSet\ra \cSet$.  Explicitly, a $+$-algebra is a cubical set $A$ together with a retraction $\alpha : A^+\ra A$ of the unit $\eta_A : A \ra A^+$.  Algebras for the monad $(+, \eta, \mu)$ will be referred to explicitly as \emph{$(+, \eta, \mu)$-algebras}, or \emph{$+$-monad algebras}. 
+A \emph{$+$-algebra} in \EE\ is an algebra for the pointed endofunctor $+ : \EE\ra \EE$.  Explicitly, a $+$-algebra is an object $A$ together with a retraction $\alpha : A^+\ra A$ of the unit $\eta_A : A \ra A^+$.  Algebras for the monad $(+, \eta, \mu)$ will be referred to explicitly as \emph{$(+, \eta, \mu)$-algebras}, or \emph{$+$-monad algebras}. 
 
-A \emph{relative $+$-algebra} in \cSet\ is a map $A \ra X$, together with an algebra structure over the codomain $X$ for the pointed endofunctor 
+A \emph{relative $+$-algebra} in \EE\ is a map $A \ra X$, together with an algebra structure over the codomain $X$ for the pointed endofunctor 
 \[
-+_X : \cSet/_X \too \cSet/_X\,.
++_X : \EE/_X \too \EE/_X\,.
 \]
 \end{definition}
 
@@ -557,7 +561,7 @@ A \emph{relative $+$-algebra} in \cSet\ is a map $A \ra X$, together with an alg
 
 The following proposition generalizes one in \cite{bourke-garner-I}.
 \begin{proposition}
-There is an (algebraic) weak factoriation system on \cSet\ with the cofibrations as the left class, and as the right class, the maps underlying relative $+$-algebras.  Thus a right map is one $p : A\ra X$ for which there is a retract $\alpha : A'\ra A$ over $X$ of the canonical map $\eta : A\ra A'$,
+There is an (algebraic) weak factoriation system on \EE\ with the cofibrations as the left class, and as the right class, the maps underlying relative $+$-algebras.  Thus a right map is one $p : A\ra X$ for which there is a retract $\alpha : A'\ra A$ over $X$ of the canonical map $\eta : A\ra A'$,
 \[
 \xymatrix{
 A\ar[rd]_{p} \ar[r]^{\eta} \ar@/^5ex/ [rr]^= & A' \ar[r]^{\alpha} \ar[d]^-{p^+} & \ar[ld]^{p} A \\
@@ -605,7 +609,7 @@ We can set $d := \alpha\circ \varphi : C \ra A$ to obtain the required diagonal 
 The closure of the cofibrations under retracts follows from their classification by a universal object $t : 1 \cof \Phi$, and the closure of the right maps under retracts follows from their being the algebras for a pointed endofunctor underlying a monad (cf.~\cite{Riehl}).  Algebraicity of this weak factorization system is immediate, since $+$ is a monad.
 \end{proof}
 
-Summarizing, we have an algebraic weak factorization system $(\mathcal{C}, \mathcal{C}^\pitchfork)$ on the category \cSet\ of cubical sets, where:
+Summarizing, we have an algebraic weak factorization system $(\mathcal{C}, \mathcal{C}^\pitchfork)$ on the category \EE, where:
 \begin{align*}
 \mathcal{C}\ &=\ \text{the cofibrations}\\
 \mathcal{C}^\pitchfork\ &=\  \text{the maps underlying relative $+$-algebras}
@@ -621,14 +625,14 @@ The cofibration algebraic weak factorization system is a generalization of one d
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Uniform filling structure.}
 
-It will be useful to relate relative $+$-algebra structure to the more familiar diagonal filling condition of cofibrantly generated weak factorization systems, and specifically the special ones occuring in \cite{CCHM:2018ctt} under the name \emph{uniform filling structure} (this notion is also closely related to that of an \emph{algebraic weak factorization system}, \cf\ \cite{garner:small-object-argument,riehl-algebraic-model}).
+It will be useful to relate relative $+$-algebra structure to the more familiar diagonal filling condition of cofibrantly generated weak factorization systems, and specifically the special ones occuring in \cite{CCHM:2018ctt} under the name \emph{uniform filling structure} (this notion is also closely related to that of an \emph{algebraic weak factorization system}, \cf\ \cite{garner:small-object-argument,riehl-algebraic-model}).  For the purpose of such comparison, we assume in the remainder of this section that $\EE$ is a topos of presheaves on a small index category $\bbC$, and we write the representable functors in the form $\rep{A}, \rep{B}, ...$ for $\mathsf{A}, \mathsf{B}, ...$ in $\bbC$.
 
-Consider a generating sub\emph{set} of cofibrations consisting of those with representable codomain $c : C \mono \I^n$, and call these the \emph{basic cofibrations}.
+Consider a generating sub\emph{set} of cofibrations consisting of those with representable codomain $c : C \mono \rep{A}$, and call these the \emph{basic cofibrations}.
 \begin{equation}\label{eq:basiccof}
-\mathsf{BCof} = \{c : C\mono \I^n\,|\ c\in \mathcal{C}, n\geq 0 \}.
+\mathsf{BCof} = \{c : C\mono \rep{A}\,|\ c\in \mathcal{C} \}.
 \end{equation}
 
-\begin{proposition}\label{prop:uniformstructequiv} For any object $X$ in \cSet\ the following are equivalent:
+\begin{proposition}\label{prop:uniformstructequiv} For any object $X$ in \EE\ the following are equivalent:
 \begin{enumerate}
 \item $X$ admits a \emph{$+$-algebra structure:} a retraction $\alpha :X^+ \ra X$ of the unit $\eta : X\ra X^+$.
 \item $X\to 1$ is a \emph{trivial fibration:} it has the right lifting property with respect to all cofibrations,
@@ -636,23 +640,23 @@ Consider a generating sub\emph{set} of cofibrations consisting of those with rep
 \mathcal{C}\, \pitchfork\,X.
 \]
 \item\label{smalluniformfilling} $X$ admits a \emph{uniform filling structure:} 
-for each basic cofibration $c : C \mono \I^{n}$ and map $x : C\ra X$ there is given an extension $j(c,x)$,
+for each basic cofibration $c : C \mono \rep{A}$ and map $x : C\ra X$ there is given an extension $j(c,x)$,
 \begin{equation}\label{diagram:uniformbasic}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[r]^{x} & X, \\
-\I^{n}\ar@{.>}[ru]_{j(c,x)} &
+\rep{A}\ar@{.>}[ru]_{j(c,x)} &
 }
 \end{equation}
-and the choice is \emph{uniform in $\I^n$} in the following sense.  
+and the choice is \emph{uniform in $\rep{A}$} in the following sense.  
 
-Given any cubical map $u : \I^m \ra \I^n$, the pullback $u^*c : u^*C\mono \I^m$, which is again a basic cofibration, fits into a commutative diagram of the form
+Given any map of representables $u : \rep{B} \ra \rep{A}$, the pullback $u^*c : u^*C\mono \rep{B}$, which is again a basic cofibration, fits into a commutative diagram of the form
 \begin{equation}\label{diagram:uniformbasic2}
 \xymatrix{
 u^*C \ar@{>->}[d]_{u^*c} \ar[rr]^{c^*u} \pbcorner &&  C \ar@{>->}[d]_{c} \ar[r]^{x} & X. \\
-\I^{m} \ar[rr]_{u} && \I^{n} \ar@{.>}[ru]_{j(c,x)} &
+\rep{B} \ar[rr]_{u} && \rep{A} \ar@{.>}[ru]_{j(c,x)} &
 }
 \end{equation}
-For the pair $(u^*c,\, x\circ c^*u)$ in \eqref{diagram:uniformbasic2}, the chosen extension $j(u^*c,x\circ c^*u): \I^m \ra X$, is required to be equal to  $j(c,x)\circ u$,
+For the pair $(u^*c,\, x\circ c^*u)$ in \eqref{diagram:uniformbasic2}, the chosen extension $j(u^*c,x\circ c^*u): \rep{B} \ra X$, is required to be equal to  $j(c,x)\circ u$,
 \begin{equation}\label{eq:uniformfillers}
 j(u^*c,x\circ c^*u) = j(c,x) \circ u.
 \end{equation}
@@ -689,11 +693,11 @@ since
 \[
 j\circ c = \alpha\circ\chi(c,x)\circ c = \alpha\circ\eta \circ x = x.
 \]
-Thus (1) implies (2).  To see that it also implies (3), observe that in the case where $Z=I^n$ and we specify, in \eqref{def:phi}, that
+Thus (1) implies (2).  To see that it also implies (3), observe that in the case where $Z=\rep{A}$ and we specify, in \eqref{def:phi}, that
 \begin{equation}\label{def:j}
-j(c,x) = \alpha\circ\chi(c,x) : \I^n\ra X,
+j(c,x) = \alpha\circ\chi(c,x) : \rep{A}\ra X,
 \end{equation}
-then the assignment is natural in $\I^n$. Indeed,  given any $u : \I^m \ra \I^n$, we have
+then the assignment is natural in $\rep{A}$. Indeed,  given any $u : \rep{B} \ra \rep{A}$, we have
 \begin{equation}\label{eq:proof,uniformfillers}
 j(c',xu') = \alpha\circ\chi(c',xu') = \alpha\circ\chi(c,x)\circ u = j(c,x) u,
 \end{equation}
@@ -707,11 +711,11 @@ X^+ \ar@{.>}[ru]_\alpha&
 }
 \]
 
-To see that (3) implies (1), suppose that $X$ has a uniform filling structure $j$ and we want to define an algebra structure $\alpha : X^+ \ra X$. By Yoneda, for every $y : \I^n \ra X^+$ we need a map $\alpha(y) : \I^n \ra X$, naturally in $\I^n$, in the sense that for any $u : \I^m \ra \I^n$, we have
+To see that (3) implies (1), suppose that $X$ has a uniform filling structure $j$ and we want to define an algebra structure $\alpha : X^+ \ra X$. By Yoneda, for every $y : \rep{A} \ra X^+$ we need a map $\alpha(y) : \rep{A} \ra X$, naturally in $\rep{A}$, in the sense that for any $u : \rep{B} \ra \rep{A}$, we have
 \begin{equation}\label{eq:proof,plusstructure}
 \alpha(yu) = \alpha(y)u.
 \end{equation}
-Moreover, to ensure that $\alpha\eta = 1_X$, for any $x : \I^n \ra X$ we must have $\alpha(\eta\circ x) = x$. So take $y : \I^n \ra X^+$  and let 
+Moreover, to ensure that $\alpha\eta = 1_X$, for any $x : \rep{A} \ra X$ we must have $\alpha(\eta\circ x) = x$. So take $y : \rep{A} \ra X^+$  and let 
 \[
 \alpha(y) = j(y^*\eta, y'),
 \]
@@ -719,26 +723,26 @@ as indicated on the right below.
 \begin{equation}\label{diagram:definingalpha}
 \xymatrix{
 u^*C \ar@{>->}[d]_{u^*y^*\eta} \ar[r]^{u'} \pbcorner &  C \ar@{>->}[d]_{y^*\eta} \ar[rr]^{y'}\pbcorner && X \ar[d]^\eta . \\
-\I^{m} \ar[r]_{u} & \I^{n} \ar@{.>}[rru]_{j(y^*\eta,y')} \ar[rr]_{y} && X^+
+\rep{B} \ar[r]_{u} & \rep{A} \ar@{.>}[rru]_{j(y^*\eta,y')} \ar[rr]_{y} && X^+
 }
 \end{equation}
-Then for any $u : \I^m \ra \I^n$, we indeed have 
+Then for any $u : \rep{B} \ra \rep{A}$, we indeed have 
 
 \[
 \alpha(yu) =  j\big( (yu)^*\eta, y'u' \big) = j(y^*\eta, y')\circ u = \alpha(y)u,
 \]
- by the uniformity of $j$. Finally, if $y=\eta\circ x$ for some $x : \I^n\ra X$ then 
+ by the uniformity of $j$. Finally, if $y=\eta\circ x$ for some $x : \rep{A}\ra X$ then 
  \[
  \alpha(\eta x) =  j\big( (\eta x)^*\eta, (\eta x)'\big) = j(1_X, x) = x,
  \]
  because the defining diagram for $\alpha(\eta x)$, i.e.\ the one on the right in \eqref{diagram:definingalpha}, then factors as
  \begin{equation}\label{diagram:definingalphatwo}
 \xymatrix{
-\I^n \ar@{>->}[d]_{=} \ar[r]^{x} \pbcorner &  X \ar@{>->}[d]_{=} \ar[r]^{=}\pbcorner & X \ar[d]^\eta , \\
-\I^{n} \ar[r]_{x} & X  \ar[r]_{\eta} & X^+
+\rep{A} \ar@{>->}[d]_{=} \ar[r]^{x} \pbcorner &  X \ar@{>->}[d]_{=} \ar[r]^{=}\pbcorner & X \ar[d]^\eta , \\
+\rep{A} \ar[r]_{x} & X  \ar[r]_{\eta} & X^+
 }
 \end{equation}
-and the only possible extension $j(1_X, x)$ for the span $(1_{\I^n}, x)$ is  $x$ itself.
+and the only possible extension $j(1_X, x)$ for the span $(1_{\rep{A}}, x)$ is  $x$ itself.
  \end{proof}
  
  \begin{remark}\label{remark:largeuniformfilling}
@@ -758,20 +762,20 @@ Given any map $u :Y \ra Z$, the pullback $u^*c : u^*C\mono Y$, which is again a 
 \begin{equation}\label{diagram:largeuniformbasic2}
 \xymatrix{
 u^*C \ar@{>->}[d]_{u^*c} \ar[rr]^{c^*u} \pbcorner &&  C \ar@{>->}[d]_{c} \ar[r]^{x} & X. \\
-Y \ar[rr]_{u} && z \ar@{.>}[ru]_{j(c,x)} &
+Y \ar[rr]_{u} && Z \ar@{.>}[ru]_{j(c,x)} &
 }
 \end{equation}
-For the pair $(u^*c,\, x\circ c^*u)$ in \eqref{diagram:largeuniformbasic2}, the chosen extension $j(u^*c,x\circ c^*u): \I^m \ra X$, is required to be equal to  $j(c,x)\circ u$,
+For the pair $(u^*c,\, x\circ c^*u)$ in \eqref{diagram:largeuniformbasic2}, the chosen extension $j(u^*c,x\circ c^*u): Y \ra X$, is required to be equal to  $j(c,x)\circ u$,
 \begin{equation}\label{eq:largeuniformfillers}
 j(u^*c,x\circ c^*u) = j(c,x) \circ u.
 \end{equation}
 \end{enumerate}
-Indeed, the proof that (1) implies (2) and (3) works just as well to infer (4), which in turn implies (2) and (3) as special cases.
+Indeed, the proof that (1) implies (2) and (3) works just as well to infer (4), which in turn implies (2) and (3) as special cases.   The equivalence of (1) and (2) of Proposition \ref{prop:uniformstructequiv} and condition (4) therefore holds for arbitrary (not necessarily presheaf) toposes.
 \end{remark}
 
-The relative version of the foregoing is entirely analogous, since the $+$-functor is fibered over $\cSet$ in the sense of diagram \eqref{diag:+fibered}.  We can therefore omit the entirely analogous proof of the following.
+The relative version of the foregoing is entirely analogous, since the $+$-functor is fibered over $\EE$ in the sense of diagram \eqref{diag:+fibered}.  We can therefore omit the entirely analogous proof of the following.
  
- \begin{proposition}\label{prop:uniformstructequivrelative} For any map $f : Y\ra X$ in \cSet\ the following are equivalent:
+ \begin{proposition}\label{prop:uniformstructequivrelative} For any map $f : Y\ra X$ in \EE\ the following are equivalent:
 \begin{enumerate}
 \item $f:Y\ra X$ admits a \emph{relative $+$-algebra structure over $X$}, i.e.\ there is a retraction  $\alpha :Y' \ra Y$ over X of the unit $\eta : Y\ra Y'$, where $f^+ : Y' \ra X$ is the result of the relative $+$-functor applied to $f$, as in definition \ref{def:+alg}.
 \item $f:Y\ra  X$ is a \emph{trivial fibration},
@@ -779,30 +783,30 @@ The relative version of the foregoing is entirely analogous, since the $+$-funct
 \mathcal{C}\, \pitchfork\,f.
 \]
 \item $f:Y\ra  X$ admits a (small) \emph{uniform filling structure}: 
-for each basic cofibration $c : C \mono \I^{n}$ and maps $x : C\ra X$ and $y : \I^n\ra Y$ making the square below commute, there is given a diagonal filler $j(c,x,y)$,
+for each basic cofibration $c : C \mono \rep{A}$ and maps $x : C\ra X$ and $y : \rep{A}\ra Y$ making the square below commute, there is given a diagonal filler $j(c,x,y)$,
 \begin{equation}\label{diagram:coffillers}
 \xymatrix{
 C \ar@{>->}[d]_{c} \ar[rr]^{x} && X \ar[d]^{f} \\
-\I^{n}\ar@{.>}[rru]_{j(c,x,y)} \ar[rr]_{y} && Y,
+\rep{A}\ar@{.>}[rru]_{j(c,x,y)} \ar[rr]_{y} && Y,
 }
 \end{equation}
-and the choice is \emph{uniform in $\I^n$} in the following sense: given any cubical map $u : \I^m \ra \I^n$, the pullback $u^*c : u^*C\mono \I^m$ is again a basic cofibration and fits into a commutative diagram of the form
+and the choice is \emph{uniform in $\rep{A}$} in the following sense: given any cubical map $u : \rep{B} \ra \rep{A}$, the pullback $u^*c : u^*C\mono \rep{B}$ is again a basic cofibration and fits into a commutative diagram of the form
 \begin{equation}\label{diagram:coffillers2}
 \xymatrix{
 u^*C \ar@{>->}[d]_{u^*c} \ar[rr]^{c^*u} \pbcorner &&  C \ar@{>->}[d]_{c} \ar[rr]^{x} && X\ar[d]^{f} \\
-\I^{m} \ar[rr]_{u} && \I^{n} \ar@{.>}[rru]_{j(c,x,y)} \ar[rr]_{y} && Y.
+\rep{B} \ar[rr]_{u} && \rep{A} \ar@{.>}[rru]_{j(c,x,y)} \ar[rr]_{y} && Y.
 }
 \end{equation}
 For the evident triple $(u^*c,\, x\circ c^*u, y\circ u)$ in \eqref{diagram:coffillers2} the chosen diagonal filler 
 \[
-j(u^*c,x\circ c^*u,y\circ u): \I^m \ra X
+j(u^*c,x\circ c^*u,y\circ u): \rep{B} \ra X
 \]
  is equal to  $j(c,x,y)\circ u$,
 \begin{equation}\label{eq:uniformfillers1}
 j(u^*c, x\circ c^*u,y\circ u) = j(c,x,y)\circ u.
 \end{equation}
 \end{enumerate}
-And again, a large version of (3) with arbitrary cofibrations $c : C\cof Z$ is again equivalent to (1)-(3).
+And again, a large version of (3) with arbitrary cofibrations $c : C\cof Z$ is again equivalent to (1)-(3), so the result holds also for arbitrary (not necessarily presheaf) toposes.
 \end{proposition}
 
 We next collect some basic facts about trivial fibrations that will be needed later: they have sections, they are closed under composition and retracts, and they are closed under pullback and pushforward along all maps.
@@ -858,7 +862,7 @@ f^*f_*A \ar[rrdd]_{\epsilon_A} \ar[rr]_{f^*\eta_{f_*A}}  \ar@/^4ex/ [rrr]^{\eta_
 \section{The fibration weak factorization system}\label{sec:fibrations}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-We now specify a second weak factorization system, with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the \emph{fibrations}.  As explained in the introduction, we first recall from \cite{GS} what we shall call the ``biased'' notion of fibration, before giving the ``unbiased'' one appropriate to our more general setting.   The two versions are equivalent in the presence of \emph{connections} 
+Returning to the topos $\cSet$ of cubical sets, we now specify a second weak factorization system, with a restricted class of ``trivial'' cofibrations on the left, and an expanded class of right maps, the \emph{fibrations}.  As explained in the introduction, we first recall from \cite{GS} what we shall call the ``biased'' notion of fibration, before giving the ``unbiased'' one appropriate to our more general setting.   The two versions are equivalent in the presence of \emph{connections} 
 \[
 \vee,\wedge : \I\times\I \too \I
 \]
