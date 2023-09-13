@@ -442,10 +442,10 @@ The first equation follows from the observation that the diagram \eqref{diag:sna
 % reformulate this section for an arbitrary (presheaf) topos.
 %
 
-To build a model structure on the presheaf category of cubical sets, one can simply take as the cofibrations \emph{all} of the monomorphisms in $\cSet$; but for some purposes, it is convenient to know what is actually required of them (see Appendix A for an example).  As nothing in this section depends on the specific nature of the topos of cubical sets, the results are formulated for an arbitrary elementary topos $\EE$.  To begin, the following axioms are assumed.
+To build a model structure on the presheaf category of cubical sets, one can simply take as the cofibrations \emph{all} of the monomorphisms in $\cSet$, but for some purposes, it is convenient to know what is actually required of the cofibrations (see Appendix A for an example).  As nothing in this section depends on the specifics of cubical sets, the results are formulated for an arbitrary elementary topos $\EE$.  To begin, the following axioms are assumed for cofibrations.
  
 \begin{definition}[Cofibrations]\label{def:cofibration}
-The \emph{cofibrations} are a class $\mathcal{C}$ of monomorphisms in $\EE$ satisfying the following conditions:
+The \emph{cofibrations} are a class $\mathcal{C}$ of monomorphisms in the topos $\EE$, satisfying the following conditions:
 \begin{enumerate}
 \item[(C0)] The unique map $0\to X$ is always a cofibration.
 \item[(C1)] All isomorphisms are cofibrations.
@@ -500,7 +500,7 @@ The map $\chi : Z\ra X^+$ is said to \emph{classify} the partial map
 \end{proposition}
 
 \begin{proof}
-The map $\eta : X\mono X^+$ is a cofibration, since it is a pullback of the universal cofibration $t : 1\cof \Phi$. Observe that $(\eta, 1_X) : X^+\leftarrowtail X\ra X$ is therefore a cofibrant partial map into $X$.  The second statement is just the universal property of $X^+$ as a polynomial (see \cite{A:natural}, prop.~7). 
+The map $\eta : X\mono X^+$ is a cofibration, since it is a pullback of the universal cofibration $t : 1\cof \Phi$. Observe that $(\eta, 1_X) : X^+\leftarrowtail X\ra X$ is therefore a cofibrant partial map into $X$.  The second statement is just the universal property of $X^+$ as a polynomial, which can be read off from the description \eqref{eq:partialmapclassifier} (see \cite{A:natural}, prop.~7). 
 \end{proof}
 
 %\subsection*{The +-monad.}
@@ -867,7 +867,7 @@ Returning to the topos $\cSet$ of cubical sets, we now specify a second weak fac
 \[
 \vee,\wedge : \I\times\I \too \I
 \]
- on the cubes, which are used in \cite{Sattler:2017ee} to determine a model structure with biased fibrations.  In \cite{AGH} it is shown that the biased fibrations of \opcit\ agree with those specified in the ``logical style'' of \cite{CCHM:2018ctt,orton-pitts}.    Note that we do \emph{not} assume connections in the category $\Box$ of Cartesian cubical sets.
+ on the cubes, which are used in \cite{Sattler:2017ee} to determine a model structure with biased fibrations.  In \cite{AGH} it is shown that the biased fibrations of \opcit\ agree with those specified in the ``logical style'' of \cite{CCHM:2018ctt,orton-pitts}.    Note that connections are \emph{not} assumed in the category $\Box$ of Cartesian cubical sets.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Partial box filling (biased version)}\label{sec:biasedfibration}
