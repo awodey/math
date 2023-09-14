@@ -266,7 +266,7 @@ Specifically, we ultimately show that the category of Cartesian cubical sets adm
 
 The possibility of an entirely constructive verification of the Quillen model category axioms is a consequence of the constructive interpretation of univalent type theory labored over by Coquand and his collaborators, and it has applications for the homotopy theory of presheaves and sheaves that stand to be explored further (but cf.~\cite{Coq:stack2017}).   The important uniformity condition on the Kan filling operations is closely related to E.~Riehl's \emph{algebraic model structures} \cite{riehl-algebraic-model} and gives rise to a notion of structured fibration that admits classification, in the sense of classifying spaces, by means of what we here call \emph{classifying types}.   These classifiers are used to construct universal objects of various kinds: families, cofibrations, (trivial) fibrations, and ultimately a universal fibration $\UU\fib\U$, which acts like an object classifier in higher topos theory, but with a stricter universal property.  Our work shows that having such classifying types can be useful, \eg\ when ``changing the base'' from one slice category $\EE/_X$ to another $\EE/_Y$ along a map $f : Y\to X$, or along a more general geometric morphism $f^*\dashv f_* : \FF \to \EE$.
 
-Another application of the constructivity of the model structure is the computation of homotopy invariants as a result of a constructive proof.  This was only a theoretical possibility until quite recently, when a breakthrough by  A.~Ljungstr\"om \cite{AxelLj:2022} finally allowed the computer system Cubical Agda \cite{VezzosiMortbergAbel19} (which is based on the results just mentioned of Coquand \emph{et al.}) to compute the value of $k\in \Z$ from a proof in homotopy type theory that $\pi_4(S^3)\cong \Z/_{\!k\Z}$, which had been done by hand 10 years earlier at the IAS by G.\ Brunerie \cite{GB:IAS2013}.  Realizability models of type theory based on constructively proven model structures should also have applications in computational homotopy theory.
+Another application of the constructivity of the model structure is the computation of homotopy invariants as a result of a constructive proof.  This was only a theoretical possibility until quite recently, when a breakthrough by  A.~Ljungstr\"om \cite{AxelLj:2022} finally allowed the computer system Cubical Agda \cite{VezzosiMortbergAbel19} (which is based on the results just mentioned of Coquand \emph{et al.}) to compute the value of a term $\tau:\Z$ from a proof in homotopy type theory that $\pi_4(S^3)\cong \Z/_{\!\tau\Z}$, which had been done by hand 10 years earlier at the IAS by G.\ Brunerie \cite{GB:IAS2013}.  Realizability models of type theory based on constructively proven model structures should also have applications in computational homotopy theory.
 
 One way to verify that our model structure is entirely constructive would be to formalize the proofs below in a proof assistant such as Agda.  While this could be of interest for the practice of translating model category proofs into type theory, in principle one would learn very little that is not already known, since the model structure given here is in a certain sense ``reverse-engineered'' from a computational interpretation of type theory that has already been fully formalized and verified (namely, that in \cite{ABCHFL}).  Although our definitions and proofs do not parallel those in \ibid\ in the way that a proper formalization would, the interpretation of type theory underlying them will be plainly visible to the experts---since the Quillen model category defined here was already found lurking, as it were, behind that system.
 
@@ -340,9 +340,9 @@ The $n$-cubes $\I^n$ are \emph{tiny}, in the sense that the endofunctor $X\mapst
 
 \begin{proof}
 It clearly suffices to prove the claim for $n=1$.   For any cubical set $X$, the exponential $X^\I$ is a ``shift by one dimension'', 
-\[
+\begin{equation}\label{eq:pathsisshift}
 X^\I(n) \cong \hom(\I^n, X^\I)\ \cong\  \hom(\I^{n+1}, X)\cong\ X(n+1).
-\]
+\end{equation}
 Thus $X^\I$ is given by precomposition with the ``successor'' functor $\C\to\C$ with $[n] \mapsto [n+1]$. Precomposition always has a right adjoint, which in this case we shall write as 
 \[
 (-)^\I\dashv (-)_\I 
@@ -378,14 +378,14 @@ X_\I(n) &\cong \hom(\I^n, X_\I) \\
 \end{align*}
 \end{corollary}
 
-The exponential  $X^\I$ will be called the \emph{pathobject} of $X$, and plays a special role.  As we have just seen, it classifies ``paths'' in $X$; so the $0$-cubes $p \in (X^I)_0$ in the pathobject correspond to $1$-cubes $p\in X_1$, the ``endpoints'' of which $p_0, p_1\in X_0$ are given by composing with the evaluation maps 
+The exponential  $X^\I$ will be called the \emph{pathobject} of $X$ and plays a special role.  As seen in \eqref{eq:pathsisshift}, it classifies ``paths'' in $X$: the ``points'' or $0$-cubes $p \in (X^\I)_0$ in the pathobject correspond uniquely to $1$-cubes $p\in X_1$, the ``endpoints'' of which $p_0, p_1\in X_0$ are given by composing with the ``evaluation'' maps 
 \[
 \epsilon_0, \epsilon_1 : X^\I \rightrightarrows X
 \]
-at the points $\delta_0, \delta_1 : 1\rightrightarrows \I$. More generally, higher cubes $c\in X_{n+1}$ correspond to maps $c : \I^{n+1}\to X$, which are thus paths between the $n$-cubes $c_0, c_1 : \I^n \to X$, corresponding to $c_0, c_1 \in X_n$.  
-Note that, as a left adjoint, the pathobject functor $X\mapsto X^\I$ preserves all \emph{co}limits.   
+at the points $\delta_0, \delta_1 : 1\rightrightarrows \I$, where $\epsilon = X^{\delta}$. Higher cubes $c : \I^{n+1}\to X$ are similarly paths between lower cubes $c_0, c_1 : \I^{n}\to X^\I \rightrightarrows X$.
+Note that, as a left adjoint, the pathobject functor $X\mapsto X^\I$ also preserves all \emph{co}limits.   
 
-We shall also need the following two facts concerning the interaction of cubes $\I^n$, pathobjects $X^\I$, and the base change functors associated to a map $f : X\to Y$  in $\cSet$, namely,
+We shall need the following two facts concerning the interaction of cubes $\I^n$, pathobjects $X^\I$, and the base change functors associated to a map $f : X\to Y$  in $\cSet$, namely,
 \[
 f_!\dashv f^* \dashv f_* : \cSet/_X \too \cSet/_Y\,.
 \]
