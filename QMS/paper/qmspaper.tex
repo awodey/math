@@ -2372,23 +2372,24 @@ where $\Set^{\cong}$ is the category of isos in $\Set$, with $p_1, p_2$ the (opp
 \subsubsection*{Small maps.}
  
 Of course, as defined in \eqref{eq:universedef}, the classifier $\VV\to\V$ cannot be a map in $\widehat{\bbC}$, for reasons of size; we now address this.  
-Let $\alpha$ be a cardinal number, and call the sets strictly smaller than it $\alpha$-\emph{small}.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
-Call a map $f:Y\to X$ of presheaves $\alpha$-small if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\bbC$ and $x\in Xc$). The latter condition is equivalent to saying that for any element $x:\y{c} \to X$, the set of lifts $y:\y{c} \to Y$ of $x$ across $f$ is $\alpha$-small.
+
+
+For any cardinal number $\alpha$, call a set $\alpha$-\emph{small} if its cardinality is strictly less than $\alpha$.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
+Call a map $f:Y\to X$ of presheaves $\alpha$-\emph{small} if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\bbC$ and $x\in Xc$). The latter condition is equivalent to saying that for any element $x:\y{c} \to X$, the set of lifts $y:\y{c} \to Y$ of $x$ across $f$ is $\alpha$-small.
 \begin{equation}\label{eq:smallmap}\textstyle
 \begin{tikzcd}
 	& Y \ar[d, "f"] \\  
-	\y{c} \ar[r,swap,"x"] \ar[ru, dotted, "y"] &  X,
+	\y{c} \ar[r,swap,"x"] \ar[ru, dotted, "y"] &  X
  \end{tikzcd}
  \end{equation}
-Call a presheaf $X : \op{\bbC} \to \Set$ $\alpha$-small if the map $X\to 1$ is small.  This implies that 
-all of the values $Xc$ are $\alpha$-small sets, and so the functor $X : \op{\bbC} \to \Set$ factors through $\Set_\alpha\hook\Set$. 
+Finally, call a presheaf $X : \op{\bbC} \to \Set$ $\alpha$-\emph{small} if the map $X\to 1$ is $\alpha$-small.  This implies that all of the values $Xc$ are $\alpha$-small sets, and so the functor $X : \op{\C} \to \Set$ factors through $\Set_\alpha\hook\Set$. 
 
 Now let us restrict the specification \eqref{eq:universedef} of $\VV\to\V$ to the $\alpha$-small sets:
 \begin{align}\label{eq:universedefalpha}\textstyle
 \VV_\alpha\, &:=\, \nu \dot{\Set^{\mathsf{op}}_\alpha}\\  
 \V_\alpha\, &:=\, \nu \Set^{\mathsf{op}}_\alpha. \notag
  \end{align}
-Then the evident forgetful map $\VV_\alpha\to\V_\alpha$ \emph{is} a map in the category $\widehat{\bbC}$ of presheaves, and it is in fact $\alpha$-small. Moreover, it has the following basic property, which is just a restriction of the basic property of $\VV\to\V$ stated in Proposition \ref{prop:Vclassifies}.
+Then the evident forgetful map $\VV_\alpha\to\V_\alpha$ \emph{is} a map in the category $\widehat{\bbC}$ of presheaves, and it is easily seen to be $\alpha$-small. Moreover, it has the following basic property, which is just a restriction of the basic property of $\VV\to\V$ stated in Proposition \ref{prop:Vclassifies}.
 
  \begin{proposition}\label{prop:familyclassifier}
 The map $\VV_\alpha\to\V_\alpha$ classifies $\alpha$-small maps $f:Y\to X$ in $\widehat{\bbC}$, in the sense that there is always a pullback square,

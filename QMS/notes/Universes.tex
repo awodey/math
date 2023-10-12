@@ -462,15 +462,16 @@ Of course, as defined in \eqref{eq:universedef}, the classifier $\VV\to\V$ canno
 \subsection*{4. Small maps}
  
 
-Let $\alpha$ be a cardinal number, and call the sets that are strictly smaller than it $\alpha$-\emph{small}.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
-Call a presheaf $X : \op{\C} \to \Set$ $\alpha$-small if all of its values are $\alpha$-small sets, and thus if, and only if, it factors through $\Set_\alpha\hook\Set$. Call a map $f:Y\to X$ of presheaves $\alpha$-small if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\C$ and $x\in Xc$). The latter condition is of course equivalent to saying that, in the pullback square over the element $x:\y{c} \to X$, 
+For any cardinal number $\alpha$, call a set $\alpha$-\emph{small} if its cardinality is strictly less than $\alpha$.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
+%Call a presheaf $X : \op{\C} \to \Set$ $\alpha$-small if all of its values are $\alpha$-small sets, and thus if, and only if, it factors through $\Set_\alpha\hook\Set$. 
+Call a map $f:Y\to X$ of presheaves $\alpha$-\emph{small} if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\C$ and $x\in Xc$). The latter condition is equivalent to saying that for any element $x:\y{c} \to X$, the set of lifts $y:\y{c} \to Y$ of $x$ across $f$ is $\alpha$-small.
 \begin{equation}\label{eq:smallmap}\textstyle
 \begin{tikzcd}
-	 Y_x \ar[d] \pbmark \ar[r] & Y \ar[d, "f"] \\  
-	\y{c} \ar[r,swap,"x"] &  X,
+	& Y \ar[d, "f"] \\  
+	\y{c} \ar[r,swap,"x"] \ar[ru, dotted, "y"] &  X
  \end{tikzcd}
  \end{equation}
-the presheaf $Y_x$ is $\alpha$-small.
+Finally, call a presheaf $X : \op{\C} \to \Set$ $\alpha$-\emph{small} if the map $X\to 1$ is $\alpha$-small.  This implies that all of the values $Xc$ are $\alpha$-small sets, and so the functor $X : \op{\C} \to \Set$ factors through $\Set_\alpha\hook\Set$. 
 
 % Consider $\Set_\alpha^{\C^{\mathrm{op}}}$, the category of $\alpha$-small set valued presheaves on $\C$.  
 % and similarly for the small pointed sets $\SSet_\alpha\hook\SSet$
@@ -480,7 +481,7 @@ Now let us restrict the specification \eqref{eq:universedef} of $\VV\to\V$ to th
 \VV_\alpha\, &=\, \nu \dot{\Set^{\mathsf{op}}_\alpha}\\  
 \V_\alpha\, &=\, \nu \Set^{\mathsf{op}}_\alpha. \notag
  \end{align}
-Then the evident forgetful map $\VV_\alpha\to\V_\alpha$ \emph{is} a map in the category $\widehat{\C}$ of presheaves, and it is in fact $\alpha$-small. Moreover, it has the following basic property, which is just a restriction of the basic property of $\VV\to\V$ stated in Proposition \ref{prop:Vclassifies}.
+Then the evident forgetful map $\VV_\alpha\to\V_\alpha$ \emph{is} a map in the category $\widehat{\C}$ of presheaves, and it is in fact $\alpha$-small, as the reader can easily check. Moreover, it has the following basic property, which is just a restriction of the basic property of $\VV\to\V$ stated in Proposition \ref{prop:Vclassifies}.
 
  \begin{proposition}\label{prop:Valphaclassifies}
 The map $\VV_\alpha\to\V_\alpha$ classifies $\alpha$-small maps $f:Y\to X$ in $\widehat{\C}$, in the sense that there is always a pullback square,
