@@ -885,7 +885,7 @@ where:
 \item $c\otimes\delta_\epsilon$ is the \emph{pushout-product} indicated in the following diagram.
 \begin{equation}\label{diagram:pushoutproduct}
 \xymatrix{
-C\times 1 \ar[d]_{C\times 1} \ar[r]^{C\times \delta_\epsilon} & C\times \I \ar[d] \ar@/^4ex/ [rdd]^{c\times \I}\\
+C\times 1 \ar[d]_{c\times 1} \ar[r]^{C\times \delta_\epsilon} & C\times \I \ar[d] \ar@/^4ex/ [rdd]^{c\times \I}\\
 Z\times 1 \ar@/_4ex/ [rrd]_{Z\times \delta_\epsilon} \ar[r] &  Z +_C (C\times\I) \ar@{..>}[rd]_{c\, \otimes\, \delta_\epsilon} \\
 && Z\times\I
 }
@@ -927,7 +927,7 @@ To relate this notion of fibration to the cofibration weak factorization system,
 \[
 (-)\!\otimes u : \cSet^\mathbbm{2} \ra\cSet^\mathbbm{2}\,.
 \]
-This functor has a right adjoint, the \emph{pullback-hom}, which for a map $f : X\ra Y$ we shall write as
+This functor has a right adjoint, the \emph{pullback-hom}, which for a map $f : Y\ra X$ we shall write as
 \[
 (u \Rightarrow\! f) : Y^B \too (X^B \times_{X^A} Y^A) \,.
 \]
@@ -940,15 +940,15 @@ Y^B \ar@/_4ex/[rdd]_{f^B} \ar@{.>}[rd]^{u\, \Rightarrow f} \ar@/^4ex/ [rrd]^{Y^u
 }
 \end{equation}
 
-The $\otimes\dashv\ \Rightarrow$ adjunction on the arrow category has the following useful relation to weak factorization systems (cf.~\cite{GS,Riehl,JT:notes}), where, as usual, for any maps $a : A \ra B$ and $f : X\ra Y$ we write 
+The $\otimes\dashv\ \Rightarrow$ adjunction on the arrow category has the following useful relation to weak factorization systems (cf.~\cite{GS,Riehl,JT:notes}), where for any maps $a : A \ra B$ and $f : Y\ra X$ we write 
 \[
 a\, \pitchfork\, f 
 \]
 to mean that for every solid square of the form
 \begin{equation}\label{eq:defpitchfork}
 \xymatrix{
-A\ar[d]_{a} \ar[r] & X \ar[d]^f \\
-B \ar@{.>}[ru]_j \ar[r] & Y
+A\ar[d]_{a} \ar[r] & Y \ar[d]^f \\
+B \ar@{.>}[ru]_j \ar[r] & X
 }
 \end{equation}
 there exists a diagonal filler $j$ as indicated. 
@@ -2373,14 +2373,15 @@ where $\Set^{\cong}$ is the category of isos in $\Set$, with $p_1, p_2$ the (opp
  
 Of course, as defined in \eqref{eq:universedef}, the classifier $\VV\to\V$ cannot be a map in $\widehat{\bbC}$, for reasons of size; we now address this.  
 Let $\alpha$ be a cardinal number, and call the sets strictly smaller than it $\alpha$-\emph{small}.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
-Call a presheaf $X : \op{\bbC} \to \Set$ $\alpha$-small if all of its values are $\alpha$-small sets, and thus if, and only if, it factors through $\Set_\alpha\hook\Set$. Call a map $f:Y\to X$ of presheaves $\alpha$-small if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\bbC$ and $x\in Xc$). The latter condition is of course equivalent to saying that, in the pullback square over the element $x:\y{c} \to X$, 
+Call a map $f:Y\to X$ of presheaves $\alpha$-small if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\bbC$ and $x\in Xc$). The latter condition is equivalent to saying that for any element $x:\y{c} \to X$, the set of lifts $y:\y{c} \to Y$ of $x$ across $f$ is $\alpha$-small.
 \begin{equation}\label{eq:smallmap}\textstyle
 \begin{tikzcd}
-	 Y_x \ar[d] \pbmark \ar[r] & Y \ar[d, "f"] \\  
-	\y{c} \ar[r,swap,"x"] &  X,
+	& Y \ar[d, "f"] \\  
+	\y{c} \ar[r,swap,"x"] \ar[ru, dotted, "y"] &  X,
  \end{tikzcd}
  \end{equation}
-the presheaf $Y_x$ is $\alpha$-small.
+Call a presheaf $X : \op{\bbC} \to \Set$ $\alpha$-small if the map $X\to 1$ is small.  This implies that 
+all of the values $Xc$ are $\alpha$-small sets, and so the functor $X : \op{\bbC} \to \Set$ factors through $\Set_\alpha\hook\Set$. 
 
 Now let us restrict the specification \eqref{eq:universedef} of $\VV\to\V$ to the $\alpha$-small sets:
 \begin{align}\label{eq:universedefalpha}\textstyle
