@@ -291,7 +291,7 @@ One thing that we learn from the exercise is that one can get quite far in const
 
 \subsection*{Acknowledgements.}
 
-Foremost, I am indebted to Thierry Coquand for sharing his ideas in conversations at the IHES in Paris, online during the COVID-19 pandemic, at the CAS in Oslo, and on several other occasions going back to the IAS in Princeton.  In many of the same places, Andr\'e Joyal has provided patient advice as well as illuminating lectures.   The writings of Mike Shulman and Emily Riehl have also been extremely helpful, as have many discussions with, and especially some late comments from, the latter.  I have learned much from my past and present CMU colleagues Mathieu Anel, Marc Bezem, Ulrik Buchholtz, Jonas Frey, Bas Spitters, Andrew Swan, and the late Pieter Hofstra; I am especially grateful for their patience through many revisions and delays.  Many other people have given good advice over the long period of these investigations, including Bjorn Dundas, Peter Dybjer, Marcelo Fiore, Richard Garner, Nicola Gambino, Dan Licata, Peter LeFanu Lumsdaine, Per Martin-L\"of, Andy Pitts, Christian Sattler, Thomas Streicher, Benno van den Berg, and undoubtedly others that I am forgetting.
+Foremost, I am indebted to Thierry Coquand for sharing his ideas in conversations at the IHES in Paris, online during the COVID-19 pandemic, at the CAS in Oslo, and on several other occasions going back to the IAS in Princeton.  In many of the same places, Andr\'e Joyal has provided patient advice as well as illuminating lectures.   The writings of Mike Shulman and Emily Riehl have also been extremely helpful, as have many discussions with, and especially some late comments from, the latter.  I have learned much from my past and present CMU colleagues Mathieu Anel, Reid Barton, Marc Bezem, Ulrik Buchholtz, Jonas Frey, Bas Spitters, Andrew Swan, and the late Pieter Hofstra; I am especially grateful for their patience through many revisions and delays.  Many other people have given good advice over the long period of these investigations, including Bjorn Dundas, Peter Dybjer, Marcelo Fiore, Richard Garner, Nicola Gambino, Dan Licata, Peter LeFanu Lumsdaine, Per Martin-L\"of, Andy Pitts, Christian Sattler, Thomas Streicher, Benno van den Berg, and undoubtedly others that I am forgetting.
 I am also grateful to the computational higher type theory group around Bob Harper at CMU, including his students Carlo Angiuli, Evan Cavallo, Favonia, and Jon Sterling, for challenging me to clarify my thoughts.  
 For research stays during which some of this work was conducted, I thank in particular the Oslo Centre for Advanced Studies and the Institut des Hautes \'Etudes Scientifiques.   Finally, I must acknowledge my debt to the late Vladimir Voevodsky, whose profound contributions advanced the subject far beyond my original expectations.
 
@@ -1521,12 +1521,18 @@ We then have the usual definition of homotopy equivalence:
 A \emph{homotopy equivalence} is a map $f : X\to Y$ together with a map $g: Y\ra X$ and homotopies $\vartheta : 1_X \sim g\circ f$ and $\varphi : 1_Y\sim f\circ g$.  We call $g$ a \emph{quasi-inverse} of $f$.
 \end{definition}
 %
-Since these maps clearly compose and come with quasi-inverses, the following is then immediate.
+Since the quasi-inverses are also homotopy equivalences, these maps will satisfy the 3-for-2 condition just if they compose, which they do when restricted to fibrant objects:   
 %
 \begin{lemma}\label{lemma:HE342}
-The  homotopy equivalences satisfy the 3-for-2 condition. 
+The homotopy equivalences between fibrant objects satisfy 3-for-2. 
 \end{lemma}
+%
+\begin{proof}
+Composing two homotopy equivalences $f_1 : X\to Y$ and $f_2 : Y\to Z$ results in a composable pair of homotopies $\vartheta_1 : 1_X \sim g_1\circ f_1$ and 
+$g_1 \vartheta_2  f_1: g_1\circ f_1\sim g_1\circ g_2 \circ f_2\circ f_1$. Now use fibrancy of $X$ to compose them pointwise.  The case of the other composites at $Z$ is similar.
+\end{proof}
 
+%
 \begin{lemma}\label{lem:TFibisHE}
 A fibration that is a weak equivalence is a homotopy equivalence.
 \end{lemma}
