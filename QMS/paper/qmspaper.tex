@@ -62,6 +62,7 @@
 \newcommand{\rep}[1]{\ensuremath{\mathsf{#1}}}% representables
 \newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
 \newcommand{\cSetZ}{\ensuremath{\mathsf{cSet}/_{\!Z}}}
+\newcommand{\slice}[1]{\ensuremath{/_{\!{#1}}}}
 
 \newcommand{\cEE}{\ensuremath{\mathsf{c}\mathcal{E}}}
 %\newcommand{\pbcornertransp}[1][dr]{\save*!/#1+1000pc/#1:(5000,5000)@^{|-}\restore}
@@ -264,7 +265,7 @@ The particular category of Cartesian cubes considered here has been studied by t
 
 Specifically, we ultimately show that the category of Cartesian cubical sets admits a Quillen model structure $\CC, \WW, \FF$ with the unbiased fibrations as the class $\FF$ and the cofibrations $\CC$ axiomatized to allow for variations, including additional structure on the basic cube category $\Box$ and adjustments in the filling conditions.  Since our proofs are given in elementary diagrammatic form, they will also hold in other categories of Cartesian cubical sets, including those with connections, reversals, etc.  Indeed, part of our motivation is to apply the results obtained here, \emph{mutatis mutandis}, in two other settings: realizability, and equivariant filling.  The former (underway in \cite{AAFS}) imposes a strict condition of constructivity, about which we will say a bit more shortly.   The latter (underway in \cite{ACCRS}) is based on an unpublished result due to Sattler showing that an additional equivariance condition on the unbiased fibrations suffices to turn this model structure into the test model structure already mentioned.  
 
-The possibility of an entirely constructive verification of the Quillen model category axioms is a consequence of the constructive interpretation of univalent type theory labored over by Coquand and his collaborators, and it has applications for the homotopy theory of presheaves and sheaves that stand to be explored further (but cf.~\cite{Coq:stack2017}).   The important uniformity condition on the Kan filling operations is closely related to E.~Riehl's \emph{algebraic model structures} \cite{riehl-algebraic-model} and gives rise to a notion of structured fibration that admits classification, in the sense of classifying spaces, by means of what we here call \emph{classifying types}.   These classifiers are used to construct universal objects of various kinds: families, cofibrations, (trivial) fibrations, and ultimately a universal fibration $\UU\fib\U$, which acts like an object classifier in higher topos theory, but with a stricter universal property.  Our work shows that having such classifying types can be useful, \eg\ when ``changing the base'' from one slice category $\EE/_X$ to another $\EE/_Y$ along a map $f : Y\to X$, or along a more general geometric morphism $f^*\dashv f_* : \FF \to \EE$.
+The possibility of an entirely constructive verification of the Quillen model category axioms is a consequence of the constructive interpretation of univalent type theory labored over by Coquand and his collaborators, and it has applications for the homotopy theory of presheaves and sheaves that stand to be explored further (but cf.~\cite{Coq:stack2017}).   The important uniformity condition on the Kan filling operations is closely related to E.~Riehl's \emph{algebraic model structures} \cite{riehl-algebraic-model} and gives rise to a notion of structured fibration that admits classification, in the sense of classifying spaces, by means of what we here call \emph{classifying types}.   These classifiers are used to construct universal objects of various kinds: families, cofibrations, (trivial) fibrations, and ultimately a universal fibration $\UU\fib\U$, which acts like an object classifier in higher topos theory, but with a stricter universal property.  Our work shows that having such classifying types can be useful, \eg\ when ``changing the base'' from one slice category $\EE\slice{X}$ to another $\EE\slice{Y}$ along a map $f : Y\to X$, or along a more general geometric morphism $f^*\dashv f_* : \FF \to \EE$.
 
 Another application of the constructivity of the model structure is the computation of homotopy invariants as a result of a constructive proof.  This was only a theoretical possibility until quite recently, when a breakthrough by  A.~Ljungstr\"om \cite{AxelLj:2022} finally allowed the computer system Cubical Agda \cite{VezzosiMortbergAbel19} (which is based on the results just mentioned of Coquand \emph{et al.}) to compute the value of a term $\tau:\Z$ from a proof in homotopy type theory that $\pi_4(S^3)\cong \Z/_{\!\tau\Z}$, which had been done by hand 10 years earlier at the IAS by G.\ Brunerie \cite{GB:IAS2013}.  Realizability models of type theory based on constructively proven model structures should also have applications in computational homotopy theory.
 
@@ -273,7 +274,7 @@ One way to verify that our model structure is entirely constructive would be to 
 Let us now make this more explicit as we outline the contents of the paper (references to the literature occur at the corresponding points of the main text).
 After defining the Cartesian cubical sets and establishing some basic facts about them in Section 1, Section 2  specifies the \emph{cofibrations} axiomatically, as a class of monomorphisms classified by a universal one $t:1 \cof \Phi$.  This permits using the associated polynomial endofunctor $P_t : \cSet\to \cSet$ (which is shown to be a monad by the axioms for cofibrations), to give an algebraic weak factorization system with the cofibrations as the left maps and the (retracts of) $P_t$-algebras as the maps on the right, which we define to be the \emph{trivial fibrations}.  Since the monad is fibered, the factorization system is stable under change of base, which we use to derive the familiar diagonal filling characterization of the trivial fibrations in algebraic form, and relate this to the uniform filling condition from type theory.  The polynomial monad $P_t : \cSet\to \cSet$ is related to the type theoretic partiality- or lifting-monad, and generalizes the partial map classifier from the early days of topos theory.  Indeed, since the results of this section generalizes to an arbitrary elementary topos \EE, we develop them in that setting. 
 
-In Section 3, the \emph{fibrations} are defined in terms of the cofibrations via the Joyal-Tierney calculus of pushout-products and pullback-homs.  A ``biased'' version using the two endpoints $\delta_0, \delta_1: 1\rightrightarrows\I$ is given first, before specifying the ``unbiased''  version in terms of the generic point $\delta : 1 \to \I^*\I$  in the slice category $\cSet/_\I$, namely the diagonal $\I \to \I\times\I$.  Specifically, a map $f : X \to Y$ in $\cSet$ is defined to be an unbiased fibration if its pullback to $\cSet/_\I$ has the right lifting property against all maps of the form $c\, \otimes_I\, \delta$ where $c : C\mono Z$ is a cofibration over $\I$ and the pushout-product with $\delta$ is formed in $\cSet/_\I$. 
+In Section 3, the \emph{fibrations} are defined in terms of the cofibrations via the Joyal-Tierney calculus of pushout-products and pullback-homs.  A ``biased'' version using the two endpoints $\delta_0, \delta_1: 1\rightrightarrows\I$ is given first, before specifying the ``unbiased''  version in terms of the generic point $\delta : 1 \to \I^*\I$  in the slice category $\cSet\slice{\I}$, namely the diagonal $\I \to \I\times\I$.  Specifically, a map $f : X \to Y$ in $\cSet$ is defined to be an unbiased fibration if its pullback to $\cSet\slice{\I}$ has the right lifting property against all maps of the form $c\, \otimes_I\, \delta$ where $c : C\mono Z$ is a cofibration over $\I$ and the pushout-product with $\delta$ is formed in $\cSet\slice{\I}$. 
 \begin{equation*}\label{diagram:unbiasedfibrationIntro}
 \xymatrix{
 Z +_C (C\times\I^*\I) \ar@{>->}[d]_{c\, \otimes_I\, \delta} \ar[r] & \I^*Y \ar[d]^{\I^*f} \\
@@ -387,7 +388,7 @@ Note that, as a left adjoint, the pathobject functor $X\mapsto X^\I$ also preser
 
 We shall need the following two facts concerning the interaction of cubes $\I^n$, pathobjects $X^\I$, and the base change functors associated to a map $f : X\to Y$  in $\cSet$, namely,
 \[
-f_!\dashv f^* \dashv f_* : \cSet/_X \too \cSet/_Y\,.
+f_!\dashv f^* \dashv f_* : \cSet\slice{X} \too \cSet\slice{Y}\,.
 \]
 
 \begin{lemma}\label{lemma:pathspacepushforward}
@@ -402,12 +403,12 @@ This is true for any constant family $X^*C = X\times C \to X$ with $C$ in place 
 
 
 \begin{lemma}\label{lemma:tinyslicedI}
-The pulled-back interval $\I^*\I = \I\times\I\to \I$ in $\cSet/_\I$ is also tiny.
+The pulled-back interval $\I^*\I = \I\times\I\to \I$ in $\cSet\slice{\I}$ is also tiny.
 \end{lemma}
 \begin{proof}
-Since the interval $\I = \y[1]$ is representable, the slice category $\cSet/_\I$ is also a category of presheaves, namely over the sliced cube category $\C/_{[1]}$\,,
+Since the interval $\I = \y[1]$ is representable, the slice category $\cSet\slice{\I}$ is also a category of presheaves, namely over the sliced cube category $\C/_{[1]}$\,,
 \[
-\cSet/_\I \ =\ {\psh{\C}}\!/_{\y[1]} \ \cong\ \psh{ (\C/_{[1]}) }\,.
+\cSet\slice{\I} \ =\ {\psh{\C}}\!/_{\y[1]} \ \cong\ \psh{ (\C/_{[1]}) }\,.
 \]
 However, since $\C$ does not have all finite limits, the sliced index category does not have all finite products, and so we cannot simply repeat the proof from Proposition \ref{prop:Itiny}.  But as in that proof, we do have a ``successor'' functor 
 \[
@@ -525,20 +526,20 @@ X^{++} \ar@{.>}[r]_\mu & X^+
 
 For any object $X\in\EE$ the pullback functor 
 \[
-X^* : \EE \ra \EE/_X\,,
+X^* : \EE \ra \EE\slice{X}\,,
 \]
-taking any $A$ to the (say) first projection $X\times A \ra X$, not only preserves the subobject classifier $\Omega$, but also the cofibration classifier $\Phi \hook \Omega$, where a map in $\EE/_X$ is defined to be a cofibration just if it is one in \EE\ (under the forgetful functor $\EE/_X \to \EE$). Thus in $\EE/_X$ we can define the \emph{(relative) cofibration classifier} to be the map
+taking any $A$ to the (say) first projection $X\times A \ra X$, not only preserves the subobject classifier $\Omega$, but also the cofibration classifier $\Phi \hook \Omega$, where a map in $\EE\slice{X}$ is defined to be a cofibration just if it is one in \EE\ (under the forgetful functor $\EE\slice{X} \to \EE$). Thus in $\EE\slice{X}$ we can define the \emph{(relative) cofibration classifier} to be the map
 \[
 X^*t : X^*1 \too X^*\Phi	\quad\text{over $X$}\,,
 \]
 which we may also write $t_X : 1_X \ra \Phi_X$.  Like $t : 1\ra \Phi$, this map determines a polynomial endofunctor  
 \[
-+_X : \EE/_X \ra \EE/_X\,,
++_X : \EE\slice{X} \ra \EE\slice{X}\,,
 \]
- which commutes (up to natural isomorphism) with $+ : \EE \ra \EE$ and $X^* : \EE \ra \EE/_X$ in the expected way, namely:
+ which commutes (up to natural isomorphism) with $+ : \EE \ra \EE$ and $X^* : \EE \ra \EE\slice{X}$ in the expected way, namely:
 \begin{equation}\label{diag:+fibered}
 \xymatrix{
-\EE/_X \ar[r]^{+_X}& \EE/_X \\
+\EE\slice{X} \ar[r]^{+_X}& \EE\slice{X} \\
 \EE \ar[u]^{X^*} \ar[r]_+ & \ar[u]_{X^*}\EE 
 }
 \end{equation}
@@ -553,7 +554,7 @@ A \emph{$+$-algebra} in \EE\ is an algebra for the pointed endofunctor $+ : \EE\
 
 A \emph{relative $+$-algebra} in \EE\ is a map $A \ra X$, together with an algebra structure over the codomain $X$ for the pointed endofunctor 
 \[
-+_X : \EE/_X \too \EE/_X\,.
++_X : \EE\slice{X} \too \EE\slice{X}\,.
 \]
 \end{definition}
 
@@ -1065,7 +1066,7 @@ Rather than building a weak factorization system based on the foregoing notion o
 }
 \end{equation*}
 
-In topological spaces, for instance, rather than requiring lifts $j_\epsilon$ for each of the endpoints $\epsilon = 0,1$  of the real interval $\I = [0,1]$, one could equivalently require there to be a lift $j_i$ \emph{for each point} $i: 1\ra\I$. Such ``unbiased path-lifting'' can be formulated in \cSet\ by introducing a ``generic point'' $\delta : 1\ra \I$ by passing to $\cSet/_\I$ via the pullback functor $\I^* : \cSet\to \cSet/_\I$, and then requiring path-lifting for $\I^*f$ with respect to $\delta : \I \to \I\times \I$, regarded as a map $\delta : 1\to\I^*{\I}$ in $\cSet/_\I$. We shall therefore define $f$ to be an unbiased fibration just if $\I^*f$ is a $\delta$-biased fibration for the generic point $\delta$.  The following specification implements that  idea, while also adding cofibrant partiality, as in the biased case.  
+In topological spaces, for instance, rather than requiring lifts $j_\epsilon$ for each of the endpoints $\epsilon = 0,1$  of the real interval $\I = [0,1]$, one could equivalently require there to be a lift $j_i$ \emph{for each point} $i: 1\ra\I$. Such ``unbiased path-lifting'' can be formulated in \cSet\ by introducing a ``generic point'' $\delta : 1\ra \I$ by passing to $\cSet\slice{\I}$ via the pullback functor $\I^* : \cSet\to \cSet\slice{\I}$ and then requiring path-lifting for $\I^*f$ with respect to $\delta : \I \to \I\times \I$, regarded as a map $\delta : 1\to\I^*{\I}$ in $\cSet\slice{\I}$. We shall therefore define $f$ to be an unbiased fibration just if $\I^*f$ is a $\delta$-biased fibration for the generic point $\delta$.  The following specification implements that  idea, while also adding cofibrant partiality, as in the biased case.  
 
 We first replace axiom (C5) with the following stronger assumption.
 %
@@ -1092,9 +1093,9 @@ is a trivial fibration.
 \end{definition}
 
 %
-Let us (temporarily) write $\II = \I^*\I$ for the pulled-back interval in the slice category $\cSet/_\I$, so that the generic point is written $\delta : 1 \to \II$.
-Condition \eqref{item:fibrant} above (which of course is a special case of \eqref{item:fibration}) then says that evaluation at the generic point $\delta : 1\ra \II$, the map $(\I^*X)^\delta: (\I^*X)^\II \ra \I^*X$, constructed in the slice category $\cSet/_\I$, is a trivial fibration.  
-Condition \eqref{item:fibration} says that the pullback-hom of the generic point $\delta : 1\ra \II$ with $\I^*f$, constructed in the slice category $\cSet/_\I$, is a trivial fibration.  Thus a map $f: Y\to X$ is an \emph{unbiased} fibration just if its base change $\I^*f$  is a $\delta$-\emph{biased} fibration in the slice category $\cSet/_\I$.  The latter condition can also be reformulated as follows.
+Let us (temporarily) write $\II = \I^*\I$ for the pulled-back interval in the slice category $\cSet\slice{\I}$, so that the generic point is written $\delta : 1 \to \II$.
+Condition \eqref{item:fibrant} above (which of course is a special case of \eqref{item:fibration}) then says that evaluation at the generic point $\delta : 1\ra \II$, the map $(\I^*X)^\delta: (\I^*X)^\II \ra \I^*X$, constructed in the slice category $\cSet\slice{\I}$, is a trivial fibration.  
+Condition \eqref{item:fibration} says that the pullback-hom of the generic point $\delta : 1\ra \II$ with $\I^*f$, constructed in the slice category $\cSet\slice{\I}$, is a trivial fibration.  Thus a map $f: Y\to X$ is an \emph{unbiased} fibration just if its base change $\I^*f$  is a $\delta$-\emph{biased} fibration in the slice category $\cSet\slice{\I}$.  The latter condition can also be reformulated as follows.
 
 \begin{proposition}
 A map $f : Y\ra X$ is an unbiased fibration if and only if the canonical map $u$ to the pullback, in the following diagram in $\cSet$, is a trivial fibration.
@@ -1197,7 +1198,7 @@ Z\times \I \ar@{.>}[ru]_{j} \ar[r] & X.
 \end{proposition}
 
 \begin{proof}
-Suppose that for all $c : C\mono Z$ and $i:Z\ra\I$, we have $(c\otimes_i\delta) \pitchfork f$ in $\cSet$. Pulling $f$ back over $\I$, this is equivalent to the condition $c\otimes\delta \pitchfork \I^*f$ in $\cSet/_\I$, for all cofibrations $c : C\mono Z$ over $\I$, which is equivalent to $c\pitchfork(\delta\Rightarrow \I^*f)$ in $\cSet/_\I$ for all cofibrations $c : C\mono Z$.  But this in turn means that $\delta\Rightarrow\I^*f$ is a trivial fibration, which by definition means that $f$ is an unbiased fibration.
+Suppose that for all $c : C\mono Z$ and $i:Z\ra\I$, we have $(c\otimes_i\delta) \pitchfork f$ in $\cSet$. Pulling $f$ back over $\I$, this is equivalent to the condition $c\otimes\delta \pitchfork \I^*f$ in $\cSet\slice{\I}$, for all cofibrations $c : C\mono Z$ over $\I$, which is equivalent to $c\pitchfork(\delta\Rightarrow \I^*f)$ in $\cSet\slice{\I}$ for all cofibrations $c : C\mono Z$.  But this in turn means that $\delta\Rightarrow\I^*f$ is a trivial fibration, which by definition means that $f$ is an unbiased fibration.
 \end{proof}
 
 \begin{remark}\label{rem:specialtrivcofs}
@@ -1216,8 +1217,8 @@ are also trivial fibrations. Thus unbiased fibrations are also $\delta_\epsilon$
 
 \begin{proof}
 This follows from Remark \ref{rem:specialtrivcofs} and the ${\otimes} \dashv {\Rightarrow}$ adjunction, but we give a different proof.
-Consider the case $X=1$, the general one $f:F\to X$ being analogous. Thus let $F$ be an unbiased fibrant object in $\cSet$. So by definition $(\I^*F)^\delta : (\I^*F)^\II \too \I^*F$  in $\cSet/_\I$ is a trivial fibration. 
-Pulling back $\delta : 1\to \II$ in $\cSet/_\I$ along the base change $\delta_\epsilon : 1\to \I$ takes it to $\delta_\epsilon : 1\to \I$ in $\cSet$, by the universal property of the generic point $\delta : 1\to \II$; that is $\delta_\epsilon^*(\delta) = \delta_\epsilon : 1 \to \I$.  So $(\I^*F)^\delta : (\I^*F)^\II \too \I^*F$ is taken by $\delta_\epsilon^*$ to
+Consider the case $X=1$, the general one $f:F\to X$ being analogous. Thus let $F$ be an unbiased fibrant object in $\cSet$. So by definition $(\I^*F)^\delta : (\I^*F)^\II \too \I^*F$  in $\cSet\slice{\I}$ is a trivial fibration. 
+Pulling back $\delta : 1\to \II$ in $\cSet\slice{\I}$ along the base change $\delta_\epsilon : 1\to \I$ takes it to $\delta_\epsilon : 1\to \I$ in $\cSet$, by the universal property of the generic point $\delta : 1\to \II$; that is $\delta_\epsilon^*(\delta) = \delta_\epsilon : 1 \to \I$.  So $(\I^*F)^\delta : (\I^*F)^\II \too \I^*F$ is taken by $\delta_\epsilon^*$ to
 \[
 \delta_\epsilon^* \big( {(\I^*F)^\delta} \big) =
 (\delta_\epsilon^*\I^*F)^{\delta_\epsilon^*\delta} =  F^{\delta_\epsilon} : F^\I \too F\,,
@@ -1298,7 +1299,7 @@ In these terms, we have the following analogue of corollary \ref{cor:uniformfibs
 \begin{proof}
 The equivalence between (1) and (2) is proposition \ref{prop:fibiffrlp}.  
 So assume (1).
-Then in $\cSet/_\I$, the evaluation at $\delta : 1\to\II$,
+Then in $\cSet\slice{\I}$, the evaluation at $\delta : 1\to\II$,
 \[
 (\I^*X)^\delta : (\I^*X)^\II \too X
 \]
@@ -1843,14 +1844,14 @@ In this section, we show that the (unbiased) fibration weak factorization system
 
 A proof of Frobenius in the related setting of cubical sets \emph{with connections} was given in \cite{GS} using conventional, functorial methods.  By contrast, the type theoretic approach of \cite{CCHM:2018ctt} provides a proof that is much more direct, and can also be modified to work without connections (as in \cite{ABCHFL}).  That approach proves the dual fact that the \emph{pushforward} operation, which is right adjoint to pullback and always exists in a topos, preserves fibrations when applied along a fibration.  This corresponds to the type-theoretic $\Pi$-formation rule, and the proof given in \opcit\ is entirely in type theory.  It also employs a reduction of box filling (in all dimensions) to an apparently weaker condition of \emph{Kan composition} (in all dimensions), which merely ``puts a lid on" the open box, rather than filling it.  This aspect of the type theoretic proof can also be described functorially, but is not used in the proof given here, and will therefore not be discussed further (see \cite{LOPS18} for a description of Kan composition with connections, and \cite{A:composiiton} for the same without connections).
 
-Our proof takes the approach that was used to determine the unbiased fibrations, namely we first establish the result in the \emph{biased but generic} setting, and then transfer it to the unbiased setting by pulling back along the base change $\cSet\to\cSet/_\I$. We first give the second step as a conditional statement.
+Our proof takes the approach that was used to determine the unbiased fibrations, namely we first establish the result in the \emph{biased but generic} setting, and then transfer it to the unbiased setting by pulling back along the base change $\cSet\to\cSet\slice{\I}$. We first give the second step as a conditional statement.
 
 \begin{proposition}\label{prop:biasedFrobimpliesunbiasedFrob}
-Suppose the $\delta$-biased fibrations in $\cSet/_\I$ satisfy the Frobenius condition. Then the unbiased fibrations in $\cSet$ also satisfy the Frobenius condition.
+Suppose the $\delta$-biased fibrations in $\cSet\slice{\I}$ satisfy the Frobenius condition. Then the unbiased fibrations in $\cSet$ also satisfy the Frobenius condition.
 \end{proposition}
 
 \begin{proof}
-This follows almost immeditely from the fact that the pullback functor $\I^* : \cSet \to \cSet/_\I$ preserves the locally cartesian closed structure, takes unbiased fibrations to $\delta$-biased ones, and reflects $\delta$-biased fibrations to unbiased ones.  In detail, let unbiased fibrations $B \fib A$ and $A \fib X$ in $\cSet$ be given, and we wish to find $C\fib X$ and $e : A\times_X C \to B$ over $A$, universal in the way recalled in the diagram below.
+This follows almost immeditely from the fact that the pullback functor $\I^* : \cSet \to \cSet\slice{\I}$ preserves the locally cartesian closed structure, takes unbiased fibrations to $\delta$-biased ones, and reflects $\delta$-biased fibrations to unbiased ones.  In detail, let unbiased fibrations $B \fib A$ and $A \fib X$ in $\cSet$ be given, and we wish to find $C\fib X$ and $e : A\times_X C \to B$ over $A$, universal in the way recalled in the diagram below.
 \begin{equation}\label{diagram:biasedFrobenius2unbiasedFrobenius}
 \begin{tikzcd}
 A \times_X C \ar[d, dotted, "e"] \ar[r, dotted] & C \ar[dd, two heads, dotted]\\
@@ -1861,17 +1862,17 @@ A \ar[r, two heads]  & X
 %
 Take the pushforward $C := A_*B \to X$, and its associated map $e : A\times_X C \to B$, in the locally cartesian closed category $\cSet$.  Since fibrations are stable under (all) pullbacks, it then suffices to show that $C\to X$ is a fibration.  
 
-By definition, $C\to X$ is an unbiased fibration in $\cSet$ just in case the base change $\I^*C \to \I^*X$ is a $\delta$-biased fibration in the slice category $\cSet/_\I$.  Since the pullback functor $\I^* : \cSet \to \cSet/_\I$ preserves all lcc structure, over $\I^*X$ we have an iso,
+By definition, $C\to X$ is an unbiased fibration in $\cSet$ just in case the base change $\I^*C \to \I^*X$ is a $\delta$-biased fibration in the slice category $\cSet\slice{\I}$.  Since the pullback functor $\I^* : \cSet \to \cSet\slice{\I}$ preserves all lcc structure, over $\I^*X$ we have an iso,
 \[
 \I^*C = \I^*(A_*B) \cong (\I^*A)_*\I^*B\,,
 \]
-where the pushforward $(\I^*A)_*\I^*B$ is taken in the topos $\cSet/_\I$.  But $\I^*B \to \I^*A$ and $\I^*A \to \I^*X$ are $\delta$-biased fibrations in $\cSet/_\I$ because $B \to A$ and $A \to X$ were assumed to be unbiased fibrations in $\cSet$.  Since we are assuming the Frobenius condition for $\delta$-biased fibrations in $\cSet/_\I$, the pushforward $\I^*C \cong (\I^*A)_*\I^*B \to \I^*X$ is also a $\delta$-biased fibration, as required.
+where the pushforward $(\I^*A)_*\I^*B$ is taken in the topos $\cSet\slice{\I}$.  But $\I^*B \to \I^*A$ and $\I^*A \to \I^*X$ are $\delta$-biased fibrations in $\cSet\slice{\I}$ because $B \to A$ and $A \to X$ were assumed to be unbiased fibrations in $\cSet$.  Since we are assuming the Frobenius condition for $\delta$-biased fibrations in $\cSet\slice{\I}$, the pushforward $\I^*C \cong (\I^*A)_*\I^*B \to \I^*X$ is also a $\delta$-biased fibration, as required.
 \end{proof}
   
 %%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Frobenius for biased fibrations.}
 
-The results proved in this section will be applied to the slice category $\cSet/_\I$ and the generic point $\delta : 1 \ra \I = \I^*\I$, but nothing depends on this particular case, and so we shall write simply $\delta : 1\to \I$ for a chosen pointed object in an arbitrary topos $\EE$.  (Indeed, in this section $\EE$ may even be just a locally cartesian closed category with a class of cofibrations in the sense of Appendix A.)
+The results proved in this section will be applied to the slice category $\cSet\slice{\I}$ and the generic point $\delta : 1 \ra \I = \I^*\I$, but nothing depends on this particular case, and so we shall write simply $\delta : 1\to \I$ for a chosen pointed object in an arbitrary topos $\EE$.  (Indeed, in this section $\EE$ may even be just a locally cartesian closed category with a class of cofibrations in the sense of Appendix A.)
 
 Recall from Definition \ref{def:unbiasedfibration} that a map $f:A\ra X$  is a $\delta$-biased fibration just if the map $\delta \Rightarrow f$ admits a relative +-algebra structure, and is therefore a trivial fibration.  The definition of the pullback-hom $\pbh{\delta}{f}$ is recalled below.
 \begin{equation}\label{diagram:frobenius1}
@@ -2072,7 +2073,7 @@ which is the counit of $\I\times(-) \dashv (-)^\I$, as the composite shown below
 \end{equation}
 %
 Let us analyse this evaluation at $\delta$ further, in terms of the \emph{locally} cartesian closed structure associated to the base changes along the section $\delta : 1\to \I$  and retraction $\I \to 1$ in~$\EE$.
-Since $\mathsf{id}  \cong \delta^*\I^* : \EE \to \EE/_\I \to \EE$, the map $\epsilon_{\Pi_AB}$ can be rewritten as follows.
+Since $\mathsf{id}  \cong \delta^*\I^* : \EE \to \EE\slice{\I} \to \EE$, the map $\epsilon_{\Pi_AB}$ can be rewritten as follows.
 \begin{equation}\label{diagram:biasedfrobenius2}
 \xymatrix{
 (\Pi_AB)^\I \ar[d]_{\cong} \ar[rr]^{\epsilon_{\Pi_AB}} && \Pi_AB  \ar[d]^{\cong} \\
@@ -2188,9 +2189,9 @@ The presheaf $U$, which is not small, is then regarded as the Grothendieck unive
 
 For a presheaf $X$ on $\bbC$, recall that the category of elements is the comma category,
 \[\textstyle
-\int_\bbC X\ =\ \yon_\bbC/_X\,,
+\int_\bbC X\ =\ \yon_\bbC\slice{X}\,,
 \] 
-where $\yon_\bbC : \bbC \to \psh\bbC$ is the Yoneda embedding, which we sometimes supress and write simply $\bbC/_X$ for $\yon_\bbC/_X$. 
+where $\yon_\bbC : \bbC \to \psh\bbC$ is the Yoneda embedding, which we sometimes supress and write simply $\bbC\slice{X}$ for $\yon_\bbC\slice{X}$. 
 
 \begin{proposition}[\cite{G:1983}, \S{28}]
 The category of elements functor 
@@ -2240,9 +2241,9 @@ When $\bbC$ is fixed, we may omit the subscript in the notation $\yon_\bbC$ and 
 \eta :&\ \textstyle  X \too \nu{\elem{X}}\,, \\
 \epsilon :&\ \textstyle  \elem\nu\A \too \A\,,
 \end{align*}
- are then as follows.  At $c\in\bbC$, for $x : \y{c}\ra X$, the functor $(\eta_X)_c(x) : \bbC/_c \to \bbC/_X$ is just composition with $x$, 
+ are then as follows.  At $c\in\bbC$, for $x : \y{c}\ra X$, the functor $(\eta_X)_c(x) : \bbC/_c \to \bbC\slice{X}$ is just composition with $x$, 
 \begin{equation}\label{eq:eta}
-(\eta_X)_c(x) = \bbC/_x : \bbC/_c \too \bbC/_X\,.
+(\eta_X)_c(x) = \bbC\slice{x} : \bbC\slice{c} \too \bbC\slice{X}\,.
 \end{equation}
 For $\A\in\Cat$, the functor $ \epsilon : \int\nu\A \to \A$ takes a pair $(c\in\bbC, f : \bbC/_c \to \A)$ to the object $f(1_c) \in \A$,
 \[
@@ -2269,11 +2270,11 @@ It suffices to prove this for the case $f : X\ra 1$.  Thus consider the square
 Evaluating at $c\in\bbC$ and applying \eqref{eq:eta} gives the following square in $\Set$.
 \begin{equation}\label{eq:naturalityobjecteval}\textstyle
 \begin{tikzcd}
-	 Xc \ar[d] \ar[r, "{\bbC/_{-}}"] & \Cat\big( {\bbC/_c}\,,\, {\bbC/_X}\, \big) \ar[d]\\  
+	 Xc \ar[d] \ar[r, "{\bbC/_{-}}"] & \Cat\big( {\bbC/_c}\,,\, {\bbC\slice{X}}\, \big) \ar[d]\\  
 	1c\ar[r, swap, "{\bbC/_{-}}"] &   \Cat\big( {\bbC/_c}\,,\, \bbC/_1 \big)
  \end{tikzcd}
  \end{equation}
-The image of $*\in 1c$ along the bottom is the forgetful functor $U_c : \bbC/_c\to \bbC$, and its fiber under the map on the right is the set of functors $F : {\bbC/_c}\to {\bbC/_X}$ such that $U_X\circ F = U_c$, where $U_X : \bbC/_X\to \bbC$ is also a forgetful functor. But any such $F$ is uniquely of the form $\bbC/_{x}$ for $x = F(1_c) : \y{c} \to X$.
+The image of $*\in 1c$ along the bottom is the forgetful functor $U_c : \bbC/_c\to \bbC$, and its fiber under the map on the right is the set of functors $F : {\bbC/_c}\to {\bbC\slice{X}}$ such that $U_X\circ F = U_c$, where $U_X : \bbC\slice{X}\to \bbC$ is also a forgetful functor. But any such $F$ is uniquely of the form $\bbC/_{x}$ for $x = F(1_c) : \y{c} \to X$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2492,18 +2493,18 @@ is then a classifier in $\Cat$ for \emph{sieves}, i.e.\ full subcategories $\mat
 
 \item For any $X\in \widehat{\bbC}$, we have an equivalence 
 \[
-\widehat{\bbC}/_X\ %\simeq\ \widehat{\bbC/_X}\ 
+\widehat{\bbC}\slice{X}\ %\simeq\ \widehat{\bbC\slice{X}}\ 
 \simeq\ \widehat{\textstyle \int_{\bbC}X}\ \simeq\ \mathsf{dFib}/_{\!\int_{\bbC}X}
 \]
 where, generally, $\mathsf{dFib}/_{\mathbb{D}}$ is the category of discrete fibrations over a category $\mathbb{D}$.
 This equivalence commutes with composition along discrete fibrations, in the sense that the forgetful functor 
 \[
-{X_!}: \widehat{\bbC}/_X \to \widehat{\bbC}
+{X_!}: \widehat{\bbC}\slice{X} \to \widehat{\bbC}
 \]
  given by composition along $X \to 1$ agrees (up to canonical isomorphism) with the base change $(p_X)_! \dashv (p_X)^*$ of presheaves along the projection  ${\textstyle  p_X : \int_{\bbC}X \to  \bbC}$, and with composition along the discrete fibration $p_X$, as indicated in:
 \begin{equation}\label{diagram:sliceuniversepullsback}
 \begin{tikzcd}
-\widehat{\bbC}/_X  \ar[d,swap,"{{X_!}}"] \ar[r, "{\sim}"] 
+\widehat{\bbC}\slice{X}  \ar[d,swap,"{{X_!}}"] \ar[r, "{\sim}"] 
 	& \widehat{\textstyle \int_{\bbC}X} \ar[d,swap,"{{(p_X)_!}}"] \ar[r, "{\sim}"] 
 		& \mathsf{dFib}/_{\!\int_{\bbC}X} \ar[d,"p_X\circ(-)"]  \\
  \widehat{\bbC}  \ar[r,swap, "{\sim}"]   & \widehat{\bbC}  \ar[r,swap, "{\sim}"] 
@@ -2511,7 +2512,7 @@ This equivalence commutes with composition along discrete fibrations, in the sen
 \end{tikzcd}
 \end{equation}
 
-It follows that the pullback functor $X^* : \widehat{\bbC} \to \widehat{\bbC}/_X$ commutes with the corresponding right adjoints (one of which is the nerve), and therefore preserves the respective universes, 
+It follows that the pullback functor $X^* : \widehat{\bbC} \to \widehat{\bbC}\slice{X}$ commutes with the corresponding right adjoints (one of which is the nerve), and therefore preserves the respective universes, 
 \[\textstyle
  X^* \V_{\bbC} \ 
    \cong\ (p_X)^* \nu_{\bbC}(\Set^{\mathsf{op}}) \ 
@@ -2522,7 +2523,7 @@ It follows that the pullback functor $X^* : \widehat{\bbC} \to \widehat{\bbC}/_X
 
  \begin{corollary}\label{prop:familyclassifierforslices}
 Let $\VV_\alpha\to\V_\alpha$ classify $\alpha$-small maps in $\widehat{\bbC}$, as in Proposition \ref{prop:familyclassifier}.  Then for any $X\in \widehat{\bbC}$, the pullback $X^*\VV_\alpha\to X^*\V_\alpha$ classifies 
-$\alpha$-small maps in $\widehat{\bbC}/_X$\,.
+$\alpha$-small maps in $\widehat{\bbC}\slice{X}$\,.
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2560,14 +2561,28 @@ Y \ar[r]_{f} &X\\
 \end{equation}
 because the +-functor, exponentials and pullbacks occurring in the construction of $+\mathsf{Alg}(A) \ra X$ are themselves all stable. 
 
-It then follows from Proposition \ref{prop:familyclassifier} that, if $A\ra X$ is small, then $+\mathsf{Alg}(A) \ra X$ is itself a pullback of the analogous object $+\mathsf{Alg}(\VV) \ra \V$ constructed from the universal small family $\VV\ra\V$ of Proposition \ref{prop:familyclassifier}, so there are two pullback squares:
+Let us record what we have learned for future reference, and introduce some new terminology.
+
+\begin{proposition}\label{prop:TFibstable}
+For any map $A\to X$, we have the following \emph{classifying type for trivial fibration structures},
+ $$\TFib(A) := +\mathsf{Alg}(A)\to X\,.$$
+Sections of $\TFib(A)\to X$ correspond bijectively to $+$-algebra structures on $A\to X$.   Moreover, $\TFib(A)\to X$ is stable under pullback, in the sense that for any $f:Y\ra X$, we have an iso,
+\begin{equation}\label{diagram:TFibstable}
+\xymatrix{
+\TFib(f^*A) \cong f^*\TFib(A).
+}
+\end{equation}
+\end{proposition}
+
+It now follows from Proposition \ref{prop:familyclassifier} that, if $A\ra X$ is small, then $\TFib(A) \ra X$ is itself a pullback of the analogous object $\TFib(\VV) \ra \V$ constructed from the universal small family $\VV\ra\V$ of Proposition \ref{prop:familyclassifier}, so there are two pullback squares:
 \begin{equation}\label{diagram:tfib1}
 \xymatrix{
 A \ar[d] \ar[r]  & \VV \ar[d]\\
 X \ar[r]_{\chi_A} & \V\\
-+\mathsf{Alg}(A)\ar[u] \ar[r] & +\mathsf{Alg}(\VV)\ar[u].
+\TFib(A)\ar[u] \ar[r] & \TFib(\VV)\ar[u].
 }
 \end{equation}
+
 
 \begin{proposition}\label{prop:classTFib}
 There is a \emph{universal small trivial fibration}  
@@ -2586,9 +2601,9 @@ X \ar[r] & \TFib
 \begin{proof}
 We can take 
 \[
-\TFib := +\mathsf{Alg}(\VV),
+\TFib := \TFib(\VV),
 \]
- which comes with its projection $+\mathsf{Alg}(\VV) \ra \V$ as in diagram \eqref{diagram:tfib1}.  Now define $p_t:\TTFib\ra\TFib$ by pulling back the universal small family,
+ which comes with its projection $\TFib(\VV) \ra \V$ as in diagram \eqref{diagram:tfib1}.  Then define $p_t:\TTFib\ra\TFib$ by pulling back the universal small family,
 \[
 \xymatrix{
 \TTFib \ar[d]_{p_t} \ar[r]  \pbcorner & \VV\ar[d]^p\\
@@ -2605,11 +2620,7 @@ Consider the following diagram, in which all the squares (including the distorte
 &X \ar[rrr]_{\chi_A} \ar@{.>}@/^1pc/[lu]^\alpha \ar@{.>}[rru]_{\alpha'} &&& \V.
 }
 \end{equation}
-A trivial fibration structure $\alpha$ on $A\ra X$ is a section the object of $+$-algebra structures on $A$, occurring in the diagram as 
-\[
-\TFib(A) := +\mathsf{Alg}(A),
-\]
- the pullback of $\TFib = +\mathsf{Alg}(\VV)$ along the classifying map $\chi_A : X \to \V$ for the small family $A\to X$.  Such sections correspond uniquely to factorizations $\alpha'$ of $\chi_A$ as indicated, which in turn induce pullback squares of the required kind \eqref{diagram:classifytf}.
+A trivial fibration structure $\alpha$ on $A\ra X$ is a section the object of $+$-algebra structures on $A$, occurring in the diagram as $\TFib(A)$, the pullback of $\TFib(\VV)$ along the classifying map $\chi_A : X \to \V$ for the small family $A\to X$.  Such sections correspond uniquely to factorizations $\alpha'$ of $\chi_A$ as indicated, which in turn induce pullback squares of the required kind \eqref{diagram:classifytf}.
 
 Note that the map $p_t : \TTFib\ra\TFib$ has a canonical trivial fibration structure. Indeed, consider the following diagram, in which both squares are pullbacks.
 \begin{equation}\label{diagram:fibisfib}
@@ -2625,18 +2636,18 @@ $\TFib(\VV)$ is the object of trivial fibration structures on $\VV\ra\V$, and it
 \]
 \end{proof}
 
-We record the following notation and corresponding fact from the foregoing proof for future reference:
-
-\begin{lemma}\label{lemma:TFibstable}
-The classifying type $\TFib(A) := +\mathsf{Alg}(A) \to X$ for trivial fibration structures on a map $A\to X$  is stable under pullback, in the sense that for any $f:Y\ra X$, we have two pullback squares,
-\begin{equation}\label{diagram:TFibstable}
-\xymatrix{
-f^*A \ar[d] \ar[r]  & A \ar[d]\\
-Y \ar[r]_{f} &X\\
-\TFib(f^*A)\ar[u] \ar[r] & \TFib(A)\ar[u].
-}
-\end{equation}
-\end{lemma}
+%We record the following notation and corresponding fact from the foregoing proof for future reference:
+%
+%\begin{lemma}\label{lemma:TFibstable}
+%The classifying type $\TFib(A) := +\mathsf{Alg}(A) \to X$ for trivial fibration structures on a map $A\to X$  is stable under pullback, in the sense that for any $f:Y\ra X$, we have two pullback squares,
+%\begin{equation}\label{diagram:TFibstable}
+%\xymatrix{
+%f^*A \ar[d] \ar[r]  & A \ar[d]\\
+%Y \ar[r]_{f} &X\\
+%\TFib(f^*A)\ar[u] \ar[r] & \TFib(A)\ar[u].
+%}
+%\end{equation}
+%\end{lemma}
 
 Since the universal small trivial fibration $\TTFib\ra\TFib$ in $\cSet$ from Proposition \ref{prop:classTFib} was constructed as $\TFib = \TFib(\VV)$ for the universal small family $\VV\to \V$, which in turn is stable under pullback by Corollary \ref{prop:familyclassifierforslices}, we also have: 
 
@@ -2645,16 +2656,16 @@ The base change of the universal small trivial fibration
 \[
 \TTFib\ra\TFib
 \]
-in $\cSet$ along $\I^* : \cSet \to \cSet/_\I$ is a universal small trivial fibration in $\cSet/_\I$.
+in $\cSet$ along $\I^* : \cSet \to \cSet\slice{\I}$ is a universal small trivial fibration in $\cSet\slice{\I}$.
 \end{corollary}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Classifying fibrations}\label{sec:universalfibration}
 
-In order to classify fibrations $A\fib X$, we shall proceed as for trivial fibrations by constructing, for any map $A\ra X$, an object $\Fib(A)\to X$ of fibration structures which, moreover, is stable under pullback.  We then apply the construction to the universal small family $\VV\ra\V$ of Proposition \ref{prop:familyclassifier} to obtain a universal small fibration.    Here we will of course need to distinguish between biased and unbiased fibrations.  In Lemma \ref{lemma:classtypebiasedfibstruct}, we first construct a stable classifying type $\Fib(A)\ra X$ for $\delta$-biased fibration structures on any map $A\to X$ in $\cSet/_\I$ where $\delta$ is the generic point.    In Lemma \ref{lemma:classtypeunbiasedfibstruct}
-we then transfer the construction along the base change $\I^* : \cSet \to \cSet/_\I$ to obtain a classifier $\Fib(A)\ra X$ for unbiased fibration structures on any $A\to X$ in~$\cSet$.
+In order to classify fibrations $A\fib X$, we shall proceed as for trivial fibrations by constructing, for any map $A\ra X$, an object $\Fib(A)\to X$ of fibration structures which, moreover, is stable under pullback.  We then apply the construction to the universal small family $\VV\ra\V$ of Proposition \ref{prop:familyclassifier} to obtain a universal small fibration.    Here we will of course need to distinguish between biased and unbiased fibrations.  In Lemma \ref{lemma:classtypebiasedfibstruct}, we first construct a stable classifying type $\Fib(A)\ra X$ for $\delta$-biased fibration structures on any map $A\to X$ in $\cSet\slice{\I}$ where $\delta$ is the generic point.    In Lemma \ref{lemma:classtypeunbiasedfibstruct}
+we then transfer the construction along the base change $\I^* : \cSet \to \cSet\slice{\I}$ to obtain a classifier $\Fib(A)\ra X$ for unbiased fibration structures on any $A\to X$ in~$\cSet$.
 
-The construction of $\Fib(A)\ra X$ for biased fibration structures with respect to a point $\delta : 1\to \I$ is already a bit more involved than was that of $\TFib(A)\ra X$.  In particular, it requires the codomain $\I$ of $\delta$ to be \emph{tiny}, which is indeed the case for the generic point $\delta : 1 \to  \I^*\I$ in $\cSet/_\I$ by Lemma~\ref{lemma:tinyslicedI}.
+The construction of $\Fib(A)\ra X$ for biased fibration structures with respect to a point $\delta : 1\to \I$ is already a bit more involved than was that of $\TFib(A)\ra X$.  In particular, it requires the codomain $\I$ of $\delta$ to be \emph{tiny}, which is indeed the case for the generic point $\delta : 1 \to  \I^*\I$ in $\cSet\slice{\I}$ by Lemma~\ref{lemma:tinyslicedI}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{The classifying type of biased fibration structures.}
@@ -2737,7 +2748,7 @@ By adjointness, sections of $\Fib(A)\ra X$ then correspond bijectively to sectio
 \end{enumerate}
 
 \begin{lemma}\label{lemma:classtypebiasedfibstruct}
-For any map $A\ra X$ in $\cSet/_\I$, the map $\Fib(A)\ra X$  in \eqref{diagram:fibU6} is a \emph{classifying type for $\delta$-biased fibration structures}: sections of $\Fib(A)\ra X$ correspond bijectively to $\delta$-biased fibration structures on $A\ra X$, and the construction is stable under pullback in the sense that for any $f:Y\ra X$, we have two pullback squares,
+For any map $A\ra X$ in $\cSet\slice{\I}$, the map $\Fib(A)\ra X$  in \eqref{diagram:fibU6} is a \emph{classifying type for $\delta$-biased fibration structures}: sections of $\Fib(A)\ra X$ correspond bijectively to $\delta$-biased fibration structures on $A\ra X$, and the construction is stable under pullback in the sense that for any $f:Y\ra X$, we have two pullback squares,
 \begin{equation}\label{diagram:Fibstable}
 \xymatrix{
 f^*A \ar[d] \ar[r]  & A \ar[d]\\
@@ -2768,7 +2779,7 @@ Now consider the following diagram, in which the right hand side consists  of th
 \end{equation}
 As in the proof of Lemma \ref{lemma:fibrationspullback}, on the left side we repeat the construction with $B \ra Y$ in place of $A\ra X$.  The left face of the indicated (distorted) cube is then also a pullback, whence the back (dotted) face is a pullback, since the two-story square in back is the image of the front pullback square under the right adjoint $(-)^\I$. Finally, the top rectangle in the back is therefore also a pullback.
  
-It follows that $\TFib(\epsilon_B)$ is a pullback of $\TFib(\epsilon_A)$ along the upper dotted arrow, as in Lemma \ref{lemma:TFibstable}, and so the pushforward $F_B$ is a pullback of the corresponding $F_A$, along the lower dotted arrow (which is $f^\I$), by the Beck-Chevalley condition for the dotted pullback square.  Let us record this for later reference:
+It follows that $\TFib(\epsilon_B)$ is a pullback of $\TFib(\epsilon_A)$ along the upper dotted arrow, as in Proposition \ref{prop:TFibstable}, and so the pushforward $F_B$ is a pullback of the corresponding $F_A$, along the lower dotted arrow (which is $f^\I$), by the Beck-Chevalley condition for the dotted pullback square.  Let us record this for later reference:
 \begin{equation}\label{eq:pbFB}
 F_B \cong (f^\I)^*F_A.
 \end{equation}
@@ -2785,7 +2796,7 @@ It remains to show that $\Fib(B)$ is a pullback of $\Fib(A)$ along $f:Y\ra X$, a
 The sides of the cube are pullbacks by the construction of $\Fib(A)$ and $\Fib(B)$. The front face is the root of the pullback \eqref{eq:pbFB} and is thus also a pullback, since the root is a right adjoint. The base commutes by naturality of the unit of the adjunction, and so the back face is also a pullback, as required.  
 \end{proof}
 
-Now let us apply the foregoing construction of $\Fib(A)$ to the universal family $\VV\to\V$ to get $\Fib(\VV) \ra \V$, and define the universal small ($\delta$-biased) fibration in $\cSet/_\I$ by setting $\Fib : =\Fib(\VV)$ and $\FFib\fib\Fib$ by pulling back the universal family,
+Now let us apply the foregoing construction of $\Fib(A)$ to the universal family $\VV\to\V$ to get $\Fib(\VV) \ra \V$, and define the universal small ($\delta$-biased) fibration in $\cSet\slice{\I}$ by setting $\Fib : =\Fib(\VV)$ and $\FFib\fib\Fib$ by pulling back the universal family,
 \begin{equation}\label{diagram:universalfib}
 \xymatrix{
 \FFib \ar[d] \ar[r]  \pbcorner & \VV\ar[d]^p\\
@@ -2796,7 +2807,7 @@ Now let us apply the foregoing construction of $\Fib(A)$ to the universal family
 The proof of the following then proceeds just as that given for $\TTFib \to \TFib$ in Proposition \ref{prop:classTFib}.
 
 \begin{proposition}\label{prop:UniversalFib}
-The map $\FFib\ra\Fib$ constructed in \eqref{diagram:universalfib} is a \emph{universal small $\delta$-biased fibration} in $\cSet/_\I$: every small $\delta$-biased fibration $A \fib X$ in $\cSet/_\I$ is a pullback of $\FFib \fib \Fib$ along a canonically determined classifying map $X\ra \Fib$.
+The map $\FFib\ra\Fib$ constructed in \eqref{diagram:universalfib} is a \emph{universal small $\delta$-biased fibration} in $\cSet\slice{\I}$: every small $\delta$-biased fibration $A \fib X$ in $\cSet\slice{\I}$ is a pullback of $\FFib \fib \Fib$ along a canonically determined classifying map $X\ra \Fib$.
 \begin{equation}\label{diagram:classifyfib}
 \xymatrix{
 A \ar@{>>}[d] \ar[r]  \pbcorner & \FFib \ar@{>>}[d] \\
@@ -2806,14 +2817,14 @@ X \ar[r] & \Fib
 \end{proposition}
 
 \begin{remark}
-Proposition \ref{prop:UniversalFib} made no use of the fact that we were working in the slice category $\cSet/_\I$ with $\delta : 1\to\I$ the generic point. It holds equally for $\delta$-biased fibrations with respect to any point $\delta: 1\to\I$ of a tiny object $\I$.  Thus \eg\ it could be used (with obvious adjustment) to construct a classifier for the $\{\delta_0, \delta_1\}$-biased fibrations of Section \ref{sec:biasedfibration} in (Cartesian, Dedekind, or other varieties of) cubical sets $\cSet$.  
+Proposition \ref{prop:UniversalFib} made no use of the fact that we were working in the slice category $\cSet\slice{\I}$ with $\delta : 1\to\I$ the generic point. It holds equally for $\delta$-biased fibrations with respect to any point $\delta: 1\to\I$ of a tiny object $\I$.  Thus \eg\ it could be used (with obvious adjustment) to construct a classifier for the $\{\delta_0, \delta_1\}$-biased fibrations of Section \ref{sec:biasedfibration} in (Cartesian, Dedekind, or other varieties of) cubical sets $\cSet$.  
 \end{remark}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection*{The classifying type of unbiased fibration structures.}\label{par:classifyunbiasedfib} 
 
-In order to classify \emph{unbiased} fibration structures on maps $A\to X$ in $\cSet$, we first apply the pullback $\I^*: \cSet \ra \cSet/_\I$ and take the classifier $\Fib(\I^*A)\ra \I^*X$ for $\delta$-biased fibration structures, then apply the pushforward $\I_*: \cSet/_\I \ra \cSet$ and pull the result   $\I_*\Fib(\I^*A)\ra \I_*\I^*X$ back along the unit  $X \to \I_*\I^*X$.  
+In order to classify \emph{unbiased} fibration structures on maps $A\to X$ in $\cSet$, we first apply the pullback $\I^*: \cSet \ra \cSet\slice{\I}$ and take the classifier $\Fib(\I^*A)\ra \I^*X$ for $\delta$-biased fibration structures, then apply the pushforward $\I_*: \cSet\slice{\I} \ra \cSet$ and pull the result   $\I_*\Fib(\I^*A)\ra \I_*\I^*X$ back along the unit  $X \to \I_*\I^*X$.  
 
 To show that this indeed classifies unbiased fibration structures on $A\to X$, let us first rename the classifying type from Lemma \ref{lemma:classtypebiasedfibstruct}, which was constructed over $\I$, to $\Fib_i(\I^*A) \ra \I^{*}X$, and then apply $\I_*$ to get the map,
 \[
@@ -2832,7 +2843,7 @@ It now follows immediately from the adjunction $\I^*\dashv \I_*$ that sections o
 For any map $A\ra X$ in $\cSet$, the map $\Fib(A)\ra X$ in \eqref{diagram:fibU7} is a \emph{classifying type for unbiased fibration structures}: sections of $\Fib(A)\ra X$ correspond bijectively to unbiased fibration structures on $A\ra X$, and the construction is stable under pullback in the expected sense (as in Lemma \ref{lemma:classtypebiasedfibstruct}).
 \end{lemma}
 
-\begin{proof} It remains only to check the stability, but since both of the adjoints in $\I^* \dashv \I_* : \cSet/_\I \ra\cSet$ preserve pullbacks, this follows easily from the fact that the classifying types $\Fib_i$ are stable under pullback by Lemma \ref{lemma:classtypebiasedfibstruct}.
+\begin{proof} It remains only to check the stability, but since both of the adjoints in $\I^* \dashv \I_* : \cSet\slice{\I} \ra\cSet$ preserve pullbacks, this follows easily from the fact that the classifying types $\Fib_i$ are stable under pullback by Lemma \ref{lemma:classtypebiasedfibstruct}.
 \end{proof}
 
 Finally, we can again take $\Fib := \Fib(\VV)$ to now obtain a universal small \emph{unbiased} fibration $\FFib\ra\Fib$ in $\cSet$, as in \eqref{diagram:universalfib}, and the proof can conclude just as in that for Proposition~\ref{prop:classTFib}.  
@@ -2848,11 +2859,11 @@ X \ar[r] & \Fib
 \end{proposition}
 
 \begin{remark}\label{sliceuniversalfibrations}
-Recall from Proposition \ref{prop:familyclassifierforslices} that the universe in the slice category $\cSet/_\I$ is the pullback of the universe $\V$ from $\cSet$ along the base change $\I^* : \cSet \to \cSet/_\I$.  Thus in the construction just given of the classifier $\FFib\ra\Fib$ for unbiased fibrations in $\cSet$  we are first building the classifying type 
+Recall from Proposition \ref{prop:familyclassifierforslices} that the universe in the slice category $\cSet\slice{\I}$ is the pullback of the universe $\V$ from $\cSet$ along the base change $\I^* : \cSet \to \cSet\slice{\I}$.  Thus in the construction just given of the classifier $\FFib\ra\Fib$ for unbiased fibrations in $\cSet$  we are first building the classifying type 
 \[
 \Fib_i(\I^*\VV) \to \I^*\V
 \]
- for $\delta$-biased fibration structures on the universal family in $\cSet/_\I$, and then taking a pushforward $\I_*: \cSet/_\I \to \cSet$ to obtain the (base of the) classifier for unbiased fibrations as the pullback along the unit:
+ for $\delta$-biased fibration structures on the universal family in $\cSet\slice{\I}$, and then taking a pushforward $\I_*: \cSet\slice{\I} \to \cSet$ to obtain the (base of the) classifier for unbiased fibrations as the pullback along the unit:
 \begin{equation}\label{diagram:fibUuniversal}
 \xymatrix{
  \Fib(\VV) \ar[d] \ar[r] \pbcorner & \ar[d] \Pi_{i:\I}\Fib_i(\I^*\VV) \\
@@ -2912,7 +2923,7 @@ A' \ar[dd]  \ar[rr] \pbmark && A \ar[dd]  \\
 \TFib(A) \ar[rr] && X
 \end{tikzcd}
 \end{equation}
-Since $\TFib$ is stable under pullback (by Lemma \ref{lemma:TFibstable}), we have $\TFib(A)^2 \cong \TFib(A')$, and since $\TFib(A)^2$ has a canonical section, $A' \to \TFib(A)$ is therefore a trivial fibration.  Inspecting the definition of $\TFib(A) = +\mathsf{Alg}(A)$ in \eqref{diag:plualgstru}, we see that if a map $A\to X$ is a trivial fibration, then so is $\TFib(A)\to X$ (since $\eta : A\to A^+$ is always a cofibration). Thus $\TFib(A)^2 \cong \TFib(A') \to\TFib(A)$ is also a trivial fibration.
+Since $\TFib$ is stable under pullback (by Proposition \ref{prop:TFibstable}), we have $\TFib(A)^2 \cong \TFib(A')$, and since $\TFib(A)^2$ has a canonical section, $A' \to \TFib(A)$ is therefore a trivial fibration.  Inspecting the definition of $\TFib(A) = +\mathsf{Alg}(A)$ in \eqref{diag:plualgstru}, we see that if a map $A\to X$ is a trivial fibration, then so is $\TFib(A)\to X$ (since $\eta : A\to A^+$ is always a cofibration). Thus $\TFib(A)^2 \cong \TFib(A') \to\TFib(A)$ is also a trivial fibration.
 
 For $\Fib(A)\to X$, with reference to the construction \eqref{diagram:fibU8} we use the foregoing to infer that $\TFib(\epsilon_A) \to A_\epsilon$ is a weak proposition, and so therefore is its pushforward $F_A = (p_\epsilon)_*\TFib(\epsilon_A)\to X^\I$ along the projection $p_\epsilon : A_\epsilon = X^I\times_X A \to X^\I$, since pushforward clearly preserves weak propositions.  Applying the root $(-)_\I$ preserves trivial fibrations, by the assumption that its left adjoint $(-)^\I$ preserves cofibrations, and so, as a right adjoint, it also preserves weak propositions. Therefore $(F_A)_\I \to (X^\I)_\I$ is a weak proposition, but then so is its pullback along the unit $X\to (X^\I)_\I$, which is $\Fib_i(A)\to X$, the classifier for $\delta$-biased fibration structures.  The same reasoning shows that $\Fib(A) = \rho^*\Pi_{i:\I}\Fib_i(\I^*A)$ (as in \eqref{diagram:fibU7}) is also a weak proposition.
 \end{proof}
@@ -2923,7 +2934,7 @@ In light of Lemma \ref{lemma:Fibweakprop} we shall assume as a final axiom on co
 \item[(C8)] The pathobject functor preserves cofibrations: thus $c:A \cof B$ implies $c^\I:A^\I \cof B^\I$.
 \end{enumerate}
 
-Now, by Propositions \ref{prop:UniversalFib} and \ref{prop:UniversalunbiasedFib} we have universal small $\delta$-biased and unbiased fibrations, the former in $\cSet/_\I$, the latter in $\cSet$.  The following remarks apply to both, which we refer to neutrally as $\UU \fib \U$.  The base object $\U$ is (the domain of) the classifying type $\mathsf{Fib}(\VV) \to \V$, where $\VV \to \V$ is the universal small family.  Type theoretically, this object can be written as
+Now, by Propositions \ref{prop:UniversalFib} and \ref{prop:UniversalunbiasedFib} we have universal small $\delta$-biased and unbiased fibrations, the former in $\cSet\slice{\I}$, the latter in $\cSet$.  The following remarks apply to both, which we refer to neutrally as $\UU \fib \U$.  The base object $\U$ is (the domain of) the classifying type $\mathsf{Fib}(\VV) \to \V$, where $\VV \to \V$ is the universal small family.  Type theoretically, this object can be written as
 \[
 \U = \Sigma_{E:\V}\Fib(E)\,,
 \] 
@@ -3046,7 +3057,7 @@ Since factoring a map in the slice category is evidently given simply by factori
 The specification in Definition \ref{def:slicepremodelstructure} determines a premodel structure on $\cSetZ$ for any object $Z \in \cSet$.
 \end{proposition}
 
-The reader is warned that when $Z = \I$ there is a possibility of confusion with the $\delta$-biased fibrations in $\cSet/_\I$, which do not in general agree with the $\I$-sliced (unbiased) fibrations.  
+The reader is warned that when $Z = \I$ there is a possibility of confusion with the $\delta$-biased fibrations in $\cSet\slice{\I}$, which do not in general agree with the $\I$-sliced (unbiased) fibrations.  
 
 In order to verify the axioms (C1)-(C8) for cofibrations, let $Z^*1 \rightrightarrows Z^*\I$ in $\cSetZ$ be the result of pulling the interval $1 \rightrightarrows \I$ back along $Z\to 1$, to obtain a bipointed object in $\cSetZ$ that we shall write as,
 \begin{equation}\label{eq:relativeinterval}
