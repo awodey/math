@@ -1587,7 +1587,7 @@ Every homotopy equivalence is a weak homotopy equivalence.
 \end{lemma}
 %
 \begin{proof}
-Let $f: X\ra Y$ be a homotopy equivalence.  Then $K^f : K^Y \ra K^X$ is also a homotopy equivalence for any $K$, since homotopy respects (post-) composition by all maps.  If $K$ is fibrant, then so is $K^X$ and $\pi_0$ is well defined on homotopy classes of maps, by Proposition \ref{prop:homotopyintofibequivrel}.  It clearly takes homotopy equivalences to isomorphisms of sets, since it identifies homotopic maps.
+Let $f: X\ra Y$ be a homotopy equivalence.  Then $K^f : K^Y \ra K^X$ is also a homotopy equivalence for any $K$, since homotopy respects (pre- and) post-composition by all maps.  If $K$ is fibrant, then so is $K^X$ and $\pi_0$ is well defined on homotopy classes of maps, by Proposition \ref{prop:homotopyintofibequivrel}.  It clearly takes homotopy equivalences to isomorphisms of sets, since it identifies homotopic maps.
 \end{proof}
 
 \begin{lemma}\label{lemma:WHE342}
@@ -3046,7 +3046,7 @@ B  \ar[r, swap, "\eta_B" ]   \ar[d] & Z^*Z_!A   \ar[d] \ar[r, equals] & Z\times 
 Z  \ar[r, equals] & Z  \ar[r, equals] & Z,
  \end{tikzcd}
  \end{equation}
-because the graph $\eta_A = \pair{p_A, 1_Z} : A \to Z\times A$ is a pullback of $\Delta_A = \pair{1_Z, 1_Z} : Z \to Z\times Z$ along $1_Z \times p_A : Z\times A \to Z\times Z$, and similarly for $\eta_B$.  Thus in particular, every trivial fibration $A \stackrel{g}{\fib} B \stackrel{p_B}{\too} Z$ over $Z$ is a pullback over $Z$ of one of the form $Z^*g : Z^*A \fib Z^*B$ for a trivial fibration $g : A\fib B$ in $\cSet$.  Therefore $f$ is a cofibration in $\cSetZ$ if and only if $f\pitchfork g$ in $\cSetZ$ for all trivial fibrations $g : A\fib B$ in $\cSetZ$, as claimed. 
+because the graph $\eta_A = \pair{p_A, 1_Z} : A \to Z\times A$ is a pullback of $\Delta_Z = \pair{1_Z, 1_Z} : Z \to Z\times Z$ along $1_Z \times p_A : Z\times A \to Z\times Z$, and similarly for $\eta_B$.  Thus in particular, every trivial fibration $A \stackrel{g}{\fib} B \stackrel{p_B}{\too} Z$ over $Z$ is a pullback over $Z$ of one of the form $Z^*g : Z^*A \fib Z^*B$ for a trivial fibration $g : A\fib B$ in $\cSet$.  Therefore $f$ is a cofibration in $\cSetZ$ if and only if $f\pitchfork g$ in $\cSetZ$ for all trivial fibrations $g : A\fib B$ in $\cSetZ$, as claimed. 
 The case of trivial cofibrations and fibrations is exactly analogous.
 \end{proof}
 
@@ -3162,7 +3162,7 @@ Note that an arbitrary homotopy $\varphi : f \sim  g$ will not result in one ove
 For any object $Z$, the relation of homotopy over $Z$ between maps $f, g: X\rightrightarrows Y$ over $Z$ is preserved by pre- and post-composition. If $X\fib Z$ and $Y\fib Z$ are both fibrations, then the relation $f \sim_Z g$ of maps between them is an equivalence relation.
 \end{proposition}
 
-The proof is essentially the same as the corresponding one for homotopy over $1$, Proposition \ref{prop:homotopyintofibequivrel}, with the exception that both $X$ and $Y$ are required to be fibrant objects over $Z$, so that the exponential $Y^X$ over $Z$ is also a fibration $Y^Z  \fib Z$ (by Corollary \ref{cor:unbiasedPi}).
+The proof is essentially the same as the corresponding one for homotopy over $1$, Proposition \ref{prop:homotopyintofibequivrel}, with the exception that both $X$ and $Y$ are required to be fibrant objects over $Z$, so that the exponential $Y^X$, taken over $Z$, is also a fibration $Y^X  \fib Z$ (by Corollary \ref{cor:unbiasedPi}).
 
 Next we define a \emph{connected components} functor on the full subcategory $\Fib_Z \hook \cSetZ$ of fibrations over $Z$,
 \[
@@ -3182,7 +3182,7 @@ so $(\pi_0)_Z(F^X)$ is the set  $[X, F]_Z$ of $Z$-homotopy equivalence classes o
 For maps over a base object $Z$, we can then define the notions of homotopy equivalence over $Z$ and, between fibrations, weak homotopy equivalence over $Z$ as before (cf.~Section \ref{sec:weq}):
 
 \begin{definition}\label{def:slicedhewe}
-Let $Z$ be any object in $\cSet$, and let $X \to Z$ and $Y \to Z$ be regarded as objects over $Z$.
+Let $Z$ be any object in $\cSet$, and let $X \to Z$ and $Y \to Z$, regarded as objects over $Z$.
 %
 \begin{enumerate}
 %
@@ -3200,14 +3200,14 @@ is bijective on connected components,
 \[
 (\pi_0)_Z(F^f) : (\pi_0)_Z(F^Y) \cong (\pi_0)_Z(F^X)\,,
 \]
-where the indicated exponentials are taken in the slice category. 
+where the indicated exponentials are taken in the slice category over $Z$. 
 \end{enumerate}
 \end{definition} 
 
 The proof of the following is analogous to that of the corresponding facts for the case $Z=1$ (Lemmas \ref{lemma:HE342} and \ref{lemma:WHE342}).
 
 \begin{lemma}\label{lemma:HE342sliced}
-The  homotopy equivalences over any object $Z$ satisfy the 3-for-2 condition, as do the weak homotopy equivalences over $Z$.
+For any object $Z$, the homotopy equivalences over $Z$ between fibrations $F\fib Z$ satisfy the 3-for-2 condition, as do the the weak homotopy equivalences over $Z$.
 \end{lemma}
 
 \begin{proposition}\label{prop:weqisheoverZ}
@@ -3283,7 +3283,7 @@ Thus $(\pi_0)_Z((Z^*K)^X) \cong (\pi_0)(K^{Z_!X})$, and the same is true with $Y
 \end{proof}
 
 \begin{proposition}\label{prop:slicedheweequiv}
-Let $Z$ be any object in $\cSet$ and $X \fib Z$ and $Y \fib Z$ fibrations.  For any map $f : X\to Y$ over $Z$,  the following conditions are equivalent, \emph{assuming the fibration extension property, Corollary \ref{cor:FEP}}.
+Let $Z$ be any object in $\cSet$ and $X \fib Z$ and $Y \fib Z$ fibrations.   \emph{Assuming the fibration extension property}, Corollary \ref{cor:FEP}, the following conditions are equivalent for any map $f : X\to Y$ over $Z$.
 %
 \begin{enumerate}
 \item $f : X\to Y$  is a weak equivalence over $Z$. 
@@ -3469,9 +3469,11 @@ there is a fibration $A\onto C$ and a weak equivalence $w: A \simeq B$ over $C$ 
 Call the given fibration $q:B\ra C$ and let $b:=  q^*c : c^*B \ra B$ be the indicated pullback, which is thus also a cofibration. Let $w := b_*w' : A\ra B$ be the pushforward of $w'$ along $b$.  Composing $w$ with $q$ gives the map $p:= q\circ w:A\ra C$.  Since $b$ is monic, we indeed have $b^*w = w'$, thus filling in all the dotted arrows in \eqref{diag:EEP}.  Note moreover that $c^*w =  b^*w = w'$, as required. It remains to show that $p:A\ra C$ is a fibration and $w : A\ra B$ is a weak equivalence.   
 \begin{equation}\label{diag:EEPfactored}
 \xymatrix@=1.5em{
-A' \ar@{->>}[dddd] \ar[rrdd]_{\sim}^{w'} \ar@{>->}[rrrr] && && A \ar[dddd]_>>>>>>>>>>>>p \ar[rrdd]^{w} \ar[rr]^s && \ar@{.>}@/_1.5pc/[ll]_{p_w} P_w \ar[dd]^t \\
+A' \ar@{->>}[dddd] \ar[rrdd]_{\sim}^{w'} \ar@{>->}[rrrr] && 
+	&& A \ar[dddd]_>>>>>>>>>>>p \ar[rrdd]^{w} \ar[rr]^s 
+	&& \ar@{.>}@/_1.5pc/[ll]_{p_w} P_w \ar[dd]^t \\
 \\
-&& c^*B \ar@{->>}[lldd] \ar@{>->}[rrrr]_<<<<<<<<<<b  &&&& B \ar@{->>}[lldd]^q  \\
+&& c^*B \ar@{->>}[lldd] \ar@{>->}[rrrr]^<<<<<<<<<<b  &&&& B \ar@{->>}[lldd]^q  \\
 \\
 C' \ar@{>->}[rrrr]_c &&&& C &&
 }
@@ -3497,7 +3499,7 @@ Since $t' = c^*t = b^*t$ is a trivial fibration, its pushforward $b_*b^*t$ along
 \xymatrix@=1.5em{
 A' \ar@{->>}[dddd] \ar[rrdd]_{\sim}^{w'} \ar@{>->}[rrrr] && && A \ar[dddd]_>>>>>>>>>>>>p \ar[rrdd]^{w} \ar[rr]^s && \ar@{.>}@/_1.5pc/[ll]_{p_w} P_w \ar[dd]^t \ar[rr]^-\eta && b_*b^*P_w \ar[lldd]^{b_*b^*t}\\
 \\
-&& B' \ar@{->>}[lldd] \ar@{>->}[rrrr]_<<<<<<<<<<b  &&&& B \ar@{->>}[lldd]^q &&&& \\
+&& B' \ar@{->>}[lldd] \ar@{>->}[rrrr]^<<<<<<<<<<b  &&&& B \ar@{->>}[lldd]^q &&&& \\
 \\
 C' \ar@{>->}[rrrr]_c &&&& C &&&&
 }
