@@ -3405,12 +3405,21 @@ Again, summarizing (1)-(3) in the relative case:
 \begin{lemma}\label{lemma:relative_pathspace_factorization} 
 For any map $f : X\ra Y$  over any base $Z\in \cSet$, 
 there is a stable factorization $f = t\circ s$ over $Z$,
+%  
 \begin{equation}\label{diag:pathspace_factorization4}
 \xymatrix{
-X \ar[d] \ar[r]^s \ar[rd]_f & \ar@{.>}@/_1.5pc/[l]_{p_f} P_f \ar[d]^t \\
-Z & \ar[l] Y
+&   \ar@{.>}@/_1.5pc/[ld]_{p_f} P_f \ar[rd]^t & \\
+X \ar[rr]_f \ar[rd] \ar[ru]^{s} && Y \ar[ld] \\
+& Z
 }
-\end{equation} 
+\end{equation}
+%
+%\begin{equation}\label{diag:pathspace_factorization4}
+%\xymatrix{
+%X \ar[d] \ar[r]^s \ar[rd]_f & \ar@{.>}@/_1.5pc/[l]_{p_f} P_f \ar[d]^t \\
+%Z & \ar[l] Y
+%}
+%\end{equation} 
 in which
 \begin{enumerate}
 \item $s : X \to P_f$ is a section of a map $p_f : P_f \to X$ over $Z$,
@@ -3420,7 +3429,7 @@ in which
 Note that the retraction $p_f : P_f \ra X$ of $s$ is not over $Y$.
 \end{lemma}
 
-The following fact concerning just the cofibration weak factorization system will also be needed.
+Finally, the following fact concerning just the cofibration weak factorization system will also be needed.
 
 \begin{lemma}\label{lemma:etaTF}
 Let $p: E \onto B$ be a trivial fibration and $c : C\mono B$ a cofibration.  Then the unit $\eta:E \ra c_*c^*E$ over $B$ of the base change along $c$,
