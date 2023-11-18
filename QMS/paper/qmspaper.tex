@@ -3042,7 +3042,7 @@ Now observe that for any map $A \stackrel{g}{\to} B \stackrel{p_B}{\too} Z$ over
 \begin{equation}\label{eq:unitgraphpullback}
 \begin{tikzcd}
 A \ar[d,swap, "g"] \ar[r, "\eta_A" ] \pbmark & Z^*Z_!A  \ar[d, "Z^*Z_!g"] \ar[r, equals] & Z\times A \ar[d, "Z\times g"] \\  
-B  \ar[r, swap, "\eta_B" ]   \ar[d] & Z^*Z_!A   \ar[d] \ar[r, equals] & Z\times B  \ar[d] \\
+B  \ar[r, swap, "\eta_B" ]   \ar[d] & Z^*Z_!B   \ar[d] \ar[r, equals] & Z\times B  \ar[d] \\
 Z  \ar[r, equals] & Z  \ar[r, equals] & Z,
  \end{tikzcd}
  \end{equation}
@@ -3458,7 +3458,7 @@ Now for any cofibration $A \stackrel{a}{\cof} X\to B$ over $B$, by Lemma \ref{le
 \[
 a \pitchfork (c\!\Rightarrow_B\!p)  \quad\text{iff}\quad (a\!\otimes_B\!c) \pitchfork p.
 \]
-But since $c : C\mono B$ is a cofibration, $a\otimes_B c$ is also a cofibration, since $a : A \cof X$ is one, and by axiom (C6), cofibrations are closed under pushout-products.  Thus $(a\otimes_B c) \pitchfork p$ indeed holds, since $p$ is a trivial fibration.
+But since $c : C\mono B$ is a cofibration, $a\otimes_B c$ is also a cofibration, since $a : A \cof X$ is one, and by axiom (C6), cofibrations are closed under pushout-products (also in a slice).  Thus $(a\otimes_B c) \pitchfork p$ indeed holds, since $p$ is a trivial fibration.
 \end{proof}
 
 \begin{proposition}[Equivalence extension property]\label{prop:EEP}
