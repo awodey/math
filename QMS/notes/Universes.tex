@@ -201,7 +201,7 @@
 \medskip
 
 \begin{abstract}
-We have another look at the construction by Hofmann and Streicher of a universe $(U,\El)$ for the interpretation of Martin-L\"of type theory in a presheaf category $\psh{\C}$.  It turns out that $(U,\El)$ can be described as the \emph{categorical nerve} of the classifier $\dot{\Set}^{\mathsf{op}} \to \op{\Set}$ for discrete fibrations in $\Cat$, where the nerve functor is right adjoint to the so-called ``Grothendieck construction'' taking a presheaf $P : \op{\C}\to\Set$ to its category of elements $\int_\C P$.  We also consider change of base for such universes, as well as universes of structured families, such as fibrations.
+We take another look at the construction by Hofmann and Streicher of a universe $(U,\El)$ for the interpretation of Martin-L\"of type theory in a presheaf category $\psh{\C}$.  It turns out that $(U,\El)$ can be described as the \emph{nerve} of the classifier $\dot{\Set}^{\mathsf{op}} \to {\Set}^{\mathsf{op}}$ for discrete fibrations in $\Cat$, where the nerve functor is right adjoint to the so-called ``Grothendieck construction'' taking a presheaf $P : \op{\C}\to\Set$ to its category of elements $\int_\C P$.  We also consider change of base for such universes, as well as universes of structured families, such as fibrations.
 \end{abstract}
 
 %\setcounter{tocdepth}{1}
@@ -262,7 +262,7 @@ For any presheaf $X$ on $\C$, recall that the category of elements is the comma 
 \int_\C X\ =\ \yon_\C/_X\,,
 \] 
 where $\yon_\C : \C \to \psh\C$ is the Yoneda embedding, which we may supress and write simply $\C/_X$. 
-While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe $(U, \El)$ at the point \eqref{eq:elements}, the authors seem to have missed a trick  which would have simplified things:\footnote{C.\ Sattler also knew of this description of the object $U$ of the Hofmann-Streicher universe $(U, \El)$; presumably, others do as well.}
+While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe $(U, \El)$ at the point \eqref{eq:elements}, the authors seem to have missed a trick  which would have simplified things:\footnote{Since the appearance of \cite{HS:1997}, other researchers,  including apparently C.~Sattler, have also noted the following description of the base object $U$ of the universe $(U, \El)$.}
 
 \begin{proposition}[\cite{G:1983},\S{28}]
 The category of elements functor $\int_\C : \widehat\C \too \Cat$ has a right adjoint, which we denote
@@ -556,7 +556,7 @@ For $\VV_{\kappa}$ we then have,
 in the image of $\nu : \Cat\too\widehat\C$, classifying small maps in $\widehat\C$ of increasing size, in the sense of Proposition \ref{prop:Valphaclassifies}.
 
 \item Let $\alpha = 2$ so that $1\to 2$ is the subobject classifier of $\Set$, and 
-$$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$ is then a classifier in $\Cat$ for \emph{sieves}, i.e.\ full subcategories $\mathbb{S}\hook\A$ closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$.  The nerve $\VV_{2}  \to \V_{2}$ is then exactly the subobject classifier $1\to\Omega$ of $\widehat\C$,
+$$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$ is then a classifier in $\Cat$ for \emph{sieves}, i.e.\ full subcategories $\mathbb{S}\hook\A$ closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$ (equivalently, discrete fibrations whose fibers are truth-values).  The nerve $\VV_{2}  \to \V_{2}$ is then the usual subobject classifier $1\to\Omega$ of the presheaf topos $\widehat\C$,
 \[
 1 = \nu \mathbbm{1} = \VV_{2} \too  \V_{2} = \nu \mathbbm{2} = \Omega  \,.
 \]
@@ -693,9 +693,10 @@ Since the map on the right is the universal small discrete fibration, this condi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{7. Classifying fibrations}
 
-Given the universal small family $\VV\to \V$ of Proposition \ref{prop:Valphaclassifies}, we can construct a classifier $\UU\to\U$ for any \emph{structured notion of fibration} using the method of \emph{classifying types} developed in \cite{AwodeyCCMC}.  We then consider the behavior of such universal maps under base change.
+Given the universal small family $\VV\to \V$ of Proposition \ref{prop:Valphaclassifies}, we can construct a classifier $\UU\to\U$ for any \emph{structured notion of fibration} using the method of \emph{classifying types} developed in \cite{AwodeyCCMC} (which in turn is based on Shulman's \emph{locally representable notion of fibered structure} \cite{shulman2019infty1toposes}).
+We then consider the behavior of such universal maps under base change.
 
-Suppose that for each object $X$ and family $A\to X$, there is an object $\Fib(A) \ra X$ over $X$ that classifies fibration structures on $A\to X$, in the sense that there is a bijection, natural in $X$, between sections of $\Fib(A) \ra X$ and (some notion of) fibration structures on $A\to X$.
+Suppose that for each object $X$ and family $A\to X$, there is a family $\Fib(A) \ra X$ that classifies fibration structures on $A\to X$, in the sense that there is a bijection, natural in $X$, between sections of $\Fib(A) \ra X$ and (a notion of) fibration structures on $A\to X$.
 Naturality in $X$ means that $\Fib(A) \ra X$ is stable under pullback, in the sense that for any $f:Y\ra X$, we have two pullback squares:
 \begin{equation}\label{diagram:fibstable}
 \xymatrix{
@@ -780,7 +781,7 @@ But since $\U = \Fib(\VV)$ by definition, the lower square is the pullback of $\
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{8. Change of base for universal fibrations}
 
-Now let  $F : \C \to \D$ in $\Cat$ with $\VV_\C\to \V_\C$ in $\widehat{\C}$ and $\VV_\D\to \V_\D$ in~$\widehat{\D}$, related by the base change geometric morphism $$F_!\dashv F^*\dashv F_* : \widehat{\C} \too \widehat{\D}$$ as in Proposition \ref{prop:universebasechange}, and suppose that we have a structured notion of fibration in $\widehat\C$,  classified by $\UU_\C \to \U_\C$ as in Proposition \ref{prop:classTFib}.  Then we can can transfer a structured notion of fibration to $\widehat{\D}$ by declaring $B\to Y$ to be a fibration in $\widehat{\D}$ just if $F^*B\to F^*Y$ is one in $\widehat\C$; more precisely, we define a \emph{fibration structure} on $B\to Y$ to be one on $F^*B\to F^*Y$.  These structures are classified in $\widehat{\D}$ as follows.
+Now let  $F : \C \to \D$ in $\Cat$ with $\VV_\C\to \V_\C$ in $\widehat{\C}$ and $\VV_\D\to \V_\D$ in~$\widehat{\D}$, related by the base change geometric morphism $$F_!\dashv F^*\dashv F_* : \widehat{\C} \too \widehat{\D}$$ as in Proposition \ref{prop:universebasechange}, and suppose that we have a structured notion of fibration in $\widehat\C$,  classified by $\UU_\C \to \U_\C$ as in Proposition \ref{prop:classTFib}.  Then we can transfer a structured notion of fibration to $\widehat{\D}$ by declaring $B\to Y$ to be a fibration in $\widehat{\D}$ just if $F^*B\to F^*Y$ is one in $\widehat\C$; more precisely, we define a \emph{fibration structure} on $B\to Y$ to be one on $F^*B\to F^*Y$.  These structures are then classified in $\widehat{\D}$, as follows.
 
 Fibration structures on $F^*B\to F^*Y$ are classified in $\widehat{\C}$ by sections $\sigma$ of $\Fib(F^*B)\to F^*Y$ ,
 %
@@ -881,10 +882,23 @@ It suffices to show that the right face is a pullback, and since $F_*$ preserves
 But that follows from the stability of $\Fib$ in $\widehat\C$ and preservation by $F^*$ of the classifying pullback square for $B\to Y$.
 \end{proof}
 
+Thus, as claimed, we have:
+\begin{theorem}[Base change for universes of fibrations]
+Let $F : \C \to \D$ with base change
+\[
+F_!\dashv F^*\dashv F_* : \widehat{\C} \too \widehat{\D}
+\]
+ and suppose that we have a structured notion of fibration in $\widehat\C$ classified by a universe $\UU_\C \to \U_\C$.  Then the structured notion of fibration in $\widehat{\D}$ determined by pullback along $F^*$ is classified by $\UU_{\D} \to \U_{\D}$ where
+\begin{equation}%\label{diagram:changebasefib4}
+\U_\D := \eta^*F_*\Fib(F^*\VV_\D) \too \V_\D\,.
+\end{equation}
+
+\end{theorem}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Acknowledgement}
 
-Thanks to Mathieu Anel, Thierry Coquand, Marcelo Fiore, and Emily Riehl for discussions, and to Evan Cavallo, Ivan Di Liberti, and Taichi Uemura for help with the references. This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
+Thanks to Mathieu Anel, Reid Barton, Thierry Coquand, Marcelo Fiore, and Emily Riehl for discussions, and to Evan Cavallo, Ivan Di Liberti, and Taichi Uemura for help with the references. This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
 
 \bibliographystyle{alpha}
 \bibliography{../references}
@@ -892,4 +906,3 @@ Thanks to Mathieu Anel, Thierry Coquand, Marcelo Fiore, and Emily Riehl for disc
 %%%
 \end{document}
 %%%
-
