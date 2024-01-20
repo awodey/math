@@ -1,0 +1,490 @@
+%%
+% Notes on flat semilattices
+% January 2024
+%
+%
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,amsthm,latexsym}
+\usepackage{bm,bbm}
+\usepackage[all,cmtip]{xy}
+\input{diagxy}
+%\CompileMatrices       
+\usepackage{url}
+%\usepackage{fullpage}
+\usepackage[colorlinks=true,linkcolor=blue,anchorcolor=blue,citecolor=blue,filecolor=blue,urlcolor=blue]{hyperref}
+
+\newcommand{\ednote}[1]{[\textit{\color{red}{#1}}]} % editorial note
+
+% categories
+\newcommand{\cattwo}{\ensuremath{\mathbbm{2}}}
+\newcommand{\A}{\ensuremath{\mathbb{A}}}
+\newcommand{\B}{\ensuremath{\mathbb{B}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\D}{\ensuremath{\mathbb{D}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\T}{\ensuremath{\mathbb{T}}}
+\renewcommand{\AA}{\ensuremath{\mathcal{A}}}
+\newcommand{\BB}{\ensuremath{\mathcal{B}}}
+\newcommand{\CC}{\ensuremath{\mathcal{C}}}
+\newcommand{\DD}{\ensuremath{\mathcal{D}}}
+\newcommand{\EE}{\ensuremath{\mathcal{E}}}
+\newcommand{\FF}{\ensuremath{\mathcal{F}}}
+\newcommand{\WW}{\ensuremath{\mathcal{W}}}
+
+\newcommand{\op}[1]{\ensuremath{{#1}^{\mathsf{op}}}}
+\newcommand{\pshx}[1]{\ensuremath{\mathsf{Set}^{\op{#1}}}}
+\newcommand{\psh}[1]{\ensuremath{[\op{#1},\mathsf{Set}]}}
+\newcommand{\pshat}[1]{\ensuremath{\widehat{#1}}}
+
+\newcommand{\Set}{\ensuremath{\mathsf{Set}}}
+\newcommand{\set}{\ensuremath{\mathsf{set}}}
+\newcommand{\Cat}{\ensuremath{\mathsf{Cat}}}
+\newcommand{\cat}{\ensuremath{\mathsf{cat}}}
+\newcommand{\Pos}{\ensuremath{\mathsf{Pos}}}
+\newcommand{\pos}{\ensuremath{\mathsf{pos}}}
+\newcommand{\covpshx}[1]{\ensuremath{\mathsf{Set}^{#1}}}
+\newcommand{\cSet}{\ensuremath{\mathsf{cSet}}}
+
+\newcommand{\Hom}{\ensuremath{\mathsf{Hom}}}
+\renewcommand{\hom}{\ensuremath{\mathsf{Hom}}}
+\newcommand{\y}{\ensuremath{\mathsf{y}}} % Yoneda embedding
+\newcommand{\elem}[1]{\textstyle\int\!{#1}}% category of elements
+\newcommand{\colim}{\varinjlim}% colimit with subscript
+
+\newcommand{\FP}{\ensuremath{\mathsf{FP}}}
+\newcommand{\ModT}{\ensuremath{\mathsf{Mod}(\T)}}
+\newcommand{\TAlg}{\ensuremath{\T\text{-}\mathsf{Alg}}}
+
+% Algebras
+\newcommand{\alg}[1]{\ensuremath{\mathsf{#1}}}
+\newcommand{\algA}{\ensuremath{\mathsf{A}}}
+\newcommand{\algB}{\ensuremath{\mathsf{B}}}
+\newcommand{\algC}{\ensuremath{\mathsf{C}}}
+\newcommand{\algD}{\ensuremath{\mathsf{D}}}
+
+% arrows
+\newcommand{\hook}{\ensuremath{\hookrightarrow}}
+\newcommand{\mono}{\ensuremath{\rightarrowtail}}
+\newcommand{\ra}{\ensuremath{\rightarrow}}
+\newcommand{\cof}{\ensuremath{\rightarrowtail}}
+\newcommand{\fib}{\ensuremath{\epi}}
+\renewcommand{\to}{\ensuremath{\rightarrow}}
+\newcommand{\too}{\ensuremath{\longrightarrow}}
+
+% cubical sets
+\newcommand{\I}{\ensuremath{\mathrm{I}}}
+\newcommand{\II}{\ensuremath{\mathbb{I}}}
+\renewcommand{\H}{\ensuremath{\mathbb{H}}}
+\newcommand{\HH}{\ensuremath{\mathcal{H}}}
+
+% type theory
+\newcommand{\G}{\ensuremath{\Gamma}}
+\newcommand{\defeq}{=_{\mathrm{def}}}
+\newcommand{\type}{\mathsf{type}}       
+\newcommand{\types}[2]{#1 \vdash #2:\type}
+\newcommand{\Gtypes}[1]{\types{\Gamma}{#1}}
+\newcommand{\term}[2]{#1\,:\,#2}
+\newcommand{\terms}[2]{#1 \vdash #2}
+\newcommand{\Gterms}[1]{\terms{\Gamma}{#1}}
+\newcommand{\ext}[2]{{#1\!\centerdot\! #2}}
+\newcommand{\ty}{\ensuremath{\,:\,}}
+\newcommand{\pair}[1]{\ensuremath{\langle #1\rangle}}
+\newcommand{\exdot}{\ensuremath{\!\centerdot\!}}
+\newcommand{\texdot}{\ensuremath{\centerdot}}
+
+% Id types
+\newcommand{\Id}{\mathsf{Id}}
+\newcommand{\id}[1]{\Id_{#1}}
+\newcommand{\refl}{\mathsf{refl}}
+\newcommand{\idrec}{\mathsf{idrec}}
+\newcommand{\jay}{\mathsf{j}}
+\renewcommand{\i}{\mathsf{i}}
+
+
+% Universes
+\newcommand{\U}{\ensuremath{\mathcal{U}}}
+\newcommand{\UU}{\ensuremath{\,\dot{\mathcal{U}}}}
+\newcommand{\V}{\ensuremath{\mathcal{V}}}
+\newcommand{\VV}{\ensuremath{\dot{\mathcal{V}}}}
+\newcommand{\SSet}{\ensuremath{\,\dot{\Set}}}
+\newcommand{\sset}{\ensuremath{\,\dot{\set}}}
+\newcommand{\Fib}{\ensuremath{\mathsf{Fib}}}
+\newcommand{\FFib}{\ensuremath{\dot{\mathsf{Fib}}}}
+
+% Adjunctions
+\newcommand{\adjunction}[2]{%
+  \begin{tabular}{c}
+    $#1$ \\
+    \noalign{
+      \vskip 2pt      
+      \hrule
+      \vskip 1pt      
+      \hrule
+      \vskip 2pt      
+      }
+    $#2$
+  \end{tabular}
+  }
+
+\newcommand{\adjunctionx}[3]{%
+  \begin{tabular}{c}
+    $#1$ \\
+    \noalign{
+      \vskip 2pt      
+      \hrule
+      \vskip 1pt
+      \hrule
+      \vskip 2pt      
+      }
+    $#2$ \\
+    \noalign{
+      \vskip 2pt      
+      \hrule
+      \vskip 1pt
+      \hrule
+      \vskip 2pt      
+      }
+    $#3$
+  \end{tabular}
+  }
+
+\newcommand{\adjrule}{\noalign{\vskip 2pt \hrule \vskip 1pt \hrule \vskip 2pt}}
+\newcommand{\longadjunction}[1]{
+\begin{tabular}{>{$}c<{$}}
+#1
+\end{tabular}
+}
+
+% Commutative diagrams in tikz
+\usepackage{tikz}
+\usepackage{pdfpages}
+\usepackage{tikz-cd}
+
+\newcommand{\pbcorner}{\arrow[dr,phantom,"\lrcorner" very near start, shift right=.5ex]} % tikz pullback corners
+\newcommand{\ppbcorner}{\arrow[drr,phantom,"\lrcorner" very near start, shift right=.5ex]}
+\newcommand{\pocorner}{\arrow[dr,phantom,"\ulcorner" very near end]} % tikz pushout corners
+\newcommand{\ppocorner}{\arrow[dr,phantom,"\ulcorner" very near end]}
+
+\newcommand{\xypbcorner}[1][dr]{\save*!/#1-1.5pc/#1:(-1,1)@^{|-}\restore}% pullback corner in xypic
+
+
+% Theorem styles
+\newtheorem{theorem}{Theorem}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition} 
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary} 
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark} 
+\newtheorem*{remarks*}{Remarks}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Notes on flat semilattices}
+\author{Steve Awodey}
+\date{\today}
+\maketitle
+
+Here are some conventions:
+%
+\begin{itemize}
+\item For a small category $\C$ let $\pshat{\C} = \psh{\C}$ be the category of presheaves and
+\[
+\y : \C \hook\pshat{\C}
+\]
+the Yoneda embedding.
+%
+\item If $\T$ is a category with finite products (an ``$\FP$-category''), regarded as a Lawvere algebraic theory, then the category $\TAlg$ is identified with the (full subcategory) of $\Set$-valued, finite product-preserving functors (``$\FP$-functors''),
+\[
+\TAlg = \FP(\T, \Set) \subseteq \Set^\T\,.
+\]
+
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Flat functors}
+
+\begin{definition} A covariant $\Set$-valued functor $F : \C \to \Set$ will be called,
+\begin{description}
+\item{\emph{filtering}} when the opposite (of the) category of elements $\op{(\elem{F})}$ is \emph{filtered}: every finite diagram in $\op{(\elem{F})}$ has a cocone.
+
+\item{\emph{sifting}} when the opposite category of elements $\op{(\elem{F})}$ is \emph{sifted}: every finite set of objects in $\op{(\elem{F})}$ has a cocone.
+
+\item{\emph{refining}} when the opposite  category of elements $\op{(\elem{F})}$ is \emph{refined}: any pair of arrows $a \rightrightarrows b$ in $\op{(\elem{F})}$ can be (not necessarily universally) coequalized,
+\[
+a \rightrightarrows b \to c\,.
+\]
+\end{description}
+\end{definition}
+
+Note that filtered = sifted + refined, and that the category of elements $\elem{F}$ of a filtering functor $F : \C \to \Set$ is in particular non-empty.  Filtering functors are a generalization from groups to categories of the notion of a \emph{torsor} for a group~$G$:  a non-empty set on which $G$ acts freely and transitively.
+
+\begin{definition} A functor $F : \C\to\Set$ is called \emph{flat} if its left Kan extension $F_!$ along the Yoneda embedding,
+\[
+\begin{tikzcd}
+\pshat{\C} \ar[rr, "F_!"] && \Set\\  
+	 \\
+	\C \ar[uu, hook, "\y"] \ar[rruu, swap,"{F}"] ,&&
+ \end{tikzcd}
+\]
+preserves all finite limits (whether or not $\C$ has any).
+\end{definition}
+
+Recall that the left Kan extension $F_! : \pshat{\C} \too \Set$ may be computed as the colimit over the opposite  category of elements,
+\[
+\colim_{ (c,x) \in \op{ (\elem{F}) }} {Fc}\  \cong\  F_! : \pshat{\C} \too \Set\,.
+\]
+Therefore:
+\begin{lemma} Let $F : \C \to \Set$.
+\begin{itemize}
+\item $F: \C \to \Set$ is sifting iff $F_!$ preserves all finite products.
+\item $F: \C \to \Set$ is filtering iff it is flat, i.e.\  $F_!$ preserves all finite limits.
+\end{itemize}
+\end{lemma}
+
+It also follows:
+
+\begin{lemma}
+\begin{itemize}
+\item If $\C$ has all finite products, then $F$ preserves them if and only if $F_!$ preserves all finite products.
+\item If $\C$ has all finite limits, then $F$ preserves them if and only if $F$ is flat.
+\end{itemize}
+\end{lemma}
+
+We are interested in the following more subtle case:
+
+\begin{lemma}\label{lemma:refinement} Suppose $\C$ has all finite products and $F : \C\to\Set$ preserves them. Then the following are equivalent.
+\begin{enumerate}
+\item $F_!$ preserves all finite limits,
+\item $F$ is refining,
+\item\label{refine} for any $f, g : b\rightrightarrows a$ in $\C$ and $u \in Fb$ with $Ff(u) = Fg(u) \in Fa$, there is an $h : c\to b$ in $\C$ with $f\circ h = g\circ h$, and $v \in Fc$ with $Fh(v) = u$.  
+\end{enumerate}
+\end{lemma}
+%
+Condition (\ref{refine}) may be called \emph{refinement}. It is represented by the following diagram under the \emph{covariant} Yoneda lemma.
+\[
+\begin{tikzcd}
+\y{a} \ar[r, shift right, swap, "\y{g}"] \ar[r, shift left, "\y{f}"] & \y{b} \ar[d,swap, "u"]  \ar[r, dotted, "\y{h}"] & \ar[ld, dotted, "v"] \y{c} \\  
+	& F &
+ \end{tikzcd}
+ \]
+
+%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Classification}
+
+Now let $\T$ be a Lawvere theory, so that $\T$-algebras $\algA$ correspond to $\FP$-functors $A : \T\to\Set$.  An algebra will be called $\emph{flat}$ if its classfying functor $A : \T\to\Set$ is flat.   We have the following:
+
+\begin{proposition}
+The presheaf topos $\pshat{\T}$ is the classifying topos for flat $\T$-algebras.  Specifically, for any Grothendieck topos $\EE$, the category of geometric morphisms $\EE \to \pshat{\T}$ is naturally equivalent to the category of $\FP$-functors $\FP(\T,\EE)$ and natural transformations, which may be identified with the category $\TAlg_{\mathrm{flat}}(\EE)$ of flat (internal) $\T$-algebras in $\EE$,
+\[
+\TAlg_{\mathrm{flat}}(\EE)\ \simeq\  \mathsf{Top}(\EE, \pshat{\T})\,.
+\]
+\end{proposition}
+
+Now recall that $\T$ may be taken to be the opposite of the full subcategory of all finitely generated free algebras $\alg{F(n)}$ (in $\Set$),
+\[
+\op{\T}\ \cong\  {\TAlg_{\mathrm{fgf}}(\Set)}\,.
+\]
+Unwinding the refinement property of Lemma \ref{lemma:refinement} in terms of the theory $\T$, we obtain a syntactic criterion of flatness:
+
+\begin{proposition}\label{prop:flatalgebra} 
+For any algebraic theory $\T$ and any $\T$-algebra $\algA$ (in $\Set$), the following are equivalent.
+%
+\begin{enumerate}
+%
+\item $\algA$ is flat, i.e.\ it is  a filtered colimit, in the category ${\TAlg}$, of finitely generated free algebras $\alg{F(n)}$. The index category of the colimit  may be taken to be the opposite category of elements of the $\FP$-functor $A : \T\to\Set$.
+%
+\item The left Kan extension $A_! : \pshat{\T}\to \Set$ is left exact, and is therefore the inverse image part of a geometric morphism
+\[
+A_!\dashv A^* : \Set\to\pshat{\C}\,.
+\]
+%
+\item (Refinement)\label{refinemnent} for any $\T$-terms  $\tt{f}[\bf{x}], \tt{g}[\bf{x}]$ in $n$-variables ${\bf{x}}= \tt{x}_1, \dots, \tt{x}_n$, and any elements ${\bf{a}} = a_1, \dots, a_n  \in \algA$ satisfying the equation
+\[
+\tt{f}[\bf{a}] = {\tt{g}}[\bf{a}]\,,
+\] 
+there is some $k\in\N$ and terms ${\bf{s}[\bf{y}]} = {\tt{s}}_1[{\tt{y}}], \dots, {\tt{s}}_n[{\tt{y}}]$, in $k$-many variables ${\bf{y}} = {\tt{y}}_1, \dots, {\tt{y}}_k$ such that in $\T$,
+\[
+\tt{f}[{\bf{s}[\bf{y}]}] = {\tt{g}}[{\bf{s}[\bf{y}]}]
+\] 
+and for which there are $k$-many elements ${\bf{a'}} = a'_1, \dots, a'_k  \in \algA$ such that
+\[
+{\bf{a}}\ =\ {\bf{s}[\bf{a'}]} \,.
+\] 
+\ednote{ToDo: add the reduction from $m$-many pairs of terms $(\tt{f}_1[\bf{x}], \tt{g}_1[\bf{x}]), ..., (\tt{f}_m[\bf{x}], \tt{g}_m[\bf{x}])$ to a single pair of terms $(\tt{f}_1[\bf{x}], \tt{g}_1[\bf{x}])$.}
+%
+\end{enumerate}
+\end{proposition}
+
+Let us define the \emph{geometric theory of flat algebras} $\mathsf{Th}(\T,\mathrm{flat})$ to consist of all geometric formulas $\phi$ in the signature of $\T$ that are satisfied by all finitely generated free algebras $\alg{F(n)}$,
+\[
+\mathsf{Th}(\T,\mathrm{flat})\ :=\ \{\, \phi\ |\ \alg{F(n)}\models \phi\ \text{for all $n$}\,\} \,.
+\]
+Since satisfaction of geometric formulas is preserved by left exact left adjoints, any flat $\T$-algebra will also model all the formulas in $\mathsf{Th}(\T,\mathrm{flat})$. \ednote{elaborate!} In fact, the universal model $\mathcal{U}$ in the classifying topos $\pshat{\C}$ is easily seen to model exactly the formulas in $\mathsf{Th}(\T,\mathrm{flat})$ (by evaluating it at the objects of $\T$, which are exactly the models $\alg{F(n)}$), as does any image of it under (the inverse image of) any geometric morphism $\pshat{\C} \to \EE$.  But since these are \emph{all} of the models classified by the topos $\pshat{\T}$, we have that $\mathsf{Th}(\T,\mathrm{flat})$ is indeed exactly the geometric theory of flat $\T$-algebras.
+
+\begin{proposition}
+A $\T$-algebra $\algA$ in a topos $\EE$ is flat (i.e.\ a filtered colimit in $\TAlg(\EE)$ of finitely generated free algebras $\alg{F(n)}$) iff it is a model of the geometric theory $\mathsf{Th}(\T,\mathrm{flat})$,
+\[
+\algA\models_{\EE} \mathsf{Th}(\T,\mathrm{flat})\,.
+\]
+\end{proposition}
+
+\ednote{fill in the proof, which is standard.}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Flat theories}
+
+The refinement condition ({\ref{refinemnent}) of Proposition \ref{prop:flatalgebra} is only a bit more explicit than saying that an algebra is a filtered colimit of finitely generated free ones (even if such a colimit can be reduced to a directed one, see \cite{AR:}).  But in some cases it can also be used to determine simplified axioms for $\mathsf{Th}(\T,\mathrm{flat})$.  This makes it possible to relate the present notion of flatness to the classical one from commutative algebra, given in terms of tensoring with monomorphisms, as will be considered in Section \ref{section:algebraic_flat}.
+
+We next consider two cases in which such an axiomatization is possible.
+
+\subsection{Monoids}
+
+In a series of papers \cite{Grillet:69a,Grillet:69b, Grillet:76} the author Grillet studies flatness of commutative semigroups, both with and without units, and colimits thereof.  One result is the following:
+
+\begin{proposition}[\cite{Grillet:76}, Theorem 2.1]
+For a commutative monoid $\alg{M}$ the following are equivalent.
+%
+\begin{enumerate}
+%
+\item $\alg{M}$ is a filtered colimit of finitely generated free monoids $\alg{F}(n)$.
+%
+\item $\alg{M}$ has the ``Killing Interpretation Property'' (KIP).
+%
+\item $\alg{M}$ is \emph{cancellative}, has \emph{no units}, and if $a,b,c,d \in \alg{S}$ satisfy $$na + b = nc+d$$ for $n > 1$, then
+\begin{align*}
+a&= u + v\\
+b &= nw+z\\
+c &= u+w\\
+d &= nv + z
+\end{align*}
+for some $u, v, w, z \in \alg{S}$. 
+\end{enumerate}
+%
+\end{proposition}
+
+ The KIP is essentially what we called Refinement in Proposition \ref{prop:flatalgebra}.   Cancellative means ..., no units means ....
+ The proof proceeds by ...
+ 
+ \ednote{add a brief summary} 
+ 
+\subsection{Semilattices}
+
+In \cite{BF-MD:78} the authors Bulman-Fleming and McDowell specialize the results of Grillet to (join) semilattices with and without unit and establish the following result.
+
+\begin{proposition}[\cite{BF-MD:78}, Theorem 3.1]
+A semilattice $\algA$ is flat iff it satisfies the following condition of \emph{distributivity}.
+\begin{equation}\label{prop:flatequalsdist}\tag{D}
+a \leq b\vee c\qquad\text{implies}\qquad a = b' \vee c'\ \ \text{for}\  b'\leq b\ \text{and}\ c'\leq c\,.
+\end{equation}
+\end{proposition} 
+
+Our notion of flatness (directed colimit of fgf-algebras) is there called ``L-flat'', in reference to the theorem of Lazard \cite{L:1969}.  The proof proceeds by first reducing (L-)flatness to the previously mentioned  KIP, using the results of \cite{Grillet} and \cite{Shannon}.  As said, the KIP is essentially what we have called Refinement.  The main step of the proof is then the further reduction of KIP to the condition (D) using the following argument:
+\ednote{summarize the proof of 2.7}. 
+
+\bigskip
+
+\ednote{Other theories to consider: (not nec.\ commutative) monoids, distributive lattices with and w/o $0,1$, abelian groups, commutative rings, frames, boolean algebras.}
+
+\section{Algebraic flatness}\label{section:algebraic_flat}
+
+\begin{definition}[Algebraically flat algebra]  Suppose the category $\TAlg$ has a tensor product $\alg{A} \otimes \alg{B}$. An object $\alg{A}$ will be called \emph{algebraically flat} (or \emph{$\otimes$-flat}) if the functor $$(-)\otimes \alg{A} : \TAlg \too \TAlg$$ preserves monos. 
+%\[
+%\begin{tikzcd}
+%\pshat{\C} \ar[rr, "F_!"] && \Set\\  
+%	 \\
+%	\C \ar[uu, hook, "\y"] \ar[rruu, swap,"{F}"] ,&&
+% \end{tikzcd}
+%\]
+%preserves all finite limits (whether or not $\C$ has any).
+\end{definition}
+
+Briefly review the classical case of $\alg{R}$-modules and Lazard's theorem.
+
+\subsection{Tensor products of commutative algebras}
+
+Let $\CC$ be a category of (commutative) algebras, such as semilattices, $\bigvee$-lattices, commutative monoids, abelian groups, $\alg{R}$-modules for a commutative ring $\alg{R}$, or frames (called \emph{locales} in \cite{JT}).  The tensor product $\alg{A}\otimes\alg{B}$, when it exists, represents the functor $$\alg{BiHom}_{\alg{A},\alg{B}}: \CC \to\Set$$ of \emph{bihomomorphisms}, which are maps $h : |\alg{A}\times\alg{B}| \to |\alg{C}|$ (in $\Set$) that are homomorphisms in each argument separately.   When it exists, there is a universal bihomomorphism
+\[
+|\alg{A} \times \alg{B}| \to |\alg{A}\otimes\alg{B}| \,,
+\]
+precomposing with which gives rise to all others. 
+
+Banaschewski and Nelson \cite{Tensor products and bimorphisms, Canadian Math. Bull. 19(4) (1976).} relate tensor products to the presence of internal $\Hom$-algebras $[\alg{A},\alg{B}]$ consisting of $\T$-algebra homomorphisms, 
+\begin{equation*}\label{monoidalclosed}
+|[\alg{A},\alg{B}]| = \TAlg(\alg{A},\alg{B})\,,
+\end{equation*}
+and determine necessary and sufficient conditions for the usual adjunction, 
+\begin{equation}\label{monoidalclosed1}
+\TAlg\big(\alg{A}\otimes\alg{B},\alg{C}\big) \cong \TAlg\big(\alg{A}, [\alg{B},\alg{C}]\big)\,,
+\end{equation}
+to obtain a symmetric monoidal closed structure on $\CC$.  
+
+\begin{remark}\label{remark:noCCCwithzero}
+Note that when the monoidal product is the cartesian one $\alg{A}\otimes\alg{B} = \alg{A}\times\alg{B}$ an associated closure $[\alg{A},\alg{B}]$ will necessarily be a cartesian closed structure.  Since a non-trivial category with a zero object $0=1$ is never cartesian closed, a monoidal closure $[\alg{A},\alg{B}]$ satisfying \eqref{monoidalclosed1} must have a non-cartesian monoidal product $\alg{A}\otimes\alg{B}$. Several of the examples mentioned above are of this kind,  including $\vee$-semilattices and commutative monoids.
+\end{remark}
+
+Let $\CC, \otimes, \I$ be a symmetric monoidal category.  A \emph{commutative $\otimes$-monoid} in $\CC$ is an object $M$ equipped with $m : M \otimes M \to M$ and $u : \I\to M$ satisfying the usual laws for a commutative monoid.
+The Elephant C.1.1.8.\ cites (a dual form of) the following result of T.~Fox \cite{Coalgebras and cartesian categories Communications in Algebra 4(7) pp 665--667 1976}.
+
+\begin{proposition}\label{prop:Foxtheorem}
+The category $\alg{CMon}(\CC)$ of commutative monoids in $\CC$ has all finite coproducts, and the forgetful functor $\alg{CMon}(\CC) \to\CC$ is the universal monoidal one from a cocartesian monoidal category.  If $\CC$ is closed, the forgetful functor also creates filtered colimits.
+\end{proposition}
+
+Here are some examples:
+\ednote{Are these correct applications of this?}
+\begin{enumerate}
+\item $\CC = \Set$ cartesian monoidal, $\alg{cMon}(\CC) = \alg{cMon}$ commutative monoids: the theorem shows that the underlying set of the coproduct $M+N$ is the product $|M|\times |N|$.
+\item $\CC = \alg{Mon}$ the cartesian monoidal category of monoids, $\alg{cMon}(\CC) = \alg{cMon}$ commutative monoids, by Eckmann-Hilton: the theorem shows that the underlying monoid of the coproduct of commutative monoids $M+N$ is their product $|M|\times |N|$ as monoids.
+\item $\CC = \Set$ cartesian monoidal, $\alg{cMon}(\CC) = \alg{{\vee}SLat}$, the category of $\vee$-semilattices: the theorem shows that the underlying set of the coproduct $M+N$ is the product $|M|\times |N|$.
+\item $\CC = \bigvee\!\alg{Lat}$ complete sup-lattices with tensor products $\otimes$ from $\alg{cMon}(\CC) = \alg{Frames}$: the theorem shows that the underlying suplattice of the coproduct of frames $\alg{A}+\alg{B}$ is the tensor product $|\alg{A}|\otimes |\alg{B}|$ of the underlying suplattices.
+\item Are there any familiar cases in which this theorem implies that the tensor product $\alg{A}\otimes\alg{B}$ and the coproduct $\alg{A}+\alg{B}$ agree?
+\end{enumerate} 
+
+\ednote{But what does this theorem say about $A\otimes B$?  It would be nice to use the preservation of filtered colimits to show $\otimes$-flatness of a flat algebra $\alg{F} = \colim \alg{F(n)}$ as follows: let $\alg{A}\mono\alg{B}$ and try to show $\alg{A}\otimes\alg{F}\mono\alg{B}\otimes\alg{F}$. Since a filtered colimit of monos is monic, it suffices to show it for $\alg{F}=\alg{F(n)}$.  Now show that fgf algebras $\alg{F(n)}$ are $\otimes$-flat, provided $\alg{A}\otimes \alg{F(1)} = \alg{A}$.} 
+\bigskip
+
+\ednote{When do we have $\alg{A}\otimes \alg{F(1)} = \alg{A}$ ?  When is $\alg{F(1)} = I$ the unit for the $\otimes$-product? }
+\bigskip
+
+\ednote{Other theories to consider: distributive lattices, abelian groups, commutative rings, frames, boolean algebras.}
+\bigskip
+
+Bulman-Fleming and  McDowell \cite{BMMD:1979} show that the only $\otimes$-flat distributive lattice is the  trivial one $1$, but they consider distrubutive lattices w/o $0,1$. For the variety of \emph{bounded} distributive lattices, they claim that all of them are flat! It seems that \emph{locality} ($a\vee b = 1$ implies $a=1$ or $b=1$), and its dual, should be true for all $\alg{F(n)}$ and so for all (colimit) flat d-lattices, so maybe this is an example where $\otimes$-flat and flat don't coincide?
+
+\subsection{Semilattices}
+
+The category $\alg{Pos}$ of posets and monotone functions is cartesian closed, with the categorical product $\alg{P}\times\alg{Q}$ as the cartesian monoidal product and the functor category $\alg{Q}^\alg{P} = [\alg{P}, \alg{Q}]$ as the internal $\Hom$.  A $\vee$-semilattice (always with unit) is a idempotent, commutative monoid in $\alg{Pos}$, and the \emph{coproduct} of two such monoids can be seen to again be idempotent and commutative \ednote{proof!}, and so by Proposition \ref{prop:Foxtheorem}, the binary coproduct of $\vee$-semilattices has as its underlying poset the product in $\alg{Pos}$, 
+$$|\alg{A}+\alg{B}| = |\alg{A}|\times|\alg{B}|\,,$$
+(the underlying set of which is the product of the underlying sets).  
+
+The cartesian monoidal structure of $\alg{Pos}$ creates the same on $\alg{SLat}$, which cannot be closed by Remark \ref{remark:noCCCwithzero}, since $\alg{SLat}$ has a zero object, namely the poset $\mathbbm{1} = \{\emptyset\}$, the free $\vee$-semilattice on $\emptyset$.
+
+There is also a monoidal closed structure on $\alg{SLat}$, with the subposet of all $\alg{SLat}$ homomorphisms as the internal $\Hom$,
+\[
+[\alg{A}, \alg{B}] =  \alg{SLat}(\alg{A}, \alg{B}) \subseteq \Pos(|\alg{A}|, |\alg{B}|)\,,
+\] 
+whereby the join of two monotone maps is taken pointwise, $(f\vee g)(a) = f(a)\vee g(a)$ (as is the unit).
+It is not hard to see that this internal $\Hom$ for the monoidal closed structure is \emph{not} an exponential for the cartesian closed structure \ednote{(briefly ...)}.  The associated tensor product $\alg{A}\otimes\alg{B}$ satisfying the adjunction
+\[
+\alg{SLat}\big( \alg{A}\otimes\alg{B}, \alg{C} \big) \cong \alg{SLat}\big( \alg{A}, [\alg{B}, \alg{C}] \big)
+\]
+is determined by the result of Banaschewsky above to be ...
+
+\bigskip
+
+Next: equivalence theorems for flat semilattices and $\otimes$-flat ones (via Lambek's theorem) and flat/$\otimes$-flat commutative monoids.
+
+\bibliographystyle{alpha}
+\bibliography{../references}
+
+%%%
+\end{document}
+%%%
+
