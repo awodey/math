@@ -200,7 +200,7 @@ The \emph{arrows}
 \[
 f : [n] \to [m]
 \]
-in $\mathcal{C}$ are all functions  $f : [n] \to [m]^+$ satifying the following \emph{partial injectivity condition}:
+in $\mathcal{C}$ are all functions  $f : [n] \to [m]^+$ satisfying the following \emph{partial injectivity condition}:
 \[
 f(i)= f(j)\ \implies \big(i = j\ \text{\emph{or}}\ f(i) = \top = f(j)\ \text{\emph{or}}\  f(i) = \bot = f(j) \big)
 \]
@@ -280,9 +280,9 @@ As a classifying category for an algebraic theory, the category $\C_c$ of cartes
 \[
 f : [m] \to [n]\,,
 \]
-be arbitrary, $\{\top, \bot\}$-preserving maps $[m]^+ \to [n]^+$, where as before $[n]^+ = [n]\cup\{\top, \bot\}$.  Then clearly $\B = \mathsf{Alg}_{\mathrm{fg}}$, and we know by Lawvere duality that $$\C_c \cong \B^{\mathrm{op}},$$ as can be read off from the foregoing descrition of the arrows in $\C_c$ as ``$m$-tuples of arbitrary elements taken from the set $\{x_1, ..., x_n, \top, \bot\}$".
+be arbitrary, $\{\top, \bot\}$-preserving maps $[m]^+ \to [n]^+$, where as before $[n]^+ = [n]\cup\{\top, \bot\}$.  Then clearly $\B = \mathsf{Alg}_{\mathrm{fg}}$, and we know by Lawvere duality that $$\C_c \cong \B^{\mathrm{op}},$$ as can be read off from the foregoing description of the arrows in $\C_c$ as ``$m$-tuples of arbitrary elements taken from the set $\{x_1, ..., x_n, \top, \bot\}$".
 
-As a full subcategory of free algebras, the category $\B$ can also be described as the Kleisli category of the monad $[n] \mapsto [n]^+$.   Thus we arrive at the covariant description $\CC$ of the symmetric cubes, but without the partial injectivitity condition, which is violated by (the duals of) the diagonal maps.
+As a full subcategory of free algebras, the category $\B$ can also be described as the Kleisli category of the monad $[n] \mapsto [n]^+$.   Thus we arrive at the covariant description $\CC$ of the symmetric cubes, but without the partial injectivity condition, which is violated by (the duals of) the diagonal maps.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Hypercubical sets}
@@ -516,7 +516,7 @@ Finally, we observe that that the path object functor $X^\I$ itself, as a left a
 \paragraph{Example.} (P.~Aczel)
 The cubical set $P$ of polynomials (over the integers, say), is defined by:
 \[
-P_n = \{ p(x_1,..., x_n)\ |\  \text{polynomials in at most}\  x_1, É, x_n \}
+P_n = \{ p(x_1,..., x_n)\ |\  \text{polynomials in at most}\  x_1, ï¿½, x_n \}
 \]
 with the evident maps $P_m \to P_n$ for each function $[m] \to [n]$.
 
@@ -620,7 +620,7 @@ with computation rule
 The term $\mathsf{lift}(a,b,p,u)$ is in the identity type of $\sum_{x:A}B(x)$.
 
 Under the intended interpretation in hypercubical sets, path lifting for $x,y:A\vdash\id{A}(x,y)$
-already implies contraction for $A$.  Indeed, let $A\in\HH$ and interpret the dependent type $x,y:A\vdash \id{A}(x,y)$ as the path object $A^\I$ with its projection to the two endoints $A^\I \to A\times A$. 
+already implies contraction for $A$.  Indeed, let $A\in\HH$ and interpret the dependent type $x,y:A\vdash \id{A}(x,y)$ as the path object $A^\I$ with its projection to the two endpoints $A^\I \to A\times A$. 
 
 \begin{lemma}
 If $A^\I \to A\times A$ satisfies path lifting, then $A$ satisfies contraction.
@@ -654,7 +654,7 @@ $A^\I \to A\times A$ has path lifting if and only if $A$ has (2-)box filling.
 \end{proposition}
 
 In preparation for the proof, we establish some conventions that will be useful in general.
-Diagramatically, path lifting means that for any (outer) square of the form
+Diagrammatically, path lifting means that for any (outer) square of the form
 \begin{equation}\label{diagram:pathliftpath}
 \xymatrix{
 1 \ar[d] \ar[r] & A^\I \ar[d] \\
@@ -720,7 +720,7 @@ where $i := [\top, \bot] : \partial \I = 1+1 \to \I$ is the copair, to give:
 \I \ar[r] \ar@{..>}[ru] & A^{\partial\I}
 }
 \end{equation*}
-But this is just the exponential transpose of the diagram \eqref{diagram:boxfillingrev}, where the corresponsing transposed maps are as indicated:
+But this is just the exponential transpose of the diagram \eqref{diagram:boxfillingrev}, where the corresponding transposed maps are as indicated:
 \begin{equation}\label{diagram:pathliftpathrev}
 \xymatrix{
 1 \ar[d] \ar[r]^{a'} & A^\I \ar[d]^{A^i} \\
