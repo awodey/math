@@ -563,7 +563,7 @@ A \emph{relative $+$-algebra} in \EE\ is a map $A \ra X$, together with an algeb
 
 The following proposition generalizes one in \cite{bourke-garner-I}.
 \begin{proposition}
-There is an (algebraic) weak factoriation system on \EE\ with the cofibrations as the left class, and as the right class, the maps underlying relative $+$-algebras.  Thus a right map is one $p : A\ra X$ for which there is a retract $\alpha : A'\ra A$ over $X$ of the canonical map $\eta : A\ra A'$,
+There is an (algebraic) weak factorization system on \EE\ with the cofibrations as the left class, and as the right class, the maps underlying relative $+$-algebras.  Thus a right map is one $p : A\ra X$ for which there is a retract $\alpha : A'\ra A$ over $X$ of the canonical map $\eta : A\ra A'$,
 \[
 \xymatrix{
 A\ar[rd]_{p} \ar[r]^{\eta} \ar@/^5ex/ [rr]^= & A' \ar[r]^{\alpha} \ar[d]^-{p^+} & \ar[ld]^{p} A \\
@@ -1851,7 +1851,7 @@ Suppose the $\delta$-biased fibrations in $\cSet\slice{\I}$ satisfy the Frobeniu
 \end{proposition}
 
 \begin{proof}
-This follows almost immeditely from the fact that the pullback functor $\I^* : \cSet \to \cSet\slice{\I}$ preserves the locally cartesian closed structure, takes unbiased fibrations to $\delta$-biased ones, and reflects $\delta$-biased fibrations to unbiased ones.  In detail, let unbiased fibrations $B \fib A$ and $A \fib X$ in $\cSet$ be given, and we wish to find $C\fib X$ and $e : A\times_X C \to B$ over $A$, universal in the way recalled in the diagram below.
+This follows almost immediately from the fact that the pullback functor $\I^* : \cSet \to \cSet\slice{\I}$ preserves the locally cartesian closed structure, takes unbiased fibrations to $\delta$-biased ones, and reflects $\delta$-biased fibrations to unbiased ones.  In detail, let unbiased fibrations $B \fib A$ and $A \fib X$ in $\cSet$ be given, and we wish to find $C\fib X$ and $e : A\times_X C \to B$ over $A$, universal in the way recalled in the diagram below.
 \begin{equation}\label{diagram:biasedFrobenius2unbiasedFrobenius}
 \begin{tikzcd}
 A \times_X C \ar[d, dotted, "e"] \ar[r, dotted] & C \ar[dd, two heads, dotted]\\
@@ -2191,7 +2191,7 @@ For a presheaf $X$ on $\bbC$, recall that the category of elements is the comma 
 \[\textstyle
 \int_\bbC X\ =\ \yon_\bbC\slice{X}\,,
 \] 
-where $\yon_\bbC : \bbC \to \psh\bbC$ is the Yoneda embedding, which we sometimes supress and write simply $\bbC\slice{X}$ for $\yon_\bbC\slice{X}$. 
+where $\yon_\bbC : \bbC \to \psh\bbC$ is the Yoneda embedding, which we sometimes suppress and write simply $\bbC\slice{X}$ for $\yon_\bbC\slice{X}$. 
 
 \begin{proposition}[\cite{G:1983}, \S{28}]
 The category of elements functor 
@@ -2406,7 +2406,7 @@ The map $\VV_\alpha\to\V_\alpha$ classifies $\alpha$-small maps $f:Y\to X$ in $\
 	X \ar[r,swap, "\tilde{Y}"] &  \V_\alpha.
  \end{tikzcd}
  \end{equation}
-The classifying map $\tilde{Y} : X\to \V_\alpha$ is determined by the adjunction $\int \dashv \nu$ as (the factorization of) the transpose of the classifiyng map of the discrete fibration $\elem X\to\elem Y$. 
+The classifying map $\tilde{Y} : X\to \V_\alpha$ is determined by the adjunction $\int \dashv \nu$ as (the factorization of) the transpose of the classifying map of the discrete fibration $\elem X\to\elem Y$. 
 \end{proposition}
 
 \begin{proof} If $Y\to X$ is $\alpha$-small, its classifying map $\tilde{Y} : X\to\V$ factors through $\V_\alpha \hook \V$, as indicated below, 
@@ -2424,7 +2424,7 @@ in virtue of the following adjoint transposition,
 	 \elem X \ar[rr, bend right, ] \ar[r]  &  \op{\Set_\alpha} \ar[r,hook]  &  \op{\Set}.
  \end{tikzcd}
   \end{equation}
-Note that the square on the right is evidently a pullback, and so the one on the left is, too, because the outer rectangle is the classifying pulback of the discrete fibration $\elem Y \to \elem X$, as stated.  Thus the left square in \eqref{eq:classifyuniversetype2} is also a pullback.
+Note that the square on the right is evidently a pullback, and so the one on the left is, too, because the outer rectangle is the classifying pullback of the discrete fibration $\elem Y \to \elem X$, as stated.  Thus the left square in \eqref{eq:classifyuniversetype2} is also a pullback.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2432,7 +2432,7 @@ Note that the square on the right is evidently a pullback, and so the one on the
 
 \begin{enumerate}
 %
-\item Let $\alpha = \kappa$ a strongly inaccessible cadinal, so that $\mathsf{ob}({\Set_\kappa})$ is a Grothendieck universe.  Then the Hofmann-Streicher universe of Definition \ref{def:HSuniverse} is recovered as the $\kappa$-small map classifier
+\item Let $\alpha = \kappa$ a strongly inaccessible cardinal, so that $\mathsf{ob}({\Set_\kappa})$ is a Grothendieck universe.  Then the Hofmann-Streicher universe of Definition \ref{def:HSuniverse} is recovered as the $\kappa$-small map classifier
 \begin{equation*}
 E\, \cong\, \VV_\kappa \too \V_\kappa\, \cong\, U
 \end{equation*}
@@ -3718,7 +3718,7 @@ A_c \ar@{>->}[d]_{b_c} \ar@{>->}[rr]^{\gph{icp_c}} \pbcorner && A_c\times\I \ar@
 B  \ar@{>->}[rr]_{\gph{ip_b}}  &&  B\times\I  & \ar[l]^-f D
 }
 \end{equation}
-The pullback of $e$ along the top of the square is the identity on $A_c$, as can be seen by pulling back $e$ as a map over $C\times \I$ along $\gph{ic} :  C\ra C\times\I$. Thus the same is true up to isomorophism for the pullback of $f$ along the bottom.
+The pullback of $e$ along the top of the square is the identity on $A_c$, as can be seen by pulling back $e$ as a map over $C\times \I$ along $\gph{ic} :  C\ra C\times\I$. Thus the same is true up to isomorphism for the pullback of $f$ along the bottom.
 
 An application of the Realignment Lemma \ref{lemma:realignmentforfibrations} along the trivial cofibration $c\otimes_i\delta$ completes the proof.
 \end{proof}
