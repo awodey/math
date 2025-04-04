@@ -2,7 +2,8 @@
 % Notes on Algebraic Type Theory
 % begun July 2023
 %%
-\documentclass[12pt]{article}
+%\documentclass[12pt]{article}
+\documentclass[12pt,reqno]{amsart}
 \usepackage{amsmath,amssymb,amsthm,latexsym}
 \usepackage{bm,bbm}
 \usepackage[all,cmtip]{xy}
@@ -443,23 +444,23 @@ We only sketch the case of $\Pi$-types, but the other type formers will be treat
 \end{tikzcd}
 \end{equation}
 \end{proposition}
-
+%
 \begin{proof}
-Unpacking the definitions, we have 
-\begin{align*}
-\alg{P}_\t(\T) &= \Sigma_{A:\T} \T^A \\
-\alg{P}_\t(\TT) &= \Sigma_{A:\T} \TT^A 
-\end{align*}
-So diagram \eqref{diag:prod2} becomes
+Unpacking the definitions, we have $\alg{P}_\t(\T) = \Sigma_{A:\T} \T^A $, etc.,  
+%\begin{align*}
+%\alg{P}_\t(\T) &= \Sigma_{A:\T} \T^A \\
+%\alg{P}_\t(\TT) &= \Sigma_{A:\T} \TT^A 
+%\end{align*}
+so diagram \eqref{diag:prod2} becomes:
 \begin{equation*}%\label{diag:prod2}
 \begin{tikzcd}
-\Sigma_{A:\T} \TT^A \ar[d]  \ar[r, "{\lambda}"] &  \TT \ar[d,"{\t}"] \\
+\Sigma_{A:\T} \TT^A \ar[d,swap, "{\Sigma_{A:\T} \t^A}"]  \ar[r, "{\lambda}"] &  \TT \ar[d,"{\t}"] \\
 \Sigma_{A:\T} \T^A    \ar[r, swap,"{\Pi}"] & \T
 \end{tikzcd}
 \end{equation*}
-For $\G \in \C$, maps $\G\to \Sigma_{A:\T} \T^A $ correspond to pairs $(A,B)$ with  $A:\G\to \T$ and $B : \ext{\G}{A} \to \T$ (and thus to $\G\vdash A$ and $\ext{\G}{A} \vdash B$). Similarly, a map $\G\to \Sigma_{A:\T} \TT^A $ corresponds to a pair $(A,b)$ with $\G\vdash A$ and $\ext{\G}{A} \vdash b : B$, the typing of $b$ resulting from composing with the map 
+For $\G \in \C$, maps $\G\to \Sigma_{A:\T} \T^A $ correspond to pairs $(A,B)$ with  $A:\G\to \T$ and $B : \ext{\G}{A} \to \T$, and thus to $\G\vdash A$ and $\ext{\G}{A} \vdash B$. Similarly, a map $\G\to \Sigma_{A:\T} \TT^A $ corresponds to a pair $(A,b)$ with $\G\vdash A$ and $\ext{\G}{A} \vdash b : B$, the typing of $b$ resulting from composing with the map 
 \[
-\alg{P}_\t(\t) = \Sigma_{A:\T} \t^A : \Sigma_{A:\T} \TT^A \to \Sigma_{A:\T} \T^A\,.
+\Sigma_{A:\T} \t^A : \Sigma_{A:\T} \TT^A \to \Sigma_{A:\T} \T^A\,.
 \]
 \begin{equation*}%\label{diag:prod2}
 \begin{tikzcd}
@@ -476,7 +477,7 @@ and the upper horizontal arrow, along with the commutativity of the diagram, mod
 \[
 \frac{\ext{\G}{A}\vdash b:B}{\G\vdash \lambda_{x:A} b : \Pi_{x:A} B}
 \]
-The square \eqref{diag:prod2} is a pullback just if, for every $(A,B) : \G \to \Sigma_{A:\T}\T^A$ and every $t: \G \to \TT$ with $\tp \circ t = \Pi_A B$, there is a unique $(A,b) : \G \to \Sigma_{A:\T}\TT^A$ with $b:B$ and $\lambda_A b = t$.  In other words, given $\ext{\G}{A} \vdash B$ and $\G\vdash t: \Pi_{x:A} B$, there is a term $\ext{\G}{A}\vdash t':B$ with $\lambda_{x:A}  t' = t$, and $t'$ is unique with this property.  This is just what is provided by the \emph{$\Pi$-elimination rule}:
+The square \eqref{diag:prod2} is a pullback just if, for every $(A,B) : \G \to \Sigma_{A:\T}\T^A$ and every $t: \G \to \TT$ with $\tp \circ t = \Pi_A B$, there is a unique $(A,b) : \G \to \Sigma_{A:\T}\TT^A$ with $b:B$ and $\lambda_A b = t$.  In terms of the interpretation, given $\ext{\G}{A} \vdash B$ and $\G\vdash t: \Pi_{x:A} B$, there is a term $\ext{\G}{A}\vdash t':B$ with $\lambda_{x:A}  t' = t$, and $t'$ is unique with this property.  This is just what is provided by the \emph{$\Pi$-elimination rule}:
 \[
 \frac{{\ext{\G}{A} \vdash B}\qquad {\G \vdash t : \Pi_{x:A}  B} \qquad {\G \vdash x:A}}{{\ext{\G}{A}\vdash t\, x :B}}
 \]
@@ -485,10 +486,8 @@ in conjunction with the \emph{$\Pi$-computation rules}:
 \lambda_{x:A} (t\,x) &= t : \Pi_A B\\
 (\lambda_{x:A} b)\,x &= b : B
 \end{align*}
- 
-
 \end{proof}
-
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{2. Display maps and clans}\label{sec:Clans}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
