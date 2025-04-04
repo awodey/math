@@ -53,6 +53,9 @@
 \newcommand{\FP}{\ensuremath{\mathsf{FP}}}
 \newcommand{\ModT}{\ensuremath{\mathsf{Mod}(\T)}}
 \newcommand{\TAlg}{\ensuremath{\T\text{-}\mathsf{Alg}}}
+\newcommand{\tp}{\ensuremath{\mathsf{tp}}}
+\newcommand{\Tm}{\ensuremath{\mathsf{Tm}}}
+\newcommand{\Ty}{\ensuremath{\mathsf{Ty}}}
 
 % Algebras
 \newcommand{\alg}[1]{\ensuremath{\mathsf{#1}}}
@@ -104,12 +107,12 @@
 \newcommand{\U}{\ensuremath{\mathcal{U}}}
 \newcommand{\UU}{\ensuremath{\,\dot{\mathcal{U}}}}
 %\renewcommand{\t}{\ensuremath{\mathsf{t}}}
-\renewcommand{\t}{\ensuremath{\mathrm{t}}}
+\renewcommand{\t}{\ensuremath{\mathsf{t}}}
 \newcommand{\tT}{\ensuremath{{\t}:\TT\to\T}}
 %\newcommand{\T}{\ensuremath{\mathsf{T}}}
 %\newcommand{\TT}{\ensuremath{\dot{\mathsf{T}}}}
-\newcommand{\T}{\ensuremath{\mathrm{T}}}
-\newcommand{\TT}{\ensuremath{\dot{\mathrm{T}}}}
+\newcommand{\T}{\ensuremath{\mathsf{T}}}
+\newcommand{\TT}{\ensuremath{\dot{\mathsf{T}}}}
 \newcommand{\V}{\ensuremath{\mathcal{V}}}
 \newcommand{\VV}{\ensuremath{\dot{\mathcal{V}}}}
 \newcommand{\SSet}{\ensuremath{\,\dot{\Set}}}
@@ -168,6 +171,7 @@
 
 \newcommand{\pbcorner}{\arrow[dr,phantom,"\lrcorner" very near start, shift right=.5ex]} % tikz pullback corners
 \newcommand{\ppbcorner}{\arrow[drr,phantom,"\lrcorner" very near start, shift right=.5ex]}
+\newcommand{\pbcornerright}{\arrow[dl,phantom,"\llcorner" very near start, shift left=.5ex]} % tikz pullback corners right
 \newcommand{\pocorner}{\arrow[dr,phantom,"\ulcorner" very near end]} % tikz pushout corners
 \newcommand{\ppocorner}{\arrow[dr,phantom,"\ulcorner" very near end]}
 
@@ -194,7 +198,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\title{Notes on Algebraic Type Theory}
+\title{Algebraic Type Theory}
 \author{Steve Awodey}
 \date{\today}
 \maketitle
@@ -227,6 +231,8 @@
 %with an evident associated action on morphisms.  A few comments are required: 
 %%
 
+We begin by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{dybjer:CwF}.  Then in section \ref{sec:strictify} it is shown how such models are related to the \emph{clans} and \emph{tribes} of Joyal \cite{Joyal:clan}.  In section \ref{sec:MLalgebra} we abstract the main features of a natural model with the type-formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is begun in section \ref{sec:eqandid } with the addition of equality and identity types, and the construction of free algebras in section \ref{sec:free} . 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Natural models of type theory}\label{sec:NaturalModels}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -235,37 +241,224 @@
 %\begin{enumerate}
 %
 %\item  
-In \eqref{A:NM}, a \emph{natural model} of type theory is defined to be a representable natural transformation $\t: \TT\to \T$ of presheaves on a small category $\C$.  Theorem XX shows that such a map is equivalent to the notion of a \emph{category with families} in the sense of \cite{Dybjer}. 
+In \eqref{A:NM}, a \emph{natural model} of type theory is defined to be a representable natural transformation $\t: \TT\to \T$ of presheaves on a small category $\C$.  When $\C$ is regarded as the category of contexts of type theory, $\T: \op{\C} \to \Set$ is the presheaf of types in context, $\TT: \op{\C} \to \Set$ is the presheaf of terms in context, and $\t : \TT\to\T$ is the typing of the terms.   Theorem XX of \emph{op.\ cit.} shows that such a map is equivalent to the notion of a \emph{category with families} (CwF) in the sense of \cite{Dybjer}.  We briefly recall the essentials.
 
-A natural model $\tT$ will be said to \emph{model} the type-constructors $ \mathsf{1}, \Sigma, \Pi$ if there are pullback squares in $\C$ of the following form,
+\begin{definition}\label{def:representablenattrans} A natural transformation $p : Y \to X$ of presheaves on a category $\C$  is \emph{representable} if the pullback of $p$ along any element $x: \y{C} \to X$ is representable.
+\begin{equation*}
+\begin{tikzcd}
+ \y{D} \ar[d] \ar[r,"y"] \pbcorner &  Y \ar[d, "p"]\\
+\y{C} \ar[r,swap,"x"]  & X
+\end{tikzcd}
+\end{equation*}
+\end{definition}
+
+\begin{proposition}[A., Fiore 2013] A representable natural transformation is the same thing as a \emph{category with families} in the sense of Dybjer.
+\end{proposition}
+
+We sketch the correspondence from \cite{Awodey:NM}.
+Let us write the objects and arrows of \C\ as $\sigma : \Delta \to \Gamma$, giving the \emph{category of contexts and substitutions}.
+A CwF is usually defined as a presheaf of \emph{types in context}, 
+\[
+\Ty : \C^{\mathrm{op}}\to \Set\,,
+\]
+together with a presheaf of \emph{typed terms in context}, 
+\[
+\Tm : {\textstyle (\int_{\C}\!\Ty)^{\mathsf{op}}\to \Set }\,.
+\]
+We reformulate this using the familiar equivalence
+\[\textstyle
+ \pshx{\C}\!/_{\Ty}\ \simeq\ \pshx{(\int_{\C}\Ty)}
+\]
+in order to obtain a map $\tp :\Tm \to \Ty$.
+
+
+Formally, we then interpret:
+\begin{align*}
+ \Ty(\Gamma) &= \{ A \,|\, \Gamma \vdash A\} \\
+ \Tm(\Gamma) &= \{ a \,|\, \Gamma \vdash a:A\} 
+\end{align*}
+Under the Yoneda lemma we therefore have a bijective correspondence:
+\begin{align*}
+\Gamma\vdash A\quad &\approx\quad A : \y{\Gamma}\to \Ty  \\
+\Gterms{a:A}\quad &\approx\quad  a: \y{\Gamma}\to \Tm  \qquad (\tp\circ a = A)
+\end{align*}
+as indicated in the following.
+\[
+\begin{tikzcd}
+ 	&&  {\Tm} \ar[d,"{\tp}"]\\
+\y\Gamma \ar[rru, "a"]   \ar[rr ,swap,  "A"]   && {\Ty}
+\end{tikzcd}
+\]
+%
+
+The action of a substitution of contexts $\sigma : \Delta \to \Gamma$ on types and terms,
+\[
+\frac{\sigma: \Delta \to \Gamma, \quad \Gamma\vdash a:A}{\Delta\vdash a[\sigma] : A[\sigma]}
+\]
+is then interpreted simply as composition:
+\[
+\begin{tikzcd}
+ 	&&&  {\Tm} \ar[d,"{\tp}"]\\
+\y{\Delta} \ar[r,  "\y{\sigma}"] \ar[rrru, bend left, "{a[\sigma]}"] \ar[rrr, swap, bend right, "{A[\sigma]}"] & \y\Gamma \ar[rru, "a"]   \ar[rr ,swap,  "A"]  && {\Ty}
+\end{tikzcd}
+\]
+
+
+We may hereafter omit the $\y$ for the Yoneda embedding, letting the Greek letters serve to distinguish representable presheaves and their maps.
+
+The CwF operation of \emph{context extension} 
+$$\frac{\Gamma\vdash A}{\ext{\G}{A}\vdash}$$
+is modeled by the representability of $p : \Tm\to\Ty$ as follows.
+%
+Given $\Gamma\vdash A$ we need a new context $\ext{\G}{A}$ together with a substitution $p_A : \ext{\G}{A} \to A$ and a term 
+\[
+\terms{\ext{\G}{A}}{q_A:A[p_A]}\,,
+\]
+where, the substitution $A[p_A]$ is modeled by composition $A[p_A] = A\circ p_A$.
+
+Let $p_A: \ext{\G}{A} \to \G$ be the pullback of $p$ along $A$, which exists in $\C$ since $p$ is representable.
+%
+\begin{equation}\label{diag:NMpullback}
+\begin{tikzcd}
+{\ext{\G}{A}} \ar[d,swap, "{p_A}"] \ar[r, "{q_A}"] \pbcorner &  {\Tm} \ar[d, "{p}"]\\
+{\G} \ar[r,swap,"A"]   & {\Ty}
+\end{tikzcd}
+\end{equation}
+%
+The map $q_A : \ext{\G}{A}\to\Tm$ gives the required term $\terms{\ext{\G}{A}}{q_A:A[p_A]}$, since $p\circ q_A = A \circ p_A$.
+The remaining laws of a CwF follow from the pullback condition on $\eqref{diag:NMpullback}$, see \cite{Awodey:NM}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Modeling the type formers}
+
+Given a natural model $\tT$ we will make extensive use of the associated \emph{polynomial endofunctor}
+$\alg{P}_\t : \hat\C \too \hat\C$ (cf.\ \cite{GambinoKoch}), defined by 
+\[
+\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \hat{\C}\too\hat{\C}\,,
+\] 
+\begin{equation*}
+\xymatrix{
+  \Set^{\C^\mathsf{op}} \ar[d]_{\TT^*} \ar[rr]^{\alg{P}_\t} && \Set^{\C^\mathsf{op}} \\
+  \Set^{\C^\mathsf{op}}\!/_{\TT} \ar[rr]_{{\t}_*} && \Set^{\C^\mathsf{op}}\!/_\T \ar[u]_{{\T}_!} 
+ }
+\end{equation*}
+
+The action of $\alg{P}_\t$ on an object $X$ may be depicted:
+\begin{equation*}
+\xymatrix{
+ X & \ar[l] X\times \TT \ar[d] && \alg{P}_\t(X) \ar[d] \\
+	& \TT \ar[rr]_{\t} && \T 
+ }\qquad\quad
+ \end{equation*}
+
+
+  We call $\tT$ the \emph{signature} of $\alg{P}_\t$ and briefly recall the following \emph{universal mapping property} from \cite{awodey:NM}.
+
+\begin{lemma}
+ For any $p: E \to B$ in a locally cartesian closed category $\EE$, the polynomial functor $\alg{P}_p : \EE \to \EE$ has the following universal property:  for $Z, X \in \EE$, maps $f : Z \to \alg{P}_p (X)$ correspond bijectively to pairs of maps $f_1 : Z \to B$ and $f_2 : Z\times_B E \to Z$, as indicated below.
+\begin{equation}\label{diag:polyUMP}
+\begin{tikzcd}
+&Z \ar[rr,"f"] && \alg{P}_p (X) & \\[-5ex]
+\strut \ar[rrrr, equal] &&&& \strut\\[-5ex]
+&X & \ar[l,"f_2"] Z\times_B E \ar[d] \ar[r] \pbcorner & E \ar[d] &\\
+&& Z \ar[r,swap,"f_1"] & B &
+\end{tikzcd}
+\end{equation}
+The correspondence is natural in both $X$ and $Z$, in the evident sense.
+\end{lemma}
+
+This universal property is also suggested by the conventional type theoretic notation, namely: $$\alg{P}_p (X) = \Sigma_{b:B} X^{E_b}$$
+The lemma can be used to determine the signature $p\cdot q$ for the composite $\alg{P}_p \circ \alg{P}_q$ of two polynomial functors, which is again polynomial, and for which we have,
+\begin{equation}\label{eq:polycomp}
+\alg{P}_{p\cdot q} \cong \alg{P}_p \circ \alg{P}_q\,.
+\end{equation}
+Indeed, let $p : B \to A$ and $q : D \to C$, and consider the following diagram resulting from applying the correspondence \eqref{diag:polyUMP} to the identity arrow.
+\[
+\langle a, c\rangle = 1_{\alg{P}_p(C)} : \alg{P}_p(C) \to \alg{P}_p(C)
+\]
+and taking $Q$ to be the pullback.
+%
+\begin{equation}\label{diag:polyUMP}
+\begin{tikzcd}
+D \ar[d,swap,"q"] & \ar[l] Q \ar[d] \pbcornerright  \ar[dd, dotted, bend left = 10ex ,near start, "{p\cdot q}"]& & \\
+ C  & \ar[l,"c"] \pi^*B \ar[d] \ar[r] \pbcorner & B \ar[d,"p"] \\
+&  \alg{P}_p(C) \ar[r,swap,"a"] & A
+\end{tikzcd}
+\end{equation}
+The map $p\cdot q$ is then defined to be the indicated composite,
+\[
+p\cdot q\ =\ a^*p \circ c^*q\,.
+\]
+The condition \eqref{eq:polycomp} can then be checked using the correspondence \eqref{diag:polyUMP} (also see \cite{GambinoKoch}).
+
+\begin{definition}\label{def:modelthetypeformers}
+A natural model $\tT$ over $\C$ will be said to \emph{model} the type-formers $ \mathsf{1}, \Sigma, \Pi$ if there are pullback squares in $\hat{\C}$ of the following form,
+%\begin{equation}\label{diag:naturalmodelPiSigma1}
+%\begin{tikzcd}
+%	1 \ar[r,"*"] \ar[d,swap,"!"] \pbcorner &  \TT \ar[d, "\t"]\\  
+%	1 \ar[r, swap,"\mathsf{1}"] & \T
+% \end{tikzcd} \qquad \qquad 
+% \begin{tikzcd}
+%	\TT_2  \ar[r,"\sigma"] \ar[d,swap,"\t\cdot\t"] \pbcorner &  \TT \ar[d, "\t"]\\  
+%	\T_2 \ar[r,swap, "\Sigma"] & \T
+%	 \end{tikzcd} \qquad \qquad 
+%	 \begin{tikzcd}
+%	 \alg{P}_\t(\TT) \ar[r,"\lambda"] \ar[d,swap,"\alg{P}_\t(\t)"] \pbcorner &  \TT \ar[d, "\t"]\\  
+%	\alg{P}_\t(\T) \ar[r,swap, "\Pi"] & \T
+% \end{tikzcd} 
+% \end{equation}
+%
 \begin{equation}\label{diag:naturalmodelPiSigma1}
 \begin{tikzcd}
-	1 \ar[r,"*"] \ar[d,swap,"!"] \pbcorner &  \TT \ar[d, "\t"]\\  
-	1 \ar[r, swap,"\mathsf{1}"] & \T
+	1 \ar[r] \ar[d] \pbcorner &  \TT \ar[d, "\t"]\\  
+	1 \ar[r] & \T
  \end{tikzcd} \qquad \qquad 
  \begin{tikzcd}
-	\TT_2  \ar[r,"\sigma"] \ar[d,swap,"\t\cdot\t"] \pbcorner &  \TT \ar[d, "\t"]\\  
-	\T_2 \ar[r,swap, "\Sigma"] & \T
+	\TT_2  \ar[r] \ar[d,swap,"\t\cdot\t"] \pbcorner &  \TT \ar[d, "\t"]\\  
+	\T_2 \ar[r] & \T
 	 \end{tikzcd} \qquad \qquad 
 	 \begin{tikzcd}
-	 \alg{P}_\t(\TT) \ar[r,"\lambda"] \ar[d,swap,"\alg{P}_\t(\t)"] \pbcorner &  \TT \ar[d, "\t"]\\  
-	\alg{P}_\t(\T) \ar[r,swap, "\Pi"] & \T
+	 \alg{P}_\t(\TT) \ar[r] \ar[d,swap,"\alg{P}_\t(\t)"] \pbcorner &  \TT \ar[d, "\t"]\\  
+	\alg{P}_\t(\T) \ar[r] & \T
  \end{tikzcd} 
  \end{equation}
 %
-where
-\begin{enumerate}
-\item $\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \hat{\C}\to\hat{\C}$ is the polynomial endofunctor determined uniquely by $\tT$ (its \emph{signature}, cf.\ \cite{GambinoKoch}), 
-\item $\t\cdot\t : \dot{\T}_2 \to \T_2$ is defined by $\alg{P}_{\t\cdot\t} =  \alg{P}_{\t} \circ \alg{P}_{\t}$.
-\end{enumerate}
-The terminology is justified by the following result, also from \cite{A:NM}.
+where $\t\cdot\t : \dot{\T}_2 \to \T_2$ is determined by $\alg{P}_{\t\cdot\t} \cong  \alg{P}_{\t} \circ \alg{P}_{\t}$ as in \eqref{eq:polycomp}.
+\end{definition}
+
+The terminology is justified by the following result from \cite{A:NM}.
 
 %
-\begin{theorem}\label{thm:nmcwf}
-Let $\tT$ be a natural model. The associated category with families satisfies the usual rules for the type-constructors $\mathsf{1}, \Sigma, \Pi$ just if $\tT$ models them, in the sense of the diagrams \eqref{diag:naturalmodelPiSigma1}.
+\begin{theorem}[\cite{Awodey:NM} Theorem XXX]\label{thm:nmcwf}
+Let $\tT$ be a natural model. The associated category with families satisfies the usual rules for the type-formers $\mathsf{1}, \Sigma, \Pi$ just if $\tT$ models the same in the sense of Definition \ref{def:modelthetypeformers}.
 \end{theorem}
 
-\subsection{Display maps and clans}
+We only sketch the case of $\Pi$-types, but the other type formers will be treated in detail in Section \ref{sec:MLalgebras}.
+
+\begin{proposition}  The natural model $\tT$ models $\Pi$-types just if there are maps $\lambda$ and $\Pi$ making the following a pullback diagram. 
+\begin{equation*}%\label{diag:prod2}
+\begin{tikzcd}
+\alg{P}_\t(\TT)  \ar[d,swap, "{\alg{P}_\t(\t)}"]   \ar[r, "\lambda"]  \pbcorner &  \TT \ar[d, "{\t}"]\\
+\alg{P}_\t(\T)	\ar[r,swap, "{\Pi}"] & \T
+\end{tikzcd}
+\end{equation*}
+\end{proposition}
+
+\begin{proof}
+%
+\begin{equation*}%\label{diag:prod2}
+\xymatrix{
+{\color{blue}A \vdash b:B} &&&& {\color{blue}\lambda_{A}b} \\
+&P\UU \ar[d]  \ar[rr]^-{\lambda} &&  \UU \ar[d]^{p} &\\
+&P\U     \ar[rr]_-{\Pi} && \U &\\
+{\color{blue}A\vdash  B} &&&& {\color{blue}\Pi_{A}B} }
+\end{equation*}
+
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{2. Display maps and clans}\label{sec:Clans}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \ednote{define $\DD_\t$ and show that it is a display map category with ... }
 \medskip
@@ -283,8 +476,12 @@ Given a natural model
 Let $\tT$ be a natural model of type theory.  Then 
 \end{theorem}
 
+Note on Strictification and the B-C conditions.
+
+Note on the syntactic natural model of type theory and initiality.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{2. Martin-L\"of algebras}\label{sec:MLalgebras}
+\section*{3. Martin-L\"of algebras}\label{sec:MLalgebras}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 Now let $\EE$ be a locally cartesian closed category and $\tT$ any map in~$\EE$. As in the representable case, $\t$ gives rise to a polynomial endofunctor $\alg{P}_\t : \EE\to\EE$, in terms of which we define the following abstraction of the notion of a  natural model.
@@ -321,6 +518,42 @@ f_* \dashv f^! : \EE/_B \too \EE/_A\,.
 \]
 \end{lemma}
 
+\begin{proposition}\label{prop:rep_is_tiny}
+If $\C$ has finite limits, $p : Y \to X$ is representable if, and only if, it is \emph{tiny}, in the sense that the \emph{pushforward functor} (the right adjoint to pullback) 
+\[
+p^* \dashv p_* : \widehat{\C}/_{Y} \longrightarrow \widehat{\C}/_{X}
+\]
+itself has a \emph{right} adjoint:
+\[
+p_! \dashv p^*\dashv p_* \dashv {\color{blue}p^!}
+\]
+\end{proposition}
+
+\begin{proof}
+The elementary definition \ref{def:representablenattrans} clearly states that, for the category of elements ${\int\!X} \simeq {\y{}/_X}$, the composition functor 
+\[\textstyle
+{\int\!p} : {\int\!Y} \to {\int\!X}
+\]  
+has a right adjoint, say ${\int\!p} \dashv ({\int\!p})^\sharp$. Now recall that $\widehat{\C}/{X} \simeq \psh{(\int\!X)}$, so that the precomposition functor $({\int\!p})^* = \psh{({\int\!p})}$ gives rise to a commutative diagram with left and right Kan extensions $({\int\!p})_!\dashv ({\int\!p})^* \dashv ({\int\!p})_*$.
+%\begin{equation}\begin{tikzcd}
+%\psh{{\int\!Y}} \ar[rr,  "{P_!}"]  &&  \psh{\int\!X} \ar[ll, "{P^*}"] \\
+%&& \\
+%{\int\!Y} \ar[uu, hook, "{\y{}}"]  \ar[rr, "{p_!}"]  &&  \ar[ll, "{p^*}"]  {\int\!X} \ar[uu, hook, "{\y{}}"]
+%\end{tikzcd}\end{equation}
+\begin{equation}\begin{tikzcd}
+\psh{(\int{\!Y})} \ar[rr,shift right,swap, "{\int\!p}_!"]  \ar[rr,shift left] &&   \psh{(\int{\!X})} \ar[ll] \\
+&& \\
+\int{\!Y} \ar[uu, hook, "{\y{}}"]  \ar[rr, swap, "{\int\!p}"]  &&  \int{\!X} \ar[uu, swap,hook, "{\y{}}"]
+\end{tikzcd}\end{equation}
+%
+But since ${\int\!p} \dashv ({\int\!p})^\sharp$ , there is a further right adjoint $({\int\!p})_* \dashv (({\int\!p})^\sharp)_*$ to precomposition with $({\int\!p})^\sharp$.  Moving back across the equivalence $\psh{(\int\!X)} \simeq \widehat{\C}/_{X}$ we obtain the claimed further right adjoint $p_*\dashv p^! :  \widehat{\C}/_{X} \too \widehat{\C}/_{Y}$.  
+
+Conversely, a right adjoint $$\textstyle ({\int\!p})_* \dashv R : \psh{(\int{\!X})} \to \psh{(\int{\!Y})}$$ is easily shown to be induced by precomposing with a right adjoint ${\int\!p} \dashv r : {\int\!X} \to {\int\!Y}$ if $\C$ if has all finite products and idempotents split in $\C$, which is the case if $\C$ has finite limits.
+\end{proof}
+
+
+
+
 \begin{proposition}
 Any representable natural transformation $f : A\to B$ between presheaves on a small category $\C$ is a tiny map in $\hat\C$.
 \end{proposition}
@@ -328,6 +561,19 @@ Any representable natural transformation $f : A\to B$ between presheaves on a sm
 \begin{proof}
  See \cite{A:NM}. Briefly, ...
 \end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Polynomial monad}\label{sec:monad}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{4. Equality and Identity Types}\label{sec:Eq and Id}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{5. Free ML-Algebras}\label{sec:Free ML-Algebras}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{alpha}
@@ -621,7 +867,7 @@ For $\VV_{\kappa}$ we then have,
    where the $A$-summand in \eqref{eq:veedotc} is defined by taking sections of the  pullback indicated below.
    \begin{equation}\label{eq:pbforindexing}\textstyle
 \begin{tikzcd}
-	A^*\Set^{\mathsf{op}}_\kappa \ar[d] \ar[r] \pbmark & \SSet^{\mathsf{op}}_\kappa \ar[d]\\  
+	A^*\Set^{\mathsf{op}}_\kappa \ar[d] \ar[r] \pbcorner & \SSet^{\mathsf{op}}_\kappa \ar[d]\\  
 	\C/_c \ar[r,swap,"A"] \ar[u, bend left, dotted] \ar[ur, dotted] &  \Set^{\mathsf{op}}_\kappa
  \end{tikzcd}
  \end{equation}
