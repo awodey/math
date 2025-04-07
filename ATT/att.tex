@@ -557,7 +557,7 @@ p^* \dashv p_* : \widehat{\C}/_{Y} \longrightarrow \widehat{\C}/_{X}
 \]
 itself has a \emph{right} adjoint:
 \[
-p_! \dashv p^*\dashv p_* \dashv {\color{blue}p^!}
+p_! \dashv p^*\dashv p_* \dashv  p^!
 \]
 \end{proposition}
 
@@ -566,39 +566,51 @@ The elementary definition \ref{def:representablenattrans} clearly states that, f
 \[\textstyle
 {\int\!p} : {\int\!Y} \to {\int\!X}
 \]  
-has a right adjoint, say ${\int\!p} \dashv ({\int\!p})^\sharp$. Now recall that $\widehat{\C}/{X} \simeq \psh{(\int\!X)}$, so that the precomposition functor $({\int\!p})^* = \psh{({\int\!p})}$ gives rise to a commutative diagram with left and right Kan extensions $({\int\!p})_!\dashv ({\int\!p})^* \dashv ({\int\!p})_*$.
+has a right adjoint, say ${\int\!p} \dashv ({\int\!p})^\sharp$. Now recall that $\widehat{\C}/{X} \simeq \psh{(\int\!X)}$, so that the precomposition functor $({\int\!p})^* = \psh{({\int\!p})}$ gives rise to a commutative diagram with left and right Kan extensions:
+\[\textstyle
+({\int\!p})_!\dashv ({\int\!p})^* \dashv ({\int\!p})_*
+\]
+%
 %\begin{equation}\begin{tikzcd}
 %\psh{{\int\!Y}} \ar[rr,  "{P_!}"]  &&  \psh{\int\!X} \ar[ll, "{P^*}"] \\
 %&& \\
 %{\int\!Y} \ar[uu, hook, "{\y{}}"]  \ar[rr, "{p_!}"]  &&  \ar[ll, "{p^*}"]  {\int\!X} \ar[uu, hook, "{\y{}}"]
 %\end{tikzcd}\end{equation}
 \begin{equation}\begin{tikzcd}
-\psh{(\int{\!Y})} \ar[rr,shift right,swap, "{\int\!p}_!"]  \ar[rr,shift left] &&   \psh{(\int{\!X})} \ar[ll] \\
+\psh{(\int{\!Y})} \ar[rr,shift right = 1ex,swap, "{\int\!p}_!"]  \ar[rr,shift left = 1ex] &&   \psh{(\int{\!X})} \ar[ll] \\
 && \\
 \int{\!Y} \ar[uu, hook, "{\y{}}"]  \ar[rr, swap, "{\int\!p}"]  &&  \int{\!X} \ar[uu, swap,hook, "{\y{}}"]
 \end{tikzcd}\end{equation}
 %
-But since ${\int\!p} \dashv ({\int\!p})^\sharp$ , there is a further right adjoint $({\int\!p})_* \dashv (({\int\!p})^\sharp)_*$ to precomposition with $({\int\!p})^\sharp$.  Moving back across the equivalence $\psh{(\int\!X)} \simeq \widehat{\C}/_{X}$ we obtain the claimed further right adjoint $p_*\dashv p^! :  \widehat{\C}/_{X} \too \widehat{\C}/_{Y}$.  
-
+But since ${\int\!p} \dashv ({\int\!p})^\sharp$ , there is a further right adjoint $({\int\!p})_* \dashv (({\int\!p})^\sharp)_*$ to precomposition with $({\int\!p})^\sharp$.  Moving back across the equivalence $\psh{(\int\!X)} \simeq \widehat{\C}/_{X}$ we obtain the claimed further right adjoint: 
+\[
+p_! \dashv p^* \dashv p_*\dashv p^! :  \widehat{\C}/_{X} \too \widehat{\C}/_{Y}
+\]
+%
 Conversely, a right adjoint $$\textstyle ({\int\!p})_* \dashv R : \psh{(\int{\!X})} \to \psh{(\int{\!Y})}$$ is easily shown to be induced by precomposing with a right adjoint ${\int\!p} \dashv r : {\int\!X} \to {\int\!Y}$ if $\C$ if has all finite products and idempotents split in $\C$, which is the case if $\C$ has finite limits.
 \end{proof}
 
 
 
-
-\begin{proposition}
-Any representable natural transformation $f : A\to B$ between presheaves on a small category $\C$ is a tiny map in $\hat\C$.
-\end{proposition}
-
-\begin{proof}
- See \cite{A:NM}. Briefly, ...
-\end{proof}
-
+%
+%\begin{proposition}
+%Any representable natural transformation $f : A\to B$ between presheaves on a small category $\C$ is a tiny map in $\hat\C$.
+%\end{proposition}
+%
+%\begin{proof}
+% See \cite{A:NM}. Briefly, ...
+%\end{proof}
+%
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Polynomial monad}\label{sec:monad}
 
+The correspondence between cartesian squares and cartesian natural transformations of polynomial endofunctors.  
+
+The natural model structure corresponds to a polynomial monad equipped with an algebra structure.  
+
+The equations do not hold, but they do up to iso.  If we have univalence then they will hold up to identity terms -- once we have defined identity and univalence.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
