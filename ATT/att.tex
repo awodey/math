@@ -232,7 +232,7 @@
 %with an evident associated action on morphisms.  A few comments are required: 
 %%
 
-We begin by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{dybjer:CwF}.  Then in section \ref{sec:strictify} it is shown how such models are related to the \emph{clans} and \emph{tribes} of Joyal \cite{Joyal:clan}.  In section \ref{sec:MLalgebra} we abstract the main features of a natural model with the type-formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is begun in section \ref{sec:eqandid } with the addition of equality and identity types, and the construction of free algebras in section \ref{sec:free} . 
+We begin by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{dybjer:CwF}.  In section \ref{sec:strictify} it is briefly recalled how such models are related to the \emph{clans} and \emph{tribes} of Joyal \cite{Joyal:clan}.  In section \ref{sec:MLalgebra} we abstract the main features of a natural model with the type-formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is begun in section \ref{sec:eqandid } with the addition of equality and identity types, and the construction of free algebras in section \ref{sec:free}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Natural models of type theory}\label{sec:NaturalModels}
@@ -330,7 +330,7 @@ The map $q_A : \ext{\G}{A}\to\Tm$ arising from the pullback gives the required t
 The remaining laws of a CwF follow from the pullback condition on $\eqref{diag:NMpullback}$; see \cite{Awodey:NM}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Modeling the type formers}
+\subsection*{Modeling the type formers}
 
 Given a natural model $\tT$, we will make extensive use of the associated \emph{polynomial endofunctor}
 $\alg{P}_\t : \hat\C \too \hat\C$ (cf.\ \cite{GambinoKoch}), defined by 
@@ -434,7 +434,7 @@ The terminology is justified by the following result from \cite{A:NM}.
 Let $\tT$ be a natural model. The associated category with families satisfies the usual rules for the type-formers $\mathsf{1}, \Sigma, \Pi$ just if $\tT$ models the same in the sense of Definition \ref{def:modelthetypeformers}.
 \end{theorem}
 
-We only sketch the case of $\Pi$-types, but the other type formers will be treated in detail in Section \ref{sec:MLalgebras}.
+We only sketch the case of $\Pi$-types, but the other type formers will be treated in more detail in Section \ref{sec:MLalgebras} (see also \cite{Awodey:NM, Newstead, Awodey-Newstead}).
 
 \begin{proposition}  The natural model $\tT$ models $\Pi$-types just if there are maps $\lambda$ and $\Pi$ making the following a pullback diagram. 
 \begin{equation}\label{diag:prod2}
@@ -488,74 +488,53 @@ in conjunction with the \emph{$\Pi$-computation rules}:
 \end{align*}
 \end{proof}
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\section*{2. Display maps and clans}\label{sec:Clans}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-%\ednote{define $\DD_\t$ and show that it is a display map category with ... }
-%\medskip
-%
-%\ednote{given  a display map category $\DD$ with ... define $\alg{d}$ and show that it is ...}
-%\medskip
-%
-%\ednote{the constructions are not mutually inverse but rather adjoint inverse ...}
-%
-%\medskip
-%
-%In these terms, we have the following description of the type-constructors $\Pi, \Sigma, \mathsf{1}$:
-%Given a natural model 
-%\begin{theorem}[\cite{A:NM}, XX]
-%Let $\tT$ be a natural model of type theory.  Then 
-%\end{theorem}
-%
-%Note on Strictification and the B-C conditions.
-%
-%Note on the syntactic natural model of type theory and initiality.
-%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{3. Martin-L\"of algebras}\label{sec:MLalgebras}
+\section{Martin-L\"of algebras}\label{sec:MLalgebras}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Now let $\EE$ be a locally cartesian closed category and $\tT$ any map in~$\EE$. As in the representable case, $\t$ gives rise to a polynomial endofunctor $\alg{P}_\t : \EE\to\EE$, in terms of which we define the following abstraction of the notion of a  natural model.
-
+Now let $\EE$ be a locally cartesian closed category (lccc) and $\tT$ a map in~$\EE$.  As in the foregoing case where $\EE$ was a category of presheaves, $\t$ gives rise to a polynomial endofunctor  (\cite{GK}),
+$$\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \EE\too\EE\,,$$
+which we may use to define the following abstraction of the notion of a natural model.
 \begin{definition}\label{def:MLalg}
-A \emph{Martin-L\"of algebra} in $\EE$ is a map $\tT$ equipped with structure maps $(*, 1, \sigma, \Sigma, \lambda, \Pi)$ making pullback squares 
+A \emph{Martin-L\"of algebra} in an lccc $\EE$ is a map $\tT$ equipped with structure maps $(*, 1, \sigma, \Sigma, \lambda, \Pi)$ making pullback squares 
 \begin{equation}\label{diag:MLalg}
 \begin{tikzcd}
 	1 \ar[r,"*"] \ar[d,swap,"!"] \pbcorner &  \TT \ar[d, "\t"]\\  
 	1 \ar[r, swap,"\mathsf{1}"] & \T
  \end{tikzcd}\qquad \qquad 
  \begin{tikzcd}
-	\TT^2  \ar[r,"\sigma"] \ar[d,swap,"\t^2"] \pbcorner &  \TT \ar[d, "\t"]\\  
-	\T^2 \ar[r,swap, "\Sigma"] & \T
-	 \end{tikzcd} \qquad \qquad 
+	\TT_2  \ar[r,"\sigma"] \ar[d,swap,"\t\cdot\t"] \pbcorner &  \TT \ar[d, "\t"]\\  
+	\T_2 \ar[r,swap, "\Sigma"] & \T
+\end{tikzcd} \qquad \qquad 
 	 \begin{tikzcd}
-	\TT'  \ar[r,"\lambda"] \ar[d,swap,"\t' "] \pbcorner &  \TT \ar[d, "\t"]\\  
-	\T' \ar[r,swap, "\Pi"] & \T
+	\alg{P}_\t\TT \ar[r,"\lambda"] \ar[d,swap,"\alg{P}_\t(\t)"] \pbcorner &  \TT \ar[d, "\t"]\\  
+	\alg{P}_\t\T \ar[r,swap, "\Pi"] & \T
  \end{tikzcd} 
  \end{equation}
- where the maps $\t^2$ and $\t'$ are defined in terms of the polynomial endofunctor $$\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \EE\too\EE$$ as in the foregoing section.
+ where the map $\t\cdot\t$ is defined in terms of $\alg{P}_\t$ as in \eqref{diag:naturalmodelPiSigma1} via
+ \[
+\alg{P}_{\t\cdot\t} = \alg{P}_{\t}\cdot \alg{P}_{\t}\,.
+ \]
+   \end{definition}
+
+In place of representability in the elementary setting we may require that $\tT$ be $\emph{tiny}$.
+
+\begin{definition}\label{def:tinymap}
+ A map $f : B \to A$ in a locally cartesian closed category $\EE$ will be said to be \emph{tiny} if it is so as an object in $\EE/_A$, in the sense that exponentiation by $f$ has a right adjoint $(-)^f \dashv (-)_f$. 
 \end{definition}
 
-In place of representability, we may require that $\tT$ be $\emph{tiny}$.
-
-\begin{definition}
- A map $f : A \to B$ in a locally cartesian closed category $\EE$ is \emph{tiny} if it is so as an object in $\EE/_B$, in the sense that  exponentiation by $f$  has a right adjoint $(-)^f \dashv (-)_f$. 
-\end{definition}
-
-\begin{lemma}
-A map $f : A \to B$ is tiny just if the \emph{pushforward} $f_* : \EE/_A \to \EE/_B$ has a right adjoint,
+Note that a map $f : B \to A$ in an lccc is tiny just if the \emph{pushforward} functor $f_* : \EE/_B \to \EE/_A$ has a right adjoint,
 \[
-f_* \dashv f^! : \EE/_B \too \EE/_A\,.
+f_* \dashv f^! : \EE/_A \too \EE/_B\,.
 \]
-\end{lemma}
 
 \begin{proposition}\label{prop:rep_is_tiny}
-If $\C$ has finite limits, $p : Y \to X$ is representable if, and only if, it is \emph{tiny}, in the sense that the \emph{pushforward functor} (the right adjoint to pullback) 
+If $\C$ has finite limits, a map $p : Y \to X$ in $\widehat{\C}$ is representable just if it is tiny in the sense of Definition \ref{def:tinymap}, which is the case just if the \emph{pushforward functor} (the right adjoint to pullback) 
 \[
 p^* \dashv p_* : \widehat{\C}/_{Y} \longrightarrow \widehat{\C}/_{X}
-\]
-itself has a \emph{right} adjoint:
+\] 
+has a \emph{right} adjoint:
 \[
 p_! \dashv p^*\dashv p_* \dashv  p^!
 \]
@@ -588,41 +567,213 @@ p_! \dashv p^* \dashv p_*\dashv p^! :  \widehat{\C}/_{X} \too \widehat{\C}/_{Y}
 \]
 %
 Conversely, a right adjoint $$\textstyle ({\int\!p})_* \dashv R : \psh{(\int{\!X})} \to \psh{(\int{\!Y})}$$ is easily shown to be induced by precomposing with a right adjoint ${\int\!p} \dashv r : {\int\!X} \to {\int\!Y}$ if $\C$ if has all finite products and idempotents split in $\C$, which is the case if $\C$ has finite limits.
+
+We leave the construction of the right adjoint $p^!:  \widehat{\C}/_{X} \too \widehat{\C}/_{Y}$ from the  right adjoint $(-)^p \dashv (-)_p : \widehat{\C}/_{X} \to \widehat{\C}/_{X}$ to the reader.
 \end{proof}
 
 
-
-%
-%\begin{proposition}
-%Any representable natural transformation $f : A\to B$ between presheaves on a small category $\C$ is a tiny map in $\hat\C$.
-%\end{proposition}
-%
-%\begin{proof}
-% See \cite{A:NM}. Briefly, ...
-%\end{proof}
-%
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Polynomial monad}\label{sec:monad}
-
-The correspondence between cartesian squares and cartesian natural transformations of polynomial endofunctors.  
-
-The natural model structure corresponds to a polynomial monad equipped with an algebra structure.  
-
-The equations do not hold, but they do up to iso.  If we have univalence then they will hold up to identity terms -- once we have defined identity and univalence.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{4. Equality and Identity Types}\label{sec:Eq and Id}
+\section{Identity Types}\label{sec:Eq and Id}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Also univalence, and univalent quotients.
+A natural model $\tT$ in a presheaf category $\widehat{\C}$ was defined in \cite{Awodey:NM} to model both the extensional and intensional identity types of Martin-L\"of type theory in terms of the existence of certain additional structures.  Let us show how to capture these definitions in the new, elementary setting of Martin-L\"of algebras.  Condition (\ref{def:equalitytype}) below is shown in \cite{Awodey:NM} to capture the extensional identity types of Martin-L\"of type theory.  The condition given in \emph{op.cit.} for the intensional case is replaced in (\ref{def:identitytype}) below by a simplification suggested by R.\ Garner.   
 
-Polynomial laws hold up to Id types if the universe is univalent.
+\begin{definition}\label{def:EqualityandIdentityTypes}
+Let $\tT$ be a map in an lccc $\EE$. 
+\begin{enumerate}
+\item\label{def:equalitytype}  $\tT$ is said to  model the (extensional) \emph{equality type former} if there are structure maps $(\refl, \mathsf{Eq})$ making a pullback square:
+\begin{equation*}\label{diag:Eqtypes}
+\begin{tikzcd}
+	\TT \ar[r,"\refl"] \ar[d,swap,"\delta"] \pbcorner &  \TT \ar[d, "\t"]\\  
+	\TT \times_\T \TT \ar[r, swap,"\mathsf{Eq}"] & \T
+ \end{tikzcd}\qquad \qquad 
+ \end{equation*}
+\item\label{def:identitytype}   $\tT$ is said to model the (intensional) \emph{identity type former} if there are structure maps $(\mathsf{i}, \mathsf{Id})$ making a commutative square,
+\begin{equation}\label{diag:Idtypes}
+\begin{tikzcd}
+	\TT \ar[r,"\mathsf{i}"] \ar[d,swap,"\delta"] &  \TT \ar[d, "\t"]\\  
+	\TT \times_\T \TT \ar[r, swap,"\mathsf{Id}"] & \T
+ \end{tikzcd}\qquad \qquad 
+ \end{equation}
+ together with a weak pullback structure $\mathsf{J}$ for the resulting comparison square, in the sense of \eqref{def:wps} below. 
+ \end{enumerate}
+   \end{definition}
+
+To describe the map $\mathsf{J}$, let us see how (\ref{def:identitytype}) models identity types.  Under the interpretation already described in Section \ref{sec:NaturalModels} the maps $\Id$ and $\mathsf{i}$  in 
+\begin{equation*}%\label{diag:Idtypes}
+\begin{tikzcd}
+	\TT \ar[r,"\mathsf{i}"] \ar[d,swap,"\delta"] &  \TT \ar[d, "\t"]\\  
+	\TT \times_\T \TT \ar[r, swap,"\mathsf{Id}"] & \T
+ \end{tikzcd}\qquad \qquad 
+ \end{equation*}
+respectively, directly model the formation and introduction rules.
+\begin{align*}
+x, y:A &\vdash \Id_A(x, y)\\
+x: A &\vdash \mathsf{i}(x) : \Id_A(x, x)
+\end{align*}
+Next, pull $\t$ back along $\mathsf{Id}$ to get an object $\mathsf{I}$ and a map $\rho  : \TT \to \mathsf{I}$,
+%
+\begin{equation*}%\label{diag:prod2}
+\begin{tikzcd}
+\TT \ar[rd,swap,"{\delta}"] \ar[r,"{\rho}"] \ar[rr, bend left,"{\mathsf{i}}"] & \mathsf{I} \ar[r]  \ar[d] \pbcorner &  \TT \ar[d, "\t"]\\
+& \TT \times_\T \TT  \ar[r, swap,"{\mathsf{Id}}"]  & \T
+\end{tikzcd}
+\end{equation*}
+%
+which commutes with the compositions to $\T$ as indicated below.
+%
+\begin{equation*}%\label{diag:prod2}
+\xymatrix{
+\TT \ar[rd]_{\t} \ar[r]^{\rho} & I \ar[d]^{q}  \\
+& \T 
+}
+\end{equation*}
+%
+The map $\rho  : \TT \to \mathsf{I}$, which can be interpreted as the substitution $(x) \mapsto (x, x, \mathsf{i}x)$, gives rise to a ``restriction'' natural transformation of polynomial endofunctors (\cite{GK}),
+\[
+\rho^* : P_q \to P_\t\,,
+\]
+evaluation of which at $\t:\TT \to\T$ results in the following commutative naturality square.
+\begin{equation}\label{diag:prod2}
+\begin{tikzcd}
+P_q\TT \ar[d,swap, "{P_q \t}"] \ar[r, "{\rho^{*}_{\TT}}"] & P_\t\TT \ar[d, "{P_\t \t}"] \\
+P_q\T \ar[r,swap, "{\rho^{*}_{\T}}"] &  P_\t\T 
+\end{tikzcd}
+\end{equation}
+%
+A \emph{weak pullback structure} $\mathsf{J}$ is a section of the resulting comparison map.
+\begin{equation}\label{def:wps}
+\begin{tikzcd}
+P_q \TT  \ar[r] & \ar[l, bend right, dotted, "\mathsf{J}" description] P_q\T \times_{P_\t\T} P_\t\TT 
+\end{tikzcd}
+\end{equation}
+
+To show that this models the standard elimination rule
+\[
+\frac{x:A\vdash c(x) : C(\rho x)}{x, y:A, z : \Id_A(x, y)\vdash \mathsf{J}_c(x,y,z) : C(x,y,z)}
+\]
+take any object $\Gamma \in \EE$  and maps $(A, A, \Id_{A} \vdash C) : \Gamma \to P_q\T$ and $(A \vdash c) : \Gamma \to P_\t\TT$ with equal composites to $P_\t\T$, meaning that $A \vdash c : C(\rho x)$.  Composing the resulting map 
+\[
+(A\vdash c(x):C(\rho x)) : \Gamma \to P_q\T \times_{P_\t\T} P_\t\TT
+\]
+with $\mathsf{J} : P_q\T \times_{P_\t\T} P_\t\TT \to P_q \TT$ then indeed provides a term $$x:A, y:A, z:\Id_{A}(x,y)  \vdash \mathsf{J}_c(x,y,z) : C(x,y,z)\,.$$
+
+The computation rule
+\[
+x: A \vdash \mathsf{J}_c(\rho x) = c(x) : C(\rho x)
+\]
+then says exactly that $\mathsf{J}$ is indeed a section of the comparison map \eqref{def:wps}.
+
+\begin{proposition}[R.\ Garner] The map $\t : \TT \to \T$ models intensional \emph{identity types} just if there are maps $(\mathsf{i}, \Id)$ making the diagram \eqref{diag:Idtypes} commute, together with a weak pullback structure $\mathsf{J}$ for the resulting comparison square \eqref{diag:prod2}.
+\end{proposition}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{5. Free ML-Algebras}\label{sec:Free ML-Algebras}
+\section*{4. A polynomial monad}\label{sec:Monad}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\ednote{define $\DD_\t$ and show that it is a display map category with ... }
+%\medskip
+%
+%\ednote{given  a display map category $\DD$ with ... define $\alg{d}$ and show that it is ...}
+%\medskip
+%
+%\ednote{the constructions are not mutually inverse but rather adjoint inverse ...}
+
+Let $\EE$ be an lccc, and recall from \cite{GK}[Theorem 2.17] the biequivalence 
+\[
+\mathrm{Poly}^1_{\EE}\ \simeq\ \mathrm{PolyFun}^1_{\EE}
+\]
+between the (1-object) bicategory $\mathrm{Poly}^1_{\EE}$ consisting of arrows $f:B \to A$ as 1-cells and cartesian squares
+\[
+\begin{tikzcd}
+B \ar[d,swap, "f"] \ar[r, "{h'}"] \pbcorner & D \ar[d, "g"] \\
+A \ar[r,swap, "{h}"] &  C 
+\end{tikzcd}
+\]
+as 2-cells, and the (1-object) 2-category $\mathrm{PolyFun}^1_{\EE}$ consisting of polynomial endofunctors $P_f: \EE\to \EE$ and the cartesian (strong) natural transformations $\theta : P_f \Rightarrow P_g$ as 2-cells.  This is the endofunctor special case of the more general situation involving general polynomials and polynomial functors. Thus, simplifying to the 1-object case, we have an equivalence of categories between the monoidal category of cartesian squares in the arrow category $\EE^{\downarrow}_{\mathsf{cart}}$ and the subcategory of $\Cat(\EE, \EE)$ consisting of \emph{polynomial} endofunctors and cartesian natural transformations,
+\[\begin{tikzcd}
+\mathrm{Poly}^1_{\EE} \ar[d,swap, "{\simeq}"] \ar[r,"{\simeq}"] & \mathrm{PolyFun}^1_{\EE}  \ar[d, "{\simeq}"] \\
+\EE^{\downarrow}_{\mathsf{cart}} \ar[d, hook] \ar[r,"{\simeq}"] & \mathsf{PolyFun}(\EE, \EE)  \ar[d, hook] \\
+\EE^{\downarrow}  \ar[r] & \mathsf{Fun}(\EE, \EE)
+\end{tikzcd}\]
+
+Under this equivalence, a Martin-L\"of algebra in $\EE$ as defined in \ref{def:MLalg},
+\begin{equation*}\label{diag:MLalg}
+\begin{tikzcd}
+	1 \ar[r,"*"] \ar[d,swap,"!"] \pbcorner &  \TT \ar[d, "\t"]\\  
+	1 \ar[r, swap,"\mathsf{1}"] & \T
+ \end{tikzcd}\qquad \qquad 
+ \begin{tikzcd}
+	\TT_2  \ar[r,"\sigma"] \ar[d,swap,"\t\cdot\t"] \pbcorner &  \TT \ar[d, "\t"]\\  
+	\T_2 \ar[r,swap, "\Sigma"] & \T
+\end{tikzcd} \qquad \qquad 
+	 \begin{tikzcd}
+	\alg{P}_\t\TT \ar[r,"\lambda"] \ar[d,swap,"\alg{P}_\t(\t)"] \pbcorner &  \TT \ar[d, "\t"]\\  
+	\alg{P}_\t\T \ar[r,swap, "\Pi"] & \T
+ \end{tikzcd} 
+ \end{equation*}
+gives rise to the following:
+\begin{enumerate}
+\item a cartesian natural transformation $\eta:1_\EE \Rightarrow P_\t$
+\item a cartesian natural transformation $\mu:P_\t\circ P_\t \Rightarrow P_\t$
+\item an algebra structure $\alpha:P_\t\t \Rightarrow \t$, with $P_\t$ lifted from $\EE$ to $\EE^{\downarrow}_{\mathsf{cart}}$.
+\end{enumerate}
+
+Items (1) and (2) are of course familiar as the underlying structure of a polynomial monad; item (3) is a somewhat less familiar special case of an algebra structure map.  Of course, the obvious question now is whether the respective equations 
+ for a monad and an algebra are satisfied by these functors and natural transformations.  The short answer is \emph{no}, but as shown in detail in \cite{Newstead, Awodey-Newstead}, there are strong reasons to investigate further.
+ 
+Following \emph{op.cit.}, the monad laws for $\eta$ and $\mu$ express the following \emph{equations} of objects in $\EE$.
+\begin{center}
+\begin{tabular}{ |c|c| } 
+ \hline
+ & \\
+ $\sigma\circ P\sigma = \sigma\circ\sigma_P$	&\	$\sum\limits_{a:A}\sum\limits_{b:B(a)}C(a,b)\ =\ \sum\limits_{(a,b):\sum\limits_{a:A}B(a)}C(a,b)\ $  \\ 
+ & \\
+ \hline
+ & \\
+  $\sigma\circ P\tau = 1$ 		& 	$\sum\limits_{a:A}1\ =\ A$ \\ 
+  & \\
+  \hline
+  & \\
+  $\sigma\circ \tau_P = 1$		& 	$\sum\limits_{x:1}A\ =\ A $ \\ 
+  & \\
+ \hline
+\end{tabular}
+\end{center}
+%
+And the algebra laws for $\alpha$ correspond to the following \emph{equations} of objects in $\EE$.
+%
+\begin{center}
+\begin{tabular}{ |c|c| } 
+	\hline
+ & \\
+ $\pi\circ P\pi\ =\  \pi\circ \sigma$		&	\quad $\prod\limits_{a:A}\prod\limits_{b:B(a)}C(a,b)\ 
+ 									=\ \prod\limits_{(a,b):\sum\limits_{a:A}B(a)}C(a,b)\quad$  \\ 
+ & \\
+	\hline
+ & \\
+  $\pi\circ \tau\ =\ 1$ 	& 	$\prod\limits_{x:1}A\ =\ A $ \\ 
+  & \\
+	\hline
+\end{tabular}
+\end{center}
+
+While these equations can hardly be expected to hold strictly, they do correspond to familiar \emph{type isomorphisms} that are provable from the usual rules of dependent type theory with $1, \Sigma, \Pi, \mathsf{Id}$.  
+
+In \cite{Newstead, Awodey-Newstead} it is shown that the 1-category $\mathsf{PolyFun}(\EE, \EE)$ of functors and (cartesian) natural transformations can be enriched to a bicategory by defining certain 2-cells between natural transformations in such a way that $(\eta, \mu)$ becomes a pseudo-monad and $\alpha$ a pseudo-algebra.  Here we shall take a different approach, making use of the $\mathsf{Id}$-types defined in Section \ref{sec:Eq and Id} to  determine a different notion of 2-cell, for which the just mentioned type isomorphisms result from corresponding pseudo-monad and pseudo-algebra structures.  
+ 
+
+%If we have univalence then they will hold up to identity terms -- once we have defined identity and univalence.
+%\ednote{The polynomial laws will hold up to Id types if the universe is univalent.}
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{5. Free ML-algebras}\label{sec:Free ML-Algebras}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 ML-algebra arises from a $\Pi$-clan - but for a clan the $\Sigma$ operation (the monad structure) is not coherent. 
@@ -632,650 +783,13 @@ There should be a theorem about a display maps being closed under composition if
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliographystyle{alpha}
-\bibliography{../references}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%
-\end{document}
-%%%
-
-
-
-
  
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{2. An unused adjunction}
-
-For any presheaf $X$ on $\C$, recall that the category of elements is the comma category,
-\[\textstyle
-\int_\C X\ =\ \yon_\C/_X\,,
-\] 
-where $\yon_\C : \C \to \psh\C$ is the Yoneda embedding, which we may suppress and write simply $\C/_X$. 
-While the category of elements $\int_\C X$ is used in the specification of the Hofmann-Streicher universe $(U, \El)$ at the point \eqref{eq:elements}, the authors seem to have missed a trick  which would have simplified things:\footnote{C.\ Sattler has said that he also knew of this description of the base object $U$ of the Hofmann-Streicher universe $(U, \El)$; presumably, others do as well.}
-
-\begin{proposition}[\cite{G:1983},\S{28}]
-The category of elements functor $\int_\C : \widehat\C \too \Cat$ has a right adjoint, which we denote
-\[
-\nu_\C : \Cat \too \widehat\C\,.
-\]
-For a small category $\A$, we call the presheaf $\nu_\C(\A)$ the \emph{$\C$-nerve} of $\A$.
-\end{proposition}
-\begin{proof}
-As suggested by the name, the adjunction $\int_\C\! \dashv \nu_\C$ can be seen as the familiar ``realization $\dashv$ nerve'' construction with respect to the covariant functor $\C/- : \C\to\Cat$, as indicated below.
-\begin{equation}\label{eq:nerve}\textstyle
-\begin{tikzcd}
-	 \widehat\C \ar[rr, swap,"\int_\C"] &&  \ar[ll, swap,bend right=20, "{ \nu_\C}"] \Cat\\  
-	 \\
-	\C \ar[uu, hook, "\yon"] \ar[rruu, swap,"{\C/_{-}}"] &&
- \end{tikzcd}
- \end{equation}
-%
-In detail, for  $\A\in\Cat$ and $c\in\C$, let $\nu_{\C}(\A)(c)$ be the Hom-set of functors,
-\begin{align*}
-\nu_\C(\A)(c) &= \Cat\big( {\C/_c}\,,\, \A \big)\,,
-\end{align*}
-with contravariant action on $h : d\to c$ given by pre-composing a functor $P : {\C/_c}\to\A$  with the post-composition functor
-\[
-{\C/_h} : {\C/_d}\too {\C/_c} \,.
-\]
-For the adjunction, observe that the slice category $\C/_c$ is the category of elements of the representable functor $\y{c}$\,,
-\[\textstyle
-\int_\C\y{c}\ \cong\ \C/_c\,.
-\]
- Thus for representables $\y{c}$\,, we have the required natural isomorphism
- \[\textstyle
- \widehat\C\big( \y{c}\,,\, \nu_\C(\A) \big)\ \cong\ \nu_\C(\A)(c)\  =\ \Cat\big( {\C/_c}\,,\, \A \big)\ \cong\ \Cat\big( \int_\C\y{c}\,,\, \A \big)\,.
-  \]
-For arbitrary presheaves $X$, one uses the presentation of $X$ as a colimit of representables over the index category $\int_\C X$, and the easy to prove fact that $\int_\C$ itself preserves colimits.  Indeed, for any category $\D$, we have an isomorphism in $\Cat$,
-\[
-\varinjlim_{d\in\D}\,\D/_d \ \cong\ \D\,.
-\]
-\end{proof}
-
-When $\C$ is fixed, as here, we may omit the subscript from the notation $\yon_\C$ and  $\int_\C$ and $\nu_\C$.  The unit and counit maps of the adjunction $\int \dashv \nu$,
-\begin{align*}\textstyle
-\eta :&\ \textstyle  X \too \nu{\elem{X}}\,, \\
-\epsilon :&\ \textstyle  \elem\nu\A \too \A\,,
-\end{align*}
- are as follows.  At $c\in\C$, for $x : \y{c}\ra X$, the functor $(\eta_X)_c(x) : \C/_c \to \C/_X$ is just composition with $x$, 
-\begin{equation}\label{eq:eta}
-(\eta_X)_c(x) = \C/_x : \C/_c \too \C/_X\,.
-\end{equation}
-For $\A\in\Cat$, the functor $ \epsilon : \int\nu\A \to \A$ takes a pair $(c\in\C, f : \C/_c \to \A)$ to the object $f(1_c) \in \A$,
-\[
-\epsilon(c,f) = f(1_c).
-\]
-\begin{lemma}\label{lemma:natpb}
-For any $f : Y\to X$, the naturality square below is a pullback.
-\begin{equation}\label{eq:naturality}\textstyle
-\begin{tikzcd}
-	 Y \ar[d, swap,"f"] \ar[r, "{\eta_Y}"] & \nu{\int\!{Y}} \ar[d, "{ \nu{\int\!{f}}}"]\\  
-	X \ar[r, swap,"{\eta_X}"] &   \nu{\int\!{X}}.
- \end{tikzcd}
- \end{equation}
-\end{lemma}
-
-\begin{proof}
-It suffices to prove this for the case $f : X\ra 1$.  Thus consider the square 
-\begin{equation}\label{eq:naturalityobject}\textstyle
-\begin{tikzcd}
-	 X \ar[d] \ar[r, "{\eta_X}"] & \nu{\int\!{X}} \ar[d]\\  
-	1\ar[r, swap,"{\eta_1}"] &   \nu{\int\! 1}.
- \end{tikzcd}
- \end{equation}
-Evaluating at $c\in\C$ and applying \eqref{eq:eta} then gives the following square in $\Set$.
-\begin{equation}\label{eq:naturalityobjecteval}\textstyle
-\begin{tikzcd}
-	 Xc \ar[d] \ar[r, "{\C/_{-}}"] & \Cat\big( {\C/_c}\,,\, {\C/_X}\, \big) \ar[d]\\  
-	1c\ar[r, swap, "{\C/_{-}}"] &   \Cat\big( {\C/_c}\,,\, \C/_1 \big)
- \end{tikzcd}
- \end{equation}
-The image of $*\in 1c$ along the bottom is the forgetful functor $U_c : \C/_c\to \C$, and its fiber under the map on the right is therefore the set of functors $F : {\C/_c}\to {\C/_X}$ such that $U_X\circ F = U_c$, where $U_X : \C/_X\to \C$ is also a forgetful functor. But any such $F$ is easily seen to be uniquely of the form $\C/_{x}$ for $x = F(1_c) : \y{c} \to X$.
-\end{proof}
-
-\begin{remark}\label{remark:terminal}
-The category of elements of the terminal presheaf $1$ is $\C$ itself, $\elem{1} \cong\C$. So for every presheaf $X$ there is a canonical projection $\elem{X} \to\C$, and the functor  $\int_\C : \widehat\C \to \Cat$ thus factors through the slice category $\Cat/_\C$.
-\begin{equation}\label{eq:nerve2}\textstyle
-\begin{tikzcd}
-	 \widehat\C \ar[rr, "(\int_\C)/_1"] \ar[rrdd, swap, "\int_\C"] 
-	 	&& \Cat/_\C \ar[dd, "{\C_!}"] \\  
-	 \\
-	&& \C 
- \end{tikzcd}
- \end{equation}
- The adjunction $\int_\C\dashv \nu_\C : \Cat \to \widehat\C$ factors as well, but it is the unfactored adjunction that is more useful for the present purpose.
- \end{remark}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{3. Classifying families}
-
-For every presheaf $X$ the canonical projection $\elem X \ra\C$ of Remark \ref{remark:terminal} is easily seen to be a discrete fibration.  It follows that for any map $Y\to X$ of presheaves, the associated map $\elem Y \to \elem X$ is also a discrete fibration. 
-Ignoring size issues for the moment, recall that discrete fibrations in $\Cat$ are classified by the forgetful functor $\op{\dot{\Set}}\to \op{\Set}$ from (the opposites of) the category of pointed sets to that of sets (cf.~\cite{W:2007}).  For every presheaf $X\in\widehat{\C}$, we therefore have a pullback diagram in $\Cat$,
-\begin{equation}\label{eq:classifyuniversecat}\textstyle
-\begin{tikzcd}
-	 \elem X \ar[d] \ar[r] \pbmark & \op{\dot{\Set}} \ar[d]\\  
-	\C \ar[r,swap,"X"] &  \op{\Set}.
- \end{tikzcd}
- \end{equation}
- Using $\elem{1} \cong\C$ and transposing by the adjunction $\int \dashv \nu$ then gives a commutative square in $\widehat{\C}$,
-\begin{equation}\label{eq:classifyuniversetype}\textstyle
-\begin{tikzcd}
-	 X \ar[d] \ar[r] & \nu\op{\dot{\Set}} \ar[d]\\  
-	1 \ar[r,swap,"\tilde{X}"] &  \nu\op{\Set}.
- \end{tikzcd}
- \end{equation}
-
-\begin{lemma}
-The square \eqref{eq:classifyuniversetype} is a pullback in $\widehat{\C}$. More generally, for any map $Y\ra X$ in $\widehat{\C}$, there is a pullback square 
-\begin{equation}\label{eq:classifyuniversefamily}\textstyle
-\begin{tikzcd}
-	 Y \ar[d] \pbmark \ar[r] & \nu\op{\dot{\Set}} \ar[d] \\  
-	X \ar[r] &  \nu\op{\Set}\,.
- \end{tikzcd}
- \end{equation}
-\end{lemma}
-
-\begin{proof}
-Apply the right adjoint $\nu$ to the pullback square \eqref{eq:classifyuniversecat} and paste the naturality square \eqref{eq:naturality} from Lemma \ref{lemma:natpb} on the left, to obtain the transposed square \eqref{eq:classifyuniversefamily} as a pasting of two pullbacks.
-\end{proof}
-
-Let us write $\VV \to \V$ for the vertical map on the right in \eqref{eq:classifyuniversefamily};  that is, let
-\begin{align}\label{eq:universedef}\textstyle
-\VV\, &=\, \nu\op{\dot{\Set}}\\  
-\V\, &=\, \nu\op{\Set}.\notag
- \end{align}
- 
- We can then summarize our results so far as follows.
-
- \begin{proposition}\label{prop:Vclassifies}
-The nerve $\VV\to\V$  of the classifier for discrete fibrations $\op\SSet\to\op\Set$, as defined in \eqref{eq:universedef}, classifies natural transformations $Y\to X$ in $\widehat{\C}$, in the sense that there is always a pullback square,
-\begin{equation}\label{eq:classifyuniversefamily2}\textstyle
-\begin{tikzcd}
-	 Y \ar[d] \pbmark \ar[r] & \VV \ar[d] \\  
-	X \ar[r,swap, "\tilde{Y} "] &  \V.
- \end{tikzcd}
- \end{equation}
-The classifying map $\tilde{Y} : X\to \V$ is determined by the adjunction $\int \dashv \nu$ as the transpose of the classifying map of the discrete fibration $\elem Y\to\elem X$.  
-\end{proposition}
-
-The classifying map $\tilde{Y} : X\to \V$ of a given a natural transformation $Y\to X$ is, of course, not in general unique. Nonetheless, we can make use of the construction of $\VV\to\V$ as the nerve of the discrete fibration classifier $\op\SSet\to\op\Set$, for which classifying functors $\C \to \op\Set$ are unique up to natural isomorphism, to infer the following proposition, which plays a role in \cite{Shu:15,GSS:22} and elsewhere.
-
-\begin{proposition}[Realignment]\label{prop:realignment}
-Given a monomorphism $c : C\cof X$ and a family $Y\to X$, let $y_c : C \to \V$ classify the pullback $c^*Y\to C$.  Then there is a classifying map $y: X \to \V$ for $Y\to X$ with $y\circ c = y_c$.
-%
-\begin{equation}\label{diagram:realignment}
-\begin{tikzcd}
-c^*Y \ar[dd] \ar[rd] \ar[rr] && \VV \ar[dd] \\
-& Y \ar[dd] \ar[ru, dotted] & \\
-C  \ar[rd, tail,swap, "c"] \ar[rr, near start, "y_c"] && \V  \\
-& X \ar[ru, dotted, swap, "y"] &
-\end{tikzcd}
-\end{equation}
-\end{proposition}
-%
-\begin{proof}
-Transposing the realignment problem \eqref{diagram:realignment} for presheaves across the adjunction $\int\dashv \nu$ results in the following realignment problem for discrete fibrations.
-\begin{equation}\label{diagram:realignment2}
-\begin{tikzcd}
-\elem  c^*Y \ar[dd] \ar[rd] \ar[rr] && \op{\dot{\Set}}  \ar[dd] \\
-&\elem  Y \ar[dd] \ar[ru, dotted] & \\
-\elem  C  \ar[rd, tail,swap, "{\elem  c}"] \ar[rr, near start, "\widetilde{y_c}"] && \op{{\Set}}   \\
-& \elem  X \ar[ru, dotted, swap, "\tilde{y}"] &
-\end{tikzcd}
-\end{equation}
-The category of elements functor $\int $ is easily seen to preserve pullbacks, hence monos; thus let us consider the general case of a functor  $C : \C \mono \D$ which is monic in $\Cat$, a pullback of discrete fibrations as on the left below, and a presheaf $E : \C \to  \op{{\Set}}$ with $\elem E \cong \mathbb{E}$ over $\C$. 
-\begin{equation}\label{diagram:realignment3}
-\begin{tikzcd}
-\mathbb{E} \ar[dd] \ar[rd] \ar[rr] && \op{\dot{\Set}}  \ar[dd] \\
-& \mathbb{F}  \ar[dd] \ar[ru, dotted] & \\
-\C  \ar[rd, tail,swap, "{C}"] \ar[rr, near start, "E"] && \op{{\Set}}   \\
-& \D \ar[ru, dotted, swap, "F"] &
-\end{tikzcd}
-\end{equation}
-We seek $F : \D \to  \op{{\Set}}$ with $\elem F \cong \mathbb{F}$ over $\D$ and $F\circ C = E$.  Let $F_0 : \D \to  \op{\Set}$ with $\elem F_0 \cong \mathbb{F}$ over $\D$.  Since $F_0\circ C$ and $E$ both classify $\mathbb{E}$, there is a natural iso $e : F_0\circ C \cong E$.
-Consider the following diagram
-\begin{equation}\label{diagram:realignment4}
-\begin{tikzcd}
-\C \ar[dd, tail, swap, "{C}"]  \ar[rr, "e"] && {\op{(\Set^{\cong})}}  \ar[dd,"{p_1}"] \ar[r,swap,"{p_2}"] &  {\op{\Set}} \\
-&&&\\
-\D  \ar[rr,swap, "F_0"]  \ar[rruu, dotted, swap, "f"] && \op{\Set} & 
-\end{tikzcd}
-\end{equation}
-where $\Set^{\cong}$ is the category of isos in $\Set$, with $p_1, p_2$ the (opposites of the) domain and codomain projections.  There is a well-known weak factorization system on $\Cat$ (part of the ``canonical model structure'') with injective-on-objects functors on the left and isofibrations on the right.  Thus there is a diagonal filler $f$ as indicated.  The functor $F := p_2 f : \D \to \op{\Set}$ is then  the one we seek.
-\end{proof}
-
-Of course, as defined in \eqref{eq:universedef}, the classifier $\VV\to\V$ cannot be a map in $\widehat{\C}$, for reasons of size; we now address this.  
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{4. Small maps}
- 
-
-Let $\alpha$ be a cardinal number, and call the sets that are strictly smaller than it $\alpha$-\emph{small}.  Let $\Set_\alpha\hook\Set$ be the full subcategory of $\alpha$-small sets.  
-Call a presheaf $X : \op{\C} \to \Set$ $\alpha$-small if all of its values are $\alpha$-small sets, and thus if, and only if, it factors through $\Set_\alpha\hook\Set$. Call a map $f:Y\to X$ of presheaves $\alpha$-small if all of the fibers $f_c^{-1}\{ x\} \subseteq Yc$ are $\alpha$-small sets (for all $c\in\C$ and $x\in Xc$). The latter condition is of course equivalent to saying that, in the pullback square over the element $x:\y{c} \to X$, 
-\begin{equation}\label{eq:smallmap}\textstyle
-\begin{tikzcd}
-	 Y_x \ar[d] \pbmark \ar[r] & Y \ar[d, "f"] \\  
-	\y{c} \ar[r,swap,"x"] &  X,
- \end{tikzcd}
- \end{equation}
-the presheaf $Y_x$ is $\alpha$-small.
-
-% Consider $\Set_\alpha^{\C^{\mathrm{op}}}$, the category of $\alpha$-small set valued presheaves on $\C$.  
-% and similarly for the small pointed sets $\SSet_\alpha\hook\SSet$
-
-Now let us restrict the specification \eqref{eq:universedef} of $\VV\to\V$ to the $\alpha$-small sets:
-\begin{align}\label{eq:universedefalpha}\textstyle
-\VV_\alpha\, &=\, \nu \dot{\Set^{\mathsf{op}}_\alpha}\\  
-\V_\alpha\, &=\, \nu \Set^{\mathsf{op}}_\alpha. \notag
- \end{align}
-Then the evident forgetful map $\VV_\alpha\to\V_\alpha$ \emph{is} a map in the category $\widehat{\C}$ of presheaves, and it is in fact $\alpha$-small. Moreover, it has the following basic property, which is just a restriction of the basic property of $\VV\to\V$ stated in Proposition \ref{prop:Vclassifies}.
-
- \begin{proposition}\label{prop:Valphaclassifies}
-The map $\VV_\alpha\to\V_\alpha$ classifies $\alpha$-small maps $f:Y\to X$ in $\widehat{\C}$, in the sense that there is always a pullback square,
-\begin{equation}\label{eq:classifyuniversefamilyalpha}\textstyle
-\begin{tikzcd}
-	 Y \ar[d] \pbmark \ar[r] & \VV_\alpha \ar[d] \\  
-	X \ar[r,swap, "\tilde{Y}"] &  \V_\alpha.
- \end{tikzcd}
- \end{equation}
-The classifying map $\tilde{Y} : X\to \V_\alpha$ is determined by the adjunction $\int \dashv \nu$ as (the factorization of) the transpose of the classifying map of the discrete fibration $\elem X\to\elem Y$. 
-\end{proposition}
-
-\begin{proof} If $Y\to X$ is $\alpha$-small, its classifying map $\tilde{Y} : X\to\V$ factors through $\V_\alpha \hook \V$, as indicated below, 
-\begin{equation}\label{eq:classifyuniversetype2}\textstyle
-\begin{tikzcd}
-	 Y \ar[d] \ar[rr, bend left] \ar[r] & \nu\op{\dot{\Set_\alpha}} \ar[d] \ar[r,hook] & \nu\op{\dot{\Set}} \ar[d]\\  
-	X \ar[rr, bend right, swap,"\tilde{Y}"] \ar[r] &  \nu\op{\Set_\alpha} \ar[r,hook] &  \nu\op{\Set},
- \end{tikzcd}
- \end{equation}
-%
-in virtue of the following adjoint transposition,
-\begin{equation}\label{eq:adjointtranspose}\textstyle
-\begin{tikzcd}
-	 \elem Y \ar[d] \ar[rr, bend left] \ar[r] & \op{\dot{\Set_\alpha}} \ar[d] \ar[r,hook] & \op{\dot{\Set}} \ar[d]\\  
-	 \elem X \ar[rr, bend right, ] \ar[r]  &  \op{\Set_\alpha} \ar[r,hook]  &  \op{\Set}.
- \end{tikzcd}
-  \end{equation}
-Note that the square on the right is evidently a pullback, and the one on the left therefore is, too, because the outer rectangle is the classifying pullback of the discrete fibration $\elem Y \to \elem X$, as stated.  Thus the left square in \eqref{eq:classifyuniversetype2} is a pullback.
-\end{proof}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{5. Examples}
-
-\begin{enumerate}
-%
-\item Let $\alpha = \kappa$ a strongly inaccessible cardinal, so that $\mathsf{ob}({\Set_\kappa})$ is a Grothendieck universe.  Then the Hofmann-Streicher universe of \eqref{eq:universe} is recovered in the present setting as the $\kappa$-small map classifier
-\begin{equation*}
-E\, \cong\, \VV_\kappa \too \V_\kappa\, \cong\, U
-\end{equation*}
- in the sense of Proposition \ref{prop:Valphaclassifies}.  Indeed, for $c\in\C$, we have 
- \begin{align}
-  \V_{\kappa}{c}\ &=\ \nu(\Set^{\mathsf{op}}_\kappa)(c) = \Cat\big( {\C/_c}\,,\, \Set^{\mathsf{op}}_\kappa \big)\  =\ \mathsf{ob}(\widehat{\C/_c})\ =\ U{c} \,.
-   \end{align} 
-For $\VV_{\kappa}$ we then have,
-   \begin{align}\label{eq:veedotc}
-   \VV_{\kappa}{c}\ =\ \nu(\SSet^{\mathsf{op}}_\kappa)(c)\ &=\ \Cat\big( {\C/_c}\,,\, \SSet^{\mathsf{op}}_\kappa \big) \notag \\ 
-   &\cong\ {\textstyle \coprod_{A\in\V_{\kappa}{c}}\Cat_{{\C/_c}}\big( {\C/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}
-   \end{align}
-   where the $A$-summand in \eqref{eq:veedotc} is defined by taking sections of the  pullback indicated below.
-   \begin{equation}\label{eq:pbforindexing}\textstyle
-\begin{tikzcd}
-	A^*\Set^{\mathsf{op}}_\kappa \ar[d] \ar[r] \pbcorner & \SSet^{\mathsf{op}}_\kappa \ar[d]\\  
-	\C/_c \ar[r,swap,"A"] \ar[u, bend left, dotted] \ar[ur, dotted] &  \Set^{\mathsf{op}}_\kappa
- \end{tikzcd}
- \end{equation}
- But $A^*\Set^{\mathsf{op}}_\kappa\ \cong\ {\textstyle \int_{\C/_c}\!A}$ over $\C/_c\,$, and sections of this discrete fibration in $\Cat$ correspond uniquely to natural maps $1\to A$ in $\widehat{{\C/_c}}$.  Since $1$  is representable in $\widehat{{\C/_c}}$ we can continue \eqref{eq:veedotc} by
-  \begin{align*}
-   \VV_{\kappa}{c}\ &\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}}\Cat_{{\C/_c}}\big( {\C/_c}\,,\, A^*\Set^{\mathsf{op}}_\kappa \big)}\\
-   	&\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} \widehat{{\C/_c}}(1, A)}\\
-	&\cong\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} A(1_c) } \\
-	& =\ {\textstyle \coprod_{A\in \V_{\kappa}{c}} \El(\langle c, A\rangle)}\\
-	& =\  E c\,.
-   \end{align*}
- 
-\item By functoriality of the nerve $\nu : \Cat \to \widehat{\C}$, a sequence of Grothendieck universes $$\U \subseteq {\U\,}' \subseteq ...$$ in $\Set$ gives rise to a (cumulative) sequence of type-theoretic universes $$\V \mono {\V\,}' \mono ...$$ in $\widehat{\C}$. More precisely, there is a sequence of  cartesian squares,
-\begin{equation}\label{eq:Vhierarchy}\textstyle
-\begin{tikzcd}
-	 \VV \ar[d] \ar[r,tail] \pbmark & {\VV\,'} \ar[d] \ar[r,tail] \pbmark & \dots \\  
-	 \V  \ar[r, tail]  &  {\V\,}' \ar[r,tail]  & \dots\,,
- \end{tikzcd}
-  \end{equation}
-in the image of $\nu : \Cat\too\widehat\C$, classifying small maps in $\widehat\C$ of increasing size, in the sense of Proposition \ref{prop:Valphaclassifies}.
-
-\item Let $\alpha = 2$ so that $1\to 2$ is the subobject classifier of $\Set$, and 
-$$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}$$ is then a classifier in $\Cat$ for \emph{sieves}, i.e.\ full subcategories $\mathbb{S}\hook\A$ closed under the domains of arrows $a\to s$ for $s\in\mathbb{S}$.  The nerve $\VV_{2}  \to \V_{2}$ is then exactly the subobject classifier $1\to\Omega$ of $\widehat\C$,
-\[
-1 = \nu \mathbbm{1} = \VV_{2} \too  \V_{2} = \nu \mathbbm{2} = \Omega  \,.
-\]
-
-\item Let $i : \mathbbm{2} \hook \Set_\kappa$ and $ p : \Set_\kappa \to \mathbbm{2} $ be the embedding-retraction pair with $i : \mathbbm{2} \hook \Set_\kappa$ the inclusion of the full subcategory on the sets $ \{0, 1\}$ and $p : \Set_\kappa \to \mathbbm{2}$ the retraction that takes $0 = \emptyset$ to itself, and everything else (i.e.\ the non-empty sets) to $1 = \{\emptyset\}$. There is a retraction (of arrows) in $\Cat$,
-%
-\begin{equation}\label{eq:Setretraction}\textstyle
-\begin{tikzcd}
-	 \mathbbm{1} \ar[d]  \ar[r,hook] \pbmark & \SSet_\kappa \ar[d] \ar[r] &\mathbbm{1} \ar[d] \\  
-	 \mathbbm{2}   \ar[r,hook,swap, "i"]  &  \Set_\kappa \ar[r, swap, two heads, "p"]  & \mathbbm{2} 
- \end{tikzcd}
-  \end{equation}
-  where the left square is a pullback.  
-    
-By the functoriality of (\,$\op{-}$ and) $\nu : \Cat \to \widehat{\C}$ we then have a retract diagram in $\widehat\C$, again with a pullback on the left, 
-\begin{equation}\label{eq:Vretraction}\textstyle
-\begin{tikzcd}
-	 1 \ar[d]  \ar[r,hook] \pbmark & \VV_\kappa \ar[d] \ar[r] &1\ar[d] \\  
-	 \Omega   \ar[r,hook,swap, "\{-\}"]  &  \V_\kappa  \ar[r, swap, two heads, "{[-]}"]  &  \Omega 
- \end{tikzcd}
-  \end{equation}
-  where for any $\phi : X\to \Omega$ the subobject $\{\phi\}\mono X$ is classified as a small map by the composite $\{\phi\} : X\to \V_\kappa$\,, and for any small map $A\to X$, the image $[A] \mono X$ is classified as a subobject by the composite $[\alpha] : X\to \V_\kappa \to \Omega$\,, where $\alpha : X\to \V_\kappa$ classifies $A\to X$.  The idempotent composite $$|\!|\!-\!|\!| = \{[-]\} : \V_\kappa  \too \V_\kappa $$ is the \emph{propositional truncation modality} in the natural model of type theory given by $\VV_\kappa\to \V_\kappa$ (see \cite{AGH}).
-\end{enumerate}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{6. Change of base}
-
-Let  $F : \C \to \D$ in $\Cat$ and consider the base change:
-
-\begin{equation}\label{diagram:basechange1}
-\begin{tikzcd}
-\C \ar[dd, swap, "{F}"]  \ar[rr, hook,"\yon_\C"] && \Set^{\op{\C}}  \ar[dd,swap,shift right=3,"{F_!}"]  \ar[dd,shift left=3,"{F_*}"]\\
-&&\\
-\D  \ar[rr, hook,swap, "\yon_\D"] && \ar[uu,"{F^*}" description] \Set^{\op{\D}}  
-\end{tikzcd}
-\end{equation}
-How is the universal (small) map $\VV_\C\to \V_\C$ in $\widehat{\C}$ related to $\VV_\D\to \V_\D$ in~$\widehat{\D}$\,?
-
-For each $c\in\C$ we have the sliced functor $F/_{c} : \C/_c \to \D/_{Fc}$ which is the component at $c\in\C$ of a natural transformation $F/ : \C/ \to \D/\circ F$ as functors $\C \to \Cat$.
-\begin{equation}\label{diagram:basechange2}
-\begin{tikzcd}
-\C \ar[dd,swap,"F"] \ar[dd,"{\qquad{\Downarrow\ F/}}"] \ar[rrrd,"{\C/}"] && \\
-&&& \Cat \\
-\D  \ar[rrru,swap, "{\D/}"] &&&
-\end{tikzcd}
-\end{equation}
-Indeed, for each $h : c \to c'$ there is a commutative square:
-\begin{equation}\label{diagram:basechange3}
-\begin{tikzcd}
-\C/_c \ar[dd, swap, "{F/_{c}}"]  \ar[rr, "{h\circ}"] && \C/_{c'} \ar[dd, "{F/_{c'}}"]  \\
-&&\\
-\D/_{Fc}  \ar[rr,swap, "{(Fh)\circ}"] && \D/_{Fc'} 
-\end{tikzcd}
-\end{equation}
-
-The 2-cell $F/ : \C/ \to \D/\circ F$ in \eqref{diagram:basechange2} (left Kan) extends to one,
-$$\textstyle \int_F : \int_\C \Longrightarrow \int_\D \circ\,F_!$$
-\begin{equation}\label{diagram:basechange4}
-\begin{tikzcd}
-\widehat\C \ar[dd,swap,"F_!"] \ar[dd,"{\qquad{\Downarrow\ \int_F}}"] \ar[rrrd,"{\int_\C}"] &&& \\
-&&& \Cat\,, \\
-\widehat\D \ar[rrru,swap, "{\int_\D}"] &&&
-\end{tikzcd}
-\end{equation}
-which has the following 2-categorical mate.
-%
-$$\textstyle \nu_F : F^*\circ \nu_\D \Longrightarrow \nu_\C$$
-\begin{equation}\label{diagram:basechange5}
-\begin{tikzcd}
-\widehat\C  &&& \\
-&&& \ar[lllu,swap,"{\nu_\C}"] \ar[llld,"{\nu_\D}"] \Cat \\
-\widehat\D  \ar[uu,"F^*"] \ar[uu,swap,"{\qquad{\Uparrow\ \nu_F}}"] &&&
-\end{tikzcd}
-\end{equation}
-Evaluating at the (small) discrete fibration classifier $\op\sset\to \op\set$, we obtain a commutative square in $\widehat\C$ of the form
-\begin{equation}\label{diagram:basechange6}
-\begin{tikzcd}
-F^*\VV_D \ar[d]  \ar[r, "{\dot{\gamma}}"] & \VV_\C \ar[d]  \\
-F^*\V_\D \ar[r,swap, "{\gamma}"] & \V_\C
-\end{tikzcd}
-\end{equation}
-where we have written 
-\begin{align*}
-\dot{\gamma}\, &=\, (\nu_F)_{\op{\dot{\set}}}\\
-\gamma\, &=\, (\nu_F)_{\op{\set}}
-\end{align*}
-for the components of $\nu_F$.
-
-%
-\begin{proposition}[Base change for universes]\label{prop:universebasechange}
-For any functor $F: \C\to \D$, the comparison square \eqref{diagram:basechange6} for universes is a pullback in $\widehat\C$.
-\end{proposition}
-%
-For the proof, we require the following.
-%
-\begin{lemma}\label{lemma:locallyfinal}
-For any functor $F: \C\to \D$ and any $c\in\C$, the sliced functor $F/_c: \C/_c \too \D/_{Fc}$ is final.
-\end{lemma}
-%
-\begin{proof}
-Recall that a functor $F: \C\to \D$ is by definition \emph{final} if for all $G: \D\to\Set$, the canonical map $\varinjlim G\circ F \to \varinjlim G$ is an iso, and this holds just if, for all $d\in\D$, the comma category $d/_F$ is connected.  Moreover, recall from \cite{Street-Walters-1973} that the \emph{comprehensive} factorization system $(\mathsf{Fin}, \mathsf{dFib})$ on $\Cat$ has the final functors as left orthogonal to the discrete fibrations.  
-%Thus it will suffice to show that $F/_c: \C/_c \too \D/_{Fc}$ is left orthogonal to $\mathsf{dFib}$.  
-But now note that the slice categories $\C/_c$ and $\D/_{Fc}$ have terminal objects, preserved by $F/_c: \C/_c \too \D/_{Fc}$.  It therefore suffices to observe that the inclusion functor $i : \{1_\C\} \hook \C$ of a terminal object is always final, so the same is true for $F/_c: \C/_c \too \D/_{Fc}$ by a familiar factorization property of the left maps in an orthogonal factorization system.
-\end{proof}
-
-\begin{proof}(of Proposition \ref{prop:universebasechange})
-Evaluating \eqref{diagram:basechange6} at $c\in \C$ we obtain the following diagram of sets and functions.
-%
-\begin{equation}\label{diagram:basechange7}
-\begin{tikzcd}
-\Cat\big( {\D/_{Fc}}\,,\, \sset^{\mathsf{op}} \big) \ar[dd]   \ar[r, equals]  & (F^*\VV_D)c \ar[dd]  \ar[r, "{\dot{\gamma}_c}"] 
-	& (\VV_\C)c \ar[dd]  \ar[r, equals] & \Cat\big( {\C/_c}\,,\, \sset^{\mathsf{op}} \big) \ar[dd]    \\
-&&&\\
- \Cat\big( {\D/_{Fc}}\,,\, \set^{\mathsf{op}} \big)   \ar[r, equals]  & (F^*\V_\D)c \ar[r,swap, "{\gamma_c}"] 
- 	& (\V_\C)c \ar[r, equals] & \Cat\big( {\C/_c}\,,\, \set^{\mathsf{op}} \big)  
-\end{tikzcd}
-\end{equation}
-%
-The outer square of this diagram is a pullback exactly if every square as follows has a diagonal filler.
-\begin{equation}\label{diagram:basechange8}
-%\begin{tikzcd}
-%\C/_c \ar[dd,swap, "F/_c"]  \ar[rr] && \SSet^{\mathsf{op}}  \ar[dd]  \\
-%&&\\
-%\D/_{Fc} \ar[rr] \ar[rruu, dotted] && \Set^{\mathsf{op}}
-%\end{tikzcd}
-\begin{tikzcd}
-\C/_c \ar[d,swap, "F/_c"]  \ar[r] & \sset^{\mathsf{op}}  \ar[d]  \\
-\D/_{Fc} \ar[r] \ar[ru, dotted] & \set^{\mathsf{op}}
-\end{tikzcd}
-\end{equation}
-Since the map on the right is the universal small discrete fibration, this condition obtains just in case the map on the left is left orthogonal with respect to all small discrete fibrations (for ``small'' sufficiently large), which holds just if it is a final functor, by the comprehensive factorization system \cite{Street-Walters-1973}. But by Lemma \ref{lemma:locallyfinal}, this is the case for every $c\in\C$.
-\end{proof}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{7. Classifying fibrations}
-
-Given the universal small family $\VV\to \V$ of Proposition \ref{prop:Valphaclassifies}, we can construct a classifier $\UU\to\U$ for any \emph{structured notion of fibration} using the method of \emph{classifying types} developed in \cite{AwodeyCCMC}.  We then consider the behavior of such universal maps under base change.
-
-Suppose that for each object $X$ and family $A\to X$, there is an object $\Fib(A) \ra X$ over $X$ that classifies fibration structures on $A\to X$, in the sense that there is a bijection, natural in $X$, between sections of $\Fib(A) \ra X$ and (some notion of) fibration structures on $A\to X$.
-Naturality in $X$ means that $\Fib(A) \ra X$ is stable under pullback, in the sense that for any $f:Y\ra X$, we have two pullback squares:
-\begin{equation}\label{diagram:fibstable}
-\xymatrix{
-f^*A \ar[d] \ar[r]  & A \ar[d]\\
-Y \ar[r]_{f} &X\\
-\Fib(f^*A) \ar[u] \ar[r] & \Fib(A) \ar[u].
-}
-\end{equation}
-Thus,
-\[
-\Fib(f^*A) \cong f^* \Fib(A)\,.
-\]
-
-It then follows from Proposition \ref{prop:Valphaclassifies} that, if $A\ra X$ is small, then $\Fib(A) \ra X$ is itself a pullback of the analogous object $\Fib(\VV) \ra \V$ constructed from the universal small family $\VV\ra\V$. So again there are two pullback squares,
-\begin{equation}\label{diagram:tfib1}
-\xymatrix{
-A \ar[d] \ar[r]  & \VV \ar[d]\\
-X \ar[r] & \V\\
-\Fib(A)\ar[u] \ar[r] & \Fib(\VV)\ar[u]\,
-}
-\end{equation}
-where the indicated map $X \to \V$ is the canonical classifier of $A\to X$.
-
-\begin{proposition}\label{prop:classTFib}
-There is a \emph{universal small fibration}, 
-\[
-\UU\too\U.
-\]
- Every small fibration $A \ra X$ is a pullback of $\UU\ra\U$ along a canonical classifying map $X\ra \U$.
-\begin{equation}\label{diagram:classifytf}
-\xymatrix{
-A \ar[d] \ar[r]  \xypbcorner & \UU\ar[d]\\
-X \ar[r] & \U
-}
-\end{equation}
-\end{proposition}
-%
-\begin{proof}
-We can take 
-\[
-\U := \Fib(\VV),
-\]
-which comes with its canonical projection $\Fib(\VV) \ra \V$ as in diagram \eqref{diagram:tfib1}.  Now define $\UU\ra\U$ by pulling back the universal small family,
-\[
-\xymatrix{
-\UU \ar[d] \ar[r] \xypbcorner  & \VV \ar[d] \\
-\U \ar[r] & \V.
-}
-\]
-Consider the following diagram, in which all the squares (including the distorted ones) are pullbacks, with the outer vertical one coming from Proposition \ref{prop:Valphaclassifies} and the lower horizontal one from \eqref{diagram:tfib1}.
-%
-\begin{equation}\label{diagram:classifytf2}
-\xymatrix{
-&A \ar[ddd] \ar[rrr]   \ar@{.>}[rrd] &&& \VV\ar[ddd]\\
-& && \UU \ar[d] \ar[ru]  &\\
-\Fib(A) \ar[rd] \ar[rrr] |<<<<<<<<<<<<\hole  &&& \U \ar[rd] &\\
-&X \ar[rrr]_{a} \ar@{.>}@/^1pc/[lu]^\alpha \ar@{.>}[rru]_{\alpha'} &&& \V.
-}
-\end{equation}
-%
-By assumption, a fibration structure $\alpha$ on $A\ra X$ is a section of $\Fib(A)\to X$, which is the pullback of $\Fib(\VV)=\U$ along the classifying map $a: X \to \V$,
-\[
-\Fib(A) =  a^*\Fib(\VV) = a^*\U\,.
-\]
-Such sections therefore correspond uniquely to factorizations $\alpha'$ of $a : X\to\V$, as indicated, which in turn induce pullback squares of the required kind \eqref{diagram:classifytf}.
-
-Finally, observe that the map $\UU\to\U$ has a canonical fibration structure. Indeed, consider the following diagram, in which both squares are pullbacks.
-\begin{equation}\label{diagram:fibisfib}
-\xymatrix{
-\UU \ar[d] \ar[r]  & \VV \ar[d]\\
-\U \ar[r] & \V\\
-\Fib(\UU) \ar[u] \ar[r] & \Fib(\VV)\ar[u].
-}
-\end{equation}
-Since $\Fib(\VV)$ is the object of fibration structures on $\VV\ra\V$, its pullback $\Fib(\UU)$ is the object of fibration structures on $\UU\ra\U$.
-But since $\U = \Fib(\VV)$ by definition, the lower square is the pullback of $\Fib(\VV)\ra \V$ against itself, which does indeed have a distinguished section, namely the diagonal
-\[
-\Delta : \Fib(\VV) \ra \Fib(\VV)\times_\V\Fib(\VV).
-\]
-\end{proof}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{8. Change of base for universal fibrations}
-
-Now let  $F : \C \to \D$ in $\Cat$ with $\VV_\C\to \V_\C$ in $\widehat{\C}$ and $\VV_\D\to \V_\D$ in~$\widehat{\D}$, related by the base change geometric morphism $$F_!\dashv F^*\dashv F_* : \widehat{\C} \too \widehat{\D}$$ as in Proposition \ref{prop:universebasechange}, and suppose that we have a structured notion of fibration in $\widehat\C$,  classified by $\UU_\C \to \U_\C$ as in Proposition \ref{prop:classTFib}.  Then we can can transfer a structured notion of fibration to $\widehat{\D}$ by declaring $B\to Y$ to be a fibration in $\widehat{\D}$ just if $F^*B\to F^*Y$ is one in $\widehat\C$; more precisely, we define a \emph{fibration structure} on $B\to Y$ to be one on $F^*B\to F^*Y$.  These structures are classified in $\widehat{\D}$ as follows.
-
-Fibration structures on $F^*B\to F^*Y$ are classified in $\widehat{\C}$ by sections $\sigma$ of $\Fib(F^*B)\to F^*Y$ ,
-%
-\begin{equation}\label{diagram:changebasefib1}
-\xymatrix{
-& F^*B \ar[dd] \\
-\Fib(F^*B) \ar[rd]  & \\
-& F^*Y  \ar@{.>}@/^1pc/[lu]^\sigma .
-}
-\end{equation}
-%
-Applying the right adjoint $F_*$ and pulling back along the unit $\eta$, we obtain an object over $Y$ that classifies such sections.
-%
-\begin{equation}\label{diagram:changebasefib1.5}
-\Fib(B) := \eta^*F_*\Fib(F^*B) \too Y
-\end{equation}
-
-\begin{equation}\label{diagram:changebasefib2}
-\xymatrix{
-& B \ar[dd] && F_*F^*B \ar[dd] \\
-\eta^*F_*\Fib(F^*B) \ar[rr] \ar[rd]   && F_*\Fib(F^*B) \ar[rd]  & \\
-& Y  \ar@{.>}@/^1pc/[lu] \ar[rr]_\eta  \ar@{.>}[ru] &&  F_*F^*Y
-}
-\end{equation}
-%
-Indeed, sections of $\Fib(B) \to Y$ correspond bijectively to lifts of the unit $\eta$ across the image $F_*\Fib(F^*B) \to F_*F^*Y $ under $F_*$, which are exactly sections of $\Fib(F^*B) \to F^*Y $.
-
-As before, it suffices to do this construction once in the ``universal case'', %
-%
-\begin{equation}\label{diagram:changebasefib3}
-\xymatrix{
-& \VV_\D \ar[dd] && F_*F^*\VV_\D \ar[dd] \\
-\eta^*F_*\Fib(F^*\VV_\D) \ar[rr] \ar[rd]   && F_*\Fib(F^*\VV_\D) \ar[rd]  & \\
-& \V_\D   \ar[rr]_\eta  &&  F_*F^*\V_\D
-}
-\end{equation}
-%
-to obtain the classifying type for fibrations in $\widehat\D$ as (the domain of) the indicated map
-\begin{equation}\label{diagram:changebasefib4}
-\U_\D := \eta^*F_*\Fib(F^*\VV_\D) \too \V_\D\,.
-\end{equation}
-
-\begin{proposition}
-Let $\UU_\D \to \U_\D$ be the pullback indicated below,
-\[
-\xymatrix{
-\UU_\D \ar[d] \ar[r] \xypbcorner  & \VV_\D \ar[d] \\
-\U_\D \ar[r] & \V_\D.
-}
-\]
-where $\U_\D \to  \V_\D$ is as defined in \eqref{diagram:changebasefib4}.
-Then $\UU_\D \to \U_\D$ classifies fibrations in~$\widehat\D$. 
-\end{proposition}
-
-\begin{proof}
-Proposition \ref{prop:classTFib} applies once we know that $\Fib(-)$ as defined in \eqref{diagram:changebasefib1.5} is stable under pullback.  It clearly suffices to show that, for each $B\to Y$, the horizontal square below is a pullback when $b : Y\to \V_\D$ is the canonical classifying map.
-%
-\begin{equation}\label{diagram:changebasefib5}
-\xymatrix{
-& B \ar[dd]  \ar[rr] \xypbcorner && \VV_\D \ar[dd] \\
-\Fib(B) \ar[rr] \ar[rd]   && \Fib(\VV_\D) \ar[rd]  & \\
-& Y  \ar[rr]_b  &&  \V_\D
-}
-\end{equation}
-
-\[
-\Fib(B) \cong b^*\Fib(\VV_\D)
-\]
-%
-Inspecting the definitions \eqref{diagram:changebasefib1.5} and \eqref{diagram:changebasefib4}, this follows from the naturality of the units $\eta$,
-\begin{equation}\label{diagram:changebasefib5.1}
-\xymatrix{
-Y  \ar[d]_b \ar[rr]^\eta && F_*F^*Y \ar[d]^{F_*F^*b} \\
-\U_\D \ar[rr]_\eta && F_*F^*\V_\D.
-}
-\end{equation}
-Indeed, consider the following cube, in which the front face is the naturality square \eqref{diagram:changebasefib5.1} and the top and bottom faces are the defining pullbacks \eqref{diagram:changebasefib2} and \eqref{diagram:changebasefib3} of $\Fib(B)$ and $\U_\D = \Fib(\VV_\D)$ respectively.
-%
-\begin{equation}\label{diagram:changebasefib5.5}
-\xymatrix{
-\Fib(B) \ar@{=}[r] \ar[ddd] & \eta^*F_*\Fib(F^*B) \ar[ddd] \ar[rr] \ar[rd]   && F_*\Fib(F^*B) \ar[ddd] |<<<<<<<<<<<<\hole  \ar[rd]  & \\
-&& Y \ar[ddd]_b  \ar[rr]^<<<<<<<<<<<<<<{\eta} && F_*F^*Y \ar[ddd]^{F_*F^*b} \\
-&&&& \\
-\Fib(\VV_\D) \ar@{=}[r] & \eta^*F_*\Fib(F^*\VV_\D) \ar[rr] |<<<<<<<<<<<<\hole  \ar[rd]   && F_*\Fib(F^*\VV_\D) \ar[rd]  & \\
-&& \V_\D   \ar[rr]_\eta &&  F_*F^*\V_\D
-}
-\end{equation}
-%
-It suffices to show that the right face is a pullback, and since $F_*$ preserves pullbacks it therefore suffices to show that the horizontal square below is a pullback.
-%
-\begin{equation}\label{diagram:changebasefib8}
-\xymatrix{
-&F^*B \ar[dd] \ar[rr]  \xypbcorner && F^*\VV_\D\ar[dd]\\
-\Fib(F^*B) \ar[rd] \ar[rr] |<<<<<<<<<<<<<<\hole  && \Fib(F^*\VV_\D) \ar[rd] &\\
-&F^*Y \ar[rr]_{F^*b}  && F^*\V_\D.
-}
-\end{equation}
-But that follows from the stability of $\Fib$ in $\widehat\C$ and preservation by $F^*$ of the classifying pullback square for $B\to Y$.
-\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Acknowledgement}
 
-Thanks to Mathieu Anel, Thierry Coquand, Marcelo Fiore, and Emily Riehl for discussions, and to Evan Cavallo, Ivan Di Liberti, and Taichi Uemura for help with the references. This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
+Thanks to Marcelo Fiore, Nicola Gambino, Richard Garner, and Clive Newstead.  This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
 
 \bibliographystyle{alpha}
 \bibliography{../references}
