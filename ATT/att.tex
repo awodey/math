@@ -232,7 +232,7 @@
 %with an evident associated action on morphisms.  A few comments are required: 
 %%
 
-We begin by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{dybjer:CwF}.  In section \ref{sec:strictify} it is briefly recalled how such models are related to the \emph{clans} and \emph{tribes} of Joyal \cite{Joyal:clan}.  In section \ref{sec:MLalgebra} we abstract the main features of a natural model with the type-formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is begun in section \ref{sec:eqandid } with the addition of equality and identity types, and the construction of free algebras in section \ref{sec:free}. 
+We begin by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{dybjer:CwF}.  In section \ref{sec:strictify} it is briefly recalled how such models are related to the \emph{clans} and \emph{tribes} of Joyal \cite{Joyal:clan}.  In section \ref{sec:MLalgebra} we abstract the main features of a natural model with the type-formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is begun in section \ref{sec:eqandid } with the addition of equality and identity types.  We conclude with the relation to polynomial monads in section \ref{sec:free}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Natural models of type theory}\label{sec:NaturalModels}
@@ -487,7 +487,7 @@ in conjunction with the \emph{$\Pi$-computation rules}:
 (\lambda_{x:A} b)\,x &= b : B
 \end{align*}
 \end{proof}
-%
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Martin-L\"of algebras}\label{sec:MLalgebras}
@@ -570,6 +570,10 @@ Conversely, a right adjoint $$\textstyle ({\int\!p})_* \dashv R : \psh{(\int{\!X
 
 We leave the construction of the right adjoint $p^!:  \widehat{\C}/_{X} \too \widehat{\C}/_{Y}$ from the  right adjoint $(-)^p \dashv (-)_p : \widehat{\C}/_{X} \to \widehat{\C}/_{X}$ to the reader.
 \end{proof}
+
+\begin{remark}
+In \cite{Awodey:NM} it is shown how a \emph{clan} in the sense of Joyal \cite{Joyal:CandT} gives rise to a natural model, namely ... In particular, the fibrations in a right-proper Quillen model category (which form a \emph{$\Pi$-tribe} in the language of \emph{ibid.}) are shown to give rise to a natural model with $1, \Sigma, \Pi$, i.e.\  a Martin-L\"of algebra, which moreover has \emph{identity types}, in the sense of the next section.
+\end{remark}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
