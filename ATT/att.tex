@@ -718,51 +718,30 @@ gives rise to the following:
 \begin{enumerate}
 \item a cartesian natural transformation $\eta:1_\EE \Rightarrow P_\t$
 \item a cartesian natural transformation $\mu:P_\t\circ P_\t \Rightarrow P_\t$
-\item an algebra structure $\alpha:P_\t\t \Rightarrow \t$, with $P_\t$ lifted from $\EE$ to $\EE^{\downarrow}_{\mathsf{cart}}$.
+\item an algebra structure $\pi:P_\t\t \Rightarrow \t$, with $P_\t$ lifted from $\EE$ to $\EE^{\downarrow}_{\mathsf{cart}}$.
 \end{enumerate}
 
 Items (1) and (2) are of course familiar as the underlying structure of a polynomial monad; item (3) is a somewhat less familiar special case of an algebra structure map.  Of course, the obvious question now is whether the respective equations 
  for a monad and an algebra are satisfied by these functors and natural transformations.  The short answer is \emph{no}, but as shown in detail in \cite{Newstead, Awodey-Newstead}, there are strong reasons to investigate further.
  
-Following \emph{op.cit.}, the monad laws for $\eta$ and $\mu$ express the following \emph{equations} of objects in $\EE$.
-\begin{center}
-\begin{tabular}{ |c|c| } 
- \hline
- & \\
- $\sigma\circ P\sigma = \sigma\circ\sigma_P$	&\	$\sum\limits_{a:A}\sum\limits_{b:B(a)}C(a,b)\ =\ \sum\limits_{(a,b):\sum\limits_{a:A}B(a)}C(a,b)\ $  \\ 
- & \\
- \hline
- & \\
-  $\sigma\circ P\tau = 1$ 		& 	$\sum\limits_{a:A}1\ =\ A$ \\ 
-  & \\
-  \hline
-  & \\
-  $\sigma\circ \tau_P = 1$		& 	$\sum\limits_{x:1}A\ =\ A $ \\ 
-  & \\
- \hline
-\end{tabular}
-\end{center}
+Following \emph{op.cit.}, the monad laws for $\eta$ and $\mu$ (in the left column) express the following \emph{equations} of objects in $\EE$ (in the right column).
+\begin{align*}\textstyle
+ \mu\circ P_\t\, \mu\, &=\, \mu\circ\mu_{P_\t}	&&&	\sum\limits_{a:A}\sum\limits_{b:B(a)}C(a,b)\, &=\, \sum\limits_{(a,b):\sum\limits_{a:A}B(a)}C(a,b)\   \\ 
+  \mu\circ P_\t\,\eta\, &=\, 1 		&&& 	\sum\limits_{a:A}1\, &=\, A \tag{\theequation}\\ 
+  \mu\circ \eta_{P_\t}\, &=\, 1		&&& 	\sum\limits_{x:1}A\, &=\, A  
+ \end{align*}
 %
-And the algebra laws for $\alpha$ correspond to the following \emph{equations} of objects in $\EE$.
+And the algebra laws for $\pi$ correspond to the following \emph{equations} of objects in $\EE$.
 %
-\begin{center}
-\begin{tabular}{ |c|c| } 
-	\hline
- & \\
- $\pi\circ P\pi\ =\  \pi\circ \sigma$		&	\quad $\prod\limits_{a:A}\prod\limits_{b:B(a)}C(a,b)\ 
- 									=\ \prod\limits_{(a,b):\sum\limits_{a:A}B(a)}C(a,b)\quad$  \\ 
- & \\
-	\hline
- & \\
-  $\pi\circ \tau\ =\ 1$ 	& 	$\prod\limits_{x:1}A\ =\ A $ \\ 
-  & \\
-	\hline
-\end{tabular}
-\end{center}
+\begin{align*}
+ \pi\circ P_\t\,\pi\, &=\,  \pi\circ\mu 	&&&	\prod\limits_{a:A}\prod\limits_{b:B(a)}C(a,b)\, 
+ 									&=\, \prod\limits_{(a,b):\sum_{a:A}B(a)}C(a,b)  \\ 
+ \pi\circ \eta\, &=\, 1 	&&& 	\prod\limits_{x:1}A\, &=\, A  
+\end{align*}
 
-While these equations can hardly be expected to hold strictly, they do correspond to familiar \emph{type isomorphisms} that are provable from the usual rules of dependent type theory with $1, \Sigma, \Pi, \mathsf{Id}$.  
+While the equations of objects in the right hand column can hardly be expected to hold strictly, they do correspond to familiar \emph{type isomorphisms} that are provable from the usual rules of dependent type theory with $1, \Sigma, \Pi, \mathsf{Id}$.  
 
-In \cite{Newstead, Awodey-Newstead} it is shown that the 1-category $\mathsf{PolyFun}(\EE, \EE)$ of functors and (cartesian) natural transformations can be enriched to a bicategory by defining certain 2-cells between natural transformations in such a way that $(\eta, \mu)$ becomes a pseudo-monad and $\alpha$ a pseudo-algebra.  Here we shall take a different approach, making use of the $\mathsf{Id}$-types defined in Section \ref{sec:Eq and Id} to  determine a different notion of 2-cell, for which the just mentioned type isomorphisms result from corresponding pseudo-monad and pseudo-algebra structures.  
+In \cite{Newstead, Awodey-Newstead} it is shown that the 1-category $\mathsf{PolyFun}(\EE, \EE)$ of functors and cartesian natural transformations can be enriched to a bicategory by defining \emph{ad hoc} certain 2-cells between the natural transformations in such a way that $(\eta, \mu)$ becomes a \emph{pseudo}-monad and $\pi$ a \emph{pseudo}-algebra.  The main contribution of the present work is a different approach that makes use of the $\mathsf{Id}$-types defined in Section \ref{sec:Eq and Id} to determine a notion of 2-cell for which the just mentioned type isomorphisms result from corresponding pseudo-monad and pseudo-algebra structures.  
  
 
 %If we have univalence then they will hold up to identity terms -- once we have defined identity and univalence.
@@ -772,15 +751,15 @@ In \cite{Newstead, Awodey-Newstead} it is shown that the 1-category $\mathsf{Pol
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{5. Free ML-algebras}\label{sec:Free ML-Algebras}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-ML-algebra arises from a $\Pi$-clan - but for a clan the $\Sigma$ operation (the monad structure) is not coherent. 
-We can freely add this structure as follows.
-
-There should be a theorem about a display maps being closed under composition if there's a $\Sigma$-algebra structure -- possibly weak a weak one?  Relate to weakening of the Equality-type rules to get the Identity-type rules.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{5. Free ML-algebras}\label{sec:Free ML-Algebras}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%ML-algebra arises from a $\Pi$-clan - but for a clan the $\Sigma$ operation (the monad structure) is not coherent. 
+%We can freely add this structure as follows.
+%
+%There should be a theorem about a display maps being closed under composition if there's a $\Sigma$-algebra structure -- possibly weak a weak one?  Relate to weakening of the Equality-type rules to get the Identity-type rules.
+%
 
 
  
