@@ -802,14 +802,15 @@ As $\mathsf{Equiv} \to \T \times \T$ we then take the composite of the canonical
  \end{tikzcd}
  \end{equation*}
 %
-Given $\tilde A , \tilde B : X \to \T$ classifying types $A\to X$ and $B \to X$, factorizations of the map $(\tilde A,\tilde B) : X \to \T \times \T $ through $\mathsf{Equiv} \to \T \times \T$ can then be seen using \eqref{diag:univalence11}  to correspond to equivalences $A\simeq B$ over $X$, as indicated in the following.
+Given $\alpha, \beta : X \to \T$ classifying types $A\to X$ and $B \to X$, factorizations of the map $(\alpha, \beta) : X \to \T \times \T $ through $\mathsf{Equiv} \to \T \times \T$ can then be seen using \eqref{diag:univalence11}  to correspond to equivalences $A\simeq B$ over $X$, as indicated in the following, in which the indicated map $\mathsf{E}_1\simeq\mathsf{E}_2$ is the pullback of  $\varepsilon : \TT'_1\to \TT'_2$ along $\mathsf{Equiv}\to {[\TT_1, \TT_2]}$.
 \begin{equation*}\label{diag:univalence3}
 \begin{tikzcd} 
-A \ar[rd] \ar[r, "{\simeq}"] & B \ar[d] & \mathsf{Equiv} \ar[d] \\  
-& X \ar[ru, dotted] \ar[r, swap, "{(\tilde A, \tilde B)}"] & \T \times \T
+	& \mathsf{E}_1 \ar[rd]  \ar[r,"{\simeq}"]  & \mathsf{E}_2 \ar[d] \\  
+A \ar[rd] \ar[r, "{\simeq}"] \ar[ru, dotted] & B \ar[d] \ar[ru, crossing over, dotted] & \mathsf{Equiv} \ar[d] \\  
+& X \ar[ru, dotted] \ar[r, swap, "{(\alpha, \beta)}"] & \T \times \T
 	 \end{tikzcd}
  \end{equation*}
-The correspondence is natural in $X$, because is mediated by pulling back a universal instance.  
+The correspondence is natural in $X$, because it is mediated by pulling back a universal instance.  
 \begin{remark}[Univalence]
 If $\T$ is itself a type in a ``larger'' model $\TT_1 \to \T_1$ with $\Id{}$-types, then there is also the type family $A, B: \T \vdash \Id{\T}(A,B)$, which is interpreted as a map $\Id{\T}\to \T \times \T$.  Since for every $A:\T$ the map $1_A : A \to A$ is an equivalence, by $\Id{\T}$-elim we obtain a distinguished map  $\Id{\T}(A, B) \to \mathsf{Equiv}(A, B)$ over $\T \times \T$.  The \emph{univalence axiom} is the statement that this map is itself an equivalence:
 \begin{equation}\label{diag:univalence4}
