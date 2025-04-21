@@ -73,6 +73,7 @@
 \newcommand{\fib}{\ensuremath{\epi}}
 \renewcommand{\to}{\ensuremath{\rightarrow}}
 \newcommand{\too}{\ensuremath{\longrightarrow}}
+\newcommand{\tto}{\ensuremath{\rightrightarrows}}
 
 % cubical sets
 \newcommand{\I}{\ensuremath{\mathrm{I}}}
@@ -745,14 +746,102 @@ And the algebra laws for $\pi$ correspond to the following \emph{equations} of o
 
 While the equations of objects in the right hand column can hardly be expected to hold strictly, they do correspond to familiar \emph{type isomorphisms} that are provable from the usual rules of dependent type theory with $1, \Sigma, \Pi, \mathsf{Id}$.  
 
-In \cite{Newstead, Awodey-Newstead} it is shown that the 1-category $\mathsf{PolyFun}(\EE, \EE)$ of functors and cartesian natural transformations can be enriched to a bicategory by defining \emph{ad hoc} certain 2-cells between the natural transformations in such a way that $(\tau, \sigma)$ becomes a \emph{pseudo}-monad and $\pi$ a \emph{pseudo}-algebra.  The main contribution of the present work is a different approach that makes use of the $\mathsf{Id}$-types defined in Section \ref{sec:Eq and Id} to determine a notion of 2-cell for which the just mentioned type isomorphisms result from corresponding pseudo-monad and pseudo-algebra structures.  
- 
+In \cite{Newstead, Awodey-Newstead} it is shown that the 1-category $\mathsf{PolyFun}(\EE, \EE)$ of functors and cartesian natural transformations can be enriched to a bicategory by defining \emph{ad hoc} certain 2-cells between the natural transformations in such a way that $(\tau, \sigma)$ becomes a \emph{pseudo}-monad and $\pi$ a \emph{pseudo}-algebra.  The main contribution of the present work is a different approach that makes use of the $\mathsf{Id}$-types defined in Section \ref{sec:Eq and Id} to determine a notion of 2-cell for which the just mentioned type isomorphisms result in corresponding pseudo-monad and pseudo-algebra structures.
+\medskip
 
+Let $\TT \to \T$ be an ML-algebra and say that a map $A\to X$ in $\EE$ is \emph{classified} by $\TT \to \T$ if there exist maps $\alpha : X \to \T$ and $\dot{\alpha} : A \to \TT$ fitting into a pullback square as follows.
+\begin{equation}\label{eq:classifiedfamilies}
+\begin{tikzcd}
+	 A \ar[d] \pbcorner \ar[r, "\dot{\alpha}"] & \TT \ar[d] \\  
+	X \ar[r,swap, "\alpha"] &  \T
+ \end{tikzcd}
+ \end{equation}
+In virtue of the ML-algebra structure, such maps are closed under the type formers $1, \Sigma, \Pi$, regarding objects $X$ as contexts and classified maps $A\to X$ as families of types in context~$X$.
+
+If $\TT \to \T$ has the structure required for $\Id{}$ in the sense of Definition \ref{def:EqualityandIdentityTypes}, then we can define an \emph{equivalence} between types $A\simeq B$ (over $X$) as follows:
+%
+\begin{definition}
+ A map $e : A\to B$ is a (type) \emph{equivalence} if it has both right and left inverses, in the sense that there are maps $f, g : B\tto A$ such that 
+ \[
+e\circ f =_{B^B} 1_B\qquad\text{and}\qquad  g\circ e =_{A^A} 1_A  \,.
+ \]
+ Formally, given $e : A\to B$ we define 
+ \[
+ \mathsf{isEquiv}(e)\ :\equiv\ \Sigma_{f, g: B\to A}\, \Id{B^B}(e\circ f , 1_B) \times \Id{A^A}(g\circ e , 1_A) \,.
+ \]
+ and then for $A, B: \T$, we define the notation $A \simeq B$ by
+ \[
+A \simeq B\, =\, \mathsf{Equiv}(A,B)\ :\equiv\  \Sigma_{e : A\to B}\, \mathsf{isEquiv}(e)\,.
+ \]
+\end{definition}
+We construct the interpretation of the type family $A, B : \T \vdash A \simeq B$ as a map $\mathsf{Equiv} \to \T \times \T$ as follows.
+
+First, pull $\TT \to \T$ back along the two different projections $\T \times \T \tto \T$ to obtain two different objects $\TT_1, \TT_2$ over $\T \times \T$, and then take their exponential $[\TT_1, \TT_2]$ in the slice category over ${\T \times \T}$, which interprets the type family $A, B : \T \vdash A \to B$.
+\begin{equation*}\label{diag:univalence1}
+\begin{tikzcd} 
+	\TT \ar[d] & \TT_1 \ar[l] \ar[rd] \pbcornerright &\ar[d] [\TT_1, \TT_2] & \TT_2 \ar[ld] \ar[r] \pbcorner & \TT \ar[d] \\  
+	\T && \ar[ll]  \T \times \T \ar[rr] && \T
+	 \end{tikzcd}
+ \end{equation*}
+ Indeed, after pulling $\TT_1, \TT_2$ back to $[\TT_1, \TT_2]$ there is a (universal) arrow $\varepsilon : \TT'_1 \to \TT'_2$ over $[\TT_1, \TT_2]$, as indicated below.
+ \begin{equation}\label{diag:univalence11}
+\begin{tikzcd} 
+& \TT'_1  \ar[d] \arrow[dr,phantom,"\lrcorner" very near start, shift right=1.5ex] \ar[rd] \ar[rr,"\varepsilon"] 
+	&& \TT'_2 \ar[ld]  \arrow[dl,phantom,"\llcorner" very near start, shift left=1.5ex] \ar[d] & \\  
+	\TT \ar[d] & \TT_1 \ar[l] \ar[rd] \pbcornerright &\ar[d] [\TT_1, \TT_2]& \TT_2 \ar[ld] \ar[r] \pbcorner & \TT \ar[d] \\  
+	\T && \ar[ll]  \T \times \T \ar[rr] && \T
+	 \end{tikzcd}
+ \end{equation}
+%
+As $\mathsf{Equiv} \to \T \times \T$ we then take the composite of the canonical projection $\mathsf{isEquiv}(\varepsilon) \to [\TT_1, \TT_2]$ with the map $[\TT_1, \TT_2] \to  \T \times \T$.
+%
+\begin{equation*}\label{diag:univalence2}
+\begin{tikzcd} 
+{\Sigma_{e : A\to B}\mathsf{isEquiv}(e)}  \ar[d, equals] \ar[r] & {[\TT_1, \TT_2]}  \ar[d]\\
+\mathsf{Equiv} \ar[r] &  \T \times \T
+ \end{tikzcd}
+ \end{equation*}
+%
+Given $\tilde A , \tilde B : X \to \T$ classifying types $A\to X$ and $B \to X$, factorizations of the map $(\tilde A,\tilde B) : X \to \T \times \T $ through $\mathsf{Equiv} \to \T \times \T$ can then be seen using \eqref{diag:univalence11}  to correspond to equivalences $A\simeq B$ over $X$, as indicated in the following.
+\begin{equation*}\label{diag:univalence3}
+\begin{tikzcd} 
+A \ar[rd] \ar[r, "{\simeq}"] & B \ar[d] & \mathsf{Equiv} \ar[d] \\  
+& X \ar[ru, dotted] \ar[r, swap, "{(\tilde A, \tilde B)}"] & \T \times \T
+	 \end{tikzcd}
+ \end{equation*}
+The correspondence is natural in $X$, because is mediated by pulling back a universal instance.  
+\begin{remark}[Univalence]
+If $\T$ is itself a type in a ``larger'' model $\TT_1 \to \T_1$ with $\Id{}$-types, then there is also the type family $A, B: \T \vdash \Id{\T}(A,B)$, which is interpreted as a map $\Id{\T}\to \T \times \T$.  Since for every $A:\T$ the map $1_A : A \to A$ is an equivalence, by $\Id{\T}$-elim we obtain a distinguished map  $\Id{\T}(A, B) \to \mathsf{Equiv}(A, B)$ over $\T \times \T$.  The \emph{univalence axiom} is the statement that this map is itself an equivalence:
+\begin{equation}\label{diag:univalence4}
+\begin{tikzcd} 
+\Id{\T} \ar[d] \ar[r, "{\simeq}"] & \mathsf{Equiv} \ar[d] \\  
+ \T \times \T  \ar[r, equals] & \T \times \T
+	 \end{tikzcd}
+ \end{equation}
+ Pulling the equivalence back along any $(A, B) : X \to \T \times \T$ results in the more familiar formulation:
+ \[\tag{UA}
+ \ (A =_\T B) \, \simeq\, (A \simeq B)\,.
+ \]
+The interpretation of univalence thus requires at least a universe $\T$ with $1, \Sigma, \Pi, \Id{}$ (in order to define $A\simeq B$), inside a larger universe $\T:\T_1$ also with $1, \Sigma, \Pi, \Id{}$ (in order to have the family $A =_\T B$ and to state the central equivalence in UA), and the operations on the larger universe are usually required to restrict to the corresponding ones on the smaller universe.  
+%See \cite{AG:2024} for a detailed presentation.
+\end{remark}
+
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{5. Extensional ML-algebras}%\label{sec:Free ML-Algebras}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %If we have univalence then they will hold up to identity terms -- once we have defined identity and univalence.
 %\ednote{The polynomial laws will hold up to Id types if the universe is univalent.}
 
 
+Just do the extensional case - using AGH.
 
+Examples include SOC and H-S universes.
+
+Applications: (i) a natural model ML-algebra is tiny, (ii) the nerve preserves ML-algebras.
+
+Mention the intensional case as future work and refer to Aberle-Spivak.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
