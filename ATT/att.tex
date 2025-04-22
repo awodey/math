@@ -202,7 +202,7 @@
 \title{Algebraic Type Theory}
 \author{Steve Awodey}
 \date{\today}
-\dedicatory{in memoriam Philip Scott}
+\dedicatory{in memory of Phil Scott}
 
 \begin{abstract}
 A very brief abstract.
@@ -702,11 +702,13 @@ A \ar[r,swap, "{h}"] &  C
 \end{tikzcd}
 \]
 as 2-cells, and the (1-object) 2-category $\mathrm{PolyFun}^1_{\EE}$ consisting of polynomial endofunctors $P_f: \EE\to \EE$ and the cartesian (strong) natural transformations $\theta : P_f \Rightarrow P_g$ as 2-cells.  This is the endofunctor special case of the more general situation involving general polynomials and polynomial functors. Thus, simplifying to the 1-object case, we have an equivalence of categories between the monoidal category of cartesian squares in the arrow category $\EE^{\downarrow}_{\mathsf{cart}}$ and the subcategory of $\Cat(\EE, \EE)$ consisting of \emph{polynomial} endofunctors and cartesian natural transformations,
-\[\begin{tikzcd}
+\begin{equation}\label{diagram:polyandpolyfun}
+\begin{tikzcd}
 \mathrm{Poly}^1_{\EE} \ar[d,swap, "{\simeq}"] \ar[r,"{\simeq}"] & \mathrm{PolyFun}^1_{\EE}  \ar[d, "{\simeq}"] \\
 \EE^{\downarrow}_{\mathsf{cart}} \ar[d, hook] \ar[r,"{\simeq}"] & \mathsf{PolyFun}(\EE, \EE)  \ar[d, hook] \\
 \EE^{\downarrow}  \ar[r] & \mathsf{Fun}(\EE, \EE)
-\end{tikzcd}\]
+\end{tikzcd}
+\end{equation}
 
 Under this equivalence, a Martin-L\"of algebra in $\EE$ as defined in \ref{def:MLalg},
 \begin{equation*}\label{diag:MLalg}
@@ -760,9 +762,9 @@ Let $\TT \to \T$ be an ML-algebra and say that a map $A\to X$ in $\EE$ is \emph{
 	X \ar[r,swap, "\alpha"] &  \T
  \end{tikzcd}
  \end{equation}
-In virtue of the ML-algebra structure, such maps are closed under the type formers $1, \Sigma, \Pi$, regarding objects $X$ as contexts and classified maps $A\to X$ as families of types in context~$X$.
+We often leave the map $\dot{\alpha}$ implicit, and say simply that $\alpha : X \to \T$ classifies $A\to X$, which it does up to fiberwise isomorphim.  In virtue of the ML-algebra structure on $\TT\to\T$, the classified maps are closed under the type formers $1, \Sigma, \Pi$ when we regard objects $X$ as contexts and classified maps $A\to X$ as families of types in context~$X$.
 
-If $\TT \to \T$ has the structure required for $\Id{}$ in the sense of Definition \ref{def:EqualityandIdentityTypes}, then we can define an \emph{equivalence} between types $A\simeq B$ (over $X$) as follows:
+If $\TT \to \T$ has the structure required for $\Id{}$ in the sense of Definition \ref{def:EqualityandIdentityTypes}, then we can define an \emph{equivalence} of types $A\simeq B$ (over $X$) as follows:
 %
 \begin{definition}
  A map $e : A\to B$ is a (type) \emph{equivalence} if it has both right and left inverses, in the sense that there are maps $f, g : B\tto A$ such that 
@@ -771,7 +773,7 @@ e\circ f =_{B^B} 1_B\qquad\text{and}\qquad  g\circ e =_{A^A} 1_A  \,.
  \]
  Formally, given $e : A\to B$ we define 
  \[
- \mathsf{isEquiv}(e)\ :\equiv\ \Sigma_{f, g: B\to A}\, \Id{B^B}(e\circ f , 1_B) \times \Id{A^A}(g\circ e , 1_A) \,.
+ \mathsf{isEquiv}(e)\ :\equiv\ \Sigma_{f, g: B\to A}\, \Id_{B^B}(e\circ f , 1_B) \times \Id_{A^A}(g\circ e , 1_A) \,.
  \]
  and then for $A, B: \T$, we define the notation $A \simeq B$ by
  \[
@@ -809,17 +811,53 @@ As $\mathsf{Equiv} \to \T \times \T$ we then take the composite of the canonical
 Given $\alpha, \beta : X \to \T$ classifying types $A\to X$ and $B \to X$, factorizations of the map $(\alpha, \beta) : X \to \T \times \T $ through $\mathsf{Equiv} \to \T \times \T$ can then be seen using \eqref{diag:univalence11}  to correspond to equivalences $A\simeq B$ over $X$, as indicated in the following, in which the indicated map $\mathsf{E}_1\simeq\mathsf{E}_2$ is the pullback of  $\varepsilon : \TT'_1\to \TT'_2$ along $\mathsf{Equiv}\to {[\TT_1, \TT_2]}$.
 \begin{equation*}\label{diag:univalence3}
 \begin{tikzcd} 
-	& \mathsf{E}_1 \ar[rd]  \ar[r,"{\simeq}"]  & \mathsf{E}_2 \ar[d] \\  
-A \ar[rd] \ar[r, "{\simeq}"] \ar[ru, dotted] & B \ar[d] \ar[ru, crossing over, dotted] & \mathsf{Equiv} \ar[d] \\  
-& X \ar[ru, dotted] \ar[r, swap, "{(\alpha, \beta)}"] & \T \times \T
+	&& \mathsf{E}_1 \ar[rd]  \ar[r,"{\simeq}"]  & \mathsf{E}_2 \ar[d] \\  
+A \ar[rd] \ar[r, "{\simeq}"] \ar[rru, dotted] & B \ar[d] \ar[rru, crossing over, dotted] && \mathsf{Equiv} \ar[d] \\  
+& X \ar[rru, dotted] \ar[rr, swap, "{(\alpha, \beta)}"] && \T \times \T
 	 \end{tikzcd}
  \end{equation*}
 The correspondence is natural in $X$, because it is mediated by pulling back a universal instance.  
+
+Returning to the description \eqref{diagram:polyandpolyfun} of the bicategory $$\EE^{\downarrow}_{\mathsf{cart}} \simeq \mathsf{PolyFun}(\EE, \EE)$$
+with objects $f, g$ and arrows $(h, h') : f \to g$ as indicated below (corresponding to polynomial endofunctors $\alg{P}_f, \alg{P}_g : \EE \to \EE$ and cartesian natural transformations $\vartheta : \alg{P}_f \Rightarrow \alg{P}_g$),
+\begin{equation}\label{diag:substitution}
+\begin{tikzcd}
+B \ar[d,swap, "f"] \ar[r, "{h'}"] \pbcorner & D \ar[d, "g"] \\
+A \ar[r,swap, "{h}"] &  C 
+\end{tikzcd}
+\end{equation}
+Consider the full subcategory $$\EE^{\downarrow}_{\t} \hook \EE^{\downarrow}_{\mathsf{cart}}$$ on those objects $B\to A$ that are classified by $\t:\TT\to\T$, which we shall call the \emph{category of type families}, and all cartesian squares between them, which we regard as \emph{substitutions}.  This is the full image in $\EE^{\downarrow}_{\mathsf{cart}}$ of the slice category,
+\[
+\EE^{\downarrow}_{\mathsf{cart}} /_\t \too \EE^{\downarrow}_{\mathsf{cart}}\,,
+\]
+but note that we do not require the morphisms to commute with the classifying maps to $\t$.  In a cartesian square such as \eqref{diag:substitution}, if $g : D\to C$ is classified by $\t$, then so is $f : B \to A$, so $\EE^{\downarrow}_{\t}\hook \EE^{\downarrow}_{\mathsf{cart}}$ is a sieve.
+
+Between any parallel 1-cells $h, k : f \to \t$, we can define a 2-cell to be ...
+More generally, ... 
+\begin{definition}
+Let 
+\end{definition}
+ 
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{5. Examples of ML-algebras}%\label{sec:Free ML-Algebras}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%If we have univalence then they will hold up to identity terms -- once we have defined identity and univalence.
+%\ednote{The polynomial laws will hold up to Id types if the universe is univalent.}
+
+\begin{enumerate}
+\item Subobject classifier and cofibration classifier. For the propositional case, use AGH.
+
+\item Strictification of an LCCC and of a WFS.  A natural model ML-algebra is tiny.  Also the syntactic model of type theory.
+
+\item H-S universe: the nerve preserves ML-algebras.  Also use AGH
+
+\item Univalent universe.  Also refer to Aberle-Spivak.
 \begin{remark}[Univalence]
-If $\T$ is itself a type in a ``larger'' model $\TT_1 \to \T_1$ with $\Id{}$-types, then there is also the type family $A, B: \T \vdash \Id{\T}(A,B)$, which is interpreted as a map $\Id{\T}\to \T \times \T$.  Since for every $A:\T$ the map $1_A : A \to A$ is an equivalence, by $\Id{\T}$-elim we obtain a distinguished map  $\Id{\T}(A, B) \to \mathsf{Equiv}(A, B)$ over $\T \times \T$.  The \emph{univalence axiom} is the statement that this map is itself an equivalence:
+If $\T$ is itself a type in a ``larger'' model $\TT_1 \to \T_1$ with $\Id{}$-types, then there is also the type family $A, B: \T \vdash \Id_{\T}(A,B)$, which is interpreted as a map $\Id_{\T}\to \T \times \T$.  Since for every $A:\T$ the map $1_A : A \to A$ is an equivalence, by $\Id_{\T}$-elim we obtain a distinguished map  $\Id_{\T}(A, B) \to \mathsf{Equiv}(A, B)$ over $\T \times \T$.  The \emph{univalence axiom} is the statement that this map is itself an equivalence:
 \begin{equation}\label{diag:univalence4}
 \begin{tikzcd} 
-\Id{\T} \ar[d] \ar[r, "{\simeq}"] & \mathsf{Equiv} \ar[d] \\  
+\Id_{\T} \ar[d] \ar[r, "{\simeq}"] & \mathsf{Equiv} \ar[d] \\  
  \T \times \T  \ar[r, equals] & \T \times \T
 	 \end{tikzcd}
  \end{equation}
@@ -827,26 +865,13 @@ If $\T$ is itself a type in a ``larger'' model $\TT_1 \to \T_1$ with $\Id{}$-typ
  \[\tag{UA}
  \ (A =_\T B) \, \simeq\, (A \simeq B)\,.
  \]
-The interpretation of univalence thus requires at least a universe $\T$ with $1, \Sigma, \Pi, \Id{}$ (in order to define $A\simeq B$), inside a larger universe $\T:\T_1$ also with $1, \Sigma, \Pi, \Id{}$ (in order to have the family $A =_\T B$ and to state the central equivalence in UA), and the operations on the larger universe are usually required to restrict to the corresponding ones on the smaller universe.  
+The interpretation of univalence thus requires at least a universe $\T$ with $1, \Sigma, \Pi, \Id{}$ (in order to define $A\simeq B$), inside a larger universe $\T:\T_1$ also with $1, \Sigma, \Pi, \Id{}$ (in order to have the family $A =_\T B$ and to state the central equivalence in UA). The operations on the larger universe are usually required to restrict to the corresponding ones on the smaller universe.  
 %See \cite{AG:2024} for a detailed presentation.
 \end{remark}
 
 
- 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{5. Extensional ML-algebras}%\label{sec:Free ML-Algebras}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%If we have univalence then they will hold up to identity terms -- once we have defined identity and univalence.
-%\ednote{The polynomial laws will hold up to Id types if the universe is univalent.}
+\end{enumerate}
 
-
-Just do the extensional case - using AGH.
-
-Examples include SOC and H-S universes.
-
-Applications: (i) a natural model ML-algebra is tiny, (ii) the nerve preserves ML-algebras.
-
-Mention the intensional case as future work and refer to Aberle-Spivak.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
