@@ -237,17 +237,14 @@ A very brief abstract.
 %with an evident associated action on morphisms.  A few comments are required: 
 %%
 
-We begin by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{dybjer:CwF}.  In section \ref{sec:strictify} it is briefly recalled how such models are related to the \emph{clans} and \emph{tribes} of Joyal \cite{Joyal:clan}.  In section \ref{sec:MLalgebra} we abstract the main features of a natural model with the type-formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is begun in section \ref{sec:eqandid } with the addition of equality and identity types.  We conclude with the relation to polynomial monads in section \ref{sec:free}. 
+We begin by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{Dybjer:CWF}.  In section \ref{sec:strictify} it is briefly recalled how such models are related to the \emph{clans} and \emph{tribes} of Joyal \cite{Joyal:CandT}.  In section \ref{sec:MLalgebra} we abstract the main features of a natural model with the type-formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is begun in section \ref{sec:eqandid } with the addition of equality and identity types.  We conclude with the relation to polynomial monads in section \ref{sec:free}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Natural models of type theory}\label{sec:NaturalModels}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\noindent We write $\widehat{\C} = \psh{\C}$ for the category of presheaves on a small category~$\C$.
-%\begin{enumerate}
-%
-%\item  
-In \eqref{A:NM}, a \emph{natural model} of type theory is defined to be a representable natural transformation $\t: \TT\to \T$ of presheaves on a small category $\C$.  When $\C$ is regarded as the category of contexts of a type theory, $\T: \op{\C} \to \Set$ is regarded as the presheaf of types in context, $\TT: \op{\C} \to \Set$ as the presheaf of terms in context, and $\t : \TT\to\T$ as the typing of the terms.   Theorem XX of \emph{op.\ cit.} shows that such a map is equivalent to the notion of a \emph{category with families} (CwF) in the sense of \cite{Dybjer}.  We briefly recall the essentials.
+\noindent We write $\widehat{\C} = \psh{\C}$ for the category of presheaves on a small category~$\C$. 
+In \cite{awodey:NM}, a \emph{natural model} of type theory is defined to be a representable natural transformation $\t: \TT\to \T$ of presheaves in such a category $\widehat{\C}$.  When $\C$ is regarded as the category of contexts of a type theory, $\T: \op{\C} \to \Set$ is regarded as the presheaf of types in context, $\TT: \op{\C} \to \Set$ as the presheaf of terms in context, and $\t : \TT\to\T$ as the typing of the terms.   Theorem XX of \emph{op.\ cit.} shows that such a map is equivalent to the notion of a \emph{category with families} (CwF) in the sense of \cite{Dybjer:CWF}.  We briefly recall the essentials.
 
 \begin{definition}\label{def:representablenattrans} A natural transformation $p : Y \to X$ of presheaves on a category $\C$  is \emph{representable} if the pullback of $p$ along any element $x: \y{C} \to X$ is representable.
 \begin{equation*}
@@ -259,10 +256,10 @@ In \eqref{A:NM}, a \emph{natural model} of type theory is defined to be a repres
 \end{definition}
 We assume a choice of pullback data $c : D \to C$ in $\C$ and $y \in Y(D)$ for all $x\in X(C)$ (but no coherence conditions).
 
-\begin{proposition}[A., Fiore 2013] A representable natural transformation is the same thing as a \emph{category with families} in the sense of Dybjer.
+\begin{proposition}[A., Fiore 2013] A representable natural transformation is the same thing as a \emph{category with families (CwF)} in the sense of Dybjer \cite{Dybjer:CWF}.
 \end{proposition}
 
-We sketch the correspondence from \cite{Awodey:NM}.
+We sketch the correspondence from \cite{awodey:NM}.
 Let us write the objects and arrows of \C\ as $\sigma : \Delta \to \Gamma$, giving the \emph{category of contexts and substitutions}.
 A CwF is usually defined as a presheaf of \emph{types in context}, 
 \[
@@ -332,16 +329,17 @@ Let $\pi_A: \ext{\G}{A} \to \G$ be the pullback of $\tp$ along $A$, which exists
 \end{equation}
 %
 The map $q_A : \ext{\G}{A}\to\Tm$ arising from the pullback gives the required term $\terms{\ext{\G}{A}}{q_A:A[p_A]}$, since $\tp\circ q_A = A \circ p_A$.
-The remaining laws of a CwF follow from the pullback condition on $\eqref{diag:NMpullback}$; see \cite{Awodey:NM}.
+The remaining laws of a CwF follow from the pullback condition on $\eqref{diag:NMpullback}$; see \cite{awodey:NM}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection*{Modeling the type formers}
+\subsection{Modeling the type formers}
 
 Given a natural model $\tT$, we will make extensive use of the associated \emph{polynomial endofunctor}
-$\alg{P}_\t : \hat\C \too \hat\C$ (cf.\ \cite{GambinoKoch}), defined by 
+$\alg{P}_\t : \widehat\C \too \widehat\C$ (cf.\ \cite{GambinoKoch:2013}), defined by 
 \[
-\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \hat{\C}\too\hat{\C}\,,
+\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \widehat{\C}\too\widehat{\C}\,,
 \] 
+as indicated below.
 \begin{equation*}
 \xymatrix{
   \Set^{\C^\mathsf{op}} \ar[d]_{\TT^*} \ar[rr]^{\alg{P}_\t} && \Set^{\C^\mathsf{op}} \\
@@ -374,7 +372,7 @@ The correspondence is natural in both $X$ and $Z$, in the expected sense.
 \end{lemma}
 
 This universal property is also suggested by the conventional type theoretic notation, namely: $$\alg{P}_p (X) = \Sigma_{b:B} X^{E_b}$$
-The lemma can be used to determine the signature $p\cdot q$ for the composite $\alg{P}_p \circ \alg{P}_q$ of two polynomial functors, which is again polynomial, and for which we therefore have
+The lemma can be used to determine the signature $ p\cdot q $ for the composite $\alg{P}_p \circ \alg{P}_q$ of two polynomial functors, which is again polynomial, and for which we have
 \begin{equation}\label{eq:polycomp}
 \alg{P}_{p\cdot q} \cong \alg{P}_p \circ \alg{P}_q\,.
 \end{equation}
@@ -395,10 +393,10 @@ The map $p\cdot q$ is then defined to be the indicated composite,
 \[
 p\cdot q\ =\ a^*p \circ c^*q\,.
 \]
-The condition \eqref{eq:polycomp} can then be checked using the correspondence \eqref{diag:polyUMP} (also see \cite{GambinoKoch}).
+The condition \eqref{eq:polycomp} can then be checked using the correspondence \eqref{diag:polyUMP} (also see \cite{GambinoKoch:2013}).
 
 \begin{definition}\label{def:modelthetypeformers}
-A natural model $\tT$ over $\C$ will be said to \emph{model} the type formers $ \mathsf{1}, \Sigma, \Pi$ if there are pullback squares in $\hat{\C}$ of the following form,
+A natural model $\tT$ over $\C$ will be said to \emph{model} the type formers $ \mathsf{1}, \Sigma, \Pi$ if there are pullback squares in $\widehat{\C}$ of the following form,
 %\begin{equation}\label{diag:naturalmodelPiSigma1}
 %\begin{tikzcd}
 %	1 \ar[r,"*"] \ar[d,swap,"!"] \pbcorner &  \TT \ar[d, "\t"]\\  
@@ -432,14 +430,14 @@ A natural model $\tT$ over $\C$ will be said to \emph{model} the type formers $ 
 where $\t\cdot\t : \dot{\T}_2 \to \T_2$ is determined by $\alg{P}_{\t\cdot\t} \cong  \alg{P}_{\t} \circ \alg{P}_{\t}$ as in \eqref{eq:polycomp}.
 \end{definition}
 
-The terminology is justified by the following result from \cite{A:NM}.
+The terminology is justified by the following result from \cite{awodey:NM}.
 
 %
-\begin{theorem}[\cite{Awodey:NM} Theorem XXX]\label{thm:nmcwf}
+\begin{theorem}[\cite{awodey:NM} Theorem XXX]\label{thm:nmcwf}
 Let $\tT$ be a natural model. The associated category with families satisfies the usual rules for the type-formers $\mathsf{1}, \Sigma, \Pi$ just if $\tT$ models the same in the sense of Definition \ref{def:modelthetypeformers}.
 \end{theorem}
 
-We only sketch the case of $\Pi$-types, but the other type formers will be treated in more detail in Section \ref{sec:MLalgebras} (see also \cite{Awodey:NM, Newstead, Awodey-Newstead}).
+We only sketch the case of $\Pi$-types, but the other type formers will be treated in more detail in Section \ref{sec:MLalgebras} (see also \cite{awodey:NM, Newstead, Awodey-Newstead}).
 
 \begin{proposition}  The natural model $\tT$ models $\Pi$-types just if there are maps $\lambda$ and $\Pi$ making the following a pullback diagram. 
 \begin{equation}\label{diag:prod2}
@@ -498,7 +496,7 @@ in conjunction with the \emph{$\Pi$-computation rules}:
 \section{Martin-L\"of algebras}\label{sec:MLalgebras}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Now let $\EE$ be a locally cartesian closed category (lccc) and $\tT$ a map in~$\EE$.  As in the foregoing case where $\EE$ was a category of presheaves, $\t$ gives rise to a polynomial endofunctor  (\cite{GK}),
+Now let $\EE$ be a locally cartesian closed category (lccc) and $\tT$ a map in~$\EE$.  As in the foregoing case where $\EE$ was a category of presheaves $\EE=\widehat{\C}$, the map $\t$ gives rise to a polynomial endofunctor,
 $$\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \EE\too\EE\,,$$
 which we may use to define the following abstraction of the notion of a natural model.
 \begin{definition}\label{def:MLalg}
@@ -519,38 +517,38 @@ A \emph{Martin-L\"of algebra} in an lccc $\EE$ is a map $\tT$ equipped with stru
  \end{equation}
  where the map $\t\cdot\t$ is defined in terms of $\alg{P}_\t$ as in \eqref{diag:naturalmodelPiSigma1} via
  \[
-\alg{P}_{\t\cdot\t} = \alg{P}_{\t}\cdot \alg{P}_{\t}\,.
+\alg{P}_{\t\cdot\t} = \alg{P}_{\t}\circ \alg{P}_{\t}\,.
  \]
    \end{definition}
 
-In place of representability in the elementary setting we may require that $\tT$ be $\emph{tiny}$.
+In place of representability in the elementary setting we may sometimes require the further condition that $\tT$ be $\emph{tiny}$ in the following sense.
 
 \begin{definition}\label{def:tinymap}
- A map $f : B \to A$ in a locally cartesian closed category $\EE$ will be said to be \emph{tiny} if it is so as an object in $\EE/_A$, in the sense that exponentiation by $f$ has a right adjoint $(-)^f \dashv (-)_f$. 
+ A map $p : E \to B$ in a locally cartesian closed category $\EE$ will be said to be \emph{tiny} if it is so as an object in $\EE/_B$, in the sense that exponentiation by $p$ has a right adjoint $(-)^p \dashv (-)_p$. 
 \end{definition}
 
-Note that a map $f : B \to A$ in an lccc is tiny just if the \emph{pushforward} functor $f_* : \EE/_B \to \EE/_A$ has a right adjoint,
+Note that a map $p : E \to B$ in an lccc is tiny just if the \emph{pushforward} functor $p_* : \EE/_E \to \EE/_B$ has a right adjoint,
 \[
-f_* \dashv f^! : \EE/_A \too \EE/_B\,.
+f_* \dashv f^! : \EE/_B \too \EE/_E\,.
 \]
 
 \begin{proposition}\label{prop:rep_is_tiny}
-If $\C$ has finite limits, a map $p : Y \to X$ in $\widehat{\C}$ is representable just if it is tiny in the sense of Definition \ref{def:tinymap}, which is the case just if the \emph{pushforward functor} (the right adjoint to pullback) 
+If $\C$ has finite limits, a map $p : E \to B$ in $\widehat{\C}$ is representable just if it is tiny in the sense of Definition \ref{def:tinymap}, which is the case just if the \emph{pushforward functor} (the right adjoint to pullback) 
 \[
-p^* \dashv p_* : \widehat{\C}/_{Y} \longrightarrow \widehat{\C}/_{X}
+p^* \dashv p_* : \widehat{\C}/_{E} \longrightarrow \widehat{\C}/_{B}
 \] 
-has a \emph{right} adjoint:
+itself has a \emph{right} adjoint:
 \[
 p_! \dashv p^*\dashv p_* \dashv  p^!
 \]
 \end{proposition}
 
 \begin{proof}
-The elementary definition \ref{def:representablenattrans} clearly states that, for the category of elements ${\int\!X} \simeq {\y{}/_X}$, the composition functor 
+The elementary definition \ref{def:representablenattrans} clearly states that, for the category of elements ${\int\!B} \simeq {\y{}/_B}$, the composition functor 
 \[\textstyle
-{\int\!p} : {\int\!Y} \to {\int\!X}
+{\int\!p} : {\int\!E} \to {\int\!B}
 \]  
-has a right adjoint, say ${\int\!p} \dashv ({\int\!p})^\sharp$. Now recall that $\widehat{\C}/{X} \simeq \psh{(\int\!X)}$, so that the precomposition functor $({\int\!p})^* = \psh{({\int\!p})}$ gives rise to a commutative diagram with left and right Kan extensions:
+has a right adjoint, say ${\int\!p} \dashv ({\int\!p})^\sharp$. Now recall that $\widehat{\C}/{B} \simeq \psh{(\int\!B)}$, so that the precomposition functor $({\int\!p})^* = \psh{({\int\!p})}$ gives rise to a commutative diagram with left and right Kan extensions:
 \[\textstyle
 ({\int\!p})_!\dashv ({\int\!p})^* \dashv ({\int\!p})_*
 \]
@@ -561,31 +559,34 @@ has a right adjoint, say ${\int\!p} \dashv ({\int\!p})^\sharp$. Now recall that 
 %{\int\!Y} \ar[uu, hook, "{\y{}}"]  \ar[rr, "{p_!}"]  &&  \ar[ll, "{p^*}"]  {\int\!X} \ar[uu, hook, "{\y{}}"]
 %\end{tikzcd}\end{equation}
 \begin{equation}\begin{tikzcd}
-\psh{(\int{\!Y})} \ar[rr,shift right = 1ex,swap, "{\int\!p}_!"]  \ar[rr,shift left = 1ex] &&   \psh{(\int{\!X})} \ar[ll] \\
+\psh{(\int{\!E})} \ar[rr,shift right = 1ex,swap, "{\int\!p}_!"]  \ar[rr,shift left = 1ex] &&   \psh{(\int{\!B})} \ar[ll] \\
 && \\
-\int{\!Y} \ar[uu, hook, "{\y{}}"]  \ar[rr, swap, "{\int\!p}"]  &&  \int{\!X} \ar[uu, swap,hook, "{\y{}}"]
+\int{\!E} \ar[uu, hook, "{\y{}}"]  \ar[rr, swap, "{\int\!p}"]  &&  \int{\!B} \ar[uu, swap,hook, "{\y{}}"]
 \end{tikzcd}\end{equation}
 %
-But since ${\int\!p} \dashv ({\int\!p})^\sharp$ , there is a further right adjoint $({\int\!p})_* \dashv (({\int\!p})^\sharp)_*$ to precomposition with $({\int\!p})^\sharp$.  Moving back across the equivalence $\psh{(\int\!X)} \simeq \widehat{\C}/_{X}$ we obtain the claimed further right adjoint: 
+But since ${\int\!p} \dashv ({\int\!p})^\sharp$ , there is a further right adjoint $({\int\!p})_* \dashv (({\int\!p})^\sharp)_*$ to precomposition with $({\int\!p})^\sharp$.  Moving back across the equivalence $\psh{(\int\!B)} \simeq \widehat{\C}/_{B}$ we obtain the claimed further right adjoint: 
 \[
-p_! \dashv p^* \dashv p_*\dashv p^! :  \widehat{\C}/_{X} \too \widehat{\C}/_{Y}
+p_! \dashv p^* \dashv p_*\dashv p^! :  \widehat{\C}/_{B} \too \widehat{\C}/_{E}
 \]
 %
-Conversely, a right adjoint $$\textstyle ({\int\!p})_* \dashv R : \psh{(\int{\!X})} \to \psh{(\int{\!Y})}$$ is easily shown to be induced by precomposing with a right adjoint ${\int\!p} \dashv r : {\int\!X} \to {\int\!Y}$ if $\C$ if has all finite products and idempotents split in $\C$, which is the case if $\C$ has finite limits.
+Conversely, a right adjoint $$\textstyle ({\int\!p})_* \dashv R : \psh{(\int{\!B})} \to \psh{(\int{\!E})}$$ is easily shown to be induced by precomposing with a right adjoint ${\int\!p} \dashv r : {\int\!B} \to {\int\!E}$ if $\C$ if has all finite products and idempotents split in $\C$, which is the case if $\C$ has finite limits.
 
-We leave the construction of the right adjoint $p^!:  \widehat{\C}/_{X} \too \widehat{\C}/_{Y}$ from the  right adjoint $(-)^p \dashv (-)_p : \widehat{\C}/_{X} \to \widehat{\C}/_{X}$ to the reader.
+We leave the construction of the right adjoint $p^!:  \widehat{\C}/_{B} \too \widehat{\C}/_{E}$ from the  right adjoint $(-)^p \dashv (-)_p : \widehat{\C}/_{B} \to \widehat{\C}/_{B}$ to the reader.
 \end{proof}
 
-\begin{remark}
-In \cite{Awodey:NM} it is shown how a \emph{clan} in the sense of Joyal \cite{Joyal:CandT} gives rise to a natural model, namely ... In particular, the fibrations in a right-proper Quillen model category (which form a \emph{$\Pi$-tribe} in the language of \emph{ibid.}) are shown to give rise to a natural model with $1, \Sigma, \Pi$, i.e.\  a Martin-L\"of algebra, which moreover has \emph{identity types}, in the sense of the next section.
+\begin{remark}\label{remark:clans}
+In \cite{awodey:NM} it is shown how a \emph{clan} in the sense of Joyal \cite{Joyal:CandT}, or \emph{category with display maps} in the sense of \cite{Taylor}, say $(\C, \DD)$, gives rise to a natural model $\t : \TT\to\T$ in $\widehat\C$, namely with 
+\[
+\t\, =\ \coprod_{d\in\DD}\y{d} \,.\]
+In particular, the fibrations in any right-proper Quillen model category (which form a \emph{$\Pi$-tribe} in the language of \cite{Joyal:CandT}), or  simply all maps in an lccc, are shown to give rise to a natural model with $1, \Sigma, \Pi$, and thus a Martin-L\"of algebra, which moreover has \emph{identity types}, in the sense of the next section.
 \end{remark}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Identity Types}\label{sec:Eq and Id}
+\subsection{Identity Types}\label{sec:Eq and Id}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-A natural model $\tT$ in a presheaf category $\widehat{\C}$ was defined in \cite{Awodey:NM} to model both the extensional and intensional identity types of Martin-L\"of type theory in terms of the existence of certain additional structures.  Let us show how to capture these definitions in the new, elementary setting of Martin-L\"of algebras.  Condition (\ref{def:equalitytype}) below is shown in \cite{Awodey:NM} to capture the extensional identity types of Martin-L\"of type theory.  The condition given in \emph{op.cit.} for the intensional case is replaced in (\ref{def:identitytype}) below by a simplification suggested by R.\ Garner.   
+A natural model $\tT$ in a presheaf category $\widehat{\C}$ was defined in \cite{awodey:NM} to model both the extensional and intensional identity types of Martin-L\"of type theory in terms of the existence of certain additional structures.  We transfer these definitions to the elementary setting of Martin-L\"of algebras.  Condition (\ref{def:equalitytype}) below is shown in \cite{awodey:NM} to capture the extensional identity types of Martin-L\"of type theory.  The condition given in \emph{op.cit.}\ for the intensional case is replaced in (\ref{def:identitytype}) below by a simplification suggested by R.\ Garner.   
 
 \begin{definition}\label{def:EqualityandIdentityTypes}
 Let $\tT$ be a map in an lccc $\EE$. 
@@ -638,7 +639,7 @@ which commutes with the compositions to $\T$ as indicated below.
 }
 \end{equation*}
 %
-The map $\rho  : \TT \to \mathsf{I}$, which can be interpreted as the substitution $(x) \mapsto (x, x, \mathsf{i}x)$, gives rise to a ``restriction'' natural transformation of polynomial endofunctors (\cite{GK}),
+The map $\rho  : \TT \to \mathsf{I}$, which can be interpreted as the substitution $(x) \mapsto (x, x, \mathsf{i}x)$, gives rise to a ``restriction'' natural transformation of polynomial endofunctors (\cite{GambinoKoch:2013}),
 \[
 \rho^* : P_q \to P_\t\,,
 \]
@@ -676,10 +677,29 @@ then says exactly that $\mathsf{J}$ is indeed a section of the comparison map \e
 \begin{proposition}[R.\ Garner] The map $\t : \TT \to \T$ models intensional \emph{identity types} just if there are maps $(\mathsf{i}, \Id)$ making the diagram \eqref{diag:Idtypes} commute, together with a weak pullback structure $\mathsf{J}$ for the resulting comparison square \eqref{diag:prod2}.
 \end{proposition}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Examples of ML-algebras}%\label{sec:Free ML-Algebras}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%If we have univalence then they will hold up to identity terms -- once we have defined identity and univalence.
+%\ednote{The polynomial laws will hold up to Id types if the universe is univalent.}
+
+\begin{enumerate}
+\item Subobject classifier and cofibration classifier. For the propositional case, use AGH.
+Don't need LCCC but just certain display maps with pushforwards.
+
+\item Strictification of an LCCC and of a WFS.  A natural model ML-algebra is tiny.  Also the syntactic model of type theory.
+
+\item H-S universe: the nerve preserves ML-algebras.  Also use AGH
+
+\end{enumerate}
+
+
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{4. A polynomial monad}\label{sec:Monad}
+\section{A polynomial monad}\label{sec:Monad}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %\ednote{define $\DD_\t$ and show that it is a display map category with ... }
@@ -690,18 +710,20 @@ then says exactly that $\mathsf{J}$ is indeed a section of the comparison map \e
 %
 %\ednote{the constructions are not mutually inverse but rather adjoint inverse ...}
 
-Let $\EE$ be an lccc, and recall from \cite{GK}[Theorem 2.17] the biequivalence 
+Let $\EE$ be an lccc, and recall from \cite[Theorem 2.17]{GambinoKoch:2013} the biequivalence 
 \[
 \mathrm{Poly}^1_{\EE}\ \simeq\ \mathrm{PolyFun}^1_{\EE}
 \]
 between the (1-object) bicategory $\mathrm{Poly}^1_{\EE}$ consisting of arrows $f:B \to A$ as 1-cells and cartesian squares
-\[
+\begin{equation}\label{diag:cartsquare}
 \begin{tikzcd}
 B \ar[d,swap, "f"] \ar[r, "{h'}"] \pbcorner & D \ar[d, "g"] \\
 A \ar[r,swap, "{h}"] &  C 
 \end{tikzcd}
-\]
-as 2-cells, and the (1-object) 2-category $\mathrm{PolyFun}^1_{\EE}$ consisting of polynomial endofunctors $P_f: \EE\to \EE$ and the cartesian (strong) natural transformations $\theta : P_f \Rightarrow P_g$ as 2-cells.  This is the endofunctor special case of the more general situation involving general polynomials and polynomial functors. Thus, simplifying to the 1-object case, we have an equivalence of categories between the monoidal category of cartesian squares in the arrow category $\EE^{\downarrow}_{\mathsf{cart}}$ and the subcategory of $\Cat(\EE, \EE)$ consisting of \emph{polynomial} endofunctors and cartesian natural transformations,
+\end{equation}
+as 2-cells, and the (1-object) 2-category $\mathrm{PolyFun}^1_{\EE}$ consisting of polynomial endofunctors $P_f: \EE\to \EE$ and the cartesian (strong) natural transformations $\theta : P_f \Rightarrow P_g$ as 2-cells.  This is the endofunctor special case of a more general situation involving polynomials of the form $I \leftarrow B \to A \to J$ and polynomial functors $\EE/_I \to \EE/_J$. (As well as, at the level of 2-cells, the special case of cartesian (strong) natural transformations rather than all (strong) natural transformations).  
+
+Simplifying the description to the 1-object case, we have an equivalence of (1-)categories between the monoidal category of cartesian squares in the arrow category $\EE^{\downarrow}_{\mathsf{cart}}$ and the (strict, monoidal) subcategory of $\Cat(\EE, \EE)$ consisting of \emph{polynomial} endofunctors and cartesian natural transformations,
 \begin{equation}\label{diagram:polyandpolyfun}
 \begin{tikzcd}
 \mathrm{Poly}^1_{\EE} \ar[d,swap, "{\simeq}"] \ar[r,"{\simeq}"] & \mathrm{PolyFun}^1_{\EE}  \ar[d, "{\simeq}"] \\
@@ -711,7 +733,7 @@ as 2-cells, and the (1-object) 2-category $\mathrm{PolyFun}^1_{\EE}$ consisting 
 \end{equation}
 
 Under this equivalence, a Martin-L\"of algebra in $\EE$ as defined in \ref{def:MLalg},
-\begin{equation*}\label{diag:MLalg}
+\begin{equation}\label{diag:MLalg2}
 \begin{tikzcd}
 	1 \ar[r,"*"] \ar[d,swap,"!"] \pbcorner &  \TT \ar[d, "\t"]\\  
 	1 \ar[r, swap,"\mathsf{1}"] & \T
@@ -724,47 +746,46 @@ Under this equivalence, a Martin-L\"of algebra in $\EE$ as defined in \ref{def:M
 	\alg{P}_\t\TT \ar[r,"\lambda"] \ar[d,swap,"\alg{P}_\t(\t)"] \pbcorner &  \TT \ar[d, "\t"]\\  
 	\alg{P}_\t\T \ar[r,swap, "\Pi"] & \T
  \end{tikzcd} 
- \end{equation*}
-gives rise to the following:
+ \end{equation}
+gives rise to the following data in $\mathsf{PolyFun}(\EE, \EE)$:
 \begin{enumerate}
 \item a cartesian natural transformation $\tau :1_\EE \Rightarrow P_\t$
 \item a cartesian natural transformation $\sigma :P_\t\circ P_\t \Rightarrow P_\t$
-\item an algebra structure $\pi:P_\t\t \Rightarrow \t$, with $P_\t$ lifted from $\EE$ to $\EE^{\downarrow}_{\mathsf{cart}}$.
+\item an cartesian natural transformation $\pi:P_\t\t \Rightarrow \t$, with $P_\t$ lifted from $\EE$ to $\EE^{\downarrow}_{\mathsf{cart}}$.
 \end{enumerate}
 %
-Items (1) and (2) are of course familiar as the underlying structure of a polynomial monad; item (3) is a somewhat less familiar special case of an algebra structure map.  The obvious question now is whether the respective equations 
-for a monad and an algebra are satisfied by these functors and natural transformations.  The short answer is \emph{no}, but as shown in detail in \cite{Newstead, Awodey-Newstead}, there are good reasons to investigate further.
+Items (1) and (2) are of course familiar as the underlying structure of a (polynomial) monad; item (3) is a somewhat less familiar special case of an algebra structure map.  The obvious question now is whether the respective \emph{equations} for a monad and an algebra are satisfied by the natural transformations $\tau, \sigma, \pi$.  The short answer is \emph{no}, but as shown in \cite{Newstead, Awodey-Newstead}, there are reasons to investigate further.
  
-Following \emph{op.cit.}, the monad laws for $\tau$ and $\sigma$ (in the left column) express the following \emph{equations} of objects in $\EE$ (in the right column).
+Namely, following \emph{op.cit.}, the monad laws for $\tau$ and $\sigma$ (in the left column below) express the following \emph{equations} between objects in $\EE$ (in the right column).
 \begin{align*}\textstyle
- \sigma\circ P_\t\, \sigma\, &=\, \sigma\circ\sigma_{P_\t}	&&&	\sum\limits_{a:A}\sum\limits_{b:B(a)}C(a,b)\, &=\, \sum\limits_{(a,b):\sum\limits_{a:A}B(a)}C(a,b)\   \\ 
-  \sigma\circ P_\t\,\tau\, &=\, 1 		&&& 	\sum\limits_{a:A}1\, &=\, A \tag{\theequation}\\ 
+ \sigma\circ P_\t\, \sigma\, &=\, \sigma\circ\sigma_{P_\t}	&&&	\sum\limits_{a:A}\sum\limits_{b:B(a)}C(a,b)\, &=\, \sum\limits_{(a,b):\sum\limits_{a:A}B(a)}C(a,b)\  \\ 
+  \sigma\circ P_\t\,\tau\, &=\, 1 		&&& 	\sum\limits_{a:A}1\, &=\, A   \tag{\theequation}\label{typeisos}\\ 
   \sigma\circ \tau_{P_\t}\, &=\, 1		&&& 	\sum\limits_{x:1}A\, &=\, A  
  \end{align*}
 %
-And the algebra laws for $\pi$ correspond to the following \emph{equations} of objects in $\EE$.
+And the algebra laws for $\pi$ correspond to the following \emph{equations} between objects in $\EE$.
 %
 \begin{align*}
  \pi\circ P_\t\,\pi\, &=\,  \pi\circ\sigma 	&&&	\prod\limits_{a:A}\prod\limits_{b:B(a)}C(a,b)\, 
  									&=\, \prod\limits_{(a,b):\sum_{a:A}B(a)}C(a,b)  \\ 
- \pi\circ \tau\, &=\, 1 	&&& 	\prod\limits_{x:1}A\, &=\, A  
+ \pi\circ \tau\, &=\, 1 	&&& 	\prod\limits_{x:1}A\, &=\, A   \tag{\theequation}
 \end{align*}
 
-While the equations of objects in the right hand column can hardly be expected to hold strictly, they do correspond to familiar \emph{type isomorphisms} that are provable from the usual rules of dependent type theory with $1, \Sigma, \Pi, \mathsf{Id}$.  
+While the equations of objects in the right hand column cannot be expected to hold strictly, they do correspond to familiar \emph{type isomorphisms} (resp.\ \emph{equivalences}) that are provable from the usual rules of dependent type theory with $1, \Sigma, \Pi, \mathsf{Id}$.  
+In order to capture this higher dimension of structure, in \cite{Newstead, Awodey-Newstead} the monoidal 1-category $\mathsf{PolyFun}(\EE, \EE)$ of endofunctors and cartesian natural transformations is enriched to a bicategory by defining \emph{ad hoc} certain 2-cells between the natural transformations, in such a way that $(\tau, \sigma)$ becomes a \emph{pseudo}-monad and $\pi$ a \emph{pseudo}-algebra.  Here we take a different approach, using the $\mathsf{Id}$-types defined in Section \ref{sec:Eq and Id} to determine a notion of 2-cell between  parallel cartesian squares of the form \eqref{diag:cartsquare}, thus promoting the 1-category $\EE^{\downarrow}_{\mathsf{cart}}$ to a bicategory in such a way that the ``type isomorphisms'' \eqref{typeisos} arise from corresponding pseudo-monad and pseudo-algebra structures.
 
-In \cite{Newstead, Awodey-Newstead} it is shown that the 1-category $\mathsf{PolyFun}(\EE, \EE)$ of functors and cartesian natural transformations can be enriched to a bicategory by defining \emph{ad hoc} certain 2-cells between the natural transformations in such a way that $(\tau, \sigma)$ becomes a \emph{pseudo}-monad and $\pi$ a \emph{pseudo}-algebra.  The main contribution of the present work is a different approach that makes use of the $\mathsf{Id}$-types defined in Section \ref{sec:Eq and Id} to determine a notion of 2-cell for which the just mentioned type isomorphisms result in corresponding pseudo-monad and pseudo-algebra structures.
-\medskip
-
-Let $\TT \to \T$ be an ML-algebra and say that a map $A\to X$ in $\EE$ is \emph{classified} by $\TT \to \T$ if there exist maps $\alpha : X \to \T$ and $\dot{\alpha} : A \to \TT$ fitting into a pullback square as follows.
+To that end, let $\TT \to \T$ be an ML-algebra in an lccc $\EE$, and say that a map $A\to X$ in $\EE$ is \emph{classified} by $\TT \to \T$ if there exist maps $\alpha : X \to \T$ and $\dot{\alpha} : A \to \TT$ fitting into a pullback square as follows.
 \begin{equation}\label{eq:classifiedfamilies}
 \begin{tikzcd}
 	 A \ar[d] \pbcorner \ar[r, "\dot{\alpha}"] & \TT \ar[d] \\  
 	X \ar[r,swap, "\alpha"] &  \T
  \end{tikzcd}
  \end{equation}
-We often leave the map $\dot{\alpha}$ implicit, and say simply that $\alpha : X \to \T$ classifies $A\to X$, which it does up to fiberwise isomorphim.  In virtue of the ML-algebra structure on $\TT\to\T$, the classified maps are closed under the type formers $1, \Sigma, \Pi$ when we regard objects $X$ as contexts and classified maps $A\to X$ as families of types in context~$X$.
+We often omit mentioning the map $\dot{\alpha}$ and say simply that $\alpha : X \to \T$ classifies $A\to X$, but it is important in what follows that each $\alpha: X \to \T$ classifies a \emph{chosen} span $X\leftarrow A \stackrel{\dot{\alpha}}{\too} \TT$ by pullback.
 
-If $\TT \to \T$ has the structure required for $\Id{}$ in the sense of Definition \ref{def:EqualityandIdentityTypes}, then we can define an \emph{equivalence} of types $A\simeq B$ (over $X$) as follows:
+In virtue of the ML-algebra structure on $\TT\to\T$, the classified maps $A\to X$ are closed under the type formers $1, \Sigma, \Pi$, when  regarding objects $X \in \EE$ as contexts and the classified maps $A\to X$ as families of types in context~$X$, as usual for models of dependent type theory in \emph{clans}, or \emph{categories with display maps}, or similar (see Remark \ref{remark:clans}).
+
+Now suppose that $\TT \to \T$ is an ML-algebra with the structure required for $\Id{}$ in the sense of Definition \ref{def:EqualityandIdentityTypes}. Then we can define an \emph{equivalence} of types $A\simeq B$ (over $X$) as follows (cf.\ \cite[\S X]{HoTTbook}):
 %
 \begin{definition}
  A map $e : A\to B$ is a (type) \emph{equivalence} if it has both right and left inverses, in the sense that there are maps $f, g : B\tto A$ such that 
@@ -809,14 +830,23 @@ As $\mathsf{Equiv} \to \T \times \T$ we then take the composite of the canonical
  \end{equation*}
 %
 Given $\alpha, \beta : X \to \T$ classifying types $A\to X$ and $B \to X$, factorizations of the map $(\alpha, \beta) : X \to \T \times \T $ through $\mathsf{Equiv} \to \T \times \T$ can then be seen using \eqref{diag:univalence11}  to correspond to equivalences $A\simeq B$ over $X$, as indicated in the following, in which the indicated map $\mathsf{E}_1\simeq\mathsf{E}_2$ is the pullback of  $\varepsilon : \TT'_1\to \TT'_2$ along $\mathsf{Equiv}\to {[\TT_1, \TT_2]}$.
-\begin{equation*}\label{diag:univalence3}
+\begin{equation}\label{diag:univalence3}
 \begin{tikzcd} 
 	&& \mathsf{E}_1 \ar[rd]  \ar[r,"{\simeq}"]  & \mathsf{E}_2 \ar[d] \\  
 A \ar[rd] \ar[r, "{\simeq}"] \ar[rru, dotted] & B \ar[d] \ar[rru, crossing over, dotted] && \mathsf{Equiv} \ar[d] \\  
 & X \ar[rru, dotted] \ar[rr, swap, "{(\alpha, \beta)}"] && \T \times \T
 	 \end{tikzcd}
- \end{equation*}
+ \end{equation}
 The correspondence is natural in $X$, because it is mediated by pulling back a universal instance.  
+
+The property of being an equivalence of types (over a base $X$) is independent of the choice of classifying maps, in the following sense.
+\begin{lemma}
+Suppose given $A\to X$ classified by $\alpha: X \to \T$ and $B \to X$ classified by $\beta: X \to \T$, and a map $e : A \to B$ over $X$ that is an equivalence in virtue of a lift $\tilde{e} : X \to  \mathsf{Equiv}$ of $(\alpha, \beta) : X \to \T\times \T$.   Then upon choosing different classifying maps $\alpha', \beta' : X \to \T$, the map $e : A \to B$ over $X$ is still an equivalence, now in virtue of a lift ${\tilde{e}}' : X \to \mathsf{Equiv}$ of $(\alpha', \beta') : X \to \T\times \T$.
+\end{lemma}
+
+\begin{proof}
+The map $1_A : A \to A$ over $X$ is an equivalence with respect to $\alpha: X \to \T$ and $\alpha': X \to \T$, in virtue of a lift $\ell(\alpha, \alpha') : X \to\mathsf{Equiv}$ of $(\alpha, \alpha') : X \to \T\times \T$, by the universal property of $\mathsf{Equiv} \to \T\times \T$, and the same is true, \emph{mutatis mutandis}, for  $1_B : B \to B$.  Now the structure $\mathsf{Equiv} \to \T\times \T$ can be shown to have a composition $(e\cdot e')$ operation in the expected way, using the rules of type theory, which we know are sound when interpreted by the operations of the ML-algebra.  So we may define the desired lift ${\tilde{e}}' : X \to \mathsf{Equiv}$ to be e.g. $${\tilde{e}}' = \ell(\beta', \beta) \cdot ({\tilde{e}}\cdot\ell(\alpha, \alpha'))\,.$$
+\end{proof}
 
 Returning to the description \eqref{diagram:polyandpolyfun} of the bicategory $$\EE^{\downarrow}_{\mathsf{cart}} \simeq \mathsf{PolyFun}(\EE, \EE)$$
 with objects $f, g$ and arrows $(h, h') : f \to g$ as indicated below (corresponding to polynomial endofunctors $\alg{P}_f, \alg{P}_g : \EE \to \EE$ and cartesian natural transformations $\vartheta : \alg{P}_f \Rightarrow \alg{P}_g$),
@@ -826,34 +856,86 @@ B \ar[d,swap, "f"] \ar[r, "{h'}"] \pbcorner & D \ar[d, "g"] \\
 A \ar[r,swap, "{h}"] &  C 
 \end{tikzcd}
 \end{equation}
-Consider the full subcategory $$\EE^{\downarrow}_{\t} \hook \EE^{\downarrow}_{\mathsf{cart}}$$ on those objects $B\to A$ that are classified by $\t:\TT\to\T$, which we shall call the \emph{category of type families}, and all cartesian squares between them, which we regard as \emph{substitutions}.  This is the full image in $\EE^{\downarrow}_{\mathsf{cart}}$ of the slice category,
+consider the full subcategory $$\EE^{\downarrow}_{\t} \hook \EE^{\downarrow}_{\mathsf{cart}}$$ on those objects $B\to A$ that are classified by $\t:\TT\to\T$, which we shall call the \emph{category of type families}, and all cartesian squares between them, which we regard as \emph{substitutions}.  This is the full image in $\EE^{\downarrow}_{\mathsf{cart}}$ of the slice category,
 \[
 \EE^{\downarrow}_{\mathsf{cart}} /_\t \too \EE^{\downarrow}_{\mathsf{cart}}\,,
 \]
-but note that we do not require the morphisms to commute with the classifying maps to $\t$.  In a cartesian square such as \eqref{diag:substitution}, if $g : D\to C$ is classified by $\t$, then so is $f : B \to A$, so $\EE^{\downarrow}_{\t}\hook \EE^{\downarrow}_{\mathsf{cart}}$ is a sieve.
+but note that  in $\EE^{\downarrow}_{\t}$ we do not require the morphisms to commute with the classifying maps to $\t$.  In a cartesian square such as \eqref{diag:substitution}, if $g : D\to C$ is classified by $\t$, then so is $f : B \to A$, so the full subcategory $\EE^{\downarrow}_{\t}\hook \EE^{\downarrow}_{\mathsf{cart}}$ is a sieve.
 
-Between any parallel 1-cells $h, k : f \to \t$, we can define a 2-cell to be ...
-More generally, ... 
-\begin{definition}
-Let 
+Between two \emph{parallel} 1-cells $\alpha_1, \alpha_2 : X \to \T$, 
+\begin{equation}\label{eq:parallelclassifiedfamilies}
+\begin{tikzcd}
+	 A \ar[d] \ar[rr,bend right, "{\dot{\alpha_2}}"]  \ar[rr,bend left, "{\dot{\alpha_1}}"]  && \TT \ar[d] \\  
+	X \ar[rr,swap,bend right, "{\alpha_2}"] \ar[rr,swap,bend left, "{\alpha_1}"] &&  \T
+ \end{tikzcd}
+ \end{equation}
+we shall define a 2-cell $\varphi: \alpha_1 \Rightarrow \alpha_2$ to be a lift of $(\alpha_1, \alpha_2) : X \to \T\times \T$ across $\mathsf{Equiv}\to \T\times \T$, corresponding to an (auto-)equivalence $A\simeq A$ over $X$, as in  \eqref{diag:univalence3}.  
+
+More generally, for parallel substitutions $h_1, h_2 : f \to g$ as in \eqref{diag:substitution}, we first pull the classifier  $\mathsf{Equiv} \to \T\times\T$ for 2-cells with codomain $\t$ back along a classifying map $\gamma : C\to \T$ for $g:D\to C$, as indicated below, to obtain a classifier for equivalences with codomain $g : D \to C$.
+\begin{equation}\label{eq:pulledbackclassifier}
+\begin{tikzcd}
+	\mathsf{Equiv}_g \ar[d] \ar[r]  \pbcorner & \mathsf{Equiv} \ar[d] \\  
+	C\times C \ar[r,swap,"{\gamma \times \gamma}"] &  \T \times \T
+ \end{tikzcd}
+ \end{equation}
+We then use the same argument as before to classify (auto-)equivalences $A\simeq A$ of $f :A \to B$
+%
+\begin{definition}\label{def:2cells}% Definition of 2-cells
+For parallel 1-cells $h_1, h_2 : f \to g$,
+\begin{equation}\label{eq:parallelclassifiedfamilies}
+\begin{tikzcd}
+	 B \ar[d,swap, "f"] \ar[rr,bend right, "{\dot{h_2}}"]  \ar[rr,bend left, "{\dot{h_1}}"]  && D \ar[d, "g"] \\  
+	 A \ar[rr,swap,bend right, "{h_2}"] \ar[rr,swap,bend left, "{h_1}"] &&  C
+ \end{tikzcd}
+ \end{equation}
+a 2-cell $ \beta : h_1 \Rightarrow h_2$ is defined to be a map $\beta : B \to B$ commuting with $f : B \to A$,
+\begin{equation}\label{eq:parallelclassifiedfamilies2}
+\begin{tikzcd}
+ D  \ar[d,swap, "g"] &  \ar[l,swap, "{\dot{h_1}}"] B \ar[r, "{\beta}"] \ar[d, "f"] \pbcornerright & B \ar[d, swap, "f"]  \ar[r, "{\dot{h_2}}"]   \pbcorner & D \ar[d, "g"] \\  
+ C &  \ar[l, "{h_1}"]  A \ar[r, equals] & A \ar[r,swap, "{h_2}"] &  C
+ \end{tikzcd}
+ \end{equation}
+which is, moreover, a pullback along $(h_1, h_2) : A \to C \times C$ of the universal equivalence $D_1\simeq D_2$ over $\mathsf{Equiv}_g$ (which itself is pulled-back from $E_1\simeq E_2$ as in \eqref{diag:univalence3}), as indicated in the diagram below.
+\begin{equation}\label{diag:2celldef3}
+\begin{tikzcd} 
+	&& \mathsf{D}_1 \ar[rd]  \ar[r,"{\simeq}"]  & \mathsf{D}_2 \ar[d] \\  
+B \ar[rd,swap, "f"] \ar[r,swap, "{\beta}"]  \ar[rru, dotted] & B \ar[d, "f"] \ar[rru, crossing over, dotted] && \mathsf{Equiv}_g \ar[d] \\  
+& A \ar[rru, dotted] \ar[rr, swap, "{(h_1, h_2)}"] && C \times C
+	 \end{tikzcd}
+ \end{equation}
+ Note that $\beta : B \to B$ is not required to commute with $\dot{h_1}$ and $\dot{h_2}$.  
 \end{definition}
+
+As stated, the definition depends on a choice of classifying map $\gamma : C\to \T$ for $g:D\to C$. The following shows that this is not actually the case.
+
+\begin{lemma}
+In the situation of Definition \ref{def:2cells}, suppose $\beta : B\to B$ over $A$ is a pullback along $(h_1, h_2) : A \to C \times C$ of the universal equivalence $D_1\simeq D_2$ over $\mathsf{Equiv}_g$, which itself is pulled back from $E_1\simeq E_2$ along a classifying map $\gamma : C \to \T$ for $g:D\to C$.  The choosing a a different classifying map $\gamma' : C \to \T$ for $g:D\to C$ still results in 
+\begin{equation}\label{diag:2celldef3}
+\begin{tikzcd} 
+	&& \mathsf{D}_1 \ar[rd]  \ar[r,"{\simeq}"]  & \mathsf{D}_2 \ar[d] \\  
+B \ar[rd,swap, "f"] \ar[r,swap, "{\beta}"]  \ar[rru, dotted] & B \ar[d, "f"] \ar[rru, crossing over, dotted] && \mathsf{Equiv}_g \ar[d] \\  
+& A \ar[rru, dotted] \ar[rr, swap, "{(h_1, h_2)}"] && C \times C
+	 \end{tikzcd}
+ \end{equation}
+
+\end{lemma}
  
  
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{5. Examples of ML-algebras}%\label{sec:Free ML-Algebras}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%If we have univalence then they will hold up to identity terms -- once we have defined identity and univalence.
-%\ednote{The polynomial laws will hold up to Id types if the universe is univalent.}
+\begin{proposition}
+ With the 2-cells as defined in Definition \ref{def:2cells}, the category $\EE^{\downarrow}_{\t}$ of type families is a monoidal bicategory.  
+\end{proposition}
 
-\begin{enumerate}
-\item Subobject classifier and cofibration classifier. For the propositional case, use AGH.
+\begin{proof}
+ We only show ...
+\end{proof}
 
-\item Strictification of an LCCC and of a WFS.  A natural model ML-algebra is tiny.  Also the syntactic model of type theory.
+With respect to this monoidal bicategory $\EE^{\downarrow}_{\t}$, the ML-algebra structure \eqref{diag:MLalg2} on $\t : \TT\to\T$ can now be shown to be a pseudo-monoid and a pseudo-module (in an evident sense); we leave the easy proof for future work -- as well as the task of transferring the higher structure back to the setting of $\mathsf{PolyFun}(\EE, \EE)$, to obtain a pseudo-monad and a pseudo-algebra.
 
-\item H-S universe: the nerve preserves ML-algebras.  Also use AGH
 
-\item Univalent universe.  Also refer to Aberle-Spivak.
+
 \begin{remark}[Univalence]
+Refer to Aberl\'e-Spivak.
+
 If $\T$ is itself a type in a ``larger'' model $\TT_1 \to \T_1$ with $\Id{}$-types, then there is also the type family $A, B: \T \vdash \Id_{\T}(A,B)$, which is interpreted as a map $\Id_{\T}\to \T \times \T$.  Since for every $A:\T$ the map $1_A : A \to A$ is an equivalence, by $\Id_{\T}$-elim we obtain a distinguished map  $\Id_{\T}(A, B) \to \mathsf{Equiv}(A, B)$ over $\T \times \T$.  The \emph{univalence axiom} is the statement that this map is itself an equivalence:
 \begin{equation}\label{diag:univalence4}
 \begin{tikzcd} 
@@ -866,14 +948,12 @@ If $\T$ is itself a type in a ``larger'' model $\TT_1 \to \T_1$ with $\Id{}$-typ
  \ (A =_\T B) \, \simeq\, (A \simeq B)\,.
  \]
 The interpretation of univalence thus requires at least a universe $\T$ with $1, \Sigma, \Pi, \Id{}$ (in order to define $A\simeq B$), inside a larger universe $\T:\T_1$ also with $1, \Sigma, \Pi, \Id{}$ (in order to have the family $A =_\T B$ and to state the central equivalence in UA). The operations on the larger universe are usually required to restrict to the corresponding ones on the smaller universe.  
-%See \cite{AG:2024} for a detailed presentation.
+%See \cite{aG:2024} for a detailed presentation.
 \end{remark}
 
 
-\end{enumerate}
 
-
-
+ 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\section*{5. Free ML-algebras}\label{sec:Free ML-Algebras}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -891,10 +971,10 @@ The interpretation of univalence thus requires at least a universe $\T$ with $1,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Acknowledgement}
 
-Thanks to Marcelo Fiore, Nicola Gambino, Richard Garner, and Clive Newstead.  This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
+Thanks to Marcelo Fiore, Nicola Gambino, Richard Garner, Clive Newstead, and Corinthia Aberl\'e.  This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
 
 \bibliographystyle{alpha}
-\bibliography{../references}
+\bibliography{../Bib/catlog.bib}
 
 %%%
 \end{document}
