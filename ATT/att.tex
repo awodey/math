@@ -213,6 +213,10 @@ Something about generalizing the subobject classifier in a topos:
 
 Relate it to Phil and the book on higher-order logic - something about introducing algebraic precision into logic by replacing rules of deduction by equations. Also replacing natural and coherent structure by homming into an algebra, and using Yoneda to get it.  Beck-Chavelley conditions and coherence of substitution result automatically.  Splitting of the codomain fibration and coherence of pullbacks.  Higher-order operations using the internal universe as just another type. 
 
+AST of Joyal-Moerdijk. 
+
+Still to do: morphisms of ML-algebras, initial algebra, successor operation, change of contexts.
+
 We begin by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{Dybjer:CWF}.  In section \ref{sec:strictify} it is briefly recalled how such models are related to the \emph{clans} and \emph{tribes} of Joyal \cite{Joyal:CandT}.  In section \ref{sec:MLalgebra} we abstract the main features of a natural model with the type-formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is begun in section \ref{sec:eqandid } with the addition of equality and identity types.  We conclude with the relation to polynomial monads in section \ref{sec:free}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -937,7 +941,7 @@ U : \EE/_\T\ \stackrel{\t^{\sharp}}{\simeq}\ \EE^{\downarrow}_{\mathsf{cart}} /_
 by choosing as 0-cells only the canonical  pullbacks $p = \alpha^{*}\t$ and as 1-cells only those maps that commute with the associated classifying maps:
 \begin{equation}\label{diag:classified1cells}
 \begin{tikzcd}
-A \ar[d,swap, "p"] \ar[r, "{h'}"] \pbcorner & B \ar[d, "q"] \\
+A \ar[d,swap, "p"] \ar[r, "{\dot{h}}"] \pbcorner & B \ar[d, "q"] \\
 X \ar[r,swap,swap, "{h}"] \ar[rd,swap, "\alpha"] &  Y \ar[d, "\beta"]\\
 & \T
 \end{tikzcd}
@@ -959,7 +963,7 @@ X \ar[r,swap,swap, "{h}"] \ar[rd,swap, "\alpha"] &  Y \ar[d, "\beta"]\\
 %
 %%For classified maps $A\to X$ and $B \to X$ with classifying maps $\alpha : X\to \T$ and $\beta : X\to \T$  we shall define a 2-cell $\varphi: \alpha \Rightarrow \beta$ to be a lift of $(\alpha_1, \alpha_2) : X \to \T\times \T$ across $\mathsf{Equiv}\to \T\times \T$, corresponding to an equivalence $A\simeq B$ over $X$, as in  \eqref{diag:univalence3}.  
 %
-For parallel 1-cells $h_1, h_2 : \alpha \to \beta$ as in \eqref{diag:classified1cells} (and thus both commuting with $\alpha$ and $\beta$), we shall define a 2-cell $h_1\Rightarrow h_2$ to be an auto-equivalence $A\simeq A$ of $p :A \to X$ that is \emph{compatible} with $h_1, h_2$ in the following sense: first pull the classifier $\mathsf{Equiv} \to \T\times\T$ for equivalences with codomain $\t$ from \eqref{diag:univalence3} back along the classifying map $\beta : Y\to \T$ for $q : B \to Y$, as indicated below, to obtain a classifier for equivalences with codomain $Y$.
+For parallel 1-cells $h_1, h_2 : \alpha \to \beta$ as in \eqref{diag:classified1cells} (and thus both commuting with $\alpha$ and $\beta$), we shall define a 2-cell $h_1\Rightarrow h_2$ to be an auto-equivalence $A\simeq A$ of $p :A \to X$ that is \emph{compatible} with $h_1, h_2$ in the sense that it commutes with the ``upper maps'' $\dot{h}_1, \dot{h}_2 : A \to B$.  The definition can be explained as follows: first pull the classifier $\mathsf{Equiv} \to \T\times\T$ for equivalences with codomain $\t$ from \eqref{diag:univalence3} back along the classifying map $\beta : Y\to \T$ for $q : B \to Y$, as indicated below, to obtain a classifier $\mathsf{Equiv}_B \to Y\times Y$ for equivalences over $\T$ with codomain $\beta : Y \to \T$.
 \begin{equation}\label{eq:pulledbackclassifier}
 \begin{tikzcd}
 	\mathsf{Equiv}_B \ar[d] \ar[r]  \pbcorner & \mathsf{Equiv} \ar[d] \\  
@@ -992,12 +996,12 @@ A \ar[rd,swap, "p"] \ar[r,swap, "{\varphi}"]  \ar[rru, dotted] & A \ar[d, "p"] \
 & X \ar[rru, dotted, "{\tilde{\varphi}}"] \ar[rr, swap, "{(h_1, h_2)}"] && Y \times Y
 	 \end{tikzcd}
  \end{equation}
- Note that $\varphi : A \to A$ is therefore an (auto-)equivalence, but is \emph{not} required to commute with $\dot{h_1}$ and $\dot{h_2}$.  
+ Note that $\varphi : A \to A$ is therefore an (auto-)equivalence of $p :A\to X$ that  also commutes with the maps $\dot{h_1}$ and $\dot{h_2}$.  
 \end{definition}
 
 \begin{remark}\label{2cellsareglobal}
 As stated, the definition appears to depend on the classifying map $\beta : Y\to \T$ for $q:B\to Y$. However,  this is not actually the case,
-since $\mathsf{Equiv}_B$ is itself pulled back from the universal equivalence $E_1\simeq E_2$ as in \eqref{diag:univalence3}.  The 2-cells $\varphi : h_1 \Rightarrow h_2$ are thus simply auto-equivalences $\varphi: A \simeq A$ over $X$, labelled with the parallel 1-cells $h_1, h_2 : X \to Y$ that are their domain and codomain. The current formulation incorporates that data by associating them with lifts $\tilde{\varphi} : X \to \mathsf{Equiv}_B$ of $(h_1, h_2) : X \to Y \times Y$. 
+since $\mathsf{Equiv}_B$ is itself pulled back from the universal equivalence $E_1\simeq E_2$ as in \eqref{diag:univalence3}.  The 2-cells $\varphi : h_1 \Rightarrow h_2$ are thus simply auto-equivalences $\varphi: A \simeq A$ over $X$, labelled with the parallel 1-cells $h_1, h_2 : X \to Y$ that are their domain and codomain. The current formulation incorporates that data by associating them with lifts $\tilde{\varphi} : X \to \mathsf{Equiv}_B$ of $(h_1, h_2) : X \to Y \times Y$ across $\mathsf{Equiv}_B \to Y\times Y$. 
 \end{remark}
 
 %\begin{lemma}
