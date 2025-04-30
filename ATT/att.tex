@@ -109,6 +109,7 @@
 % Universes
 \newcommand{\U}{\ensuremath{\mathcal{U}}}
 \newcommand{\UU}{\ensuremath{\,\dot{\mathcal{U}}}}
+\renewcommand{\u}{\ensuremath{\mathsf{u}}}
 \renewcommand{\t}{\ensuremath{\mathsf{u}}}
 \newcommand{\T}{\ensuremath{\mathsf{U}}}
 \newcommand{\TT}{\ensuremath{\dot{\mathsf{U}}}}
@@ -235,12 +236,12 @@ This not only holds for all of the propositional operations $\vee, \Rightarrow,$
 &= \forall z .\vartheta(t(y),z)\,.
 \end{align*}
 Again, this holds in virtue of the universal quantifier $\forall z$ being represented by a map on $\Omega$, namely $\forall_z : \Omega^{Z} \to \Omega$, with which we simply compose (this time after an exponential transposition).
-\begin{equation*}
+\begin{equation}\label{diag:BCforQ}
 \begin{tikzcd}
  X \ar[rr, "{\vartheta(x,\hat{z})}" ] \ar[rrd,swap,  "{\forall z. \vartheta(x,z)}"] && \Omega^{Z} \ar[d, "{\forall z}"] \\
  && \Omega
 \end{tikzcd}
-\end{equation*}
+\end{equation}
 
 The idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are actually represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal algebra $\Omega$ --- combined with some basic lambda calculus, enabling higher types constructed from $\Omega$.  This, in a nut shell, is what permits the lovely algebraic formulation of even higher-order logic in \cite{LS:1988}.  
 
@@ -251,7 +252,31 @@ The idea is that, because they are natural in the context of variables~$X$, the 
 
 There are really two different problems here: size and coherence.  We solve both simultaneously by taking $\UU \to \U$ to be a full internal subcategory (with additional structure) in the category $\EE = \widehat{\CC}$ of presheaves over $\CC$, essentially by splitting the codomain fibration, as is done in \cite{Lums-Warren}.  Whatever one may think of this solution, it is of obvious interest to determine what algebraic structure on $\UU \to \U$ will serve to model dependent type theory. And we know how to determine the answer: by Yoneda!  We call the resulting gadget a \emph{Martin-L\"of algebra} (``ML-algebra'' for short), and it has a remarkably simple description as an algebra for a polynomial monad, giving a complete answer to our question (Theorem \ref{thm:nmcwf}).
 
-\subsection*{Algebraic type theory} There turns out to be an intriguing analogy between ML-algebras and the small map classifier from the \emph{Algebraic Set Theory} of Joyal and Moerdijk \cite{AST}.  An ML-algebra is in some sense a proof-relevant version of the ZF-algebras from \emph{op.\ cit.}  A second motivation for the present work was to explore this analogy, although only the most basic connections have been developed here.   Apart from the obviously missing successor operation, we still need to consider morphisms of ML-algebras, free and initial algebras, as well as the change of context functor. Some of this is already being done in the work in progress \cite{Fernando}.
+The polynomial in question is that of the algebra $\u:\UU \to \U$, which therefore has the form
+\[
+\alg{P}_{\u}(X) = \Sigma_{A: \U} X^A\,,
+\]
+allowing e.g.\ the formation rule for the $\Pi$-type to be expressed by a composition:
+\begin{equation*}
+\begin{tikzcd}
+ \Gamma \ar[rr, "{(A,B)}" ] \ar[rrd,swap,  "{\Pi_A B}"] &&\alg{P}_\u (\U) \ar[d, "{\Pi}"] \\
+ && \U
+\end{tikzcd}
+\end{equation*} 
+This ensures not only the strict Beck-Chevalley rules for the type formers, as in \eqref{diag:BCforQ}, but also a solution (due originally to Voevodsky) to the old bugbear of coherence in dependent type theory, since substitution $\sigma : \Delta \to \Gamma$ into types and terms $\Gamma \vdash a:A$ is now interpreted simply by composition, which unlike pullback, is strictly associative.
+\[
+\begin{tikzcd}
+ 	&&&  {\UU} \ar[d]\ar[d]\\
+\Delta \ar[r,  "{\sigma}"] \ar[rrru, bend left = 4ex, "{a[\sigma]}"]\ar[rrr, swap, bend right = 5ex, "{A[\sigma]}"] & \Gamma \ar[rru, "a"]   \ar[rru, swap, "{\ \ a:A}"]  \ar[rr ,swap,  "A"]  && {\U}
+\end{tikzcd}
+\]
+
+The full rules for $\Pi$-types turn out to state exactly that $\u : \UU\to\U$ is an algebra for its own polynomial endofunctor $\alg{P}_{\u} : \widehat{\CC} \to \widehat{\CC}$ when lifted to the (cartasian) arrow category, $\alg{P}_{\u}^{\downarrow}: \widehat{\CC}^{\,\downarrow}_{\mathsf{cart}} \too \widehat{\CC}^{\,\downarrow}_{\mathsf{cart}}$.
+Even more strikingly, the type formers $1, \Sigma$ endow $\alg{P}_{\u} : \widehat{\CC} \to \widehat{\CC}$ with the underlying structure of a polynomial monad.  The monad and algebra laws then express fundamental type isomorphisms, the analysis of which requires the important $\Id{}$-types (newly reformulated in terms of polynomials by R.\ Garner) in an essential way, and forms one of the main new advances of the current work.
+
+\subsection*{Algebraic type theory} There turns out to be an intriguing analogy between ML-algebras and the Zermelo-Fraenkel algebras from the \emph{Algebraic Set Theory} of Joyal and Moerdijk \cite{JM:AST}.  A second motivation for the present work was to explore this analogy, which is discernible in the similarity between the universal small map $\pi : E \to B$ and an ML-algebra $\u : \UU \to \U$, and between a ZF-algebra structure map $P_sV \to V$ (especially in the formulation of \cite{Simpson:1999}) and the $\Sigma$-type former $\alg{P}_{\!\u}\, \U \to \U$, as well as between the respective monads $P_s$ and $\alg{P}_{\!\u}$. 
+
+Indeed, an ML-algebra is in some sense a proof-relevant version of the ZF-algebras from \emph{op.\ cit.}  To be sure, only the most basic aspects of this connection have been developed here.   Apart from the obviously missing successor operation $s : V\to V$, one still needs to consider morphisms of ML-algebras, free and initial algebras, as well as the functor induced by a change of context $\CC \to \CC'$. Some of this is underway in the work in progress \cite{Fernando}.
 \medskip
 
 We begin in Section 1 below by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{Dybjer:CWF}.  In section \ref{sec:MLalgebras} we abstract the main features of a natural model with the type formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is also begun in this section with the addition of identity types.   After briefly indicating the relation to the \emph{tribes} of Joyal \cite{Joyal:CandT} we provide some examples of ML-algebras in Section \ref{sec:ExamplesML-Algebras}, including the subobject classifier $\Omega$ of a topos, and the Hofmann-Streicher universe $\VV\to\V$ in presheaves.  The rest of the paper is devoted to the relationship between ML-algebras and polynomial monads, which was already considered from a somewhat different point of view in \cite{ Newstead:thesis} and \cite{NA:2018}.  We conclude with the main new result, Theorem \ref{thm:MLAlgbicat}, in Section \ref{sec:Monad}. 
@@ -277,7 +302,7 @@ We may assume a choice of pullback data $c : D \to C$ in $\CC$ and $y \in Y(D)$ 
 
 Proposition 2 of \emph{op.\ cit.} shows that such a map is essentially the same thing as a \emph{category with families} (CwF) in the sense of \cite{Dybjer:CWF} when $\CC$ is regarded as the category of contexts of a type theory, $\T: \op{\CC} \to \Set$ is regarded as the presheaf of types in context, $\TT: \op{\CC} \to \Set$ as the presheaf of terms in context, and $\t : \TT\to\T$ as the typing of the terms.   
 
-\begin{proposition}[\cite{awodey:NM, Fiore:2013}] A representable natural transformation is the same thing as a \emph{category with families (CwF)} in the sense of Dybjer \cite{Dybjer:CWF}.
+\begin{proposition}[\cite{awodey:NM, Fiore:2012}] A representable natural transformation is the same thing as a \emph{category with families (CwF)} in the sense of Dybjer \cite{Dybjer:CWF}.
 \end{proposition}
 
 We sketch the correspondence from \cite{awodey:NM}.
@@ -729,7 +754,7 @@ It follows easily from the specification of $\top\cdot\top : Q \to \alg{P}_\top\
 
 \item As explained in Section \ref{sec:NaturalModels}, a natural model of type theory $\t: \TT\to \T$ over any index category $\CC$ is an ML-algebra in presheaves $\widehat\CC$ if it models the type formers $1, \Sigma, \Pi$.     For example, the groupoid model of \cite{Hofmann-Streicher} can be described as an ML-algebra in the category $\widehat{\mathsf{Gpd}}$ of presheaves on the category $\mathsf{Gpd}$ of groupoids. As is done in \emph{ibd.}, we can take $\T : \op{\mathsf{Gpd}} \to \Set$ to be the representable functor of the groupoid $\mathsf{gpd}$ of \emph{small} groupoids, where \emph{smallness} is defined as having cardinality $\leq \kappa$ for a suitably large cardinal number $\kappa$.  We may then furthermore take $\TT$ to be represented by $\dot{\mathsf{gpd}}$, the groupoid of small pointed groupoids, with $\t: \TT\to \T$ represented by the forgetful functor $\dot{\mathsf{gpd}} \to \mathsf{gpd}$, making the entire ML-algebra $\t: \TT\to \T$ representable.  Because the groupoid model has intensional identity types \cite{Hofmann-Streicher}, the corresponding natural model  $\t: \TT\to \T$ models them as well, as shown in \cite{awodey:NM}, and so the ML-algebra also has $\Id{}$-types in the sense of Definition \ref{def:EqualityandIdentityTypes}.
 
-Observe that in this case, since the entire algebra $\t: \TT\to \T$ is representable, we don't really need the lccc $\widehat{\mathsf{Gpd}}$ for the notion of an ML-algebra to make sense; only that certain display maps are exponentiable in the index category $\mathsf{Gpd}$.  We shall not spell out the exact condition required here (roughly, being a $\Pi$-tribe in the sense of \cite{Joyal:CandT}), but only mention that the same is true for the syntactic model of Martin-L\"of type theory over the category $\mathsf{Ctx}$ of contexts and substitutions, which is \emph{a proiori} an ML-algebra in the category of presheaves $\widehat{\mathsf{Ctx}}$, but also has one in the non-lccc $\mathsf{Ctx}$ itself, if the type theory is assumed to have a universe $\mathsf{U}$ that is closed under $1, \Sigma, \Pi$.
+Observe that in this case, since the entire algebra $\t: \TT\to \T$ is representable, we don't really need the lccc $\widehat{\mathsf{Gpd}}$ for the notion of an ML-algebra to make sense; only that certain display maps are exponentiable in the index category $\mathsf{Gpd}$.  We shall not spell out the exact condition required here (roughly, being a $\Pi$-tribe in the sense of \cite{Joyal:CandT}), but only mention that the same is true for the syntactic model of Martin-L\"of type theory over the category $\mathsf{Ctx}$ of contexts and substitutions, which is \emph{a proiori} an ML-algebra in the category of presheaves $\widehat{\mathsf{Ctx}}$, but also has one in the non-lccc $\mathsf{Ctx}$ itself, if the type theory is assumed to have a universe $\mathsf{U}$ that is closed under $1, \Sigma, \Pi$.  Of course, we are using the fact that the Yoneda embedding preserves finite limits and exponentials, and therefore also ML-algebras
 
 \item Generalizing the foregoing example, the strictification of an lccc $\EE$ (or just a category $\EE$ with a wfs) gives rise to a natural model with extensional equality (or intensional identity) types in $\widehat{\EE}$, as shown in \cite{awodey:NM}, and therefore to an ML-algebra over $\EE$ with the same.  Note that the map $\t: \TT\to \T$ is therefore tiny by Proposition \ref{prop:rep_is_tiny}, and therefore so is the entire ML-algebra structure, since representable maps are stable under pullback.  In the lccc case, the diagonal $\TT \to \TT\times_{\T}\TT$ interpreting the extensional equality types is therefore also tiny.
 
