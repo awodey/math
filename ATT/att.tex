@@ -199,7 +199,8 @@
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Algebraic Type Theory}
+\title{Algebraic Type Theory\\
+Part 1: Martin-L\"of algebras}
 \author{Steve Awodey}
 \date{\today}
 \dedicatory{In memory of Phil Scott, friend and mentor.}
@@ -209,11 +210,17 @@ A very brief abstract.
 \end{abstract}
 \maketitle
 
-Something about generalizing the subobject classifier in a topos: 
+One of the most beautiful aspects of the book \cite{LS} by Lambek and Scott is the (almost) entirely algebraic treatment of higher-order logic, with operations and equations in place of the traditional presentation of logic by rules of inference.   This is made possible in part by of the presence in a topos $\EE$ of a subobject classifier $\Omega$ that represents the presheaf of subobjects,
+\[
+\mathsf{Sub}(X) \cong \Hom(X, \Omega) \quad\text{naturally in $X$}\,.
+\]
+Logical operations on formulas $\varphi(x)$, which determine subobjects $$[x:X\, |\, \varphi(x)] \mono X$$ are represented by operations on $\Omega$, such as ...
+
+ about generalizing the subobject classifier in a topos: 
 
 Relate it to Phil and the book on higher-order logic - something about introducing algebraic precision into logic by replacing rules of deduction by equations. Also replacing natural and coherent structure by homming into an algebra, and using Yoneda to get it.  Beck-Chavelley conditions and coherence of substitution result automatically.  Splitting of the codomain fibration and coherence of pullbacks.  Higher-order operations using the internal universe as just another type. 
 
-AST of Joyal-Moerdijk. 
+The other rather obvious inspiration for the present work is the Algebraic Set Theory book of Joyal and Moerdijk \cite{}. 
 
 Still to do: morphisms of ML-algebras, initial algebra, successor operation, change of contexts.
 
@@ -224,7 +231,9 @@ We begin by recalling from \cite{awodey:NM} the notion of a \emph{natural model}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \noindent We write $\widehat{\C} = \psh{\C}$ for the category of presheaves on a small category~$\C$. 
-In \cite{awodey:NM}, a \emph{natural model} of type theory is defined to be a representable natural transformation $\t: \TT\to \T$ of presheaves in such a category $\widehat{\C}$.  When $\C$ is regarded as the category of contexts of a type theory, $\T: \op{\C} \to \Set$ is regarded as the presheaf of types in context, $\TT: \op{\C} \to \Set$ as the presheaf of terms in context, and $\t : \TT\to\T$ as the typing of the terms.   Theorem XX of \emph{op.\ cit.} shows that such a map is equivalent to the notion of a \emph{category with families} (CwF) in the sense of \cite{Dybjer:CWF}.  We briefly recall the essentials.
+In \cite{awodey:NM}, a \emph{natural model of type theory} is defined to be a representable natural transformation $\t: \TT\to \T$ of presheaves in $\widehat{\C}$.  
+%When $\C$ is regarded as the category of contexts of a type theory, $\T: \op{\C} \to \Set$ is regarded as the presheaf of types in context, $\TT: \op{\C} \to \Set$ as the presheaf of terms in context, and $\t : \TT\to\T$ as the typing of the terms.   
+%Proposition 2 of \emph{op.\ cit.} shows that such a map is essentially the same thing as a \emph{category with families} (CwF) in the sense of \cite{Dybjer:CWF}.  We briefly recall the essentials.
 
 \begin{definition}\label{def:representablenattrans} A natural transformation $p : Y \to X$ of presheaves on a category $\C$  is \emph{representable} if the pullback of $p$ along any element $x: \y{C} \to X$ is representable.
 \begin{equation*}
@@ -233,8 +242,10 @@ In \cite{awodey:NM}, a \emph{natural model} of type theory is defined to be a re
 \y{C} \ar[r,swap,"x"]  & X
 \end{tikzcd}
 \end{equation*}
+We may assume a choice of pullback data $c : D \to C$ in $\C$ and $y \in Y(D)$ for all $x\in X(C)$ (but no coherence conditions).
 \end{definition}
-We assume a choice of pullback data $c : D \to C$ in $\C$ and $y \in Y(D)$ for all $x\in X(C)$ (but no coherence conditions).
+
+Proposition 2 of \emph{op.\ cit.} shows that such a map is essentially the same thing as a \emph{category with families} (CwF) in the sense of \cite{Dybjer:CWF} when $\C$ is regarded as the category of contexts of a type theory, $\T: \op{\C} \to \Set$ is regarded as the presheaf of types in context, $\TT: \op{\C} \to \Set$ as the presheaf of terms in context, and $\t : \TT\to\T$ as the typing of the terms.   
 
 \begin{proposition}[A., Fiore 2013] A representable natural transformation is the same thing as a \emph{category with families (CwF)} in the sense of Dybjer \cite{Dybjer:CWF}.
 \end{proposition}
@@ -335,8 +346,7 @@ The action of $\alg{P}_\t$ on an object $X$ may be depicted:
  }\qquad\quad
  \end{equation*}
 
-
-  We call $\tT$ the \emph{signature} of $\alg{P}_\t$ and briefly recall the following \emph{universal mapping property} from \cite{awodey:NM}.
+We call $\tT$ the \emph{signature} of $\alg{P}_\t$ and briefly recall the following \emph{universal mapping property} from \cite{awodey:NM}.
 
 \begin{lemma}
  For any $p: E \to B$ in a locally cartesian closed category $\EE$, the polynomial functor $\alg{P}_p : \EE \to \EE$ has the following universal property:  for any objects $X, Z \in \EE$, maps $f : Z \to \alg{P}_p (X)$ correspond bijectively to pairs of maps $f_1 : Z \to B$ and $f_2 : Z\times_B E \to Z$, as indicated below.
