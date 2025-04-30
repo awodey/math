@@ -109,13 +109,10 @@
 % Universes
 \newcommand{\U}{\ensuremath{\mathcal{U}}}
 \newcommand{\UU}{\ensuremath{\,\dot{\mathcal{U}}}}
-%\renewcommand{\t}{\ensuremath{\mathsf{t}}}
-\renewcommand{\t}{\ensuremath{\mathsf{t}}}
+\renewcommand{\t}{\ensuremath{\mathsf{u}}}
+\newcommand{\T}{\ensuremath{\mathsf{U}}}
+\newcommand{\TT}{\ensuremath{\dot{\mathsf{U}}}}
 \newcommand{\tT}{\ensuremath{{\t}:\TT\to\T}}
-%\newcommand{\T}{\ensuremath{\mathsf{T}}}
-%\newcommand{\TT}{\ensuremath{\dot{\mathsf{T}}}}
-\newcommand{\T}{\ensuremath{\mathsf{T}}}
-\newcommand{\TT}{\ensuremath{\dot{\mathsf{T}}}}
 \newcommand{\V}{\ensuremath{\mathcal{V}}}
 \newcommand{\VV}{\ensuremath{\dot{\mathcal{V}}}}
 \newcommand{\SSet}{\ensuremath{\,\dot{\Set}}}
@@ -211,93 +208,91 @@ A very brief abstract.
 \end{abstract}
 \maketitle
 
-One of the most beautiful aspects of the book \cite{LS} by Lambek and Scott is the (almost) entirely algebraic treatment of higher-order logic, with operations and equations in place of the traditional presentation of logic by rules of inference.   This is made possible in a general way by Lawvere's  profound analysis of many of the logical primitives as adjoints \cite{Lawvere:adjointness}, but more specifically by the presence in a topos $\EE$ of a subobject classifier $\Omega$ that represents the presheaf of subobjects via a natural isomorphism of sets,
+One of the most beautiful aspects of the book \emph{Introduction to Higher-Order Categorical Logic} by Lambek and Scott is the almost entirely algebraic treatment of higher-order logic, with operations and equations in place of the traditional presentation of logic by rules of inference.   This is made possible in a general way by F.W.\ Lawvere's profound analysis of all of the primitives of logic as adjoints \cite{Lawvere:adjointness}, but more specifically by the presence in a topos $\EE$ of a subobject classifier $\Omega$ that represents the presheaf of subobjects via a natural isomorphism of sets,
 \[
 \mathsf{Sub}(X) \cong \Hom_{\EE}(X, \Omega)\,.
 \]
-The various logical operations on formulas $\varphi(x)$, which determine subobjects $$[x:X\, |\, \varphi(x)] \mono X\,,$$ are represented by operations on $\Omega$, such as conjunction $\wedge : \Omega \times \Omega \to \Omega$.  Thus given ``propositional functions'' $\varphi(x), \psi(x) : X \to \Omega$ we obtain $\varphi(x)\wedge\psi(x) : X \to \Omega$ simply by (pairing and) composing,
+The various logical operations on formulas $\varphi(x)$, which determine subobjects $$\{x:X\, |\, \varphi(x)\} \mono X\,,$$ are represented by operations on $\Omega$ such as conjunction $\wedge : \Omega \times \Omega \to \Omega$.  Thus given two ``propositional functions'' $\varphi(x), \psi(x) : X \to \Omega$ we obtain their conjunction $\varphi(x)\wedge\psi(x) : X \to \Omega$ simply by (pairing and) composing,
 \begin{equation*}
 \begin{tikzcd}
  X \ar[rr, "{\langle \varphi(x), \psi(x) \rangle}" ] \ar[rrd,swap,  "\varphi(x)\wedge\psi(x)"] && \Omega \times \Omega \ar[d, "\wedge"] \\
  && \Omega 
 \end{tikzcd}
 \end{equation*}
-It follows immediately that substitution of a term $t(y) : Y\to X$ for the variable $x$ respects the operation $\wedge$, just by associativity of composition:
+It follows immediately that the operation $[t(y)/x]$ of substitution of a term $t(y) : Y\to X$ for the variable $x$ respects the operation $\wedge$, just by the associativity of composition:
 \begin{align*}
 (\varphi(x)\wedge\psi(x))[t(y)/x] &= (\wedge \circ \langle \varphi(x), \psi(x) \rangle) \circ t(y)\\
 &= \wedge \circ (\langle \varphi(x), \psi(x) \rangle \circ t(y))\\
-&=  \wedge  \langle \varphi(t(y)), \psi((t(y))\rangle \\
+&=  \wedge  \langle \varphi(t(y)), \psi(t(y))\rangle \\
 &=  \varphi(t(y))\wedge\psi(t(y)) 
 \end{align*}
-This not only holds for all of the propositional operations, but also results in the Beck-Chevalley condition for quantification, 
+This not only holds for all of the propositional operations $\vee, \Rightarrow,$ etc., but also results in the Beck-Chevalley condition for the quantifiers $\forall$ and $\exists$, 
 \begin{align*}
-(\exists z .\vartheta(x,z))[t(y)/x] &= (\exists z .\vartheta(x,z))\circ t(y) \\
-&= (\exists z \circ \vartheta(x,\hat{z}))\circ t(y)\\
-&= \exists z \circ (\vartheta(x,\hat{z})\circ t(y))\\
-&= \exists z \circ \vartheta(t(y),\hat{z})\\
-&= \exists z .\vartheta(t(y),z)\,,
+(\forall z .\vartheta(x,z))[t(y)/x] &= (\forall z .\vartheta(x,z))\circ t(y) \\
+&= (\forall z \circ \vartheta(x,\hat{z}))\circ t(y)\\
+&= \forall z \circ (\vartheta(x,\hat{z})\circ t(y))\\
+&= \forall z \circ \vartheta(t(y),\hat{z})\\
+&= \forall z .\vartheta(t(y),z)\,.
 \end{align*}
-in virtue of the quantifier also being represented by a map on $\Omega$, namely $\exists_z : \Omega^{Z} \to \Omega$, with which we simply compose (this time after an exponential transposition).
+Again, this holds in virtue of the universal quantifier $\forall z$ being represented by a map on $\Omega$, namely $\forall_z : \Omega^{Z} \to \Omega$, with which we simply compose (this time after an exponential transposition).
 \begin{equation*}
 \begin{tikzcd}
- X \ar[rr, "{\vartheta(x,\hat{z})}" ] \ar[rrd,swap,  "{\exists z. \vartheta(x,z)}"] && \Omega^{Z} \ar[d, "{\exists z}"] \\
+ X \ar[rr, "{\vartheta(x,\hat{z})}" ] \ar[rrd,swap,  "{\forall z. \vartheta(x,z)}"] && \Omega^{Z} \ar[d, "{\forall z}"] \\
  && \Omega
 \end{tikzcd}
 \end{equation*}
 
-The idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are actually represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal algebra $\Omega$ -- combined with some basic lambda calculus enabling higher types constructed from $\Omega$.  This, in a nut shell, is what gives rise to the lovely algebraic formulation of even higher-order logic in \cite{LS:}.  
-\medskip
+The idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are actually represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal algebra $\Omega$ --- combined with some basic lambda calculus, enabling higher types constructed from $\Omega$.  This, in a nut shell, is what permits the lovely algebraic formulation of even higher-order logic in \cite{LS:1988}.  
 
-Part of the motivation for the present work is to apply this same approach to \emph{dependent type theory} in place of predicate logic, by determining a suitable algebraic gadget $\U$ in place of $\Omega$, representing the \emph{presheaf of types}, rather than the presheaf of subobjects.  In fibrational terms, over the category $\EE$ of variable contexts, we would like a representing object $\UU \to \U$ for the \emph{codomain fibration} $\EE^\downarrow \to \EE$, rather than $1\to \Omega$ representing the fibration of subobjects.  Unlike the presheaf/fibration of subobjects, however, which is (at best) poset valued, the pseudofunctor of slices $\EE/_{(-)} : \op{\EE} \to \mathsf{Cat}$ cannot be representable, even in the weaker sense of a natural equivalence of indexed categories,
+\subsection*{Martin-L\"of algebras.} One of the motivations for the present work was to apply this same approach to \emph{dependent type theory} in place of predicate logic, by determining a suitable algebraic gadget $\U$ in place of $\Omega$, representing the \emph{presheaf of types}, rather than the presheaf of subobjects.  In fibrational terms, over the category $\CC$ of contexts of variables, we would like a representing object $\UU \to \U$ for the \emph{codomain fibration} $\CC^\downarrow \epi \CC$, rather than the object $1\mono \Omega$ representing the fibration of subobjects.  Unlike the presheaf, or discrete fibration, of subobjects, however, which is (at best) poset valued, the pseudofunctor of slice categories $\CC/_{\!(-)} : \op{\CC} \to \mathsf{Cat}$ cannot be representable, even in the weaker sense of a natural equivalence of indexed categories,
 \[
-\EE/_{X}\, \simeq\, \Hom_{\EE}(X, \U)\, \qquad\text{naturally in $X$}\,.
+\CC/_{X}\, \simeq\, \Hom_{\CC}(X, \U)\,.
 \]
 
- There are really two different problems here: size and coherence.  We solve both simultaneously by taking $\UU \to \U$ to be an internal category (with additional structure) in the category $\widehat{\EE}$ of presheaves over $\EE$, essentially by splitting the codomain fibration.  Whatever one may think of this solution, it is of obvious interest to determine what algebraic structure on $\UU \to \U$ will serve to model dependent type theory --- and we know how to determine the answer: by Yoneda!  We term the resulting gadget a \emph{Martin-L\"of algebra} (Section \ref{MLA}), and it has remarkably simple description as a polynomial monad, which gives a complete answer to our question (see Theorem \ref{ML-Alg}).
- 
-The second rather obvious inspiration for the present work is the Algebraic Set Theory of Joyal and Moerdijk \cite{}.  There out to be an evident, but unintended, analogy between a Martin-L\"of algebra and the small map classifier of \emph{op. cit.}. 
+There are really two different problems here: size and coherence.  We solve both simultaneously by taking $\UU \to \U$ to be a full internal subcategory (with additional structure) in the category $\EE = \widehat{\CC}$ of presheaves over $\CC$, essentially by splitting the codomain fibration, as is done in \cite{Lums-Warren}.  Whatever one may think of this solution, it is of obvious interest to determine what algebraic structure on $\UU \to \U$ will serve to model dependent type theory. And we know how to determine the answer: by Yoneda!  We call the resulting gadget a \emph{Martin-L\"of algebra} (``ML-algebra'' for short), and it has a remarkably simple description as an algebra for a polynomial monad, giving a complete answer to our question (Theorem \ref{thm:nmcwf}).
 
-Still to do: morphisms of ML-algebras, initial algebra, successor operation, change of contexts.
+\subsection*{Algebraic type theory} There turns out to be an intriguing analogy between ML-algebras and the small map classifier from the \emph{Algebraic Set Theory} of Joyal and Moerdijk \cite{AST}.  An ML-algebra is in some sense a proof-relevant version of the ZF-algebras from \emph{op.\ cit.}  A second motivation for the present work was to explore this analogy, although only the most basic connections have been developed here.   Apart from the obviously missing successor operation, we still need to consider morphisms of ML-algebras, free and initial algebras, as well as the change of context functor. Some of this is already being done in the work in progress \cite{Fernando}.
+\medskip
 
-We begin by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{Dybjer:CWF}.  In section \ref{sec:strictify} it is briefly recalled how such models are related to the \emph{clans} and \emph{tribes} of Joyal \cite{Joyal:CandT}.  In section \ref{sec:MLalgebra} we abstract the main features of a natural model with the type-formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is begun in section \ref{sec:eqandid } with the addition of equality and identity types.  We conclude with the relation to polynomial monads in section \ref{sec:free}. 
+We begin in Section 1 below by recalling from \cite{awodey:NM} the notion of a \emph{natural model} of dependent type theory and its relation to the \emph{categories with families} of \cite{Dybjer:CWF}.  In section \ref{sec:MLalgebras} we abstract the main features of a natural model with the type formers $\mathsf{1}, \Sigma, \Pi$ to form the notion of a \emph{Martin-L\"of algebra}, the basic theory of which is also begun in this section with the addition of identity types.   After briefly indicating the relation to the \emph{tribes} of Joyal \cite{Joyal:CandT} we provide some examples of ML-algebras in Section \ref{sec:ExamplesML-Algebras}, including the subobject classifier $\Omega$ of a topos, and the Hofmann-Streicher universe $\VV\to\V$ in presheaves.  The rest of the paper is devoted to the relationship between ML-algebras and polynomial monads, which was already considered from a somewhat different point of view in \cite{ Newstead:thesis} and \cite{NA:2018}.  We conclude with the main new result, Theorem \ref{thm:MLAlgbicat}, in Section \ref{sec:Monad}. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Natural models of type theory}\label{sec:NaturalModels}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\noindent We write $\widehat{\C} = \psh{\C}$ for the category of presheaves on a small category~$\C$. 
-In \cite{awodey:NM}, a \emph{natural model of type theory} is defined to be a representable natural transformation $\t: \TT\to \T$ of presheaves in $\widehat{\C}$.  
+\noindent We write $\widehat{\CC} = \psh{\CC}$ for the category of presheaves on a small category~$\CC$. 
+In \cite{awodey:NM}, a \emph{natural model of type theory} is defined to be a representable natural transformation $\t: \TT\to \T$ of presheaves in $\widehat{\CC}$.  
 %When $\C$ is regarded as the category of contexts of a type theory, $\T: \op{\C} \to \Set$ is regarded as the presheaf of types in context, $\TT: \op{\C} \to \Set$ as the presheaf of terms in context, and $\t : \TT\to\T$ as the typing of the terms.   
 %Proposition 2 of \emph{op.\ cit.} shows that such a map is essentially the same thing as a \emph{category with families} (CwF) in the sense of \cite{Dybjer:CWF}.  We briefly recall the essentials.
 
-\begin{definition}\label{def:representablenattrans} A natural transformation $p : Y \to X$ of presheaves on a category $\C$  is \emph{representable} if the pullback of $p$ along any element $x: \y{C} \to X$ is representable.
+\begin{definition}\label{def:representablenattrans} A natural transformation $p : Y \to X$ of presheaves on a category $\CC$  is \emph{representable} if the pullback of $p$ along any element $x: \y{C} \to X$ is representable.
 \begin{equation*}
 \begin{tikzcd}
  \y{D} \ar[d,swap,"{\y{c}}"] \ar[r,"y"] \pbcorner &  Y \ar[d, "p"]\\
 \y{C} \ar[r,swap,"x"]  & X
 \end{tikzcd}
 \end{equation*}
-We may assume a choice of pullback data $c : D \to C$ in $\C$ and $y \in Y(D)$ for all $x\in X(C)$ (but no coherence conditions).
+We may assume a choice of pullback data $c : D \to C$ in $\CC$ and $y \in Y(D)$ for all $x\in X(C)$ (but no coherence conditions).
 \end{definition}
 
-Proposition 2 of \emph{op.\ cit.} shows that such a map is essentially the same thing as a \emph{category with families} (CwF) in the sense of \cite{Dybjer:CWF} when $\C$ is regarded as the category of contexts of a type theory, $\T: \op{\C} \to \Set$ is regarded as the presheaf of types in context, $\TT: \op{\C} \to \Set$ as the presheaf of terms in context, and $\t : \TT\to\T$ as the typing of the terms.   
+Proposition 2 of \emph{op.\ cit.} shows that such a map is essentially the same thing as a \emph{category with families} (CwF) in the sense of \cite{Dybjer:CWF} when $\CC$ is regarded as the category of contexts of a type theory, $\T: \op{\CC} \to \Set$ is regarded as the presheaf of types in context, $\TT: \op{\CC} \to \Set$ as the presheaf of terms in context, and $\t : \TT\to\T$ as the typing of the terms.   
 
-\begin{proposition}[A., Fiore 2013] A representable natural transformation is the same thing as a \emph{category with families (CwF)} in the sense of Dybjer \cite{Dybjer:CWF}.
+\begin{proposition}[\cite{awodey:NM, Fiore:2013}] A representable natural transformation is the same thing as a \emph{category with families (CwF)} in the sense of Dybjer \cite{Dybjer:CWF}.
 \end{proposition}
 
 We sketch the correspondence from \cite{awodey:NM}.
-Let us write the objects and arrows of \C\ as $\sigma : \Delta \to \Gamma$, giving the \emph{category of contexts and substitutions}.
+Let us write the objects and arrows of \CC\ as $\sigma : \Delta \to \Gamma$, giving the \emph{category of contexts and substitutions}.
 A CwF is usually defined as a presheaf of \emph{types in context}, 
 \[
-\Ty : \C^{\mathrm{op}}\to \Set\,,
+\Ty : \CC^{\mathrm{op}}\to \Set\,,
 \]
 together with a presheaf of \emph{typed terms in context}, 
 \[
-\Tm : {\textstyle (\int_{\C}\!\Ty)^{\mathsf{op}}\to \Set }\,.
+\Tm : {\textstyle (\int_{\CC}\!\Ty)^{\mathsf{op}}\to \Set }\,.
 \]
 We reformulate this using the familiar equivalence
 \[\textstyle
- \pshx{\C}\!/_{\Ty}\ \simeq\ \pshx{(\int_{\C}\Ty)}
+ \pshx{\CC}\!/_{\Ty}\ \simeq\ \pshx{(\int_{\CC}\Ty)}
 \]
 in order to obtain a map $\tp :\Tm \to \Ty$.
 
@@ -345,7 +340,7 @@ Given $\Gamma\vdash A$ we need a new context $\ext{\G}{A}$ together with a subst
 \]
 where, the substitution $A[\pi_A]$ is modeled by composition $A[\pi_A] = A\circ \pi_A$.
 
-Let $\pi_A: \ext{\G}{A} \to \G$ be the pullback of $\tp$ along $A$, which exists as an arrow in $\C$ since $\tp$ is representable.
+Let $\pi_A: \ext{\G}{A} \to \G$ be the pullback of $\tp$ along $A$, which exists as an arrow in $\CC$ since $\tp$ is representable.
 %
 \begin{equation}\label{diag:NMpullback}
 \begin{tikzcd}
@@ -361,15 +356,15 @@ The remaining laws of a CwF follow from the pullback condition on $\eqref{diag:N
 \subsection{Modeling the type formers}
 
 Given a natural model $\tT$, we will make extensive use of the associated \emph{polynomial endofunctor}
-$\alg{P}_\t : \widehat\C \too \widehat\C$ (cf.\ \cite{GambinoKoch:2013}), defined by 
+$\alg{P}_\t : \widehat\CC \too \widehat\CC$ (cf.\ \cite{GambinoKoch:2013}), defined by 
 \[
-\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \widehat{\C}\too\widehat{\C}\,,
+\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \widehat{\CC}\too\widehat{\CC}\,,
 \] 
 as indicated below.
 \begin{equation*}
 \xymatrix{
-  \Set^{\C^\mathsf{op}} \ar[d]_{\TT^*} \ar[rr]^{\alg{P}_\t} && \Set^{\C^\mathsf{op}} \\
-  \Set^{\C^\mathsf{op}}\!/_{\TT} \ar[rr]_{{\t}_*} && \Set^{\C^\mathsf{op}}\!/_\T \ar[u]_{{\T}_!} 
+  \Set^{\CC^\mathsf{op}} \ar[d]_{\TT^*} \ar[rr]^{\alg{P}_\t} && \Set^{\CC^\mathsf{op}} \\
+  \Set^{\CC^\mathsf{op}}\!/_{\TT} \ar[rr]_{{\t}_*} && \Set^{\CC^\mathsf{op}}\!/_\T \ar[u]_{{\T}_!} 
  }
 \end{equation*}
 
@@ -421,7 +416,7 @@ p\cdot q\ =\ a^*p \circ c^*q\,.
 The condition \eqref{eq:polycomp} can then be checked using the correspondence \eqref{diag:polyUMP} (also see \cite{GambinoKoch:2013}).
 
 \begin{definition}\label{def:modelthetypeformers}
-A natural model $\tT$ over $\C$ will be said to \emph{model} the type formers $ \mathsf{1}, \Sigma, \Pi$ if there are pullback squares in $\widehat{\C}$ of the following form,
+A natural model $\tT$ over $\CC$ will be said to \emph{model} the type formers $ \mathsf{1}, \Sigma, \Pi$ if there are pullback squares in $\widehat{\CC}$ of the following form,
 %\begin{equation}\label{diag:naturalmodelPiSigma1}
 %\begin{tikzcd}
 %	1 \ar[r,"*"] \ar[d,swap,"!"] \pbcorner &  \TT \ar[d, "\t"]\\  
@@ -485,7 +480,7 @@ so diagram \eqref{diag:prod2} becomes:
 \Sigma_{A:\T} \T^A    \ar[r, swap,"{\Pi}"] & \T
 \end{tikzcd}
 \end{equation*}
-For $\G \in \C$, maps $\G\to \Sigma_{A:\T} \T^A $ correspond to pairs $(A,B)$ with  $A:\G\to \T$ and $B : \ext{\G}{A} \to \T$, and thus to $\G\vdash A$ and $\ext{\G}{A} \vdash B$. Similarly, a map $\G\to \Sigma_{A:\T} \TT^A $ corresponds to a pair $(A,b)$ with $\G\vdash A$ and $\ext{\G}{A} \vdash b : B$, the typing of $b$ resulting from composing with the map 
+For $\G \in \CC$, maps $\G\to \Sigma_{A:\T} \T^A $ correspond to pairs $(A,B)$ with  $A:\G\to \T$ and $B : \ext{\G}{A} \to \T$, and thus to $\G\vdash A$ and $\ext{\G}{A} \vdash B$. Similarly, a map $\G\to \Sigma_{A:\T} \TT^A $ corresponds to a pair $(A,b)$ with $\G\vdash A$ and $\ext{\G}{A} \vdash b : B$, the typing of $b$ resulting from composing with the map 
 \[
 \Sigma_{A:\T} \t^A : \Sigma_{A:\T} \TT^A \to \Sigma_{A:\T} \T^A\,.
 \]
@@ -520,7 +515,7 @@ in conjunction with the \emph{$\Pi$-computation rules}:
 \section{Martin-L\"of algebras}\label{sec:MLalgebras}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Now let $\EE$ be a locally cartesian closed category (lccc) and $\tT$ a map in~$\EE$.  As in the foregoing case where $\EE$ was a category of presheaves $\EE=\widehat{\C}$, the map $\t$ gives rise to a polynomial endofunctor,
+Now let $\EE$ be a locally cartesian closed category (lccc) and $\tT$ a map in~$\EE$.  As in the foregoing case where $\EE$ was a category of presheaves $\EE=\widehat{\CC}$, the map $\t$ gives rise to a polynomial endofunctor,
 $$\alg{P}_\t = \T_! \circ \t_* \circ \TT^* : \EE\too\EE\,,$$
 which we may use to define the following abstraction of the notion of a natural model.
 \begin{definition}\label{def:MLalg}
@@ -557,9 +552,9 @@ f_* \dashv f^! : \EE/_X \too \EE/_Y\,.
 \]
 
 \begin{proposition}\label{prop:rep_is_tiny}
-If $\C$ has finite limits, a map $p : Y \to X$ in $\widehat{\C}$ is representable just if it is tiny in the sense of Definition \ref{def:tinymap}, which is the case just if the \emph{pushforward functor} (the right adjoint to pullback) 
+If $\CC$ has finite limits, a map $p : Y \to X$ in $\widehat{\CC}$ is representable just if it is tiny in the sense of Definition \ref{def:tinymap}, which is the case just if the \emph{pushforward functor} (the right adjoint to pullback) 
 \[
-p^* \dashv p_* : \widehat{\C}/_{Y} \longrightarrow \widehat{\C}/_{X}
+p^* \dashv p_* : \widehat{\CC}/_{Y} \longrightarrow \widehat{\CC}/_{X}
 \] 
 itself has a \emph{right} adjoint:
 \[
@@ -572,7 +567,7 @@ The elementary definition \ref{def:representablenattrans} clearly states that, f
 \[\textstyle
 {\int\!p} : {\int\!Y} \to {\int\!X}
 \]  
-has a right adjoint, say ${\int\!p} \dashv ({\int\!p})^\sharp$. Now recall that $\widehat{\C}/{Y} \simeq \psh{(\int\!X)}$, so that the precomposition functor $({\int\!p})^* = \psh{({\int\!p})}$ gives rise to a commutative diagram with left and right Kan extensions:
+has a right adjoint, say ${\int\!p} \dashv ({\int\!p})^\sharp$. Now recall that $\widehat{\CC}/{Y} \simeq \psh{(\int\!X)}$, so that the precomposition functor $({\int\!p})^* = \psh{({\int\!p})}$ gives rise to a commutative diagram with left and right Kan extensions:
 \[\textstyle
 ({\int\!p})_!\dashv ({\int\!p})^* \dashv ({\int\!p})_*
 \]
@@ -588,18 +583,18 @@ has a right adjoint, say ${\int\!p} \dashv ({\int\!p})^\sharp$. Now recall that 
 \int{\!Y} \ar[uu, hook, "{\y{}}"]  \ar[rr, swap, "{\int\!p}"]  &&  \int{\!X} \ar[uu, swap,hook, "{\y{}}"]
 \end{tikzcd}\end{equation}
 %
-But since ${\int\!p} \dashv ({\int\!p})^\sharp$ , there is a further right adjoint $({\int\!p})_* \dashv (({\int\!p})^\sharp)_*$ to precomposition with $({\int\!p})^\sharp$.  Moving back across the equivalence $\psh{(\int\!X)} \simeq \widehat{\C}/_{X}$ we obtain the claimed further right adjoint: 
+But since ${\int\!p} \dashv ({\int\!p})^\sharp$ , there is a further right adjoint $({\int\!p})_* \dashv (({\int\!p})^\sharp)_*$ to precomposition with $({\int\!p})^\sharp$.  Moving back across the equivalence $\psh{(\int\!X)} \simeq \widehat{\CC}/_{X}$ we obtain the claimed further right adjoint: 
 \[
-p_! \dashv p^* \dashv p_*\dashv p^! :  \widehat{\C}/_{X} \too \widehat{\C}/_{Y}
+p_! \dashv p^* \dashv p_*\dashv p^! :  \widehat{\CC}/_{X} \too \widehat{\CC}/_{Y}
 \]
 %
-Conversely, a right adjoint $$\textstyle ({\int\!p})_* \dashv R : \psh{(\int{\!X})} \to \psh{(\int{\!Y})}$$ is easily shown to be induced by precomposing with a right adjoint ${\int\!p} \dashv r : {\int\!X} \to {\int\!Y}$ if $\C$ has all finite products and idempotents split in $\C$, which is the case if $\C$ has finite limits.
+Conversely, a right adjoint $$\textstyle ({\int\!p})_* \dashv R : \psh{(\int{\!X})} \to \psh{(\int{\!Y})}$$ is easily shown to be induced by precomposing with a right adjoint ${\int\!p} \dashv r : {\int\!X} \to {\int\!Y}$ if $\CC$ has all finite products and idempotents split in $\CC$, which is the case if $\CC$ has finite limits.
 
-We leave the construction of the right adjoint $p^!:  \widehat{\C}/_{X} \too \widehat{\C}/_{Y}$ from the right adjoint $(-)^p \dashv (-)_p : \widehat{\C}/_{X} \to \widehat{\C}/_{X}$ to the reader.
+We leave the construction of the right adjoint $p^!:  \widehat{\CC}/_{X} \too \widehat{\CC}/_{Y}$ from the right adjoint $(-)^p \dashv (-)_p : \widehat{\CC}/_{X} \to \widehat{\CC}/_{X}$ to the reader.
 \end{proof}
 
 \begin{remark}\label{remark:clans}
-In \cite{awodey:NM} it is shown how a \emph{clan} in the sense of Joyal \cite{Joyal:CandT}, or \emph{category with display maps} in the sense of \cite{Taylor:PFM}, say $(\C, \DD)$, gives rise to a natural model $\t : \TT\to\T$ in $\widehat\C$, namely with 
+In \cite{awodey:NM} it is shown how a \emph{clan} in the sense of Joyal \cite{Joyal:CandT}, or \emph{category with display maps} in the sense of \cite{Taylor:PFM}, say $(\CC, \DD)$, gives rise to a natural model $\t : \TT\to\T$ in $\widehat\CC$, namely with 
 \[
 \t\, =\ \coprod_{d\in\DD}\y{d} \,.\]
 In particular, the fibrations in any right-proper Quillen model category (which form a \emph{$\Pi$-tribe} in the language of \cite{Joyal:CandT}), or  simply all maps in an lccc, are shown to give rise to a natural model with $1, \Sigma, \Pi$, and thus a Martin-L\"of algebra, which moreover has \emph{identity types}, in the sense of the next section.
@@ -610,7 +605,7 @@ In particular, the fibrations in any right-proper Quillen model category (which 
 \subsection{Identity Types}\label{sec:Eq and Id}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-A natural model $\tT$ in a presheaf category $\widehat{\C}$ was defined in \cite{awodey:NM} to model both the extensional and intensional identity types of Martin-L\"of type theory in terms of the existence of certain additional structures.  We transfer these definitions to the elementary setting of Martin-L\"of algebras.  Condition (\ref{def:equalitytype}) below is shown in \cite{awodey:NM} to capture the extensional identity types of Martin-L\"of type theory.  The condition given in \emph{op.cit.}\ for the intensional case is replaced in (\ref{def:identitytype}) below by a simplification suggested by R.\ Garner.   
+A natural model $\tT$ in a presheaf category $\widehat{\CC}$ was defined in \cite{awodey:NM} to model both the extensional and intensional identity types of Martin-L\"of type theory in terms of the existence of certain additional structures.  We transfer these definitions to the elementary setting of Martin-L\"of algebras.  Condition (\ref{def:equalitytype}) below is shown in \cite{awodey:NM} to capture the extensional identity types of Martin-L\"of type theory.  The condition given in \emph{op.cit.}\ for the intensional case is replaced in (\ref{def:identitytype}) below by a simplification suggested by R.\ Garner.   
 
 \begin{definition}\label{def:EqualityandIdentityTypes}
 Let $\tT$ be a map in an lccc $\EE$. 
@@ -704,7 +699,7 @@ then says exactly that $\mathsf{J}$ is indeed a section of the comparison map \e
 The proposition clearly generalizes to arbitrary ML-algebras.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Examples of ML-algebras}%\label{sec:Free ML-Algebras}
+\section{Examples of ML-algebras}\label{sec:ExamplesML-Algebras}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %If we have univalence then they will hold up to identity terms -- once we have defined identity and univalence.
 %\ednote{The polynomial laws will hold up to Id types if the universe is univalent.}
@@ -732,21 +727,21 @@ To specify the maps $\Sigma$ and $\Pi$, note that the polynomial functor $\alg{P
 where $\eta_X : X \mono \widetilde{X}$ is the topos-theoretic \emph{partial map classifier} \cite[Proposition A.2.4.7]{Johnstone:Elephant}. 
 It follows easily from the specification of $\top\cdot\top : Q \to \alg{P}_\top\Omega$ in \eqref{diag:polyUMP} that $\top\cdot\top$ is monic, and so there is indeed a (unique) classifying map $\Sigma : \alg{P}_{\top}\Omega \to \Omega$.   Similarly, since polynomial functors preserve monos, the map $\alg{P}_{\top}\top : \alg{P}_{\top}1 \to \alg{P}_{\top}\Omega$ (which is in fact the partial map classifier $\eta_\Omega : \Omega \mono \widetilde{\Omega}$) is also monic, and therefore also has a (unique) classifying map  $\Pi :\alg{P}_{\top}\Omega \to \Omega$.  See \cite[\S 6]{AGH} for details. 
 
-\item As explained in Section \ref{sec:NaturalModels}, a natural model of type theory $\t: \TT\to \T$ over any index category $\C$ is an ML-algebra in presheaves $\widehat\C$ if it models the type formers $1, \Sigma, \Pi$.     For example, the groupoid model of \cite{Hofmann-Streicher} can be described as an ML-algebra in the category $\widehat{\mathsf{Gpd}}$ of presheaves on the category $\mathsf{Gpd}$ of groupoids. As is done in \emph{ibd.}, we can take $\T : \op{\mathsf{Gpd}} \to \Set$ to be the representable functor of the groupoid $\mathsf{gpd}$ of \emph{small} groupoids, where \emph{smallness} is defined as having cardinality $\leq \kappa$ for a suitably large cardinal number $\kappa$.  We may then furthermore take $\TT$ to be represented by $\dot{\mathsf{gpd}}$, the groupoid of small pointed groupoids, with $\t: \TT\to \T$ represented by the forgetful functor $\dot{\mathsf{gpd}} \to \mathsf{gpd}$, making the entire ML-algebra $\t: \TT\to \T$ representable.  Because the groupoid model has intensional identity types \cite{Hofmann-Streicher}, the corresponding natural model  $\t: \TT\to \T$ models them as well, as shown in \cite{awodey:NM}, and so the ML-algebra also has $\Id{}$-types in the sense of Definition \ref{def:EqualityandIdentityTypes}.
+\item As explained in Section \ref{sec:NaturalModels}, a natural model of type theory $\t: \TT\to \T$ over any index category $\CC$ is an ML-algebra in presheaves $\widehat\CC$ if it models the type formers $1, \Sigma, \Pi$.     For example, the groupoid model of \cite{Hofmann-Streicher} can be described as an ML-algebra in the category $\widehat{\mathsf{Gpd}}$ of presheaves on the category $\mathsf{Gpd}$ of groupoids. As is done in \emph{ibd.}, we can take $\T : \op{\mathsf{Gpd}} \to \Set$ to be the representable functor of the groupoid $\mathsf{gpd}$ of \emph{small} groupoids, where \emph{smallness} is defined as having cardinality $\leq \kappa$ for a suitably large cardinal number $\kappa$.  We may then furthermore take $\TT$ to be represented by $\dot{\mathsf{gpd}}$, the groupoid of small pointed groupoids, with $\t: \TT\to \T$ represented by the forgetful functor $\dot{\mathsf{gpd}} \to \mathsf{gpd}$, making the entire ML-algebra $\t: \TT\to \T$ representable.  Because the groupoid model has intensional identity types \cite{Hofmann-Streicher}, the corresponding natural model  $\t: \TT\to \T$ models them as well, as shown in \cite{awodey:NM}, and so the ML-algebra also has $\Id{}$-types in the sense of Definition \ref{def:EqualityandIdentityTypes}.
 
 Observe that in this case, since the entire algebra $\t: \TT\to \T$ is representable, we don't really need the lccc $\widehat{\mathsf{Gpd}}$ for the notion of an ML-algebra to make sense; only that certain display maps are exponentiable in the index category $\mathsf{Gpd}$.  We shall not spell out the exact condition required here (roughly, being a $\Pi$-tribe in the sense of \cite{Joyal:CandT}), but only mention that the same is true for the syntactic model of Martin-L\"of type theory over the category $\mathsf{Ctx}$ of contexts and substitutions, which is \emph{a proiori} an ML-algebra in the category of presheaves $\widehat{\mathsf{Ctx}}$, but also has one in the non-lccc $\mathsf{Ctx}$ itself, if the type theory is assumed to have a universe $\mathsf{U}$ that is closed under $1, \Sigma, \Pi$.
 
 \item Generalizing the foregoing example, the strictification of an lccc $\EE$ (or just a category $\EE$ with a wfs) gives rise to a natural model with extensional equality (or intensional identity) types in $\widehat{\EE}$, as shown in \cite{awodey:NM}, and therefore to an ML-algebra over $\EE$ with the same.  Note that the map $\t: \TT\to \T$ is therefore tiny by Proposition \ref{prop:rep_is_tiny}, and therefore so is the entire ML-algebra structure, since representable maps are stable under pullback.  In the lccc case, the diagonal $\TT \to \TT\times_{\T}\TT$ interpreting the extensional equality types is therefore also tiny.
 
-\item In \cite{awodey:universes} the Hofmann-Streicher universe construction \cite{HS:1997} is analyzed using a realization-nerve adjunction between presheaves $\widehat\C$ and $\Cat$, for any small index category $\C$.  Briefly, the category of elements functor $\int_{\C} : \widehat\C \to \Cat$ is shown to have a right adjoint \emph{nerve functor} $\nu_\C : \Cat \to \widehat\C$, taking a small category $\A$ to the homset of functors $$\nu_\C(\A)(c) = \Cat(\C/c,\, \A)\,,$$ where $\C/- : \C \to \Cat$ is the \emph{covariant} slice category functor given by post-composition.
+\item In \cite{awodey:universes} the Hofmann-Streicher universe construction \cite{HS:1997} is analyzed using a realization-nerve adjunction between presheaves $\widehat\CC$ and $\Cat$, for any small index category $\CC$.  Briefly, the category of elements functor $\int_{\CC} : \widehat\CC \to \Cat$ is shown to have a right adjoint \emph{nerve functor} $\nu_\CC : \Cat \to \widehat\CC$, taking a small category $\A$ to the homset of functors $$\nu_\CC(\A)(c) = \Cat(\CC/c,\, \A)\,,$$ where $\CC/- : \CC \to \Cat$ is the \emph{covariant} slice category functor given by post-composition.
 \begin{equation}\label{eq:nerve}\textstyle
 \begin{tikzcd}
-	 \widehat\C \ar[rr, swap,"\int_\C"] &&  \ar[ll, swap,bend right=20, "{ \nu_\C}"] \Cat& \quad \int_\C \dashv \nu_\C\\  
+	 \widehat\CC \ar[rr, swap,"\int_\CC"] &&  \ar[ll, swap,bend right=20, "{ \nu_\CC}"] \Cat& \quad \int_\CC \dashv \nu_\CC\\  
 	 \\
-	\C \ar[uu, hook, "\y"] \ar[rruu, swap,"{\C/_{-}}"] &&&
+	\CC \ar[uu, hook, "\y"] \ar[rruu, swap,"{\CC/_{-}}"] &&&
  \end{tikzcd}
  \end{equation}
-A Hofmann-Streicher universe $\VV \to \V$ in  $\widehat\C$ is then shown to be the nerve of the classifier for discrete fibrations $\op\SSet\to\op\Set$ (suitably bounded in size by a cardinal $\kappa$, see \cite[\S 4]{awodey:universes}).    That is, we let
+A Hofmann-Streicher universe $\VV \to \V$ in  $\widehat\CC$ is then shown to be the nerve of the classifier for discrete fibrations $\op\SSet\to\op\Set$ (suitably bounded in size by a cardinal $\kappa$, see \cite[\S 4]{awodey:universes}).    That is, we let
 \begin{align}\label{eq:universedef}\textstyle
 \VV_\kappa\, &=\, \nu\op{\dot{\Set}_\kappa}\\  
 \V_\kappa\, &=\, \nu\op{\Set}_\kappa.\notag
@@ -755,9 +750,9 @@ A Hofmann-Streicher universe $\VV \to \V$ in  $\widehat\C$ is then shown to be t
  Now, the forgetful functor $U : \op{\dot{\Set}_\kappa}\to \op{\Set}_\kappa$ is a discrete fibration in $\Cat$, and therefore exponentiable. Moreover, one can show that if $\kappa$ is inaccessible, then $U : \op{\dot{\Set}_\kappa}\to \op{\Set}_\kappa$ will be an ML-algebra in $\Cat$, in the sense that there are structure maps $(*, 1, \sigma, \Sigma, \lambda, \Pi)$ making pullback squares 
 as in Definition \ref{def:MLalg}, where the polynomial functor $\alg{P}_U : \Cat \to \Cat$ is used (even though $\Cat$ is not an lccc).
 
-Finally, it can be shown that the right adjoint nerve functor $\nu_\C : \Cat \to \widehat\C$ commutes with polynomials, and therefore preserves ML-algebras.  It follows that any Hofmann-Streicher universe $\VV_\kappa \to \V_\kappa$  (for suitable $\kappa$) is an ML-algebra (with extensional equality) in $\widehat\C$.  Indeed, the example of the subobject classifier $1 \to \Omega$ in a (presheaf) topos was an instance of this, since it is the nerve of the classifier $\mathbbm{1} \to \mathbbm{2}$ for sieves, which is itself an ML-algebra in $\Cat$, namely 
+Finally, it can be shown that the right adjoint nerve functor $\nu_\CC : \Cat \to \widehat\CC$ commutes with polynomials, and therefore preserves ML-algebras.  It follows that any Hofmann-Streicher universe $\VV_\kappa \to \V_\kappa$  (for suitable $\kappa$) is an ML-algebra (with extensional equality) in $\widehat\CC$.  Indeed, the example of the subobject classifier $1 \to \Omega$ in a (presheaf) topos was an instance of this, since it is the nerve of the classifier $\mathbbm{1} \to \mathbbm{2}$ for sieves, which is itself an ML-algebra in $\Cat$, namely 
 $$\mathbbm{1} = \SSet^{\mathsf{op}}_2 \too  \Set^{\mathsf{op}}_2 = \mathbbm{2}\,,$$  
-so that in $\widehat\C$ we have
+so that in $\widehat\CC$ we have
 \[
 1 = \nu \mathbbm{1} = \VV_{2} \too  \V_{2} = \nu \mathbbm{2} = \Omega  \,.
 \]
@@ -1062,7 +1057,7 @@ since $\mathsf{Equiv}_B$ is itself pulled back from the universal equivalence $E
 %\end{lemma}
 % 
  
-\begin{theorem}
+\begin{theorem}\label{thm:MLAlgbicat}
 For an ML-algebra $\t : \TT \to \T$ the category $$\EE/_\T\, \simeq\, \EE^{\downarrow}_{\mathsf{cart}}/_{\t}$$ of type families over $\T$ is a monoidal bicategory with objects $\alpha : X\to \T$ and arrows $h : X \to Y$ as in \eqref{diag:classified1cells}, and 2-cells $\varphi : h_1 \Rightarrow h_2$ as in Definition \ref{def:2cells}.  
 \end{theorem}
 
@@ -1104,7 +1099,7 @@ When univalence is available, the monad and algebra laws become (internal) ident
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Acknowledgements}
 
-Many thanks to Corinthia Aberl\'e, Marcelo Fiore, Nicola Gambino, Richard Garner, and Clive Newstead for ideas and advice.  This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
+Thanks to Mathieu Anel, Corinthia Aberl\'e, Marcelo Fiore, Nicola Gambino, Richard Garner, and Clive Newstead for ideas and advice.  This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
 
 \bibliographystyle{alpha}
 \bibliography{../Bib/catlog.bib}
