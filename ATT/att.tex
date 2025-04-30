@@ -5,6 +5,7 @@
 %\documentclass[12pt]{article}
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amsmath,amssymb,amsthm,latexsym}
+%\usepackage{MnSymbol}
 %\usepackage{palatino}
 \usepackage{bm,bbm}
 \usepackage[all,cmtip]{xy}
@@ -200,7 +201,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \title{Algebraic Type Theory\\
-Part 1: Martin-L\"of algebras}
+Part 1: {M}artin-{L}\"of algebras}
 \author{Steve Awodey}
 \date{\today}
 \dedicatory{In memory of Phil Scott, friend and mentor.}
@@ -210,17 +211,51 @@ A very brief abstract.
 \end{abstract}
 \maketitle
 
-One of the most beautiful aspects of the book \cite{LS} by Lambek and Scott is the (almost) entirely algebraic treatment of higher-order logic, with operations and equations in place of the traditional presentation of logic by rules of inference.   This is made possible in part by of the presence in a topos $\EE$ of a subobject classifier $\Omega$ that represents the presheaf of subobjects,
+One of the most beautiful aspects of the book \cite{LS} by Lambek and Scott is the (almost) entirely algebraic treatment of higher-order logic, with operations and equations in place of the traditional presentation of logic by rules of inference.   This is made possible in a general way by Lawvere's  profound analysis of many of the logical primitives as adjoints \cite{Lawvere:adjointness}, but more specifically by the presence in a topos $\EE$ of a subobject classifier $\Omega$ that represents the presheaf of subobjects via a natural isomorphism of sets,
 \[
-\mathsf{Sub}(X) \cong \Hom(X, \Omega) \quad\text{naturally in $X$}\,.
+\mathsf{Sub}(X) \cong \Hom_{\EE}(X, \Omega)\,.
 \]
-Logical operations on formulas $\varphi(x)$, which determine subobjects $$[x:X\, |\, \varphi(x)] \mono X$$ are represented by operations on $\Omega$, such as ...
+The various logical operations on formulas $\varphi(x)$, which determine subobjects $$[x:X\, |\, \varphi(x)] \mono X\,,$$ are represented by operations on $\Omega$, such as conjunction $\wedge : \Omega \times \Omega \to \Omega$.  Thus given ``propositional functions'' $\varphi(x), \psi(x) : X \to \Omega$ we obtain $\varphi(x)\wedge\psi(x) : X \to \Omega$ simply by (pairing and) composing,
+\begin{equation*}
+\begin{tikzcd}
+ X \ar[rr, "{\langle \varphi(x), \psi(x) \rangle}" ] \ar[rrd,swap,  "\varphi(x)\wedge\psi(x)"] && \Omega \times \Omega \ar[d, "\wedge"] \\
+ && \Omega 
+\end{tikzcd}
+\end{equation*}
+It follows immediately that substitution of a term $t(y) : Y\to X$ for the variable $x$ respects the operation $\wedge$, just by associativity of composition:
+\begin{align*}
+(\varphi(x)\wedge\psi(x))[t(y)/x] &= (\wedge \circ \langle \varphi(x), \psi(x) \rangle) \circ t(y)\\
+&= \wedge \circ (\langle \varphi(x), \psi(x) \rangle \circ t(y))\\
+&=  \wedge  \langle \varphi(t(y)), \psi((t(y))\rangle \\
+&=  \varphi(t(y))\wedge\psi(t(y)) 
+\end{align*}
+This not only holds for all of the propositional operations, but also results in the Beck-Chevalley condition for quantification, 
+\begin{align*}
+(\exists z .\vartheta(x,z))[t(y)/x] &= (\exists z .\vartheta(x,z))\circ t(y) \\
+&= (\exists z \circ \vartheta(x,\hat{z}))\circ t(y)\\
+&= \exists z \circ (\vartheta(x,\hat{z})\circ t(y))\\
+&= \exists z \circ \vartheta(t(y),\hat{z})\\
+&= \exists z .\vartheta(t(y),z)\,,
+\end{align*}
+in virtue of the quantifier also being represented by a map on $\Omega$, namely $\exists_z : \Omega^{Z} \to \Omega$, with which we simply compose (this time after an exponential transposition).
+\begin{equation*}
+\begin{tikzcd}
+ X \ar[rr, "{\vartheta(x,\hat{z})}" ] \ar[rrd,swap,  "{\exists z. \vartheta(x,z)}"] && \Omega^{Z} \ar[d, "{\exists z}"] \\
+ && \Omega
+\end{tikzcd}
+\end{equation*}
 
- about generalizing the subobject classifier in a topos: 
+The idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are actually represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal algebra $\Omega$ -- combined with some basic lambda calculus enabling higher types constructed from $\Omega$.  This, in a nut shell, is what gives rise to the lovely algebraic formulation of even higher-order logic in \cite{LS:}.  
+\medskip
 
-Relate it to Phil and the book on higher-order logic - something about introducing algebraic precision into logic by replacing rules of deduction by equations. Also replacing natural and coherent structure by homming into an algebra, and using Yoneda to get it.  Beck-Chavelley conditions and coherence of substitution result automatically.  Splitting of the codomain fibration and coherence of pullbacks.  Higher-order operations using the internal universe as just another type. 
+Part of the motivation for the present work is to apply this same approach to \emph{dependent type theory} in place of predicate logic, by determining a suitable algebraic gadget $\U$ in place of $\Omega$, representing the \emph{presheaf of types}, rather than the presheaf of subobjects.  In fibrational terms, over the category $\EE$ of variable contexts, we would like a representing object $\UU \to \U$ for the \emph{codomain fibration} $\EE^\downarrow \to \EE$, rather than $1\to \Omega$ representing the fibration of subobjects.  Unlike the presheaf/fibration of subobjects, however, which is (at best) poset valued, the pseudofunctor of slices $\EE/_{(-)} : \op{\EE} \to \mathsf{Cat}$ cannot be representable, even in the weaker sense of a natural equivalence of indexed categories,
+\[
+\EE/_{X}\, \simeq\, \Hom_{\EE}(X, \U)\, \qquad\text{naturally in $X$}\,.
+\]
 
-The other rather obvious inspiration for the present work is the Algebraic Set Theory book of Joyal and Moerdijk \cite{}. 
+ There are really two different problems here: size and coherence.  We solve both simultaneously by taking $\UU \to \U$ to be an internal category (with additional structure) in the category $\widehat{\EE}$ of presheaves over $\EE$, essentially by splitting the codomain fibration.  Whatever one may think of this solution, it is of obvious interest to determine what algebraic structure on $\UU \to \U$ will serve to model dependent type theory --- and we know how to determine the answer: by Yoneda!  We term the resulting gadget a \emph{Martin-L\"of algebra} (Section \ref{MLA}), and it has remarkably simple description as a polynomial monad, which gives a complete answer to our question (see Theorem \ref{ML-Alg}).
+ 
+The second rather obvious inspiration for the present work is the Algebraic Set Theory of Joyal and Moerdijk \cite{}.  There out to be an evident, but unintended, analogy between a Martin-L\"of algebra and the small map classifier of \emph{op. cit.}. 
 
 Still to do: morphisms of ML-algebras, initial algebra, successor operation, change of contexts.
 
