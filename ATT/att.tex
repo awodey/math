@@ -217,7 +217,7 @@ One of the most beautiful aspects of the book \emph{Introduction to Higher-Order
 \[
 \mathsf{Sub}(X) \cong \Hom_{\EE}(X, \Omega)\,.
 \]
-The various logical operations on formulas $\varphi(x)$, which determine subobjects $$\{x:X\, |\, \varphi(x)\} \mono X\,,$$ are represented by operations on $\Omega$ such as conjunction $\wedge : \Omega \times \Omega \to \Omega$.  Thus given two ``propositional functions'' $\varphi(x), \psi(x) : X \to \Omega$ we obtain their conjunction $\varphi(x)\wedge\psi(x) : X \to \Omega$ simply by (pairing and) composing,
+The various logical operations on formulas $\varphi(x) : X \to \Omega$, which determine subobjects $$\{x:X\, |\, \varphi(x)\} \mono X\,,$$ are represented by operations on $\Omega$ such as conjunction $\wedge : \Omega \times \Omega \to \Omega$.  Thus given two ``propositional functions'' $\varphi(x), \psi(x) : X \to \Omega$ we obtain their conjunction $\varphi(x)\wedge\psi(x) : X \to \Omega$ simply by (pairing and) composing,
 \begin{equation*}
 \begin{tikzcd}
  X \ar[rr, "{\langle \varphi(x), \psi(x) \rangle}" ] \ar[rrd,swap,  "\varphi(x)\wedge\psi(x)"] && \Omega \times \Omega \ar[d, "\wedge"] \\
@@ -228,7 +228,8 @@ It follows immediately that the operation $[t(y)/x]$ of substitution of a term $
 \begin{align*}
 (\varphi(x)\wedge\psi(x))[t(y)/x] &= (\wedge \circ \langle \varphi(x), \psi(x) \rangle) \circ t(y)\\
 &= \wedge \circ (\langle \varphi(x), \psi(x) \rangle \circ t(y))\\
-&=  \wedge  \langle \varphi(t(y)), \psi(t(y))\rangle \\
+&= \wedge \circ \langle \varphi(x)\circ t(y), \psi(x)\circ t(y) \rangle\\
+&=  \wedge \circ  \langle \varphi(t(y)), \psi(t(y))\rangle \\
 &=  \varphi(t(y))\wedge\psi(t(y)) 
 \end{align*}
 This not only holds for all of the propositional operations $\vee, \Rightarrow,$ etc., but also results in the Beck-Chevalley condition for the quantifiers $\forall$ and $\exists$, 
@@ -247,14 +248,14 @@ Again, this holds in virtue of the universal quantifier $\forall z$ being repres
 \end{tikzcd}
 \end{equation}
 
-The idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are actually represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal algebra $\Omega$ --- combined with some basic lambda calculus, enabling higher types constructed from $\Omega$.  This, in a nut shell, is what permits the lovely algebraic formulation of even higher-order logic in \cite{LS:1988}.  
+The idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are actually represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal algebra $\Omega$ --- combined with some basic $\lambda$-calculus, enabling higher types constructed from $\Omega$.  This, in a nut shell, is what permits the lovely algebraic formulation of even higher-order logic in \cite{LS:1988}.  
 
 \subsection*{Martin-L\"of algebras.} One of the motivations for the present work was to apply this same approach to \emph{dependent type theory} in place of predicate logic, by determining a suitable algebraic gadget $\U$ in place of $\Omega$, representing the \emph{presheaf of types}, rather than the presheaf of subobjects.  In fibrational terms, over the category $\CC$ of contexts of variables, we would like a representing object $\UU \to \U$ for the \emph{codomain fibration} $\CC^\downarrow \epi \CC$, rather than the object $1\mono \Omega$ representing the fibration of subobjects.  Unlike the presheaf, or discrete fibration, of subobjects, however, which is (at best) poset valued, the pseudofunctor of slice categories $\CC/_{\!(-)} : \op{\CC} \to \mathsf{Cat}$ cannot be representable, even in the weaker sense of a natural equivalence of indexed categories,
 \[
 \CC/_{X}\, \simeq\, \Hom_{\CC}(X, \U)\,.
 \]
 
-There are really two different problems here: size and coherence.  We solve both simultaneously by taking $\UU \to \U$ to be a full internal subcategory (with additional structure) in the category $\EE = \widehat{\CC}$ of presheaves over $\CC$, essentially by splitting the codomain fibration, as is done in \cite{Lums-Warren}.  Whatever one may think of this solution, it is of obvious interest to determine what algebraic structure on $\UU \to \U$ will serve to model dependent type theory. And we know how to determine the answer: by Yoneda!  We call the resulting gadget a \emph{Martin-L\"of algebra} (``ML-algebra'' for short), and it has a remarkably simple description as an algebra for a polynomial monad, giving a complete answer to our question (Theorem \ref{thm:nmcwf}).
+There are really two different problems here: size and coherence.  We solve both simultaneously by taking $\UU \to \U$ to be a full internal subcategory (with additional structure) in the category $\EE = \widehat{\CC}$ of presheaves over $\CC$, essentially by splitting the codomain fibration as in \cite{Lums-Warren}.  Whatever one may think of this solution, it is of obvious interest to determine what algebraic structure on $\UU \to \U$ will serve to model dependent type theory. And we know how to determine the answer: by Yoneda!  We call the resulting gadget a \emph{Martin-L\"of algebra} (``ML-algebra'' for short), and it has a remarkably simple description as an algebra for a polynomial monad, giving a complete answer to our question (Theorem \ref{thm:nmcwf}).
 
 The polynomial endofunctor in question $\alg{P}_\t : \EE \to \EE$  is that of the algebra $\u:\UU \to \U$, which therefore has the form
 \[
@@ -367,7 +368,7 @@ Given $\Gamma\vdash A$ we need a new context $\ext{\G}{A}$ together with a subst
 \[
 \terms{\ext{\G}{A}}{q_A:A[\pi_A]}\,,
 \]
-where, the substitution $A[\pi_A]$ is modeled by composition $A[\pi_A] = A\circ \pi_A$.
+where the substitution $A[\pi_A]$ is modeled by composition $A[\pi_A] = A\circ \pi_A$.
 
 Let $\pi_A: \ext{\G}{A} \to \G$ be the pullback of $\tp$ along $A$, which exists as an arrow in $\CC$ since $\tp$ is representable.
 %
@@ -378,7 +379,7 @@ Let $\pi_A: \ext{\G}{A} \to \G$ be the pullback of $\tp$ along $A$, which exists
 \end{tikzcd}
 \end{equation}
 %
-The map $q_A : \ext{\G}{A}\to\Tm$ arising from the pullback gives the required term $\terms{\ext{\G}{A}}{q_A:A[p_A]}$, since $\tp\circ q_A = A \circ p_A$.
+The map $q_A : \ext{\G}{A}\to\Tm$ arising from the pullback gives the required term $\terms{\ext{\G}{A}}{q_A:A[\pi_A]}$ since $\tp\circ q_A = A \circ \pi_A = A[\pi_A]$.
 The remaining laws of a CwF follow from the pullback condition on $\eqref{diag:NMpullback}$; see \cite{awodey:NM}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -408,10 +409,10 @@ The action of $\alg{P}_\t$ on an object $X$ may be depicted:
 We call $\tT$ the \emph{signature} of $\alg{P}_\t$ and briefly recall the following \emph{universal mapping property} from \cite{awodey:NM}.
 
 \begin{lemma}
- For any $p: E \to B$ in a locally cartesian closed category $\EE$, the polynomial functor $\alg{P}_p : \EE \to \EE$ has the following universal property:  for any objects $X, Z \in \EE$, maps $f : Z \to \alg{P}_p (X)$ correspond bijectively to pairs of maps $f_1 : Z \to B$ and $f_2 : Z\times_B E \to Z$, as indicated below.
+ For $p: E \to B$ in a locally cartesian closed category $\EE$ we have the following universal property of the polynomial functor $\alg{P}_\t$. For any objects $X, Z \in \EE$, maps $f : Z \to \alg{P}_p (X)$ correspond bijectively to pairs of maps $f_1 : Z \to B$ and $f_2 : Z\times_B E \to Z$, as indicated below.
 \begin{equation}\label{diag:polyUMP}
 \begin{tikzcd}
-&Z \ar[rr,"f"] && \alg{P}_p (X) & \\[-5ex]
+&& Z \ar[r,"f"] & \alg{P}_p (X) & \\[-5ex]
 \strut \ar[rrrr, equal] &&&& \strut\\[-5ex]
 &X & \ar[l,"f_2"] Z\times_B E \ar[d] \ar[r] \pbcorner & E \ar[d, "p"] &\\
 && Z \ar[r,swap,"f_1"] & B &
@@ -421,9 +422,9 @@ The correspondence is natural in both $X$ and $Z$, in the expected sense.
 \end{lemma}
 
 This universal property is also suggested by the conventional type theoretic notation, namely: $$\alg{P}_p (X) = \Sigma_{b:B} X^{E_b}$$
-The lemma can be used to determine the signature $ p\cdot q $ for the composite $\alg{P}_p \circ \alg{P}_q$ of two polynomial functors, which is again polynomial, and for which we have
+The lemma can be used to determine the signature $\, p\cdot q\, $ for the composite $\alg{P}_p \circ \alg{P}_q$ of two polynomial functors, which is again polynomial, and for which we have
 \begin{equation}\label{eq:polycomp}
-\alg{P}_{p\cdot q} \cong \alg{P}_p \circ \alg{P}_q\,.
+\alg{P}_{p\cdot q}\, \cong\, \alg{P}_p \circ \alg{P}_q\,.
 \end{equation}
 Indeed, let $p : B \to A$ and $q : D \to C$, and consider the following diagram resulting from applying the correspondence \eqref{diag:polyUMP} to the identity arrow,
 \[
@@ -465,11 +466,11 @@ A natural model $\tT$ over $\CC$ will be said to \emph{model} the type formers $
 \begin{tikzcd}
 	1 \ar[r] \ar[d] \pbcorner &  \TT \ar[d, "\t"]\\  
 	1 \ar[r] & \T
- \end{tikzcd} \qquad \qquad 
+ \end{tikzcd} \qquad \quad 
  \begin{tikzcd}
 	\TT_2  \ar[r] \ar[d,swap,"\t\cdot\t"] \pbcorner &  \TT \ar[d, "\t"]\\  
 	\T_2 \ar[r] & \T
-	 \end{tikzcd} \qquad \qquad 
+	 \end{tikzcd} \qquad \quad 
 	 \begin{tikzcd}
 	 \alg{P}_\t(\TT) \ar[r] \ar[d,swap,"\alg{P}_\t(\t)"] \pbcorner &  \TT \ar[d, "\t"]\\  
 	\alg{P}_\t(\T) \ar[r] & \T
@@ -863,14 +864,14 @@ And the algebra laws for $\pi$ correspond to the following equations between obj
 \begin{align*}
  \pi\circ P_\t\,\pi\, &=\,  \pi\circ\sigma 	&&&	\prod\limits_{a:A}\prod\limits_{b:B(a)}C(a,b)\, 
  									&=\, \prod\limits_{(a,b):\sum_{a:A}B(a)}C(a,b)  \\ 
- \pi\circ \tau\, &=\, 1 	&&& 	\prod\limits_{x:1}A\, &=\, A   \tag{\theequation}
+ \pi\circ \tau_{P_\t}\, &=\, 1 	&&& 	\prod\limits_{x:1}A\, &=\, A   \tag{\theequation}
 \end{align*}
 
 While the equations of objects in the right-hand column will not in general hold strictly, they do correspond to familiar \emph{type isomorphisms} that are provable from the usual rules of extensional dependent type theory with $1, \Sigma, \Pi, \mathsf{Eq}$ (respectively, \emph{type equivalences} in the intensional case with $\mathsf{Id}$ in place of $\mathsf{Eq}$). 
 
-In order to capture this apparently missing higher dimension of structure, in \cite{Newstead:thesis, NA:2018} the monoidal 1-category $\mathsf{PolyFun}(\EE, \EE)_{\mathsf{cart}}$ of endofunctors and cartesian natural transformations is enriched to a bicategory by defining certain 2-cells between the natural transformations, in such a way that $(\tau, \sigma)$ becomes a \emph{pseudo}-monad and $\pi$ a \emph{pseudo}-algebra.  The result was not entirely satisfactory, however, as the top dimension of structure was essentially codiscrete, so that the monad and algebra laws were not distinguished among all 2-cells between the particular parallel 1-cells in question.
+In order to capture this apparently missing higher dimension of structure, in \cite{Newstead:thesis, NA:2018} the monoidal 1-category $\mathsf{PolyFun}(\EE, \EE)_{\mathsf{cart}}$ of endofunctors and cartesian natural transformations was enriched to a bicategory by defining certain 2-cells between the natural transformations, in such a way that $(\tau, \sigma)$ becomes a \emph{pseudo}-monad and $\pi$ a \emph{pseudo}-algebra.  The result was not entirely satisfactory, however, as the top dimension of structure was essentially codiscrete, so that the monad and algebra laws were not distinguished among all 2-cells between the particular parallel 1-cells in question.
 
-Here we shall take a different approach, restricting the 0-cells $f, g$ that can occur in \eqref{diag:cartsquare} (and the corresponding polynomial endofunctors $\alg{P}_f, \alg{P}_g$) to maps that are  classified by an assumed ML-algebra $\t:\TT \to \T$ with $\Id{}$-types, as defined in Section \ref{sec:Eq and Id}. We then using the latter to determine a notion of 2-cell between parallel cartesian squares (and thus between parallel natural transformations), thus promoting the 1-categories $\EE^{\downarrow}_{\mathsf{cart}}$ and $\mathsf{PolyFun}(\EE, \EE)_{\mathsf{cart}}$ to bicategories, in such a way that the ``type equivalences'' \eqref{typeisos} do arise from corresponding pseudomonad and pseudoalgebra structures in a non-trivial way.
+Here we shall take a different approach, restricting the 0-cells $f, g$ that can occur in \eqref{diag:cartsquare} (and the corresponding polynomial endofunctors $\alg{P}_f, \alg{P}_g$) to maps that are  \emph{classified} by an assumed ML-algebra $\t:\TT \to \T$ with $\Id{}$-types, as defined in Section \ref{sec:Eq and Id}. We then using the latter to determine a notion of 2-cell between parallel cartesian squares (and thus between parallel natural transformations), thus promoting the 1-categories of $\EE^{\downarrow}_{\mathsf{cart}}$ and $\mathsf{PolyFun}(\EE, \EE)_{\mathsf{cart}}$ (over $\T$) to bicategories, in such a way that the ``type equivalences'' \eqref{typeisos} do arise from corresponding pseudomonad and pseudoalgebra structures in a non-trivial way.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classification}\label{sec:classify}
@@ -897,7 +898,7 @@ The codomain functor
 \[
 \mathsf{cod} : \EE^{\downarrow}_{\mathsf{cart}}/_{\t} \too \EE/_\T
 \]
-is an equivalence of categories which can be promoted to an adjoint equivalence with a right adjoint $\t^{\sharp} : \EE/_\T \to \EE^{\downarrow}_{\mathsf{cart}}/_{\t}$ by choosing, for each object $\alpha : X \to \T$ in $\EE/_\T$, a pullback span $X \stackrel{a}{\leftarrow} A \stackrel{\dot{\alpha}}{\to} \TT$ as in \eqref{eq:classifiedfamilies}, which determines the strictly functorial action on arrows uniquely.  As an adjoint, the functor $\t^{\sharp}$ is of course uniquely determined up to natural isomorphism.  Summarizing, we have an adjoint equivalence of 1-categories,
+is an equivalence of categories with a right adjoint $\t^{\sharp} : \EE/_\T \to \EE^{\downarrow}_{\mathsf{cart}}/_{\t}$ choosing, for each object $\alpha : X \to \T$ in $\EE/_\T$, a pullback span $$X \stackrel{a}{\leftarrow} A \stackrel{\dot{\alpha}}{\to} \TT$$ as in \eqref{eq:classifiedfamilies}, which determines the strictly functorial action on arrows.  As an adjoint, the functor $\t^{\sharp}$ is of course uniquely determined up to natural isomorphism.  Summarizing, we have an adjoint equivalence of 1-categories,
  \begin{equation}\label{eq:slice adjunction}
 \begin{tikzcd}
  {\EE^{\downarrow}_{\mathsf{cart}}/_{\t}}  \ar[rr, bend right, swap, "{\mathsf{cod} }"] \ar[rr, phantom, description, "{\simeq}"] && \ar[ll, bend right, swap, "{\t^{\sharp}}"] \EE/_\T & \quad \mathsf{cod} \dashv \t^{\sharp}
@@ -983,7 +984,7 @@ A \ar[rd] \ar[r, "{\simeq}"] \ar[rru, dotted] & B \ar[d] \ar[rru, crossing over,
  \end{equation}
 The correspondence is natural in $X$, because it is mediated by pulling back a universal instance.  
 
-The structure $\mathsf{Equiv} \to \T \times \T$ is an internal graph in $\EE$, and comes with a reflexivity $\T \to \mathsf{Equiv}$, symmetry $\mathsf{Equiv} \to \mathsf{Equiv}$ and transitivity $\mathsf{Equiv}\times_\T \mathsf{Equiv} \to \mathsf{Equiv}$ over $\T$ in virtue of the identity types and the nature of type equivalences; it could be shown to be an internal ``weak groupoid'' in a suitable sense that we shall not pause to specify.  Its purpose here is merely to endow the category $\EE/_\T$ of classified types $\alpha : X \to \T$ with higher dimensional structure by ``homming in'', as explained in the introduction. 
+The structure $\mathsf{Equiv} \to \T \times \T$ is an internal graph in $\EE$, and comes with a reflexivity $\T \to \mathsf{Equiv}$, symmetry $\mathsf{Equiv} \to \mathsf{Equiv}$ and transitivity $\mathsf{Equiv}\times_\T \mathsf{Equiv} \to \mathsf{Equiv}$ over $\T$ in virtue of the identity types and the nature of type equivalences; it could be shown to be an internal ``weak groupoid'' in a suitable sense that we shall not pause to specify.  Its purpose here is merely to endow the category $\EE/_\T$ of classified types $\alpha : X \to \T$ with higher-dimensional structure by ``homming in'', as explained in the introduction. 
 
 The property of a map $e : A \to B$ of being an equivalence of types (over a base $X$) is independent of the choice of classifying maps of $A$ and $B$, in the following sense.
 \begin{lemma}\label{lemma:equivinvariance}
@@ -1095,7 +1096,7 @@ For an ML-algebra $\t : \TT \to \T$ there is a monoidal bicategory $\EE/\!/_\T$ 
 \end{theorem}
 
 \begin{proof}
-The 1-categorical structure of $\EE/_\T$ is clear, so we just need to verify that the hom-sets $\Hom(h_1, h_2)$ for $h_1, h_2 : X \to Y$ over $\T$  are categories in a way that is compatible with the 1-category structure of~$\EE/_\T$.  But this is immediate, since by Remark \ref{2cellsareglobal} these categories are uniformly isomorphic to the auto-equivalences of the domain 0-cell $a: A\to X$.  Note, however, that in the intensional case the category $\mathsf{AutEq}_X(A)$ of auto-equivalences may itself actually be a higher one, since equivalences of types need not form a (mere) 1-category.  In this case, the categories $\mathsf{AutEq}_X(A)$ would \emph{either} need to be formally truncated, in order for $\EE/\!/_\T$ to be a (mere) bicategory, \emph{or} explicitly described as higher groupoids, in which case $\EE/\!/_\T$ would be an $(\infty, 1)$-category.  See Remark \ref{remark:univalence} below for a related consideration.
+The 1-categorical structure of $\EE/_\T$ is clear, so we just need to verify that the hom-sets $\Hom(h_1, h_2)$ for $h_1, h_2 : X \to Y$ over $\T$  are categories in a way that is compatible with the 1-category structure of~$\EE/_\T$.  But this is immediate, since by Remark \ref{2cellsareglobal} these categories are uniformly isomorphic to the auto-equivalences of the domain 0-cell $a: A\to X$.  Note, however, that in the intensional case the category $\mathsf{AutEquiv}_X(A)$ of auto-equivalences may itself actually be a higher one, since equivalences of types need not form a (mere) 1-category.  In this case, the categories $\mathsf{AutEquiv}_X(A)$ would \emph{either} need to be formally truncated, in order for $\EE/\!/_\T$ to be a (mere) bicategory, \emph{or} explicitly described as higher groupoids, in which case $\EE/\!/_\T$ would be an $(\infty, 1)$-category.  See Remark \ref{remark:univalence} below for a related consideration.
 \end{proof}
 
 Finally, with respect to the monoidal bicategory $\EE/\!/_\T$ the ML-algebra structure \eqref{diag:MLalg2} on $\t : \TT\to\T$ itself can now be shown to be a pseudomonoid and a pseudomodule; the proof can be given entirely in type theory using the interpretation from Section \ref{sec:NaturalModels}, and simply amounts to verifying the familiar type equivalences \eqref{typeisos} (proofs of which can also be found in \cite[Chapter 2]{HoTTbook}).  We leave the detailed formal development as future work (in progress as part of the formalization project \cite{HoTTLean}).  We also leave for the future the task of transferring the higher structure back across the equivalence \eqref{diagram:polyandpolyfun} to the setting of $\mathsf{PolyFun}(\EE, \EE)_{\mathsf{cart}}$ to obtain a pseudomonad and a pseudoalgebra.
@@ -1109,7 +1110,7 @@ A \ar[rd,swap, "a"] \ar[r,swap, "{\vartheta}"]  \ar[r, "{\simeq}"]  \ar[rru, dot
 & X \ar[rru, dotted, "{\tilde{\vartheta}}"] \ar[rr, swap, "{(\alpha, \beta)}"] && \T \times \T
 	 \end{tikzcd}
  \end{equation}
-We can use these to define a ``larger category'' of polynomials $$\EE/\!/_\T \to \EE\widetilde{/\!/}_\T$$ with the same objects $\alpha: X \to \T$ and $\beta : Y\to \T$, but as 1-cells we now take pairs $(f, \varphi) : \alpha \to \beta$ with $f : X \to Y$ and $\varphi : \alpha \simeq \beta f$.
+We can use these to define a ``larger category'' of polynomials $$\EE/_\T \to \EE\widetilde{/\!/}_\T$$ with the same objects $\alpha: X \to \T$ and $\beta : Y\to \T$, but as 1-cells we now take pairs $(f, \varphi) : \alpha \to \beta$ with $f : X \to Y$ and $\varphi : \alpha \simeq \beta f$.
 \begin{equation}\label{diag:new1cells}
 \begin{tikzcd}
 X \ar[r,swap,swap, "{f}"] \ar[rd,swap, "\alpha"] \ar[dr, "{\stackrel{\varphi}{\simeq}}"]&  Y \ar[d, "\beta"] \\
@@ -1124,9 +1125,9 @@ These correspond to commutative diagrams,
  \end{tikzcd}
  \end{equation}
  with a pullback on the right and an equivalence over $X$ on the left (a choice of direction for $\varphi$ can be made here),
-determining a (not necessarily cartesian) natural transformation of polynomial functors $(f, \varphi) : \alg{P}_a \to \alg{P}_b$.  Using these 1-cells, the ML-algebra $\TT\to\T$ should now determine a pseudomonad and a pseudoalgebra in the ``larger category" $\mathsf{PolyFun}(\EE, \EE)_\mathsf{cart} \mono \mathsf{PolyFun}_\T(\EE, \EE)$ of polynomial functors over $\T$ and these new natural transformations.
+determining a (not necessarily cartesian) natural transformation of polynomial functors $(f, \varphi) : \alg{P}_a \to \alg{P}_b$.  Using these 1-cells, the ML-algebra $\TT\to\T$ should now determine a pseudomonad and a pseudoalgebra in the ``larger category" $\mathsf{PolyFun}_\T(\EE, \EE)_\mathsf{cart} \mono \mathsf{PolyFun}_\T(\EE, \EE)$ of polynomial functors over $\T$ and these new natural transformations.
 
-The reason for the ``scare quotes'' in the previous sentence is that this is not really a 1-category, because the weakness of the ``groupoid'' $\mathsf{AutEq}_X(A)$ of auto-equivalences noted in the proof of Theorem \ref{thm:MLAlgbicat} was inherited from the internal ``weak groupoid''  $\mathsf{Equiv} \tto \T$, and has now infected the homsets of $\mathsf{PolyFun}_\T(\EE, \EE)$, making e.g.\ composition no longer strictly associative, so we no longer have even an underlying 1-category.  Although conceptually superior, this approach thus seems technically more challenging to execute rigorously, and so we leave it for future work.
+The reason for the ``scare quotes'' in the previous sentence is that this is not really a 1-category, because the weakness of the ``groupoid'' $\mathsf{AutEquiv}_X(A)$ of auto-equivalences noted in the proof of Theorem \ref{thm:MLAlgbicat} was inherited from the internal ``weak groupoid''  $\mathsf{Equiv} \tto \T$, and has now infected the homsets of $\mathsf{PolyFun}_\T(\EE, \EE)$, making e.g.\ composition no longer strictly associative, so we no longer have even a 1-category.  Although conceptually superior, this approach thus seems technically more challenging to execute rigorously, and so we leave it for future work.
 \end{remark}
 
 \begin{remark}[Univalence]\label{remark:univalence}
@@ -1148,7 +1149,7 @@ When univalence is available, the monad and algebra laws become (internal) ident
 \end{remark}
 
 \begin{example}
-It is instructive to work out the categories $\EE/\!/_\T$ and  $\EE\widetilde{/\!/}_\T$ in a familiar example. Thus consider Example \ref{example:HSuniverse} from Section \ref{sec:ExamplesML-Algebras} for the case $\kappa = \omega$, in the ambient lccc $\EE = \Set$.  
+It is instructive to work out the categories ${\EE/\!/}_\T$ and  ${\EE\widetilde{/\!/}}_\T$ in a familiar example. Thus consider Example \ref{example:HSuniverse} from Section \ref{sec:ExamplesML-Algebras} for the case $\kappa = \omega$ in the ambient lccc $\EE = \Set$.  
 
 As the base object $\T$ we can take the set $\N$ of natural numbers, and as $\t:\TT\to\T$ the set of finite cardinal numbers $\NN = \{ [n]\,|\, n\in\N\}$, indexed by their cardinality via $\n : \NN \to \N$.   The polynomial endofunctor $$\alg{P}_\n : \Set \to \Set$$ is therefore:
 \begin{align*}
@@ -1189,7 +1190,7 @@ Because $\n : \NN \to \N$ is injective, the diagonal on the left below is an iso
 This algebra therefore has \emph{extensional} $\mathsf{Eq}$-types. 
 It follows that the internal (weak) groupoid $\mathsf{Equiv} \tto \N$ constructed in \eqref{diag:univalence3} is the skeleton of the groupoid of finite sets and bijections, the sum of the finite symmetric groups $\coprod_n\Sigma_n\to\N$. 
 
-The bicategory $\Set/\!/_\N$ has as objects maps $\alpha: X\to \N$, classifying canonical families  $a :A \to \N$ with finite fibers and a chosen pullback square:
+The bicategory $\Set/\!/_\N$ has as objects, maps $\alpha: X\to \N$ classifying canonical families  $a :A \to X$ with finite fibers and a chosen pullback square:
 \begin{equation}\label{eq:classifiedfamiliesN}
 \begin{tikzcd}
 	 A \ar[d, swap, "a"] \pbcorner \ar[r, "\dot{\alpha}"] & \NN \ar[d, "\n"] \\  
@@ -1213,10 +1214,10 @@ Under the superior approach of Remark \ref{remark:Anel}, in this case we \emph{d
  X \ar[r, equals] & X \ar[r,swap, "{f}"] &  Y
  \end{tikzcd}
  \end{equation}
-with a pullback of canonical families of finite sets (as in the previous case) on the right, and an isomorphism over $X$ on the left.  Composition of such 1-cells is now strictly associative because $\mathsf{Aut}_X(A)$ is an actual group.  Since the outer rectangle of \eqref{diag:new1cells2ex} is still a pullback, it determines a \emph{cartesian} natural transformation of polynomial functors $\alg{P}_a \to \alg{P}_b$. 
+with a pullback of canonical families of finite sets (as in the previous case) on the right, and an isomorphism over $X$ on the left.  Composition of such 1-cells is now strictly associative because the core of $\Set/_X$ is a groupoid.  Since the outer rectangle of \eqref{diag:new1cells2ex} is still a pullback, it determines a \emph{cartesian} natural transformation of polynomial functors $\alg{P}_a \to \alg{P}_b$. 
 %determines a pseudomonad and a pseudoalgebra in the category 
 %$\mathsf{PolyFun}(\EE, \EE)_\mathsf{cart} \mono 
-In this case, we therefore have an equivalence 
+In this case, we therefore have an equivalence
 \[
 \Set\widetilde{/\!/}_\N\ \simeq\ \mathsf{PolyFun}_\N(\EE)_{\mathsf{cart}}
 \]
