@@ -723,7 +723,7 @@ x: A \vdash \mathsf{J}_c(\rho x) = c(x) : C(\rho x)
 \]
 then says exactly that $\mathsf{J}$ is indeed a section of the comparison map \eqref{def:wps}.
 
-\begin{proposition}[R.\ Garner]\label{prop:Id-typesfromML} A natural model $\t : \TT \to \T$ models intensional \emph{identity types} just if there are maps $(\mathsf{i}, \Id)$ making the diagram \eqref{diag:Idtypes} commute, together with a weak pullback structure $\mathsf{J}$ for the resulting comparison square \eqref{diag:prod3}.
+\begin{proposition}[R.\ Garner]\label{prop:Id-typesfromML}  A natural model $\t : \TT \to \T$ satisfies the rules for intensional identity types just if the map $\t : \TT \to \T$ \emph{models} the same in the sense of Definition \ref{def:identitytype}: there are maps $(\mathsf{i}, \Id)$ making the diagram \eqref{diag:Idtypes} commute, together with a weak pullback structure $\mathsf{J}$ for the resulting comparison square \eqref{diag:prod3}.
 \end{proposition}
 
 The proposition clearly generalizes to arbitrary ML-algebras.
@@ -871,7 +871,7 @@ While the equations of objects in the right-hand column will not in general hold
 
 In order to capture this apparently missing higher dimension of structure, in \cite{Newstead:thesis, NA:2018} the monoidal 1-category $\mathsf{PolyFun}(\EE, \EE)_{\mathsf{cart}}$ of endofunctors and cartesian natural transformations was enriched to a bicategory by defining certain 2-cells between the natural transformations, in such a way that $(\tau, \sigma)$ becomes a \emph{pseudo}-monad and $\pi$ a \emph{pseudo}-algebra.  The result was not entirely satisfactory, however, as the top dimension of structure was essentially codiscrete, so that the monad and algebra laws were not distinguished among all 2-cells between the particular parallel 1-cells in question.
 
-Here we shall take a different approach, restricting the 0-cells $f, g$ that can occur in \eqref{diag:cartsquare} (and the corresponding polynomial endofunctors $\alg{P}_f, \alg{P}_g$) to maps that are  \emph{classified} by an assumed ML-algebra $\t:\TT \to \T$ with $\Id{}$-types, as defined in Section \ref{sec:Eq and Id}. We then using the latter to determine a notion of 2-cell between parallel cartesian squares (and thus between parallel natural transformations), thus promoting the 1-categories of $\EE^{\downarrow}_{\mathsf{cart}}$ and $\mathsf{PolyFun}(\EE, \EE)_{\mathsf{cart}}$ (over $\T$) to bicategories, in such a way that the ``type equivalences'' \eqref{typeisos} do arise from corresponding pseudomonad and pseudoalgebra structures in a non-trivial way.
+Here we shall take a different approach, restricting the 0-cells $f, g$ that can occur in \eqref{diag:cartsquare} (and the corresponding polynomial endofunctors $\alg{P}_f, \alg{P}_g$) to maps that are  \emph{classified} by an assumed ML-algebra $\t:\TT \to \T$ with $\Id{}$-types, as defined in Section \ref{sec:Eq and Id}. We then use the latter to determine a notion of 2-cell between parallel cartesian squares (and thus between parallel natural transformations), thus promoting the 1-categories of $\EE^{\downarrow}_{\mathsf{cart}}$ and $\mathsf{PolyFun}(\EE, \EE)_{\mathsf{cart}}$ (over $\T$) to bicategories, in such a way that the ``type equivalences'' \eqref{typeisos} do arise from corresponding pseudomonad and pseudoalgebra structures in a non-trivial way.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Classification}\label{sec:classify}
