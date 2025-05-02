@@ -984,7 +984,7 @@ A \ar[rd] \ar[r, "{\simeq}"] \ar[rru, dotted] & B \ar[d] \ar[rru, crossing over,
  \end{equation}
 The correspondence is natural in $X$, because it is mediated by pulling back a universal instance.  
 
-The structure $\mathsf{Equiv} \to \T \times \T$ is an internal graph in $\EE$, and comes with a reflexivity $\T \to \mathsf{Equiv}$, symmetry $\mathsf{Equiv} \to \mathsf{Equiv}$ and transitivity $\mathsf{Equiv}\times_\T \mathsf{Equiv} \to \mathsf{Equiv}$ over $\T$ in virtue of the identity types and the nature of type equivalences; it could be shown to be an internal ``weak groupoid'' in a suitable sense that we shall not pause to specify.  Its purpose here is merely to endow the category $\EE/_\T$ of classified types $\alpha : X \to \T$ with higher-dimensional structure by ``homming in'', as explained in the introduction. 
+The structure $\mathsf{Equiv} \tto \T $ is an internal graph in $\EE$ that comes with a reflexivity $\T \to \mathsf{Equiv}$, symmetry $\mathsf{Equiv} \to \mathsf{Equiv}$ and transitivity $\mathsf{Equiv}\times_\T \mathsf{Equiv} \to \mathsf{Equiv}$ over $\T$ in virtue of the identity types and the resulting nature of type equivalences; it could be shown to be an internal ``weak groupoid'' in a suitable sense that we will not pause to specify.  Its purpose here is merely to endow the category $\EE/_\T$ of classified types $\alpha : X \to \T$ with higher-dimensional structure by ``homming in'', as explained in the introduction. 
 
 The property of a map $e : A \to B$ of being an equivalence of types (over a base $X$) is independent of the choice of classifying maps of $A$ and $B$, in the following sense.
 \begin{lemma}\label{lemma:equivinvariance}
@@ -1188,7 +1188,7 @@ Because $\n : \NN \to \N$ is injective, the diagonal on the left below is an iso
  \end{tikzcd}\qquad \qquad 
  \end{equation*}
 This algebra therefore has \emph{extensional} $\mathsf{Eq}$-types. 
-It follows that the internal (weak) groupoid $\mathsf{Equiv} \tto \N$ constructed in \eqref{diag:univalence3} is the skeleton of the groupoid of finite sets and bijections, the sum of the finite symmetric groups $\coprod_n\Sigma_n\to\N$. 
+It follows that the internal (weak) groupoid $\mathsf{Equiv} \tto \N$ constructed in \eqref{diag:univalence3} is an actual groupoid, namely the skeleton of the groupoid of finite sets and bijections, the sum of the finite symmetric groups $\coprod_n\Sigma_n\to\N$. 
 
 The bicategory $\Set/\!/_\N$ has as objects, maps $\alpha: X\to \N$ classifying canonical families  $a :A \to X$ with finite fibers and a chosen pullback square:
 \begin{equation}\label{eq:classifiedfamiliesN}
@@ -1214,7 +1214,7 @@ Under the superior approach of Remark \ref{remark:Anel}, in this case we \emph{d
  X \ar[r, equals] & X \ar[r,swap, "{f}"] &  Y
  \end{tikzcd}
  \end{equation}
-with a pullback of canonical families of finite sets (as in the previous case) on the right, and an isomorphism over $X$ on the left.  Composition of such 1-cells is now strictly associative because the core of $\Set/_X$ is a groupoid.  Since the outer rectangle of \eqref{diag:new1cells2ex} is still a pullback, it determines a \emph{cartesian} natural transformation of polynomial functors $\alg{P}_a \to \alg{P}_b$. 
+with a pullback of canonical families of finite sets (as in the previous case) on the right, and an isomorphism over $X$ on the left.  Composition of such 1-cells is now strictly associative, essentially because $\mathsf{Equiv} \tto \N$ is now a groupoid, as explained above.  Since the outer rectangle of \eqref{diag:new1cells2ex} is still a pullback, it determines a \emph{cartesian} natural transformation of polynomial functors $\alg{P}_a \to \alg{P}_b$. 
 %determines a pseudomonad and a pseudoalgebra in the category 
 %$\mathsf{PolyFun}(\EE, \EE)_\mathsf{cart} \mono 
 In this case, we therefore have an equivalence
