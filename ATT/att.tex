@@ -217,14 +217,19 @@ One of the most beautiful aspects of the book \emph{Introduction to Higher-Order
 \[
 \mathsf{Sub}(X) \cong \Hom_{\EE}(X, \Omega)\,.
 \]
-The various logical operations on formulas $\varphi(x) : X \to \Omega$, which determine subobjects $$\{x:X\, |\, \varphi(x)\} \mono X\,,$$ are represented by operations on $\Omega$ such as conjunction $\wedge : \Omega \times \Omega \to \Omega$.  Thus given two ``propositional functions'' $\varphi(x), \psi(x) : X \to \Omega$ we obtain their conjunction $\varphi(x)\wedge\psi(x) : X \to \Omega$ simply by (pairing and) composing,
+The logical operations on subobjects $\{x\,|\, \varphi(x)\} \mono X$, represented by formulas $\varphi(x) : X \to \Omega$, are themselves represented by operations on $\Omega$, such as conjunction $\wedge : \Omega \times \Omega \to \Omega$.  Thus given two subobjects $$\{x\,|\, \varphi(x)\} ,  \{x\,|\, \psi(x)\} \mono X $$ 
+represented by ``propositional functions'' $\varphi(x), \psi(x) : X \to \Omega$, we obtain the meet $\{x\,|\, \varphi(x)\}\cap \{x\,|\, \psi(x)\} \mono X $ from the conjunction $\varphi(x)\wedge\psi(x) : X \to \Omega$ as 
+\[
+\{x\,|\, \varphi(x)\}\cap \{x\,|\, \psi(x)\} = \{x\,|\, \varphi(x) \wedge \psi(x)\} \,.
+\]
+But the conjunction arises simply by (pairing and) composing:
 \begin{equation*}
 \begin{tikzcd}
  X \ar[rr, "{\langle \varphi(x), \psi(x) \rangle}" ] \ar[rrd,swap,  "\varphi(x)\wedge\psi(x)"] && \Omega \times \Omega \ar[d, "\wedge"] \\
  && \Omega 
 \end{tikzcd}
 \end{equation*}
-It follows immediately that the operation $[t(y)/x]$ of substitution of a term $t(y) : Y\to X$ for the variable $x$ respects the operation $\wedge$, just by the associativity of composition:
+The operation $\varphi(x)[t(y)/x] = \varphi(t(y))$ of substitution of a term $t(y) : Y\to X$ for the variable $x$ necessarily respects the operation $\wedge$, just by the associativity of composition:
 \begin{align*}
 (\varphi(x)\wedge\psi(x))[t(y)/x] &= (\wedge \circ \langle \varphi(x), \psi(x) \rangle) \circ t(y)\\
 &= \wedge \circ (\langle \varphi(x), \psi(x) \rangle \circ t(y))\\
@@ -232,30 +237,32 @@ It follows immediately that the operation $[t(y)/x]$ of substitution of a term $
 &=  \wedge \circ  \langle \varphi(t(y)), \psi(t(y))\rangle \\
 &=  \varphi(t(y))\wedge\psi(t(y)) 
 \end{align*}
-This not only holds for all of the propositional operations $\vee, \Rightarrow,$ etc., but also results in the Beck-Chevalley condition for the quantifiers $\forall$ and $\exists$, 
+It follows that the corresponding meet operation $\cap$ on subobjects also respects substitution, which is interpreted by pullback of subobjects.
+The same thing holds for all of the propositional operations $\vee, \Rightarrow,$ etc., and also results in the Beck-Chevalley condition for the quantifiers $\forall$ and $\exists$, e.g.\
 \begin{align*}
 (\forall z .\vartheta(x,z))[t(y)/x] &= (\forall z .\vartheta(x,z))\circ t(y) \\
 &= (\forall z \circ \vartheta(x,\hat{z}))\circ t(y)\\
 &= \forall z \circ (\vartheta(x,\hat{z})\circ t(y))\\
 &= \forall z \circ \vartheta(t(y),\hat{z})\\
-&= \forall z .\vartheta(t(y),z)\,.
+&= \forall z .\vartheta(t(y),z)\,,
 \end{align*}
-Again, this holds in virtue of the universal quantifier $\forall z$ being represented by a map on $\Omega$, namely $\forall_z : \Omega^{Z} \to \Omega$, with which we simply compose (this time after an exponential transposition).
+in virtue of the universal quantifier $\forall z$ being represented by a map on $\Omega$, namely $\forall_z : \Omega^{Z} \to \Omega$, with which we simply compose (this time after an exponential transposition).
 \begin{equation}\label{diag:BCforQ}
 \begin{tikzcd}
  X \ar[rr, "{\vartheta(x,\hat{z})}" ] \ar[rrd,swap,  "{\forall z. \vartheta(x,z)}"] && \Omega^{Z} \ar[d, "{\forall z}"] \\
  && \Omega
 \end{tikzcd}
 \end{equation}
+Again, the corresponding equations then hold also for the subobjects.
 
-The idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are actually represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal algebra $\Omega$ --- combined with some basic $\lambda$-calculus, enabling higher types constructed from $\Omega$.  This, in a nut shell, is what permits the lovely algebraic formulation of even higher-order logic in \cite{LS:1988}.  
+The general idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are actually represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal algebra $\Omega$ --- combined with some basic $\lambda$-calculus, enabling higher types constructed from $\Omega$.  This, in a nut shell, is what permits the lovely algebraic formulation of even higher-order logic in \cite{LS:1988}.  
 
 \subsection*{Martin-L\"of algebras.} One of the motivations for the present work was to apply this same approach to \emph{dependent type theory} in place of predicate logic, by determining a suitable algebraic gadget $\U$ in place of $\Omega$, representing the \emph{presheaf of types}, rather than the presheaf of subobjects.  In fibrational terms, over the category $\CC$ of contexts of variables, we would like a representing object $\UU \to \U$ for the \emph{codomain fibration} $\CC^\downarrow \epi \CC$, rather than the object $1\mono \Omega$ representing the fibration of subobjects.  Unlike the presheaf, or discrete fibration, of subobjects, however, which is (at best) poset valued, the pseudofunctor of slice categories $\CC/_{\!(-)} : \op{\CC} \to \mathsf{Cat}$ cannot be representable, even in the weaker sense of a natural equivalence of indexed categories,
 \[
 \CC/_{X}\, \simeq\, \Hom_{\CC}(X, \U)\,.
 \]
 
-There are really two different problems here: size and coherence.  We solve both simultaneously by taking $\UU \to \U$ to be a full internal subcategory (with additional structure) in the category $\EE = \widehat{\CC}$ of presheaves over $\CC$, essentially by splitting the codomain fibration as in \cite{Lums-Warren}.  Whatever one may think of this solution, it is of obvious interest to determine what algebraic structure on $\UU \to \U$ will serve to model dependent type theory. And we know how to determine the answer: by Yoneda!  We call the resulting gadget a \emph{Martin-L\"of algebra} (``ML-algebra'' for short), and it has a remarkably simple description as an algebra for a polynomial monad, giving a complete answer to our question (Theorem \ref{thm:nmcwf}).
+There are really two different problems here: size and coherence of (possibly higher) structure.  We solve both simultaneously by taking $\UU \to \U$ to be a full internal subcategory (with additional structure) in the category $\EE = \widehat{\CC}$ of presheaves over $\CC$, essentially by splitting the codomain fibration as in \cite{Lums-Warren}.  Whatever one may think of this solution, it is of obvious interest to determine what algebraic structure on $\UU \to \U$ will serve to model dependent type theory. And we know how to determine the answer: by Yoneda!  We call the resulting gadget a \emph{Martin-L\"of algebra} (``ML-algebra'' for short), and it has a remarkably simple description as an algebra for a polynomial monad, giving a complete answer to our question (Theorem \ref{thm:nmcwf}).
 
 The polynomial endofunctor in question $\alg{P}_\t : \EE \to \EE$  is that of the algebra $\u:\UU \to \U$, which therefore has the form
 \[
@@ -1188,7 +1195,7 @@ Because $\n : \NN \to \N$ is injective, the diagonal on the left below is an iso
  \end{tikzcd}\qquad \qquad 
  \end{equation*}
 This algebra therefore has \emph{extensional} $\mathsf{Eq}$-types. 
-It follows that the internal (weak) groupoid $\mathsf{Equiv} \tto \N$ constructed in \eqref{diag:univalence3} is an actual groupoid, namely the skeleton of the groupoid of finite sets and bijections, the sum of the finite symmetric groups $\coprod_n\Sigma_n\to\N$. 
+It follows that the internal (weak) groupoid $\mathsf{Equiv} \tto \N$ constructed in \eqref{diag:univalence3} is an actual groupoid, namely the skeleton of the groupoid of finite sets and bijections, the coproduct of the finite symmetric groups $\coprod_n\Sigma_n\to\N$. 
 
 The bicategory $\Set/\!/_\N$ has as objects, maps $\alpha: X\to \N$ classifying canonical families  $a :A \to X$ with finite fibers and a chosen pullback square:
 \begin{equation}\label{eq:classifiedfamiliesN}
@@ -1199,22 +1206,21 @@ The bicategory $\Set/\!/_\N$ has as objects, maps $\alpha: X\to \N$ classifying 
  \end{equation}
  The 1-cells are maps $f : X\to Y$ commuting over $\N$.  A 2-cell between parallel such maps $f, g : \alpha \tto \beta$ as declared in Definition \ref{def:2cells} and used in Theorem \ref{thm:MLAlgbicat} is then a triple $(\vartheta, f, g)$ with $\vartheta : A \cong A$ an automorphism commuting with $a : A \to X$. 
 
-Under the superior approach of Remark \ref{remark:Anel}, in this case we \emph{do} have an actual 1-category $\Set\widetilde{/\!/}_\N$ with the same objects as $\Set/_\N$, but now with more 1-cells, namely of the form 
-%$(f, \varphi) : \alpha \to \beta$ with $f : X \to Y$ and $\varphi : \alpha \simeq \beta f$.
-%\begin{equation}\label{diag:new1cellsex}
-%\begin{tikzcd}
-%X \ar[r,swap,swap, "{f}"] \ar[rd,swap, "\alpha"] \ar[dr, "{\stackrel{\varphi}{\simeq}}"]&  Y \ar[d, "\beta"] \\
-%& \T
-%\end{tikzcd}
-%\end{equation}
-%These correspond to commutative diagrams,
+Under the superior approach of Remark \ref{remark:Anel}, in this case we \emph{do} have an actual 1-category $\Set\widetilde{/\!/}_\N$ with the same objects as $\Set/_\N$, but with 1-cells of the form 
+\begin{equation}\label{diag:new1cells3ex}
+\begin{tikzcd}
+X \ar[r,swap,swap, "{f}"] \ar[rd,swap, "\alpha"] \ar[dr, "{\stackrel{\varphi}{\simeq}}"]&  Y \ar[d, "\beta"] \\
+& \T
+\end{tikzcd}
+\end{equation}
+corresponding to commutative diagrams,
 \begin{equation}\label{diag:new1cells2ex}
 \begin{tikzcd}
  A \ar[r, "{\varphi}"] \ar[r,swap, "{\cong}"] \ar[d,swap, "a"] & A' \ar[d, swap, "a'"]  \ar[r, "{\dot{f}}"]   \pbcorner & B \ar[d, "b"] \\  
  X \ar[r, equals] & X \ar[r,swap, "{f}"] &  Y
  \end{tikzcd}
  \end{equation}
-with a pullback of canonical families of finite sets (as in the previous case) on the right, and an isomorphism over $X$ on the left.  Composition of such 1-cells is now strictly associative, essentially because $\mathsf{Equiv} \tto \N$ is now a groupoid, as explained above.  Since the outer rectangle of \eqref{diag:new1cells2ex} is still a pullback, it determines a \emph{cartesian} natural transformation of polynomial functors $\alg{P}_a \to \alg{P}_b$. 
+with a pullback of canonical families of finite sets (as in the previous case) on the right, and an isomorphism over $X$ on the left.  Composition of such 1-cells is now strictly associative, because $\mathsf{Equiv} = \coprod_n\Sigma_n\tto \N$ is now a groupoid, as explained above.  Since the outer rectangle of \eqref{diag:new1cells2ex} is still a pullback, it determines a \emph{cartesian} natural transformation of polynomial functors $\alg{P}_a \to \alg{P}_b$. 
 %determines a pseudomonad and a pseudoalgebra in the category 
 %$\mathsf{PolyFun}(\EE, \EE)_\mathsf{cart} \mono 
 In this case, we therefore have an equivalence
