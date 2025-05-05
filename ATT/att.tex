@@ -6,7 +6,7 @@
 \documentclass[12pt,reqno]{amsart}
 \usepackage{amsmath,amssymb,amsthm,latexsym}
 %\usepackage{MnSymbol}
-%\usepackage{palatino}
+\usepackage{palatino}
 \usepackage{bm,bbm}
 \usepackage[all,cmtip]{xy}
 \input{diagxy}
@@ -217,8 +217,7 @@ One of the most beautiful aspects of the book \emph{Introduction to Higher-Order
 \[
 \mathsf{Sub}(X) \cong \Hom_{\EE}(X, \Omega)\,.
 \]
-The logical operations on subobjects $\{x\,|\, \varphi(x)\} \mono X$, represented by formulas $\varphi(x) : X \to \Omega$, are themselves represented by operations on $\Omega$, such as conjunction $\wedge : \Omega \times \Omega \to \Omega$.  Thus given two subobjects $$\{x\,|\, \varphi(x)\} ,  \{x\,|\, \psi(x)\} \mono X $$ 
-represented by ``propositional functions'' $\varphi(x), \psi(x) : X \to \Omega$, we obtain the meet $\{x\,|\, \varphi(x)\}\cap \{x\,|\, \psi(x)\} \mono X $ from the conjunction $\varphi(x)\wedge\psi(x) : X \to \Omega$ as 
+The logical operations on subobjects $\{x\,|\, \varphi(x)\} \mono X$, represented by formulas $\varphi(x) : X \to \Omega$, are themselves represented by operations on $\Omega$, such as conjunction $\wedge : \Omega \times \Omega \to \Omega$.  Thus given two ``propositional functions'' $\varphi(x), \psi(x) : X \to \Omega$ we obtain the meet of their subobjects $\{x\,|\, \varphi(x)\}\cap \{x\,|\, \psi(x)\}$ from the conjunction $\varphi(x)\wedge\psi(x)$ as 
 \[
 \{x\,|\, \varphi(x)\}\cap \{x\,|\, \psi(x)\} = \{x\,|\, \varphi(x) \wedge \psi(x)\} \,.
 \]
@@ -255,14 +254,14 @@ in virtue of the universal quantifier $\forall z$ being represented by a map on 
 \end{equation}
 Again, the corresponding equations then hold also for the subobjects.
 
-The general idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are actually represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal algebra $\Omega$ --- combined with some basic $\lambda$-calculus, enabling higher types constructed from $\Omega$.  This, in a nut shell, is what permits the lovely algebraic formulation of even higher-order logic in \cite{LS:1988}.  
+The general idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal \emph{complete Heyting algebra} $\Omega$ --- combined with some basic $\lambda$-calculus, enabling higher types constructed from $\Omega$.  This, in a nut shell, is what permits the lovely algebraic formulation of even higher-order logic in \cite{LS:1988}.  
 
-\subsection*{Martin-L\"of algebras.} One of the motivations for the present work was to apply this same approach to \emph{dependent type theory} in place of predicate logic, by determining a suitable algebraic gadget $\U$ in place of $\Omega$, representing the \emph{presheaf of types}, rather than the presheaf of subobjects.  In fibrational terms, over the category $\CC$ of contexts of variables, we would like a representing object $\UU \to \U$ for the \emph{codomain fibration} $\CC^\downarrow \epi \CC$, rather than the object $1\mono \Omega$ representing the fibration of subobjects.  Unlike the presheaf, or discrete fibration, of subobjects, however, which is (at best) poset valued, the pseudofunctor of slice categories $\CC/_{\!(-)} : \op{\CC} \to \mathsf{Cat}$ cannot be representable, even in the weaker sense of a natural equivalence of indexed categories,
+\subsection*{Martin-L\"of algebras.} One of the motivations for the present work was to apply this same approach to \emph{dependent type theory} in place of predicate logic, by determining a suitable algebraic gadget $\U$ in place of $\Omega$, representing the \emph{presheaf of types}, rather than the presheaf of subobjects.  In fibrational terms, over the category $\CC$ of contexts of variables, we would like a representing object $\UU \to \U$ for the \emph{codomain fibration} $\CC^\downarrow \epi \CC$, rather than the object $1\mono \Omega$ representing the fibration of subobjects.  Unlike the discrete fibration, or presheaf $\mathsf{Sub} : \op{\CC} \to \Set$, of subobjects, however, which is (at best) poset valued, the pseudofunctor of slice categories $\CC/_{\!(-)} : \op{\CC} \to \mathsf{Cat}$ cannot be representable, even in the weaker sense of a natural equivalence of indexed categories,
 \[
 \CC/_{X}\, \simeq\, \Hom_{\CC}(X, \U)\,.
 \]
 
-There are really two different problems here: size and coherence of (possibly higher) structure.  We solve both simultaneously by taking $\UU \to \U$ to be a full internal subcategory (with additional structure) in the category $\EE = \widehat{\CC}$ of presheaves over $\CC$, essentially by splitting the codomain fibration as in \cite{Lums-Warren}.  Whatever one may think of this solution, it is of obvious interest to determine what algebraic structure on $\UU \to \U$ will serve to model dependent type theory. And we know how to determine the answer: by Yoneda!  We call the resulting gadget a \emph{Martin-L\"of algebra} (``ML-algebra'' for short), and it has a remarkably simple description as an algebra for a polynomial monad, giving a complete answer to our question (Theorem \ref{thm:nmcwf}).
+There are really two different problems here: size and coherence of structure.  We solve both simultaneously by taking $\UU \to \U$ to be a full internal subcategory (with suitable additional structure) in the category $\EE = \widehat{\CC}$ of presheaves over $\CC$, essentially by splitting the codomain fibration as in \cite{Lums-Warren}.  Whatever one may think of this solution, it is of obvious interest to determine what additional algebraic structure on $\UU \to \U$ will serve to model dependent type theory. And we know how to determine the answer: by Yoneda!  We call the resulting gadget a \emph{Martin-L\"of algebra} (``ML-algebra'' for short), and it has a remarkably simple description as an algebra for a polynomial monad, giving a complete answer to our question (Theorem \ref{thm:nmcwf}).
 
 The polynomial endofunctor in question $\alg{P}_\t : \EE \to \EE$  is that of the algebra $\u:\UU \to \U$, which therefore has the form
 \[
@@ -1150,9 +1149,9 @@ If the ML-algebra $\T$ is itself a universe type $\T : \T_1$ in a larger algebra
  \[\tag{UA}
  \ (A =_\T B) \, \simeq\, (A \simeq B)
  \]
-The interpretation of univalence thus requires a universe $\T$ with $1, \Sigma, \Pi, \Id{}$ (in order to define $A\simeq B$), inside a larger universe $\T:\T_1$ also with $1, \Sigma, \Pi, \Id{}$ (to have the family $A =_\T B$ and state the central equivalence in UA). The operations on the larger universe are usually required to restrict to the corresponding ones on the smaller universe.  
+The interpretation of univalence thus requires a universe $\T$ with $1, \Sigma, \Pi, \Id{}$ (in order to define $A\simeq B$), inside a larger universe $\T:\T_1$ also with $1, \Sigma, \Pi, \Id{}$ (to have the family $A =_\T B$ and state the central equivalence in UA). The operations on the larger universe are usually required to restrict to the corresponding ones on the smaller universe.   
 
-When univalence is available, the monad and algebra laws become (internal) identities, rather than type equivalences.  This appears to be related to the approach recently taken in \cite{AberleSpivak:2024}.
+Of course, the same situation could also be described as a single univalent universe $\T$ with $1, \Sigma, \Pi, \Id{}$ in a (higher) category with $\Id{}$, etc.  When univalence is available, the monad and algebra laws become (internal) identities, rather than type equivalences.  This appears to be related to the approach recently taken in \cite{AberleSpivak:2024}.
 \end{remark}
 
 \begin{example}
