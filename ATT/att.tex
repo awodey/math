@@ -1,6 +1,5 @@
 %%
-% Notes on Algebraic Type Theory
-% begun July 2023
+% Algebraic Type Theory
 %%
 %\documentclass[12pt]{article}
 \documentclass[12pt,reqno]{amsart}
@@ -228,7 +227,7 @@ The conjunction arises simply by (pairing and) composing:
  && \Omega 
 \end{tikzcd}
 \end{equation*}
-It follows that the operation $\varphi(x)[t(y)/x] = \varphi(t(y))$ of substitution of a term $t(y) : Y\to X$ for the variable $x$ necessarily respects  conjunction, just by the associativity of composition:
+It follows immediately that the operation $\varphi(x)[t(y)/x] = \varphi(t(y))$ of substitution of a term $t(y) : Y\to X$ for the variable $x$ necessarily respects conjunction, just by the associativity of composition:
 \begin{align*}
 (\varphi(x)\wedge\psi(x))[t(y)/x] &= (\wedge \circ \langle \varphi(x), \psi(x) \rangle) \circ t(y)\\
 &= \wedge \circ (\langle \varphi(x), \psi(x) \rangle \circ t(y))\\
@@ -236,9 +235,9 @@ It follows that the operation $\varphi(x)[t(y)/x] = \varphi(t(y))$ of substituti
 &=  \wedge \circ  \langle \varphi(t(y)), \psi(t(y))\rangle \\
 &=  \varphi(t(y))\wedge\psi(t(y)) 
 \end{align*}
-It follows that the corresponding meet operation $\cap$ on subobjects also respects substitution, which is interpreted by pullback of subobjects.
+It therefore also follows that the corresponding meet operation $\cap$ on subobjects also respects substitution, which is interpreted by pullback of subobjects.
 
-The same thing holds for all of the propositional operations $\vee, \Rightarrow,$ etc.  And it also results in the Beck-Chevalley condition for the quantifiers $\forall$ and $\exists$, e.g.\
+The same thing holds for the other propositional operations $\top$, $\bot$, $\neg$, $\vee$, $\Rightarrow$, $\Leftrightarrow$, which are also representable.  Moreover, representability also implies the Beck-Chevalley condition for the quantifiers $\forall$ and $\exists$; e.g.\
 \begin{align*}
 (\forall z .\vartheta(x,z))[t(y)/x] &= (\forall z .\vartheta(x,z))\circ t(y) \\
 &= (\forall z \circ \vartheta(x,\hat{z}))\circ t(y)\\
@@ -253,7 +252,7 @@ in virtue of the universal quantifier $\forall z$ also being represented by a ma
  && \Omega
 \end{tikzcd}
 \end{equation}
-Again, the corresponding equations then hold also for the subobjects classified.
+Again, the corresponding equations then also hold for the classified subobjects.
 
 The general idea is that, because they are natural in the context of variables~$X$, the logical operations on subobjects are represented by ``homming in'' to an algebra of propositions $\Omega$ (by Yoneda, of course). And since they are then just pointwise operations on propositional functions $\varphi(x) : X \to \Omega$, they automatically respect substitutions of terms $t(y): Y \to X$  into the context of variables.  In this way,  the internal logic of a topos arises almost entirely from homming into the internal \emph{complete Heyting algebra} $\Omega$ --- combined with some basic $\lambda$-calculus, enabling higher types constructed from $\Omega$.  This, in a nut shell, is what permits the lovely algebraic formulation of even higher-order logic in \cite{LS:1988}.  
 
@@ -262,7 +261,7 @@ The general idea is that, because they are natural in the context of variables~$
 \CC/_{X}\, \simeq\, \Hom_{\CC}(X, \U)\,.
 \]
 
-There are really two different problems here: size and coherence of structure.  We solve both simultaneously by taking $\UU \to \U$ to be a full internal subcategory (with suitable additional structure) in the category $\EE = \widehat{\CC}$ of presheaves over $\CC$, essentially by splitting the codomain fibration as in \cite{Lums-Warren}.  Whatever one may think of this solution, it is of obvious interest to determine what additional algebraic structure on $\UU \to \U$ will serve to model dependent type theory. And we know how to find the answer: by Yoneda!  We call the resulting gadget a \emph{Martin-L\"of algebra} (``ML-algebra'' for short), and it has a remarkably simple description as an algebra for a polynomial monad, giving a complete answer to our question (Theorem \ref{thm:nmcwf}).
+There are really two different problems here: size and coherence of structure.  We solve both simultaneously by taking $\UU \to \U$ to determine a full internal subcategory (with suitable additional structure) in the category $\EE = \widehat{\CC}$ of presheaves over $\CC$, splitting the codomain fibration as in \cite{Lums-Warren}.  Whatever one may think of this solution, it is of obvious interest to determine what additional algebraic structure on $\UU \to \U$ will serve to model dependent type theory. And we know how to find the answer: by Yoneda!  We call the resulting gadget a \emph{Martin-L\"of algebra} (``ML-algebra'' for short), and it has a remarkably simple description as an algebra for a polynomial monad, giving a complete answer to our question (Theorem \ref{thm:nmcwf}).
 
 The polynomial endofunctor in question $\alg{P}_\t : \EE \to \EE$  is that of the algebra $\u:\UU \to \U$, which therefore has the form
 \[
@@ -1262,7 +1261,154 @@ with the 1-category of polynomial functors with finite fibers and cartesian natu
 Fiore, Nicola Gambino, Richard Garner, and Clive Newstead for ideas and advice.  This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
 
 \bibliographystyle{alpha}
-\bibliography{../Bib/catlog.bib}
+%\bibliography{../Bib/catlog.bib}
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{ACH{\etalchar{+}}25}
+
+\bibitem[ACH{\etalchar{+}}25]{HoTTLean}
+Steve Awodey, Mario Carneiro, Sina Hazratpour, Joseph Hua, Wojciech Nawrocki,
+  and Spencer Woolfson.
+\newblock {H}o{TTL}ean: Formalizing the meta-theory of {H}o{TT} in {L}ean,
+  2025.
+\newblock \url{https://sinhp.github.io/groupoid_model_in_lean4}.
+
+\bibitem[AGH24]{AGH}
+S.~Awodey, N.~Gambino, and S.~Hazratpour.
+\newblock {K}ripke-{J}oyal forcing for type theory and uniform fibrations.
+\newblock {\em Selecta Mathematica}, 30(74), 2024.
+\newblock Preprint available as \url{https://arxiv.org/abs/2110.14576}.
+
+\bibitem[AS24]{AberleSpivak:2024}
+C.B.\ Aberl\'e and David~I.\ Spivak.
+\newblock Polynomial universes and dependent types.
+\newblock arXiv:2409.19176, 2024.
+
+\bibitem[Awo16]{awodey:NM}
+Steve Awodey.
+\newblock Natural models of homotopy type theory.
+\newblock {\em Mathematical Structures in Computer Science}, 28:1--46, 11 2016.
+
+\bibitem[Awo24]{awodey:universes}
+Steve Awodey.
+\newblock On {H}ofmann-{S}treicher universes.
+\newblock {\em Mathematical Structures in Computer Science}, 34:894--910, 2024.
+
+\bibitem[Dyb96]{Dybjer:CWF}
+Peter Dybjer.
+\newblock Internal type theory.
+\newblock {\em LNCS}, 1158:120--134, 1996.
+
+\bibitem[Fio12]{Fiore:2012}
+Marcelo Fiore.
+\newblock Discrete generalised polynomial functors.
+\newblock In A.\ Czumaj, K.\ Mehlhorn, A.\ Pitts, and R.\ Wattenhofer, editors,
+  {\em Automata, Languages, and Programming}, pages 214--226. Springer Berlin
+  Heidelberg, 2012.
+
+\bibitem[GK13]{GambinoKoch:2013}
+Nicola Gambino and Joachim Kock.
+\newblock Polynomial functors and polynomial monads.
+\newblock {\em Mathematical Proceedings of the Cambridge Philosophical
+  Society}, 154(1):153--192, 2013.
+
+\bibitem[Hof94]{Hofmann:1994}
+Martin Hofmann.
+\newblock On the interpretation of type theory in locally cartesian closed
+  categories.
+\newblock {\em Lecture Notes in Computer Science}, 933:427--441, 1994.
+
+\bibitem[HS]{HS:1997}
+Martin Hofmann and Thomas Streicher.
+\newblock Lifting {G}rothendieck universes.
+\newblock unpublished, dated Spring 1997.
+
+\bibitem[HS98]{Hofmann-Streicher}
+Martin Hofmann and Thomas Streicher.
+\newblock The groupoid interpretation of type theory.
+\newblock In {\em Twenty-five years of constructive type theory ({V}enice,
+  1995)}, volume~36 of {\em Oxford Logic Guides}, pages 83--111. Oxford Univ.
+  Press, New York, 1998.
+
+\bibitem[JM95]{JM:AST}
+A.~Joyal and I.~Moerdijk.
+\newblock {\em Algebraic set theory}, volume 220 of {\em London Mathematical
+  Society Lecture Notes}.
+\newblock Cambridge University Press, 1995.
+
+\bibitem[Joh03]{Johnstone:Elephant}
+P.T. Johnstone.
+\newblock {\em Sketches of an Elephant: A Topos Theory Compendium, 2 vol.s}.
+\newblock Number~43 in Oxford Logic Guides. Oxford University Press, 2003.
+
+\bibitem[Joy17]{Joyal:CandT}
+Andr\'e Joyal.
+\newblock Notes on clans and tribes, 2017.
+\newblock unpublished \url{https://arxiv.org/abs/1710.10238}.
+
+\bibitem[KL21]{KL:VV}
+Krzysztof Kapulkin and Peter~Lefanu Lumsdaine.
+\newblock The simplicial model of univalent foundations (after {V}oevodsky).
+\newblock {\em J. Eur. Math. Soc.}, 23(6), 2021.
+
+\bibitem[Lan25]{Fernando}
+Fernando~Larrain Langlois.
+\newblock {\em Dependently-Typed Algebraic Theories}.
+\newblock Ph{D} thesis, Carnegie Mellon University, 2025.
+\newblock (In progress).
+
+\bibitem[Law69]{Lawvere:adjointness}
+F.W. Lawvere.
+\newblock Adjointness in foundations.
+\newblock {\em Dialectica}, 23:281--296, 1969.
+
+\bibitem[LS88]{LS:1988}
+J.~Lambek and P.J. Scott.
+\newblock {\em Introduction to Higher-Order Categorical Logic}.
+\newblock Cambridge, 1988.
+
+\bibitem[Lum09]{Lumsdaine:groupoids}
+Peter~LeFanu Lumsdaine.
+\newblock Weak $\omega$-categories from intensional type theory.
+\newblock In Pierre-Louis Curien, editor, {\em Typed Lambda Calculi and
+  Applications}, pages 172--187, Berlin, Heidelberg, 2009. Springer Berlin
+  Heidelberg.
+
+\bibitem[LW15]{Lums-Warren}
+Peter~Lefanu Lumsdaine and Michael~A. Warren.
+\newblock The local universes model: An overlooked coherence construction for
+  dependent type theories.
+\newblock {\em ACM Trans. Comput. Logic}, 16(3), 2015.
+
+\bibitem[NA18]{NA:2018}
+Clive Newstead and Steve Awodey.
+\newblock Polynomial pseudomonads and dependent type theory.
+\newblock arXiv:1802.00997, 2018.
+
+\bibitem[New18]{Newstead:thesis}
+Clive Newstead.
+\newblock {\em Algebraic models of dependent type theory}.
+\newblock Ph{D} thesis, Carnegie Mellon University, 2018.
+\newblock arXiv:2103.06155.
+
+\bibitem[Sim99]{Simpson:1999}
+A.K. Simpson.
+\newblock Elementary axioms for categories of classes (extended abstract).
+\newblock {\em In 14th Symposium on Logic in Computer Science (Trento, 1999)},
+  1999.
+
+\bibitem[Tay99]{Taylor:PFM}
+Paul Taylor.
+\newblock {\em Practical Foundations of Mathematics}.
+\newblock Cambridge University Press, 1999.
+
+\bibitem[{Uni}13]{HoTTbook}
+The {Univalent Foundations Program}.
+\newblock {\em Homotopy Type Theory: Univalent Foundations of Mathematics}.
+\newblock \url{https://homotopytypetheory.org/book}, Institute for Advanced
+  Study, 2013.
+
+\end{thebibliography}
+
 
 %%%
 \end{document}
