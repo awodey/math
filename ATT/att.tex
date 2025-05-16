@@ -413,16 +413,16 @@ The action of $\alg{P}_\t$ on an object $X$ may be depicted:
 We call $\tT$ the \emph{signature} of $\alg{P}_\t$ and briefly recall the following \emph{universal mapping property} from \cite{awodey:NM}.
 
 \begin{lemma}
- For $p: E \to B$ in a locally cartesian closed category $\EE$ we have the following universal property of the polynomial functor $\alg{P}_\t$. For any objects $X, Z \in \EE$, maps $f : Z \to \alg{P}_p (X)$ correspond bijectively to pairs of maps $f_1 : Z \to B$ and $f_2 : Z\times_B E \to Z$, as indicated below.
+ For $p: E \to B$ in a locally cartesian closed category $\EE$ we have the following universal property of the polynomial functor $\alg{P}_p$\,. For any objects $X, Y \in \EE$, maps $f : Y \to \alg{P}_p (X)$ correspond bijectively to pairs of maps $f_1 : Y \to B$ and $f_2 : Y\times_B E \to X$, as indicated below.
 \begin{equation}\label{diag:polyUMP}
 \begin{tikzcd}
-& Z \ar[rr,"f"] && \alg{P}_p (X) & \\[-5ex]
+& Y \ar[rr,"f"] && \alg{P}_p (X) & \\[-5ex]
 \strut \ar[rrrr, equal] &&&& \strut\\[-5ex]
-&X & \ar[l,"f_2"] Z\times_B E \ar[d] \ar[r] \pbcorner & E \ar[d, "p"] &\\
-&& Z \ar[r,swap,"f_1"] & B &
+&X & \ar[l,"f_2"] Y\times_B E \ar[d] \ar[r] \pbcorner & E \ar[d, "p"] &\\
+&& Y \ar[r,swap,"f_1"] & B &
 \end{tikzcd}
 \end{equation}
-The correspondence is natural in both $X$ and $Z$, in the expected sense.
+The correspondence is natural in both $X$ and $Y$, in the expected sense.
 \end{lemma}
 
 This universal property is also suggested by the conventional type theoretic notation, namely: $$\alg{P}_p (X) = \Sigma_{b:B} X^{E_b}$$
