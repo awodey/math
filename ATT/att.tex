@@ -372,11 +372,9 @@ is modeled by the representability of $\tp : \Tm\to\Ty$ as follows.
 %
 Given $\Gamma\vdash A$ we need a new context $\ext{\G}{A}$ together with a substitution $\pi_A : \ext{\G}{A} \to \G$ and a term 
 \[
-\terms{\ext{\G}{A}}{q_A:A[\pi_A]}\,,
+\terms{\ext{\G}{A}}{q_A:A[\pi_A]}\,.
 \]
-where the substitution $A[\pi_A]$ is modeled by composition $A[\pi_A] = A\circ \pi_A$.
-
-Let $\pi_A: \ext{\G}{A} \to \G$ be the pullback of $\tp$ along $A$, which exists as an arrow in $\CC$ since $\tp$ is representable.
+This models the usual  rule of ``weakening the context'' from $\types{\G}{A}$ to $\terms{\ext{\G}{x:A}}{x:A}$. The substitution $A[\pi_A]$ is given by composition $A[\pi_A] = A\circ \pi_A$, where $\pi_A: \ext{\G}{A} \to \G$ is the pullback of $\tp$ along $A$, which exists as an arrow in $\CC$ since $\tp$ is representable.
 %
 \begin{equation}\label{diag:NMpullback}
 \begin{tikzcd}
@@ -385,7 +383,7 @@ Let $\pi_A: \ext{\G}{A} \to \G$ be the pullback of $\tp$ along $A$, which exists
 \end{tikzcd}
 \end{equation}
 %
-The map $q_A : \ext{\G}{A}\to\Tm$ arising from the pullback gives the required term $\terms{\ext{\G}{A}}{q_A:A[\pi_A]}$ since $\tp\circ q_A = A \circ \pi_A = A[\pi_A]$.
+The map $q_A : \ext{\G}{A}\to\Tm$ arising from the pullback then gives the required term $\terms{\ext{\G}{A}}{q_A:A[\pi_A]}$ since $\tp\circ q_A = A \circ \pi_A = A[\pi_A]$.
 The remaining laws of a CwF follow from the pullback condition on $\eqref{diag:NMpullback}$; see \cite{awodey:NM}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
