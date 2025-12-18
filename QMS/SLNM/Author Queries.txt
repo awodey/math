@@ -1,0 +1,14 @@
+LNM 2385 Author Queries:
+
+- p. vii, AQ1: Should say simply Pittsburgh, USA - no “PA”.
+
+- p. 4, AQ1: should be the following bibitem:
+
+	66. Sattler, C: The equivalence extension property and model structures. 
+	ArXiv:1704.06911 (2017)
+
+- p. 27, AQ1: both entries should again be bibitem 66, as in the previous query.
+
+- p. 95, AQ1: this is again bibitem 66, as previously.
+
+- p. 131, AQ1: update to read (2026, in preparation).
