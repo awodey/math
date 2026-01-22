@@ -1,5 +1,6 @@
 %%
 % Algebraic Type Theory - v.2 with interval and new Id-rule
+% and some corrections added 1/26
 %%
 %\documentclass[12pt]{article}
 \documentclass[12pt,reqno]{amsart}
@@ -731,244 +732,244 @@ then says exactly that $\mathsf{J}$ is indeed a section of the comparison map \e
 
 The proposition clearly generalizes to arbitrary ML-algebras.
 
+%
+% omit the following new section for v2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Identity Types via an Interval}\label{sec:Interval}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Identity Types via an Interval}\label{sec:Interval}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{definition}\label{def:Interval}
-
-By an \emph{interval} in an lccc $\EE$ we simply mean a bipointed object $d_0, d_1:1\rightrightarrows \I$.  In terms of an interval, we then define further:
-\begin{enumerate} 
-\item for every object $A$, a \emph{path-object} factorization of the diagonal $\delta:A \to A\times A$, obtained by exponentiating $A$ by $1\rightrightarrows \I \to 1$, 
-\[\begin{tikzcd}
-	A \ar[r,"\rho"] \ar[rd, swap,"\delta"] & A^\I \ar[d,"{\langle \varepsilon_0, \varepsilon_1\rangle}"]\\
-	& A \times A
- \end{tikzcd} 
-\]
-where we write $\rho = A^{!_\I}$, and $\varepsilon_0 = A^{d_0}$, and $\varepsilon_1 = A^{d_1}$.
-
-\item Similarly, and abusing notation slightly, for any $A\to X$ regarded as an object in the slice category $\EE/_X$, we define the \emph{relative pathobject factorization}
-\[\begin{tikzcd}
-	A \ar[r,"\rho"] \ar[rd, swap,"\delta"] & A^\I \ar[d,"{\langle \varepsilon_0, \varepsilon_1\rangle}"]\\
-	& A \times_{\!X} A
- \end{tikzcd} 
-\]
-to be the pathobject factorization in $\EE/_X$ with respect to the pulled-back interval $1_X \rightrightarrows X^*\I \to 1_X$, where we are using the pullback functor $X^* = {!_X^*} : \EE\to \EE/_X$ along $!_X : X \to 1$.
-\end{enumerate}
-\end{definition}
-   
-\begin{lemma}
-   For any object $A\to X$ over any base $X$, the relative pathobject factorization
-\[\begin{tikzcd}
-	A \ar[r,"\rho"] \ar[rd, swap,"\delta"] & A^\I \ar[d,"{\langle \varepsilon_0, \varepsilon_1\rangle}"]\\
-	& A \times_{\!X} A\,,
- \end{tikzcd} 
-\]
-is stable under pullback along any map $f : Y\to X$, in the sense that the factorization pulls back to the relative pathobject factorization over $Y$ of the pullback $f^*A\to Y$, resulting in a canonical isomorphism over $Y$,
-\[
-(f^*A)^\I \cong f^*(A^\I)\,.
-\]
-   \end{lemma}
-
-
-\begin{definition}\label{def:pathtypes}
-A natural model $\tT$ will be said to \emph{have path types} if there are structure maps $(\mathsf{Id},\mathsf{j})$ making a pullback square,
-\begin{equation}\label{diag:pathtypes}
-\begin{tikzcd}
-	\TT^\I \ar[r,"\mathsf{j}"] \ar[d,swap,"\varepsilon"] &  \TT \ar[d, "\t"]\\  
-	\TT \times_\T \TT \ar[r, swap,"\mathsf{Id}"] & \T
- \end{tikzcd}
- \end{equation}
- where $\varepsilon = \langle \varepsilon_0, \varepsilon_1\rangle :\TT^\I \to \TT \times_\T \TT $ is the relative pathobject of $\tT$ over $\T$.
- \end{definition}
-
-In order to show that a natural model with path types also has intensional Identity types in the sense of Definition \ref{def:identitytype}, we require an additional condition on the map $\tT$, namely that it is a ``Hurewicz fibration'', in the following sense.
-
-\begin{definition}\label{def:Hfibration}
-A map $f: Y\to X$ will be called a \emph{Hurewicz fibration} (with respect to an interval $d_0, d_1:1\rightrightarrows \I$), if it has the right lifting property with respect to every cylinder $Z\times d_0 : Z\times 1\to Z\times \I$.  In detail, given any object $Z$ and maps $y$ and $h$ as indicated below, there exists a diagonal filler $\tilde{h}$ making the following diagram commute.
-\begin{equation}\label{diag:def_HFib}
-\begin{tikzcd}
-Z\times 1\ar[d,swap, "{Z\times d_0}"] \ar[r, "y"] &  {Y} \ar[d, "f"]\\
-Z\times \I \ar[r,swap,"h"]\ar[ru,swap,dotted,"\tilde{h}"]   & {X}
-\end{tikzcd}
-\end{equation}
- \end{definition}
-
-One regards $h : Z\times \I \to X$ as a homotopy between the maps $h_0, h_1 : Z\to X$ obtained by composing it with the two ends of the cylinder  $Z\times 1 \rightrightarrows Z\times \I$, and $\tilde{h} : Z\times \I \to Y$ as a lift of $h$ to the specified $0$-end $y$.
-
- \begin{proposition}
-  A map $f: Y\to X$ is a Hurewicz fibration just if the following diagram is a weak pullback.
- \begin{equation}\label{diag:hfibwpb}
-\begin{tikzcd}
-	Y^\I \ar[d, swap, "{f^\I}"] \ar[r, "{\varepsilon_0}"] & Y \ar[d, "f"] \\  
-	 X^\I \ar[r, swap,"\varepsilon_0"] & X
- \end{tikzcd}
- \end{equation}
- \end{proposition}
- 
- \begin{proof}
- The diagram \eqref{diag:hfibwpb} is a weak pullback just if the comparison map to the actual pullback has a section $\ell : X^\I \times_{\!X} Y \to Y^\I$, as indicated below.
-  \begin{equation}\label{diag:hfibequiv}
-\begin{tikzcd}
-	Y^\I \ar[rdd, bend right,swap, "f^\I"] \ar[rd] \ar[rrd, bend left, "\varepsilon_0"] && \\
-	& X^\I \times_{\!X} Y  \ar[lu, bend right = 20, dotted,swap, "\ell"]  \ar[d] \ar[r]  & Y \ar[d, "f"]\\  
-	 & X^\I \ar[r, swap,"\varepsilon_0"] & X
- \end{tikzcd}
- \end{equation}
-In terms of the so-called ``Leibniz adjunction'' ${\otimes} \dashv {\Rightarrow}$ (see \cite{JT}), the comparison map ${\langle f^\I, \varepsilon_0 \rangle} : Y^\I \to X^\I \times_{\!X} Y$ is the ``pullback-hom'', $\langle f^\I, \varepsilon_0\rangle = {d_0\Rightarrow f}$.
-
-Now, an arbitrary map $g : A\to B$ has a section just if it lifts on the right against $0\to Z$, for all objects $Z$ (one can take $Z=B$). Thus ${d_0\Rightarrow f}$ has a section just if $0_Z \pitchfork (d_0\Rightarrow f)$ for all $Z$, which is equivalent by the adjunction to $(0_Z \otimes d_0) \pitchfork f$ for all $Z$.  But we have $0_Z \otimes d_0 = Z \times d_0 : Z\to Z\times \I$.
- \end{proof}
- 
-A section $\ell : X^\I \times_{\!X} Y \to Y^\I$ may be regarded as a ``lifting operation'' that takes a path $p : x_0 \leadsto x_1$ in $X$, and a point $y_0\in Y$ over $x_0$, to a lifted path $\tilde{p} : y_0 \leadsto y$ in $Y$ lying over $p$.  A Hurewicz fibration $f : Y\to X$ will be called \emph{normal} if it comes with such a lifting $\ell : X^\I \times_{\!X} Y \to Y^\I$ that takes an identity path in $X$ to an identity path in $Y$, as indicated below.
-\begin{equation}\label{diag:normal}
-\begin{tikzcd}
-Y \ar[rr,"\rho"] && Y^\I \\
- X\times_{\!X} Y \ar[u, "p_2"] \ar[rr, swap,"{\rho \times_{\!X} Y}"] && X^\I \times_{\!X} Y  \ar[u,swap,"\ell"]
- \end{tikzcd}
- \end{equation}
-
-Now consider the following \emph{axioms} for a natural model $\tT$ with an interval $d_0, d_1:1\rightrightarrows \I$.
-\begin{itemize}
-\item[(A1)] $\tT$ has path types, as in Definition \ref{def:pathtypes}.
-\item[(A2)] $\tT$ is a Hurewicz fibration, as in Definition \ref{def:Hfibration}.
-\end{itemize}
-We also assume that $\tT$ is normal.
-
-\begin{lemma} \label{lemma:connection-on-U}
-Assuming axioms (A1) and (A2), the map $\tT$ has a \emph{connection}: a map $\chi : \TT^\I \to (\TT^\I)^\I \cong \TT^{\I\times\I}$ (over $\T$) making the following commute.
-\begin{equation}\label{diag:connection}
-\begin{tikzcd}
-	& \TT^\I  \\
-\TT^\I \ar[r, swap,"\chi"] \ar[d,swap, "\varepsilon_0"] \ar[ru, "{=}"] & \TT^{\I\times\I} \ar[d, "\varepsilon_0"] \ar[u,swap, "\varepsilon_1"]  \\ 
-\TT  \ar[r, swap,"\rho"] & \TT^\I 
- \end{tikzcd}
- \end{equation}
-Moreover, the connection $\chi$ is \emph{normal} in the sense that $\chi\rho = \rho\rho$\,,
-\begin{equation}\label{diag:normalconnection}
-\begin{tikzcd}
-\TT^I \ar[r,"\chi"] & \TT^{\I\times\I}  \\ 
-\TT  \ar[u, "\rho"] \ar[r, swap,"\rho"] & \TT^\I.\ar[u,swap, "\rho"] 
- \end{tikzcd}
- \end{equation}
-\end{lemma}
-\begin{proof}
-%Box filling ...
-We can use ``box-filling'' to construct the connection as the transpose of a certain diagonal filler
-\[
-\tilde{\chi}  : \TT^\I \times \I \to (\TT^\I)
-\]
-as follows.  Given any pathspace $A^\I \to A\times A$ that is a Hurewicz fibration, consider a lifting problem of the form: 
-\begin{equation}\label{diag:liftforHpathspace}
-\begin{tikzcd}
-1\ar[d,swap,"{\delta_0}"] \ar[r, "r"] &  {A^\I} \ar[d, "{A^\partial}"]\\
-\I \ar[r,swap,"{\langle q, p \rangle}"]\ar[ru,dotted,"\tilde{b}"]   & {A\times A}
-\end{tikzcd}
-\end{equation}
-This can be regarded as a filler for an ``open box'' $(p,q,r)$ in $A$ to give a 2-cube $b: \I\times \I \to A$, which can be depicted as follows:
-\begin{equation}\label{diag:2boxfilling}
-\begin{tikzcd}
-q_0\ar[d,swap,"q"] \ar[r, "r"] &  p_0 \ar[d, "p"]\\
-q_1 \ar[r, dotted] \ar[ru,phantom, "b"]  & p_1
-\end{tikzcd}
-\end{equation}
-Now consider the case $q = \rho_{p_0} = r$ and take $\chi_p : \I \to A^\I$ to be the resulting box: 
-\begin{equation}\label{diag:2boxfilling}
-\begin{tikzcd}
-p_0\ar[d,swap,"="] \ar[r, "="] &  p_0 \ar[d, "p"]\\
-p_0 \ar[r, dotted] \ar[ru,phantom, "\chi_p"]  & p_1
-\end{tikzcd}
-\end{equation}
-
-We apply this to the case where $A = \TT$ (over $\T$), and with object of parameters $\TT^\I$, to obtain the following:
-\begin{equation}\label{diag:liftforHpathspace}
-\begin{tikzcd}
-\TT^\I\times 1\ar[d,swap,"{\TT^\I\times \delta_0}"] \ar[r, "r"] &  {\TT^\I} \ar[d, "{\TT^\partial}"]\\
-\TT^\I\times \I \ar[r,swap,"{\langle q, p \rangle}"]\ar[ru,dotted,swap,"\tilde{\chi}"]   & {\TT \times \TT}
-\end{tikzcd}
-\end{equation}
-The maps $p,q,r$ are as follows:
-\begin{align*}
-p &= \varepsilon \\
-q &= \varepsilon (\rho \varepsilon_0 \times \I)\\
-r &= \rho\varepsilon_0
-\end{align*}
-Transposing provides the desired map $\chi : \TT^\I \to \TT^{\I\times\I}$ with evaluations $\chi(p)_0 = \rho p_0$ and $\chi(p)_1 = p$ for all $p:\TT^\I$. 
-%The connection is normal because $\chi\rho = \rho\rho$ by ...
-\end{proof}
-
-The Id-Elim rule now follows for any $A \to X$ that is classified by $\tT$, as follows.   By (A2), $A \to X$ is Hurewicz (since it's a pullback of $\tT$), and by (A1) the pathtype $A^\I\to A\times_X A$ is also Hurewicz (since it's therefore a pullback of $\TT^\I \to \TT\times_\T \TT$).  By Lemma \ref{lemma:connection-on-U} there is also a (normal) connection on $A\to X$ (again since it's a pullback of a map with a connection).  Consider an $\mathsf{Id}$-elimination problem as follows:
-\begin{equation}\label{diag:Id-Elim_with_pathtypes}
-\begin{tikzcd}
-A \ar[d,swap, "\rho"] \ar[r, "c"] &  {C} \ar[d, "\pi"]\\
-A^\I\ar[r, swap,"="]\ar[ru,swap,dotted,"j"]   & {A^\I}
-\end{tikzcd}
-\end{equation}
-where $\pi : C\to A^\I$ is a pullback of $\tT$, and therefor a Hurewicz fibration, with (normal) lifting operation $\ell : (A^\I)^\I \to C^\I$.  
-
-We argue first with elements to give the idea of the proof, before giving a diagrammatic version of the same argument.  Thus take any $p : A^\I$, which is a path $p:p_0 \leadsto p_1$ in $A$.  Applying the connection on $A$ we obtain a (higher) path $\chi_p : \rho p_0 \leadsto p$ in $A^\I$.  Since the outer square of \eqref{diag:Id-Elim_with_pathtypes} commutes, for every $p_0:A$ the term $cp_0:C$ lies over $\rho p_0$, thus we can lift $\chi_p$ to a path $\ell\langle\chi_p, cp_0\rangle  : cp_0 \leadsto \tilde{p}$ in $C$, with the endpoint $\tilde{p}$ over $p$.  We then set 
-\[
-jp := \tilde{p} = \varepsilon_1\ell\langle\chi_p, cp_0\rangle \,,
-\]
-which plainly makes the bottom triangle of \eqref{diag:Id-Elim_with_pathtypes} commute.  Observe that in the case $p = \rho a$ for $a:A$, we have $\chi_{\rho a} = \rho_{\rho a}$ since $\chi$ is normal, and then for the lift we have $\ell\langle\chi_{\rho a}, ca\rangle  = \ell\langle\rho_{\rho a}, ca\rangle = \rho ca$, since $\ell$ is normal. Whence $j\rho{a} = \varepsilon_1\rho ca = ca$, as required for the top triangle of \eqref{diag:Id-Elim_with_pathtypes} to commute.
-
-We summarize the result as follows.
-\begin{proposition}
-Let $\tT$ be a natural model in a category $\EE$ with an interval $1\rightrightarrows\I$, and assume axioms (A1) and (A2) above.  Then $\tT$ has Identity-types of the form $A \to A^\I \to A\times A $ validating the usual rules of intensional type theory.
-\end{proposition}
-
-\begin{proof}
-The foregoing ``elementary'' proof is depicted in the following diagram:
-\begin{equation}\label{diag:Id-Elim_diagram}
-\begin{tikzcd}
-A \ar[ddd,swap, "\rho"] \ar[rr, "c"] &&  {C} \ar[dd, "="]\\
-	& C^\I \ar[ru, "\varepsilon_1"] & \\
-	& * \ar[u, near start, swap, "\ell"] \ar[d] \ar[r] \pbcorner & C \ar[d] \\
-A^\I \ar[rr, bend right = 5ex, swap,"="] \ar[rruuu,dotted,near start, "j"] \ar[ur] \ar[r,swap, "\chi"] 
-	& (A^\I)^\I  \ar[r, swap, "\varepsilon_0"] & {A^\I}
-\end{tikzcd}
-\end{equation}
-Where $* = (A^\I)^\I \times_{A^\I} C$ is the indicated pullback, and the unlabelled map into it is the pair
-\[
-\langle \chi, c\varepsilon_0 \rangle : A^\I \too *\,.
-\]
-\end{proof}
-
-Since the map $j = \varepsilon_1 \circ\ell \circ \langle \chi, c\varepsilon_0 \rangle $ is defined from others that are stable under pullback (themselves being pullbacks of a universal instance, defined from structure on $\tT$), the substitution condition with respect to a change of context $\sigma : X' \to X$ will obtain; that is we shall have:
-\[
-(j^c)_\sigma = j^{c_\sigma} : C_\sigma\,.
-\]
-From this, it follows that we can determine a weak pullback structure map $J$ as in \eqref{def:wps}, relating the polynomial functors associated with $\tT$ and $\TT^\I \to \T$, evaluated at $\tT$, as in \eqref{diag:prod3}.  
-
-A simpler formulation of this condition is available in the case when the interval $\I$ is a tiny object---as obtains in the presheaves over the (finite product) category $\CC$ of contexts.   In that case, let us reformulate the elimination diagram \eqref{diag:Id-Elim_with_pathtypes} in the equivalent form 
-
-\begin{equation}\label{diag:Id-Elim_with_pathtypes2}
-\begin{tikzcd}
-A \ar[d,swap, "\rho"] \ar[r, "c"] &  \TT \ar[d, "\mathsf{u}"]\\
-A^\I\ar[r, swap,"C"]\ar[ru,swap,dotted,"j"]   & {\T}
-\end{tikzcd}
-\end{equation}
-Then, writing $\rho = A^{!} : A \to A^\I$, for $!: \I \to 1$, we can transpose across the adjunction $(-)^\I \dashv (-)_\I$ to obtain the following equivalent problem:
-\begin{equation}\label{diag:Id-Elim_with_pathtypes2}
-\begin{tikzcd}
-A \ar[ddr, bend right, swap, "{\tilde{C}}"] \ar[rd,swap,dotted,"\tilde{j}"] \ar[rrd, bend left, "{c}"] && \\
-&\TT_\I \ar[d,swap, "\mathsf{u}_\I"] \ar[r, "\TT_!"] &  {\TT} \ar[d, "\mathsf{u}"]\\
-&\T_\I  \ar[r, swap,"\T_!"]   & {\T}
-\end{tikzcd}
-\end{equation}
-Note that we are using the fact that the terminal object $1$ is also tiny and $(-)_1= \mathsf{id}$ is the identity functor, so $!: \I \to 1$ gives rise to a natural transformation $(-)_! : (-)_\I \to \mathsf{id}$. 
-
-The problem \eqref{diag:Id-Elim_with_pathtypes2} can be reformulated without reference to $A, \tilde{C}, c$ as stating that the inner square is a weak pullback, or, again equivalently, that there exists a section $\tilde{\mathsf{J}}$ of the comparison map ${\langle \mathsf{u}_\I, \TT_! \rangle}$,
-\begin{equation}\label{def:wps2}
-\begin{tikzcd}
-\TT_\I  \ar[rr] && \ar[ll, bend right, dotted, "\tilde{\mathsf{J}}" description] \T_\I \times_{\T} \TT 
-\end{tikzcd}
-\end{equation}
-This condition is clearly independent of the domain of any maps $A : X \to \T$, etc., into $\tT$, and therefore evidently satisfies the strict rule of coherence under substitution.  Comparing the condition \eqref{def:wps2} with the similar \eqref{def:wps}, we have achieved a simplification in replacing the polynomial functors $P_\mathsf{u}, P_q : \hat{\CC}\to\hat{\CC}$ by the ``root'' functor $(-)_\I:\hat{\CC}\to\hat{\CC}$, which is available when an interval $1\rightrightarrows \I$ is present in $\CC$, and of course in replacing the \emph{axioms} \eqref{diag:Idtypes} and \eqref{def:wps} by the axioms (A1) and (A2) above.
-%%%
-\end{document}
-%%%
-
+%
+%\begin{definition}\label{def:Interval}
+%
+%By an \emph{interval} in an lccc $\EE$ we simply mean a bipointed object $d_0, d_1:1\rightrightarrows \I$.  In terms of an interval, we then define further:
+%\begin{enumerate} 
+%\item for every object $A$, a \emph{path-object} factorization of the diagonal $\delta:A \to A\times A$, obtained by exponentiating $A$ by $1\rightrightarrows \I \to 1$, 
+%\[\begin{tikzcd}
+%	A \ar[r,"\rho"] \ar[rd, swap,"\delta"] & A^\I \ar[d,"{\langle \varepsilon_0, \varepsilon_1\rangle}"]\\
+%	& A \times A
+% \end{tikzcd} 
+%\]
+%where we write $\rho = A^{!_\I}$, and $\varepsilon_0 = A^{d_0}$, and $\varepsilon_1 = A^{d_1}$.
+%
+%\item Similarly, and abusing notation slightly, for any $A\to X$ regarded as an object in the slice category $\EE/_X$, we define the \emph{relative pathobject factorization}
+%\[\begin{tikzcd}
+%	A \ar[r,"\rho"] \ar[rd, swap,"\delta"] & A^\I \ar[d,"{\langle \varepsilon_0, \varepsilon_1\rangle}"]\\
+%	& A \times_{\!X} A
+% \end{tikzcd} 
+%\]
+%to be the pathobject factorization in $\EE/_X$ with respect to the pulled-back interval $1_X \rightrightarrows X^*\I \to 1_X$, where we are using the pullback functor $X^* = {!_X^*} : \EE\to \EE/_X$ along $!_X : X \to 1$.
+%\end{enumerate}
+%\end{definition}
+%   
+%\begin{lemma}
+%   For any object $A\to X$ over any base $X$, the relative pathobject factorization
+%\[\begin{tikzcd}
+%	A \ar[r,"\rho"] \ar[rd, swap,"\delta"] & A^\I \ar[d,"{\langle \varepsilon_0, \varepsilon_1\rangle}"]\\
+%	& A \times_{\!X} A\,,
+% \end{tikzcd} 
+%\]
+%is stable under pullback along any map $f : Y\to X$, in the sense that the factorization pulls back to the relative pathobject factorization over $Y$ of the pullback $f^*A\to Y$, resulting in a canonical isomorphism over $Y$,
+%\[
+%(f^*A)^\I \cong f^*(A^\I)\,.
+%\]
+%   \end{lemma}
+%
+%
+%\begin{definition}\label{def:pathtypes}
+%A natural model $\tT$ will be said to \emph{have path types} if there are structure maps $(\mathsf{Id},\mathsf{j})$ making a pullback square,
+%\begin{equation}\label{diag:pathtypes}
+%\begin{tikzcd}
+%	\TT^\I \ar[r,"\mathsf{j}"] \ar[d,swap,"\varepsilon"] &  \TT \ar[d, "\t"]\\  
+%	\TT \times_\T \TT \ar[r, swap,"\mathsf{Id}"] & \T
+% \end{tikzcd}
+% \end{equation}
+% where $\varepsilon = \langle \varepsilon_0, \varepsilon_1\rangle :\TT^\I \to \TT \times_\T \TT $ is the relative pathobject of $\tT$ over $\T$.
+% \end{definition}
+%
+%In order to show that a natural model with path types also has intensional Identity types in the sense of Definition \ref{def:identitytype}, we require an additional condition on the map $\tT$, namely that it is a ``Hurewicz fibration'', in the following sense.
+%
+%\begin{definition}\label{def:Hfibration}
+%A map $f: Y\to X$ will be called a \emph{Hurewicz fibration} (with respect to an interval $d_0, d_1:1\rightrightarrows \I$), if it has the right lifting property with respect to every cylinder $Z\times d_0 : Z\times 1\to Z\times \I$.  In detail, given any object $Z$ and maps $y$ and $h$ as indicated below, there exists a diagonal filler $\tilde{h}$ making the following diagram commute.
+%\begin{equation}\label{diag:def_HFib}
+%\begin{tikzcd}
+%Z\times 1\ar[d,swap, "{Z\times d_0}"] \ar[r, "y"] &  {Y} \ar[d, "f"]\\
+%Z\times \I \ar[r,swap,"h"]\ar[ru,swap,dotted,"\tilde{h}"]   & {X}
+%\end{tikzcd}
+%\end{equation}
+% \end{definition}
+%
+%One regards $h : Z\times \I \to X$ as a homotopy between the maps $h_0, h_1 : Z\to X$ obtained by composing it with the two ends of the cylinder  $Z\times 1 \rightrightarrows Z\times \I$, and $\tilde{h} : Z\times \I \to Y$ as a lift of $h$ to the specified $0$-end $y$.
+%
+% \begin{proposition}
+%  A map $f: Y\to X$ is a Hurewicz fibration just if the following diagram is a weak pullback.
+% \begin{equation}\label{diag:hfibwpb}
+%\begin{tikzcd}
+%	Y^\I \ar[d, swap, "{f^\I}"] \ar[r, "{\varepsilon_0}"] & Y \ar[d, "f"] \\  
+%	 X^\I \ar[r, swap,"\varepsilon_0"] & X
+% \end{tikzcd}
+% \end{equation}
+% \end{proposition}
+% 
+% \begin{proof}
+% The diagram \eqref{diag:hfibwpb} is a weak pullback just if the comparison map to the actual pullback has a section $\ell : X^\I \times_{\!X} Y \to Y^\I$, as indicated below.
+%  \begin{equation}\label{diag:hfibequiv}
+%\begin{tikzcd}
+%	Y^\I \ar[rdd, bend right,swap, "f^\I"] \ar[rd] \ar[rrd, bend left, "\varepsilon_0"] && \\
+%	& X^\I \times_{\!X} Y  \ar[lu, bend right = 20, dotted,swap, "\ell"]  \ar[d] \ar[r]  & Y \ar[d, "f"]\\  
+%	 & X^\I \ar[r, swap,"\varepsilon_0"] & X
+% \end{tikzcd}
+% \end{equation}
+%In terms of the so-called ``Leibniz adjunction'' ${\otimes} \dashv {\Rightarrow}$ (see \cite{JT}), the comparison map ${\langle f^\I, \varepsilon_0 \rangle} : Y^\I \to X^\I \times_{\!X} Y$ is the ``pullback-hom'', $\langle f^\I, \varepsilon_0\rangle = {d_0\Rightarrow f}$.
+%
+%Now, an arbitrary map $g : A\to B$ has a section just if it lifts on the right against $0\to Z$, for all objects $Z$ (one can take $Z=B$). Thus ${d_0\Rightarrow f}$ has a section just if $0_Z \pitchfork (d_0\Rightarrow f)$ for all $Z$, which is equivalent by the adjunction to $(0_Z \otimes d_0) \pitchfork f$ for all $Z$.  But we have $0_Z \otimes d_0 = Z \times d_0 : Z\to Z\times \I$.
+% \end{proof}
+% 
+%A section $\ell : X^\I \times_{\!X} Y \to Y^\I$ may be regarded as a ``lifting operation'' that takes a path $p : x_0 \leadsto x_1$ in $X$, and a point $y_0\in Y$ over $x_0$, to a lifted path $\tilde{p} : y_0 \leadsto y$ in $Y$ lying over $p$.  A Hurewicz fibration $f : Y\to X$ will be called \emph{normal} if it comes with such a lifting $\ell : X^\I \times_{\!X} Y \to Y^\I$ that takes an identity path in $X$ to an identity path in $Y$, as indicated below.
+%\begin{equation}\label{diag:normal}
+%\begin{tikzcd}
+%Y \ar[rr,"\rho"] && Y^\I \\
+% X\times_{\!X} Y \ar[u, "p_2"] \ar[rr, swap,"{\rho \times_{\!X} Y}"] && X^\I \times_{\!X} Y  \ar[u,swap,"\ell"]
+% \end{tikzcd}
+% \end{equation}
+%
+%Now consider the following \emph{axioms} for a natural model $\tT$ with an interval $d_0, d_1:1\rightrightarrows \I$.
+%\begin{itemize}
+%\item[(A1)] $\tT$ has path types, as in Definition \ref{def:pathtypes}.
+%\item[(A2)] $\tT$ is a Hurewicz fibration, as in Definition \ref{def:Hfibration}.
+%\end{itemize}
+%We also assume that $\tT$ is normal.
+%
+%\begin{lemma} \label{lemma:connection-on-U}
+%Assuming axioms (A1) and (A2), the map $\tT$ has a \emph{connection}: a map $\chi : \TT^\I \to (\TT^\I)^\I \cong \TT^{\I\times\I}$ (over $\T$) making the following commute.
+%\begin{equation}\label{diag:connection}
+%\begin{tikzcd}
+%	& \TT^\I  \\
+%\TT^\I \ar[r, swap,"\chi"] \ar[d,swap, "\varepsilon_0"] \ar[ru, "{=}"] & \TT^{\I\times\I} \ar[d, "\varepsilon_0"] \ar[u,swap, "\varepsilon_1"]  \\ 
+%\TT  \ar[r, swap,"\rho"] & \TT^\I 
+% \end{tikzcd}
+% \end{equation}
+%Moreover, the connection $\chi$ is \emph{normal} in the sense that $\chi\rho = \rho\rho$\,,
+%\begin{equation}\label{diag:normalconnection}
+%\begin{tikzcd}
+%\TT^I \ar[r,"\chi"] & \TT^{\I\times\I}  \\ 
+%\TT  \ar[u, "\rho"] \ar[r, swap,"\rho"] & \TT^\I.\ar[u,swap, "\rho"] 
+% \end{tikzcd}
+% \end{equation}
+%\end{lemma}
+%\begin{proof}
+%%Box filling ...
+%We can use ``box-filling'' to construct the connection as the transpose of a certain diagonal filler
+%\[
+%\tilde{\chi}  : \TT^\I \times \I \to (\TT^\I)
+%\]
+%as follows.  Given any pathspace $A^\I \to A\times A$ that is a Hurewicz fibration, consider a lifting problem of the form: 
+%\begin{equation}\label{diag:liftforHpathspace}
+%\begin{tikzcd}
+%1\ar[d,swap,"{\delta_0}"] \ar[r, "r"] &  {A^\I} \ar[d, "{A^\partial}"]\\
+%\I \ar[r,swap,"{\langle q, p \rangle}"]\ar[ru,dotted,"\tilde{b}"]   & {A\times A}
+%\end{tikzcd}
+%\end{equation}
+%This can be regarded as a filler for an ``open box'' $(p,q,r)$ in $A$ to give a 2-cube $b: \I\times \I \to A$, which can be depicted as follows:
+%\begin{equation}\label{diag:2boxfilling}
+%\begin{tikzcd}
+%q_0\ar[d,swap,"q"] \ar[r, "r"] &  p_0 \ar[d, "p"]\\
+%q_1 \ar[r, dotted] \ar[ru,phantom, "b"]  & p_1
+%\end{tikzcd}
+%\end{equation}
+%Now consider the case $q = \rho_{p_0} = r$ and take $\chi_p : \I \to A^\I$ to be the resulting box: 
+%\begin{equation}\label{diag:2boxfilling}
+%\begin{tikzcd}
+%p_0\ar[d,swap,"="] \ar[r, "="] &  p_0 \ar[d, "p"]\\
+%p_0 \ar[r, dotted] \ar[ru,phantom, "\chi_p"]  & p_1
+%\end{tikzcd}
+%\end{equation}
+%
+%We apply this to the case where $A = \TT$ (over $\T$), and with object of parameters $\TT^\I$, to obtain the following:
+%\begin{equation}\label{diag:liftforHpathspace}
+%\begin{tikzcd}
+%\TT^\I\times 1\ar[d,swap,"{\TT^\I\times \delta_0}"] \ar[r, "r"] &  {\TT^\I} \ar[d, "{\TT^\partial}"]\\
+%\TT^\I\times \I \ar[r,swap,"{\langle q, p \rangle}"]\ar[ru,dotted,swap,"\tilde{\chi}"]   & {\TT \times \TT}
+%\end{tikzcd}
+%\end{equation}
+%The maps $p,q,r$ are as follows:
+%\begin{align*}
+%p &= \varepsilon \\
+%q &= \varepsilon (\rho \varepsilon_0 \times \I)\\
+%r &= \rho\varepsilon_0
+%\end{align*}
+%Transposing provides the desired map $\chi : \TT^\I \to \TT^{\I\times\I}$ with evaluations $\chi(p)_0 = \rho p_0$ and $\chi(p)_1 = p$ for all $p:\TT^\I$. 
+%%The connection is normal because $\chi\rho = \rho\rho$ by ...
+%\end{proof}
+%
+%The Id-Elim rule now follows for any $A \to X$ that is classified by $\tT$, as follows.   By (A2), $A \to X$ is Hurewicz (since it's a pullback of $\tT$), and by (A1) the pathtype $A^\I\to A\times_X A$ is also Hurewicz (since it's therefore a pullback of $\TT^\I \to \TT\times_\T \TT$).  By Lemma \ref{lemma:connection-on-U} there is also a (normal) connection on $A\to X$ (again since it's a pullback of a map with a connection).  Consider an $\mathsf{Id}$-elimination problem as follows:
+%\begin{equation}\label{diag:Id-Elim_with_pathtypes}
+%\begin{tikzcd}
+%A \ar[d,swap, "\rho"] \ar[r, "c"] &  {C} \ar[d, "\pi"]\\
+%A^\I\ar[r, swap,"="]\ar[ru,swap,dotted,"j"]   & {A^\I}
+%\end{tikzcd}
+%\end{equation}
+%where $\pi : C\to A^\I$ is a pullback of $\tT$, and therefor a Hurewicz fibration, with (normal) lifting operation $\ell : (A^\I)^\I \to C^\I$.  
+%
+%We argue first with elements to give the idea of the proof, before giving a diagrammatic version of the same argument.  Thus take any $p : A^\I$, which is a path $p:p_0 \leadsto p_1$ in $A$.  Applying the connection on $A$ we obtain a (higher) path $\chi_p : \rho p_0 \leadsto p$ in $A^\I$.  Since the outer square of \eqref{diag:Id-Elim_with_pathtypes} commutes, for every $p_0:A$ the term $cp_0:C$ lies over $\rho p_0$, thus we can lift $\chi_p$ to a path $\ell\langle\chi_p, cp_0\rangle  : cp_0 \leadsto \tilde{p}$ in $C$, with the endpoint $\tilde{p}$ over $p$.  We then set 
+%\[
+%jp := \tilde{p} = \varepsilon_1\ell\langle\chi_p, cp_0\rangle \,,
+%\]
+%which plainly makes the bottom triangle of \eqref{diag:Id-Elim_with_pathtypes} commute.  Observe that in the case $p = \rho a$ for $a:A$, we have $\chi_{\rho a} = \rho_{\rho a}$ since $\chi$ is normal, and then for the lift we have $\ell\langle\chi_{\rho a}, ca\rangle  = \ell\langle\rho_{\rho a}, ca\rangle = \rho ca$, since $\ell$ is normal. Whence $j\rho{a} = \varepsilon_1\rho ca = ca$, as required for the top triangle of \eqref{diag:Id-Elim_with_pathtypes} to commute.
+%
+%We summarize the result as follows.
+%\begin{proposition}
+%Let $\tT$ be a natural model in a category $\EE$ with an interval $1\rightrightarrows\I$, and assume axioms (A1) and (A2) above.  Then $\tT$ has Identity-types of the form $A \to A^\I \to A\times A $ validating the usual rules of intensional type theory.
+%\end{proposition}
+%
+%\begin{proof}
+%The foregoing ``elementary'' proof is depicted in the following diagram:
+%\begin{equation}\label{diag:Id-Elim_diagram}
+%\begin{tikzcd}
+%A \ar[ddd,swap, "\rho"] \ar[rr, "c"] &&  {C} \ar[dd, "="]\\
+%	& C^\I \ar[ru, "\varepsilon_1"] & \\
+%	& * \ar[u, near start, swap, "\ell"] \ar[d] \ar[r] \pbcorner & C \ar[d] \\
+%A^\I \ar[rr, bend right = 5ex, swap,"="] \ar[rruuu,dotted,near start, "j"] \ar[ur] \ar[r,swap, "\chi"] 
+%	& (A^\I)^\I  \ar[r, swap, "\varepsilon_0"] & {A^\I}
+%\end{tikzcd}
+%\end{equation}
+%Where $* = (A^\I)^\I \times_{A^\I} C$ is the indicated pullback, and the unlabelled map into it is the pair
+%\[
+%\langle \chi, c\varepsilon_0 \rangle : A^\I \too *\,.
+%\]
+%\end{proof}
+%
+%Since the map $j = \varepsilon_1 \circ\ell \circ \langle \chi, c\varepsilon_0 \rangle $ is defined from others that are stable under pullback (themselves being pullbacks of a universal instance, defined from structure on $\tT$), the substitution condition with respect to a change of context $\sigma : X' \to X$ will obtain; that is we shall have:
+%\[
+%(j^c)_\sigma = j^{c_\sigma} : C_\sigma\,.
+%\]
+%From this, it follows that we can determine a weak pullback structure map $J$ as in \eqref{def:wps}, relating the polynomial functors associated with $\tT$ and $\TT^\I \to \T$, evaluated at $\tT$, as in \eqref{diag:prod3}.  
+%
+%A simpler formulation of this condition is available in the case when the interval $\I$ is a tiny object---as obtains in the presheaves over the (finite product) category $\CC$ of contexts.   In that case, let us reformulate the elimination diagram \eqref{diag:Id-Elim_with_pathtypes} in the equivalent form 
+%
+%\begin{equation}\label{diag:Id-Elim_with_pathtypes2}
+%\begin{tikzcd}
+%A \ar[d,swap, "\rho"] \ar[r, "c"] &  \TT \ar[d, "\mathsf{u}"]\\
+%A^\I\ar[r, swap,"C"]\ar[ru,swap,dotted,"j"]   & {\T}
+%\end{tikzcd}
+%\end{equation}
+%Then, writing $\rho = A^{!} : A \to A^\I$, for $!: \I \to 1$, we can transpose across the adjunction $(-)^\I \dashv (-)_\I$ to obtain the following equivalent problem:
+%\begin{equation}\label{diag:Id-Elim_with_pathtypes2}
+%\begin{tikzcd}
+%A \ar[ddr, bend right, swap, "{\tilde{C}}"] \ar[rd,swap,dotted,"\tilde{j}"] \ar[rrd, bend left, "{c}"] && \\
+%&\TT_\I \ar[d,swap, "\mathsf{u}_\I"] \ar[r, "\TT_!"] &  {\TT} \ar[d, "\mathsf{u}"]\\
+%&\T_\I  \ar[r, swap,"\T_!"]   & {\T}
+%\end{tikzcd}
+%\end{equation}
+%Note that we are using the fact that the terminal object $1$ is also tiny and $(-)_1= \mathsf{id}$ is the identity functor, so $!: \I \to 1$ gives rise to a natural transformation $(-)_! : (-)_\I \to \mathsf{id}$. 
+%
+%The problem \eqref{diag:Id-Elim_with_pathtypes2} can be reformulated without reference to $A, \tilde{C}, c$ as stating that the inner square is a weak pullback, or, again equivalently, that there exists a section $\tilde{\mathsf{J}}$ of the comparison map ${\langle \mathsf{u}_\I, \TT_! \rangle}$,
+%\begin{equation}\label{def:wps2}
+%\begin{tikzcd}
+%\TT_\I  \ar[rr] && \ar[ll, bend right, dotted, "\tilde{\mathsf{J}}" description] \T_\I \times_{\T} \TT 
+%\end{tikzcd}
+%\end{equation}
+%This condition is clearly independent of the domain of any maps $A : X \to \T$, etc., into $\tT$, and therefore evidently satisfies the strict rule of coherence under substitution.  Comparing the condition \eqref{def:wps2} with the similar \eqref{def:wps}, we have achieved a simplification in replacing the polynomial functors $P_\mathsf{u}, P_q : \hat{\CC}\to\hat{\CC}$ by the ``root'' functor $(-)_\I:\hat{\CC}\to\hat{\CC}$, which is available when an interval $1\rightrightarrows \I$ is present in $\CC$, and of course in replacing the \emph{axioms} \eqref{diag:Idtypes} and \eqref{def:wps} by the axioms (A1) and (A2) above.
+%%%%
+%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Examples of ML-algebras}\label{sec:ExamplesML-Algebras}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1088,7 +1089,7 @@ gives rise to the following data in $\mathsf{PolyFun}(\EE, \EE)$:
 \begin{enumerate}
 \item a cartesian natural transformation $\tau :1_\EE \Rightarrow P_\t$\,,
 \item a cartesian natural transformation $\sigma :P_\t\circ P_\t \Rightarrow P_\t$\,,
-\item a cartesian natural transformation $\pi:P_\t\t \Rightarrow \t$\,.
+\item a cartesian arrow $\pi:P_\t(\t) \rightarrow \t$\, in $\EE^{\downarrow}$.
 \end{enumerate}
 %
 Items (1) and (2) are of course familiar as the underlying structure of a monad; item (3) is a somewhat less familiar special case of an algebra structure map, with $P_\t$ lifted from $\EE$ to $\EE^{\downarrow}_{\mathsf{cart}}$ using the fact that polynomial functors preserve pullbacks.  The obvious question to ask now is: are the respective \emph{equations} for a monad and an algebra satisfied by the natural transformations $\tau, \sigma, \pi$\,?  The answer in general is \emph{no}, but as shown in \cite{Newstead:thesis, NA:2018}, there are reasons to investigate further.
@@ -1492,8 +1493,7 @@ with the 1-category of polynomial functors with finite fibers and cartesian natu
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection*{Acknowledgements.}
 
-\quad Thanks to Mathieu Anel, Corinthia Aberl\'e, Marcelo
-Fiore, Nicola Gambino, Richard Garner, and Clive Newstead for ideas and advice.  This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
+\quad Thanks to Mathieu Anel, Corinthia Aberl\'e, Marcelo Fiore, Nicola Gambino, Richard Garner, and Clive Newstead for ideas and advice, as well as to Yiming Xu and an anonymous referee for comments on an earlier version.  This material is based upon work supported by the Air Force Office of Scientific Research under awards FA9550-21-1-0009 and FA9550-20-1-0305.
 
 \bibliographystyle{alpha}
 %\bibliography{../Bib/catlog.bib}
